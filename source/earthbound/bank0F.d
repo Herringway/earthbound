@@ -5,2308 +5,2308 @@ import earthbound.commondefs;
 import earthbound.text;
 
 /// $CF0000
-immutable SectorDoors[32][40] doorConfig = [
+immutable SectorObjects[32][40] sectorObjects = [
 	[
-		SectorDoors(1, [DoorConfig(0x11, 0x15, DoorType.object, &doorEntry910)]),
-		SectorDoors(2, [DoorConfig(0x0E, 0x15, DoorType.door, &doorEntry908), DoorConfig(0x19, 0x15, DoorType.object, &doorEntry911)]),
-		SectorDoors(1, [DoorConfig(0x0E, 0x16, DoorType.door, &doorEntry904)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0F, 0x05, DoorType.door, &doorEntry0)]),
-		SectorDoors(4, [DoorConfig(0x11, 0x02, DoorType.object, &doorEntry150), DoorConfig(0x11, 0x04, DoorType.object, &doorEntry150), DoorConfig(0x12, 0x03, DoorType.object, &doorEntry150), DoorConfig(0x12, 0x05, DoorType.object, &doorEntry150)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x0B, DoorType.door, &doorEntry885), DoorConfig(0x11, 0x0C, DoorType.door, &doorEntry885)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x15, 0x07, DoorType.door, &doorEntry886), DoorConfig(0x15, 0x08, DoorType.door, &doorEntry886)]),
-		SectorDoors(2, [DoorConfig(0x11, 0x01, DoorType.door, &doorEntry887), DoorConfig(0x11, 0x02, DoorType.door, &doorEntry887)]),
-		SectorDoors(6, [DoorConfig(0x0D, 0x06, DoorType.object, &doorEntry840), DoorConfig(0x0D, 0x0C, DoorType.object, &doorEntry862), DoorConfig(0x0D, 0x12, DoorType.object, &doorEntry841), DoorConfig(0x15, 0x0E, DoorType.object, &doorEntry842), DoorConfig(0x19, 0x0A, DoorType.object, &doorEntry843), DoorConfig(0x1D, 0x11, DoorType.object, &doorEntry844)]),
-		SectorDoors(45, [DoorConfig(0x01, 0x07, DoorType.door, &doorEntry818), DoorConfig(0x01, 0x13, DoorType.door, &doorEntry819), DoorConfig(0x02, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x0D, DoorType.door, &doorEntry820), DoorConfig(0x02, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x19, DoorType.door, &doorEntry821), DoorConfig(0x03, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x07, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x05, DoorType.object, &doorEntry845), DoorConfig(0x0D, 0x0A, DoorType.object, &doorEntry845), DoorConfig(0x0D, 0x11, DoorType.object, &doorEntry845), DoorConfig(0x0D, 0x16, DoorType.object, &doorEntry845), DoorConfig(0x1A, 0x18, DoorType.object, &doorEntry847)]),
-		SectorDoors(4, [DoorConfig(0x09, 0x11, DoorType.door, &doorEntry839), DoorConfig(0x0D, 0x15, DoorType.object, &doorEntry848), DoorConfig(0x15, 0x01, DoorType.object, &doorEntry849), DoorConfig(0x19, 0x06, DoorType.object, &doorEntry850)]),
-		SectorDoors(5, [DoorConfig(0x1C, 0x05, DoorType.door, &doorEntry402), DoorConfig(0x1C, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1E, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x16, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(5, [DoorConfig(0x14, 0x02, DoorType.door, &doorEntry403), DoorConfig(0x1C, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1E, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x16, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x16, DoorType.door, &doorEntry942)]),
-		SectorDoors(6, [DoorConfig(0x08, 0x06, DoorType.door, &doorEntry345), DoorConfig(0x09, 0x05, DoorType.door, &doorEntry345), DoorConfig(0x0A, 0x04, DoorType.door, &doorEntry345), DoorConfig(0x0B, 0x03, DoorType.door, &doorEntry345), DoorConfig(0x0C, 0x02, DoorType.door, &doorEntry345), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry345)]),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x08, 0x19, DoorType.door, &doorEntry346), DoorConfig(0x09, 0x1A, DoorType.door, &doorEntry346), DoorConfig(0x0A, 0x1B, DoorType.door, &doorEntry346), DoorConfig(0x0B, 0x1C, DoorType.door, &doorEntry346), DoorConfig(0x0C, 0x1D, DoorType.door, &doorEntry346), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry346)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x06, DoorType.door, &doorEntry31)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x11, DoorType.door, &doorEntry32), DoorConfig(0x07, 0x1D, DoorType.door, &doorEntry33), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry34)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry35), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry36)]),
-		SectorDoors(4, [DoorConfig(0x0B, 0x09, DoorType.door, &doorEntry151), DoorConfig(0x0B, 0x11, DoorType.door, &doorEntry152), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry37), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry38)]),
+		SectorObjects(1, [MapObject(0x11, 0x15, ObjectType.object, &doorEntry910)]),
+		SectorObjects(2, [MapObject(0x0E, 0x15, ObjectType.door, &doorEntry908), MapObject(0x19, 0x15, ObjectType.object, &doorEntry911)]),
+		SectorObjects(1, [MapObject(0x0E, 0x16, ObjectType.door, &doorEntry904)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0F, 0x05, ObjectType.door, &doorEntry0)]),
+		SectorObjects(4, [MapObject(0x11, 0x02, ObjectType.object, &doorEntry150), MapObject(0x11, 0x04, ObjectType.object, &doorEntry150), MapObject(0x12, 0x03, ObjectType.object, &doorEntry150), MapObject(0x12, 0x05, ObjectType.object, &doorEntry150)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x0B, ObjectType.door, &doorEntry885), MapObject(0x11, 0x0C, ObjectType.door, &doorEntry885)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x15, 0x07, ObjectType.door, &doorEntry886), MapObject(0x15, 0x08, ObjectType.door, &doorEntry886)]),
+		SectorObjects(2, [MapObject(0x11, 0x01, ObjectType.door, &doorEntry887), MapObject(0x11, 0x02, ObjectType.door, &doorEntry887)]),
+		SectorObjects(6, [MapObject(0x0D, 0x06, ObjectType.object, &doorEntry840), MapObject(0x0D, 0x0C, ObjectType.object, &doorEntry862), MapObject(0x0D, 0x12, ObjectType.object, &doorEntry841), MapObject(0x15, 0x0E, ObjectType.object, &doorEntry842), MapObject(0x19, 0x0A, ObjectType.object, &doorEntry843), MapObject(0x1D, 0x11, ObjectType.object, &doorEntry844)]),
+		SectorObjects(45, [MapObject(0x01, 0x07, ObjectType.door, &doorEntry818), MapObject(0x01, 0x13, ObjectType.door, &doorEntry819), MapObject(0x02, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x0D, ObjectType.door, &doorEntry820), MapObject(0x02, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x19, ObjectType.door, &doorEntry821), MapObject(0x03, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x07, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x05, ObjectType.object, &doorEntry845), MapObject(0x0D, 0x0A, ObjectType.object, &doorEntry845), MapObject(0x0D, 0x11, ObjectType.object, &doorEntry845), MapObject(0x0D, 0x16, ObjectType.object, &doorEntry845), MapObject(0x1A, 0x18, ObjectType.object, &doorEntry847)]),
+		SectorObjects(4, [MapObject(0x09, 0x11, ObjectType.door, &doorEntry839), MapObject(0x0D, 0x15, ObjectType.object, &doorEntry848), MapObject(0x15, 0x01, ObjectType.object, &doorEntry849), MapObject(0x19, 0x06, ObjectType.object, &doorEntry850)]),
+		SectorObjects(5, [MapObject(0x1C, 0x05, ObjectType.door, &doorEntry402), MapObject(0x1C, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1E, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x16, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(5, [MapObject(0x14, 0x02, ObjectType.door, &doorEntry403), MapObject(0x1C, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1E, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x16, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x16, ObjectType.door, &doorEntry942)]),
+		SectorObjects(6, [MapObject(0x08, 0x06, ObjectType.door, &doorEntry345), MapObject(0x09, 0x05, ObjectType.door, &doorEntry345), MapObject(0x0A, 0x04, ObjectType.door, &doorEntry345), MapObject(0x0B, 0x03, ObjectType.door, &doorEntry345), MapObject(0x0C, 0x02, ObjectType.door, &doorEntry345), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry345)]),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x08, 0x19, ObjectType.door, &doorEntry346), MapObject(0x09, 0x1A, ObjectType.door, &doorEntry346), MapObject(0x0A, 0x1B, ObjectType.door, &doorEntry346), MapObject(0x0B, 0x1C, ObjectType.door, &doorEntry346), MapObject(0x0C, 0x1D, ObjectType.door, &doorEntry346), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry346)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x06, ObjectType.door, &doorEntry31)]),
+		SectorObjects(3, [MapObject(0x07, 0x11, ObjectType.door, &doorEntry32), MapObject(0x07, 0x1D, ObjectType.door, &doorEntry33), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry34)]),
+		SectorObjects(2, [MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry35), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry36)]),
+		SectorObjects(4, [MapObject(0x0B, 0x09, ObjectType.door, &doorEntry151), MapObject(0x0B, 0x11, ObjectType.door, &doorEntry152), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry37), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry38)]),
 	], [
-		SectorDoors(2, [DoorConfig(0x11, 0x13, DoorType.door, &doorEntry905), DoorConfig(0x11, 0x14, DoorType.door, &doorEntry905)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x11, DoorType.object, &doorEntry912)]),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x06, 0x09, DoorType.door, &doorEntry1), DoorConfig(0x19, 0x1D, DoorType.door, &doorEntry2), DoorConfig(0x1A, 0x05, DoorType.door, &doorEntry3)]),
-		SectorDoors(1, [DoorConfig(0x1E, 0x11, DoorType.door, &doorEntry4)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x0B, DoorType.door, &doorEntry21)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x0B, DoorType.door, &doorEntry22), DoorConfig(0x13, 0x1A, DoorType.object, &doorEntry148), DoorConfig(0x13, 0x1C, DoorType.object, &doorEntry148)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x0B, DoorType.door, &doorEntry888), DoorConfig(0x11, 0x0C, DoorType.door, &doorEntry888)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x05, 0x04, DoorType.object, &doorEntry851)]),
-		SectorDoors(1, []),
-		SectorDoors(3, [DoorConfig(0x01, 0x11, DoorType.object, &doorEntry852), DoorConfig(0x0D, 0x05, DoorType.object, &doorEntry853), DoorConfig(0x11, 0x15, DoorType.object, &doorEntry854)]),
-		SectorDoors(11, [DoorConfig(0x00, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x14, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(13, [DoorConfig(0x00, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x1A, DoorType.door, &doorEntry404)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x00, 0x1C, DoorType.door, &doorEntry461)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.door, &doorEntry39)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x06, DoorType.door, &doorEntry40)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x04, DoorType.door, &doorEntry41), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry42)]),
-		SectorDoors(4, [DoorConfig(0x0A, 0x0F, DoorType.door, &doorEntry43), DoorConfig(0x17, 0x0D, DoorType.door, &doorEntry44), DoorConfig(0x17, 0x19, DoorType.door, &doorEntry45), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry46)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry47), DoorConfig(0x1D, 0x16, DoorType.door, &doorEntry48)]),
+		SectorObjects(2, [MapObject(0x11, 0x13, ObjectType.door, &doorEntry905), MapObject(0x11, 0x14, ObjectType.door, &doorEntry905)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x11, ObjectType.object, &doorEntry912)]),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x06, 0x09, ObjectType.door, &doorEntry1), MapObject(0x19, 0x1D, ObjectType.door, &doorEntry2), MapObject(0x1A, 0x05, ObjectType.door, &doorEntry3)]),
+		SectorObjects(1, [MapObject(0x1E, 0x11, ObjectType.door, &doorEntry4)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x0B, ObjectType.door, &doorEntry21)]),
+		SectorObjects(3, [MapObject(0x0A, 0x0B, ObjectType.door, &doorEntry22), MapObject(0x13, 0x1A, ObjectType.object, &doorEntry148), MapObject(0x13, 0x1C, ObjectType.object, &doorEntry148)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x0B, ObjectType.door, &doorEntry888), MapObject(0x11, 0x0C, ObjectType.door, &doorEntry888)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x05, 0x04, ObjectType.object, &doorEntry851)]),
+		SectorObjects(1, []),
+		SectorObjects(3, [MapObject(0x01, 0x11, ObjectType.object, &doorEntry852), MapObject(0x0D, 0x05, ObjectType.object, &doorEntry853), MapObject(0x11, 0x15, ObjectType.object, &doorEntry854)]),
+		SectorObjects(11, [MapObject(0x00, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x14, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(13, [MapObject(0x00, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x1A, ObjectType.door, &doorEntry404)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x00, 0x1C, ObjectType.door, &doorEntry461)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x01, ObjectType.door, &doorEntry39)]),
+		SectorObjects(1, [MapObject(0x11, 0x06, ObjectType.door, &doorEntry40)]),
+		SectorObjects(2, [MapObject(0x0A, 0x04, ObjectType.door, &doorEntry41), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry42)]),
+		SectorObjects(4, [MapObject(0x0A, 0x0F, ObjectType.door, &doorEntry43), MapObject(0x17, 0x0D, ObjectType.door, &doorEntry44), MapObject(0x17, 0x19, ObjectType.door, &doorEntry45), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry46)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry47), MapObject(0x1D, 0x16, ObjectType.door, &doorEntry48)]),
 	], [
-		SectorDoors(1, [DoorConfig(0x0D, 0x11, DoorType.object, &doorEntry863)]),
-		SectorDoors(9, [DoorConfig(0x09, 0x05, DoorType.door, &doorEntry825), DoorConfig(0x09, 0x06, DoorType.door, &doorEntry825), DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry826), DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry826), DoorConfig(0x09, 0x15, DoorType.door, &doorEntry827), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry827), DoorConfig(0x09, 0x1D, DoorType.door, &doorEntry828), DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry828), DoorConfig(0x1D, 0x01, DoorType.object, &doorEntry864)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x12, DoorType.object, &doorEntry865)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x04, 0x15, DoorType.door, &doorEntry5), DoorConfig(0x04, 0x17, DoorType.door, &doorEntry5), DoorConfig(0x07, 0x15, DoorType.door, &doorEntry6), DoorConfig(0x09, 0x19, DoorType.object, &doorEntry133), DoorConfig(0x09, 0x1A, DoorType.object, &doorEntry133)]),
-		SectorDoors(2, [DoorConfig(0x1F, 0x02, DoorType.object, &doorEntry135), DoorConfig(0x1F, 0x04, DoorType.object, &doorEntry135)]),
-		SectorDoors(1, [DoorConfig(0x12, 0x1C, DoorType.door, &doorEntry7)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x0C, 0x15, DoorType.door, &doorEntry28), DoorConfig(0x0C, 0x17, DoorType.door, &doorEntry28), DoorConfig(0x0C, 0x19, DoorType.door, &doorEntry28), DoorConfig(0x0C, 0x1B, DoorType.door, &doorEntry28), DoorConfig(0x0C, 0x1D, DoorType.door, &doorEntry28), DoorConfig(0x0C, 0x1F, DoorType.door, &doorEntry28)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x0D, DoorType.door, &doorEntry889), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry889)]),
-		SectorDoors(4, [DoorConfig(0x01, 0x03, DoorType.door, &doorEntry890), DoorConfig(0x01, 0x04, DoorType.door, &doorEntry890), DoorConfig(0x1D, 0x07, DoorType.door, &doorEntry891), DoorConfig(0x1D, 0x08, DoorType.door, &doorEntry891)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x05, 0x03, DoorType.door, &doorEntry892), DoorConfig(0x05, 0x04, DoorType.door, &doorEntry892)]),
-		SectorDoors(3, [DoorConfig(0x05, 0x19, DoorType.object, &doorEntry855), DoorConfig(0x15, 0x09, DoorType.door, &doorEntry822), DoorConfig(0x19, 0x09, DoorType.object, &doorEntry856)]),
-		SectorDoors(3, [DoorConfig(0x11, 0x16, DoorType.object, &doorEntry857), DoorConfig(0x19, 0x0A, DoorType.object, &doorEntry858)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.object, &doorEntry859), DoorConfig(0x15, 0x0C, DoorType.object, &doorEntry860)]),
-		SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.door, &doorEntry650), DoorConfig(0x16, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x00, DoorType.door, &doorEntry650), DoorConfig(0x17, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x00, DoorType.door, &doorEntry651), DoorConfig(0x1B, 0x00, DoorType.door, &doorEntry651)]),
-		SectorDoors(13, [DoorConfig(0x03, 0x03, DoorType.door, &doorEntry652), DoorConfig(0x04, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x03, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x19, DoorType.door, &doorEntry653)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x1D, DoorType.door, &doorEntry654)]),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x16, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x1F, DoorType.door, &doorEntry655), DoorConfig(0x17, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x1F, DoorType.door, &doorEntry655), DoorConfig(0x1A, 0x1F, DoorType.door, &doorEntry656), DoorConfig(0x1B, 0x1F, DoorType.door, &doorEntry656)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x14, 0x0D, DoorType.door, &doorEntry432)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry49), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry50), DoorConfig(0x17, 0x19, DoorType.door, &doorEntry153), DoorConfig(0x17, 0x1D, DoorType.door, &doorEntry154), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry51)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry52), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry53)]),
-		SectorDoors(6, [DoorConfig(0x07, 0x11, DoorType.door, &doorEntry54), DoorConfig(0x07, 0x1A, DoorType.object, &doorEntry155), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry55), DoorConfig(0x15, 0x11, DoorType.door, &doorEntry56), DoorConfig(0x15, 0x12, DoorType.door, &doorEntry56), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry57)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x01, DoorType.door, &doorEntry58), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry59), DoorConfig(0x19, 0x06, DoorType.door, &doorEntry60)]),
+		SectorObjects(1, [MapObject(0x0D, 0x11, ObjectType.object, &doorEntry863)]),
+		SectorObjects(9, [MapObject(0x09, 0x05, ObjectType.door, &doorEntry825), MapObject(0x09, 0x06, ObjectType.door, &doorEntry825), MapObject(0x09, 0x0D, ObjectType.door, &doorEntry826), MapObject(0x09, 0x0E, ObjectType.door, &doorEntry826), MapObject(0x09, 0x15, ObjectType.door, &doorEntry827), MapObject(0x09, 0x16, ObjectType.door, &doorEntry827), MapObject(0x09, 0x1D, ObjectType.door, &doorEntry828), MapObject(0x09, 0x1E, ObjectType.door, &doorEntry828), MapObject(0x1D, 0x01, ObjectType.object, &doorEntry864)]),
+		SectorObjects(1, [MapObject(0x0D, 0x12, ObjectType.object, &doorEntry865)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x04, 0x15, ObjectType.door, &doorEntry5), MapObject(0x04, 0x17, ObjectType.door, &doorEntry5), MapObject(0x07, 0x15, ObjectType.door, &doorEntry6), MapObject(0x09, 0x19, ObjectType.object, &doorEntry133), MapObject(0x09, 0x1A, ObjectType.object, &doorEntry133)]),
+		SectorObjects(2, [MapObject(0x1F, 0x02, ObjectType.object, &doorEntry135), MapObject(0x1F, 0x04, ObjectType.object, &doorEntry135)]),
+		SectorObjects(1, [MapObject(0x12, 0x1C, ObjectType.door, &doorEntry7)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x0C, 0x15, ObjectType.door, &doorEntry28), MapObject(0x0C, 0x17, ObjectType.door, &doorEntry28), MapObject(0x0C, 0x19, ObjectType.door, &doorEntry28), MapObject(0x0C, 0x1B, ObjectType.door, &doorEntry28), MapObject(0x0C, 0x1D, ObjectType.door, &doorEntry28), MapObject(0x0C, 0x1F, ObjectType.door, &doorEntry28)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x0D, ObjectType.door, &doorEntry889), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry889)]),
+		SectorObjects(4, [MapObject(0x01, 0x03, ObjectType.door, &doorEntry890), MapObject(0x01, 0x04, ObjectType.door, &doorEntry890), MapObject(0x1D, 0x07, ObjectType.door, &doorEntry891), MapObject(0x1D, 0x08, ObjectType.door, &doorEntry891)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x05, 0x03, ObjectType.door, &doorEntry892), MapObject(0x05, 0x04, ObjectType.door, &doorEntry892)]),
+		SectorObjects(3, [MapObject(0x05, 0x19, ObjectType.object, &doorEntry855), MapObject(0x15, 0x09, ObjectType.door, &doorEntry822), MapObject(0x19, 0x09, ObjectType.object, &doorEntry856)]),
+		SectorObjects(3, [MapObject(0x11, 0x16, ObjectType.object, &doorEntry857), MapObject(0x19, 0x0A, ObjectType.object, &doorEntry858)]),
+		SectorObjects(2, [MapObject(0x09, 0x0D, ObjectType.object, &doorEntry859), MapObject(0x15, 0x0C, ObjectType.object, &doorEntry860)]),
+		SectorObjects(6, [MapObject(0x16, 0x00, ObjectType.door, &doorEntry650), MapObject(0x16, 0x11, ObjectType.ropeLadder, 0), MapObject(0x17, 0x00, ObjectType.door, &doorEntry650), MapObject(0x17, 0x11, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x00, ObjectType.door, &doorEntry651), MapObject(0x1B, 0x00, ObjectType.door, &doorEntry651)]),
+		SectorObjects(13, [MapObject(0x03, 0x03, ObjectType.door, &doorEntry652), MapObject(0x04, 0x03, ObjectType.ropeLadder, 0), MapObject(0x05, 0x03, ObjectType.ropeLadder, 0), MapObject(0x06, 0x03, ObjectType.ropeLadder, 0), MapObject(0x07, 0x03, ObjectType.ropeLadder, 0), MapObject(0x08, 0x03, ObjectType.ropeLadder, 0), MapObject(0x09, 0x03, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x03, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x03, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x03, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x03, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x03, ObjectType.ropeLadder, 0), MapObject(0x13, 0x19, ObjectType.door, &doorEntry653)]),
+		SectorObjects(1, [MapObject(0x0B, 0x1D, ObjectType.door, &doorEntry654)]),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x16, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x16, 0x1F, ObjectType.door, &doorEntry655), MapObject(0x17, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x17, 0x1F, ObjectType.door, &doorEntry655), MapObject(0x1A, 0x1F, ObjectType.door, &doorEntry656), MapObject(0x1B, 0x1F, ObjectType.door, &doorEntry656)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x14, 0x0D, ObjectType.door, &doorEntry432)]),
+		SectorObjects(5, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry49), MapObject(0x17, 0x11, ObjectType.door, &doorEntry50), MapObject(0x17, 0x19, ObjectType.door, &doorEntry153), MapObject(0x17, 0x1D, ObjectType.door, &doorEntry154), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry51)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry52), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry53)]),
+		SectorObjects(6, [MapObject(0x07, 0x11, ObjectType.door, &doorEntry54), MapObject(0x07, 0x1A, ObjectType.object, &doorEntry155), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry55), MapObject(0x15, 0x11, ObjectType.door, &doorEntry56), MapObject(0x15, 0x12, ObjectType.door, &doorEntry56), MapObject(0x19, 0x05, ObjectType.door, &doorEntry57)]),
+		SectorObjects(3, [MapObject(0x07, 0x01, ObjectType.door, &doorEntry58), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry59), MapObject(0x19, 0x06, ObjectType.door, &doorEntry60)]),
 	], [
-		SectorDoors(8, [DoorConfig(0x02, 0x15, DoorType.door, &doorEntry829), DoorConfig(0x03, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x18, DoorType.object, &doorEntry866), DoorConfig(0x15, 0x0C, DoorType.object, &doorEntry867)]),
-		SectorDoors(5, [DoorConfig(0x01, 0x11, DoorType.object, &doorEntry846), DoorConfig(0x15, 0x16, DoorType.object, &doorEntry868), DoorConfig(0x15, 0x1D, DoorType.door, &doorEntry830), DoorConfig(0x15, 0x1E, DoorType.door, &doorEntry830)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x19, DoorType.object, &doorEntry869), DoorConfig(0x11, 0x10, DoorType.object, &doorEntry870)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x14, 0x12, DoorType.door, &doorEntry124)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0C, 0x0A, DoorType.door, &doorEntry23), DoorConfig(0x13, 0x1E, DoorType.object, &doorEntry145)]),
-		SectorDoors(1, [DoorConfig(0x13, 0x00, DoorType.object, &doorEntry145)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry893), DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry893)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x15, 0x0F, DoorType.door, &doorEntry894), DoorConfig(0x15, 0x10, DoorType.door, &doorEntry894)]),
-		SectorDoors(1, [DoorConfig(0x12, 0x16, DoorType.door, &doorEntry895)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x15, DoorType.object, &doorEntry861), DoorConfig(0x12, 0x1A, DoorType.door, &doorEntry824)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry61), DoorConfig(0x1A, 0x13, DoorType.door, &doorEntry62)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry63), DoorConfig(0x17, 0x0A, DoorType.object, &doorEntry677), DoorConfig(0x17, 0x12, DoorType.door, &doorEntry64), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry66), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry65)]),
-		SectorDoors(4, [DoorConfig(0x0A, 0x13, DoorType.door, &doorEntry67), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry68), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry69), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry70)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry71), DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry72), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry73)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry74), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry75)]),
+		SectorObjects(8, [MapObject(0x02, 0x15, ObjectType.door, &doorEntry829), MapObject(0x03, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x18, ObjectType.object, &doorEntry866), MapObject(0x15, 0x0C, ObjectType.object, &doorEntry867)]),
+		SectorObjects(5, [MapObject(0x01, 0x11, ObjectType.object, &doorEntry846), MapObject(0x15, 0x16, ObjectType.object, &doorEntry868), MapObject(0x15, 0x1D, ObjectType.door, &doorEntry830), MapObject(0x15, 0x1E, ObjectType.door, &doorEntry830)]),
+		SectorObjects(3, [MapObject(0x09, 0x19, ObjectType.object, &doorEntry869), MapObject(0x11, 0x10, ObjectType.object, &doorEntry870)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x14, 0x12, ObjectType.door, &doorEntry124)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0C, 0x0A, ObjectType.door, &doorEntry23), MapObject(0x13, 0x1E, ObjectType.object, &doorEntry145)]),
+		SectorObjects(1, [MapObject(0x13, 0x00, ObjectType.object, &doorEntry145)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x09, 0x0D, ObjectType.door, &doorEntry893), MapObject(0x09, 0x0E, ObjectType.door, &doorEntry893)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x15, 0x0F, ObjectType.door, &doorEntry894), MapObject(0x15, 0x10, ObjectType.door, &doorEntry894)]),
+		SectorObjects(1, [MapObject(0x12, 0x16, ObjectType.door, &doorEntry895)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x15, ObjectType.object, &doorEntry861), MapObject(0x12, 0x1A, ObjectType.door, &doorEntry824)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry61), MapObject(0x1A, 0x13, ObjectType.door, &doorEntry62)]),
+		SectorObjects(5, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry63), MapObject(0x17, 0x0A, ObjectType.object, &doorEntry677), MapObject(0x17, 0x12, ObjectType.door, &doorEntry64), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry66), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry65)]),
+		SectorObjects(4, [MapObject(0x0A, 0x13, ObjectType.door, &doorEntry67), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry68), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry69), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry70)]),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry71), MapObject(0x0D, 0x16, ObjectType.door, &doorEntry72), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry73)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry74), MapObject(0x19, 0x05, ObjectType.door, &doorEntry75)]),
 	], [
-		SectorDoors(5, [DoorConfig(0x00, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x14, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x06, DoorType.object, &doorEntry871)]),
-		SectorDoors(4, [DoorConfig(0x01, 0x01, DoorType.object, &doorEntry872), DoorConfig(0x0D, 0x15, DoorType.door, &doorEntry831), DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry831), DoorConfig(0x11, 0x09, DoorType.object, &doorEntry873)]),
-		SectorDoors(2, [DoorConfig(0x05, 0x05, DoorType.object, &doorEntry874), DoorConfig(0x19, 0x02, DoorType.object, &doorEntry875)]),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x0B, 0x15, DoorType.object, &doorEntry130), DoorConfig(0x0B, 0x17, DoorType.object, &doorEntry130), DoorConfig(0x0B, 0x18, DoorType.object, &doorEntry130), DoorConfig(0x0B, 0x1A, DoorType.object, &doorEntry130)]),
-		SectorDoors(3, [DoorConfig(0x03, 0x02, DoorType.object, &doorEntry131), DoorConfig(0x03, 0x04, DoorType.object, &doorEntry131), DoorConfig(0x04, 0x12, DoorType.door, &doorEntry125)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x08, DoorType.door, &doorEntry8), DoorConfig(0x0D, 0x19, DoorType.door, &doorEntry9)]),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x0A, 0x15, DoorType.object, &doorEntry143), DoorConfig(0x0A, 0x17, DoorType.object, &doorEntry143), DoorConfig(0x0A, 0x18, DoorType.object, &doorEntry143), DoorConfig(0x0A, 0x1A, DoorType.object, &doorEntry143)]),
-		SectorDoors(2, [DoorConfig(0x0B, 0x01, DoorType.door, &doorEntry24), DoorConfig(0x0B, 0x0D, DoorType.door, &doorEntry25)]),
-		SectorDoors(5, [DoorConfig(0x12, 0x11, DoorType.object, &doorEntry147), DoorConfig(0x12, 0x13, DoorType.object, &doorEntry147), DoorConfig(0x12, 0x14, DoorType.object, &doorEntry147), DoorConfig(0x12, 0x16, DoorType.object, &doorEntry147), DoorConfig(0x1F, 0x11, DoorType.door, &doorEntry139)]),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0A, 0x11, DoorType.door, &doorEntry281), DoorConfig(0x0A, 0x12, DoorType.door, &doorEntry281)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x17, DoorType.door, &doorEntry277)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x06, DoorType.door, &doorEntry276)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(11, [DoorConfig(0x08, 0x08, DoorType.object, &doorEntry157), DoorConfig(0x08, 0x09, DoorType.object, &doorEntry157), DoorConfig(0x08, 0x0A, DoorType.object, &doorEntry157), DoorConfig(0x08, 0x0C, DoorType.object, &doorEntry158), DoorConfig(0x08, 0x0D, DoorType.object, &doorEntry158), DoorConfig(0x08, 0x0E, DoorType.object, &doorEntry158), DoorConfig(0x08, 0x10, DoorType.object, &doorEntry159), DoorConfig(0x08, 0x11, DoorType.object, &doorEntry159), DoorConfig(0x08, 0x12, DoorType.object, &doorEntry159), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry76), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry77)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x0A, DoorType.door, &doorEntry78), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry79)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x1B, DoorType.door, &doorEntry80), DoorConfig(0x1A, 0x13, DoorType.door, &doorEntry81), DoorConfig(0x1B, 0x0C, DoorType.door, &doorEntry82)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry83), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry84)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x04, DoorType.door, &doorEntry85), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry86)]),
+		SectorObjects(5, [MapObject(0x00, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x14, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x06, ObjectType.object, &doorEntry871)]),
+		SectorObjects(4, [MapObject(0x01, 0x01, ObjectType.object, &doorEntry872), MapObject(0x0D, 0x15, ObjectType.door, &doorEntry831), MapObject(0x0D, 0x16, ObjectType.door, &doorEntry831), MapObject(0x11, 0x09, ObjectType.object, &doorEntry873)]),
+		SectorObjects(2, [MapObject(0x05, 0x05, ObjectType.object, &doorEntry874), MapObject(0x19, 0x02, ObjectType.object, &doorEntry875)]),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x0B, 0x15, ObjectType.object, &doorEntry130), MapObject(0x0B, 0x17, ObjectType.object, &doorEntry130), MapObject(0x0B, 0x18, ObjectType.object, &doorEntry130), MapObject(0x0B, 0x1A, ObjectType.object, &doorEntry130)]),
+		SectorObjects(3, [MapObject(0x03, 0x02, ObjectType.object, &doorEntry131), MapObject(0x03, 0x04, ObjectType.object, &doorEntry131), MapObject(0x04, 0x12, ObjectType.door, &doorEntry125)]),
+		SectorObjects(2, [MapObject(0x0D, 0x08, ObjectType.door, &doorEntry8), MapObject(0x0D, 0x19, ObjectType.door, &doorEntry9)]),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x0A, 0x15, ObjectType.object, &doorEntry143), MapObject(0x0A, 0x17, ObjectType.object, &doorEntry143), MapObject(0x0A, 0x18, ObjectType.object, &doorEntry143), MapObject(0x0A, 0x1A, ObjectType.object, &doorEntry143)]),
+		SectorObjects(2, [MapObject(0x0B, 0x01, ObjectType.door, &doorEntry24), MapObject(0x0B, 0x0D, ObjectType.door, &doorEntry25)]),
+		SectorObjects(5, [MapObject(0x12, 0x11, ObjectType.object, &doorEntry147), MapObject(0x12, 0x13, ObjectType.object, &doorEntry147), MapObject(0x12, 0x14, ObjectType.object, &doorEntry147), MapObject(0x12, 0x16, ObjectType.object, &doorEntry147), MapObject(0x1F, 0x11, ObjectType.door, &doorEntry139)]),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0A, 0x11, ObjectType.door, &doorEntry281), MapObject(0x0A, 0x12, ObjectType.door, &doorEntry281)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x17, ObjectType.door, &doorEntry277)]),
+		SectorObjects(1, [MapObject(0x09, 0x06, ObjectType.door, &doorEntry276)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(11, [MapObject(0x08, 0x08, ObjectType.object, &doorEntry157), MapObject(0x08, 0x09, ObjectType.object, &doorEntry157), MapObject(0x08, 0x0A, ObjectType.object, &doorEntry157), MapObject(0x08, 0x0C, ObjectType.object, &doorEntry158), MapObject(0x08, 0x0D, ObjectType.object, &doorEntry158), MapObject(0x08, 0x0E, ObjectType.object, &doorEntry158), MapObject(0x08, 0x10, ObjectType.object, &doorEntry159), MapObject(0x08, 0x11, ObjectType.object, &doorEntry159), MapObject(0x08, 0x12, ObjectType.object, &doorEntry159), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry76), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry77)]),
+		SectorObjects(2, [MapObject(0x09, 0x0A, ObjectType.door, &doorEntry78), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry79)]),
+		SectorObjects(3, [MapObject(0x0A, 0x1B, ObjectType.door, &doorEntry80), MapObject(0x1A, 0x13, ObjectType.door, &doorEntry81), MapObject(0x1B, 0x0C, ObjectType.door, &doorEntry82)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry83), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry84)]),
+		SectorObjects(2, [MapObject(0x0A, 0x04, ObjectType.door, &doorEntry85), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry86)]),
 	], [
-		SectorDoors(4, [DoorConfig(0x12, 0x1F, DoorType.door, &doorEntry657), DoorConfig(0x13, 0x1F, DoorType.door, &doorEntry657), DoorConfig(0x16, 0x1F, DoorType.door, &doorEntry658), DoorConfig(0x17, 0x1F, DoorType.door, &doorEntry658)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x1D, DoorType.stairway, 0x0200), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry787), DoorConfig(0x1D, 0x0A, DoorType.stairway, 0x0100)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x06, DoorType.door, &doorEntry788)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x1F, DoorType.door, &doorEntry126)]),
-		SectorDoors(3, [DoorConfig(0x00, 0x1A, DoorType.door, &doorEntry10), DoorConfig(0x0B, 0x09, DoorType.door, &doorEntry11), DoorConfig(0x1B, 0x05, DoorType.door, &doorEntry12)]),
-		SectorDoors(4, [DoorConfig(0x02, 0x19, DoorType.object, &doorEntry134), DoorConfig(0x02, 0x1B, DoorType.object, &doorEntry134), DoorConfig(0x02, 0x1C, DoorType.object, &doorEntry134), DoorConfig(0x02, 0x1E, DoorType.object, &doorEntry134)]),
-		SectorDoors(3, [DoorConfig(0x06, 0x0F, DoorType.door, &doorEntry13), DoorConfig(0x13, 0x16, DoorType.object, &doorEntry136), DoorConfig(0x13, 0x18, DoorType.object, &doorEntry136)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x1F, DoorType.door, &doorEntry14)]),
-		SectorDoors(4, [DoorConfig(0x0D, 0x17, DoorType.door, &doorEntry142), DoorConfig(0x11, 0x0B, DoorType.door, &doorEntry141), DoorConfig(0x13, 0x19, DoorType.object, &doorEntry144), DoorConfig(0x13, 0x1A, DoorType.object, &doorEntry144)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0F, 0x01, DoorType.door, &doorEntry26)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(12, [DoorConfig(0x08, 0x08, DoorType.object, &doorEntry160), DoorConfig(0x08, 0x09, DoorType.object, &doorEntry160), DoorConfig(0x08, 0x0A, DoorType.object, &doorEntry160), DoorConfig(0x08, 0x0C, DoorType.object, &doorEntry161), DoorConfig(0x08, 0x0D, DoorType.object, &doorEntry161), DoorConfig(0x08, 0x0E, DoorType.object, &doorEntry161), DoorConfig(0x08, 0x10, DoorType.object, &doorEntry162), DoorConfig(0x08, 0x11, DoorType.object, &doorEntry162), DoorConfig(0x08, 0x12, DoorType.object, &doorEntry162), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry87), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry88), DoorConfig(0x1A, 0x17, DoorType.door, &doorEntry89)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry90), DoorConfig(0x1B, 0x09, DoorType.door, &doorEntry91), DoorConfig(0x1B, 0x0E, DoorType.object, &doorEntry156), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry92), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry93)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry94), DoorConfig(0x18, 0x16, DoorType.object, &doorEntry163), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry95)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry96), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry97)]),
-		SectorDoors(4, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry98), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry99), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry100), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry101)]),
+		SectorObjects(4, [MapObject(0x12, 0x1F, ObjectType.door, &doorEntry657), MapObject(0x13, 0x1F, ObjectType.door, &doorEntry657), MapObject(0x16, 0x1F, ObjectType.door, &doorEntry658), MapObject(0x17, 0x1F, ObjectType.door, &doorEntry658)]),
+		SectorObjects(3, [MapObject(0x0A, 0x1D, ObjectType.stairway, 0x0200), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry787), MapObject(0x1D, 0x0A, ObjectType.stairway, 0x0100)]),
+		SectorObjects(1, [MapObject(0x09, 0x06, ObjectType.door, &doorEntry788)]),
+		SectorObjects(1, [MapObject(0x01, 0x1F, ObjectType.door, &doorEntry126)]),
+		SectorObjects(3, [MapObject(0x00, 0x1A, ObjectType.door, &doorEntry10), MapObject(0x0B, 0x09, ObjectType.door, &doorEntry11), MapObject(0x1B, 0x05, ObjectType.door, &doorEntry12)]),
+		SectorObjects(4, [MapObject(0x02, 0x19, ObjectType.object, &doorEntry134), MapObject(0x02, 0x1B, ObjectType.object, &doorEntry134), MapObject(0x02, 0x1C, ObjectType.object, &doorEntry134), MapObject(0x02, 0x1E, ObjectType.object, &doorEntry134)]),
+		SectorObjects(3, [MapObject(0x06, 0x0F, ObjectType.door, &doorEntry13), MapObject(0x13, 0x16, ObjectType.object, &doorEntry136), MapObject(0x13, 0x18, ObjectType.object, &doorEntry136)]),
+		SectorObjects(1, [MapObject(0x11, 0x1F, ObjectType.door, &doorEntry14)]),
+		SectorObjects(4, [MapObject(0x0D, 0x17, ObjectType.door, &doorEntry142), MapObject(0x11, 0x0B, ObjectType.door, &doorEntry141), MapObject(0x13, 0x19, ObjectType.object, &doorEntry144), MapObject(0x13, 0x1A, ObjectType.object, &doorEntry144)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0F, 0x01, ObjectType.door, &doorEntry26)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(12, [MapObject(0x08, 0x08, ObjectType.object, &doorEntry160), MapObject(0x08, 0x09, ObjectType.object, &doorEntry160), MapObject(0x08, 0x0A, ObjectType.object, &doorEntry160), MapObject(0x08, 0x0C, ObjectType.object, &doorEntry161), MapObject(0x08, 0x0D, ObjectType.object, &doorEntry161), MapObject(0x08, 0x0E, ObjectType.object, &doorEntry161), MapObject(0x08, 0x10, ObjectType.object, &doorEntry162), MapObject(0x08, 0x11, ObjectType.object, &doorEntry162), MapObject(0x08, 0x12, ObjectType.object, &doorEntry162), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry87), MapObject(0x19, 0x05, ObjectType.door, &doorEntry88), MapObject(0x1A, 0x17, ObjectType.door, &doorEntry89)]),
+		SectorObjects(5, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry90), MapObject(0x1B, 0x09, ObjectType.door, &doorEntry91), MapObject(0x1B, 0x0E, ObjectType.object, &doorEntry156), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry92), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry93)]),
+		SectorObjects(3, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry94), MapObject(0x18, 0x16, ObjectType.object, &doorEntry163), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry95)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry96), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry97)]),
+		SectorObjects(4, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry98), MapObject(0x17, 0x11, ObjectType.door, &doorEntry99), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry100), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry101)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1B, 0x19, DoorType.door, &doorEntry15)]),
-		SectorDoors(2, [DoorConfig(0x1B, 0x01, DoorType.object, &doorEntry128), DoorConfig(0x1B, 0x02, DoorType.object, &doorEntry128)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x12, 0x0F, DoorType.door, &doorEntry16), DoorConfig(0x1B, 0x05, DoorType.object, &doorEntry129), DoorConfig(0x1B, 0x07, DoorType.object, &doorEntry129), DoorConfig(0x1B, 0x08, DoorType.object, &doorEntry129), DoorConfig(0x1B, 0x0A, DoorType.object, &doorEntry129)]),
-		SectorDoors(3, [DoorConfig(0x0B, 0x00, DoorType.object, &doorEntry132), DoorConfig(0x0B, 0x02, DoorType.object, &doorEntry132), DoorConfig(0x19, 0x14, DoorType.door, &doorEntry127)]),
-		SectorDoors(3, [DoorConfig(0x12, 0x05, DoorType.door, &doorEntry17), DoorConfig(0x12, 0x07, DoorType.door, &doorEntry17), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry18)]),
-		SectorDoors(4, [DoorConfig(0x03, 0x16, DoorType.object, &doorEntry138), DoorConfig(0x03, 0x18, DoorType.object, &doorEntry138), DoorConfig(0x15, 0x1C, DoorType.door, &doorEntry19), DoorConfig(0x19, 0x08, DoorType.door, &doorEntry20)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x07, 0x11, DoorType.door, &doorEntry27), DoorConfig(0x17, 0x01, DoorType.door, &doorEntry140)]),
-		SectorDoors(6, [DoorConfig(0x07, 0x05, DoorType.object, &doorEntry146), DoorConfig(0x07, 0x07, DoorType.object, &doorEntry146), DoorConfig(0x07, 0x08, DoorType.object, &doorEntry146), DoorConfig(0x07, 0x0A, DoorType.object, &doorEntry146), DoorConfig(0x13, 0x11, DoorType.object, &doorEntry149), DoorConfig(0x13, 0x12, DoorType.object, &doorEntry149)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.door, &doorEntry282)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x04, 0x09, DoorType.door, &doorEntry278)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry258), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry259), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry260)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry381), DoorConfig(0x18, 0x0D, DoorType.door, &doorEntry395)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry261), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry262)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry382), DoorConfig(0x18, 0x0D, DoorType.door, &doorEntry396)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry102), DoorConfig(0x1A, 0x04, DoorType.door, &doorEntry265), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry266)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1B, 0x19, ObjectType.door, &doorEntry15)]),
+		SectorObjects(2, [MapObject(0x1B, 0x01, ObjectType.object, &doorEntry128), MapObject(0x1B, 0x02, ObjectType.object, &doorEntry128)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x12, 0x0F, ObjectType.door, &doorEntry16), MapObject(0x1B, 0x05, ObjectType.object, &doorEntry129), MapObject(0x1B, 0x07, ObjectType.object, &doorEntry129), MapObject(0x1B, 0x08, ObjectType.object, &doorEntry129), MapObject(0x1B, 0x0A, ObjectType.object, &doorEntry129)]),
+		SectorObjects(3, [MapObject(0x0B, 0x00, ObjectType.object, &doorEntry132), MapObject(0x0B, 0x02, ObjectType.object, &doorEntry132), MapObject(0x19, 0x14, ObjectType.door, &doorEntry127)]),
+		SectorObjects(3, [MapObject(0x12, 0x05, ObjectType.door, &doorEntry17), MapObject(0x12, 0x07, ObjectType.door, &doorEntry17), MapObject(0x19, 0x05, ObjectType.door, &doorEntry18)]),
+		SectorObjects(4, [MapObject(0x03, 0x16, ObjectType.object, &doorEntry138), MapObject(0x03, 0x18, ObjectType.object, &doorEntry138), MapObject(0x15, 0x1C, ObjectType.door, &doorEntry19), MapObject(0x19, 0x08, ObjectType.door, &doorEntry20)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x07, 0x11, ObjectType.door, &doorEntry27), MapObject(0x17, 0x01, ObjectType.door, &doorEntry140)]),
+		SectorObjects(6, [MapObject(0x07, 0x05, ObjectType.object, &doorEntry146), MapObject(0x07, 0x07, ObjectType.object, &doorEntry146), MapObject(0x07, 0x08, ObjectType.object, &doorEntry146), MapObject(0x07, 0x0A, ObjectType.object, &doorEntry146), MapObject(0x13, 0x11, ObjectType.object, &doorEntry149), MapObject(0x13, 0x12, ObjectType.object, &doorEntry149)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x05, ObjectType.door, &doorEntry282)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x04, 0x09, ObjectType.door, &doorEntry278)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry258), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry259), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry260)]),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry381), MapObject(0x18, 0x0D, ObjectType.door, &doorEntry395)]),
+		SectorObjects(2, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry261), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry262)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry382), MapObject(0x18, 0x0D, ObjectType.door, &doorEntry396)]),
+		SectorObjects(3, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry102), MapObject(0x1A, 0x04, ObjectType.door, &doorEntry265), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry266)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x07, 0x0D, DoorType.object, &doorEntry137), DoorConfig(0x07, 0x0E, DoorType.object, &doorEntry137)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1F, 0x11, DoorType.door, &doorEntry948)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x10, 0x02, DoorType.door, &doorEntry383)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry384), DoorConfig(0x18, 0x0D, DoorType.door, &doorEntry397)]),
-		SectorDoors(1, [DoorConfig(0x12, 0x04, DoorType.door, &doorEntry267)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry385), DoorConfig(0x18, 0x0D, DoorType.door, &doorEntry398)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry491)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x07, 0x0D, ObjectType.object, &doorEntry137), MapObject(0x07, 0x0E, ObjectType.object, &doorEntry137)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1F, 0x11, ObjectType.door, &doorEntry948)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x10, 0x02, ObjectType.door, &doorEntry383)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry384), MapObject(0x18, 0x0D, ObjectType.door, &doorEntry397)]),
+		SectorObjects(1, [MapObject(0x12, 0x04, ObjectType.door, &doorEntry267)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry385), MapObject(0x18, 0x0D, ObjectType.door, &doorEntry398)]),
+		SectorObjects(1, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry491)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x1C, DoorType.door, &doorEntry365), DoorConfig(0x11, 0x1E, DoorType.door, &doorEntry365)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(14, [DoorConfig(0x0A, 0x07, DoorType.door, &doorEntry115), DoorConfig(0x0A, 0x08, DoorType.door, &doorEntry115), DoorConfig(0x12, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x13, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x15, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x16, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x17, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x18, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x19, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x1A, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x1B, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x1C, 0x0A, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x0A, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1B, 0x05, DoorType.door, &doorEntry29)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x0B, DoorType.door, &doorEntry121)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry122)]),
-		SectorDoors(10, [DoorConfig(0x0A, 0x09, DoorType.door, &doorEntry896), DoorConfig(0x0B, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x09, DoorType.ropeLadder, 0)]),
-		SectorDoors(10, [DoorConfig(0x06, 0x01, DoorType.door, &doorEntry897), DoorConfig(0x07, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x01, DoorType.ropeLadder, 0)]),
-		SectorDoors(2, [DoorConfig(0x18, 0x16, DoorType.door, &doorEntry279), DoorConfig(0x18, 0x17, DoorType.door, &doorEntry279)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0C, 0x09, DoorType.door, &doorEntry447)]),
-		SectorDoors(2, [DoorConfig(0x1E, 0x15, DoorType.door, &doorEntry446), DoorConfig(0x1E, 0x16, DoorType.door, &doorEntry446)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry263)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry492)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x12, DoorType.door, &doorEntry264)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x1C, ObjectType.door, &doorEntry365), MapObject(0x11, 0x1E, ObjectType.door, &doorEntry365)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(14, [MapObject(0x0A, 0x07, ObjectType.door, &doorEntry115), MapObject(0x0A, 0x08, ObjectType.door, &doorEntry115), MapObject(0x12, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x13, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x15, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x16, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x17, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x18, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x19, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x1A, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x1B, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x1C, 0x0A, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x0A, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1B, 0x05, ObjectType.door, &doorEntry29)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x0B, ObjectType.door, &doorEntry121)]),
+		SectorObjects(1, [MapObject(0x09, 0x1E, ObjectType.door, &doorEntry122)]),
+		SectorObjects(10, [MapObject(0x0A, 0x09, ObjectType.door, &doorEntry896), MapObject(0x0B, 0x09, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x09, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x09, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x09, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x09, ObjectType.ropeLadder, 0), MapObject(0x10, 0x09, ObjectType.ropeLadder, 0), MapObject(0x11, 0x09, ObjectType.ropeLadder, 0), MapObject(0x12, 0x09, ObjectType.ropeLadder, 0), MapObject(0x13, 0x09, ObjectType.ropeLadder, 0)]),
+		SectorObjects(10, [MapObject(0x06, 0x01, ObjectType.door, &doorEntry897), MapObject(0x07, 0x01, ObjectType.ropeLadder, 0), MapObject(0x08, 0x01, ObjectType.ropeLadder, 0), MapObject(0x09, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x01, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x01, ObjectType.ropeLadder, 0)]),
+		SectorObjects(2, [MapObject(0x18, 0x16, ObjectType.door, &doorEntry279), MapObject(0x18, 0x17, ObjectType.door, &doorEntry279)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0C, 0x09, ObjectType.door, &doorEntry447)]),
+		SectorObjects(2, [MapObject(0x1E, 0x15, ObjectType.door, &doorEntry446), MapObject(0x1E, 0x16, ObjectType.door, &doorEntry446)]),
+		SectorObjects(1, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry263)]),
+		SectorObjects(1, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry492)]),
+		SectorObjects(1, [MapObject(0x01, 0x12, ObjectType.door, &doorEntry264)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x02, 0x11, DoorType.object, &doorEntry379), DoorConfig(0x02, 0x13, DoorType.object, &doorEntry379), DoorConfig(0x03, 0x17, DoorType.door, &doorEntry366)]),
-		SectorDoors(0, []),
-		SectorDoors(21, [DoorConfig(0x04, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x13, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x15, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x16, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x17, 0x06, DoorType.ropeLadder, 0x8000), DoorConfig(0x19, 0x0E, DoorType.door, &doorEntry116)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(10, [DoorConfig(0x16, 0x01, DoorType.door, &doorEntry898), DoorConfig(0x17, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x01, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x03, 0x01, DoorType.door, &doorEntry328), DoorConfig(0x03, 0x1E, DoorType.door, &doorEntry329), DoorConfig(0x1E, 0x05, DoorType.door, &doorEntry902), DoorConfig(0x1F, 0x05, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry270)]),
-		SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry271)]),
-		SectorDoors(2, [DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry119), DoorConfig(0x1B, 0x01, DoorType.door, &doorEntry120)]),
-		SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.door, &doorEntry785), DoorConfig(0x19, 0x12, DoorType.door, &doorEntry786)]),
-		SectorDoors(2, [DoorConfig(0x18, 0x05, DoorType.door, &doorEntry113), DoorConfig(0x19, 0x17, DoorType.door, &doorEntry114)]),
-		SectorDoors(2, [DoorConfig(0x04, 0x16, DoorType.door, &doorEntry433), DoorConfig(0x04, 0x17, DoorType.door, &doorEntry433)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1A, 0x01, DoorType.door, &doorEntry938), DoorConfig(0x1A, 0x11, DoorType.door, &doorEntry939)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x06, DoorType.door, &doorEntry940)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x02, 0x0C, DoorType.door, &doorEntry268), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry380)]),
-		SectorDoors(2, [DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry386), DoorConfig(0x1B, 0x1A, DoorType.door, &doorEntry387)]),
-		SectorDoors(1, [DoorConfig(0x02, 0x13, DoorType.door, &doorEntry269)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x02, 0x11, ObjectType.object, &doorEntry379), MapObject(0x02, 0x13, ObjectType.object, &doorEntry379), MapObject(0x03, 0x17, ObjectType.door, &doorEntry366)]),
+		SectorObjects(0, []),
+		SectorObjects(21, [MapObject(0x04, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x13, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x15, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x16, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x17, 0x06, ObjectType.ropeLadder, 0x8000), MapObject(0x19, 0x0E, ObjectType.door, &doorEntry116)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(10, [MapObject(0x16, 0x01, ObjectType.door, &doorEntry898), MapObject(0x17, 0x01, ObjectType.ropeLadder, 0), MapObject(0x18, 0x01, ObjectType.ropeLadder, 0), MapObject(0x19, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x01, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x01, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x03, 0x01, ObjectType.door, &doorEntry328), MapObject(0x03, 0x1E, ObjectType.door, &doorEntry329), MapObject(0x1E, 0x05, ObjectType.door, &doorEntry902), MapObject(0x1F, 0x05, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry270)]),
+		SectorObjects(1, [MapObject(0x19, 0x1E, ObjectType.door, &doorEntry271)]),
+		SectorObjects(2, [MapObject(0x19, 0x1E, ObjectType.door, &doorEntry119), MapObject(0x1B, 0x01, ObjectType.door, &doorEntry120)]),
+		SectorObjects(2, [MapObject(0x19, 0x05, ObjectType.door, &doorEntry785), MapObject(0x19, 0x12, ObjectType.door, &doorEntry786)]),
+		SectorObjects(2, [MapObject(0x18, 0x05, ObjectType.door, &doorEntry113), MapObject(0x19, 0x17, ObjectType.door, &doorEntry114)]),
+		SectorObjects(2, [MapObject(0x04, 0x16, ObjectType.door, &doorEntry433), MapObject(0x04, 0x17, ObjectType.door, &doorEntry433)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1A, 0x01, ObjectType.door, &doorEntry938), MapObject(0x1A, 0x11, ObjectType.door, &doorEntry939)]),
+		SectorObjects(1, [MapObject(0x1A, 0x06, ObjectType.door, &doorEntry940)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x02, 0x0C, ObjectType.door, &doorEntry268), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry380)]),
+		SectorObjects(2, [MapObject(0x1B, 0x11, ObjectType.door, &doorEntry386), MapObject(0x1B, 0x1A, ObjectType.door, &doorEntry387)]),
+		SectorObjects(1, [MapObject(0x02, 0x13, ObjectType.door, &doorEntry269)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1A, 0x03, DoorType.door, &doorEntry378)]),
-		SectorDoors(0, []),
-		SectorDoors(11, [DoorConfig(0x01, 0x13, DoorType.door, &doorEntry906), DoorConfig(0x02, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x13, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x05, DoorType.door, &doorEntry907)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x08, 0x17, DoorType.door, &doorEntry913)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(12, [DoorConfig(0x02, 0x0D, DoorType.door, &doorEntry899), DoorConfig(0x03, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x0D, DoorType.door, &doorEntry900), DoorConfig(0x1F, 0x0D, DoorType.ropeLadder, 0)]),
-		SectorDoors(1, []),
-		SectorDoors(0, []),
-		SectorDoors(8, [DoorConfig(0x00, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x05, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x14, 0x17, DoorType.door, &doorEntry682)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x13, 0x08, DoorType.door, &doorEntry683)]),
-		SectorDoors(1, [DoorConfig(0x13, 0x17, DoorType.door, &doorEntry684)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x14, 0x02, DoorType.door, &doorEntry685), DoorConfig(0x14, 0x03, DoorType.door, &doorEntry685)]),
-		SectorDoors(3, [DoorConfig(0x11, 0x0C, DoorType.door, &doorEntry686), DoorConfig(0x11, 0x0E, DoorType.door, &doorEntry686), DoorConfig(0x11, 0x10, DoorType.door, &doorEntry686)]),
-		SectorDoors(3, [DoorConfig(0x17, 0x05, DoorType.object, &doorEntry741), DoorConfig(0x17, 0x07, DoorType.object, &doorEntry741), DoorConfig(0x17, 0x08, DoorType.object, &doorEntry741)]),
-		SectorDoors(2, [DoorConfig(0x16, 0x0D, DoorType.door, &doorEntry687), DoorConfig(0x16, 0x0E, DoorType.door, &doorEntry687)]),
-		SectorDoors(3, [DoorConfig(0x18, 0x0D, DoorType.object, &doorEntry742), DoorConfig(0x18, 0x0F, DoorType.object, &doorEntry742), DoorConfig(0x18, 0x11, DoorType.object, &doorEntry742)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x0A, DoorType.door, &doorEntry688)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x0B, DoorType.door, &doorEntry738)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x0B, DoorType.door, &doorEntry739)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x05, DoorType.door, &doorEntry388)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x0A, DoorType.door, &doorEntry389)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1A, 0x03, ObjectType.door, &doorEntry378)]),
+		SectorObjects(0, []),
+		SectorObjects(11, [MapObject(0x01, 0x13, ObjectType.door, &doorEntry906), MapObject(0x02, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x13, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x05, ObjectType.door, &doorEntry907)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x08, 0x17, ObjectType.door, &doorEntry913)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(12, [MapObject(0x02, 0x0D, ObjectType.door, &doorEntry899), MapObject(0x03, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x04, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x05, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x06, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x07, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x08, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x09, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x0D, ObjectType.door, &doorEntry900), MapObject(0x1F, 0x0D, ObjectType.ropeLadder, 0)]),
+		SectorObjects(1, []),
+		SectorObjects(0, []),
+		SectorObjects(8, [MapObject(0x00, 0x05, ObjectType.ropeLadder, 0), MapObject(0x01, 0x05, ObjectType.ropeLadder, 0), MapObject(0x02, 0x05, ObjectType.ropeLadder, 0), MapObject(0x03, 0x05, ObjectType.ropeLadder, 0), MapObject(0x04, 0x05, ObjectType.ropeLadder, 0), MapObject(0x05, 0x05, ObjectType.ropeLadder, 0), MapObject(0x06, 0x05, ObjectType.ropeLadder, 0), MapObject(0x07, 0x05, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x14, 0x17, ObjectType.door, &doorEntry682)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x13, 0x08, ObjectType.door, &doorEntry683)]),
+		SectorObjects(1, [MapObject(0x13, 0x17, ObjectType.door, &doorEntry684)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x14, 0x02, ObjectType.door, &doorEntry685), MapObject(0x14, 0x03, ObjectType.door, &doorEntry685)]),
+		SectorObjects(3, [MapObject(0x11, 0x0C, ObjectType.door, &doorEntry686), MapObject(0x11, 0x0E, ObjectType.door, &doorEntry686), MapObject(0x11, 0x10, ObjectType.door, &doorEntry686)]),
+		SectorObjects(3, [MapObject(0x17, 0x05, ObjectType.object, &doorEntry741), MapObject(0x17, 0x07, ObjectType.object, &doorEntry741), MapObject(0x17, 0x08, ObjectType.object, &doorEntry741)]),
+		SectorObjects(2, [MapObject(0x16, 0x0D, ObjectType.door, &doorEntry687), MapObject(0x16, 0x0E, ObjectType.door, &doorEntry687)]),
+		SectorObjects(3, [MapObject(0x18, 0x0D, ObjectType.object, &doorEntry742), MapObject(0x18, 0x0F, ObjectType.object, &doorEntry742), MapObject(0x18, 0x11, ObjectType.object, &doorEntry742)]),
+		SectorObjects(1, [MapObject(0x1A, 0x0A, ObjectType.door, &doorEntry688)]),
+		SectorObjects(1, [MapObject(0x1A, 0x0B, ObjectType.door, &doorEntry738)]),
+		SectorObjects(1, [MapObject(0x1A, 0x0B, ObjectType.door, &doorEntry739)]),
+		SectorObjects(1, [MapObject(0x01, 0x05, ObjectType.door, &doorEntry388)]),
+		SectorObjects(1, [MapObject(0x01, 0x0A, ObjectType.door, &doorEntry389)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(8, [DoorConfig(0x00, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x0D, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x0E, 0x0D, DoorType.door, &doorEntry901), DoorConfig(0x0F, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x0D, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x05, 0x0D, DoorType.stairway, 0x0300), DoorConfig(0x05, 0x1E, DoorType.stairway, 0x0200), DoorConfig(0x07, 0x05, DoorType.stairway, 0x0300), DoorConfig(0x07, 0x0F, DoorType.stairway, 0), DoorConfig(0x07, 0x1C, DoorType.stairway, 0x0100), DoorConfig(0x09, 0x07, DoorType.stairway, 0)]),
-		SectorDoors(2, [DoorConfig(0x07, 0x0A, DoorType.stairway, 0x0200), DoorConfig(0x09, 0x08, DoorType.stairway, 0x0100)]),
-		SectorDoors(4, [DoorConfig(0x09, 0x02, DoorType.stairway, 0x0200), DoorConfig(0x0B, 0x00, DoorType.stairway, 0x0100), DoorConfig(0x0B, 0x0E, DoorType.stairway, 0x0200), DoorConfig(0x0D, 0x0C, DoorType.stairway, 0x0100)]),
-		SectorDoors(6, [DoorConfig(0x09, 0x09, DoorType.stairway, 0x0300), DoorConfig(0x09, 0x1A, DoorType.stairway, 0x0200), DoorConfig(0x0B, 0x01, DoorType.stairway, 0x0300), DoorConfig(0x0B, 0x0B, DoorType.stairway, 0), DoorConfig(0x0B, 0x18, DoorType.stairway, 0x0100), DoorConfig(0x0D, 0x03, DoorType.stairway, 0)]),
-		SectorDoors(10, [DoorConfig(0x08, 0x08, DoorType.object, &doorEntry740), DoorConfig(0x08, 0x09, DoorType.object, &doorEntry740), DoorConfig(0x08, 0x0A, DoorType.object, &doorEntry740), DoorConfig(0x08, 0x0C, DoorType.object, &doorEntry740), DoorConfig(0x08, 0x0D, DoorType.object, &doorEntry740), DoorConfig(0x08, 0x0E, DoorType.object, &doorEntry740), DoorConfig(0x0B, 0x02, DoorType.stairway, 0x0200), DoorConfig(0x0B, 0x19, DoorType.stairway, 0x0300), DoorConfig(0x0D, 0x00, DoorType.stairway, 0x0100), DoorConfig(0x0D, 0x1B, DoorType.stairway, 0)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x05, DoorType.stairway, 0x0300), DoorConfig(0x0B, 0x07, DoorType.stairway, 0)]),
-		SectorDoors(6, [DoorConfig(0x05, 0x09, DoorType.stairway, 0x0300), DoorConfig(0x05, 0x1E, DoorType.stairway, 0x0200), DoorConfig(0x07, 0x01, DoorType.stairway, 0x0300), DoorConfig(0x07, 0x0B, DoorType.stairway, 0), DoorConfig(0x07, 0x1C, DoorType.stairway, 0x0100), DoorConfig(0x09, 0x03, DoorType.stairway, 0)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x0A, DoorType.stairway, 0x0200), DoorConfig(0x09, 0x08, DoorType.stairway, 0x0100), DoorConfig(0x0B, 0x1E, DoorType.stairway, 0x0100)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x00, DoorType.stairway, 0x0200)]),
-		SectorDoors(2, [DoorConfig(0x02, 0x02, DoorType.door, &doorEntry689), DoorConfig(0x02, 0x16, DoorType.door, &doorEntry690)]),
-		SectorDoors(2, [DoorConfig(0x02, 0x02, DoorType.door, &doorEntry691), DoorConfig(0x02, 0x16, DoorType.door, &doorEntry692)]),
-		SectorDoors(1, [DoorConfig(0x02, 0x02, DoorType.door, &doorEntry693)]),
-		SectorDoors(3, [DoorConfig(0x04, 0x1E, DoorType.door, &doorEntry391), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry392), DoorConfig(0x1B, 0x1A, DoorType.door, &doorEntry393)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x1A, DoorType.door, &doorEntry390), DoorConfig(0x0A, 0x1B, DoorType.door, &doorEntry390)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(8, [MapObject(0x00, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x01, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x02, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x03, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x04, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x05, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x06, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x07, 0x0D, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x0E, 0x0D, ObjectType.door, &doorEntry901), MapObject(0x0F, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x10, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x11, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x12, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x13, 0x0D, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x05, 0x0D, ObjectType.stairway, 0x0300), MapObject(0x05, 0x1E, ObjectType.stairway, 0x0200), MapObject(0x07, 0x05, ObjectType.stairway, 0x0300), MapObject(0x07, 0x0F, ObjectType.stairway, 0), MapObject(0x07, 0x1C, ObjectType.stairway, 0x0100), MapObject(0x09, 0x07, ObjectType.stairway, 0)]),
+		SectorObjects(2, [MapObject(0x07, 0x0A, ObjectType.stairway, 0x0200), MapObject(0x09, 0x08, ObjectType.stairway, 0x0100)]),
+		SectorObjects(4, [MapObject(0x09, 0x02, ObjectType.stairway, 0x0200), MapObject(0x0B, 0x00, ObjectType.stairway, 0x0100), MapObject(0x0B, 0x0E, ObjectType.stairway, 0x0200), MapObject(0x0D, 0x0C, ObjectType.stairway, 0x0100)]),
+		SectorObjects(6, [MapObject(0x09, 0x09, ObjectType.stairway, 0x0300), MapObject(0x09, 0x1A, ObjectType.stairway, 0x0200), MapObject(0x0B, 0x01, ObjectType.stairway, 0x0300), MapObject(0x0B, 0x0B, ObjectType.stairway, 0), MapObject(0x0B, 0x18, ObjectType.stairway, 0x0100), MapObject(0x0D, 0x03, ObjectType.stairway, 0)]),
+		SectorObjects(10, [MapObject(0x08, 0x08, ObjectType.object, &doorEntry740), MapObject(0x08, 0x09, ObjectType.object, &doorEntry740), MapObject(0x08, 0x0A, ObjectType.object, &doorEntry740), MapObject(0x08, 0x0C, ObjectType.object, &doorEntry740), MapObject(0x08, 0x0D, ObjectType.object, &doorEntry740), MapObject(0x08, 0x0E, ObjectType.object, &doorEntry740), MapObject(0x0B, 0x02, ObjectType.stairway, 0x0200), MapObject(0x0B, 0x19, ObjectType.stairway, 0x0300), MapObject(0x0D, 0x00, ObjectType.stairway, 0x0100), MapObject(0x0D, 0x1B, ObjectType.stairway, 0)]),
+		SectorObjects(2, [MapObject(0x09, 0x05, ObjectType.stairway, 0x0300), MapObject(0x0B, 0x07, ObjectType.stairway, 0)]),
+		SectorObjects(6, [MapObject(0x05, 0x09, ObjectType.stairway, 0x0300), MapObject(0x05, 0x1E, ObjectType.stairway, 0x0200), MapObject(0x07, 0x01, ObjectType.stairway, 0x0300), MapObject(0x07, 0x0B, ObjectType.stairway, 0), MapObject(0x07, 0x1C, ObjectType.stairway, 0x0100), MapObject(0x09, 0x03, ObjectType.stairway, 0)]),
+		SectorObjects(3, [MapObject(0x07, 0x0A, ObjectType.stairway, 0x0200), MapObject(0x09, 0x08, ObjectType.stairway, 0x0100), MapObject(0x0B, 0x1E, ObjectType.stairway, 0x0100)]),
+		SectorObjects(1, [MapObject(0x09, 0x00, ObjectType.stairway, 0x0200)]),
+		SectorObjects(2, [MapObject(0x02, 0x02, ObjectType.door, &doorEntry689), MapObject(0x02, 0x16, ObjectType.door, &doorEntry690)]),
+		SectorObjects(2, [MapObject(0x02, 0x02, ObjectType.door, &doorEntry691), MapObject(0x02, 0x16, ObjectType.door, &doorEntry692)]),
+		SectorObjects(1, [MapObject(0x02, 0x02, ObjectType.door, &doorEntry693)]),
+		SectorObjects(3, [MapObject(0x04, 0x1E, ObjectType.door, &doorEntry391), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry392), MapObject(0x1B, 0x1A, ObjectType.door, &doorEntry393)]),
+		SectorObjects(2, [MapObject(0x09, 0x1A, ObjectType.door, &doorEntry390), MapObject(0x0A, 0x1B, ObjectType.door, &doorEntry390)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0E, 0x03, DoorType.door, &doorEntry367)]),
-		SectorDoors(2, [DoorConfig(0x10, 0x18, DoorType.door, &doorEntry30), DoorConfig(0x10, 0x1A, DoorType.door, &doorEntry30)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x02, 0x0A, DoorType.door, &doorEntry914)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.door, &doorEntry667), DoorConfig(0x16, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x00, DoorType.door, &doorEntry667), DoorConfig(0x17, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x00, DoorType.door, &doorEntry668), DoorConfig(0x1B, 0x00, DoorType.door, &doorEntry668)]),
-		SectorDoors(13, [DoorConfig(0x03, 0x1B, DoorType.door, &doorEntry669), DoorConfig(0x04, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x09, DoorType.door, &doorEntry670)]),
-		SectorDoors(2, [DoorConfig(0x16, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x09, DoorType.ropeLadder, 0)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x01, DoorType.door, &doorEntry797), DoorConfig(0x0A, 0x0A, DoorType.stairway, 0x0300), DoorConfig(0x1D, 0x1D, DoorType.stairway, 0)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x0A, DoorType.door, &doorEntry798)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry458)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x19, 0x1F, DoorType.door, &doorEntry455), DoorConfig(0x1B, 0x01, DoorType.door, &doorEntry456)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x05, DoorType.door, &doorEntry394)]),
-		SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry457)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0E, 0x03, ObjectType.door, &doorEntry367)]),
+		SectorObjects(2, [MapObject(0x10, 0x18, ObjectType.door, &doorEntry30), MapObject(0x10, 0x1A, ObjectType.door, &doorEntry30)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x02, 0x0A, ObjectType.door, &doorEntry914)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(6, [MapObject(0x16, 0x00, ObjectType.door, &doorEntry667), MapObject(0x16, 0x11, ObjectType.ropeLadder, 0), MapObject(0x17, 0x00, ObjectType.door, &doorEntry667), MapObject(0x17, 0x11, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x00, ObjectType.door, &doorEntry668), MapObject(0x1B, 0x00, ObjectType.door, &doorEntry668)]),
+		SectorObjects(13, [MapObject(0x03, 0x1B, ObjectType.door, &doorEntry669), MapObject(0x04, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x05, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x06, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x07, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x08, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x09, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x13, 0x09, ObjectType.door, &doorEntry670)]),
+		SectorObjects(2, [MapObject(0x16, 0x09, ObjectType.ropeLadder, 0), MapObject(0x17, 0x09, ObjectType.ropeLadder, 0)]),
+		SectorObjects(3, [MapObject(0x09, 0x01, ObjectType.door, &doorEntry797), MapObject(0x0A, 0x0A, ObjectType.stairway, 0x0300), MapObject(0x1D, 0x1D, ObjectType.stairway, 0)]),
+		SectorObjects(1, [MapObject(0x1D, 0x0A, ObjectType.door, &doorEntry798)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry458)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x19, 0x1F, ObjectType.door, &doorEntry455), MapObject(0x1B, 0x01, ObjectType.door, &doorEntry456)]),
+		SectorObjects(1, [MapObject(0x01, 0x05, ObjectType.door, &doorEntry394)]),
+		SectorObjects(1, [MapObject(0x19, 0x1E, ObjectType.door, &doorEntry457)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x02, 0x0B, DoorType.door, &doorEntry368), DoorConfig(0x06, 0x13, DoorType.door, &doorEntry369)]),
-		SectorDoors(1, [DoorConfig(0x02, 0x07, DoorType.door, &doorEntry370)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x18, 0x1A, DoorType.door, &doorEntry400)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x01, DoorType.door, &doorEntry272)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry273)]),
-		SectorDoors(1, [DoorConfig(0x19, 0x19, DoorType.door, &doorEntry743)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry808), DoorConfig(0x1D, 0x0E, DoorType.stairway, 0x0100)]),
-		SectorDoors(6, [DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry809), DoorConfig(0x0A, 0x01, DoorType.stairway, 0x0200), DoorConfig(0x15, 0x00, DoorType.door, &doorEntry330), DoorConfig(0x15, 0x0A, DoorType.stairway, 0x0300), DoorConfig(0x1D, 0x12, DoorType.stairway, 0), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry331)]),
-		SectorDoors(7, [DoorConfig(0x08, 0x06, DoorType.door, &doorEntry548), DoorConfig(0x09, 0x05, DoorType.door, &doorEntry548), DoorConfig(0x0A, 0x04, DoorType.door, &doorEntry548), DoorConfig(0x0B, 0x03, DoorType.door, &doorEntry548), DoorConfig(0x0C, 0x02, DoorType.door, &doorEntry548), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry548), DoorConfig(0x1C, 0x19, DoorType.door, &doorEntry659)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry813)]),
-		SectorDoors(7, [DoorConfig(0x08, 0x15, DoorType.door, &doorEntry549), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry549), DoorConfig(0x0A, 0x17, DoorType.door, &doorEntry549), DoorConfig(0x0B, 0x18, DoorType.door, &doorEntry549), DoorConfig(0x0C, 0x19, DoorType.door, &doorEntry549), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry549), DoorConfig(0x1D, 0x1E, DoorType.stairway, 0x0100)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry814), DoorConfig(0x0A, 0x11, DoorType.stairway, 0x0200)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry478), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry459), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry460)]),
-		SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.door, &doorEntry661), DoorConfig(0x16, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x00, DoorType.door, &doorEntry661), DoorConfig(0x17, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x00, DoorType.door, &doorEntry662), DoorConfig(0x1B, 0x00, DoorType.door, &doorEntry662)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x1D, DoorType.door, &doorEntry663)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x16, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x1F, DoorType.door, &doorEntry664), DoorConfig(0x17, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x1F, DoorType.door, &doorEntry664), DoorConfig(0x1A, 0x1F, DoorType.door, &doorEntry665), DoorConfig(0x1B, 0x1F, DoorType.door, &doorEntry665)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x02, 0x0B, ObjectType.door, &doorEntry368), MapObject(0x06, 0x13, ObjectType.door, &doorEntry369)]),
+		SectorObjects(1, [MapObject(0x02, 0x07, ObjectType.door, &doorEntry370)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x18, 0x1A, ObjectType.door, &doorEntry400)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x01, ObjectType.door, &doorEntry272)]),
+		SectorObjects(1, [MapObject(0x09, 0x1E, ObjectType.door, &doorEntry273)]),
+		SectorObjects(1, [MapObject(0x19, 0x19, ObjectType.door, &doorEntry743)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1D, 0x01, ObjectType.door, &doorEntry808), MapObject(0x1D, 0x0E, ObjectType.stairway, 0x0100)]),
+		SectorObjects(6, [MapObject(0x09, 0x0E, ObjectType.door, &doorEntry809), MapObject(0x0A, 0x01, ObjectType.stairway, 0x0200), MapObject(0x15, 0x00, ObjectType.door, &doorEntry330), MapObject(0x15, 0x0A, ObjectType.stairway, 0x0300), MapObject(0x1D, 0x12, ObjectType.stairway, 0), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry331)]),
+		SectorObjects(7, [MapObject(0x08, 0x06, ObjectType.door, &doorEntry548), MapObject(0x09, 0x05, ObjectType.door, &doorEntry548), MapObject(0x0A, 0x04, ObjectType.door, &doorEntry548), MapObject(0x0B, 0x03, ObjectType.door, &doorEntry548), MapObject(0x0C, 0x02, ObjectType.door, &doorEntry548), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry548), MapObject(0x1C, 0x19, ObjectType.door, &doorEntry659)]),
+		SectorObjects(1, [MapObject(0x1D, 0x01, ObjectType.door, &doorEntry813)]),
+		SectorObjects(7, [MapObject(0x08, 0x15, ObjectType.door, &doorEntry549), MapObject(0x09, 0x16, ObjectType.door, &doorEntry549), MapObject(0x0A, 0x17, ObjectType.door, &doorEntry549), MapObject(0x0B, 0x18, ObjectType.door, &doorEntry549), MapObject(0x0C, 0x19, ObjectType.door, &doorEntry549), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry549), MapObject(0x1D, 0x1E, ObjectType.stairway, 0x0100)]),
+		SectorObjects(2, [MapObject(0x09, 0x1E, ObjectType.door, &doorEntry814), MapObject(0x0A, 0x11, ObjectType.stairway, 0x0200)]),
+		SectorObjects(3, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry478), MapObject(0x19, 0x01, ObjectType.door, &doorEntry459), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry460)]),
+		SectorObjects(6, [MapObject(0x16, 0x00, ObjectType.door, &doorEntry661), MapObject(0x16, 0x11, ObjectType.ropeLadder, 0), MapObject(0x17, 0x00, ObjectType.door, &doorEntry661), MapObject(0x17, 0x11, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x00, ObjectType.door, &doorEntry662), MapObject(0x1B, 0x00, ObjectType.door, &doorEntry662)]),
+		SectorObjects(1, [MapObject(0x0B, 0x1D, ObjectType.door, &doorEntry663)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x16, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x16, 0x1F, ObjectType.door, &doorEntry664), MapObject(0x17, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x17, 0x1F, ObjectType.door, &doorEntry664), MapObject(0x1A, 0x1F, ObjectType.door, &doorEntry665), MapObject(0x1B, 0x1F, ObjectType.door, &doorEntry665)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x0D, 0x05, DoorType.door, &doorEntry793), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry794), DoorConfig(0x0E, 0x0F, DoorType.door, &doorEntry795), DoorConfig(0x0E, 0x10, DoorType.door, &doorEntry795), DoorConfig(0x11, 0x01, DoorType.door, &doorEntry796)]),
-		SectorDoors(1, [DoorConfig(0x10, 0x09, DoorType.door, &doorEntry401)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x08, 0x14, DoorType.door, &doorEntry552), DoorConfig(0x09, 0x15, DoorType.door, &doorEntry552), DoorConfig(0x0A, 0x16, DoorType.door, &doorEntry552)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x18, 0x10, DoorType.door, &doorEntry562)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x13, 0x00, DoorType.door, &doorEntry744)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1F, 0x0E, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(13, [DoorConfig(0x0A, 0x0C, DoorType.door, &doorEntry423), DoorConfig(0x14, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x06, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(13, [DoorConfig(0x04, 0x0C, DoorType.door, &doorEntry409), DoorConfig(0x05, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x1A, DoorType.door, &doorEntry410)]),
-		SectorDoors(1, [DoorConfig(0x1E, 0x18, DoorType.door, &doorEntry963)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1B, 0x1C, DoorType.door, &doorEntry964), DoorConfig(0x1E, 0x02, DoorType.object, &doorEntry976)]),
-		SectorDoors(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x0D, 0x05, ObjectType.door, &doorEntry793), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry794), MapObject(0x0E, 0x0F, ObjectType.door, &doorEntry795), MapObject(0x0E, 0x10, ObjectType.door, &doorEntry795), MapObject(0x11, 0x01, ObjectType.door, &doorEntry796)]),
+		SectorObjects(1, [MapObject(0x10, 0x09, ObjectType.door, &doorEntry401)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x08, 0x14, ObjectType.door, &doorEntry552), MapObject(0x09, 0x15, ObjectType.door, &doorEntry552), MapObject(0x0A, 0x16, ObjectType.door, &doorEntry552)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x18, 0x10, ObjectType.door, &doorEntry562)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x13, 0x00, ObjectType.door, &doorEntry744)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1F, 0x0E, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(13, [MapObject(0x0A, 0x0C, ObjectType.door, &doorEntry423), MapObject(0x14, 0x06, ObjectType.ropeLadder, 0), MapObject(0x15, 0x06, ObjectType.ropeLadder, 0), MapObject(0x16, 0x06, ObjectType.ropeLadder, 0), MapObject(0x17, 0x06, ObjectType.ropeLadder, 0), MapObject(0x18, 0x06, ObjectType.ropeLadder, 0), MapObject(0x19, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x06, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(13, [MapObject(0x04, 0x0C, ObjectType.door, &doorEntry409), MapObject(0x05, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x06, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x07, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x08, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x09, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x14, 0x1A, ObjectType.door, &doorEntry410)]),
+		SectorObjects(1, [MapObject(0x1E, 0x18, ObjectType.door, &doorEntry963)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1B, 0x1C, ObjectType.door, &doorEntry964), MapObject(0x1E, 0x02, ObjectType.object, &doorEntry976)]),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(2, [DoorConfig(0x00, 0x19, DoorType.door, &doorEntry371), DoorConfig(0x00, 0x1A, DoorType.door, &doorEntry371)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x17, 0x04, DoorType.door, &doorEntry767), DoorConfig(0x17, 0x18, DoorType.door, &doorEntry768)]),
-		SectorDoors(9, [DoorConfig(0x0C, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x13, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x0C, DoorType.door, &doorEntry769)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x02, 0x04, DoorType.door, &doorEntry553)]),
-		SectorDoors(1, [DoorConfig(0x06, 0x0A, DoorType.object, &doorEntry672)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x18, DoorType.door, &doorEntry745)]),
-		SectorDoors(1, [DoorConfig(0x13, 0x08, DoorType.door, &doorEntry746)]),
-		SectorDoors(1, [DoorConfig(0x03, 0x10, DoorType.door, &doorEntry747)]),
-		SectorDoors(26, [DoorConfig(0x00, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x0E, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x13, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x15, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x16, 0x0D, DoorType.ropeLadder, 0x8000), DoorConfig(0x1A, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x1B, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x1C, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x1E, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x0C, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(7, [DoorConfig(0x00, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x06, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(16, [DoorConfig(0x10, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x06, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x04, 0x08, DoorType.door, &doorEntry965), DoorConfig(0x05, 0x09, DoorType.door, &doorEntry965), DoorConfig(0x06, 0x0A, DoorType.door, &doorEntry965)]),
+		SectorObjects(2, [MapObject(0x00, 0x19, ObjectType.door, &doorEntry371), MapObject(0x00, 0x1A, ObjectType.door, &doorEntry371)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x17, 0x04, ObjectType.door, &doorEntry767), MapObject(0x17, 0x18, ObjectType.door, &doorEntry768)]),
+		SectorObjects(9, [MapObject(0x0C, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x13, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x0C, ObjectType.door, &doorEntry769)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x02, 0x04, ObjectType.door, &doorEntry553)]),
+		SectorObjects(1, [MapObject(0x06, 0x0A, ObjectType.object, &doorEntry672)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x18, ObjectType.door, &doorEntry745)]),
+		SectorObjects(1, [MapObject(0x13, 0x08, ObjectType.door, &doorEntry746)]),
+		SectorObjects(1, [MapObject(0x03, 0x10, ObjectType.door, &doorEntry747)]),
+		SectorObjects(26, [MapObject(0x00, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x0E, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x13, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x15, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x16, 0x0D, ObjectType.ropeLadder, 0x8000), MapObject(0x1A, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x1B, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x1C, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x1E, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x0C, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(7, [MapObject(0x00, 0x06, ObjectType.ropeLadder, 0), MapObject(0x01, 0x06, ObjectType.ropeLadder, 0), MapObject(0x02, 0x06, ObjectType.ropeLadder, 0), MapObject(0x03, 0x06, ObjectType.ropeLadder, 0), MapObject(0x04, 0x06, ObjectType.ropeLadder, 0), MapObject(0x05, 0x06, ObjectType.ropeLadder, 0), MapObject(0x06, 0x06, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(16, [MapObject(0x10, 0x06, ObjectType.ropeLadder, 0), MapObject(0x11, 0x06, ObjectType.ropeLadder, 0), MapObject(0x12, 0x06, ObjectType.ropeLadder, 0), MapObject(0x13, 0x06, ObjectType.ropeLadder, 0), MapObject(0x14, 0x06, ObjectType.ropeLadder, 0), MapObject(0x15, 0x06, ObjectType.ropeLadder, 0), MapObject(0x16, 0x06, ObjectType.ropeLadder, 0), MapObject(0x17, 0x06, ObjectType.ropeLadder, 0), MapObject(0x18, 0x06, ObjectType.ropeLadder, 0), MapObject(0x19, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x06, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x04, 0x08, ObjectType.door, &doorEntry965), MapObject(0x05, 0x09, ObjectType.door, &doorEntry965), MapObject(0x06, 0x0A, ObjectType.door, &doorEntry965)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x14, 0x15, DoorType.door, &doorEntry372), DoorConfig(0x14, 0x16, DoorType.door, &doorEntry372)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x04, 0x19, DoorType.door, &doorEntry770)]),
-		SectorDoors(1, [DoorConfig(0x03, 0x0C, DoorType.door, &doorEntry771)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x16, 0x1A, DoorType.object, &doorEntry673)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x14, 0x14, DoorType.door, &doorEntry554), DoorConfig(0x16, 0x12, DoorType.door, &doorEntry554), DoorConfig(0x18, 0x10, DoorType.door, &doorEntry554)]),
-		SectorDoors(1, [DoorConfig(0x02, 0x10, DoorType.door, &doorEntry555)]),
-		SectorDoors(2, [DoorConfig(0x17, 0x03, DoorType.door, &doorEntry556), DoorConfig(0x18, 0x04, DoorType.door, &doorEntry556)]),
-		SectorDoors(2, [DoorConfig(0x01, 0x0D, DoorType.door, &doorEntry557), DoorConfig(0x02, 0x0D, DoorType.door, &doorEntry557)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x1D, DoorType.door, &doorEntry748)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x00, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x0C, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x0C, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x11, DoorType.door, &doorEntry949)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.door, &doorEntry648), DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry649)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x0E, DoorType.object, &doorEntry975), DoorConfig(0x11, 0x1E, DoorType.door, &doorEntry974)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry430)]),
-		SectorDoors(32, [DoorConfig(0x00, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x06, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x06, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x04, 0x1C, DoorType.door, &doorEntry966), DoorConfig(0x06, 0x1A, DoorType.door, &doorEntry966), DoorConfig(0x08, 0x18, DoorType.door, &doorEntry966)]),
-		SectorDoors(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x14, 0x15, ObjectType.door, &doorEntry372), MapObject(0x14, 0x16, ObjectType.door, &doorEntry372)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x04, 0x19, ObjectType.door, &doorEntry770)]),
+		SectorObjects(1, [MapObject(0x03, 0x0C, ObjectType.door, &doorEntry771)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x16, 0x1A, ObjectType.object, &doorEntry673)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x14, 0x14, ObjectType.door, &doorEntry554), MapObject(0x16, 0x12, ObjectType.door, &doorEntry554), MapObject(0x18, 0x10, ObjectType.door, &doorEntry554)]),
+		SectorObjects(1, [MapObject(0x02, 0x10, ObjectType.door, &doorEntry555)]),
+		SectorObjects(2, [MapObject(0x17, 0x03, ObjectType.door, &doorEntry556), MapObject(0x18, 0x04, ObjectType.door, &doorEntry556)]),
+		SectorObjects(2, [MapObject(0x01, 0x0D, ObjectType.door, &doorEntry557), MapObject(0x02, 0x0D, ObjectType.door, &doorEntry557)]),
+		SectorObjects(1, [MapObject(0x09, 0x1D, ObjectType.door, &doorEntry748)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x00, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x0C, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x0C, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(1, [MapObject(0x0B, 0x11, ObjectType.door, &doorEntry949)]),
+		SectorObjects(2, [MapObject(0x09, 0x01, ObjectType.door, &doorEntry648), MapObject(0x09, 0x1E, ObjectType.door, &doorEntry649)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x0E, ObjectType.object, &doorEntry975), MapObject(0x11, 0x1E, ObjectType.door, &doorEntry974)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x1E, ObjectType.door, &doorEntry430)]),
+		SectorObjects(32, [MapObject(0x00, 0x06, ObjectType.ropeLadder, 0), MapObject(0x01, 0x06, ObjectType.ropeLadder, 0), MapObject(0x02, 0x06, ObjectType.ropeLadder, 0), MapObject(0x03, 0x06, ObjectType.ropeLadder, 0), MapObject(0x04, 0x06, ObjectType.ropeLadder, 0), MapObject(0x05, 0x06, ObjectType.ropeLadder, 0), MapObject(0x06, 0x06, ObjectType.ropeLadder, 0), MapObject(0x07, 0x06, ObjectType.ropeLadder, 0), MapObject(0x08, 0x06, ObjectType.ropeLadder, 0), MapObject(0x09, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x06, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x06, ObjectType.ropeLadder, 0), MapObject(0x10, 0x06, ObjectType.ropeLadder, 0), MapObject(0x11, 0x06, ObjectType.ropeLadder, 0), MapObject(0x12, 0x06, ObjectType.ropeLadder, 0), MapObject(0x13, 0x06, ObjectType.ropeLadder, 0), MapObject(0x14, 0x06, ObjectType.ropeLadder, 0), MapObject(0x15, 0x06, ObjectType.ropeLadder, 0), MapObject(0x16, 0x06, ObjectType.ropeLadder, 0), MapObject(0x17, 0x06, ObjectType.ropeLadder, 0), MapObject(0x18, 0x06, ObjectType.ropeLadder, 0), MapObject(0x19, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x06, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x06, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x04, 0x1C, ObjectType.door, &doorEntry966), MapObject(0x06, 0x1A, ObjectType.door, &doorEntry966), MapObject(0x08, 0x18, ObjectType.door, &doorEntry966)]),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0B, 0x0A, DoorType.door, &doorEntry377), DoorConfig(0x0B, 0x0B, DoorType.door, &doorEntry377)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x17, 0x1E, DoorType.door, &doorEntry558), DoorConfig(0x1C, 0x19, DoorType.door, &doorEntry558), DoorConfig(0x1D, 0x18, DoorType.door, &doorEntry558), DoorConfig(0x1E, 0x17, DoorType.door, &doorEntry558)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x0C, 0x19, DoorType.door, &doorEntry660), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry789), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry790)]),
-		SectorDoors(4, [DoorConfig(0x15, 0x09, DoorType.door, &doorEntry760), DoorConfig(0x15, 0x0A, DoorType.door, &doorEntry760), DoorConfig(0x19, 0x19, DoorType.door, &doorEntry761), DoorConfig(0x19, 0x1A, DoorType.door, &doorEntry761)]),
-		SectorDoors(3, [DoorConfig(0x19, 0x15, DoorType.door, &doorEntry762), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry762)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x15, DoorType.person, &doorEntry960), DoorConfig(0x0D, 0x16, DoorType.person, &doorEntry960)]),
-		SectorDoors(2, [DoorConfig(0x1F, 0x11, DoorType.object, &doorEntry957), DoorConfig(0x1F, 0x13, DoorType.object, &doorEntry957)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1B, 0x11, DoorType.object, &doorEntry958), DoorConfig(0x1B, 0x13, DoorType.object, &doorEntry958)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry431)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x06, 0x07, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x07, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x07, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x07, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x07, DoorType.ropeLadder, 0)]),
-		SectorDoors(1, [DoorConfig(0x0A, 0x07, DoorType.door, &doorEntry424)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0B, 0x0A, ObjectType.door, &doorEntry377), MapObject(0x0B, 0x0B, ObjectType.door, &doorEntry377)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x17, 0x1E, ObjectType.door, &doorEntry558), MapObject(0x1C, 0x19, ObjectType.door, &doorEntry558), MapObject(0x1D, 0x18, ObjectType.door, &doorEntry558), MapObject(0x1E, 0x17, ObjectType.door, &doorEntry558)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x0C, 0x19, ObjectType.door, &doorEntry660), MapObject(0x19, 0x05, ObjectType.door, &doorEntry789), MapObject(0x19, 0x16, ObjectType.door, &doorEntry790)]),
+		SectorObjects(4, [MapObject(0x15, 0x09, ObjectType.door, &doorEntry760), MapObject(0x15, 0x0A, ObjectType.door, &doorEntry760), MapObject(0x19, 0x19, ObjectType.door, &doorEntry761), MapObject(0x19, 0x1A, ObjectType.door, &doorEntry761)]),
+		SectorObjects(3, [MapObject(0x19, 0x15, ObjectType.door, &doorEntry762), MapObject(0x19, 0x16, ObjectType.door, &doorEntry762)]),
+		SectorObjects(2, [MapObject(0x0D, 0x15, ObjectType.person, &doorEntry960), MapObject(0x0D, 0x16, ObjectType.person, &doorEntry960)]),
+		SectorObjects(2, [MapObject(0x1F, 0x11, ObjectType.object, &doorEntry957), MapObject(0x1F, 0x13, ObjectType.object, &doorEntry957)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1B, 0x11, ObjectType.object, &doorEntry958), MapObject(0x1B, 0x13, ObjectType.object, &doorEntry958)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry431)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x06, 0x07, ObjectType.ropeLadder, 0), MapObject(0x07, 0x07, ObjectType.ropeLadder, 0), MapObject(0x08, 0x07, ObjectType.ropeLadder, 0), MapObject(0x09, 0x07, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x07, ObjectType.ropeLadder, 0)]),
+		SectorObjects(1, [MapObject(0x0A, 0x07, ObjectType.door, &doorEntry424)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x15, DoorType.door, &doorEntry374)]),
-		SectorDoors(2, [DoorConfig(0x04, 0x01, DoorType.door, &doorEntry373), DoorConfig(0x04, 0x02, DoorType.door, &doorEntry373)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x04, DoorType.door, &doorEntry559)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x0E, 0x0D, DoorType.object, &doorEntry674), DoorConfig(0x0E, 0x10, DoorType.door, &doorEntry560), DoorConfig(0x0F, 0x11, DoorType.door, &doorEntry560)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0C, 0x19, DoorType.door, &doorEntry666), DoorConfig(0x19, 0x0E, DoorType.door, &doorEntry799)]),
-		SectorDoors(1, [DoorConfig(0x0E, 0x0E, DoorType.door, &doorEntry444)]),
-		SectorDoors(1, [DoorConfig(0x12, 0x0B, DoorType.door, &doorEntry445)]),
-		SectorDoors(3, [DoorConfig(0x10, 0x1F, DoorType.door, &doorEntry950), DoorConfig(0x11, 0x15, DoorType.person, &doorEntry961), DoorConfig(0x11, 0x16, DoorType.person, &doorEntry961)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.person, &doorEntry962), DoorConfig(0x09, 0x0E, DoorType.person, &doorEntry962)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x07, 0x01, DoorType.person, &doorEntry959), DoorConfig(0x07, 0x02, DoorType.person, &doorEntry959), DoorConfig(0x08, 0x0B, DoorType.door, &doorEntry951), DoorConfig(0x0C, 0x1B, DoorType.door, &doorEntry952)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.door, &doorEntry903), DoorConfig(0x19, 0x06, DoorType.door, &doorEntry903)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(1, [DoorConfig(0x0A, 0x18, DoorType.object, &doorEntry977)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.door, &doorEntry429)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x15, ObjectType.door, &doorEntry374)]),
+		SectorObjects(2, [MapObject(0x04, 0x01, ObjectType.door, &doorEntry373), MapObject(0x04, 0x02, ObjectType.door, &doorEntry373)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x04, ObjectType.door, &doorEntry559)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x0E, 0x0D, ObjectType.object, &doorEntry674), MapObject(0x0E, 0x10, ObjectType.door, &doorEntry560), MapObject(0x0F, 0x11, ObjectType.door, &doorEntry560)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0C, 0x19, ObjectType.door, &doorEntry666), MapObject(0x19, 0x0E, ObjectType.door, &doorEntry799)]),
+		SectorObjects(1, [MapObject(0x0E, 0x0E, ObjectType.door, &doorEntry444)]),
+		SectorObjects(1, [MapObject(0x12, 0x0B, ObjectType.door, &doorEntry445)]),
+		SectorObjects(3, [MapObject(0x10, 0x1F, ObjectType.door, &doorEntry950), MapObject(0x11, 0x15, ObjectType.person, &doorEntry961), MapObject(0x11, 0x16, ObjectType.person, &doorEntry961)]),
+		SectorObjects(2, [MapObject(0x09, 0x0D, ObjectType.person, &doorEntry962), MapObject(0x09, 0x0E, ObjectType.person, &doorEntry962)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x07, 0x01, ObjectType.person, &doorEntry959), MapObject(0x07, 0x02, ObjectType.person, &doorEntry959), MapObject(0x08, 0x0B, ObjectType.door, &doorEntry951), MapObject(0x0C, 0x1B, ObjectType.door, &doorEntry952)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x19, 0x05, ObjectType.door, &doorEntry903), MapObject(0x19, 0x06, ObjectType.door, &doorEntry903)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(1, [MapObject(0x0A, 0x18, ObjectType.object, &doorEntry977)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x01, ObjectType.door, &doorEntry429)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x02, 0x08, DoorType.door, &doorEntry375)]),
-		SectorDoors(2, [DoorConfig(0x00, 0x11, DoorType.door, &doorEntry376), DoorConfig(0x00, 0x12, DoorType.door, &doorEntry376)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(3, [DoorConfig(0x02, 0x1F, DoorType.door, &doorEntry772), DoorConfig(0x15, 0x18, DoorType.switch_, &doorEntry779), DoorConfig(0x1C, 0x1A, DoorType.switch_, &doorEntry778)]),
-		SectorDoors(5, [DoorConfig(0x02, 0x00, DoorType.door, &doorEntry772), DoorConfig(0x0C, 0x00, DoorType.person, &doorEntry774), DoorConfig(0x11, 0x00, DoorType.switch_, &doorEntry775), DoorConfig(0x15, 0x07, DoorType.switch_, &doorEntry776), DoorConfig(0x1C, 0x05, DoorType.switch_, &doorEntry777)]),
-		SectorDoors(8, [DoorConfig(0x18, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1A, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1B, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1C, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1D, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1E, 0x16, DoorType.door, &doorEntry561), DoorConfig(0x1F, 0x16, DoorType.door, &doorEntry561)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x17, DoorType.door, &doorEntry110)]),
-		SectorDoors(3, [DoorConfig(0x0C, 0x1D, DoorType.door, &doorEntry671), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry802), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry803)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry645), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry563)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.door, &doorEntry633)]),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry564), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry565), DoorConfig(0x17, 0x05, DoorType.door, &doorEntry566)]),
-		SectorDoors(1, [DoorConfig(0x0A, 0x0E, DoorType.door, &doorEntry567)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x01, DoorType.door, &doorEntry568), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry569)]),
-		SectorDoors(4, [DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry570), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry571), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry572), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry573)]),
-		SectorDoors(1, [DoorConfig(0x0C, 0x05, DoorType.door, &doorEntry407)]),
-		SectorDoors(2, [DoorConfig(0x07, 0x0E, DoorType.object, &doorEntry677), DoorConfig(0x09, 0x05, DoorType.door, &doorEntry970)]),
-		SectorDoors(1, [DoorConfig(0x0C, 0x1E, DoorType.door, &doorEntry408)]),
-		SectorDoors(2, [DoorConfig(0x19, 0x0A, DoorType.stairway, 0x0300), DoorConfig(0x1D, 0x0E, DoorType.stairway, 0)]),
-		SectorDoors(2, [DoorConfig(0x0B, 0x1D, DoorType.door, &doorEntry967), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry448)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x0A, DoorType.object, &doorEntry677), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry968), DoorConfig(0x19, 0x1B, DoorType.door, &doorEntry449)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x00, DoorType.door, &doorEntry413)]),
-		SectorDoors(4, [DoorConfig(0x01, 0x0E, DoorType.stairway, 0x0300), DoorConfig(0x05, 0x12, DoorType.stairway, 0), DoorConfig(0x05, 0x1E, DoorType.door, &doorEntry414), DoorConfig(0x1D, 0x04, DoorType.door, &doorEntry415)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x02, 0x08, ObjectType.door, &doorEntry375)]),
+		SectorObjects(2, [MapObject(0x00, 0x11, ObjectType.door, &doorEntry376), MapObject(0x00, 0x12, ObjectType.door, &doorEntry376)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(3, [MapObject(0x02, 0x1F, ObjectType.door, &doorEntry772), MapObject(0x15, 0x18, ObjectType.switch_, &doorEntry779), MapObject(0x1C, 0x1A, ObjectType.switch_, &doorEntry778)]),
+		SectorObjects(5, [MapObject(0x02, 0x00, ObjectType.door, &doorEntry772), MapObject(0x0C, 0x00, ObjectType.person, &doorEntry774), MapObject(0x11, 0x00, ObjectType.switch_, &doorEntry775), MapObject(0x15, 0x07, ObjectType.switch_, &doorEntry776), MapObject(0x1C, 0x05, ObjectType.switch_, &doorEntry777)]),
+		SectorObjects(8, [MapObject(0x18, 0x16, ObjectType.door, &doorEntry561), MapObject(0x19, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1A, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1B, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1C, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1D, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1E, 0x16, ObjectType.door, &doorEntry561), MapObject(0x1F, 0x16, ObjectType.door, &doorEntry561)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x17, ObjectType.door, &doorEntry110)]),
+		SectorObjects(3, [MapObject(0x0C, 0x1D, ObjectType.door, &doorEntry671), MapObject(0x19, 0x05, ObjectType.door, &doorEntry802), MapObject(0x19, 0x16, ObjectType.door, &doorEntry803)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry645), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry563)]),
+		SectorObjects(1, [MapObject(0x11, 0x05, ObjectType.door, &doorEntry633)]),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry564), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry565), MapObject(0x17, 0x05, ObjectType.door, &doorEntry566)]),
+		SectorObjects(1, [MapObject(0x0A, 0x0E, ObjectType.door, &doorEntry567)]),
+		SectorObjects(2, [MapObject(0x0A, 0x01, ObjectType.door, &doorEntry568), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry569)]),
+		SectorObjects(4, [MapObject(0x07, 0x0D, ObjectType.door, &doorEntry570), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry571), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry572), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry573)]),
+		SectorObjects(1, [MapObject(0x0C, 0x05, ObjectType.door, &doorEntry407)]),
+		SectorObjects(2, [MapObject(0x07, 0x0E, ObjectType.object, &doorEntry677), MapObject(0x09, 0x05, ObjectType.door, &doorEntry970)]),
+		SectorObjects(1, [MapObject(0x0C, 0x1E, ObjectType.door, &doorEntry408)]),
+		SectorObjects(2, [MapObject(0x19, 0x0A, ObjectType.stairway, 0x0300), MapObject(0x1D, 0x0E, ObjectType.stairway, 0)]),
+		SectorObjects(2, [MapObject(0x0B, 0x1D, ObjectType.door, &doorEntry967), MapObject(0x19, 0x01, ObjectType.door, &doorEntry448)]),
+		SectorObjects(3, [MapObject(0x07, 0x0A, ObjectType.object, &doorEntry677), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry968), MapObject(0x19, 0x1B, ObjectType.door, &doorEntry449)]),
+		SectorObjects(1, [MapObject(0x1D, 0x00, ObjectType.door, &doorEntry413)]),
+		SectorObjects(4, [MapObject(0x01, 0x0E, ObjectType.stairway, 0x0300), MapObject(0x05, 0x12, ObjectType.stairway, 0), MapObject(0x05, 0x1E, ObjectType.door, &doorEntry414), MapObject(0x1D, 0x04, ObjectType.door, &doorEntry415)]),
 	], [
-		SectorDoors(2, [DoorConfig(0x14, 0x1E, DoorType.door, &doorEntry452), DoorConfig(0x14, 0x1F, DoorType.door, &doorEntry452)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x14, 0x0E, DoorType.door, &doorEntry453), DoorConfig(0x14, 0x0F, DoorType.door, &doorEntry453)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(10, [DoorConfig(0x00, 0x0C, DoorType.door, &doorEntry476), DoorConfig(0x01, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x0C, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry477), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry479)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x03, 0x01, DoorType.door, &doorEntry332), DoorConfig(0x03, 0x1E, DoorType.door, &doorEntry333), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry440)]),
-		SectorDoors(4, [DoorConfig(0x06, 0x12, DoorType.door, &doorEntry933), DoorConfig(0x0A, 0x01, DoorType.door, &doorEntry934), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry806), DoorConfig(0x1D, 0x05, DoorType.switch_, 0x20ED)]),
-		SectorDoors(2, [DoorConfig(0x11, 0x1E, DoorType.object, &doorEntry679), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry634)]),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x16, 0x1D, DoorType.door, &doorEntry635), DoorConfig(0x17, 0x1D, DoorType.door, &doorEntry635), DoorConfig(0x18, 0x1D, DoorType.door, &doorEntry635), DoorConfig(0x19, 0x1D, DoorType.door, &doorEntry635), DoorConfig(0x1A, 0x1D, DoorType.door, &doorEntry635), DoorConfig(0x1B, 0x1D, DoorType.door, &doorEntry635)]),
-		SectorDoors(4, [DoorConfig(0x07, 0x10, DoorType.door, &doorEntry574), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry575), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry576), DoorConfig(0x17, 0x05, DoorType.door, &doorEntry577)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x01, 0x02, DoorType.door, &doorEntry578)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry579), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry580)]),
-		SectorDoors(6, [DoorConfig(0x12, 0x05, DoorType.door, &doorEntry499), DoorConfig(0x13, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x05, DoorType.ropeLadder, 0)]),
-		SectorDoors(9, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry533), DoorConfig(0x07, 0x09, DoorType.door, &doorEntry534), DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry535), DoorConfig(0x12, 0x19, DoorType.door, &doorEntry500), DoorConfig(0x13, 0x19, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x19, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x19, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x19, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x19, DoorType.ropeLadder, 0)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x00, DoorType.door, &doorEntry419)]),
-		SectorDoors(0, []),
-		SectorDoors(7, [DoorConfig(0x02, 0x0D, DoorType.door, &doorEntry501), DoorConfig(0x03, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x0D, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry506)]),
-		SectorDoors(8, [DoorConfig(0x10, 0x18, DoorType.door, &doorEntry505), DoorConfig(0x11, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x18, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x18, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
+		SectorObjects(2, [MapObject(0x14, 0x1E, ObjectType.door, &doorEntry452), MapObject(0x14, 0x1F, ObjectType.door, &doorEntry452)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x14, 0x0E, ObjectType.door, &doorEntry453), MapObject(0x14, 0x0F, ObjectType.door, &doorEntry453)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(10, [MapObject(0x00, 0x0C, ObjectType.door, &doorEntry476), MapObject(0x01, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x02, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x03, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x04, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x05, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x06, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x07, 0x0C, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry477), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry479)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x03, 0x01, ObjectType.door, &doorEntry332), MapObject(0x03, 0x1E, ObjectType.door, &doorEntry333), MapObject(0x19, 0x01, ObjectType.door, &doorEntry440)]),
+		SectorObjects(4, [MapObject(0x06, 0x12, ObjectType.door, &doorEntry933), MapObject(0x0A, 0x01, ObjectType.door, &doorEntry934), MapObject(0x19, 0x05, ObjectType.door, &doorEntry806), MapObject(0x1D, 0x05, ObjectType.switch_, 0x20ED)]),
+		SectorObjects(2, [MapObject(0x11, 0x1E, ObjectType.object, &doorEntry679), MapObject(0x19, 0x05, ObjectType.door, &doorEntry634)]),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x16, 0x1D, ObjectType.door, &doorEntry635), MapObject(0x17, 0x1D, ObjectType.door, &doorEntry635), MapObject(0x18, 0x1D, ObjectType.door, &doorEntry635), MapObject(0x19, 0x1D, ObjectType.door, &doorEntry635), MapObject(0x1A, 0x1D, ObjectType.door, &doorEntry635), MapObject(0x1B, 0x1D, ObjectType.door, &doorEntry635)]),
+		SectorObjects(4, [MapObject(0x07, 0x10, ObjectType.door, &doorEntry574), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry575), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry576), MapObject(0x17, 0x05, ObjectType.door, &doorEntry577)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x01, 0x02, ObjectType.door, &doorEntry578)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry579), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry580)]),
+		SectorObjects(6, [MapObject(0x12, 0x05, ObjectType.door, &doorEntry499), MapObject(0x13, 0x05, ObjectType.ropeLadder, 0), MapObject(0x14, 0x05, ObjectType.ropeLadder, 0), MapObject(0x15, 0x05, ObjectType.ropeLadder, 0), MapObject(0x16, 0x05, ObjectType.ropeLadder, 0), MapObject(0x17, 0x05, ObjectType.ropeLadder, 0)]),
+		SectorObjects(9, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry533), MapObject(0x07, 0x09, ObjectType.door, &doorEntry534), MapObject(0x09, 0x0E, ObjectType.door, &doorEntry535), MapObject(0x12, 0x19, ObjectType.door, &doorEntry500), MapObject(0x13, 0x19, ObjectType.ropeLadder, 0), MapObject(0x14, 0x19, ObjectType.ropeLadder, 0), MapObject(0x15, 0x19, ObjectType.ropeLadder, 0), MapObject(0x16, 0x19, ObjectType.ropeLadder, 0), MapObject(0x17, 0x19, ObjectType.ropeLadder, 0)]),
+		SectorObjects(1, [MapObject(0x11, 0x00, ObjectType.door, &doorEntry419)]),
+		SectorObjects(0, []),
+		SectorObjects(7, [MapObject(0x02, 0x0D, ObjectType.door, &doorEntry501), MapObject(0x03, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x04, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x05, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x06, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x07, 0x0D, ObjectType.ropeLadder, 0), MapObject(0x19, 0x01, ObjectType.door, &doorEntry506)]),
+		SectorObjects(8, [MapObject(0x10, 0x18, ObjectType.door, &doorEntry505), MapObject(0x11, 0x18, ObjectType.ropeLadder, 0), MapObject(0x12, 0x18, ObjectType.ropeLadder, 0), MapObject(0x13, 0x18, ObjectType.ropeLadder, 0), MapObject(0x14, 0x18, ObjectType.ropeLadder, 0), MapObject(0x15, 0x18, ObjectType.ropeLadder, 0), MapObject(0x16, 0x18, ObjectType.ropeLadder, 0), MapObject(0x17, 0x18, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1C, 0x06, DoorType.door, &doorEntry454), DoorConfig(0x1C, 0x07, DoorType.door, &doorEntry454)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x17, DoorType.door, &doorEntry773)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.door, &doorEntry765)]),
-		SectorDoors(3, [DoorConfig(0x19, 0x15, DoorType.door, &doorEntry766), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry766)]),
-		SectorDoors(12, [DoorConfig(0x14, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x16, DoorType.ropeLadder, 0)]),
-		SectorDoors(2, [DoorConfig(0x07, 0x1E, DoorType.object, &doorEntry462), DoorConfig(0x11, 0x06, DoorType.door, &doorEntry434)]),
-		SectorDoors(1, [DoorConfig(0x06, 0x04, DoorType.door, &doorEntry435)]),
-		SectorDoors(21, [DoorConfig(0x09, 0x1A, DoorType.door, &doorEntry436), DoorConfig(0x0C, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1E, 0x0E, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x0E, DoorType.ropeLadder, 0)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x01, DoorType.door, &doorEntry929), DoorConfig(0x19, 0x1B, DoorType.door, &doorEntry111)]),
-		SectorDoors(5, [DoorConfig(0x05, 0x15, DoorType.stairway, 0x0200), DoorConfig(0x05, 0x1E, DoorType.door, &doorEntry334), DoorConfig(0x0D, 0x00, DoorType.door, &doorEntry335), DoorConfig(0x0D, 0x0D, DoorType.stairway, 0x0100), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry441)]),
-		SectorDoors(5, [DoorConfig(0x0A, 0x01, DoorType.door, &doorEntry935), DoorConfig(0x0A, 0x0E, DoorType.door, &doorEntry936), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry807), DoorConfig(0x1A, 0x0E, DoorType.object, &doorEntry817)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry581), DoorConfig(0x11, 0x01, DoorType.door, &doorEntry582)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x19, DoorType.door, &doorEntry636), DoorConfig(0x07, 0x1A, DoorType.door, &doorEntry636), DoorConfig(0x0B, 0x0B, DoorType.door, &doorEntry637)]),
-		SectorDoors(1, [DoorConfig(0x15, 0x1E, DoorType.door, &doorEntry638)]),
-		SectorDoors(4, [DoorConfig(0x07, 0x0A, DoorType.door, &doorEntry583), DoorConfig(0x07, 0x10, DoorType.door, &doorEntry584), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry585), DoorConfig(0x17, 0x05, DoorType.door, &doorEntry586)]),
-		SectorDoors(1, [DoorConfig(0x05, 0x09, DoorType.door, &doorEntry587)]),
-		SectorDoors(1, [DoorConfig(0x05, 0x0A, DoorType.door, &doorEntry588)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry589), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry590)]),
-		SectorDoors(6, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry521), DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry522), DoorConfig(0x09, 0x12, DoorType.door, &doorEntry523), DoorConfig(0x15, 0x00, DoorType.door, &doorEntry420), DoorConfig(0x15, 0x0E, DoorType.stairway, 0x0300), DoorConfig(0x1D, 0x16, DoorType.stairway, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.door, &doorEntry493), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry493)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x05, 0x1E, DoorType.door, &doorEntry416)]),
-		SectorDoors(1, [DoorConfig(0x05, 0x1E, DoorType.door, &doorEntry417)]),
-		SectorDoors(7, [DoorConfig(0x02, 0x15, DoorType.door, &doorEntry502), DoorConfig(0x03, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry418)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1C, 0x06, ObjectType.door, &doorEntry454), MapObject(0x1C, 0x07, ObjectType.door, &doorEntry454)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x17, ObjectType.door, &doorEntry773)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x01, ObjectType.door, &doorEntry765)]),
+		SectorObjects(3, [MapObject(0x19, 0x15, ObjectType.door, &doorEntry766), MapObject(0x19, 0x16, ObjectType.door, &doorEntry766)]),
+		SectorObjects(12, [MapObject(0x14, 0x16, ObjectType.ropeLadder, 0), MapObject(0x15, 0x16, ObjectType.ropeLadder, 0), MapObject(0x16, 0x16, ObjectType.ropeLadder, 0), MapObject(0x17, 0x16, ObjectType.ropeLadder, 0), MapObject(0x18, 0x16, ObjectType.ropeLadder, 0), MapObject(0x19, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x16, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x16, ObjectType.ropeLadder, 0)]),
+		SectorObjects(2, [MapObject(0x07, 0x1E, ObjectType.object, &doorEntry462), MapObject(0x11, 0x06, ObjectType.door, &doorEntry434)]),
+		SectorObjects(1, [MapObject(0x06, 0x04, ObjectType.door, &doorEntry435)]),
+		SectorObjects(21, [MapObject(0x09, 0x1A, ObjectType.door, &doorEntry436), MapObject(0x0C, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x10, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x11, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x12, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x13, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x14, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x15, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x16, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x17, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x18, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x19, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1E, 0x0E, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x0E, ObjectType.ropeLadder, 0)]),
+		SectorObjects(2, [MapObject(0x0A, 0x01, ObjectType.door, &doorEntry929), MapObject(0x19, 0x1B, ObjectType.door, &doorEntry111)]),
+		SectorObjects(5, [MapObject(0x05, 0x15, ObjectType.stairway, 0x0200), MapObject(0x05, 0x1E, ObjectType.door, &doorEntry334), MapObject(0x0D, 0x00, ObjectType.door, &doorEntry335), MapObject(0x0D, 0x0D, ObjectType.stairway, 0x0100), MapObject(0x19, 0x01, ObjectType.door, &doorEntry441)]),
+		SectorObjects(5, [MapObject(0x0A, 0x01, ObjectType.door, &doorEntry935), MapObject(0x0A, 0x0E, ObjectType.door, &doorEntry936), MapObject(0x19, 0x16, ObjectType.door, &doorEntry807), MapObject(0x1A, 0x0E, ObjectType.object, &doorEntry817)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry581), MapObject(0x11, 0x01, ObjectType.door, &doorEntry582)]),
+		SectorObjects(3, [MapObject(0x07, 0x19, ObjectType.door, &doorEntry636), MapObject(0x07, 0x1A, ObjectType.door, &doorEntry636), MapObject(0x0B, 0x0B, ObjectType.door, &doorEntry637)]),
+		SectorObjects(1, [MapObject(0x15, 0x1E, ObjectType.door, &doorEntry638)]),
+		SectorObjects(4, [MapObject(0x07, 0x0A, ObjectType.door, &doorEntry583), MapObject(0x07, 0x10, ObjectType.door, &doorEntry584), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry585), MapObject(0x17, 0x05, ObjectType.door, &doorEntry586)]),
+		SectorObjects(1, [MapObject(0x05, 0x09, ObjectType.door, &doorEntry587)]),
+		SectorObjects(1, [MapObject(0x05, 0x0A, ObjectType.door, &doorEntry588)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry589), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry590)]),
+		SectorObjects(6, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry521), MapObject(0x07, 0x0D, ObjectType.door, &doorEntry522), MapObject(0x09, 0x12, ObjectType.door, &doorEntry523), MapObject(0x15, 0x00, ObjectType.door, &doorEntry420), MapObject(0x15, 0x0E, ObjectType.stairway, 0x0300), MapObject(0x1D, 0x16, ObjectType.stairway, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x09, 0x15, ObjectType.door, &doorEntry493), MapObject(0x09, 0x16, ObjectType.door, &doorEntry493)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x05, 0x1E, ObjectType.door, &doorEntry416)]),
+		SectorObjects(1, [MapObject(0x05, 0x1E, ObjectType.door, &doorEntry417)]),
+		SectorObjects(7, [MapObject(0x02, 0x15, ObjectType.door, &doorEntry502), MapObject(0x03, 0x15, ObjectType.ropeLadder, 0), MapObject(0x04, 0x15, ObjectType.ropeLadder, 0), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0), MapObject(0x07, 0x15, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry418)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0A, 0x10, DoorType.door, &doorEntry437)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x00, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x16, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x05, DoorType.door, &doorEntry438)]),
-		SectorDoors(0, []),
-		SectorDoors(12, [DoorConfig(0x0C, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x1A, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x1A, DoorType.ropeLadder, 0)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x0A, DoorType.door, &doorEntry439)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x01, DoorType.door, &doorEntry930), DoorConfig(0x0A, 0x1A, DoorType.door, &doorEntry931), DoorConfig(0x19, 0x17, DoorType.door, &doorEntry112)]),
-		SectorDoors(9, [DoorConfig(0x00, 0x1C, DoorType.door, &doorEntry336), DoorConfig(0x01, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x15, DoorType.stairway, 0x0200), DoorConfig(0x0D, 0x00, DoorType.door, &doorEntry337), DoorConfig(0x0D, 0x0D, DoorType.stairway, 0x0100), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry442)]),
-		SectorDoors(4, [DoorConfig(0x0A, 0x12, DoorType.door, &doorEntry937), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry810), DoorConfig(0x1A, 0x09, DoorType.door, &doorEntry811), DoorConfig(0x1A, 0x0A, DoorType.door, &doorEntry811)]),
-		SectorDoors(2, [DoorConfig(0x1A, 0x1E, DoorType.person, &doorEntry681), DoorConfig(0x1D, 0x11, DoorType.door, &doorEntry639)]),
-		SectorDoors(6, [DoorConfig(0x1A, 0x04, DoorType.person, &doorEntry681), DoorConfig(0x1A, 0x09, DoorType.person, &doorEntry681), DoorConfig(0x1A, 0x0A, DoorType.person, &doorEntry681), DoorConfig(0x1A, 0x15, DoorType.person, &doorEntry681), DoorConfig(0x1A, 0x16, DoorType.person, &doorEntry681), DoorConfig(0x1A, 0x1C, DoorType.person, &doorEntry681)]),
-		SectorDoors(2, [DoorConfig(0x1A, 0x02, DoorType.person, &doorEntry681), DoorConfig(0x1D, 0x0E, DoorType.door, &doorEntry640)]),
-		SectorDoors(4, [DoorConfig(0x07, 0x10, DoorType.door, &doorEntry591), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry592), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry593), DoorConfig(0x17, 0x05, DoorType.door, &doorEntry594)]),
-		SectorDoors(4, [DoorConfig(0x1A, 0x09, DoorType.door, &doorEntry595), DoorConfig(0x1A, 0x11, DoorType.door, &doorEntry596), DoorConfig(0x1A, 0x19, DoorType.door, &doorEntry675), DoorConfig(0x1A, 0x1D, DoorType.door, &doorEntry675)]),
-		SectorDoors(4, [DoorConfig(0x01, 0x0A, DoorType.door, &doorEntry597), DoorConfig(0x1A, 0x09, DoorType.door, &doorEntry598), DoorConfig(0x1A, 0x11, DoorType.door, &doorEntry599), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry600)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry601), DoorConfig(0x19, 0x0A, DoorType.door, &doorEntry602)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry524), DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry525), DoorConfig(0x09, 0x12, DoorType.door, &doorEntry526), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry507), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry508)]),
-		SectorDoors(8, [DoorConfig(0x02, 0x15, DoorType.door, &doorEntry503), DoorConfig(0x03, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry972), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry973)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry536), DoorConfig(0x07, 0x15, DoorType.door, &doorEntry537), DoorConfig(0x09, 0x1A, DoorType.door, &doorEntry538), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry425), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry426)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.door, &doorEntry494), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry494)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry545), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry546), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry969)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0A, 0x10, ObjectType.door, &doorEntry437)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x00, 0x16, ObjectType.ropeLadder, 0), MapObject(0x01, 0x16, ObjectType.ropeLadder, 0), MapObject(0x02, 0x16, ObjectType.ropeLadder, 0), MapObject(0x03, 0x16, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x05, ObjectType.door, &doorEntry438)]),
+		SectorObjects(0, []),
+		SectorObjects(12, [MapObject(0x0C, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x10, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x11, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x12, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x13, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x14, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x15, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x16, 0x1A, ObjectType.ropeLadder, 0), MapObject(0x17, 0x1A, ObjectType.ropeLadder, 0)]),
+		SectorObjects(1, [MapObject(0x1D, 0x0A, ObjectType.door, &doorEntry439)]),
+		SectorObjects(3, [MapObject(0x0A, 0x01, ObjectType.door, &doorEntry930), MapObject(0x0A, 0x1A, ObjectType.door, &doorEntry931), MapObject(0x19, 0x17, ObjectType.door, &doorEntry112)]),
+		SectorObjects(9, [MapObject(0x00, 0x1C, ObjectType.door, &doorEntry336), MapObject(0x01, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x02, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x03, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x04, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x05, 0x15, ObjectType.stairway, 0x0200), MapObject(0x0D, 0x00, ObjectType.door, &doorEntry337), MapObject(0x0D, 0x0D, ObjectType.stairway, 0x0100), MapObject(0x19, 0x01, ObjectType.door, &doorEntry442)]),
+		SectorObjects(4, [MapObject(0x0A, 0x12, ObjectType.door, &doorEntry937), MapObject(0x19, 0x01, ObjectType.door, &doorEntry810), MapObject(0x1A, 0x09, ObjectType.door, &doorEntry811), MapObject(0x1A, 0x0A, ObjectType.door, &doorEntry811)]),
+		SectorObjects(2, [MapObject(0x1A, 0x1E, ObjectType.person, &doorEntry681), MapObject(0x1D, 0x11, ObjectType.door, &doorEntry639)]),
+		SectorObjects(6, [MapObject(0x1A, 0x04, ObjectType.person, &doorEntry681), MapObject(0x1A, 0x09, ObjectType.person, &doorEntry681), MapObject(0x1A, 0x0A, ObjectType.person, &doorEntry681), MapObject(0x1A, 0x15, ObjectType.person, &doorEntry681), MapObject(0x1A, 0x16, ObjectType.person, &doorEntry681), MapObject(0x1A, 0x1C, ObjectType.person, &doorEntry681)]),
+		SectorObjects(2, [MapObject(0x1A, 0x02, ObjectType.person, &doorEntry681), MapObject(0x1D, 0x0E, ObjectType.door, &doorEntry640)]),
+		SectorObjects(4, [MapObject(0x07, 0x10, ObjectType.door, &doorEntry591), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry592), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry593), MapObject(0x17, 0x05, ObjectType.door, &doorEntry594)]),
+		SectorObjects(4, [MapObject(0x1A, 0x09, ObjectType.door, &doorEntry595), MapObject(0x1A, 0x11, ObjectType.door, &doorEntry596), MapObject(0x1A, 0x19, ObjectType.door, &doorEntry675), MapObject(0x1A, 0x1D, ObjectType.door, &doorEntry675)]),
+		SectorObjects(4, [MapObject(0x01, 0x0A, ObjectType.door, &doorEntry597), MapObject(0x1A, 0x09, ObjectType.door, &doorEntry598), MapObject(0x1A, 0x11, ObjectType.door, &doorEntry599), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry600)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry601), MapObject(0x19, 0x0A, ObjectType.door, &doorEntry602)]),
+		SectorObjects(5, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry524), MapObject(0x07, 0x0D, ObjectType.door, &doorEntry525), MapObject(0x09, 0x12, ObjectType.door, &doorEntry526), MapObject(0x19, 0x01, ObjectType.door, &doorEntry507), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry508)]),
+		SectorObjects(8, [MapObject(0x02, 0x15, ObjectType.door, &doorEntry503), MapObject(0x03, 0x15, ObjectType.ropeLadder, 0), MapObject(0x04, 0x15, ObjectType.ropeLadder, 0), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0), MapObject(0x07, 0x15, ObjectType.ropeLadder, 0), MapObject(0x19, 0x05, ObjectType.door, &doorEntry972), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry973)]),
+		SectorObjects(5, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry536), MapObject(0x07, 0x15, ObjectType.door, &doorEntry537), MapObject(0x09, 0x1A, ObjectType.door, &doorEntry538), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry425), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry426)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x09, 0x15, ObjectType.door, &doorEntry494), MapObject(0x09, 0x16, ObjectType.door, &doorEntry494)]),
+		SectorObjects(3, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry545), MapObject(0x09, 0x16, ObjectType.door, &doorEntry546), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry969)]),
 	], [
-		SectorDoors(1, [DoorConfig(0x13, 0x18, DoorType.door, &doorEntry943)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0B, 0x14, DoorType.door, &doorEntry944), DoorConfig(0x0B, 0x15, DoorType.door, &doorEntry944)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x05, 0x0B, DoorType.door, &doorEntry164)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x09, 0x16, DoorType.door, &doorEntry791), DoorConfig(0x0A, 0x0D, DoorType.stairway, 0x0200)]),
-		SectorDoors(1, [DoorConfig(0x0A, 0x0E, DoorType.door, &doorEntry932)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.door, &doorEntry123), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry443)]),
-		SectorDoors(3, [DoorConfig(0x08, 0x0D, DoorType.door, &doorEntry399), DoorConfig(0x19, 0x12, DoorType.door, &doorEntry812)]),
-		SectorDoors(9, [DoorConfig(0x02, 0x16, DoorType.person, &doorEntry681), DoorConfig(0x02, 0x1C, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x0E, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x14, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x1A, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x0A, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x10, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x16, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x1C, DoorType.person, &doorEntry681)]),
-		SectorDoors(13, [DoorConfig(0x02, 0x02, DoorType.person, &doorEntry681), DoorConfig(0x02, 0x08, DoorType.person, &doorEntry681), DoorConfig(0x02, 0x18, DoorType.person, &doorEntry681), DoorConfig(0x02, 0x1E, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x00, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x06, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x0C, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x14, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x1A, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x02, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x08, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x18, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x1E, DoorType.person, &doorEntry681)]),
-		SectorDoors(10, [DoorConfig(0x02, 0x04, DoorType.person, &doorEntry681), DoorConfig(0x02, 0x0A, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x00, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x06, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x0C, DoorType.person, &doorEntry681), DoorConfig(0x0A, 0x12, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x04, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x0A, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x10, DoorType.person, &doorEntry681), DoorConfig(0x0E, 0x16, DoorType.person, &doorEntry681)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry603)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x09, DoorType.door, &doorEntry605)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x02, DoorType.door, &doorEntry604)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry606), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry607), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry608), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry609), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry610)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry527), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry509), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry510)]),
-		SectorDoors(3, [DoorConfig(0x05, 0x00, DoorType.door, &doorEntry411), DoorConfig(0x05, 0x06, DoorType.stairway, 0x0300), DoorConfig(0x09, 0x0A, DoorType.stairway, 0)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry539), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry518), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry517)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.door, &doorEntry495), DoorConfig(0x09, 0x16, DoorType.door, &doorEntry495)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry541), DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry542), DoorConfig(0x09, 0x12, DoorType.door, &doorEntry543), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry427), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry428)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x0D, DoorType.door, &doorEntry496), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry496)]),
+		SectorObjects(1, [MapObject(0x13, 0x18, ObjectType.door, &doorEntry943)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0B, 0x14, ObjectType.door, &doorEntry944), MapObject(0x0B, 0x15, ObjectType.door, &doorEntry944)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x05, 0x0B, ObjectType.door, &doorEntry164)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x09, 0x16, ObjectType.door, &doorEntry791), MapObject(0x0A, 0x0D, ObjectType.stairway, 0x0200)]),
+		SectorObjects(1, [MapObject(0x0A, 0x0E, ObjectType.door, &doorEntry932)]),
+		SectorObjects(2, [MapObject(0x09, 0x01, ObjectType.door, &doorEntry123), MapObject(0x19, 0x16, ObjectType.door, &doorEntry443)]),
+		SectorObjects(3, [MapObject(0x08, 0x0D, ObjectType.door, &doorEntry399), MapObject(0x19, 0x12, ObjectType.door, &doorEntry812)]),
+		SectorObjects(9, [MapObject(0x02, 0x16, ObjectType.person, &doorEntry681), MapObject(0x02, 0x1C, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x0E, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x14, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x1A, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x0A, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x10, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x16, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x1C, ObjectType.person, &doorEntry681)]),
+		SectorObjects(13, [MapObject(0x02, 0x02, ObjectType.person, &doorEntry681), MapObject(0x02, 0x08, ObjectType.person, &doorEntry681), MapObject(0x02, 0x18, ObjectType.person, &doorEntry681), MapObject(0x02, 0x1E, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x00, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x06, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x0C, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x14, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x1A, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x02, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x08, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x18, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x1E, ObjectType.person, &doorEntry681)]),
+		SectorObjects(10, [MapObject(0x02, 0x04, ObjectType.person, &doorEntry681), MapObject(0x02, 0x0A, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x00, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x06, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x0C, ObjectType.person, &doorEntry681), MapObject(0x0A, 0x12, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x04, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x0A, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x10, ObjectType.person, &doorEntry681), MapObject(0x0E, 0x16, ObjectType.person, &doorEntry681)]),
+		SectorObjects(1, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry603)]),
+		SectorObjects(1, [MapObject(0x11, 0x09, ObjectType.door, &doorEntry605)]),
+		SectorObjects(1, [MapObject(0x0B, 0x02, ObjectType.door, &doorEntry604)]),
+		SectorObjects(5, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry606), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry607), MapObject(0x17, 0x11, ObjectType.door, &doorEntry608), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry609), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry610)]),
+		SectorObjects(3, [MapObject(0x09, 0x0E, ObjectType.door, &doorEntry527), MapObject(0x19, 0x01, ObjectType.door, &doorEntry509), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry510)]),
+		SectorObjects(3, [MapObject(0x05, 0x00, ObjectType.door, &doorEntry411), MapObject(0x05, 0x06, ObjectType.stairway, 0x0300), MapObject(0x09, 0x0A, ObjectType.stairway, 0)]),
+		SectorObjects(3, [MapObject(0x09, 0x0E, ObjectType.door, &doorEntry539), MapObject(0x19, 0x01, ObjectType.door, &doorEntry518), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry517)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x09, 0x15, ObjectType.door, &doorEntry495), MapObject(0x09, 0x16, ObjectType.door, &doorEntry495)]),
+		SectorObjects(5, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry541), MapObject(0x07, 0x0D, ObjectType.door, &doorEntry542), MapObject(0x09, 0x12, ObjectType.door, &doorEntry543), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry427), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry428)]),
+		SectorObjects(2, [MapObject(0x0D, 0x0D, ObjectType.door, &doorEntry496), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry496)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1B, 0x14, DoorType.door, &doorEntry947), DoorConfig(0x1B, 0x15, DoorType.door, &doorEntry947)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x19, DoorType.door, &doorEntry165)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x19, DoorType.door, &doorEntry166)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x1B, DoorType.door, &doorEntry179)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1D, 0x05, DoorType.door, &doorEntry792), DoorConfig(0x1D, 0x0E, DoorType.stairway, 0x0100)]),
-		SectorDoors(2, [DoorConfig(0x05, 0x12, DoorType.stairway, 0x0100), DoorConfig(0x06, 0x05, DoorType.stairway, 0x0200)]),
-		SectorDoors(2, [DoorConfig(0x1A, 0x01, DoorType.door, &doorEntry915), DoorConfig(0x1A, 0x02, DoorType.door, &doorEntry915)]),
-		SectorDoors(1, [DoorConfig(0x05, 0x05, DoorType.door, &doorEntry749)]),
-		SectorDoors(10, [DoorConfig(0x0D, 0x08, DoorType.object, &doorEntry876), DoorConfig(0x11, 0x05, DoorType.door, &doorEntry832), DoorConfig(0x11, 0x06, DoorType.door, &doorEntry832), DoorConfig(0x16, 0x15, DoorType.door, &doorEntry833), DoorConfig(0x17, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x18, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x19, 0x0A, DoorType.object, &doorEntry877), DoorConfig(0x19, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1A, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1B, 0x15, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(1, [DoorConfig(0x15, 0x06, DoorType.object, &doorEntry878)]),
-		SectorDoors(1, [DoorConfig(0x0C, 0x02, DoorType.door, &doorEntry611)]),
-		SectorDoors(2, [DoorConfig(0x0B, 0x13, DoorType.escalator, 0x0300), DoorConfig(0x0E, 0x10, DoorType.escalator, 0x8000)]),
-		SectorDoors(1, [DoorConfig(0x1E, 0x06, DoorType.escalator, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x07, 0x0D, DoorType.object, &doorEntry676), DoorConfig(0x07, 0x12, DoorType.door, &doorEntry612), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry613), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry614), DoorConfig(0x17, 0x1D, DoorType.door, &doorEntry615)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x0E, DoorType.object, &doorEntry677), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry616), DoorConfig(0x1D, 0x0E, DoorType.door, &doorEntry617)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry618), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry619), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry620)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.door, &doorEntry528), DoorConfig(0x07, 0x09, DoorType.door, &doorEntry529), DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry530), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry511), DoorConfig(0x1B, 0x01, DoorType.door, &doorEntry512)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x00, DoorType.door, &doorEntry412)]),
-		SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry519)]),
-		SectorDoors(3, [DoorConfig(0x05, 0x19, DoorType.door, &doorEntry497), DoorConfig(0x05, 0x1A, DoorType.door, &doorEntry497), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry520)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x0E, DoorType.door, &doorEntry544)]),
-		SectorDoors(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1B, 0x14, ObjectType.door, &doorEntry947), MapObject(0x1B, 0x15, ObjectType.door, &doorEntry947)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x19, ObjectType.door, &doorEntry165)]),
+		SectorObjects(1, [MapObject(0x0B, 0x19, ObjectType.door, &doorEntry166)]),
+		SectorObjects(1, [MapObject(0x0D, 0x1B, ObjectType.door, &doorEntry179)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1D, 0x05, ObjectType.door, &doorEntry792), MapObject(0x1D, 0x0E, ObjectType.stairway, 0x0100)]),
+		SectorObjects(2, [MapObject(0x05, 0x12, ObjectType.stairway, 0x0100), MapObject(0x06, 0x05, ObjectType.stairway, 0x0200)]),
+		SectorObjects(2, [MapObject(0x1A, 0x01, ObjectType.door, &doorEntry915), MapObject(0x1A, 0x02, ObjectType.door, &doorEntry915)]),
+		SectorObjects(1, [MapObject(0x05, 0x05, ObjectType.door, &doorEntry749)]),
+		SectorObjects(10, [MapObject(0x0D, 0x08, ObjectType.object, &doorEntry876), MapObject(0x11, 0x05, ObjectType.door, &doorEntry832), MapObject(0x11, 0x06, ObjectType.door, &doorEntry832), MapObject(0x16, 0x15, ObjectType.door, &doorEntry833), MapObject(0x17, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x18, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x19, 0x0A, ObjectType.object, &doorEntry877), MapObject(0x19, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1A, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1B, 0x15, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(1, [MapObject(0x15, 0x06, ObjectType.object, &doorEntry878)]),
+		SectorObjects(1, [MapObject(0x0C, 0x02, ObjectType.door, &doorEntry611)]),
+		SectorObjects(2, [MapObject(0x0B, 0x13, ObjectType.escalator, 0x0300), MapObject(0x0E, 0x10, ObjectType.escalator, 0x8000)]),
+		SectorObjects(1, [MapObject(0x1E, 0x06, ObjectType.escalator, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x07, 0x0D, ObjectType.object, &doorEntry676), MapObject(0x07, 0x12, ObjectType.door, &doorEntry612), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry613), MapObject(0x17, 0x11, ObjectType.door, &doorEntry614), MapObject(0x17, 0x1D, ObjectType.door, &doorEntry615)]),
+		SectorObjects(3, [MapObject(0x07, 0x0E, ObjectType.object, &doorEntry677), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry616), MapObject(0x1D, 0x0E, ObjectType.door, &doorEntry617)]),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry618), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry619), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry620)]),
+		SectorObjects(5, [MapObject(0x07, 0x05, ObjectType.door, &doorEntry528), MapObject(0x07, 0x09, ObjectType.door, &doorEntry529), MapObject(0x09, 0x1E, ObjectType.door, &doorEntry530), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry511), MapObject(0x1B, 0x01, ObjectType.door, &doorEntry512)]),
+		SectorObjects(1, [MapObject(0x1D, 0x00, ObjectType.door, &doorEntry412)]),
+		SectorObjects(1, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry519)]),
+		SectorObjects(3, [MapObject(0x05, 0x19, ObjectType.door, &doorEntry497), MapObject(0x05, 0x1A, ObjectType.door, &doorEntry497), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry520)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x0E, ObjectType.door, &doorEntry544)]),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0F, 0x13, DoorType.object, &doorEntry241), DoorConfig(0x0F, 0x15, DoorType.object, &doorEntry241)]),
-		SectorDoors(2, [DoorConfig(0x0E, 0x0B, DoorType.door, &doorEntry167), DoorConfig(0x0E, 0x1C, DoorType.door, &doorEntry168)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x12, DoorType.door, &doorEntry169)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x10, 0x16, DoorType.door, &doorEntry170), DoorConfig(0x11, 0x01, DoorType.object, &doorEntry243), DoorConfig(0x11, 0x03, DoorType.object, &doorEntry243), DoorConfig(0x11, 0x04, DoorType.object, &doorEntry243), DoorConfig(0x11, 0x06, DoorType.object, &doorEntry243)]),
-		SectorDoors(5, [DoorConfig(0x1A, 0x09, DoorType.object, &doorEntry244), DoorConfig(0x1A, 0x0B, DoorType.object, &doorEntry244), DoorConfig(0x1A, 0x0C, DoorType.object, &doorEntry244), DoorConfig(0x1A, 0x0E, DoorType.object, &doorEntry244), DoorConfig(0x1A, 0x13, DoorType.door, &doorEntry180)]),
-		SectorDoors(2, [DoorConfig(0x1B, 0x01, DoorType.object, &doorEntry245), DoorConfig(0x1B, 0x02, DoorType.object, &doorEntry245)]),
-		SectorDoors(0, []),
-		SectorDoors(15, [DoorConfig(0x03, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x0E, DoorType.door, &doorEntry916), DoorConfig(0x1E, 0x02, DoorType.door, &doorEntry917), DoorConfig(0x1E, 0x0D, DoorType.door, &doorEntry918)]),
-		SectorDoors(12, [DoorConfig(0x0E, 0x11, DoorType.door, &doorEntry919), DoorConfig(0x0F, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x02, DoorType.door, &doorEntry920), DoorConfig(0x12, 0x09, DoorType.ropeLadder, 0x8000), DoorConfig(0x17, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x18, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x19, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1A, 0x05, DoorType.door, &doorEntry921), DoorConfig(0x1A, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x05, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(4, [DoorConfig(0x1B, 0x01, DoorType.ropeLadder, 0x8000), DoorConfig(0x1C, 0x01, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x01, DoorType.ropeLadder, 0x8000), DoorConfig(0x1E, 0x01, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(5, [DoorConfig(0x01, 0x1D, DoorType.door, &doorEntry834), DoorConfig(0x01, 0x1E, DoorType.door, &doorEntry834), DoorConfig(0x02, 0x12, DoorType.object, &doorEntry879), DoorConfig(0x15, 0x09, DoorType.object, &doorEntry880)]),
-		SectorDoors(4, [DoorConfig(0x01, 0x11, DoorType.door, &doorEntry835), DoorConfig(0x01, 0x12, DoorType.door, &doorEntry835), DoorConfig(0x0D, 0x0E, DoorType.object, &doorEntry881)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1A, 0x11, DoorType.escalator, 0x8000), DoorConfig(0x1D, 0x14, DoorType.escalator, 0x0100)]),
-		SectorDoors(3, [DoorConfig(0x01, 0x03, DoorType.escalator, 0), DoorConfig(0x07, 0x04, DoorType.escalator, 0x0200), DoorConfig(0x0A, 0x07, DoorType.escalator, 0x8000)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x1C, DoorType.door, &doorEntry621)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry622), DoorConfig(0x17, 0x12, DoorType.object, &doorEntry680), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry641)]),
-		SectorDoors(4, [DoorConfig(0x0B, 0x05, DoorType.door, &doorEntry623), DoorConfig(0x0B, 0x0D, DoorType.object, &doorEntry678), DoorConfig(0x0B, 0x11, DoorType.door, &doorEntry624), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry625)]),
-		SectorDoors(3, [DoorConfig(0x06, 0x0D, DoorType.door, &doorEntry626), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry627), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry628)]),
-		SectorDoors(3, [DoorConfig(0x05, 0x0A, DoorType.door, &doorEntry531), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry514), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry513)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry971)]),
-		SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry540)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0F, 0x13, ObjectType.object, &doorEntry241), MapObject(0x0F, 0x15, ObjectType.object, &doorEntry241)]),
+		SectorObjects(2, [MapObject(0x0E, 0x0B, ObjectType.door, &doorEntry167), MapObject(0x0E, 0x1C, ObjectType.door, &doorEntry168)]),
+		SectorObjects(1, [MapObject(0x11, 0x12, ObjectType.door, &doorEntry169)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x10, 0x16, ObjectType.door, &doorEntry170), MapObject(0x11, 0x01, ObjectType.object, &doorEntry243), MapObject(0x11, 0x03, ObjectType.object, &doorEntry243), MapObject(0x11, 0x04, ObjectType.object, &doorEntry243), MapObject(0x11, 0x06, ObjectType.object, &doorEntry243)]),
+		SectorObjects(5, [MapObject(0x1A, 0x09, ObjectType.object, &doorEntry244), MapObject(0x1A, 0x0B, ObjectType.object, &doorEntry244), MapObject(0x1A, 0x0C, ObjectType.object, &doorEntry244), MapObject(0x1A, 0x0E, ObjectType.object, &doorEntry244), MapObject(0x1A, 0x13, ObjectType.door, &doorEntry180)]),
+		SectorObjects(2, [MapObject(0x1B, 0x01, ObjectType.object, &doorEntry245), MapObject(0x1B, 0x02, ObjectType.object, &doorEntry245)]),
+		SectorObjects(0, []),
+		SectorObjects(15, [MapObject(0x03, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x0E, ObjectType.door, &doorEntry916), MapObject(0x1E, 0x02, ObjectType.door, &doorEntry917), MapObject(0x1E, 0x0D, ObjectType.door, &doorEntry918)]),
+		SectorObjects(12, [MapObject(0x0E, 0x11, ObjectType.door, &doorEntry919), MapObject(0x0F, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x02, ObjectType.door, &doorEntry920), MapObject(0x12, 0x09, ObjectType.ropeLadder, 0x8000), MapObject(0x17, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x18, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x19, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1A, 0x05, ObjectType.door, &doorEntry921), MapObject(0x1A, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x05, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(4, [MapObject(0x1B, 0x01, ObjectType.ropeLadder, 0x8000), MapObject(0x1C, 0x01, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x01, ObjectType.ropeLadder, 0x8000), MapObject(0x1E, 0x01, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(5, [MapObject(0x01, 0x1D, ObjectType.door, &doorEntry834), MapObject(0x01, 0x1E, ObjectType.door, &doorEntry834), MapObject(0x02, 0x12, ObjectType.object, &doorEntry879), MapObject(0x15, 0x09, ObjectType.object, &doorEntry880)]),
+		SectorObjects(4, [MapObject(0x01, 0x11, ObjectType.door, &doorEntry835), MapObject(0x01, 0x12, ObjectType.door, &doorEntry835), MapObject(0x0D, 0x0E, ObjectType.object, &doorEntry881)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1A, 0x11, ObjectType.escalator, 0x8000), MapObject(0x1D, 0x14, ObjectType.escalator, 0x0100)]),
+		SectorObjects(3, [MapObject(0x01, 0x03, ObjectType.escalator, 0), MapObject(0x07, 0x04, ObjectType.escalator, 0x0200), MapObject(0x0A, 0x07, ObjectType.escalator, 0x8000)]),
+		SectorObjects(1, [MapObject(0x0B, 0x1C, ObjectType.door, &doorEntry621)]),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry622), MapObject(0x17, 0x12, ObjectType.object, &doorEntry680), MapObject(0x19, 0x05, ObjectType.door, &doorEntry641)]),
+		SectorObjects(4, [MapObject(0x0B, 0x05, ObjectType.door, &doorEntry623), MapObject(0x0B, 0x0D, ObjectType.object, &doorEntry678), MapObject(0x0B, 0x11, ObjectType.door, &doorEntry624), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry625)]),
+		SectorObjects(3, [MapObject(0x06, 0x0D, ObjectType.door, &doorEntry626), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry627), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry628)]),
+		SectorObjects(3, [MapObject(0x05, 0x0A, ObjectType.door, &doorEntry531), MapObject(0x19, 0x01, ObjectType.door, &doorEntry514), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry513)]),
+		SectorObjects(1, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry971)]),
+		SectorObjects(1, [MapObject(0x09, 0x1E, ObjectType.door, &doorEntry540)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1F, 0x09, DoorType.door, &doorEntry172)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x06, 0x0A, DoorType.door, &doorEntry239), DoorConfig(0x0E, 0x02, DoorType.door, &doorEntry178)]),
-		SectorDoors(0, []),
-		SectorDoors(10, [DoorConfig(0x03, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x1D, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x12, DoorType.door, &doorEntry922), DoorConfig(0x0F, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x05, DoorType.door, &doorEntry923), DoorConfig(0x11, 0x19, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x19, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(6, [DoorConfig(0x02, 0x1D, DoorType.door, &doorEntry924), DoorConfig(0x03, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x16, DoorType.door, &doorEntry925)]),
-		SectorDoors(10, [DoorConfig(0x00, 0x05, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x05, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x05, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x1D, DoorType.door, &doorEntry926), DoorConfig(0x06, 0x0E, DoorType.door, &doorEntry927), DoorConfig(0x0B, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x11, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x0D, DoorType.door, &doorEntry928)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x19, 0x09, DoorType.door, &doorEntry757), DoorConfig(0x19, 0x0A, DoorType.door, &doorEntry757)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x01, 0x04, DoorType.door, &doorEntry629)]),
-		SectorDoors(2, [DoorConfig(0x03, 0x13, DoorType.escalator, 0x0300), DoorConfig(0x06, 0x10, DoorType.escalator, 0x8000)]),
-		SectorDoors(2, [DoorConfig(0x16, 0x06, DoorType.escalator, 0x8000), DoorConfig(0x19, 0x03, DoorType.escalator, 0)]),
-		SectorDoors(3, [DoorConfig(0x16, 0x17, DoorType.door, &doorEntry630), DoorConfig(0x17, 0x18, DoorType.door, &doorEntry630), DoorConfig(0x18, 0x19, DoorType.door, &doorEntry630)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry642), DoorConfig(0x1B, 0x0D, DoorType.door, &doorEntry643), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry644)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry631), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry632)]),
-		SectorDoors(5, [DoorConfig(0x0A, 0x1A, DoorType.door, &doorEntry823), DoorConfig(0x1C, 0x00, DoorType.door, &doorEntry646), DoorConfig(0x1D, 0x00, DoorType.door, &doorEntry646), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry647), DoorConfig(0x1E, 0x00, DoorType.door, &doorEntry646)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry532), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry516), DoorConfig(0x19, 0x1E, DoorType.door, &doorEntry515)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x09, 0x0A, DoorType.door, &doorEntry421)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry422)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x16, DoorType.door, &doorEntry547)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1A, 0x1A, DoorType.door, &doorEntry498)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1F, 0x09, ObjectType.door, &doorEntry172)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x06, 0x0A, ObjectType.door, &doorEntry239), MapObject(0x0E, 0x02, ObjectType.door, &doorEntry178)]),
+		SectorObjects(0, []),
+		SectorObjects(10, [MapObject(0x03, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x1D, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x12, ObjectType.door, &doorEntry922), MapObject(0x0F, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x05, ObjectType.door, &doorEntry923), MapObject(0x11, 0x19, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x19, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(6, [MapObject(0x02, 0x1D, ObjectType.door, &doorEntry924), MapObject(0x03, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x16, ObjectType.door, &doorEntry925)]),
+		SectorObjects(10, [MapObject(0x00, 0x05, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x05, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x05, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x1D, ObjectType.door, &doorEntry926), MapObject(0x06, 0x0E, ObjectType.door, &doorEntry927), MapObject(0x0B, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x11, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x0D, ObjectType.door, &doorEntry928)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x19, 0x09, ObjectType.door, &doorEntry757), MapObject(0x19, 0x0A, ObjectType.door, &doorEntry757)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x01, 0x04, ObjectType.door, &doorEntry629)]),
+		SectorObjects(2, [MapObject(0x03, 0x13, ObjectType.escalator, 0x0300), MapObject(0x06, 0x10, ObjectType.escalator, 0x8000)]),
+		SectorObjects(2, [MapObject(0x16, 0x06, ObjectType.escalator, 0x8000), MapObject(0x19, 0x03, ObjectType.escalator, 0)]),
+		SectorObjects(3, [MapObject(0x16, 0x17, ObjectType.door, &doorEntry630), MapObject(0x17, 0x18, ObjectType.door, &doorEntry630), MapObject(0x18, 0x19, ObjectType.door, &doorEntry630)]),
+		SectorObjects(3, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry642), MapObject(0x1B, 0x0D, ObjectType.door, &doorEntry643), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry644)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry631), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry632)]),
+		SectorObjects(5, [MapObject(0x0A, 0x1A, ObjectType.door, &doorEntry823), MapObject(0x1C, 0x00, ObjectType.door, &doorEntry646), MapObject(0x1D, 0x00, ObjectType.door, &doorEntry646), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry647), MapObject(0x1E, 0x00, ObjectType.door, &doorEntry646)]),
+		SectorObjects(3, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry532), MapObject(0x19, 0x01, ObjectType.door, &doorEntry516), MapObject(0x19, 0x1E, ObjectType.door, &doorEntry515)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x09, 0x0A, ObjectType.door, &doorEntry421)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry422)]),
+		SectorObjects(1, [MapObject(0x11, 0x16, ObjectType.door, &doorEntry547)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1A, 0x1A, ObjectType.door, &doorEntry498)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x12, 0x09, DoorType.door, &doorEntry176), DoorConfig(0x16, 0x1F, DoorType.door, &doorEntry175)]),
-		SectorDoors(1, [DoorConfig(0x15, 0x15, DoorType.door, &doorEntry174)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x18, 0x06, DoorType.door, &doorEntry181)]),
-		SectorDoors(21, [DoorConfig(0x00, 0x14, DoorType.door, &doorEntry117), DoorConfig(0x01, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x08, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0A, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0B, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0C, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0D, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0E, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x14, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x01, DoorType.door, &doorEntry118)]),
-		SectorDoors(13, [DoorConfig(0x03, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x0F, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(2, [DoorConfig(0x10, 0x12, DoorType.door, &doorEntry884), DoorConfig(0x10, 0x13, DoorType.door, &doorEntry884)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1B, 0x04, DoorType.escalator, 0x0200), DoorConfig(0x1E, 0x07, DoorType.escalator, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry450)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0B, 0x08, DoorType.door, &doorEntry780), DoorConfig(0x19, 0x1B, DoorType.door, &doorEntry451)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x12, 0x09, ObjectType.door, &doorEntry176), MapObject(0x16, 0x1F, ObjectType.door, &doorEntry175)]),
+		SectorObjects(1, [MapObject(0x15, 0x15, ObjectType.door, &doorEntry174)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x18, 0x06, ObjectType.door, &doorEntry181)]),
+		SectorObjects(21, [MapObject(0x00, 0x14, ObjectType.door, &doorEntry117), MapObject(0x01, 0x14, ObjectType.ropeLadder, 0), MapObject(0x02, 0x14, ObjectType.ropeLadder, 0), MapObject(0x03, 0x14, ObjectType.ropeLadder, 0), MapObject(0x04, 0x14, ObjectType.ropeLadder, 0), MapObject(0x05, 0x14, ObjectType.ropeLadder, 0), MapObject(0x06, 0x14, ObjectType.ropeLadder, 0), MapObject(0x07, 0x14, ObjectType.ropeLadder, 0), MapObject(0x08, 0x14, ObjectType.ropeLadder, 0), MapObject(0x09, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0A, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0B, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0C, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0D, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0E, 0x14, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x14, ObjectType.ropeLadder, 0), MapObject(0x10, 0x14, ObjectType.ropeLadder, 0), MapObject(0x11, 0x14, ObjectType.ropeLadder, 0), MapObject(0x12, 0x14, ObjectType.ropeLadder, 0), MapObject(0x13, 0x14, ObjectType.ropeLadder, 0), MapObject(0x19, 0x01, ObjectType.door, &doorEntry118)]),
+		SectorObjects(13, [MapObject(0x03, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x0F, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(2, [MapObject(0x10, 0x12, ObjectType.door, &doorEntry884), MapObject(0x10, 0x13, ObjectType.door, &doorEntry884)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1B, 0x04, ObjectType.escalator, 0x0200), MapObject(0x1E, 0x07, ObjectType.escalator, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry450)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0B, 0x08, ObjectType.door, &doorEntry780), MapObject(0x19, 0x1B, ObjectType.door, &doorEntry451)]),
 	], [
-		SectorDoors(1, [DoorConfig(0x1F, 0x1B, DoorType.door, &doorEntry463)]),
-		SectorDoors(14, [DoorConfig(0x12, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x15, DoorType.door, &doorEntry467), DoorConfig(0x15, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x18, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x19, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x1A, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x1B, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x1C, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x1D, 0x05, DoorType.ropeLadder, 0), DoorConfig(0x1F, 0x15, DoorType.ropeLadder, 0)]),
-		SectorDoors(1, [DoorConfig(0x10, 0x05, DoorType.door, &doorEntry472)]),
-		SectorDoors(2, [DoorConfig(0x17, 0x10, DoorType.door, &doorEntry946), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry946)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x0A, 0x05, DoorType.object, &doorEntry242), DoorConfig(0x0A, 0x07, DoorType.object, &doorEntry242), DoorConfig(0x0A, 0x08, DoorType.object, &doorEntry242), DoorConfig(0x0A, 0x0A, DoorType.object, &doorEntry242), DoorConfig(0x0E, 0x17, DoorType.door, &doorEntry171), DoorConfig(0x16, 0x0F, DoorType.door, &doorEntry173)]),
-		SectorDoors(3, [DoorConfig(0x0F, 0x12, DoorType.object, &doorEntry246), DoorConfig(0x0F, 0x14, DoorType.object, &doorEntry246), DoorConfig(0x16, 0x1D, DoorType.door, &doorEntry177)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.door, &doorEntry758)]),
-		SectorDoors(16, [DoorConfig(0x00, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x0F, DoorType.ropeLadder, 0x8000), DoorConfig(0x16, 0x1E, DoorType.door, &doorEntry759)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x0E, 0x11, DoorType.escalator, 0x8000), DoorConfig(0x11, 0x14, DoorType.escalator, 0x0100), DoorConfig(0x17, 0x13, DoorType.escalator, 0x0300), DoorConfig(0x1A, 0x10, DoorType.escalator, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x07, 0x19, DoorType.door, &doorEntry187), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry188), DoorConfig(0x17, 0x11, DoorType.door, &doorEntry230), DoorConfig(0x17, 0x12, DoorType.door, &doorEntry230), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry231), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry232)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.door, &doorEntry189), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry193)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry191)]),
+		SectorObjects(1, [MapObject(0x1F, 0x1B, ObjectType.door, &doorEntry463)]),
+		SectorObjects(14, [MapObject(0x12, 0x05, ObjectType.ropeLadder, 0), MapObject(0x13, 0x05, ObjectType.ropeLadder, 0), MapObject(0x14, 0x05, ObjectType.ropeLadder, 0), MapObject(0x14, 0x15, ObjectType.door, &doorEntry467), MapObject(0x15, 0x05, ObjectType.ropeLadder, 0), MapObject(0x16, 0x05, ObjectType.ropeLadder, 0), MapObject(0x17, 0x05, ObjectType.ropeLadder, 0), MapObject(0x18, 0x05, ObjectType.ropeLadder, 0), MapObject(0x19, 0x05, ObjectType.ropeLadder, 0), MapObject(0x1A, 0x05, ObjectType.ropeLadder, 0), MapObject(0x1B, 0x05, ObjectType.ropeLadder, 0), MapObject(0x1C, 0x05, ObjectType.ropeLadder, 0), MapObject(0x1D, 0x05, ObjectType.ropeLadder, 0), MapObject(0x1F, 0x15, ObjectType.ropeLadder, 0)]),
+		SectorObjects(1, [MapObject(0x10, 0x05, ObjectType.door, &doorEntry472)]),
+		SectorObjects(2, [MapObject(0x17, 0x10, ObjectType.door, &doorEntry946), MapObject(0x17, 0x11, ObjectType.door, &doorEntry946)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x0A, 0x05, ObjectType.object, &doorEntry242), MapObject(0x0A, 0x07, ObjectType.object, &doorEntry242), MapObject(0x0A, 0x08, ObjectType.object, &doorEntry242), MapObject(0x0A, 0x0A, ObjectType.object, &doorEntry242), MapObject(0x0E, 0x17, ObjectType.door, &doorEntry171), MapObject(0x16, 0x0F, ObjectType.door, &doorEntry173)]),
+		SectorObjects(3, [MapObject(0x0F, 0x12, ObjectType.object, &doorEntry246), MapObject(0x0F, 0x14, ObjectType.object, &doorEntry246), MapObject(0x16, 0x1D, ObjectType.door, &doorEntry177)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x19, 0x05, ObjectType.door, &doorEntry758)]),
+		SectorObjects(16, [MapObject(0x00, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x0F, ObjectType.ropeLadder, 0x8000), MapObject(0x16, 0x1E, ObjectType.door, &doorEntry759)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x0E, 0x11, ObjectType.escalator, 0x8000), MapObject(0x11, 0x14, ObjectType.escalator, 0x0100), MapObject(0x17, 0x13, ObjectType.escalator, 0x0300), MapObject(0x1A, 0x10, ObjectType.escalator, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x07, 0x19, ObjectType.door, &doorEntry187), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry188), MapObject(0x17, 0x11, ObjectType.door, &doorEntry230), MapObject(0x17, 0x12, ObjectType.door, &doorEntry230), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry231), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry232)]),
+		SectorObjects(2, [MapObject(0x0D, 0x06, ObjectType.door, &doorEntry189), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry193)]),
+		SectorObjects(1, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry191)]),
 	], [
-		SectorDoors(10, [DoorConfig(0x02, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x18, DoorType.door, &doorEntry465), DoorConfig(0x06, 0x1B, DoorType.ropeLadder, 0), DoorConfig(0x0F, 0x15, DoorType.door, &doorEntry466), DoorConfig(0x10, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x15, DoorType.ropeLadder, 0)]),
-		SectorDoors(7, [DoorConfig(0x00, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x15, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry464), DoorConfig(0x0B, 0x05, DoorType.door, &doorEntry471), DoorConfig(0x0F, 0x1D, DoorType.ropeLadder, 0), DoorConfig(0x10, 0x1D, DoorType.ropeLadder, 0), DoorConfig(0x11, 0x1D, DoorType.ropeLadder, 0)]),
-		SectorDoors(6, [DoorConfig(0x00, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x01, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x01, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x01, DoorType.ropeLadder, 0)]),
-		SectorDoors(2, [DoorConfig(0x17, 0x0C, DoorType.door, &doorEntry945), DoorConfig(0x17, 0x0D, DoorType.door, &doorEntry945)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x02, 0x0D, DoorType.door, &doorEntry240)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x14, 0x18, DoorType.door, &doorEntry249)]),
-		SectorDoors(2, [DoorConfig(0x17, 0x0D, DoorType.object, &doorEntry274), DoorConfig(0x17, 0x0E, DoorType.object, &doorEntry274)]),
-		SectorDoors(1, [DoorConfig(0x17, 0x17, DoorType.door, &doorEntry250)]),
-		SectorDoors(1, [DoorConfig(0x17, 0x02, DoorType.door, &doorEntry251)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x19, 0x16, DoorType.door, &doorEntry781)]),
-		SectorDoors(1, [DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry192)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x06, DoorType.escalator, 0x8000), DoorConfig(0x0D, 0x03, DoorType.escalator, 0), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry190)]),
-		SectorDoors(4, [DoorConfig(0x0A, 0x0B, DoorType.door, &doorEntry194), DoorConfig(0x0B, 0x0C, DoorType.door, &doorEntry194), DoorConfig(0x0C, 0x0D, DoorType.door, &doorEntry194), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry195)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry197), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry233)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.door, &doorEntry196), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry198)]),
-		SectorDoors(1, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry234)]),
+		SectorObjects(10, [MapObject(0x02, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x03, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x04, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x05, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x06, 0x18, ObjectType.door, &doorEntry465), MapObject(0x06, 0x1B, ObjectType.ropeLadder, 0), MapObject(0x0F, 0x15, ObjectType.door, &doorEntry466), MapObject(0x10, 0x15, ObjectType.ropeLadder, 0), MapObject(0x11, 0x15, ObjectType.ropeLadder, 0), MapObject(0x12, 0x15, ObjectType.ropeLadder, 0)]),
+		SectorObjects(7, [MapObject(0x00, 0x15, ObjectType.ropeLadder, 0), MapObject(0x01, 0x15, ObjectType.ropeLadder, 0), MapObject(0x09, 0x0D, ObjectType.door, &doorEntry464), MapObject(0x0B, 0x05, ObjectType.door, &doorEntry471), MapObject(0x0F, 0x1D, ObjectType.ropeLadder, 0), MapObject(0x10, 0x1D, ObjectType.ropeLadder, 0), MapObject(0x11, 0x1D, ObjectType.ropeLadder, 0)]),
+		SectorObjects(6, [MapObject(0x00, 0x01, ObjectType.ropeLadder, 0), MapObject(0x01, 0x01, ObjectType.ropeLadder, 0), MapObject(0x02, 0x01, ObjectType.ropeLadder, 0), MapObject(0x03, 0x01, ObjectType.ropeLadder, 0), MapObject(0x04, 0x01, ObjectType.ropeLadder, 0), MapObject(0x05, 0x01, ObjectType.ropeLadder, 0)]),
+		SectorObjects(2, [MapObject(0x17, 0x0C, ObjectType.door, &doorEntry945), MapObject(0x17, 0x0D, ObjectType.door, &doorEntry945)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x02, 0x0D, ObjectType.door, &doorEntry240)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x14, 0x18, ObjectType.door, &doorEntry249)]),
+		SectorObjects(2, [MapObject(0x17, 0x0D, ObjectType.object, &doorEntry274), MapObject(0x17, 0x0E, ObjectType.object, &doorEntry274)]),
+		SectorObjects(1, [MapObject(0x17, 0x17, ObjectType.door, &doorEntry250)]),
+		SectorObjects(1, [MapObject(0x17, 0x02, ObjectType.door, &doorEntry251)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x19, 0x16, ObjectType.door, &doorEntry781)]),
+		SectorObjects(1, [MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry192)]),
+		SectorObjects(3, [MapObject(0x0A, 0x06, ObjectType.escalator, 0x8000), MapObject(0x0D, 0x03, ObjectType.escalator, 0), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry190)]),
+		SectorObjects(4, [MapObject(0x0A, 0x0B, ObjectType.door, &doorEntry194), MapObject(0x0B, 0x0C, ObjectType.door, &doorEntry194), MapObject(0x0C, 0x0D, ObjectType.door, &doorEntry194), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry195)]),
+		SectorObjects(2, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry197), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry233)]),
+		SectorObjects(2, [MapObject(0x0D, 0x06, ObjectType.door, &doorEntry196), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry198)]),
+		SectorObjects(1, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry234)]),
 	], [
-		SectorDoors(1, [DoorConfig(0x0B, 0x1B, DoorType.door, &doorEntry468)]),
-		SectorDoors(1, [DoorConfig(0x03, 0x17, DoorType.door, &doorEntry469)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x00, 0x1E, DoorType.door, &doorEntry343), DoorConfig(0x01, 0x1E, DoorType.door, &doorEntry343), DoorConfig(0x02, 0x1E, DoorType.door, &doorEntry343)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x00, 0x09, DoorType.door, &doorEntry344), DoorConfig(0x01, 0x09, DoorType.door, &doorEntry344), DoorConfig(0x02, 0x09, DoorType.door, &doorEntry344)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x02, 0x17, DoorType.door, &doorEntry252), DoorConfig(0x1B, 0x1F, DoorType.door, &doorEntry253)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x04, 0x0E, DoorType.door, &doorEntry254)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry199), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry782)]),
-		SectorDoors(3, [DoorConfig(0x0A, 0x04, DoorType.door, &doorEntry201), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry200), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry202)]),
-		SectorDoors(4, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry750), DoorConfig(0x1B, 0x09, DoorType.door, &doorEntry203), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry204), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry205)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry206), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry207)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x1B, DoorType.door, &doorEntry953), DoorConfig(0x19, 0x12, DoorType.door, &doorEntry751)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry208), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry209)]),
-		SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry210), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry211), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry954)]),
+		SectorObjects(1, [MapObject(0x0B, 0x1B, ObjectType.door, &doorEntry468)]),
+		SectorObjects(1, [MapObject(0x03, 0x17, ObjectType.door, &doorEntry469)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x00, 0x1E, ObjectType.door, &doorEntry343), MapObject(0x01, 0x1E, ObjectType.door, &doorEntry343), MapObject(0x02, 0x1E, ObjectType.door, &doorEntry343)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x00, 0x09, ObjectType.door, &doorEntry344), MapObject(0x01, 0x09, ObjectType.door, &doorEntry344), MapObject(0x02, 0x09, ObjectType.door, &doorEntry344)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x02, 0x17, ObjectType.door, &doorEntry252), MapObject(0x1B, 0x1F, ObjectType.door, &doorEntry253)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x04, 0x0E, ObjectType.door, &doorEntry254)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry199), MapObject(0x19, 0x16, ObjectType.door, &doorEntry782)]),
+		SectorObjects(3, [MapObject(0x0A, 0x04, ObjectType.door, &doorEntry201), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry200), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry202)]),
+		SectorObjects(4, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry750), MapObject(0x1B, 0x09, ObjectType.door, &doorEntry203), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry204), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry205)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry206), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry207)]),
+		SectorObjects(2, [MapObject(0x0A, 0x1B, ObjectType.door, &doorEntry953), MapObject(0x19, 0x12, ObjectType.door, &doorEntry751)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry208), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry209)]),
+		SectorObjects(3, [MapObject(0x0D, 0x01, ObjectType.door, &doorEntry210), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry211), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry954)]),
 	], [
-		SectorDoors(1, [DoorConfig(0x01, 0x19, DoorType.door, &doorEntry470)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x12, 0x1D, DoorType.door, &doorEntry103), DoorConfig(0x12, 0x1E, DoorType.door, &doorEntry103), DoorConfig(0x1C, 0x11, DoorType.door, &doorEntry104)]),
-		SectorDoors(2, [DoorConfig(0x0E, 0x19, DoorType.door, &doorEntry105), DoorConfig(0x0E, 0x1A, DoorType.door, &doorEntry105)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x14, 0x02, DoorType.door, &doorEntry283), DoorConfig(0x14, 0x03, DoorType.door, &doorEntry283)]),
-		SectorDoors(1, [DoorConfig(0x03, 0x19, DoorType.door, &doorEntry255)]),
-		SectorDoors(3, [DoorConfig(0x17, 0x0A, DoorType.door, &doorEntry256), DoorConfig(0x1D, 0x15, DoorType.object, &doorEntry275), DoorConfig(0x1D, 0x16, DoorType.object, &doorEntry275)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x02, DoorType.door, &doorEntry257)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(7, [DoorConfig(0x03, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry473), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry783)]),
-		SectorDoors(4, [DoorConfig(0x07, 0x11, DoorType.door, &doorEntry212), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry213), DoorConfig(0x1A, 0x04, DoorType.door, &doorEntry214), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry215)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry752), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry216)]),
-		SectorDoors(3, [DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry474), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry217), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry218)]),
-		SectorDoors(2, [DoorConfig(0x0A, 0x1B, DoorType.door, &doorEntry955), DoorConfig(0x19, 0x16, DoorType.door, &doorEntry753)]),
-		SectorDoors(7, [DoorConfig(0x03, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x06, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x07, 0x09, DoorType.ropeLadder, 0), DoorConfig(0x09, 0x0D, DoorType.door, &doorEntry475), DoorConfig(0x1D, 0x16, DoorType.door, &doorEntry219)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry220), DoorConfig(0x1A, 0x17, DoorType.door, &doorEntry956)]),
+		SectorObjects(1, [MapObject(0x01, 0x19, ObjectType.door, &doorEntry470)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x12, 0x1D, ObjectType.door, &doorEntry103), MapObject(0x12, 0x1E, ObjectType.door, &doorEntry103), MapObject(0x1C, 0x11, ObjectType.door, &doorEntry104)]),
+		SectorObjects(2, [MapObject(0x0E, 0x19, ObjectType.door, &doorEntry105), MapObject(0x0E, 0x1A, ObjectType.door, &doorEntry105)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x14, 0x02, ObjectType.door, &doorEntry283), MapObject(0x14, 0x03, ObjectType.door, &doorEntry283)]),
+		SectorObjects(1, [MapObject(0x03, 0x19, ObjectType.door, &doorEntry255)]),
+		SectorObjects(3, [MapObject(0x17, 0x0A, ObjectType.door, &doorEntry256), MapObject(0x1D, 0x15, ObjectType.object, &doorEntry275), MapObject(0x1D, 0x16, ObjectType.object, &doorEntry275)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x02, ObjectType.door, &doorEntry257)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(7, [MapObject(0x03, 0x09, ObjectType.ropeLadder, 0), MapObject(0x04, 0x09, ObjectType.ropeLadder, 0), MapObject(0x05, 0x09, ObjectType.ropeLadder, 0), MapObject(0x06, 0x09, ObjectType.ropeLadder, 0), MapObject(0x07, 0x09, ObjectType.ropeLadder, 0), MapObject(0x09, 0x0D, ObjectType.door, &doorEntry473), MapObject(0x19, 0x16, ObjectType.door, &doorEntry783)]),
+		SectorObjects(4, [MapObject(0x07, 0x11, ObjectType.door, &doorEntry212), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry213), MapObject(0x1A, 0x04, ObjectType.door, &doorEntry214), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry215)]),
+		SectorObjects(2, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry752), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry216)]),
+		SectorObjects(3, [MapObject(0x09, 0x0D, ObjectType.door, &doorEntry474), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry217), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry218)]),
+		SectorObjects(2, [MapObject(0x0A, 0x1B, ObjectType.door, &doorEntry955), MapObject(0x19, 0x16, ObjectType.door, &doorEntry753)]),
+		SectorObjects(7, [MapObject(0x03, 0x09, ObjectType.ropeLadder, 0), MapObject(0x04, 0x09, ObjectType.ropeLadder, 0), MapObject(0x05, 0x09, ObjectType.ropeLadder, 0), MapObject(0x06, 0x09, ObjectType.ropeLadder, 0), MapObject(0x07, 0x09, ObjectType.ropeLadder, 0), MapObject(0x09, 0x0D, ObjectType.door, &doorEntry475), MapObject(0x1D, 0x16, ObjectType.door, &doorEntry219)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry220), MapObject(0x1A, 0x17, ObjectType.door, &doorEntry956)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x12, 0x11, DoorType.door, &doorEntry504), DoorConfig(0x13, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x16, 0x11, DoorType.ropeLadder, 0), DoorConfig(0x17, 0x11, DoorType.ropeLadder, 0)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x19, 0x08, DoorType.object, &doorEntry882), DoorConfig(0x1D, 0x05, DoorType.door, &doorEntry836), DoorConfig(0x1D, 0x06, DoorType.door, &doorEntry836)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(14, [DoorConfig(0x0A, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x1D, DoorType.door, &doorEntry106), DoorConfig(0x12, 0x1E, DoorType.door, &doorEntry106), DoorConfig(0x13, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x16, DoorType.ropeLadder, 0x8000), DoorConfig(0x15, 0x16, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(10, [DoorConfig(0x00, 0x1C, DoorType.door, &doorEntry326), DoorConfig(0x01, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x02, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x03, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x04, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x05, 0x15, DoorType.stairway, 0x0200), DoorConfig(0x0D, 0x0D, DoorType.stairway, 0x0100), DoorConfig(0x11, 0x0A, DoorType.stairway, 0x0300), DoorConfig(0x1D, 0x16, DoorType.stairway, 0), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry327)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x11, 0x10, DoorType.door, &doorEntry284), DoorConfig(0x12, 0x10, DoorType.door, &doorEntry284)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x0A, DoorType.door, &doorEntry754)]),
-		SectorDoors(1, [DoorConfig(0x0B, 0x15, DoorType.door, &doorEntry221)]),
-		SectorDoors(2, [DoorConfig(0x0F, 0x09, DoorType.door, &doorEntry222), DoorConfig(0x15, 0x1A, DoorType.door, &doorEntry223)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.door, &doorEntry755)]),
-		SectorDoors(1, [DoorConfig(0x11, 0x1A, DoorType.door, &doorEntry756)]),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x12, 0x11, ObjectType.door, &doorEntry504), MapObject(0x13, 0x11, ObjectType.ropeLadder, 0), MapObject(0x14, 0x11, ObjectType.ropeLadder, 0), MapObject(0x15, 0x11, ObjectType.ropeLadder, 0), MapObject(0x16, 0x11, ObjectType.ropeLadder, 0), MapObject(0x17, 0x11, ObjectType.ropeLadder, 0)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x19, 0x08, ObjectType.object, &doorEntry882), MapObject(0x1D, 0x05, ObjectType.door, &doorEntry836), MapObject(0x1D, 0x06, ObjectType.door, &doorEntry836)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(14, [MapObject(0x0A, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x1D, ObjectType.door, &doorEntry106), MapObject(0x12, 0x1E, ObjectType.door, &doorEntry106), MapObject(0x13, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x16, ObjectType.ropeLadder, 0x8000), MapObject(0x15, 0x16, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(10, [MapObject(0x00, 0x1C, ObjectType.door, &doorEntry326), MapObject(0x01, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x02, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x03, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x04, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x05, 0x15, ObjectType.stairway, 0x0200), MapObject(0x0D, 0x0D, ObjectType.stairway, 0x0100), MapObject(0x11, 0x0A, ObjectType.stairway, 0x0300), MapObject(0x1D, 0x16, ObjectType.stairway, 0), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry327)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x11, 0x10, ObjectType.door, &doorEntry284), MapObject(0x12, 0x10, ObjectType.door, &doorEntry284)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x0A, ObjectType.door, &doorEntry754)]),
+		SectorObjects(1, [MapObject(0x0B, 0x15, ObjectType.door, &doorEntry221)]),
+		SectorObjects(2, [MapObject(0x0F, 0x09, ObjectType.door, &doorEntry222), MapObject(0x15, 0x1A, ObjectType.door, &doorEntry223)]),
+		SectorObjects(1, [MapObject(0x11, 0x05, ObjectType.door, &doorEntry755)]),
+		SectorObjects(1, [MapObject(0x11, 0x1A, ObjectType.door, &doorEntry756)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1B, 0x12, DoorType.object, &doorEntry247), DoorConfig(0x1B, 0x14, DoorType.object, &doorEntry247)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x09, 0x0C, DoorType.object, &doorEntry883), DoorConfig(0x09, 0x19, DoorType.door, &doorEntry837), DoorConfig(0x09, 0x1A, DoorType.door, &doorEntry837), DoorConfig(0x0D, 0x09, DoorType.door, &doorEntry838), DoorConfig(0x0D, 0x0A, DoorType.door, &doorEntry838)]),
-		SectorDoors(13, [DoorConfig(0x02, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x12, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x05, DoorType.door, &doorEntry107)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x06, 0x09, DoorType.door, &doorEntry108), DoorConfig(0x06, 0x0A, DoorType.door, &doorEntry108)]),
-		SectorDoors(1, [DoorConfig(0x14, 0x1A, DoorType.door, &doorEntry109)]),
-		SectorDoors(1, [DoorConfig(0x14, 0x05, DoorType.door, &doorEntry405)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x18, 0x1E, DoorType.door, &doorEntry406)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x05, DoorType.door, &doorEntry804), DoorConfig(0x0A, 0x12, DoorType.stairway, 0x0300)]),
-		SectorDoors(2, [DoorConfig(0x1D, 0x05, DoorType.stairway, 0), DoorConfig(0x1E, 0x0E, DoorType.stairway, 0x0300)]),
-		SectorDoors(2, [DoorConfig(0x15, 0x0D, DoorType.door, &doorEntry763), DoorConfig(0x15, 0x0E, DoorType.door, &doorEntry763)]),
-		SectorDoors(3, [DoorConfig(0x16, 0x1E, DoorType.door, &doorEntry764)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0E, 0x10, DoorType.door, &doorEntry285), DoorConfig(0x0F, 0x10, DoorType.door, &doorEntry285)]),
-		SectorDoors(6, [DoorConfig(0x07, 0x19, DoorType.door, &doorEntry286), DoorConfig(0x09, 0x1D, DoorType.object, &doorEntry364), DoorConfig(0x09, 0x1E, DoorType.object, &doorEntry364), DoorConfig(0x1F, 0x15, DoorType.object, &doorEntry363), DoorConfig(0x1F, 0x16, DoorType.object, &doorEntry363), DoorConfig(0x1F, 0x18, DoorType.object, &doorEntry363)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x09, DoorType.door, &doorEntry235)]),
-		SectorDoors(1, [DoorConfig(0x15, 0x1A, DoorType.door, &doorEntry236)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0D, 0x0A, DoorType.door, &doorEntry224)]),
-		SectorDoors(6, [DoorConfig(0x18, 0x06, DoorType.door, &doorEntry550), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry550), DoorConfig(0x1A, 0x04, DoorType.door, &doorEntry550), DoorConfig(0x1B, 0x03, DoorType.door, &doorEntry550), DoorConfig(0x1C, 0x02, DoorType.door, &doorEntry550), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry550)]),
-		SectorDoors(7, [DoorConfig(0x0D, 0x0A, DoorType.door, &doorEntry784), DoorConfig(0x18, 0x19, DoorType.door, &doorEntry551), DoorConfig(0x19, 0x1A, DoorType.door, &doorEntry551), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry551), DoorConfig(0x1B, 0x1C, DoorType.door, &doorEntry551), DoorConfig(0x1C, 0x1D, DoorType.door, &doorEntry551), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry551)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1B, 0x12, ObjectType.object, &doorEntry247), MapObject(0x1B, 0x14, ObjectType.object, &doorEntry247)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x09, 0x0C, ObjectType.object, &doorEntry883), MapObject(0x09, 0x19, ObjectType.door, &doorEntry837), MapObject(0x09, 0x1A, ObjectType.door, &doorEntry837), MapObject(0x0D, 0x09, ObjectType.door, &doorEntry838), MapObject(0x0D, 0x0A, ObjectType.door, &doorEntry838)]),
+		SectorObjects(13, [MapObject(0x02, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x12, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x05, ObjectType.door, &doorEntry107)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x06, 0x09, ObjectType.door, &doorEntry108), MapObject(0x06, 0x0A, ObjectType.door, &doorEntry108)]),
+		SectorObjects(1, [MapObject(0x14, 0x1A, ObjectType.door, &doorEntry109)]),
+		SectorObjects(1, [MapObject(0x14, 0x05, ObjectType.door, &doorEntry405)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x18, 0x1E, ObjectType.door, &doorEntry406)]),
+		SectorObjects(2, [MapObject(0x09, 0x05, ObjectType.door, &doorEntry804), MapObject(0x0A, 0x12, ObjectType.stairway, 0x0300)]),
+		SectorObjects(2, [MapObject(0x1D, 0x05, ObjectType.stairway, 0), MapObject(0x1E, 0x0E, ObjectType.stairway, 0x0300)]),
+		SectorObjects(2, [MapObject(0x15, 0x0D, ObjectType.door, &doorEntry763), MapObject(0x15, 0x0E, ObjectType.door, &doorEntry763)]),
+		SectorObjects(3, [MapObject(0x16, 0x1E, ObjectType.door, &doorEntry764)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0E, 0x10, ObjectType.door, &doorEntry285), MapObject(0x0F, 0x10, ObjectType.door, &doorEntry285)]),
+		SectorObjects(6, [MapObject(0x07, 0x19, ObjectType.door, &doorEntry286), MapObject(0x09, 0x1D, ObjectType.object, &doorEntry364), MapObject(0x09, 0x1E, ObjectType.object, &doorEntry364), MapObject(0x1F, 0x15, ObjectType.object, &doorEntry363), MapObject(0x1F, 0x16, ObjectType.object, &doorEntry363), MapObject(0x1F, 0x18, ObjectType.object, &doorEntry363)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x09, ObjectType.door, &doorEntry235)]),
+		SectorObjects(1, [MapObject(0x15, 0x1A, ObjectType.door, &doorEntry236)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0D, 0x0A, ObjectType.door, &doorEntry224)]),
+		SectorObjects(6, [MapObject(0x18, 0x06, ObjectType.door, &doorEntry550), MapObject(0x19, 0x05, ObjectType.door, &doorEntry550), MapObject(0x1A, 0x04, ObjectType.door, &doorEntry550), MapObject(0x1B, 0x03, ObjectType.door, &doorEntry550), MapObject(0x1C, 0x02, ObjectType.door, &doorEntry550), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry550)]),
+		SectorObjects(7, [MapObject(0x0D, 0x0A, ObjectType.door, &doorEntry784), MapObject(0x18, 0x19, ObjectType.door, &doorEntry551), MapObject(0x19, 0x1A, ObjectType.door, &doorEntry551), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry551), MapObject(0x1B, 0x1C, ObjectType.door, &doorEntry551), MapObject(0x1C, 0x1D, ObjectType.door, &doorEntry551), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry551)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(3, [DoorConfig(0x00, 0x01, DoorType.door, &doorEntry182), DoorConfig(0x01, 0x01, DoorType.door, &doorEntry182), DoorConfig(0x02, 0x01, DoorType.door, &doorEntry182)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x1D, 0x0D, DoorType.stairway, 0), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry805)]),
-		SectorDoors(28, [DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x10, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x11, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x12, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x13, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x14, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x15, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x16, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x17, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x18, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x19, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1A, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1B, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1C, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1D, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1E, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x1F, 0x15, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.door, &doorEntry349)]),
-		SectorDoors(1, [DoorConfig(0x14, 0x15, DoorType.door, &doorEntry350)]),
-		SectorDoors(1, [DoorConfig(0x08, 0x05, DoorType.door, &doorEntry351)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x12, 0x11, DoorType.object, &doorEntry730), DoorConfig(0x12, 0x1D, DoorType.object, &doorEntry731), DoorConfig(0x15, 0x05, DoorType.door, &doorEntry703), DoorConfig(0x19, 0x0F, DoorType.object, &doorEntry732), DoorConfig(0x19, 0x1B, DoorType.object, &doorEntry733)]),
-		SectorDoors(6, [DoorConfig(0x12, 0x09, DoorType.object, &doorEntry734), DoorConfig(0x16, 0x1B, DoorType.door, &doorEntry704), DoorConfig(0x17, 0x1B, DoorType.door, &doorEntry704), DoorConfig(0x18, 0x1B, DoorType.door, &doorEntry704), DoorConfig(0x19, 0x07, DoorType.object, &doorEntry735), DoorConfig(0x19, 0x1B, DoorType.door, &doorEntry704)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x18, DoorType.door, &doorEntry705), DoorConfig(0x09, 0x09, DoorType.door, &doorEntry706), DoorConfig(0x1C, 0x02, DoorType.door, &doorEntry707)]),
-		SectorDoors(2, [DoorConfig(0x07, 0x08, DoorType.door, &doorEntry708), DoorConfig(0x1C, 0x1D, DoorType.door, &doorEntry709)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x0E, DoorType.object, &doorEntry248), DoorConfig(0x07, 0x11, DoorType.door, &doorEntry225), DoorConfig(0x07, 0x1E, DoorType.object, &doorEntry677), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry226), DoorConfig(0x19, 0x0A, DoorType.door, &doorEntry227)]),
-		SectorDoors(3, [DoorConfig(0x0C, 0x0E, DoorType.door, &doorEntry228), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry228), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry229)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(3, [MapObject(0x00, 0x01, ObjectType.door, &doorEntry182), MapObject(0x01, 0x01, ObjectType.door, &doorEntry182), MapObject(0x02, 0x01, ObjectType.door, &doorEntry182)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x1D, 0x0D, ObjectType.stairway, 0), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry805)]),
+		SectorObjects(28, [MapObject(0x04, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x10, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x11, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x12, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x13, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x14, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x15, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x16, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x17, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x18, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x19, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1A, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1B, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1C, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1D, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1E, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x1F, 0x15, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x11, 0x01, ObjectType.door, &doorEntry349)]),
+		SectorObjects(1, [MapObject(0x14, 0x15, ObjectType.door, &doorEntry350)]),
+		SectorObjects(1, [MapObject(0x08, 0x05, ObjectType.door, &doorEntry351)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x12, 0x11, ObjectType.object, &doorEntry730), MapObject(0x12, 0x1D, ObjectType.object, &doorEntry731), MapObject(0x15, 0x05, ObjectType.door, &doorEntry703), MapObject(0x19, 0x0F, ObjectType.object, &doorEntry732), MapObject(0x19, 0x1B, ObjectType.object, &doorEntry733)]),
+		SectorObjects(6, [MapObject(0x12, 0x09, ObjectType.object, &doorEntry734), MapObject(0x16, 0x1B, ObjectType.door, &doorEntry704), MapObject(0x17, 0x1B, ObjectType.door, &doorEntry704), MapObject(0x18, 0x1B, ObjectType.door, &doorEntry704), MapObject(0x19, 0x07, ObjectType.object, &doorEntry735), MapObject(0x19, 0x1B, ObjectType.door, &doorEntry704)]),
+		SectorObjects(3, [MapObject(0x07, 0x18, ObjectType.door, &doorEntry705), MapObject(0x09, 0x09, ObjectType.door, &doorEntry706), MapObject(0x1C, 0x02, ObjectType.door, &doorEntry707)]),
+		SectorObjects(2, [MapObject(0x07, 0x08, ObjectType.door, &doorEntry708), MapObject(0x1C, 0x1D, ObjectType.door, &doorEntry709)]),
+		SectorObjects(5, [MapObject(0x07, 0x0E, ObjectType.object, &doorEntry248), MapObject(0x07, 0x11, ObjectType.door, &doorEntry225), MapObject(0x07, 0x1E, ObjectType.object, &doorEntry677), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry226), MapObject(0x19, 0x0A, ObjectType.door, &doorEntry227)]),
+		SectorObjects(3, [MapObject(0x0C, 0x0E, ObjectType.door, &doorEntry228), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry228), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry229)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, []),
-		SectorDoors(16, [DoorConfig(0x00, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x01, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x02, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x03, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x04, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x05, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x06, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x07, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x08, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x09, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0A, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0B, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0C, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0D, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0E, 0x15, DoorType.ropeLadder, 0x8000), DoorConfig(0x0F, 0x15, DoorType.ropeLadder, 0x8000)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0F, 0x1E, DoorType.object, &doorEntry356), DoorConfig(0x1B, 0x0D, DoorType.door, &doorEntry352)]),
-		SectorDoors(1, [DoorConfig(0x0F, 0x00, DoorType.object, &doorEntry356)]),
-		SectorDoors(3, [DoorConfig(0x01, 0x13, DoorType.door, &doorEntry287), DoorConfig(0x15, 0x1B, DoorType.door, &doorEntry288), DoorConfig(0x15, 0x1C, DoorType.door, &doorEntry288)]),
-		SectorDoors(1, [DoorConfig(0x19, 0x13, DoorType.door, &doorEntry353)]),
-		SectorDoors(6, [DoorConfig(0x03, 0x01, DoorType.object, &doorEntry360), DoorConfig(0x03, 0x02, DoorType.object, &doorEntry360), DoorConfig(0x0F, 0x0D, DoorType.object, &doorEntry361), DoorConfig(0x0F, 0x0E, DoorType.object, &doorEntry361), DoorConfig(0x0F, 0x10, DoorType.object, &doorEntry361), DoorConfig(0x17, 0x09, DoorType.door, &doorEntry289)]),
-		SectorDoors(1, [DoorConfig(0x01, 0x0D, DoorType.door, &doorEntry354)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry694), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry710)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x16, 0x0B, DoorType.door, &doorEntry711), DoorConfig(0x18, 0x0D, DoorType.door, &doorEntry711)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry695), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry712)]),
-		SectorDoors(2, [DoorConfig(0x10, 0x15, DoorType.door, &doorEntry713), DoorConfig(0x18, 0x1D, DoorType.door, &doorEntry714)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, []),
+		SectorObjects(16, [MapObject(0x00, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x01, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x02, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x03, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x04, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x05, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x06, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x07, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x08, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x09, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0A, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0B, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0C, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0D, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0E, 0x15, ObjectType.ropeLadder, 0x8000), MapObject(0x0F, 0x15, ObjectType.ropeLadder, 0x8000)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0F, 0x1E, ObjectType.object, &doorEntry356), MapObject(0x1B, 0x0D, ObjectType.door, &doorEntry352)]),
+		SectorObjects(1, [MapObject(0x0F, 0x00, ObjectType.object, &doorEntry356)]),
+		SectorObjects(3, [MapObject(0x01, 0x13, ObjectType.door, &doorEntry287), MapObject(0x15, 0x1B, ObjectType.door, &doorEntry288), MapObject(0x15, 0x1C, ObjectType.door, &doorEntry288)]),
+		SectorObjects(1, [MapObject(0x19, 0x13, ObjectType.door, &doorEntry353)]),
+		SectorObjects(6, [MapObject(0x03, 0x01, ObjectType.object, &doorEntry360), MapObject(0x03, 0x02, ObjectType.object, &doorEntry360), MapObject(0x0F, 0x0D, ObjectType.object, &doorEntry361), MapObject(0x0F, 0x0E, ObjectType.object, &doorEntry361), MapObject(0x0F, 0x10, ObjectType.object, &doorEntry361), MapObject(0x17, 0x09, ObjectType.door, &doorEntry289)]),
+		SectorObjects(1, [MapObject(0x01, 0x0D, ObjectType.door, &doorEntry354)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry694), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry710)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x16, 0x0B, ObjectType.door, &doorEntry711), MapObject(0x18, 0x0D, ObjectType.door, &doorEntry711)]),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry695), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry712)]),
+		SectorObjects(2, [MapObject(0x10, 0x15, ObjectType.door, &doorEntry713), MapObject(0x18, 0x1D, ObjectType.door, &doorEntry714)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x18, 0x0F, DoorType.door, &doorEntry290), DoorConfig(0x19, 0x0F, DoorType.door, &doorEntry290), DoorConfig(0x1A, 0x0F, DoorType.door, &doorEntry290), DoorConfig(0x1B, 0x0F, DoorType.door, &doorEntry290), DoorConfig(0x1C, 0x0F, DoorType.door, &doorEntry290)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x05, DoorType.door, &doorEntry291)]),
-		SectorDoors(6, [DoorConfig(0x03, 0x14, DoorType.object, &doorEntry357), DoorConfig(0x03, 0x16, DoorType.object, &doorEntry357), DoorConfig(0x0D, 0x0D, DoorType.door, &doorEntry292), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry292), DoorConfig(0x0D, 0x1C, DoorType.door, &doorEntry293), DoorConfig(0x0D, 0x1D, DoorType.door, &doorEntry293)]),
-		SectorDoors(1, [DoorConfig(0x0C, 0x1F, DoorType.door, &doorEntry294)]),
-		SectorDoors(4, [DoorConfig(0x06, 0x1F, DoorType.door, &doorEntry355), DoorConfig(0x0C, 0x01, DoorType.door, &doorEntry294), DoorConfig(0x0D, 0x11, DoorType.door, &doorEntry295), DoorConfig(0x0D, 0x12, DoorType.door, &doorEntry295)]),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x10, 0x02, DoorType.door, &doorEntry296), DoorConfig(0x16, 0x19, DoorType.door, &doorEntry297)]),
-		SectorDoors(5, [DoorConfig(0x18, 0x10, DoorType.door, &doorEntry298), DoorConfig(0x19, 0x10, DoorType.door, &doorEntry298), DoorConfig(0x1A, 0x10, DoorType.door, &doorEntry298), DoorConfig(0x1B, 0x10, DoorType.door, &doorEntry298), DoorConfig(0x1C, 0x10, DoorType.door, &doorEntry298)]),
-		SectorDoors(5, [DoorConfig(0x07, 0x11, DoorType.door, &doorEntry299), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry300), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry301), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry715), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry716)]),
-		SectorDoors(3, [DoorConfig(0x08, 0x12, DoorType.object, &doorEntry347), DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry302), DoorConfig(0x1D, 0x16, DoorType.door, &doorEntry303)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x0A, DoorType.door, &doorEntry304), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry717)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry305), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry306)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry307), DoorConfig(0x07, 0x15, DoorType.door, &doorEntry308), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry718)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.door, &doorEntry309), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry310)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x18, 0x0F, ObjectType.door, &doorEntry290), MapObject(0x19, 0x0F, ObjectType.door, &doorEntry290), MapObject(0x1A, 0x0F, ObjectType.door, &doorEntry290), MapObject(0x1B, 0x0F, ObjectType.door, &doorEntry290), MapObject(0x1C, 0x0F, ObjectType.door, &doorEntry290)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x05, ObjectType.door, &doorEntry291)]),
+		SectorObjects(6, [MapObject(0x03, 0x14, ObjectType.object, &doorEntry357), MapObject(0x03, 0x16, ObjectType.object, &doorEntry357), MapObject(0x0D, 0x0D, ObjectType.door, &doorEntry292), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry292), MapObject(0x0D, 0x1C, ObjectType.door, &doorEntry293), MapObject(0x0D, 0x1D, ObjectType.door, &doorEntry293)]),
+		SectorObjects(1, [MapObject(0x0C, 0x1F, ObjectType.door, &doorEntry294)]),
+		SectorObjects(4, [MapObject(0x06, 0x1F, ObjectType.door, &doorEntry355), MapObject(0x0C, 0x01, ObjectType.door, &doorEntry294), MapObject(0x0D, 0x11, ObjectType.door, &doorEntry295), MapObject(0x0D, 0x12, ObjectType.door, &doorEntry295)]),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x10, 0x02, ObjectType.door, &doorEntry296), MapObject(0x16, 0x19, ObjectType.door, &doorEntry297)]),
+		SectorObjects(5, [MapObject(0x18, 0x10, ObjectType.door, &doorEntry298), MapObject(0x19, 0x10, ObjectType.door, &doorEntry298), MapObject(0x1A, 0x10, ObjectType.door, &doorEntry298), MapObject(0x1B, 0x10, ObjectType.door, &doorEntry298), MapObject(0x1C, 0x10, ObjectType.door, &doorEntry298)]),
+		SectorObjects(5, [MapObject(0x07, 0x11, ObjectType.door, &doorEntry299), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry300), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry301), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry715), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry716)]),
+		SectorObjects(3, [MapObject(0x08, 0x12, ObjectType.object, &doorEntry347), MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry302), MapObject(0x1D, 0x16, ObjectType.door, &doorEntry303)]),
+		SectorObjects(2, [MapObject(0x09, 0x0A, ObjectType.door, &doorEntry304), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry717)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry305), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry306)]),
+		SectorObjects(3, [MapObject(0x07, 0x0D, ObjectType.door, &doorEntry307), MapObject(0x07, 0x15, ObjectType.door, &doorEntry308), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry718)]),
+		SectorObjects(2, [MapObject(0x0D, 0x06, ObjectType.door, &doorEntry309), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry310)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry487)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x13, 0x13, DoorType.door, &doorEntry482)]),
-		SectorDoors(2, [DoorConfig(0x14, 0x0A, DoorType.door, &doorEntry485), DoorConfig(0x15, 0x09, DoorType.door, &doorEntry486)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x19, 0x01, DoorType.door, &doorEntry800), DoorConfig(0x1A, 0x0E, DoorType.stairway, 0x0300)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x07, 0x11, DoorType.object, &doorEntry358), DoorConfig(0x07, 0x12, DoorType.object, &doorEntry358)]),
-		SectorDoors(4, [DoorConfig(0x03, 0x11, DoorType.object, &doorEntry359), DoorConfig(0x03, 0x13, DoorType.object, &doorEntry359), DoorConfig(0x03, 0x14, DoorType.object, &doorEntry359), DoorConfig(0x03, 0x16, DoorType.object, &doorEntry359)]),
-		SectorDoors(0, []),
-		SectorDoors(4, [DoorConfig(0x07, 0x0D, DoorType.object, &doorEntry362), DoorConfig(0x07, 0x0F, DoorType.object, &doorEntry362), DoorConfig(0x07, 0x10, DoorType.object, &doorEntry362), DoorConfig(0x07, 0x12, DoorType.object, &doorEntry362)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x12, DoorType.door, &doorEntry909)]),
-		SectorDoors(8, [DoorConfig(0x10, 0x1C, DoorType.door, &doorEntry338), DoorConfig(0x11, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x12, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x13, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x14, 0x1C, DoorType.ropeLadder, 0), DoorConfig(0x15, 0x11, DoorType.stairway, 0x0200), DoorConfig(0x1D, 0x00, DoorType.door, &doorEntry339), DoorConfig(0x1D, 0x09, DoorType.stairway, 0x0100)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry719), DoorConfig(0x17, 0x0A, DoorType.object, &doorEntry677), DoorConfig(0x17, 0x12, DoorType.door, &doorEntry696), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry698), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry697)]),
-		SectorDoors(5, [DoorConfig(0x0C, 0x00, DoorType.door, &doorEntry720), DoorConfig(0x0D, 0x00, DoorType.door, &doorEntry720), DoorConfig(0x0D, 0x1E, DoorType.door, &doorEntry721), DoorConfig(0x0E, 0x00, DoorType.door, &doorEntry720), DoorConfig(0x1D, 0x16, DoorType.door, &doorEntry311)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry722), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry699)]),
-		SectorDoors(3, [DoorConfig(0x07, 0x0D, DoorType.door, &doorEntry723), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry724), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry312)]),
-		SectorDoors(5, [DoorConfig(0x09, 0x12, DoorType.door, &doorEntry725), DoorConfig(0x1B, 0x09, DoorType.door, &doorEntry700), DoorConfig(0x1B, 0x0E, DoorType.object, &doorEntry737), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry701), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry702)]),
-		SectorDoors(3, [DoorConfig(0x0B, 0x0D, DoorType.object, &doorEntry736), DoorConfig(0x0D, 0x01, DoorType.door, &doorEntry726), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry313)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1D, 0x01, ObjectType.door, &doorEntry487)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x13, 0x13, ObjectType.door, &doorEntry482)]),
+		SectorObjects(2, [MapObject(0x14, 0x0A, ObjectType.door, &doorEntry485), MapObject(0x15, 0x09, ObjectType.door, &doorEntry486)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x19, 0x01, ObjectType.door, &doorEntry800), MapObject(0x1A, 0x0E, ObjectType.stairway, 0x0300)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x07, 0x11, ObjectType.object, &doorEntry358), MapObject(0x07, 0x12, ObjectType.object, &doorEntry358)]),
+		SectorObjects(4, [MapObject(0x03, 0x11, ObjectType.object, &doorEntry359), MapObject(0x03, 0x13, ObjectType.object, &doorEntry359), MapObject(0x03, 0x14, ObjectType.object, &doorEntry359), MapObject(0x03, 0x16, ObjectType.object, &doorEntry359)]),
+		SectorObjects(0, []),
+		SectorObjects(4, [MapObject(0x07, 0x0D, ObjectType.object, &doorEntry362), MapObject(0x07, 0x0F, ObjectType.object, &doorEntry362), MapObject(0x07, 0x10, ObjectType.object, &doorEntry362), MapObject(0x07, 0x12, ObjectType.object, &doorEntry362)]),
+		SectorObjects(1, [MapObject(0x1A, 0x12, ObjectType.door, &doorEntry909)]),
+		SectorObjects(8, [MapObject(0x10, 0x1C, ObjectType.door, &doorEntry338), MapObject(0x11, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x12, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x13, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x14, 0x1C, ObjectType.ropeLadder, 0), MapObject(0x15, 0x11, ObjectType.stairway, 0x0200), MapObject(0x1D, 0x00, ObjectType.door, &doorEntry339), MapObject(0x1D, 0x09, ObjectType.stairway, 0x0100)]),
+		SectorObjects(5, [MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry719), MapObject(0x17, 0x0A, ObjectType.object, &doorEntry677), MapObject(0x17, 0x12, ObjectType.door, &doorEntry696), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry698), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry697)]),
+		SectorObjects(5, [MapObject(0x0C, 0x00, ObjectType.door, &doorEntry720), MapObject(0x0D, 0x00, ObjectType.door, &doorEntry720), MapObject(0x0D, 0x1E, ObjectType.door, &doorEntry721), MapObject(0x0E, 0x00, ObjectType.door, &doorEntry720), MapObject(0x1D, 0x16, ObjectType.door, &doorEntry311)]),
+		SectorObjects(2, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry722), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry699)]),
+		SectorObjects(3, [MapObject(0x07, 0x0D, ObjectType.door, &doorEntry723), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry724), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry312)]),
+		SectorObjects(5, [MapObject(0x09, 0x12, ObjectType.door, &doorEntry725), MapObject(0x1B, 0x09, ObjectType.door, &doorEntry700), MapObject(0x1B, 0x0E, ObjectType.object, &doorEntry737), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry701), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry702)]),
+		SectorObjects(3, [MapObject(0x0B, 0x0D, ObjectType.object, &doorEntry736), MapObject(0x0D, 0x01, ObjectType.door, &doorEntry726), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry313)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1B, 0x0F, DoorType.door, &doorEntry480)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x1E, 0x16, DoorType.object, &doorEntry490)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.stairway, 0), DoorConfig(0x0D, 0x0E, DoorType.door, &doorEntry801)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(2, [DoorConfig(0x12, 0x19, DoorType.door, &doorEntry941), DoorConfig(0x12, 0x1A, DoorType.door, &doorEntry941)]),
-		SectorDoors(0, []),
-		SectorDoors(5, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry727), DoorConfig(0x17, 0x0A, DoorType.object, &doorEntry677), DoorConfig(0x17, 0x12, DoorType.door, &doorEntry314), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry316), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry315)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry280), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry317)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry728), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry318)]),
-		SectorDoors(1, [DoorConfig(0x1A, 0x17, DoorType.door, &doorEntry319)]),
-		SectorDoors(5, [DoorConfig(0x0D, 0x16, DoorType.door, &doorEntry729), DoorConfig(0x1B, 0x09, DoorType.door, &doorEntry320), DoorConfig(0x1B, 0x0E, DoorType.object, &doorEntry348), DoorConfig(0x1B, 0x11, DoorType.door, &doorEntry321), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry322)]),
-		SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.door, &doorEntry323), DoorConfig(0x1D, 0x1A, DoorType.door, &doorEntry324)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1B, 0x0F, ObjectType.door, &doorEntry480)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x1E, 0x16, ObjectType.object, &doorEntry490)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x0D, 0x01, ObjectType.stairway, 0), MapObject(0x0D, 0x0E, ObjectType.door, &doorEntry801)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(2, [MapObject(0x12, 0x19, ObjectType.door, &doorEntry941), MapObject(0x12, 0x1A, ObjectType.door, &doorEntry941)]),
+		SectorObjects(0, []),
+		SectorObjects(5, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry727), MapObject(0x17, 0x0A, ObjectType.object, &doorEntry677), MapObject(0x17, 0x12, ObjectType.door, &doorEntry314), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry316), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry315)]),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry280), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry317)]),
+		SectorObjects(2, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry728), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry318)]),
+		SectorObjects(1, [MapObject(0x1A, 0x17, ObjectType.door, &doorEntry319)]),
+		SectorObjects(5, [MapObject(0x0D, 0x16, ObjectType.door, &doorEntry729), MapObject(0x1B, 0x09, ObjectType.door, &doorEntry320), MapObject(0x1B, 0x0E, ObjectType.object, &doorEntry348), MapObject(0x1B, 0x11, ObjectType.door, &doorEntry321), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry322)]),
+		SectorObjects(2, [MapObject(0x0D, 0x1A, ObjectType.door, &doorEntry323), MapObject(0x1D, 0x1A, ObjectType.door, &doorEntry324)]),
 	], [
-		SectorDoors(0, []),
-		SectorDoors(8, [DoorConfig(0x00, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x01, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x02, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x03, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x04, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x05, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x06, 0x10, DoorType.door, &doorEntry481), DoorConfig(0x07, 0x10, DoorType.door, &doorEntry481)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(8, [DoorConfig(0x00, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x01, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x02, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x03, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x04, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x05, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x06, 0x0F, DoorType.door, &doorEntry488), DoorConfig(0x07, 0x0F, DoorType.door, &doorEntry488)]),
-		SectorDoors(14, [DoorConfig(0x00, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x01, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x02, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x03, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x04, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x05, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x06, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x07, 0x10, DoorType.door, &doorEntry489), DoorConfig(0x18, 0x06, DoorType.door, &doorEntry341), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry341), DoorConfig(0x1A, 0x04, DoorType.door, &doorEntry341), DoorConfig(0x1B, 0x03, DoorType.door, &doorEntry341), DoorConfig(0x1C, 0x02, DoorType.door, &doorEntry341), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry341)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(6, [DoorConfig(0x18, 0x19, DoorType.door, &doorEntry342), DoorConfig(0x19, 0x1A, DoorType.door, &doorEntry342), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry342), DoorConfig(0x1B, 0x1C, DoorType.door, &doorEntry342), DoorConfig(0x1C, 0x1D, DoorType.door, &doorEntry342), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry342)]),
-		SectorDoors(8, [DoorConfig(0x00, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x01, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x02, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x03, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x04, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x05, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x06, 0x0F, DoorType.door, &doorEntry484), DoorConfig(0x07, 0x0F, DoorType.door, &doorEntry484)]),
-		SectorDoors(6, [DoorConfig(0x18, 0x06, DoorType.door, &doorEntry237), DoorConfig(0x19, 0x05, DoorType.door, &doorEntry237), DoorConfig(0x1A, 0x04, DoorType.door, &doorEntry237), DoorConfig(0x1B, 0x03, DoorType.door, &doorEntry237), DoorConfig(0x1C, 0x02, DoorType.door, &doorEntry237), DoorConfig(0x1D, 0x01, DoorType.door, &doorEntry237)]),
-		SectorDoors(0, []),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x05, 0x1A, DoorType.door, &doorEntry340)]),
-		SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.door, &doorEntry183), DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry184)]),
-		SectorDoors(0, []),
-		SectorDoors(1, [DoorConfig(0x0B, 0x01, DoorType.door, &doorEntry185)]),
-		SectorDoors(7, [DoorConfig(0x09, 0x1E, DoorType.door, &doorEntry186), DoorConfig(0x18, 0x19, DoorType.door, &doorEntry238), DoorConfig(0x19, 0x1A, DoorType.door, &doorEntry238), DoorConfig(0x1A, 0x1B, DoorType.door, &doorEntry238), DoorConfig(0x1B, 0x1C, DoorType.door, &doorEntry238), DoorConfig(0x1C, 0x1D, DoorType.door, &doorEntry238), DoorConfig(0x1D, 0x1E, DoorType.door, &doorEntry238)]),
-		SectorDoors(2, [DoorConfig(0x0F, 0x1C, DoorType.door, &doorEntry325), DoorConfig(0x10, 0x1C, DoorType.door, &doorEntry325)]),
+		SectorObjects(0, []),
+		SectorObjects(8, [MapObject(0x00, 0x10, ObjectType.door, &doorEntry481), MapObject(0x01, 0x10, ObjectType.door, &doorEntry481), MapObject(0x02, 0x10, ObjectType.door, &doorEntry481), MapObject(0x03, 0x10, ObjectType.door, &doorEntry481), MapObject(0x04, 0x10, ObjectType.door, &doorEntry481), MapObject(0x05, 0x10, ObjectType.door, &doorEntry481), MapObject(0x06, 0x10, ObjectType.door, &doorEntry481), MapObject(0x07, 0x10, ObjectType.door, &doorEntry481)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(8, [MapObject(0x00, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x01, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x02, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x03, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x04, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x05, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x06, 0x0F, ObjectType.door, &doorEntry488), MapObject(0x07, 0x0F, ObjectType.door, &doorEntry488)]),
+		SectorObjects(14, [MapObject(0x00, 0x10, ObjectType.door, &doorEntry489), MapObject(0x01, 0x10, ObjectType.door, &doorEntry489), MapObject(0x02, 0x10, ObjectType.door, &doorEntry489), MapObject(0x03, 0x10, ObjectType.door, &doorEntry489), MapObject(0x04, 0x10, ObjectType.door, &doorEntry489), MapObject(0x05, 0x10, ObjectType.door, &doorEntry489), MapObject(0x06, 0x10, ObjectType.door, &doorEntry489), MapObject(0x07, 0x10, ObjectType.door, &doorEntry489), MapObject(0x18, 0x06, ObjectType.door, &doorEntry341), MapObject(0x19, 0x05, ObjectType.door, &doorEntry341), MapObject(0x1A, 0x04, ObjectType.door, &doorEntry341), MapObject(0x1B, 0x03, ObjectType.door, &doorEntry341), MapObject(0x1C, 0x02, ObjectType.door, &doorEntry341), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry341)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(6, [MapObject(0x18, 0x19, ObjectType.door, &doorEntry342), MapObject(0x19, 0x1A, ObjectType.door, &doorEntry342), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry342), MapObject(0x1B, 0x1C, ObjectType.door, &doorEntry342), MapObject(0x1C, 0x1D, ObjectType.door, &doorEntry342), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry342)]),
+		SectorObjects(8, [MapObject(0x00, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x01, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x02, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x03, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x04, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x05, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x06, 0x0F, ObjectType.door, &doorEntry484), MapObject(0x07, 0x0F, ObjectType.door, &doorEntry484)]),
+		SectorObjects(6, [MapObject(0x18, 0x06, ObjectType.door, &doorEntry237), MapObject(0x19, 0x05, ObjectType.door, &doorEntry237), MapObject(0x1A, 0x04, ObjectType.door, &doorEntry237), MapObject(0x1B, 0x03, ObjectType.door, &doorEntry237), MapObject(0x1C, 0x02, ObjectType.door, &doorEntry237), MapObject(0x1D, 0x01, ObjectType.door, &doorEntry237)]),
+		SectorObjects(0, []),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x05, 0x1A, ObjectType.door, &doorEntry340)]),
+		SectorObjects(2, [MapObject(0x09, 0x01, ObjectType.door, &doorEntry183), MapObject(0x09, 0x1E, ObjectType.door, &doorEntry184)]),
+		SectorObjects(0, []),
+		SectorObjects(1, [MapObject(0x0B, 0x01, ObjectType.door, &doorEntry185)]),
+		SectorObjects(7, [MapObject(0x09, 0x1E, ObjectType.door, &doorEntry186), MapObject(0x18, 0x19, ObjectType.door, &doorEntry238), MapObject(0x19, 0x1A, ObjectType.door, &doorEntry238), MapObject(0x1A, 0x1B, ObjectType.door, &doorEntry238), MapObject(0x1B, 0x1C, ObjectType.door, &doorEntry238), MapObject(0x1C, 0x1D, ObjectType.door, &doorEntry238), MapObject(0x1D, 0x1E, ObjectType.door, &doorEntry238)]),
+		SectorObjects(2, [MapObject(0x0F, 0x1C, ObjectType.door, &doorEntry325), MapObject(0x10, 0x1C, ObjectType.door, &doorEntry325)]),
 	]
 ];
 
-immutable DoorEntryA doorEntry0 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetMizunoDoorOpen | eventFlagUnset, 0xC09A, 0x03B1, 0x04);
-immutable DoorEntryA doorEntry1 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0x010B, 0x0087, 0x01);
-immutable DoorEntryA doorEntry2 = DoorEntryA(null, EventFlag.none, 0x03EF, 0x0119, 0x01);
-immutable DoorEntryA doorEntry3 = DoorEntryA(null, EventFlag.none, 0x83FC, 0x00F3, 0x01);
-immutable DoorEntryA doorEntry4 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC434, 0x0158, 0x01);
-immutable DoorEntryA doorEntry5 = DoorEntryA(null, EventFlag.none, 0x80B9, 0x0367, 0x01);
-immutable DoorEntryA doorEntry6 = DoorEntryA("MSG_ONET_TABIGOYA", EventFlag.openTabigoya | eventFlagUnset, 0xC0BA, 0x0375, 0x04);
-immutable DoorEntryA doorEntry7 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0A9, 0x03F0, 0x01);
-immutable DoorEntryA doorEntry8 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0BD, 0x03DC, 0x06);
-immutable DoorEntryA doorEntry9 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC03D, 0x03BC, 0x06);
-immutable DoorEntryA doorEntry10 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC02D, 0x03FC, 0x04);
-immutable DoorEntryA doorEntry11 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC04D, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry12 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC06A, 0x03B1, 0x04);
-immutable DoorEntryA doorEntry13 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC04D, 0x03EC, 0x01);
-immutable DoorEntryA doorEntry14 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0BD, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry15 = DoorEntryA("TEXT_DOOR_015", EventFlag.onetEstateDoorOpen | eventFlagUnset, 0xC0BA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry16 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC07D, 0x039C, 0x01);
-immutable DoorEntryA doorEntry17 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0x0056, 0x03D1, 0x04);
-immutable DoorEntryA doorEntry18 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC059, 0x03E4, 0x06);
-immutable DoorEntryA doorEntry19 = DoorEntryA("TEXT_DOOR_019", EventFlag.onetDoorClose, 0xC031, 0x0384, 0x01);
-immutable DoorEntryA doorEntry20 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0AD, 0x0398, 0x06);
-immutable DoorEntryA doorEntry21 = DoorEntryA("TEXT_DOOR_021", EventFlag.onetPokeyDoorClose, 0xC06D, 0x0398, 0x04);
-immutable DoorEntryA doorEntry22 = DoorEntryA("TEXT_DOOR_022", EventFlag.genkanMamaAppear, 0xC02A, 0x03CD, 0x04);
-immutable DoorEntryA doorEntry23 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC03D, 0x03F4, 0x01);
-immutable DoorEntryA doorEntry24 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC07A, 0x0371, 0x04);
-immutable DoorEntryA doorEntry25 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC09D, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry26 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC08A, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry27 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC09D, 0x0378, 0x04);
-immutable DoorEntryA doorEntry28 = DoorEntryA("MSG_INSEKI_POKEY_ONET", EventFlag.unknown0340 | eventFlagUnset, 0xC02A, 0x03CD, 0x00);
-immutable DoorEntryA doorEntry29 = DoorEntryA("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0AD, 0x03B4, 0x04);
-immutable DoorEntryA doorEntry30 = DoorEntryA("TEXT_DOOR_030", EventFlag.none, 0x02E6, 0x008B, 0x01);
-immutable DoorEntryA doorEntry31 = DoorEntryA(null, EventFlag.none, 0x0048, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry32 = DoorEntryA(null, EventFlag.none, 0xC0AD, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry33 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x03FC, 0x07);
-immutable DoorEntryA doorEntry34 = DoorEntryA(null, EventFlag.onetMincesAppear, 0x800D, 0x03E3, 0x07);
-immutable DoorEntryA doorEntry35 = DoorEntryA("TEXT_DOOR_035", EventFlag.none, 0x80BD, 0x03E3, 0x01);
-immutable DoorEntryA doorEntry36 = DoorEntryA(null, EventFlag.none, 0x806D, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry37 = DoorEntryA(null, EventFlag.none, 0xC01A, 0x03B9, 0x07);
-immutable DoorEntryA doorEntry38 = DoorEntryA(null, EventFlag.none, 0x8031, 0x0363, 0x01);
-immutable DoorEntryA doorEntry39 = DoorEntryA(null, EventFlag.none, 0xC00D, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry40 = DoorEntryA(null, EventFlag.none, 0x00D6, 0x00FC, 0x01);
-immutable DoorEntryA doorEntry41 = DoorEntryA(null, EventFlag.none, 0x807D, 0x03A3, 0x0F);
-immutable DoorEntryA doorEntry42 = DoorEntryA(null, EventFlag.none, 0x008E, 0x00D9, 0x0C);
-immutable DoorEntryA doorEntry43 = DoorEntryA("TEXT_DOOR_043", EventFlag.myHomeDoorClose, 0x002B, 0x014B, 0x0A);
-immutable DoorEntryA doorEntry44 = DoorEntryA(null, EventFlag.none, 0xC08D, 0x037C, 0x07);
-immutable DoorEntryA doorEntry45 = DoorEntryA(null, EventFlag.none, 0xC0AD, 0x037C, 0x07);
-immutable DoorEntryA doorEntry46 = DoorEntryA(null, EventFlag.none, 0x805D, 0x0363, 0x0F);
-immutable DoorEntryA doorEntry47 = DoorEntryA(null, EventFlag.none, 0x00A1, 0x009A, 0x0A);
-immutable DoorEntryA doorEntry48 = DoorEntryA("TEXT_DOOR_048", EventFlag.none, 0x006D, 0x010A, 0x01);
-immutable DoorEntryA doorEntry49 = DoorEntryA(null, EventFlag.none, 0x806D, 0x0363, 0x0F);
-immutable DoorEntryA doorEntry50 = DoorEntryA(null, EventFlag.none, 0xC06D, 0x03FC, 0x07);
-immutable DoorEntryA doorEntry51 = DoorEntryA(null, EventFlag.none, 0x803D, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry52 = DoorEntryA(null, EventFlag.none, 0x00AC, 0x0089, 0x0A);
-immutable DoorEntryA doorEntry53 = DoorEntryA(null, EventFlag.none, 0x007C, 0x03B1, 0x07);
-immutable DoorEntryA doorEntry54 = DoorEntryA(null, EventFlag.none, 0xC011, 0x0384, 0x07);
-immutable DoorEntryA doorEntry55 = DoorEntryA(null, EventFlag.none, 0xC06D, 0x03D4, 0x07);
-immutable DoorEntryA doorEntry56 = DoorEntryA(null, EventFlag.onetGuardSharkDisappear | eventFlagUnset, 0x40D1, 0x00C5, 0x0A);
-immutable DoorEntryA doorEntry57 = DoorEntryA(null, EventFlag.none, 0x8079, 0x03E7, 0x0F);
-immutable DoorEntryA doorEntry58 = DoorEntryA(null, EventFlag.none, 0xC08D, 0x03DC, 0x07);
-immutable DoorEntryA doorEntry59 = DoorEntryA(null, EventFlag.none, 0x00A7, 0x00CF, 0x01);
-immutable DoorEntryA doorEntry60 = DoorEntryA(null, EventFlag.none, 0x00DA, 0x00C5, 0x0C);
-immutable DoorEntryA doorEntry61 = DoorEntryA(null, EventFlag.none, 0x804D, 0x0363, 0x0F);
-immutable DoorEntryA doorEntry62 = DoorEntryA(null, EventFlag.none, 0x008C, 0x0121, 0x0A);
-immutable DoorEntryA doorEntry63 = DoorEntryA("TEXT_DOOR_063", EventFlag.none, 0x002C, 0x012B, 0x0A);
-immutable DoorEntryA doorEntry64 = DoorEntryA(null, EventFlag.none, 0xC09D, 0x0398, 0x07);
-immutable DoorEntryA doorEntry65 = DoorEntryA(null, EventFlag.none, 0x00D3, 0x008F, 0x01);
-immutable DoorEntryA doorEntry66 = DoorEntryA(null, EventFlag.none, 0x80BD, 0x0383, 0x0F);
-immutable DoorEntryA doorEntry67 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0085, 0x0A);
-immutable DoorEntryA doorEntry68 = DoorEntryA(null, EventFlag.none, 0xC05D, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry69 = DoorEntryA("TEXT_DOOR_069", EventFlag.none, 0x802A, 0x03A6, 0x0F);
-immutable DoorEntryA doorEntry70 = DoorEntryA(null, EventFlag.none, 0x808A, 0x03E6, 0x07);
-immutable DoorEntryA doorEntry71 = DoorEntryA("TEXT_DOOR_071", EventFlag.none, 0x801D, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry72 = DoorEntryA(null, EventFlag.none, 0x804D, 0x03C3, 0x07);
-immutable DoorEntryA doorEntry73 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0389, 0x07);
-immutable DoorEntryA doorEntry74 = DoorEntryA(null, EventFlag.none, 0x0058, 0x0371, 0x07);
-immutable DoorEntryA doorEntry75 = DoorEntryA(null, EventFlag.none, 0x8059, 0x03C7, 0x0F);
-immutable DoorEntryA doorEntry76 = DoorEntryA(null, EventFlag.none, 0x0038, 0x03CD, 0x07);
-immutable DoorEntryA doorEntry77 = DoorEntryA(null, EventFlag.none, 0x00C8, 0x0131, 0x0A);
-immutable DoorEntryA doorEntry78 = DoorEntryA(null, EventFlag.none, 0x00B8, 0x03F1, 0x07);
-immutable DoorEntryA doorEntry79 = DoorEntryA(null, EventFlag.none, 0x0078, 0x0392, 0x07);
-immutable DoorEntryA doorEntry80 = DoorEntryA(null, EventFlag.none, 0x00B0, 0x0141, 0x0A);
-immutable DoorEntryA doorEntry81 = DoorEntryA(null, EventFlag.none, 0x0010, 0x00E5, 0x0A);
-immutable DoorEntryA doorEntry82 = DoorEntryA("TEXT_DOOR_004", EventFlag._1fMizunoAppear, 0x0361, 0x01F4, 0x01);
-immutable DoorEntryA doorEntry83 = DoorEntryA(null, EventFlag.none, 0x0048, 0x03E1, 0x07);
-immutable DoorEntryA doorEntry84 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0391, 0x07);
-immutable DoorEntryA doorEntry85 = DoorEntryA("TEXT_DOOR_085", EventFlag.none, 0xC07D, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry86 = DoorEntryA(null, EventFlag.none, 0x008C, 0x012D, 0x0A);
-immutable DoorEntryA doorEntry87 = DoorEntryA(null, EventFlag.none, 0x0038, 0x03D9, 0x07);
-immutable DoorEntryA doorEntry88 = DoorEntryA(null, EventFlag.none, 0x4043, 0x00B5, 0x01);
-immutable DoorEntryA doorEntry89 = DoorEntryA(null, EventFlag.none, 0x0048, 0x00B5, 0x0A);
-immutable DoorEntryA doorEntry90 = DoorEntryA(null, EventFlag.none, 0x00DA, 0x00E8, 0x0C);
-immutable DoorEntryA doorEntry91 = DoorEntryA(null, EventFlag.none, 0xC07D, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry92 = DoorEntryA(null, EventFlag.none, 0xC09D, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry93 = DoorEntryA(null, EventFlag.none, 0x807D, 0x0383, 0x0F);
-immutable DoorEntryA doorEntry94 = DoorEntryA(null, EventFlag.none, 0x011C, 0x00C5, 0x0A);
-immutable DoorEntryA doorEntry95 = DoorEntryA(null, EventFlag.none, 0x00DC, 0x0039, 0x0A);
-immutable DoorEntryA doorEntry96 = DoorEntryA(null, EventFlag.none, 0x0008, 0x03B1, 0x07);
-immutable DoorEntryA doorEntry97 = DoorEntryA(null, EventFlag.none, 0x008E, 0x00C8, 0x0C);
-immutable DoorEntryA doorEntry98 = DoorEntryA(null, EventFlag.none, 0x0053, 0x00FC, 0x01);
-immutable DoorEntryA doorEntry99 = DoorEntryA(null, EventFlag.none, 0xC089, 0x0388, 0x07);
-immutable DoorEntryA doorEntry100 = DoorEntryA(null, EventFlag.none, 0xC00D, 0x03CC, 0x01);
-immutable DoorEntryA doorEntry101 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x00B2, 0x00FF, 0x01);
-immutable DoorEntryA doorEntry102 = DoorEntryA(null, EventFlag.none, 0x0008, 0x03BD, 0x07);
-immutable DoorEntryA doorEntry103 = DoorEntryA(null, EventFlag.none, 0xC139, 0x02F5, 0x01);
-immutable DoorEntryA doorEntry104 = DoorEntryA(null, EventFlag.none, 0x003B, 0x0085, 0x01);
-immutable DoorEntryA doorEntry105 = DoorEntryA(null, EventFlag.none, 0x003A, 0x009D, 0x01);
-immutable DoorEntryA doorEntry106 = DoorEntryA(null, EventFlag.none, 0xC2D9, 0x01D5, 0x01);
-immutable DoorEntryA doorEntry107 = DoorEntryA(null, EventFlag.none, 0xC2B9, 0x01D9, 0x01);
-immutable DoorEntryA doorEntry108 = DoorEntryA(null, EventFlag.none, 0xC279, 0x01F5, 0x01);
-immutable DoorEntryA doorEntry109 = DoorEntryA("TEXT_DOOR_109", EventFlag.none, 0x003F, 0x00B1, 0x01);
-immutable DoorEntryA doorEntry110 = DoorEntryA(null, EventFlag.none, 0x0427, 0x0129, 0x01);
-immutable DoorEntryA doorEntry111 = DoorEntryA(null, EventFlag.none, 0x8430, 0x00E7, 0x01);
-immutable DoorEntryA doorEntry112 = DoorEntryA(null, EventFlag.none, 0x0413, 0x013D, 0x01);
-immutable DoorEntryA doorEntry113 = DoorEntryA(null, EventFlag.none, 0xC139, 0x008C, 0x01);
-immutable DoorEntryA doorEntry114 = DoorEntryA(null, EventFlag.none, 0x03F3, 0x00FD, 0x01);
-immutable DoorEntryA doorEntry115 = DoorEntryA("TEXT_DOOR_115", EventFlag.winGianBoss | eventFlagUnset, 0x0027, 0x0089, 0x01);
-immutable DoorEntryA doorEntry116 = DoorEntryA(null, EventFlag.none, 0x8138, 0x02E7, 0x01);
-immutable DoorEntryA doorEntry117 = DoorEntryA(null, EventFlag.none, 0x409A, 0x03AC, 0x01);
-immutable DoorEntryA doorEntry118 = DoorEntryA(null, EventFlag.none, 0xC139, 0x02BC, 0x01);
-immutable DoorEntryA doorEntry119 = DoorEntryA(null, EventFlag.none, 0x8379, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry120 = DoorEntryA(null, EventFlag.none, 0xC109, 0x01BC, 0x01);
-immutable DoorEntryA doorEntry121 = DoorEntryA(null, EventFlag.none, 0x82E9, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry122 = DoorEntryA(null, EventFlag.none, 0x813B, 0x02A3, 0x01);
-immutable DoorEntryA doorEntry123 = DoorEntryA(null, EventFlag.none, 0xC109, 0x0189, 0x01);
-immutable DoorEntryA doorEntry124 = DoorEntryA("TEXT_DOOR_124", EventFlag.unknown0340 | eventFlagUnset, 0x0075, 0x0092, 0x00);
-immutable DoorEntryA doorEntry125 = DoorEntryA("TEXT_DOOR_125", EventFlag.unknown0340 | eventFlagUnset, 0x0085, 0x00B2, 0x00);
-immutable DoorEntryA doorEntry126 = DoorEntryA("TEXT_DOOR_126", EventFlag.unknown0340 | eventFlagUnset, 0x00A2, 0x007F, 0x00);
-immutable DoorEntryA doorEntry127 = DoorEntryA("TEXT_DOOR_127", EventFlag.unknown0340 | eventFlagUnset, 0x00DA, 0x00B4, 0x00);
-immutable DoorEntryC doorEntry128 = DoorEntryC("MSG_ONET_KANBAN_1");
-immutable DoorEntryC doorEntry129 = DoorEntryC("MSG_ONET_KANBAN_2");
-immutable DoorEntryC doorEntry130 = DoorEntryC("MSG_ONET_KANBAN_3");
-immutable DoorEntryC doorEntry131 = DoorEntryC("MSG_ONET_KANBAN_4");
-immutable DoorEntryC doorEntry132 = DoorEntryC("MSG_ONET_KANBAN_5");
-immutable DoorEntryC doorEntry133 = DoorEntryC("MSG_ONET_KANBAN_6");
-immutable DoorEntryC doorEntry134 = DoorEntryC("MSG_ONET_KANBAN_7");
-immutable DoorEntryC doorEntry135 = DoorEntryC("MSG_ONET_KANBAN_8");
-immutable DoorEntryC doorEntry136 = DoorEntryC("MSG_ONET_KANBAN_9");
-immutable DoorEntryC doorEntry137 = DoorEntryC("MSG_ONET_KANBAN_10");
-immutable DoorEntryC doorEntry138 = DoorEntryC("MSG_ONET_KANBAN_11");
-immutable DoorEntryA doorEntry139 = DoorEntryA("TEXT_DOOR_139", EventFlag.unknown0340 | eventFlagUnset, 0x00A0, 0x0151, 0x00);
-immutable DoorEntryA doorEntry140 = DoorEntryA("TEXT_DOOR_140", EventFlag.unknown0340 | eventFlagUnset, 0x00D8, 0x0121, 0x00);
-immutable DoorEntryA doorEntry141 = DoorEntryA("TEXT_DOOR_141", EventFlag.unknown0340 | eventFlagUnset, 0x00B2, 0x010B, 0x00);
-immutable DoorEntryA doorEntry142 = DoorEntryA("TEXT_DOOR_142", EventFlag.unknown0340 | eventFlagUnset, 0x00AE, 0x0117, 0x00);
-immutable DoorEntryC doorEntry143 = DoorEntryC("MSG_ONET_KANBAN_12");
-immutable DoorEntryC doorEntry144 = DoorEntryC("MSG_ONET_KANBAN_13");
-immutable DoorEntryC doorEntry145 = DoorEntryC("MSG_ONET_KANBAN_14");
-immutable DoorEntryC doorEntry146 = DoorEntryC("MSG_ONET_KANBAN_15");
-immutable DoorEntryC doorEntry147 = DoorEntryC("MSG_ONET_KANBAN_16");
-immutable DoorEntryC doorEntry148 = DoorEntryC("MSG_ONET_KANBAN_17");
-immutable DoorEntryC doorEntry149 = DoorEntryC("MSG_ONET_KANBAN_18");
-immutable DoorEntryC doorEntry150 = DoorEntryC("MSG_INSEKI_CHECK");
-immutable DoorEntryA doorEntry151 = DoorEntryA("TEXT_DOOR_151", EventFlag.unknown0340 | eventFlagUnset, 0x000C, 0x03E9, 0x00);
-immutable DoorEntryA doorEntry152 = DoorEntryA("TEXT_DOOR_152", EventFlag.unknown0340 | eventFlagUnset, 0x000C, 0x03F1, 0x00);
-immutable DoorEntryA doorEntry153 = DoorEntryA("TEXT_DOOR_153", EventFlag.unknown0340 | eventFlagUnset, 0x0058, 0x0379, 0x00);
-immutable DoorEntryA doorEntry154 = DoorEntryA("TEXT_DOOR_154", EventFlag.unknown0340 | eventFlagUnset, 0x0058, 0x037D, 0x00);
-immutable DoorEntryC doorEntry155 = DoorEntryC("MSG_READ_ONET_HALL_FRONT_SGN1");
-immutable DoorEntryC doorEntry156 = DoorEntryC("MSG_READ_ONET_HOSP_PSSG_SGN3");
-immutable DoorEntryC doorEntry157 = DoorEntryC("MSG_CHECK_BOOKSHELF1");
-immutable DoorEntryC doorEntry158 = DoorEntryC("MSG_CHECK_BOOKSHELF1");
-immutable DoorEntryC doorEntry159 = DoorEntryC("MSG_CHECK_BOOKSHELF1");
-immutable DoorEntryC doorEntry160 = DoorEntryC("MSG_CHECK_BOOKSHELF4");
-immutable DoorEntryC doorEntry161 = DoorEntryC("MSG_CHECK_BOOKSHELF1");
-immutable DoorEntryC doorEntry162 = DoorEntryC("MSG_CHECK_BOOKSHELF1");
-immutable DoorEntryC doorEntry163 = DoorEntryC("MSG_CHECK_FUDOUSAN_SHELF");
-immutable DoorEntryA doorEntry164 = DoorEntryA(null, EventFlag.none, 0x418F, 0x0098, 0x01);
-immutable DoorEntryA doorEntry165 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x0358, 0x04);
-immutable DoorEntryA doorEntry166 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x0398, 0x04);
-immutable DoorEntryA doorEntry167 = DoorEntryA(null, EventFlag.none, 0xC38D, 0x03C4, 0x01);
-immutable DoorEntryA doorEntry168 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x0378, 0x06);
-immutable DoorEntryA doorEntry169 = DoorEntryA(null, EventFlag.none, 0xC3AB, 0x038A, 0x06);
-immutable DoorEntryA doorEntry170 = DoorEntryA("TEXT_DOOR_170", EventFlag.tlptThrk , 0xC39D, 0x03BC, 0x04);
-immutable DoorEntryA doorEntry171 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x03D8, 0x04);
-immutable DoorEntryA doorEntry172 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x03D4, 0x04);
-immutable DoorEntryA doorEntry173 = DoorEntryA(null, EventFlag.none, 0xC3DD, 0x03D8, 0x04);
-immutable DoorEntryA doorEntry174 = DoorEntryA(null, EventFlag.none, 0xC42D, 0x03A8, 0x06);
-immutable DoorEntryA doorEntry175 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x0334, 0x06);
-immutable DoorEntryA doorEntry176 = DoorEntryA(null, EventFlag.none, 0xC3AD, 0x03C4, 0x04);
-immutable DoorEntryA doorEntry177 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x037C, 0x04);
-immutable DoorEntryA doorEntry178 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry179 = DoorEntryA(null, EventFlag.none, 0xC44D, 0x03EC, 0x01);
-immutable DoorEntryA doorEntry180 = DoorEntryA(null, EventFlag.none, 0xC38D, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry181 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x84E9, 0x0363, 0x01);
-immutable DoorEntryA doorEntry182 = DoorEntryA("TEXT_DOOR_182", EventFlag.none, 0x84FC, 0x02E4, 0x01);
-immutable DoorEntryA doorEntry183 = DoorEntryA("TEXT_DOOR_183", EventFlag.none, 0xC378, 0x01C4, 0x01);
-immutable DoorEntryA doorEntry184 = DoorEntryA(null, EventFlag.none, 0x84EB, 0x03A3, 0x01);
-immutable DoorEntryA doorEntry185 = DoorEntryA(null, EventFlag.none, 0xC4E9, 0x037C, 0x01);
-immutable DoorEntryA doorEntry186 = DoorEntryA(null, EventFlag.none, 0x0119, 0x0216, 0x01);
-immutable DoorEntryA doorEntry187 = DoorEntryA(null, EventFlag.none, 0xC459, 0x03C8, 0x07);
-immutable DoorEntryA doorEntry188 = DoorEntryA(null, EventFlag.none, 0xC415, 0x03B8, 0x01);
-immutable DoorEntryA doorEntry189 = DoorEntryA("TEXT_DOOR_189", EventFlag.none, 0x032F, 0x00AB, 0x01);
-immutable DoorEntryA doorEntry190 = DoorEntryA("TEXT_DOOR_190", EventFlag.none, 0x032F, 0x00BC, 0x0C);
-immutable DoorEntryA doorEntry191 = DoorEntryA(null, EventFlag.none, 0x033B, 0x0133, 0x0A);
-immutable DoorEntryA doorEntry192 = DoorEntryA(null, EventFlag.none, 0x03DC, 0x0369, 0x07);
-immutable DoorEntryA doorEntry193 = DoorEntryA(null, EventFlag.none, 0x0448, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry194 = DoorEntryA("TEXT_DOOR_194", EventFlag.none, 0x0332, 0x00D2, 0x0C);
-immutable DoorEntryA doorEntry195 = DoorEntryA(null, EventFlag.none, 0x03DC, 0x0371, 0x07);
-immutable DoorEntryA doorEntry196 = DoorEntryA("TEXT_DOOR_196", EventFlag.none, 0x0373, 0x0109, 0x0A);
-immutable DoorEntryA doorEntry197 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x035C, 0x07);
-immutable DoorEntryA doorEntry198 = DoorEntryA(null, EventFlag.none, 0x038F, 0x00F7, 0x0A);
-immutable DoorEntryA doorEntry199 = DoorEntryA(null, EventFlag.none, 0x0377, 0x011F, 0x0A);
-immutable DoorEntryA doorEntry200 = DoorEntryA(null, EventFlag.none, 0x83AD, 0x03A3, 0x07);
-immutable DoorEntryA doorEntry201 = DoorEntryA(null, EventFlag.none, 0x83ED, 0x0343, 0x0F);
-immutable DoorEntryA doorEntry202 = DoorEntryA(null, EventFlag.none, 0x83FA, 0x0346, 0x0F);
-immutable DoorEntryA doorEntry203 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x035C, 0x07);
-immutable DoorEntryA doorEntry204 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x039C, 0x07);
-immutable DoorEntryA doorEntry205 = DoorEntryA(null, EventFlag.none, 0x844D, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry206 = DoorEntryA(null, EventFlag.none, 0x040C, 0x0395, 0x07);
-immutable DoorEntryA doorEntry207 = DoorEntryA(null, EventFlag.none, 0x83FD, 0x0383, 0x0F);
-immutable DoorEntryA doorEntry208 = DoorEntryA(null, EventFlag.none, 0x0410, 0x03A9, 0x07);
-immutable DoorEntryA doorEntry209 = DoorEntryA(null, EventFlag.warpAppleTwsn, 0x0397, 0x00EF, 0x0A);
-immutable DoorEntryA doorEntry210 = DoorEntryA(null, EventFlag.none, 0xC3ED, 0x03F8, 0x07);
-immutable DoorEntryA doorEntry211 = DoorEntryA(null, EventFlag.none, 0x034F, 0x0122, 0x0A);
-immutable DoorEntryA doorEntry212 = DoorEntryA(null, EventFlag.none, 0xC45D, 0x03F8, 0x07);
-immutable DoorEntryA doorEntry213 = DoorEntryA(null, EventFlag.none, 0x83CA, 0x0346, 0x0F);
-immutable DoorEntryA doorEntry214 = DoorEntryA(null, EventFlag.none, 0x83DD, 0x0343, 0x0F);
-immutable DoorEntryA doorEntry215 = DoorEntryA(null, EventFlag.none, 0x030C, 0x00D9, 0x0A);
-immutable DoorEntryA doorEntry216 = DoorEntryA(null, EventFlag.none, 0x0397, 0x011D, 0x0A);
-immutable DoorEntryA doorEntry217 = DoorEntryA(null, EventFlag.none, 0x83DD, 0x0383, 0x0F);
-immutable DoorEntryA doorEntry218 = DoorEntryA(null, EventFlag.none, 0x030C, 0x00F9, 0x0A);
-immutable DoorEntryA doorEntry219 = DoorEntryA(null, EventFlag.none, 0x0360, 0x00A9, 0x0A);
-immutable DoorEntryA doorEntry220 = DoorEntryA(null, EventFlag.none, 0x83CD, 0x03E3, 0x07);
-immutable DoorEntryA doorEntry221 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x039C, 0x07);
-immutable DoorEntryA doorEntry222 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x03DC, 0x07);
-immutable DoorEntryA doorEntry223 = DoorEntryA(null, EventFlag.none, 0x838D, 0x03A3, 0x01);
-immutable DoorEntryA doorEntry224 = DoorEntryA(null, EventFlag.none, 0x0376, 0x0135, 0x0C);
-immutable DoorEntryA doorEntry225 = DoorEntryA(null, EventFlag.none, 0xC39D, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry226 = DoorEntryA(null, EventFlag.none, 0x83DD, 0x0363, 0x0F);
-immutable DoorEntryA doorEntry227 = DoorEntryA(null, EventFlag.none, 0x0388, 0x03B9, 0x07);
-immutable DoorEntryA doorEntry228 = DoorEntryA(null, EventFlag.none, 0x030E, 0x011B, 0x01);
-immutable DoorEntryA doorEntry229 = DoorEntryA(null, EventFlag.none, 0x03E8, 0x0351, 0x07);
-immutable DoorEntryA doorEntry230 = DoorEntryA(null, EventFlag.twsnTonzuraBusAppear, 0xC435, 0x0378, 0x07);
-immutable DoorEntryA doorEntry231 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry232 = DoorEntryA("TEXT_DOOR_232", EventFlag.none, 0x0331, 0x0116, 0x0A);
-immutable DoorEntryA doorEntry233 = DoorEntryA(null, EventFlag.none, 0x839D, 0x03A3, 0x07);
-immutable DoorEntryA doorEntry234 = DoorEntryA("TEXT_DOOR_234", EventFlag.none, 0x8431, 0x034B, 0x07);
-immutable DoorEntryA doorEntry235 = DoorEntryA("TEXT_DOOR_235", EventFlag.twsnMichikoThankYou | eventFlagUnset, 0xC3AD, 0x03FC, 0x07);
-immutable DoorEntryA doorEntry236 = DoorEntryA(null, EventFlag.none, 0x0398, 0x03B1, 0x07);
-immutable DoorEntryA doorEntry237 = DoorEntryA("TEXT_DOOR_237", EventFlag.thrkTunnelClose, 0xC442, 0x009F, 0x01);
-immutable DoorEntryA doorEntry238 = DoorEntryA("TEXT_DOOR_238", EventFlag.tlptThrk | eventFlagUnset, 0x849B, 0x0231, 0x01);
-immutable DoorEntryA doorEntry239 = DoorEntryA("TEXT_DOOR_239", EventFlag.unknown0340 | eventFlagUnset, 0x0347, 0x012A, 0x00);
-immutable DoorEntryA doorEntry240 = DoorEntryA("TEXT_DOOR_240", EventFlag.unknown0340 | eventFlagUnset, 0x03A3, 0x010D, 0x00);
-immutable DoorEntryC doorEntry241 = DoorEntryC("MSG_READ_TWSN_SIGN1");
-immutable DoorEntryC doorEntry242 = DoorEntryC("MSG_READ_TWSN_SIGN5");
-immutable DoorEntryC doorEntry243 = DoorEntryC("MSG_READ_TWSN_SIGN6");
-immutable DoorEntryC doorEntry244 = DoorEntryC("MSG_READ_TWSN_SIGN7");
-immutable DoorEntryC doorEntry245 = DoorEntryC("MSG_READ_TWSN_SIGN8");
-immutable DoorEntryC doorEntry246 = DoorEntryC("MSG_READ_TWSN_SIGN9");
-immutable DoorEntryC doorEntry247 = DoorEntryC("MSG_READ_TWSN_SIGN10");
-immutable DoorEntryC doorEntry248 = DoorEntryC("MSG_READ_TWSN_HOSP_FRONT_SGN1");
-immutable DoorEntryA doorEntry249 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC139, 0x029C, 0x01);
-immutable DoorEntryA doorEntry250 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC1A9, 0x021C, 0x01);
-immutable DoorEntryA doorEntry251 = DoorEntryA(null, EventFlag.none, 0xC0DD, 0x037C, 0x04);
-immutable DoorEntryA doorEntry252 = DoorEntryA(null, EventFlag.none, 0xC10D, 0x03BC, 0x04);
-immutable DoorEntryA doorEntry253 = DoorEntryA("TEXT_DOOR_253", EventFlag.tlptThrk , 0xC122, 0x03F1, 0x04);
-immutable DoorEntryA doorEntry254 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x80D1, 0x0187, 0x01);
-immutable DoorEntryA doorEntry255 = DoorEntryA("TEXT_DOOR_255", EventFlag.tlptBaka | eventFlagUnset, 0xC101, 0x03F0, 0x04);
-immutable DoorEntryA doorEntry256 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x037C, 0x04);
-immutable DoorEntryA doorEntry257 = DoorEntryA(null, EventFlag.none, 0xC0DD, 0x03BC, 0x04);
-immutable DoorEntryA doorEntry258 = DoorEntryA(null, EventFlag.none, 0x80CD, 0x03A3, 0x0F);
-immutable DoorEntryA doorEntry259 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x03F8, 0x01CA, 0x0A);
-immutable DoorEntryA doorEntry260 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x0202, 0x0A);
-immutable DoorEntryA doorEntry261 = DoorEntryA(null, EventFlag.none, 0x80CD, 0x0363, 0x0F);
-immutable DoorEntryA doorEntry262 = DoorEntryA(null, EventFlag.none, 0x03EC, 0x0202, 0x0A);
-immutable DoorEntryA doorEntry263 = DoorEntryA(null, EventFlag.none, 0x03C3, 0x01D7, 0x0A);
-immutable DoorEntryA doorEntry264 = DoorEntryA(null, EventFlag.none, 0x03E4, 0x01B9, 0x0A);
-immutable DoorEntryA doorEntry265 = DoorEntryA(null, EventFlag.none, 0x80F2, 0x03A6, 0x0F);
-immutable DoorEntryA doorEntry266 = DoorEntryA("TEXT_DOOR_266", EventFlag.none, 0x8122, 0x03AE, 0x07);
-immutable DoorEntryA doorEntry267 = DoorEntryA(null, EventFlag.none, 0x80DA, 0x03E6, 0x0F);
-immutable DoorEntryA doorEntry268 = DoorEntryA("TEXT_DOOR_268", EventFlag.none, 0xC0DA, 0x03F9, 0x07);
-immutable DoorEntryA doorEntry269 = DoorEntryA("TEXT_DOOR_269", EventFlag.none, 0x03DC, 0x01DF, 0x0A);
-immutable DoorEntryA doorEntry270 = DoorEntryA(null, EventFlag.none, 0x00C5, 0x02E9, 0x01);
-immutable DoorEntryA doorEntry271 = DoorEntryA("TEXT_DOOR_271", EventFlag.none, 0x83B4, 0x01BA, 0x01);
-immutable DoorEntryA doorEntry272 = DoorEntryA(null, EventFlag.none, 0x008A, 0x02E6, 0x01);
-immutable DoorEntryA doorEntry273 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x01F7, 0x01);
-immutable DoorEntryC doorEntry274 = DoorEntryC("MSG_HAPPY_SIGN1");
-immutable DoorEntryC doorEntry275 = DoorEntryC("MSG_HAPPY_SIGN2");
-immutable DoorEntryA doorEntry276 = DoorEntryA(null, EventFlag.none, 0x81A9, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry277 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x0374, 0x04);
-immutable DoorEntryA doorEntry278 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x8139, 0x0263, 0x01);
-immutable DoorEntryA doorEntry279 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC4E9, 0x03DC, 0x01);
-immutable DoorEntryA doorEntry280 = DoorEntryA(null, EventFlag.none, 0x009A, 0x02D7, 0x0A);
-immutable DoorEntryA doorEntry281 = DoorEntryA("TEXT_DOOR_281", EventFlag.winLlptBoss | eventFlagUnset, 0x03F5, 0x0182, 0x01);
-immutable DoorEntryA doorEntry282 = DoorEntryA(null, EventFlag.none, 0xC3C4, 0x020C, 0x01);
-immutable DoorEntryA doorEntry283 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0x008B, 0x01F1, 0x01);
-immutable DoorEntryA doorEntry284 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x0401, 0x023C, 0x01);
-immutable DoorEntryA doorEntry285 = DoorEntryA(null, EventFlag.none, 0x04B1, 0x033C, 0x01);
-immutable DoorEntryA doorEntry286 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry287 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x035C, 0x04);
-immutable DoorEntryA doorEntry288 = DoorEntryA(null, EventFlag.none, 0xC4EF, 0x03FA, 0x01);
-immutable DoorEntryA doorEntry289 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry290 = DoorEntryA("TEXT_DOOR_290", EventFlag.none, 0xC4FC, 0x03DB, 0x01);
-immutable DoorEntryA doorEntry291 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x0374, 0x04);
-immutable DoorEntryA doorEntry292 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x03FC, 0x06);
-immutable DoorEntryA doorEntry293 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x0374, 0x06);
-immutable DoorEntryA doorEntry294 = DoorEntryA(null, EventFlag.none, 0xC4DD, 0x035C, 0x01);
-immutable DoorEntryA doorEntry295 = DoorEntryA(null, EventFlag.none, 0xC4DD, 0x03F8, 0x06);
-immutable DoorEntryA doorEntry296 = DoorEntryA(null, EventFlag.none, 0xC4DA, 0x0379, 0x04);
-immutable DoorEntryA doorEntry297 = DoorEntryA(null, EventFlag.none, 0xC4DA, 0x03B5, 0x04);
-immutable DoorEntryA doorEntry298 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x84FC, 0x0224, 0x01);
-immutable DoorEntryA doorEntry299 = DoorEntryA(null, EventFlag.none, 0xC489, 0x0388, 0x07);
-immutable DoorEntryA doorEntry300 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x03E4, 0x01);
-immutable DoorEntryA doorEntry301 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x0462, 0x02B3, 0x0A);
-immutable DoorEntryA doorEntry302 = DoorEntryA(null, EventFlag.none, 0x04DC, 0x03C9, 0x07);
-immutable DoorEntryA doorEntry303 = DoorEntryA(null, EventFlag.none, 0x048E, 0x029C, 0x0C);
-immutable DoorEntryA doorEntry304 = DoorEntryA(null, EventFlag.none, 0x0488, 0x0351, 0x07);
-immutable DoorEntryA doorEntry305 = DoorEntryA(null, EventFlag.none, 0x04DC, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry306 = DoorEntryA(null, EventFlag.none, 0x0488, 0x03CD, 0x07);
-immutable DoorEntryA doorEntry307 = DoorEntryA("TEXT_DOOR_307", EventFlag.none, 0xC49D, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry308 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x03FC, 0x07);
-immutable DoorEntryA doorEntry309 = DoorEntryA(null, EventFlag.none, 0x848D, 0x0343, 0x01);
-immutable DoorEntryA doorEntry310 = DoorEntryA(null, EventFlag.none, 0x0488, 0x03D5, 0x07);
-immutable DoorEntryA doorEntry311 = DoorEntryA(null, EventFlag.none, 0x048C, 0x0265, 0x0A);
-immutable DoorEntryA doorEntry312 = DoorEntryA(null, EventFlag.none, 0x0478, 0x02E9, 0x0A);
-immutable DoorEntryA doorEntry313 = DoorEntryA(null, EventFlag.none, 0x048E, 0x028D, 0x0C);
-immutable DoorEntryA doorEntry314 = DoorEntryA(null, EventFlag.none, 0xC4DD, 0x0398, 0x07);
-immutable DoorEntryA doorEntry315 = DoorEntryA(null, EventFlag.none, 0x048D, 0x02BF, 0x01);
-immutable DoorEntryA doorEntry316 = DoorEntryA(null, EventFlag.none, 0x84DD, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry317 = DoorEntryA(null, EventFlag.none, 0x0491, 0x0302, 0x0A);
-immutable DoorEntryA doorEntry318 = DoorEntryA(null, EventFlag.none, 0x04D8, 0x0352, 0x07);
-immutable DoorEntryA doorEntry319 = DoorEntryA(null, EventFlag.none, 0x0497, 0x0319, 0x0A);
-immutable DoorEntryA doorEntry320 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x0378, 0x07);
-immutable DoorEntryA doorEntry321 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x03B8, 0x07);
-immutable DoorEntryA doorEntry322 = DoorEntryA(null, EventFlag.none, 0x84DD, 0x0343, 0x0F);
-immutable DoorEntryA doorEntry323 = DoorEntryA(null, EventFlag.none, 0x0428, 0x0319, 0x0A);
-immutable DoorEntryA doorEntry324 = DoorEntryA(null, EventFlag.none, 0x048E, 0x02D1, 0x0C);
-immutable DoorEntryA doorEntry325 = DoorEntryA(null, EventFlag.none, 0x0476, 0x02BB, 0x01);
-immutable DoorEntryA doorEntry326 = DoorEntryA(null, EventFlag.none, 0x0413, 0x0290, 0x01);
-immutable DoorEntryA doorEntry327 = DoorEntryA(null, EventFlag.none, 0x8123, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry328 = DoorEntryA(null, EventFlag.none, 0xC41D, 0x023C, 0x01);
-immutable DoorEntryA doorEntry329 = DoorEntryA(null, EventFlag.none, 0x81B5, 0x02A2, 0x01);
-immutable DoorEntryA doorEntry330 = DoorEntryA(null, EventFlag.none, 0xC123, 0x01FC, 0x01);
-immutable DoorEntryA doorEntry331 = DoorEntryA(null, EventFlag.none, 0x8283, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry332 = DoorEntryA(null, EventFlag.none, 0xC1BD, 0x02BC, 0x01);
-immutable DoorEntryA doorEntry333 = DoorEntryA(null, EventFlag.none, 0x82AD, 0x01E2, 0x01);
-immutable DoorEntryA doorEntry334 = DoorEntryA(null, EventFlag.none, 0x82CD, 0x01E2, 0x01);
-immutable DoorEntryA doorEntry335 = DoorEntryA(null, EventFlag.none, 0xC283, 0x01FC, 0x01);
-immutable DoorEntryA doorEntry336 = DoorEntryA(null, EventFlag.none, 0x0125, 0x0316, 0x01);
-immutable DoorEntryA doorEntry337 = DoorEntryA(null, EventFlag.none, 0xC2A5, 0x01FC, 0x01);
-immutable DoorEntryA doorEntry338 = DoorEntryA(null, EventFlag.none, 0x0430, 0x02F0, 0x01);
-immutable DoorEntryA doorEntry339 = DoorEntryA(null, EventFlag.none, 0xC4E5, 0x0358, 0x07);
-immutable DoorEntryA doorEntry340 = DoorEntryA("MSG_THRK_PRISON", EventFlag.thrkPrisonOpen | eventFlagUnset, 0x84BD, 0x0322, 0x07);
-immutable DoorEntryA doorEntry341 = DoorEntryA(null, EventFlag.none, 0xC49B, 0x032E, 0x01);
-immutable DoorEntryA doorEntry342 = DoorEntryA("TEXT_DOOR_342", EventFlag.thrkTunnelClose, 0x83C2, 0x0140, 0x01);
-immutable DoorEntryA doorEntry343 = DoorEntryA(null, EventFlag.none, 0xC4FC, 0x02BB, 0x01);
-immutable DoorEntryA doorEntry344 = DoorEntryA(null, EventFlag.none, 0x800C, 0x0304, 0x01);
-immutable DoorEntryA doorEntry345 = DoorEntryA(null, EventFlag.none, 0xC3C2, 0x0187, 0x01);
-immutable DoorEntryA doorEntry346 = DoorEntryA("TEXT_DOOR_346", EventFlag.none, 0x84E6, 0x0032, 0x01);
-immutable DoorEntryC doorEntry347 = DoorEntryC("MSG_CHECK_THRK_HOSP_ROOM1_SHELF");
-immutable DoorEntryC doorEntry348 = DoorEntryC("MSG_READ_THRK_HOSP_PSSG_SGN1");
-immutable DoorEntryA doorEntry349 = DoorEntryA("TEXT_DOOR_349", EventFlag.unknown0340 | eventFlagUnset, 0x0452, 0x02C1, 0x00);
-immutable DoorEntryA doorEntry350 = DoorEntryA("TEXT_DOOR_350", EventFlag.unknown0340 | eventFlagUnset, 0x0455, 0x02F5, 0x00);
-immutable DoorEntryA doorEntry351 = DoorEntryA("TEXT_DOOR_351", EventFlag.unknown0340 | eventFlagUnset, 0x0449, 0x0305, 0x00);
-immutable DoorEntryA doorEntry352 = DoorEntryA("TEXT_DOOR_352", EventFlag.unknown0340 | eventFlagUnset, 0x047C, 0x026D, 0x00);
-immutable DoorEntryA doorEntry353 = DoorEntryA("TEXT_DOOR_353", EventFlag.unknown0340 | eventFlagUnset, 0x047A, 0x02D3, 0x00);
-immutable DoorEntryA doorEntry354 = DoorEntryA("TEXT_DOOR_354", EventFlag.unknown0340 | eventFlagUnset, 0x0462, 0x030D, 0x00);
-immutable DoorEntryA doorEntry355 = DoorEntryA("TEXT_DOOR_355", EventFlag.unknown0340 | eventFlagUnset, 0x0487, 0x02DF, 0x00);
-immutable DoorEntryC doorEntry356 = DoorEntryC("MSG_READ_THRK_SIGN1");
-immutable DoorEntryC doorEntry357 = DoorEntryC("MSG_READ_THRK_SIGN2");
-immutable DoorEntryC doorEntry358 = DoorEntryC("MSG_READ_THRK_SIGN3");
-immutable DoorEntryC doorEntry359 = DoorEntryC("MSG_READ_THRK_SIGN4");
-immutable DoorEntryC doorEntry360 = DoorEntryC("MSG_READ_THRK_SIGN5");
-immutable DoorEntryC doorEntry361 = DoorEntryC("MSG_READ_THRK_SIGN6");
-immutable DoorEntryC doorEntry362 = DoorEntryC("MSG_READ_THRK_SIGN7");
-immutable DoorEntryC doorEntry363 = DoorEntryC("MSG_READ_THRK_SIGN8");
-immutable DoorEntryC doorEntry364 = DoorEntryC("MSG_READ_THRK_SIGN9");
-immutable DoorEntryA doorEntry365 = DoorEntryA(null, EventFlag.none, 0xC141, 0x03E8, 0x04);
-immutable DoorEntryA doorEntry366 = DoorEntryA(null, EventFlag.none, 0xC13D, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry367 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC0F8, 0x03CB, 0x01);
-immutable DoorEntryA doorEntry368 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC0D8, 0x038B, 0x01);
-immutable DoorEntryA doorEntry369 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC0D8, 0x03CB, 0x01);
-immutable DoorEntryA doorEntry370 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC0F8, 0x038B, 0x01);
-immutable DoorEntryA doorEntry371 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0xC014, 0x0280, 0x01);
-immutable DoorEntryA doorEntry372 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x801C, 0x0267, 0x01);
-immutable DoorEntryA doorEntry373 = DoorEntryA("TEXT_DOOR_373", EventFlag.none, 0xC1B8, 0x00F8, 0x01);
-immutable DoorEntryA doorEntry374 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x81D0, 0x008B, 0x01);
-immutable DoorEntryA doorEntry375 = DoorEntryA(null, EventFlag.none, 0xC169, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry376 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC26C, 0x035C, 0x01);
-immutable DoorEntryA doorEntry377 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x01C5, 0x036C, 0x01);
-immutable DoorEntryA doorEntry378 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC2E8, 0x020B, 0x01);
-immutable DoorEntryC doorEntry379 = DoorEntryC("MSG_WINS_CHECK_DRUG");
-immutable DoorEntryA doorEntry380 = DoorEntryA(null, EventFlag.none, 0x0124, 0x0057, 0x0A);
-immutable DoorEntryA doorEntry381 = DoorEntryA(null, EventFlag.none, 0x013C, 0x03DA, 0x07);
-immutable DoorEntryA doorEntry382 = DoorEntryA(null, EventFlag.none, 0x013C, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry383 = DoorEntryA(null, EventFlag.none, 0x8164, 0x03E0, 0x0F);
-immutable DoorEntryA doorEntry384 = DoorEntryA(null, EventFlag.none, 0x017C, 0x03DA, 0x07);
-immutable DoorEntryA doorEntry385 = DoorEntryA(null, EventFlag.none, 0x017C, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry386 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry387 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x0394, 0x07);
-immutable DoorEntryA doorEntry388 = DoorEntryA(null, EventFlag.none, 0x8181, 0x03C7, 0x0F);
-immutable DoorEntryA doorEntry389 = DoorEntryA("TEXT_DOOR_389", EventFlag.none, 0x0112, 0x003E, 0x0A);
-immutable DoorEntryA doorEntry390 = DoorEntryA(null, EventFlag.none, 0x0263, 0x0028, 0x0A);
-immutable DoorEntryA doorEntry391 = DoorEntryA(null, EventFlag.none, 0x80F0, 0x0364, 0x0F);
-immutable DoorEntryA doorEntry392 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x03D8, 0x07);
-immutable DoorEntryA doorEntry393 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x0398, 0x07);
-immutable DoorEntryA doorEntry394 = DoorEntryA(null, EventFlag.none, 0x8141, 0x03C7, 0x0F);
-immutable DoorEntryA doorEntry395 = DoorEntryA("TEXT_DOOR_395", EventFlag.none, 0x01A3, 0x002B, 0x01);
-immutable DoorEntryA doorEntry396 = DoorEntryA("TEXT_DOOR_395", EventFlag.none, 0x01A7, 0x0033, 0x01);
-immutable DoorEntryA doorEntry397 = DoorEntryA("TEXT_DOOR_395", EventFlag.none, 0x01A3, 0x0047, 0x01);
-immutable DoorEntryA doorEntry398 = DoorEntryA("TEXT_DOOR_395", EventFlag.none, 0x018F, 0x0063, 0x01);
-immutable DoorEntryA doorEntry399 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x015B, 0x0043, 0x01);
-immutable DoorEntryA doorEntry400 = DoorEntryA(null, EventFlag.none, 0x0245, 0x0061, 0x01);
-immutable DoorEntryA doorEntry401 = DoorEntryA("TEXT_DOOR_401", EventFlag.none, 0x024A, 0x0055, 0x01);
-immutable DoorEntryA doorEntry402 = DoorEntryA("TEXT_DOOR_402", EventFlag.none, 0x0215, 0x0035, 0x01);
-immutable DoorEntryA doorEntry403 = DoorEntryA("TEXT_DOOR_403", EventFlag.winRainBoss | eventFlagUnset, 0x01E1, 0x0019, 0x01);
-immutable DoorEntryA doorEntry404 = DoorEntryA(null, EventFlag.none, 0x8434, 0x0167, 0x01);
-immutable DoorEntryA doorEntry405 = DoorEntryA(null, EventFlag.none, 0xC034, 0x0298, 0x01);
-immutable DoorEntryA doorEntry406 = DoorEntryA(null, EventFlag.none, 0x826C, 0x0307, 0x01);
-immutable DoorEntryA doorEntry407 = DoorEntryA(null, EventFlag.none, 0xC438, 0x01BC, 0x01);
-immutable DoorEntryA doorEntry408 = DoorEntryA("TEXT_DOOR_408", EventFlag.none, 0x0261, 0x0051, 0x01);
-immutable DoorEntryA doorEntry409 = DoorEntryA(null, EventFlag.none, 0x422A, 0x002A, 0x01);
-immutable DoorEntryA doorEntry410 = DoorEntryA(null, EventFlag.none, 0x82E5, 0x0322, 0x01);
-immutable DoorEntryA doorEntry411 = DoorEntryA(null, EventFlag.none, 0xC1D4, 0x0378, 0x01);
-immutable DoorEntryA doorEntry412 = DoorEntryA(null, EventFlag.none, 0xC265, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry413 = DoorEntryA(null, EventFlag.none, 0xC2A5, 0x03BC, 0x01);
-immutable DoorEntryA doorEntry414 = DoorEntryA(null, EventFlag.none, 0x831D, 0x0322, 0x01);
-immutable DoorEntryA doorEntry415 = DoorEntryA(null, EventFlag.none, 0xC2A5, 0x03DC, 0x01);
-immutable DoorEntryA doorEntry416 = DoorEntryA(null, EventFlag.none, 0x827D, 0x03C2, 0x01);
-immutable DoorEntryA doorEntry417 = DoorEntryA(null, EventFlag.none, 0x827D, 0x03E6, 0x01);
-immutable DoorEntryA doorEntry418 = DoorEntryA(null, EventFlag.none, 0x8291, 0x0342, 0x01);
-immutable DoorEntryA doorEntry419 = DoorEntryA(null, EventFlag.none, 0xC2BD, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry420 = DoorEntryA(null, EventFlag.none, 0xC349, 0x0348, 0x01);
-immutable DoorEntryA doorEntry421 = DoorEntryA(null, EventFlag.none, 0x82B5, 0x0302, 0x01);
-immutable DoorEntryA doorEntry422 = DoorEntryA(null, EventFlag.none, 0x01CB, 0x030C, 0x01);
-immutable DoorEntryA doorEntry423 = DoorEntryA(null, EventFlag.none, 0xC35D, 0x039C, 0x01);
-immutable DoorEntryA doorEntry424 = DoorEntryA(null, EventFlag.none, 0x82DD, 0x0343, 0x04);
-immutable DoorEntryA doorEntry425 = DoorEntryA(null, EventFlag.none, 0xC22A, 0x0385, 0x07);
-immutable DoorEntryA doorEntry426 = DoorEntryA(null, EventFlag.none, 0x8239, 0x0323, 0x07);
-immutable DoorEntryA doorEntry427 = DoorEntryA(null, EventFlag.none, 0xC219, 0x035C, 0x07);
-immutable DoorEntryA doorEntry428 = DoorEntryA(null, EventFlag.none, 0x8251, 0x03E3, 0x07);
-immutable DoorEntryA doorEntry429 = DoorEntryA(null, EventFlag.none, 0xC2FD, 0x03DC, 0x07);
-immutable DoorEntryA doorEntry430 = DoorEntryA(null, EventFlag.none, 0x82FD, 0x03C3, 0x07);
-immutable DoorEntryA doorEntry431 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x0358, 0x07);
-immutable DoorEntryA doorEntry432 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x819B, 0x03A3, 0x01);
-immutable DoorEntryA doorEntry433 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x02C1, 0x01FC, 0x01);
-immutable DoorEntryA doorEntry434 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x01E3, 0x07);
-immutable DoorEntryA doorEntry435 = DoorEntryA(null, EventFlag.none, 0x0021, 0x031C, 0x01);
-immutable DoorEntryA doorEntry436 = DoorEntryA(null, EventFlag.none, 0x8299, 0x01E3, 0x07);
-immutable DoorEntryA doorEntry437 = DoorEntryA(null, EventFlag.none, 0xC252, 0x0249, 0x01);
-immutable DoorEntryA doorEntry438 = DoorEntryA(null, EventFlag.none, 0xC2F9, 0x01F4, 0x07);
-immutable DoorEntryA doorEntry439 = DoorEntryA(null, EventFlag.none, 0x82B9, 0x01E3, 0x07);
-immutable DoorEntryA doorEntry440 = DoorEntryA(null, EventFlag.none, 0xC2A9, 0x01B8, 0x07);
-immutable DoorEntryA doorEntry441 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x01A8, 0x07);
-immutable DoorEntryA doorEntry442 = DoorEntryA(null, EventFlag.none, 0xC2B1, 0x0164, 0x07);
-immutable DoorEntryA doorEntry443 = DoorEntryA(null, EventFlag.none, 0x82CD, 0x0147, 0x07);
-immutable DoorEntryA doorEntry444 = DoorEntryA(null, EventFlag.none, 0x8379, 0x03A3, 0x01);
-immutable DoorEntryA doorEntry445 = DoorEntryA(null, EventFlag.none, 0x02CB, 0x0110, 0x01);
-immutable DoorEntryA doorEntry446 = DoorEntryA("TEXT_DOOR_446", EventFlag.winMlkyBoss | eventFlagUnset, 0x0295, 0x004E, 0x01);
-immutable DoorEntryA doorEntry447 = DoorEntryA("TEXT_DOOR_447", EventFlag.none, 0x02BD, 0x0066, 0x01);
-immutable DoorEntryA doorEntry448 = DoorEntryA(null, EventFlag.none, 0x0391, 0x0045, 0x01);
-immutable DoorEntryA doorEntry449 = DoorEntryA("TEXT_DOOR_447", EventFlag.none, 0x0295, 0x001E, 0x01);
-immutable DoorEntryA doorEntry450 = DoorEntryA(null, EventFlag.none, 0x024F, 0x022E, 0x01);
-immutable DoorEntryA doorEntry451 = DoorEntryA(null, EventFlag.none, 0x0395, 0x0035, 0x01);
-immutable DoorEntryA doorEntry452 = DoorEntryA(null, EventFlag.none, 0xC279, 0x03B9, 0x01);
-immutable DoorEntryA doorEntry453 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0x011F, 0x0395, 0x01);
-immutable DoorEntryA doorEntry454 = DoorEntryA(null, EventFlag.none, 0x810C, 0x036B, 0x01);
-immutable DoorEntryA doorEntry455 = DoorEntryA(null, EventFlag.none, 0x8199, 0x0343, 0x01);
-immutable DoorEntryA doorEntry456 = DoorEntryA(null, EventFlag.none, 0x0055, 0x034D, 0x01);
-immutable DoorEntryA doorEntry457 = DoorEntryA(null, EventFlag.none, 0x81B9, 0x0343, 0x01);
-immutable DoorEntryA doorEntry458 = DoorEntryA(null, EventFlag.none, 0xC199, 0x03BD, 0x01);
-immutable DoorEntryA doorEntry459 = DoorEntryA(null, EventFlag.none, 0xC199, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry460 = DoorEntryA("TEXT_DOOR_460", EventFlag.none, 0x03E2, 0x0019, 0x01);
-immutable DoorEntryA doorEntry461 = DoorEntryA("TEXT_DOOR_461", EventFlag.unknown0340 | eventFlagUnset, 0x0021, 0x031C, 0x01);
-immutable DoorEntryC doorEntry462 = DoorEntryC("MSG_READ_DGPM1_SIGN1");
-immutable DoorEntryA doorEntry463 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x03CB, 0x04);
-immutable DoorEntryA doorEntry464 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC1A9, 0x0350, 0x01);
-immutable DoorEntryA doorEntry465 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x0281, 0x018C, 0x01);
-immutable DoorEntryA doorEntry466 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x828D, 0x0183, 0x01);
-immutable DoorEntryA doorEntry467 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC379, 0x03F9, 0x01);
-immutable DoorEntryA doorEntry468 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x032B, 0x04);
-immutable DoorEntryA doorEntry469 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x038B, 0x04);
-immutable DoorEntryA doorEntry470 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC1B9, 0x035C, 0x01);
-immutable DoorEntryA doorEntry471 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC28D, 0x019C, 0x01);
-immutable DoorEntryA doorEntry472 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x8279, 0x0383, 0x01);
-immutable DoorEntryA doorEntry473 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x03CC, 0x001B, 0x0A);
-immutable DoorEntryA doorEntry474 = DoorEntryA(null, EventFlag.none, 0x03C4, 0x0037, 0x0A);
-immutable DoorEntryA doorEntry475 = DoorEntryA(null, EventFlag.none, 0x03A0, 0x001B, 0x0A);
-immutable DoorEntryA doorEntry476 = DoorEntryA(null, EventFlag.none, 0x03A7, 0x0018, 0x01);
-immutable DoorEntryA doorEntry477 = DoorEntryA(null, EventFlag.none, 0x03B0, 0x0015, 0x01);
-immutable DoorEntryA doorEntry478 = DoorEntryA(null, EventFlag.none, 0x03AA, 0x002D, 0x01);
-immutable DoorEntryA doorEntry479 = DoorEntryA(null, EventFlag.none, 0x03AC, 0x0025, 0x01);
-immutable DoorEntryA doorEntry480 = DoorEntryA(null, EventFlag.none, 0xC10D, 0x03D8, 0x01);
-immutable DoorEntryA doorEntry481 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC00C, 0x035B, 0x01);
-immutable DoorEntryA doorEntry482 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x03F4, 0x01);
-immutable DoorEntryA doorEntry483 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
-immutable DoorEntryA doorEntry484 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
-immutable DoorEntryA doorEntry485 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC35A, 0x03F8, 0x01);
-immutable DoorEntryA doorEntry486 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x0413, 0x0031, 0x01);
-immutable DoorEntryA doorEntry487 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x0291, 0x03B8, 0x01);
-immutable DoorEntryA doorEntry488 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x843C, 0x03C4, 0x01);
-immutable DoorEntryA doorEntry489 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0xC43C, 0x03FB, 0x01);
-immutable DoorEntryC doorEntry490 = DoorEntryC("MSG_CHECK_DESERT_SIGN");
-immutable DoorEntryA doorEntry491 = DoorEntryA("TEXT_DOOR_346", EventFlag.none, 0x04B4, 0x01B3, 0x01);
-immutable DoorEntryA doorEntry492 = DoorEntryA("TEXT_DOOR_346", EventFlag.none, 0x04DC, 0x00AF, 0x01);
-immutable DoorEntryA doorEntry493 = DoorEntryA(null, EventFlag.none, 0x0283, 0x038D, 0x01);
-immutable DoorEntryA doorEntry494 = DoorEntryA(null, EventFlag.none, 0x02A3, 0x03F5, 0x01);
-immutable DoorEntryA doorEntry495 = DoorEntryA(null, EventFlag.none, 0x0293, 0x0305, 0x01);
-immutable DoorEntryA doorEntry496 = DoorEntryA(null, EventFlag.none, 0x0293, 0x0339, 0x01);
-immutable DoorEntryA doorEntry497 = DoorEntryA(null, EventFlag.none, 0x02C3, 0x0335, 0x01);
-immutable DoorEntryA doorEntry498 = DoorEntryA(null, EventFlag.none, 0x84B4, 0x01CC, 0x01);
-immutable DoorEntryA doorEntry499 = DoorEntryA(null, EventFlag.none, 0x02EA, 0x03B5, 0x01);
-immutable DoorEntryA doorEntry500 = DoorEntryA(null, EventFlag.none, 0x42EC, 0x03ED, 0x01);
-immutable DoorEntryA doorEntry501 = DoorEntryA(null, EventFlag.none, 0x42A8, 0x0375, 0x01);
-immutable DoorEntryA doorEntry502 = DoorEntryA(null, EventFlag.none, 0x02CA, 0x03D5, 0x01);
-immutable DoorEntryA doorEntry503 = DoorEntryA(null, EventFlag.none, 0x4304, 0x0379, 0x01);
-immutable DoorEntryA doorEntry504 = DoorEntryA("TEXT_DOOR_346", EventFlag.none, 0x04B6, 0x01C9, 0x01);
-immutable DoorEntryA doorEntry505 = DoorEntryA(null, EventFlag.none, 0x44BC, 0x00C1, 0x01);
-immutable DoorEntryA doorEntry506 = DoorEntryA(null, EventFlag.dsrtTjabMove | eventFlagUnset, 0xC2A9, 0x0310, 0x01);
-immutable DoorEntryA doorEntry507 = DoorEntryA(null, EventFlag.none, 0xC2C9, 0x0310, 0x01);
-immutable DoorEntryA doorEntry508 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x0305, 0x01);
-immutable DoorEntryA doorEntry509 = DoorEntryA(null, EventFlag.none, 0xC2E9, 0x030C, 0x01);
-immutable DoorEntryA doorEntry510 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x0305, 0x01);
-immutable DoorEntryA doorEntry511 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x030D, 0x01);
-immutable DoorEntryA doorEntry512 = DoorEntryA(null, EventFlag.none, 0xC309, 0x031C, 0x01);
-immutable DoorEntryA doorEntry513 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x030D, 0x01);
-immutable DoorEntryA doorEntry514 = DoorEntryA(null, EventFlag.none, 0xC289, 0x032C, 0x01);
-immutable DoorEntryA doorEntry515 = DoorEntryA(null, EventFlag.none, 0x0288, 0x0329, 0x01);
-immutable DoorEntryA doorEntry516 = DoorEntryA(null, EventFlag.none, 0xC2C9, 0x0358, 0x01);
-immutable DoorEntryA doorEntry517 = DoorEntryA(null, EventFlag.none, 0x0288, 0x0325, 0x01);
-immutable DoorEntryA doorEntry518 = DoorEntryA(null, EventFlag.none, 0xC2E9, 0x03D0, 0x01);
-immutable DoorEntryA doorEntry519 = DoorEntryA(null, EventFlag.none, 0xC2C9, 0x03F4, 0x01);
-immutable DoorEntryA doorEntry520 = DoorEntryA(null, EventFlag.none, 0x02E8, 0x03CD, 0x01);
-immutable DoorEntryA doorEntry521 = DoorEntryA(null, EventFlag.sarudungeonBOK | eventFlagUnset, 0xC2D9, 0x031C, 0x01);
-immutable DoorEntryA doorEntry522 = DoorEntryA(null, EventFlag.sarudungeonAOK | eventFlagUnset, 0xC339, 0x031C, 0x01);
-immutable DoorEntryA doorEntry523 = DoorEntryA(null, EventFlag.none, 0x8299, 0x0383, 0x01);
-immutable DoorEntryA doorEntry524 = DoorEntryA(null, EventFlag.sarudungeonDOK | eventFlagUnset, 0xC2F9, 0x031C, 0x01);
-immutable DoorEntryA doorEntry525 = DoorEntryA(null, EventFlag.sarudungeonCOK | eventFlagUnset, 0xC319, 0x031C, 0x01);
-immutable DoorEntryA doorEntry526 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x0303, 0x01);
-immutable DoorEntryA doorEntry527 = DoorEntryA(null, EventFlag.none, 0x82F9, 0x0303, 0x01);
-immutable DoorEntryA doorEntry528 = DoorEntryA(null, EventFlag.sarudungeonHOK | eventFlagUnset, 0xC325, 0x0308, 0x01);
-immutable DoorEntryA doorEntry529 = DoorEntryA(null, EventFlag.sarudungeonGOK | eventFlagUnset, 0xC349, 0x0310, 0x01);
-immutable DoorEntryA doorEntry530 = DoorEntryA(null, EventFlag.none, 0x831B, 0x0303, 0x01);
-immutable DoorEntryA doorEntry531 = DoorEntryA(null, EventFlag.none, 0x0308, 0x0305, 0x01);
-immutable DoorEntryA doorEntry532 = DoorEntryA(null, EventFlag.none, 0x0308, 0x0309, 0x01);
-immutable DoorEntryA doorEntry533 = DoorEntryA(null, EventFlag.sarudungeonFOK | eventFlagUnset, 0xC2F9, 0x035C, 0x01);
-immutable DoorEntryA doorEntry534 = DoorEntryA(null, EventFlag.sarudungeonEOK | eventFlagUnset, 0xC359, 0x031C, 0x01);
-immutable DoorEntryA doorEntry535 = DoorEntryA(null, EventFlag.none, 0x8339, 0x0303, 0x01);
-immutable DoorEntryA doorEntry536 = DoorEntryA(null, EventFlag.sarudungeonLOK | eventFlagUnset, 0xC2E9, 0x034C, 0x01);
-immutable DoorEntryA doorEntry537 = DoorEntryA(null, EventFlag.sarudungeonKOK | eventFlagUnset, 0xC329, 0x035C, 0x01);
-immutable DoorEntryA doorEntry538 = DoorEntryA(null, EventFlag.none, 0x8359, 0x0303, 0x01);
-immutable DoorEntryA doorEntry539 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x0345, 0x01);
-immutable DoorEntryA doorEntry540 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x0355, 0x01);
-immutable DoorEntryA doorEntry541 = DoorEntryA(null, EventFlag.sarudungeonJOK | eventFlagUnset, 0xC309, 0x03CC, 0x01);
-immutable DoorEntryA doorEntry542 = DoorEntryA(null, EventFlag.sarudungeonIOK | eventFlagUnset, 0xC319, 0x037C, 0x01);
-immutable DoorEntryA doorEntry543 = DoorEntryA(null, EventFlag.none, 0x82F9, 0x0343, 0x01);
-immutable DoorEntryA doorEntry544 = DoorEntryA(null, EventFlag.none, 0x02E8, 0x03C5, 0x01);
-immutable DoorEntryA doorEntry545 = DoorEntryA(null, EventFlag.dsrtSaruTacoDisappear | eventFlagUnset, 0xC351, 0x03B4, 0x01);
-immutable DoorEntryA doorEntry546 = DoorEntryA(null, EventFlag.none, 0x8319, 0x0343, 0x01);
-immutable DoorEntryA doorEntry547 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x03E5, 0x01);
-immutable DoorEntryA doorEntry548 = DoorEntryA("TEXT_DOOR_548", EventFlag.none, 0xC4E6, 0x02CD, 0x01);
-immutable DoorEntryA doorEntry549 = DoorEntryA("MSG_WARP_STEP_FOUR", EventFlag.none, 0x827E, 0x0118, 0x01);
-immutable DoorEntryA doorEntry550 = DoorEntryA(null, EventFlag.none, 0xC4E6, 0x020D, 0x01);
-immutable DoorEntryA doorEntry551 = DoorEntryA(null, EventFlag.none, 0x84E6, 0x0232, 0x01);
-immutable DoorEntryA doorEntry552 = DoorEntryA(null, EventFlag.none, 0xC30D, 0x02DC, 0x01);
-immutable DoorEntryA doorEntry553 = DoorEntryA(null, EventFlag.none, 0x8339, 0x02A7, 0x04);
-immutable DoorEntryA doorEntry554 = DoorEntryA("TEXT_DOOR_554", EventFlag.none, 0xC35D, 0x02FC, 0x04);
-immutable DoorEntryA doorEntry555 = DoorEntryA("TEXT_DOOR_555", EventFlag.none, 0xC2A5, 0x02C8, 0x01);
-immutable DoorEntryA doorEntry556 = DoorEntryA("TEXT_DOOR_556", EventFlag.fourTonzuraFree | eventFlagUnset, 0xC357, 0x0296, 0x06);
-immutable DoorEntryA doorEntry557 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0x0184, 0x01BB, 0x01);
-immutable DoorEntryA doorEntry558 = DoorEntryA(null, EventFlag.none, 0xC2B5, 0x027C, 0x04);
-immutable DoorEntryA doorEntry559 = DoorEntryA(null, EventFlag.none, 0xC2FD, 0x02FC, 0x01);
-immutable DoorEntryA doorEntry560 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x0238, 0x06);
-immutable DoorEntryA doorEntry561 = DoorEntryA("TEXT_DOOR_561", EventFlag.none, 0xC1AC, 0x0317, 0x01);
-immutable DoorEntryA doorEntry562 = DoorEntryA(null, EventFlag.none, 0x8209, 0x02A3, 0x04);
-immutable DoorEntryA doorEntry563 = DoorEntryA(null, EventFlag.none, 0x0308, 0x02B2, 0x07);
-immutable DoorEntryA doorEntry564 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02C9, 0x07);
-immutable DoorEntryA doorEntry565 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02D1, 0x07);
-immutable DoorEntryA doorEntry566 = DoorEntryA("TEXT_DOOR_566", EventFlag.fourElev, 0x82A5, 0x02AB, 0x0D);
-immutable DoorEntryA doorEntry567 = DoorEntryA(null, EventFlag.none, 0xC281, 0x02C0, 0x07);
-immutable DoorEntryA doorEntry568 = DoorEntryA(null, EventFlag.none, 0xC2C1, 0x02C8, 0x07);
-immutable DoorEntryA doorEntry569 = DoorEntryA(null, EventFlag.none, 0x0327, 0x02ED, 0x07);
-immutable DoorEntryA doorEntry570 = DoorEntryA(null, EventFlag.none, 0xC28D, 0x0298, 0x07);
-immutable DoorEntryA doorEntry571 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02A9, 0x07);
-immutable DoorEntryA doorEntry572 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02B1, 0x07);
-immutable DoorEntryA doorEntry573 = DoorEntryA("TEXT_DOOR_573", EventFlag.none, 0x830C, 0x0224, 0x07);
-immutable DoorEntryA doorEntry574 = DoorEntryA(null, EventFlag.none, 0xC28D, 0x02F8, 0x07);
-immutable DoorEntryA doorEntry575 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x0298, 0x07);
-immutable DoorEntryA doorEntry576 = DoorEntryA(null, EventFlag.none, 0x0268, 0x02ED, 0x07);
-immutable DoorEntryA doorEntry577 = DoorEntryA("TEXT_DOOR_577", EventFlag.fourElev, 0x832D, 0x02E3, 0x0D);
-immutable DoorEntryA doorEntry578 = DoorEntryA(null, EventFlag.none, 0x026B, 0x02AE, 0x07);
-immutable DoorEntryA doorEntry579 = DoorEntryA(null, EventFlag.none, 0x0288, 0x0290, 0x07);
-immutable DoorEntryA doorEntry580 = DoorEntryA(null, EventFlag.none, 0xC32B, 0x029A, 0x07);
-immutable DoorEntryA doorEntry581 = DoorEntryA(null, EventFlag.none, 0xC24F, 0x01AF, 0x0C);
-immutable DoorEntryA doorEntry582 = DoorEntryA(null, EventFlag.none, 0x82ED, 0x0283, 0x0F);
-immutable DoorEntryA doorEntry583 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x02F8, 0x07);
-immutable DoorEntryA doorEntry584 = DoorEntryA(null, EventFlag.none, 0xC2CD, 0x0298, 0x07);
-immutable DoorEntryA doorEntry585 = DoorEntryA(null, EventFlag.none, 0x828D, 0x0283, 0x07);
-immutable DoorEntryA doorEntry586 = DoorEntryA("TEXT_DOOR_586", EventFlag.fourElev, 0xC32D, 0x02F8, 0x0D);
-immutable DoorEntryA doorEntry587 = DoorEntryA("TEXT_DOOR_587", EventFlag.none, 0x0278, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry588 = DoorEntryA("TEXT_DOOR_588", EventFlag.none, 0x0203, 0x01B0, 0x01);
-immutable DoorEntryA doorEntry589 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x028A, 0x07);
-immutable DoorEntryA doorEntry590 = DoorEntryA(null, EventFlag.none, 0x8341, 0x0226, 0x07);
-immutable DoorEntryA doorEntry591 = DoorEntryA(null, EventFlag.none, 0xC2CD, 0x02F8, 0x07);
-immutable DoorEntryA doorEntry592 = DoorEntryA(null, EventFlag.none, 0xC2ED, 0x02F8, 0x07);
-immutable DoorEntryA doorEntry593 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x0290, 0x07);
-immutable DoorEntryA doorEntry594 = DoorEntryA("TEXT_DOOR_594", EventFlag.fourElev, 0xC30D, 0x02F8, 0x0D);
-immutable DoorEntryA doorEntry595 = DoorEntryA(null, EventFlag.none, 0x826D, 0x02E3, 0x07);
-immutable DoorEntryA doorEntry596 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x02F8, 0x07);
-immutable DoorEntryA doorEntry597 = DoorEntryA(null, EventFlag.none, 0x026B, 0x02C1, 0x07);
-immutable DoorEntryA doorEntry598 = DoorEntryA(null, EventFlag.none, 0x826D, 0x0283, 0x07);
-immutable DoorEntryA doorEntry599 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x0298, 0x07);
-immutable DoorEntryA doorEntry600 = DoorEntryA(null, EventFlag.none, 0x830D, 0x02E3, 0x07);
-immutable DoorEntryA doorEntry601 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x0290, 0x07);
-immutable DoorEntryA doorEntry602 = DoorEntryA(null, EventFlag.none, 0x02F8, 0x02F1, 0x07);
-immutable DoorEntryA doorEntry603 = DoorEntryA(null, EventFlag.none, 0x82B1, 0x0223, 0x0F);
-immutable DoorEntryA doorEntry604 = DoorEntryA("TEXT_DOOR_604", EventFlag.fourOK | eventFlagUnset, 0x82ED, 0x02E3, 0x07);
-immutable DoorEntryA doorEntry605 = DoorEntryA(null, EventFlag.fourStairwayAppear | eventFlagUnset, 0xC209, 0x02BC, 0x0F);
-immutable DoorEntryA doorEntry606 = DoorEntryA(null, EventFlag.fourYudanRoboDisappear | eventFlagUnset, 0x02EC, 0x02C2, 0x07);
-immutable DoorEntryA doorEntry607 = DoorEntryA(null, EventFlag.none, 0x82CD, 0x0283, 0x07);
-immutable DoorEntryA doorEntry608 = DoorEntryA(null, EventFlag.none, 0xC2D9, 0x02E8, 0x07);
-immutable DoorEntryA doorEntry609 = DoorEntryA(null, EventFlag.none, 0xC31D, 0x02CC, 0x01);
-immutable DoorEntryA doorEntry610 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0xC24B, 0x0142, 0x01);
-immutable DoorEntryA doorEntry611 = DoorEntryA(null, EventFlag.none, 0xC27D, 0x02FC, 0x07);
-immutable DoorEntryA doorEntry612 = DoorEntryA(null, EventFlag.none, 0xC27D, 0x0238, 0x07);
-immutable DoorEntryA doorEntry613 = DoorEntryA(null, EventFlag.none, 0x832D, 0x02A3, 0x0F);
-immutable DoorEntryA doorEntry614 = DoorEntryA(null, EventFlag.none, 0xC33D, 0x02D8, 0x07);
-immutable DoorEntryA doorEntry615 = DoorEntryA(null, EventFlag.none, 0xC35D, 0x02D8, 0x07);
-immutable DoorEntryA doorEntry616 = DoorEntryA(null, EventFlag.none, 0xC1C9, 0x0173, 0x01);
-immutable DoorEntryA doorEntry617 = DoorEntryA(null, EventFlag.none, 0x82FD, 0x02E3, 0x01);
-immutable DoorEntryA doorEntry618 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x02DC, 0x07);
-immutable DoorEntryA doorEntry619 = DoorEntryA("TEXT_DOOR_587", EventFlag.none, 0x02D8, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry620 = DoorEntryA(null, EventFlag.none, 0x032C, 0x02C5, 0x07);
-immutable DoorEntryA doorEntry621 = DoorEntryA(null, EventFlag.none, 0x829D, 0x02E3, 0x07);
-immutable DoorEntryA doorEntry622 = DoorEntryA(null, EventFlag.none, 0x830D, 0x02A3, 0x0F);
-immutable DoorEntryA doorEntry623 = DoorEntryA(null, EventFlag.none, 0xC31D, 0x02FC, 0x07);
-immutable DoorEntryA doorEntry624 = DoorEntryA(null, EventFlag.none, 0xC34D, 0x02DC, 0x07);
-immutable DoorEntryA doorEntry625 = DoorEntryA(null, EventFlag.none, 0x0318, 0x02B1, 0x07);
-immutable DoorEntryA doorEntry626 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x02CC, 0x07);
-immutable DoorEntryA doorEntry627 = DoorEntryA("TEXT_DOOR_587", EventFlag.none, 0x0298, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry628 = DoorEntryA("TEXT_DOOR_628", EventFlag.fourMaidThanks | eventFlagUnset, 0x02B8, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry629 = DoorEntryA(null, EventFlag.none, 0xC2BD, 0x02FC, 0x07);
-immutable DoorEntryA doorEntry630 = DoorEntryA("TEXT_DOOR_630", EventFlag.none, 0xC218, 0x01C2, 0x0C);
-immutable DoorEntryA doorEntry631 = DoorEntryA(null, EventFlag.none, 0x032C, 0x02D1, 0x07);
-immutable DoorEntryA doorEntry632 = DoorEntryA(null, EventFlag.none, 0x0318, 0x02BD, 0x07);
-immutable DoorEntryA doorEntry633 = DoorEntryA("TEXT_DOOR_633", EventFlag.unknown0340 | eventFlagUnset, 0x035E, 0x02BE, 0x00);
-immutable DoorEntryA doorEntry634 = DoorEntryA(null, EventFlag.fourKomoritaAppear | eventFlagUnset, 0xC35D, 0x02BC, 0x07);
-immutable DoorEntryA doorEntry635 = DoorEntryA(null, EventFlag.none, 0x835D, 0x02E2, 0x01);
-immutable DoorEntryA doorEntry636 = DoorEntryA("TEXT_DOOR_636", EventFlag.none, 0xC2DD, 0x026C, 0x07);
-immutable DoorEntryA doorEntry637 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x023C, 0x07);
-immutable DoorEntryA doorEntry638 = DoorEntryA("TEXT_DOOR_638", EventFlag.none, 0x823E, 0x0179, 0x0A);
-immutable DoorEntryA doorEntry639 = DoorEntryA(null, EventFlag.fourTopoloBoyBAppear | eventFlagUnset, 0xC34D, 0x02BC, 0x07);
-immutable DoorEntryA doorEntry640 = DoorEntryA("TEXT_DOOR_640", EventFlag.none, 0x02A8, 0x0259, 0x07);
-immutable DoorEntryA doorEntry641 = DoorEntryA("TEXT_DOOR_641", EventFlag.none, 0xC1E2, 0x0142, 0x0A);
-immutable DoorEntryA doorEntry642 = DoorEntryA("TEXT_DOOR_642", EventFlag.none, 0x82DD, 0x0233, 0x07);
-immutable DoorEntryA doorEntry643 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x0044, 0x0283, 0x01);
-immutable DoorEntryA doorEntry644 = DoorEntryA(null, EventFlag.none, 0x8299, 0x0227, 0x07);
-immutable DoorEntryA doorEntry645 = DoorEntryA(null, EventFlag.none, 0x82AB, 0x024D, 0x07);
-immutable DoorEntryA doorEntry646 = DoorEntryA(null, EventFlag.none, 0xC297, 0x027B, 0x01);
-immutable DoorEntryA doorEntry647 = DoorEntryA("TEXT_DOOR_647", EventFlag.none, 0x0217, 0x0192, 0x0A);
-immutable DoorEntryA doorEntry648 = DoorEntryA(null, EventFlag.none, 0x01D9, 0x01B0, 0x0A);
-immutable DoorEntryA doorEntry649 = DoorEntryA(null, EventFlag.none, 0x82F1, 0x02AB, 0x0F);
-immutable DoorEntryA doorEntry650 = DoorEntryA(null, EventFlag.none, 0xC0B2, 0x001D, 0x01);
-immutable DoorEntryA doorEntry651 = DoorEntryA(null, EventFlag.none, 0xC0B6, 0x001D, 0x01);
-immutable DoorEntryA doorEntry652 = DoorEntryA(null, EventFlag.none, 0x435A, 0x02AD, 0x01);
-immutable DoorEntryA doorEntry653 = DoorEntryA(null, EventFlag.none, 0xC1BC, 0x02D7, 0x07);
-immutable DoorEntryA doorEntry654 = DoorEntryA(null, EventFlag.none, 0xC22C, 0x0217, 0x07);
-immutable DoorEntryA doorEntry655 = DoorEntryA(null, EventFlag.none, 0x81B6, 0x0362, 0x01);
-immutable DoorEntryA doorEntry656 = DoorEntryA(null, EventFlag.none, 0x81BA, 0x0362, 0x01);
-immutable DoorEntryA doorEntry657 = DoorEntryA(null, EventFlag.none, 0x8056, 0x0262, 0x01);
-immutable DoorEntryA doorEntry658 = DoorEntryA(null, EventFlag.none, 0x805A, 0x0262, 0x01);
-immutable DoorEntryA doorEntry659 = DoorEntryA(null, EventFlag.none, 0x0054, 0x0299, 0x07);
-immutable DoorEntryA doorEntry660 = DoorEntryA(null, EventFlag.none, 0x004C, 0x02BD, 0x07);
-immutable DoorEntryA doorEntry661 = DoorEntryA(null, EventFlag.none, 0xC056, 0x02FD, 0x01);
-immutable DoorEntryA doorEntry662 = DoorEntryA(null, EventFlag.none, 0xC05A, 0x02FD, 0x01);
-immutable DoorEntryA doorEntry663 = DoorEntryA(null, EventFlag.none, 0xC24C, 0x0217, 0x07);
-immutable DoorEntryA doorEntry664 = DoorEntryA(null, EventFlag.none, 0x8196, 0x0182, 0x01);
-immutable DoorEntryA doorEntry665 = DoorEntryA(null, EventFlag.none, 0x819A, 0x0182, 0x01);
-immutable DoorEntryA doorEntry666 = DoorEntryA(null, EventFlag.none, 0x01AC, 0x039D, 0x07);
-immutable DoorEntryA doorEntry667 = DoorEntryA(null, EventFlag.none, 0xC1B6, 0x03FD, 0x01);
-immutable DoorEntryA doorEntry668 = DoorEntryA(null, EventFlag.none, 0xC1BA, 0x03FD, 0x01);
-immutable DoorEntryA doorEntry669 = DoorEntryA("TEXT_DOOR_669", EventFlag.none, 0x4200, 0x01ED, 0x01);
-immutable DoorEntryA doorEntry670 = DoorEntryA(null, EventFlag.none, 0xC26C, 0x021B, 0x07);
-immutable DoorEntryA doorEntry671 = DoorEntryA(null, EventFlag.none, 0x0194, 0x01A9, 0x07);
-immutable DoorEntryC doorEntry672 = DoorEntryC("MSG_READ_FOUR_SIGN1");
-immutable DoorEntryC doorEntry673 = DoorEntryC("MSG_READ_FOUR_SIGN2");
-immutable DoorEntryC doorEntry674 = DoorEntryC("MSG_READ_FOUR_SIGN3");
-immutable DoorEntryA doorEntry675 = DoorEntryA("TEXT_DOOR_675", EventFlag.unknown0340 | eventFlagUnset, 0x02DB, 0x02B9, 0x00);
-immutable DoorEntryC doorEntry676 = DoorEntryC("MSG_READ_FOUR_HOSP_FRONT_SGN1");
-immutable DoorEntryC doorEntry677 = DoorEntryC("MSG_READ_NO_DOCUMENT");
-immutable DoorEntryC doorEntry678 = DoorEntryC("MSG_READ_FOUR_HOSP_PSSG_SGN2");
-immutable DoorEntryC doorEntry679 = DoorEntryC("MSG_READ_FOUR_MUSE_EXHI_SGN1");
-immutable DoorEntryC doorEntry680 = DoorEntryC("MSG_SEARCH_FOUR_BRGS_BAR_SDOR");
-immutable DoorEntryC doorEntry681 = DoorEntryC("MSG_LIBRARY_PEOPLE_D");
-immutable DoorEntryA doorEntry682 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x035C, 0x04);
-immutable DoorEntryA doorEntry683 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC478, 0x03AB, 0x04);
-immutable DoorEntryA doorEntry684 = DoorEntryA(null, EventFlag.none, 0xC47D, 0x035C, 0x04);
-immutable DoorEntryA doorEntry685 = DoorEntryA("TEXT_DOOR_685", EventFlag.sumsStoicReserved | eventFlagUnset, 0xC47A, 0x03D9, 0x01);
-immutable DoorEntryA doorEntry686 = DoorEntryA("TEXT_DOOR_686", EventFlag.none, 0xC4AD, 0x037C, 0x04);
-immutable DoorEntryA doorEntry687 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x035C, 0x04);
-immutable DoorEntryA doorEntry688 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x03D4, 0x04);
-immutable DoorEntryA doorEntry689 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC4AD, 0x035C, 0x04);
-immutable DoorEntryA doorEntry690 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC4A9, 0x0390, 0x04);
-immutable DoorEntryA doorEntry691 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC4A9, 0x03D0, 0x04);
-immutable DoorEntryA doorEntry692 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC4CD, 0x0354, 0x04);
-immutable DoorEntryA doorEntry693 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC4CD, 0x0394, 0x04);
-immutable DoorEntryA doorEntry694 = DoorEntryA(null, EventFlag.none, 0x04BC, 0x03C9, 0x07);
-immutable DoorEntryA doorEntry695 = DoorEntryA(null, EventFlag.none, 0x04BC, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry696 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x0398, 0x07);
-immutable DoorEntryA doorEntry697 = DoorEntryA(null, EventFlag.none, 0x0157, 0x032D, 0x0A);
-immutable DoorEntryA doorEntry698 = DoorEntryA(null, EventFlag.none, 0x84BD, 0x03C3, 0x0F);
-immutable DoorEntryA doorEntry699 = DoorEntryA(null, EventFlag.none, 0x04B8, 0x0352, 0x07);
-immutable DoorEntryA doorEntry700 = DoorEntryA(null, EventFlag.none, 0xC46D, 0x0354, 0x07);
-immutable DoorEntryA doorEntry701 = DoorEntryA(null, EventFlag.none, 0xC46D, 0x03D4, 0x07);
-immutable DoorEntryA doorEntry702 = DoorEntryA(null, EventFlag.none, 0x84BD, 0x0343, 0x0F);
-immutable DoorEntryA doorEntry703 = DoorEntryA(null, EventFlag.none, 0x84AD, 0x03A3, 0x0F);
-immutable DoorEntryA doorEntry704 = DoorEntryA("TEXT_DOOR_704", EventFlag.none, 0x84AD, 0x0362, 0x01);
-immutable DoorEntryA doorEntry705 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x039C, 0x07);
-immutable DoorEntryA doorEntry706 = DoorEntryA(null, EventFlag.none, 0xC470, 0x03F3, 0x0F);
-immutable DoorEntryA doorEntry707 = DoorEntryA(null, EventFlag.none, 0xC478, 0x03FB, 0x0F);
-immutable DoorEntryA doorEntry708 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x03DC, 0x07);
-immutable DoorEntryA doorEntry709 = DoorEntryA(null, EventFlag.none, 0x849D, 0x0343, 0x0F);
-immutable DoorEntryA doorEntry710 = DoorEntryA(null, EventFlag.none, 0x0154, 0x0297, 0x0A);
-immutable DoorEntryA doorEntry711 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0154, 0x0268, 0x0A);
-immutable DoorEntryA doorEntry712 = DoorEntryA(null, EventFlag.none, 0x0155, 0x02C2, 0x0F);
-immutable DoorEntryA doorEntry713 = DoorEntryA(null, EventFlag.none, 0x8449, 0x038B, 0x0F);
-immutable DoorEntryA doorEntry714 = DoorEntryA(null, EventFlag.none, 0x845C, 0x0384, 0x0F);
-immutable DoorEntryA doorEntry715 = DoorEntryA(null, EventFlag.none, 0xC45C, 0x03BB, 0x0F);
-immutable DoorEntryA doorEntry716 = DoorEntryA("TEXT_DOOR_716", EventFlag.none, 0x0155, 0x0237, 0x0A);
-immutable DoorEntryA doorEntry717 = DoorEntryA(null, EventFlag.none, 0x0448, 0x0398, 0x07);
-immutable DoorEntryA doorEntry718 = DoorEntryA(null, EventFlag.none, 0x0448, 0x03A8, 0x07);
-immutable DoorEntryA doorEntry719 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0362, 0x0A);
-immutable DoorEntryA doorEntry720 = DoorEntryA(null, EventFlag.none, 0xC457, 0x0379, 0x01);
-immutable DoorEntryA doorEntry721 = DoorEntryA("TEXT_DOOR_647", EventFlag.none, 0x0152, 0x02EE, 0x0A);
-immutable DoorEntryA doorEntry722 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0376, 0x0A);
-immutable DoorEntryA doorEntry723 = DoorEntryA(null, EventFlag.none, 0x84AD, 0x03E3, 0x07);
-immutable DoorEntryA doorEntry724 = DoorEntryA(null, EventFlag.none, 0x8455, 0x0347, 0x0F);
-immutable DoorEntryA doorEntry725 = DoorEntryA("TEXT_DOOR_725", EventFlag.none, 0x0163, 0x0382, 0x0A);
-immutable DoorEntryA doorEntry726 = DoorEntryA(null, EventFlag.none, 0x04A8, 0x03AD, 0x07);
-immutable DoorEntryA doorEntry727 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0396, 0x0A);
-immutable DoorEntryA doorEntry728 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x03A2, 0x0A);
-immutable DoorEntryA doorEntry729 = DoorEntryA(null, EventFlag.none, 0x015B, 0x036A, 0x0A);
-immutable DoorEntryC doorEntry730 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN1");
-immutable DoorEntryC doorEntry731 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN2");
-immutable DoorEntryC doorEntry732 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN4");
-immutable DoorEntryC doorEntry733 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN5");
-immutable DoorEntryC doorEntry734 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN3");
-immutable DoorEntryC doorEntry735 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI1_SGN6");
-immutable DoorEntryC doorEntry736 = DoorEntryC("MSG_READ_SUMS_HIER_EXHI2_SGN1");
-immutable DoorEntryC doorEntry737 = DoorEntryC("MSG_READ_SUMS_HOSP_PSSG_SGN1");
-immutable DoorEntryA doorEntry738 = DoorEntryA("TEXT_DOOR_738", EventFlag.unknown0340 | eventFlagUnset, 0x015B, 0x038B, 0x00);
-immutable DoorEntryA doorEntry739 = DoorEntryA("TEXT_DOOR_739", EventFlag.unknown0340 | eventFlagUnset, 0x015B, 0x03AB, 0x00);
-immutable DoorEntryC doorEntry740 = DoorEntryC("MSG_READ_SUMMERS_SIGN3");
-immutable DoorEntryC doorEntry741 = DoorEntryC("MSG_READ_SUMMERS_SIGN4");
-immutable DoorEntryC doorEntry742 = DoorEntryC("MSG_READ_SUMMERS_SIGN5");
-immutable DoorEntryA doorEntry743 = DoorEntryA(null, EventFlag.none, 0xC411, 0x03F8, 0x01);
-immutable DoorEntryA doorEntry744 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3C9, 0x0370, 0x01);
-immutable DoorEntryA doorEntry745 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3F9, 0x03B4, 0x01);
-immutable DoorEntryA doorEntry746 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3E9, 0x0370, 0x01);
-immutable DoorEntryA doorEntry747 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3D9, 0x03B0, 0x01);
-immutable DoorEntryA doorEntry748 = DoorEntryA("TEXT_DOOR_004", EventFlag.ramaRabbitDisappear | eventFlagUnset, 0xC396, 0x021C, 0x01);
-immutable DoorEntryA doorEntry749 = DoorEntryA("TEXT_DOOR_001", EventFlag.none, 0x82B1, 0x0103, 0x01);
-immutable DoorEntryA doorEntry750 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x01D4, 0x0220, 0x01);
-immutable DoorEntryA doorEntry751 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x01E4, 0x0250, 0x01);
-immutable DoorEntryA doorEntry752 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x01F4, 0x0228, 0x01);
-immutable DoorEntryA doorEntry753 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x01EC, 0x0218, 0x01);
-immutable DoorEntryA doorEntry754 = DoorEntryA(null, EventFlag.none, 0x8411, 0x03C7, 0x01);
-immutable DoorEntryA doorEntry755 = DoorEntryA(null, EventFlag.none, 0xC411, 0x0368, 0x01);
-immutable DoorEntryA doorEntry756 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x01BA, 0x0239, 0x01);
-immutable DoorEntryA doorEntry757 = DoorEntryA(null, EventFlag.none, 0x023A, 0x024E, 0x05);
-immutable DoorEntryA doorEntry758 = DoorEntryA(null, EventFlag.none, 0xC436, 0x023C, 0x01);
-immutable DoorEntryA doorEntry759 = DoorEntryA(null, EventFlag.none, 0x020A, 0x021D, 0x01);
-immutable DoorEntryA doorEntry760 = DoorEntryA(null, EventFlag.none, 0x0437, 0x0221, 0x05);
-immutable DoorEntryA doorEntry761 = DoorEntryA(null, EventFlag.none, 0x0437, 0x0234, 0x05);
-immutable DoorEntryA doorEntry762 = DoorEntryA(null, EventFlag.none, 0x0397, 0x01F1, 0x05);
-immutable DoorEntryA doorEntry763 = DoorEntryA(null, EventFlag.none, 0x02B7, 0x012E, 0x05);
-immutable DoorEntryA doorEntry764 = DoorEntryA(null, EventFlag.none, 0x8399, 0x01E7, 0x01);
-immutable DoorEntryA doorEntry765 = DoorEntryA("TEXT_DOOR_765", EventFlag.winPinkBoss | eventFlagUnset, 0x0306, 0x01C5, 0x01);
-immutable DoorEntryA doorEntry766 = DoorEntryA(null, EventFlag.none, 0x047A, 0x0216, 0x05);
-immutable DoorEntryA doorEntry767 = DoorEntryA(null, EventFlag.none, 0xC42D, 0x03E8, 0x01);
-immutable DoorEntryA doorEntry768 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3D9, 0x0334, 0x01);
-immutable DoorEntryA doorEntry769 = DoorEntryA(null, EventFlag.none, 0xC3B9, 0x0334, 0x01);
-immutable DoorEntryA doorEntry770 = DoorEntryA(null, EventFlag.none, 0xC36B, 0x03E6, 0x01);
-immutable DoorEntryA doorEntry771 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3F9, 0x0334, 0x01);
-immutable DoorEntryA doorEntry772 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x8139, 0x02C7, 0x01);
-immutable DoorEntryA doorEntry773 = DoorEntryA("TEXT_DOOR_773", EventFlag.dungeonMan, 0xC1A9, 0x033C, 0x01);
-immutable DoorEntryC doorEntry774 = DoorEntryC("MSG_SKRB_SPHINX");
-immutable DoorEntryB doorEntry775 = DoorEntryB(EventFlag.tlptSkrb | eventFlagUnset, "MSG_SKRB_SWITCH_01");
-immutable DoorEntryB doorEntry776 = DoorEntryB(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_03");
-immutable DoorEntryB doorEntry777 = DoorEntryB(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_05");
-immutable DoorEntryB doorEntry778 = DoorEntryB(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_02");
-immutable DoorEntryB doorEntry779 = DoorEntryB(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_04");
-immutable DoorEntryA doorEntry780 = DoorEntryA("TEXT_DOOR_780", EventFlag.none, 0x0205, 0x0099, 0x01);
-immutable DoorEntryA doorEntry781 = DoorEntryA(null, EventFlag.none, 0x0200, 0x00CC, 0x01);
-immutable DoorEntryA doorEntry782 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x01F8, 0x00B8, 0x01);
-immutable DoorEntryA doorEntry783 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x0204, 0x00AC, 0x01);
-immutable DoorEntryA doorEntry784 = DoorEntryA(null, EventFlag.none, 0x01F8, 0x00A4, 0x01);
-immutable DoorEntryA doorEntry785 = DoorEntryA(null, EventFlag.none, 0x0263, 0x00DF, 0x01);
-immutable DoorEntryA doorEntry786 = DoorEntryA(null, EventFlag.none, 0x80BD, 0x0023, 0x01);
-immutable DoorEntryA doorEntry787 = DoorEntryA(null, EventFlag.none, 0xC139, 0x02D0, 0x01);
-immutable DoorEntryA doorEntry788 = DoorEntryA(null, EventFlag.none, 0x8239, 0x0207, 0x01);
-immutable DoorEntryA doorEntry789 = DoorEntryA(null, EventFlag.none, 0xC0A9, 0x0044, 0x01);
-immutable DoorEntryA doorEntry790 = DoorEntryA(null, EventFlag.none, 0x831D, 0x0167, 0x01);
-immutable DoorEntryA doorEntry791 = DoorEntryA(null, EventFlag.none, 0x81D1, 0x0063, 0x01);
-immutable DoorEntryA doorEntry792 = DoorEntryA(null, EventFlag.none, 0xC239, 0x0214, 0x01);
-immutable DoorEntryA doorEntry793 = DoorEntryA(null, EventFlag.none, 0xC19D, 0x0208, 0x01);
-immutable DoorEntryA doorEntry794 = DoorEntryA(null, EventFlag.none, 0x84B9, 0x0223, 0x01);
-immutable DoorEntryA doorEntry795 = DoorEntryA(null, EventFlag.skrbPyramidOK | eventFlagUnset, 0x02BE, 0x0206, 0x05);
-immutable DoorEntryA doorEntry796 = DoorEntryA(null, EventFlag.none, 0xC2E9, 0x01B4, 0x01);
-immutable DoorEntryA doorEntry797 = DoorEntryA(null, EventFlag.none, 0xC259, 0x020C, 0x01);
-immutable DoorEntryA doorEntry798 = DoorEntryA(null, EventFlag.none, 0x81CD, 0x0067, 0x01);
-immutable DoorEntryA doorEntry799 = DoorEntryA(null, EventFlag.none, 0x8189, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry800 = DoorEntryA(null, EventFlag.none, 0xC1CD, 0x0078, 0x01);
-immutable DoorEntryA doorEntry801 = DoorEntryA(null, EventFlag.none, 0x8279, 0x0207, 0x01);
-immutable DoorEntryA doorEntry802 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x024C, 0x01);
-immutable DoorEntryA doorEntry803 = DoorEntryA(null, EventFlag.none, 0x8429, 0x01C7, 0x01);
-immutable DoorEntryA doorEntry804 = DoorEntryA(null, EventFlag.none, 0xC279, 0x0214, 0x01);
-immutable DoorEntryA doorEntry805 = DoorEntryA(null, EventFlag.fmonPyraBossDisappear | eventFlagUnset, 0x8299, 0x0207, 0x01);
-immutable DoorEntryA doorEntry806 = DoorEntryA(null, EventFlag.none, 0xC45D, 0x0218, 0x01);
-immutable DoorEntryA doorEntry807 = DoorEntryA("TEXT_DOOR_807", EventFlag.itemTakanome | eventFlagUnset, 0x81BD, 0x0283, 0x01);
-immutable DoorEntryA doorEntry808 = DoorEntryA(null, EventFlag.none, 0xC2B9, 0x0214, 0x01);
-immutable DoorEntryA doorEntry809 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x0203, 0x01);
-immutable DoorEntryA doorEntry810 = DoorEntryA(null, EventFlag.none, 0xC1A9, 0x02AC, 0x01);
-immutable DoorEntryA doorEntry811 = DoorEntryA(null, EventFlag.none, 0x02F9, 0x020A, 0x05);
-immutable DoorEntryA doorEntry812 = DoorEntryA(null, EventFlag.none, 0x81BD, 0x02E3, 0x01);
-immutable DoorEntryA doorEntry813 = DoorEntryA(null, EventFlag.none, 0xC2F9, 0x0210, 0x01);
-immutable DoorEntryA doorEntry814 = DoorEntryA("TEXT_DOOR_814", EventFlag.none, 0x02AC, 0x00D7, 0x01);
+immutable DoorObject doorEntry0 = DoorObject("TEXT_DOOR_000", EventFlag.onetMizunoDoorOpen | eventFlagUnset, 0xC09A, 0x03B1, 0x04);
+immutable DoorObject doorEntry1 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0x010B, 0x0087, 0x01);
+immutable DoorObject doorEntry2 = DoorObject(null, EventFlag.none, 0x03EF, 0x0119, 0x01);
+immutable DoorObject doorEntry3 = DoorObject(null, EventFlag.none, 0x83FC, 0x00F3, 0x01);
+immutable DoorObject doorEntry4 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC434, 0x0158, 0x01);
+immutable DoorObject doorEntry5 = DoorObject(null, EventFlag.none, 0x80B9, 0x0367, 0x01);
+immutable DoorObject doorEntry6 = DoorObject("MSG_ONET_TABIGOYA", EventFlag.openTabigoya | eventFlagUnset, 0xC0BA, 0x0375, 0x04);
+immutable DoorObject doorEntry7 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0A9, 0x03F0, 0x01);
+immutable DoorObject doorEntry8 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0BD, 0x03DC, 0x06);
+immutable DoorObject doorEntry9 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC03D, 0x03BC, 0x06);
+immutable DoorObject doorEntry10 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC02D, 0x03FC, 0x04);
+immutable DoorObject doorEntry11 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC04D, 0x03B8, 0x04);
+immutable DoorObject doorEntry12 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC06A, 0x03B1, 0x04);
+immutable DoorObject doorEntry13 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC04D, 0x03EC, 0x01);
+immutable DoorObject doorEntry14 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0BD, 0x03FC, 0x01);
+immutable DoorObject doorEntry15 = DoorObject("TEXT_DOOR_015", EventFlag.onetEstateDoorOpen | eventFlagUnset, 0xC0BA, 0x03B9, 0x04);
+immutable DoorObject doorEntry16 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC07D, 0x039C, 0x01);
+immutable DoorObject doorEntry17 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0x0056, 0x03D1, 0x04);
+immutable DoorObject doorEntry18 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC059, 0x03E4, 0x06);
+immutable DoorObject doorEntry19 = DoorObject("TEXT_DOOR_019", EventFlag.onetDoorClose, 0xC031, 0x0384, 0x01);
+immutable DoorObject doorEntry20 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0AD, 0x0398, 0x06);
+immutable DoorObject doorEntry21 = DoorObject("TEXT_DOOR_021", EventFlag.onetPokeyDoorClose, 0xC06D, 0x0398, 0x04);
+immutable DoorObject doorEntry22 = DoorObject("TEXT_DOOR_022", EventFlag.genkanMamaAppear, 0xC02A, 0x03CD, 0x04);
+immutable DoorObject doorEntry23 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC03D, 0x03F4, 0x01);
+immutable DoorObject doorEntry24 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC07A, 0x0371, 0x04);
+immutable DoorObject doorEntry25 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC09D, 0x03F8, 0x04);
+immutable DoorObject doorEntry26 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC08A, 0x03B9, 0x04);
+immutable DoorObject doorEntry27 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC09D, 0x0378, 0x04);
+immutable DoorObject doorEntry28 = DoorObject("MSG_INSEKI_POKEY_ONET", EventFlag.unknown0340 | eventFlagUnset, 0xC02A, 0x03CD, 0x00);
+immutable DoorObject doorEntry29 = DoorObject("TEXT_DOOR_000", EventFlag.onetDoorClose, 0xC0AD, 0x03B4, 0x04);
+immutable DoorObject doorEntry30 = DoorObject("TEXT_DOOR_030", EventFlag.none, 0x02E6, 0x008B, 0x01);
+immutable DoorObject doorEntry31 = DoorObject(null, EventFlag.none, 0x0048, 0x03D1, 0x07);
+immutable DoorObject doorEntry32 = DoorObject(null, EventFlag.none, 0xC0AD, 0x03D8, 0x07);
+immutable DoorObject doorEntry33 = DoorObject(null, EventFlag.none, 0xC0CD, 0x03FC, 0x07);
+immutable DoorObject doorEntry34 = DoorObject(null, EventFlag.onetMincesAppear, 0x800D, 0x03E3, 0x07);
+immutable DoorObject doorEntry35 = DoorObject("TEXT_DOOR_035", EventFlag.none, 0x80BD, 0x03E3, 0x01);
+immutable DoorObject doorEntry36 = DoorObject(null, EventFlag.none, 0x806D, 0x03C3, 0x0F);
+immutable DoorObject doorEntry37 = DoorObject(null, EventFlag.none, 0xC01A, 0x03B9, 0x07);
+immutable DoorObject doorEntry38 = DoorObject(null, EventFlag.none, 0x8031, 0x0363, 0x01);
+immutable DoorObject doorEntry39 = DoorObject(null, EventFlag.none, 0xC00D, 0x03FC, 0x01);
+immutable DoorObject doorEntry40 = DoorObject(null, EventFlag.none, 0x00D6, 0x00FC, 0x01);
+immutable DoorObject doorEntry41 = DoorObject(null, EventFlag.none, 0x807D, 0x03A3, 0x0F);
+immutable DoorObject doorEntry42 = DoorObject(null, EventFlag.none, 0x008E, 0x00D9, 0x0C);
+immutable DoorObject doorEntry43 = DoorObject("TEXT_DOOR_043", EventFlag.myHomeDoorClose, 0x002B, 0x014B, 0x0A);
+immutable DoorObject doorEntry44 = DoorObject(null, EventFlag.none, 0xC08D, 0x037C, 0x07);
+immutable DoorObject doorEntry45 = DoorObject(null, EventFlag.none, 0xC0AD, 0x037C, 0x07);
+immutable DoorObject doorEntry46 = DoorObject(null, EventFlag.none, 0x805D, 0x0363, 0x0F);
+immutable DoorObject doorEntry47 = DoorObject(null, EventFlag.none, 0x00A1, 0x009A, 0x0A);
+immutable DoorObject doorEntry48 = DoorObject("TEXT_DOOR_048", EventFlag.none, 0x006D, 0x010A, 0x01);
+immutable DoorObject doorEntry49 = DoorObject(null, EventFlag.none, 0x806D, 0x0363, 0x0F);
+immutable DoorObject doorEntry50 = DoorObject(null, EventFlag.none, 0xC06D, 0x03FC, 0x07);
+immutable DoorObject doorEntry51 = DoorObject(null, EventFlag.none, 0x803D, 0x03C3, 0x0F);
+immutable DoorObject doorEntry52 = DoorObject(null, EventFlag.none, 0x00AC, 0x0089, 0x0A);
+immutable DoorObject doorEntry53 = DoorObject(null, EventFlag.none, 0x007C, 0x03B1, 0x07);
+immutable DoorObject doorEntry54 = DoorObject(null, EventFlag.none, 0xC011, 0x0384, 0x07);
+immutable DoorObject doorEntry55 = DoorObject(null, EventFlag.none, 0xC06D, 0x03D4, 0x07);
+immutable DoorObject doorEntry56 = DoorObject(null, EventFlag.onetGuardSharkDisappear | eventFlagUnset, 0x40D1, 0x00C5, 0x0A);
+immutable DoorObject doorEntry57 = DoorObject(null, EventFlag.none, 0x8079, 0x03E7, 0x0F);
+immutable DoorObject doorEntry58 = DoorObject(null, EventFlag.none, 0xC08D, 0x03DC, 0x07);
+immutable DoorObject doorEntry59 = DoorObject(null, EventFlag.none, 0x00A7, 0x00CF, 0x01);
+immutable DoorObject doorEntry60 = DoorObject(null, EventFlag.none, 0x00DA, 0x00C5, 0x0C);
+immutable DoorObject doorEntry61 = DoorObject(null, EventFlag.none, 0x804D, 0x0363, 0x0F);
+immutable DoorObject doorEntry62 = DoorObject(null, EventFlag.none, 0x008C, 0x0121, 0x0A);
+immutable DoorObject doorEntry63 = DoorObject("TEXT_DOOR_063", EventFlag.none, 0x002C, 0x012B, 0x0A);
+immutable DoorObject doorEntry64 = DoorObject(null, EventFlag.none, 0xC09D, 0x0398, 0x07);
+immutable DoorObject doorEntry65 = DoorObject(null, EventFlag.none, 0x00D3, 0x008F, 0x01);
+immutable DoorObject doorEntry66 = DoorObject(null, EventFlag.none, 0x80BD, 0x0383, 0x0F);
+immutable DoorObject doorEntry67 = DoorObject(null, EventFlag.none, 0x00BC, 0x0085, 0x0A);
+immutable DoorObject doorEntry68 = DoorObject(null, EventFlag.none, 0xC05D, 0x03BC, 0x07);
+immutable DoorObject doorEntry69 = DoorObject("TEXT_DOOR_069", EventFlag.none, 0x802A, 0x03A6, 0x0F);
+immutable DoorObject doorEntry70 = DoorObject(null, EventFlag.none, 0x808A, 0x03E6, 0x07);
+immutable DoorObject doorEntry71 = DoorObject("TEXT_DOOR_071", EventFlag.none, 0x801D, 0x03C3, 0x0F);
+immutable DoorObject doorEntry72 = DoorObject(null, EventFlag.none, 0x804D, 0x03C3, 0x07);
+immutable DoorObject doorEntry73 = DoorObject(null, EventFlag.none, 0x00BC, 0x0389, 0x07);
+immutable DoorObject doorEntry74 = DoorObject(null, EventFlag.none, 0x0058, 0x0371, 0x07);
+immutable DoorObject doorEntry75 = DoorObject(null, EventFlag.none, 0x8059, 0x03C7, 0x0F);
+immutable DoorObject doorEntry76 = DoorObject(null, EventFlag.none, 0x0038, 0x03CD, 0x07);
+immutable DoorObject doorEntry77 = DoorObject(null, EventFlag.none, 0x00C8, 0x0131, 0x0A);
+immutable DoorObject doorEntry78 = DoorObject(null, EventFlag.none, 0x00B8, 0x03F1, 0x07);
+immutable DoorObject doorEntry79 = DoorObject(null, EventFlag.none, 0x0078, 0x0392, 0x07);
+immutable DoorObject doorEntry80 = DoorObject(null, EventFlag.none, 0x00B0, 0x0141, 0x0A);
+immutable DoorObject doorEntry81 = DoorObject(null, EventFlag.none, 0x0010, 0x00E5, 0x0A);
+immutable DoorObject doorEntry82 = DoorObject("TEXT_DOOR_004", EventFlag._1fMizunoAppear, 0x0361, 0x01F4, 0x01);
+immutable DoorObject doorEntry83 = DoorObject(null, EventFlag.none, 0x0048, 0x03E1, 0x07);
+immutable DoorObject doorEntry84 = DoorObject(null, EventFlag.none, 0x00BC, 0x0391, 0x07);
+immutable DoorObject doorEntry85 = DoorObject("TEXT_DOOR_085", EventFlag.none, 0xC07D, 0x03BC, 0x07);
+immutable DoorObject doorEntry86 = DoorObject(null, EventFlag.none, 0x008C, 0x012D, 0x0A);
+immutable DoorObject doorEntry87 = DoorObject(null, EventFlag.none, 0x0038, 0x03D9, 0x07);
+immutable DoorObject doorEntry88 = DoorObject(null, EventFlag.none, 0x4043, 0x00B5, 0x01);
+immutable DoorObject doorEntry89 = DoorObject(null, EventFlag.none, 0x0048, 0x00B5, 0x0A);
+immutable DoorObject doorEntry90 = DoorObject(null, EventFlag.none, 0x00DA, 0x00E8, 0x0C);
+immutable DoorObject doorEntry91 = DoorObject(null, EventFlag.none, 0xC07D, 0x03D8, 0x07);
+immutable DoorObject doorEntry92 = DoorObject(null, EventFlag.none, 0xC09D, 0x03D8, 0x07);
+immutable DoorObject doorEntry93 = DoorObject(null, EventFlag.none, 0x807D, 0x0383, 0x0F);
+immutable DoorObject doorEntry94 = DoorObject(null, EventFlag.none, 0x011C, 0x00C5, 0x0A);
+immutable DoorObject doorEntry95 = DoorObject(null, EventFlag.none, 0x00DC, 0x0039, 0x0A);
+immutable DoorObject doorEntry96 = DoorObject(null, EventFlag.none, 0x0008, 0x03B1, 0x07);
+immutable DoorObject doorEntry97 = DoorObject(null, EventFlag.none, 0x008E, 0x00C8, 0x0C);
+immutable DoorObject doorEntry98 = DoorObject(null, EventFlag.none, 0x0053, 0x00FC, 0x01);
+immutable DoorObject doorEntry99 = DoorObject(null, EventFlag.none, 0xC089, 0x0388, 0x07);
+immutable DoorObject doorEntry100 = DoorObject(null, EventFlag.none, 0xC00D, 0x03CC, 0x01);
+immutable DoorObject doorEntry101 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x00B2, 0x00FF, 0x01);
+immutable DoorObject doorEntry102 = DoorObject(null, EventFlag.none, 0x0008, 0x03BD, 0x07);
+immutable DoorObject doorEntry103 = DoorObject(null, EventFlag.none, 0xC139, 0x02F5, 0x01);
+immutable DoorObject doorEntry104 = DoorObject(null, EventFlag.none, 0x003B, 0x0085, 0x01);
+immutable DoorObject doorEntry105 = DoorObject(null, EventFlag.none, 0x003A, 0x009D, 0x01);
+immutable DoorObject doorEntry106 = DoorObject(null, EventFlag.none, 0xC2D9, 0x01D5, 0x01);
+immutable DoorObject doorEntry107 = DoorObject(null, EventFlag.none, 0xC2B9, 0x01D9, 0x01);
+immutable DoorObject doorEntry108 = DoorObject(null, EventFlag.none, 0xC279, 0x01F5, 0x01);
+immutable DoorObject doorEntry109 = DoorObject("TEXT_DOOR_109", EventFlag.none, 0x003F, 0x00B1, 0x01);
+immutable DoorObject doorEntry110 = DoorObject(null, EventFlag.none, 0x0427, 0x0129, 0x01);
+immutable DoorObject doorEntry111 = DoorObject(null, EventFlag.none, 0x8430, 0x00E7, 0x01);
+immutable DoorObject doorEntry112 = DoorObject(null, EventFlag.none, 0x0413, 0x013D, 0x01);
+immutable DoorObject doorEntry113 = DoorObject(null, EventFlag.none, 0xC139, 0x008C, 0x01);
+immutable DoorObject doorEntry114 = DoorObject(null, EventFlag.none, 0x03F3, 0x00FD, 0x01);
+immutable DoorObject doorEntry115 = DoorObject("TEXT_DOOR_115", EventFlag.winGianBoss | eventFlagUnset, 0x0027, 0x0089, 0x01);
+immutable DoorObject doorEntry116 = DoorObject(null, EventFlag.none, 0x8138, 0x02E7, 0x01);
+immutable DoorObject doorEntry117 = DoorObject(null, EventFlag.none, 0x409A, 0x03AC, 0x01);
+immutable DoorObject doorEntry118 = DoorObject(null, EventFlag.none, 0xC139, 0x02BC, 0x01);
+immutable DoorObject doorEntry119 = DoorObject(null, EventFlag.none, 0x8379, 0x01E3, 0x01);
+immutable DoorObject doorEntry120 = DoorObject(null, EventFlag.none, 0xC109, 0x01BC, 0x01);
+immutable DoorObject doorEntry121 = DoorObject(null, EventFlag.none, 0x82E9, 0x01E3, 0x01);
+immutable DoorObject doorEntry122 = DoorObject(null, EventFlag.none, 0x813B, 0x02A3, 0x01);
+immutable DoorObject doorEntry123 = DoorObject(null, EventFlag.none, 0xC109, 0x0189, 0x01);
+immutable DoorObject doorEntry124 = DoorObject("TEXT_DOOR_124", EventFlag.unknown0340 | eventFlagUnset, 0x0075, 0x0092, 0x00);
+immutable DoorObject doorEntry125 = DoorObject("TEXT_DOOR_125", EventFlag.unknown0340 | eventFlagUnset, 0x0085, 0x00B2, 0x00);
+immutable DoorObject doorEntry126 = DoorObject("TEXT_DOOR_126", EventFlag.unknown0340 | eventFlagUnset, 0x00A2, 0x007F, 0x00);
+immutable DoorObject doorEntry127 = DoorObject("TEXT_DOOR_127", EventFlag.unknown0340 | eventFlagUnset, 0x00DA, 0x00B4, 0x00);
+immutable MapObjectObject doorEntry128 = MapObjectObject("MSG_ONET_KANBAN_1");
+immutable MapObjectObject doorEntry129 = MapObjectObject("MSG_ONET_KANBAN_2");
+immutable MapObjectObject doorEntry130 = MapObjectObject("MSG_ONET_KANBAN_3");
+immutable MapObjectObject doorEntry131 = MapObjectObject("MSG_ONET_KANBAN_4");
+immutable MapObjectObject doorEntry132 = MapObjectObject("MSG_ONET_KANBAN_5");
+immutable MapObjectObject doorEntry133 = MapObjectObject("MSG_ONET_KANBAN_6");
+immutable MapObjectObject doorEntry134 = MapObjectObject("MSG_ONET_KANBAN_7");
+immutable MapObjectObject doorEntry135 = MapObjectObject("MSG_ONET_KANBAN_8");
+immutable MapObjectObject doorEntry136 = MapObjectObject("MSG_ONET_KANBAN_9");
+immutable MapObjectObject doorEntry137 = MapObjectObject("MSG_ONET_KANBAN_10");
+immutable MapObjectObject doorEntry138 = MapObjectObject("MSG_ONET_KANBAN_11");
+immutable DoorObject doorEntry139 = DoorObject("TEXT_DOOR_139", EventFlag.unknown0340 | eventFlagUnset, 0x00A0, 0x0151, 0x00);
+immutable DoorObject doorEntry140 = DoorObject("TEXT_DOOR_140", EventFlag.unknown0340 | eventFlagUnset, 0x00D8, 0x0121, 0x00);
+immutable DoorObject doorEntry141 = DoorObject("TEXT_DOOR_141", EventFlag.unknown0340 | eventFlagUnset, 0x00B2, 0x010B, 0x00);
+immutable DoorObject doorEntry142 = DoorObject("TEXT_DOOR_142", EventFlag.unknown0340 | eventFlagUnset, 0x00AE, 0x0117, 0x00);
+immutable MapObjectObject doorEntry143 = MapObjectObject("MSG_ONET_KANBAN_12");
+immutable MapObjectObject doorEntry144 = MapObjectObject("MSG_ONET_KANBAN_13");
+immutable MapObjectObject doorEntry145 = MapObjectObject("MSG_ONET_KANBAN_14");
+immutable MapObjectObject doorEntry146 = MapObjectObject("MSG_ONET_KANBAN_15");
+immutable MapObjectObject doorEntry147 = MapObjectObject("MSG_ONET_KANBAN_16");
+immutable MapObjectObject doorEntry148 = MapObjectObject("MSG_ONET_KANBAN_17");
+immutable MapObjectObject doorEntry149 = MapObjectObject("MSG_ONET_KANBAN_18");
+immutable MapObjectObject doorEntry150 = MapObjectObject("MSG_INSEKI_CHECK");
+immutable DoorObject doorEntry151 = DoorObject("TEXT_DOOR_151", EventFlag.unknown0340 | eventFlagUnset, 0x000C, 0x03E9, 0x00);
+immutable DoorObject doorEntry152 = DoorObject("TEXT_DOOR_152", EventFlag.unknown0340 | eventFlagUnset, 0x000C, 0x03F1, 0x00);
+immutable DoorObject doorEntry153 = DoorObject("TEXT_DOOR_153", EventFlag.unknown0340 | eventFlagUnset, 0x0058, 0x0379, 0x00);
+immutable DoorObject doorEntry154 = DoorObject("TEXT_DOOR_154", EventFlag.unknown0340 | eventFlagUnset, 0x0058, 0x037D, 0x00);
+immutable MapObjectObject doorEntry155 = MapObjectObject("MSG_READ_ONET_HALL_FRONT_SGN1");
+immutable MapObjectObject doorEntry156 = MapObjectObject("MSG_READ_ONET_HOSP_PSSG_SGN3");
+immutable MapObjectObject doorEntry157 = MapObjectObject("MSG_CHECK_BOOKSHELF1");
+immutable MapObjectObject doorEntry158 = MapObjectObject("MSG_CHECK_BOOKSHELF1");
+immutable MapObjectObject doorEntry159 = MapObjectObject("MSG_CHECK_BOOKSHELF1");
+immutable MapObjectObject doorEntry160 = MapObjectObject("MSG_CHECK_BOOKSHELF4");
+immutable MapObjectObject doorEntry161 = MapObjectObject("MSG_CHECK_BOOKSHELF1");
+immutable MapObjectObject doorEntry162 = MapObjectObject("MSG_CHECK_BOOKSHELF1");
+immutable MapObjectObject doorEntry163 = MapObjectObject("MSG_CHECK_FUDOUSAN_SHELF");
+immutable DoorObject doorEntry164 = DoorObject(null, EventFlag.none, 0x418F, 0x0098, 0x01);
+immutable DoorObject doorEntry165 = DoorObject(null, EventFlag.none, 0xC3FD, 0x0358, 0x04);
+immutable DoorObject doorEntry166 = DoorObject(null, EventFlag.none, 0xC3FD, 0x0398, 0x04);
+immutable DoorObject doorEntry167 = DoorObject(null, EventFlag.none, 0xC38D, 0x03C4, 0x01);
+immutable DoorObject doorEntry168 = DoorObject(null, EventFlag.none, 0xC3BD, 0x0378, 0x06);
+immutable DoorObject doorEntry169 = DoorObject(null, EventFlag.none, 0xC3AB, 0x038A, 0x06);
+immutable DoorObject doorEntry170 = DoorObject("TEXT_DOOR_170", EventFlag.tlptThrk , 0xC39D, 0x03BC, 0x04);
+immutable DoorObject doorEntry171 = DoorObject(null, EventFlag.none, 0xC3BD, 0x03D8, 0x04);
+immutable DoorObject doorEntry172 = DoorObject(null, EventFlag.none, 0xC3FD, 0x03D4, 0x04);
+immutable DoorObject doorEntry173 = DoorObject(null, EventFlag.none, 0xC3DD, 0x03D8, 0x04);
+immutable DoorObject doorEntry174 = DoorObject(null, EventFlag.none, 0xC42D, 0x03A8, 0x06);
+immutable DoorObject doorEntry175 = DoorObject(null, EventFlag.none, 0xC3CD, 0x0334, 0x06);
+immutable DoorObject doorEntry176 = DoorObject(null, EventFlag.none, 0xC3AD, 0x03C4, 0x04);
+immutable DoorObject doorEntry177 = DoorObject(null, EventFlag.none, 0xC3FD, 0x037C, 0x04);
+immutable DoorObject doorEntry178 = DoorObject(null, EventFlag.none, 0xC3CD, 0x03F8, 0x04);
+immutable DoorObject doorEntry179 = DoorObject(null, EventFlag.none, 0xC44D, 0x03EC, 0x01);
+immutable DoorObject doorEntry180 = DoorObject(null, EventFlag.none, 0xC38D, 0x03F8, 0x04);
+immutable DoorObject doorEntry181 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x84E9, 0x0363, 0x01);
+immutable DoorObject doorEntry182 = DoorObject("TEXT_DOOR_182", EventFlag.none, 0x84FC, 0x02E4, 0x01);
+immutable DoorObject doorEntry183 = DoorObject("TEXT_DOOR_183", EventFlag.none, 0xC378, 0x01C4, 0x01);
+immutable DoorObject doorEntry184 = DoorObject(null, EventFlag.none, 0x84EB, 0x03A3, 0x01);
+immutable DoorObject doorEntry185 = DoorObject(null, EventFlag.none, 0xC4E9, 0x037C, 0x01);
+immutable DoorObject doorEntry186 = DoorObject(null, EventFlag.none, 0x0119, 0x0216, 0x01);
+immutable DoorObject doorEntry187 = DoorObject(null, EventFlag.none, 0xC459, 0x03C8, 0x07);
+immutable DoorObject doorEntry188 = DoorObject(null, EventFlag.none, 0xC415, 0x03B8, 0x01);
+immutable DoorObject doorEntry189 = DoorObject("TEXT_DOOR_189", EventFlag.none, 0x032F, 0x00AB, 0x01);
+immutable DoorObject doorEntry190 = DoorObject("TEXT_DOOR_190", EventFlag.none, 0x032F, 0x00BC, 0x0C);
+immutable DoorObject doorEntry191 = DoorObject(null, EventFlag.none, 0x033B, 0x0133, 0x0A);
+immutable DoorObject doorEntry192 = DoorObject(null, EventFlag.none, 0x03DC, 0x0369, 0x07);
+immutable DoorObject doorEntry193 = DoorObject(null, EventFlag.none, 0x0448, 0x03D1, 0x07);
+immutable DoorObject doorEntry194 = DoorObject("TEXT_DOOR_194", EventFlag.none, 0x0332, 0x00D2, 0x0C);
+immutable DoorObject doorEntry195 = DoorObject(null, EventFlag.none, 0x03DC, 0x0371, 0x07);
+immutable DoorObject doorEntry196 = DoorObject("TEXT_DOOR_196", EventFlag.none, 0x0373, 0x0109, 0x0A);
+immutable DoorObject doorEntry197 = DoorObject(null, EventFlag.none, 0xC3CD, 0x035C, 0x07);
+immutable DoorObject doorEntry198 = DoorObject(null, EventFlag.none, 0x038F, 0x00F7, 0x0A);
+immutable DoorObject doorEntry199 = DoorObject(null, EventFlag.none, 0x0377, 0x011F, 0x0A);
+immutable DoorObject doorEntry200 = DoorObject(null, EventFlag.none, 0x83AD, 0x03A3, 0x07);
+immutable DoorObject doorEntry201 = DoorObject(null, EventFlag.none, 0x83ED, 0x0343, 0x0F);
+immutable DoorObject doorEntry202 = DoorObject(null, EventFlag.none, 0x83FA, 0x0346, 0x0F);
+immutable DoorObject doorEntry203 = DoorObject(null, EventFlag.none, 0xC3BD, 0x035C, 0x07);
+immutable DoorObject doorEntry204 = DoorObject(null, EventFlag.none, 0xC3BD, 0x039C, 0x07);
+immutable DoorObject doorEntry205 = DoorObject(null, EventFlag.none, 0x844D, 0x03C3, 0x0F);
+immutable DoorObject doorEntry206 = DoorObject(null, EventFlag.none, 0x040C, 0x0395, 0x07);
+immutable DoorObject doorEntry207 = DoorObject(null, EventFlag.none, 0x83FD, 0x0383, 0x0F);
+immutable DoorObject doorEntry208 = DoorObject(null, EventFlag.none, 0x0410, 0x03A9, 0x07);
+immutable DoorObject doorEntry209 = DoorObject(null, EventFlag.warpAppleTwsn, 0x0397, 0x00EF, 0x0A);
+immutable DoorObject doorEntry210 = DoorObject(null, EventFlag.none, 0xC3ED, 0x03F8, 0x07);
+immutable DoorObject doorEntry211 = DoorObject(null, EventFlag.none, 0x034F, 0x0122, 0x0A);
+immutable DoorObject doorEntry212 = DoorObject(null, EventFlag.none, 0xC45D, 0x03F8, 0x07);
+immutable DoorObject doorEntry213 = DoorObject(null, EventFlag.none, 0x83CA, 0x0346, 0x0F);
+immutable DoorObject doorEntry214 = DoorObject(null, EventFlag.none, 0x83DD, 0x0343, 0x0F);
+immutable DoorObject doorEntry215 = DoorObject(null, EventFlag.none, 0x030C, 0x00D9, 0x0A);
+immutable DoorObject doorEntry216 = DoorObject(null, EventFlag.none, 0x0397, 0x011D, 0x0A);
+immutable DoorObject doorEntry217 = DoorObject(null, EventFlag.none, 0x83DD, 0x0383, 0x0F);
+immutable DoorObject doorEntry218 = DoorObject(null, EventFlag.none, 0x030C, 0x00F9, 0x0A);
+immutable DoorObject doorEntry219 = DoorObject(null, EventFlag.none, 0x0360, 0x00A9, 0x0A);
+immutable DoorObject doorEntry220 = DoorObject(null, EventFlag.none, 0x83CD, 0x03E3, 0x07);
+immutable DoorObject doorEntry221 = DoorObject(null, EventFlag.none, 0xC3CD, 0x039C, 0x07);
+immutable DoorObject doorEntry222 = DoorObject(null, EventFlag.none, 0xC3CD, 0x03DC, 0x07);
+immutable DoorObject doorEntry223 = DoorObject(null, EventFlag.none, 0x838D, 0x03A3, 0x01);
+immutable DoorObject doorEntry224 = DoorObject(null, EventFlag.none, 0x0376, 0x0135, 0x0C);
+immutable DoorObject doorEntry225 = DoorObject(null, EventFlag.none, 0xC39D, 0x03D8, 0x07);
+immutable DoorObject doorEntry226 = DoorObject(null, EventFlag.none, 0x83DD, 0x0363, 0x0F);
+immutable DoorObject doorEntry227 = DoorObject(null, EventFlag.none, 0x0388, 0x03B9, 0x07);
+immutable DoorObject doorEntry228 = DoorObject(null, EventFlag.none, 0x030E, 0x011B, 0x01);
+immutable DoorObject doorEntry229 = DoorObject(null, EventFlag.none, 0x03E8, 0x0351, 0x07);
+immutable DoorObject doorEntry230 = DoorObject(null, EventFlag.twsnTonzuraBusAppear, 0xC435, 0x0378, 0x07);
+immutable DoorObject doorEntry231 = DoorObject(null, EventFlag.none, 0xC3BD, 0x03BC, 0x07);
+immutable DoorObject doorEntry232 = DoorObject("TEXT_DOOR_232", EventFlag.none, 0x0331, 0x0116, 0x0A);
+immutable DoorObject doorEntry233 = DoorObject(null, EventFlag.none, 0x839D, 0x03A3, 0x07);
+immutable DoorObject doorEntry234 = DoorObject("TEXT_DOOR_234", EventFlag.none, 0x8431, 0x034B, 0x07);
+immutable DoorObject doorEntry235 = DoorObject("TEXT_DOOR_235", EventFlag.twsnMichikoThankYou | eventFlagUnset, 0xC3AD, 0x03FC, 0x07);
+immutable DoorObject doorEntry236 = DoorObject(null, EventFlag.none, 0x0398, 0x03B1, 0x07);
+immutable DoorObject doorEntry237 = DoorObject("TEXT_DOOR_237", EventFlag.thrkTunnelClose, 0xC442, 0x009F, 0x01);
+immutable DoorObject doorEntry238 = DoorObject("TEXT_DOOR_238", EventFlag.tlptThrk | eventFlagUnset, 0x849B, 0x0231, 0x01);
+immutable DoorObject doorEntry239 = DoorObject("TEXT_DOOR_239", EventFlag.unknown0340 | eventFlagUnset, 0x0347, 0x012A, 0x00);
+immutable DoorObject doorEntry240 = DoorObject("TEXT_DOOR_240", EventFlag.unknown0340 | eventFlagUnset, 0x03A3, 0x010D, 0x00);
+immutable MapObjectObject doorEntry241 = MapObjectObject("MSG_READ_TWSN_SIGN1");
+immutable MapObjectObject doorEntry242 = MapObjectObject("MSG_READ_TWSN_SIGN5");
+immutable MapObjectObject doorEntry243 = MapObjectObject("MSG_READ_TWSN_SIGN6");
+immutable MapObjectObject doorEntry244 = MapObjectObject("MSG_READ_TWSN_SIGN7");
+immutable MapObjectObject doorEntry245 = MapObjectObject("MSG_READ_TWSN_SIGN8");
+immutable MapObjectObject doorEntry246 = MapObjectObject("MSG_READ_TWSN_SIGN9");
+immutable MapObjectObject doorEntry247 = MapObjectObject("MSG_READ_TWSN_SIGN10");
+immutable MapObjectObject doorEntry248 = MapObjectObject("MSG_READ_TWSN_HOSP_FRONT_SGN1");
+immutable DoorObject doorEntry249 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC139, 0x029C, 0x01);
+immutable DoorObject doorEntry250 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC1A9, 0x021C, 0x01);
+immutable DoorObject doorEntry251 = DoorObject(null, EventFlag.none, 0xC0DD, 0x037C, 0x04);
+immutable DoorObject doorEntry252 = DoorObject(null, EventFlag.none, 0xC10D, 0x03BC, 0x04);
+immutable DoorObject doorEntry253 = DoorObject("TEXT_DOOR_253", EventFlag.tlptThrk , 0xC122, 0x03F1, 0x04);
+immutable DoorObject doorEntry254 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x80D1, 0x0187, 0x01);
+immutable DoorObject doorEntry255 = DoorObject("TEXT_DOOR_255", EventFlag.tlptBaka | eventFlagUnset, 0xC101, 0x03F0, 0x04);
+immutable DoorObject doorEntry256 = DoorObject(null, EventFlag.none, 0xC0CD, 0x037C, 0x04);
+immutable DoorObject doorEntry257 = DoorObject(null, EventFlag.none, 0xC0DD, 0x03BC, 0x04);
+immutable DoorObject doorEntry258 = DoorObject(null, EventFlag.none, 0x80CD, 0x03A3, 0x0F);
+immutable DoorObject doorEntry259 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x03F8, 0x01CA, 0x0A);
+immutable DoorObject doorEntry260 = DoorObject(null, EventFlag.none, 0x03B8, 0x0202, 0x0A);
+immutable DoorObject doorEntry261 = DoorObject(null, EventFlag.none, 0x80CD, 0x0363, 0x0F);
+immutable DoorObject doorEntry262 = DoorObject(null, EventFlag.none, 0x03EC, 0x0202, 0x0A);
+immutable DoorObject doorEntry263 = DoorObject(null, EventFlag.none, 0x03C3, 0x01D7, 0x0A);
+immutable DoorObject doorEntry264 = DoorObject(null, EventFlag.none, 0x03E4, 0x01B9, 0x0A);
+immutable DoorObject doorEntry265 = DoorObject(null, EventFlag.none, 0x80F2, 0x03A6, 0x0F);
+immutable DoorObject doorEntry266 = DoorObject("TEXT_DOOR_266", EventFlag.none, 0x8122, 0x03AE, 0x07);
+immutable DoorObject doorEntry267 = DoorObject(null, EventFlag.none, 0x80DA, 0x03E6, 0x0F);
+immutable DoorObject doorEntry268 = DoorObject("TEXT_DOOR_268", EventFlag.none, 0xC0DA, 0x03F9, 0x07);
+immutable DoorObject doorEntry269 = DoorObject("TEXT_DOOR_269", EventFlag.none, 0x03DC, 0x01DF, 0x0A);
+immutable DoorObject doorEntry270 = DoorObject(null, EventFlag.none, 0x00C5, 0x02E9, 0x01);
+immutable DoorObject doorEntry271 = DoorObject("TEXT_DOOR_271", EventFlag.none, 0x83B4, 0x01BA, 0x01);
+immutable DoorObject doorEntry272 = DoorObject(null, EventFlag.none, 0x008A, 0x02E6, 0x01);
+immutable DoorObject doorEntry273 = DoorObject(null, EventFlag.none, 0x03B8, 0x01F7, 0x01);
+immutable MapObjectObject doorEntry274 = MapObjectObject("MSG_HAPPY_SIGN1");
+immutable MapObjectObject doorEntry275 = MapObjectObject("MSG_HAPPY_SIGN2");
+immutable DoorObject doorEntry276 = DoorObject(null, EventFlag.none, 0x81A9, 0x01E3, 0x01);
+immutable DoorObject doorEntry277 = DoorObject(null, EventFlag.none, 0xC4CD, 0x0374, 0x04);
+immutable DoorObject doorEntry278 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x8139, 0x0263, 0x01);
+immutable DoorObject doorEntry279 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC4E9, 0x03DC, 0x01);
+immutable DoorObject doorEntry280 = DoorObject(null, EventFlag.none, 0x009A, 0x02D7, 0x0A);
+immutable DoorObject doorEntry281 = DoorObject("TEXT_DOOR_281", EventFlag.winLlptBoss | eventFlagUnset, 0x03F5, 0x0182, 0x01);
+immutable DoorObject doorEntry282 = DoorObject(null, EventFlag.none, 0xC3C4, 0x020C, 0x01);
+immutable DoorObject doorEntry283 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0x008B, 0x01F1, 0x01);
+immutable DoorObject doorEntry284 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x0401, 0x023C, 0x01);
+immutable DoorObject doorEntry285 = DoorObject(null, EventFlag.none, 0x04B1, 0x033C, 0x01);
+immutable DoorObject doorEntry286 = DoorObject(null, EventFlag.none, 0xC4CD, 0x03F8, 0x04);
+immutable DoorObject doorEntry287 = DoorObject(null, EventFlag.none, 0xC48D, 0x035C, 0x04);
+immutable DoorObject doorEntry288 = DoorObject(null, EventFlag.none, 0xC4EF, 0x03FA, 0x01);
+immutable DoorObject doorEntry289 = DoorObject(null, EventFlag.none, 0xC4BD, 0x03B8, 0x04);
+immutable DoorObject doorEntry290 = DoorObject("TEXT_DOOR_290", EventFlag.none, 0xC4FC, 0x03DB, 0x01);
+immutable DoorObject doorEntry291 = DoorObject(null, EventFlag.none, 0xC4BD, 0x0374, 0x04);
+immutable DoorObject doorEntry292 = DoorObject(null, EventFlag.none, 0xC4BD, 0x03FC, 0x06);
+immutable DoorObject doorEntry293 = DoorObject(null, EventFlag.none, 0xC49D, 0x0374, 0x06);
+immutable DoorObject doorEntry294 = DoorObject(null, EventFlag.none, 0xC4DD, 0x035C, 0x01);
+immutable DoorObject doorEntry295 = DoorObject(null, EventFlag.none, 0xC4DD, 0x03F8, 0x06);
+immutable DoorObject doorEntry296 = DoorObject(null, EventFlag.none, 0xC4DA, 0x0379, 0x04);
+immutable DoorObject doorEntry297 = DoorObject(null, EventFlag.none, 0xC4DA, 0x03B5, 0x04);
+immutable DoorObject doorEntry298 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x84FC, 0x0224, 0x01);
+immutable DoorObject doorEntry299 = DoorObject(null, EventFlag.none, 0xC489, 0x0388, 0x07);
+immutable DoorObject doorEntry300 = DoorObject(null, EventFlag.none, 0xC48D, 0x03E4, 0x01);
+immutable DoorObject doorEntry301 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x0462, 0x02B3, 0x0A);
+immutable DoorObject doorEntry302 = DoorObject(null, EventFlag.none, 0x04DC, 0x03C9, 0x07);
+immutable DoorObject doorEntry303 = DoorObject(null, EventFlag.none, 0x048E, 0x029C, 0x0C);
+immutable DoorObject doorEntry304 = DoorObject(null, EventFlag.none, 0x0488, 0x0351, 0x07);
+immutable DoorObject doorEntry305 = DoorObject(null, EventFlag.none, 0x04DC, 0x03D1, 0x07);
+immutable DoorObject doorEntry306 = DoorObject(null, EventFlag.none, 0x0488, 0x03CD, 0x07);
+immutable DoorObject doorEntry307 = DoorObject("TEXT_DOOR_307", EventFlag.none, 0xC49D, 0x03BC, 0x07);
+immutable DoorObject doorEntry308 = DoorObject(null, EventFlag.none, 0xC49D, 0x03FC, 0x07);
+immutable DoorObject doorEntry309 = DoorObject(null, EventFlag.none, 0x848D, 0x0343, 0x01);
+immutable DoorObject doorEntry310 = DoorObject(null, EventFlag.none, 0x0488, 0x03D5, 0x07);
+immutable DoorObject doorEntry311 = DoorObject(null, EventFlag.none, 0x048C, 0x0265, 0x0A);
+immutable DoorObject doorEntry312 = DoorObject(null, EventFlag.none, 0x0478, 0x02E9, 0x0A);
+immutable DoorObject doorEntry313 = DoorObject(null, EventFlag.none, 0x048E, 0x028D, 0x0C);
+immutable DoorObject doorEntry314 = DoorObject(null, EventFlag.none, 0xC4DD, 0x0398, 0x07);
+immutable DoorObject doorEntry315 = DoorObject(null, EventFlag.none, 0x048D, 0x02BF, 0x01);
+immutable DoorObject doorEntry316 = DoorObject(null, EventFlag.none, 0x84DD, 0x03C3, 0x0F);
+immutable DoorObject doorEntry317 = DoorObject(null, EventFlag.none, 0x0491, 0x0302, 0x0A);
+immutable DoorObject doorEntry318 = DoorObject(null, EventFlag.none, 0x04D8, 0x0352, 0x07);
+immutable DoorObject doorEntry319 = DoorObject(null, EventFlag.none, 0x0497, 0x0319, 0x0A);
+immutable DoorObject doorEntry320 = DoorObject(null, EventFlag.none, 0xC48D, 0x0378, 0x07);
+immutable DoorObject doorEntry321 = DoorObject(null, EventFlag.none, 0xC48D, 0x03B8, 0x07);
+immutable DoorObject doorEntry322 = DoorObject(null, EventFlag.none, 0x84DD, 0x0343, 0x0F);
+immutable DoorObject doorEntry323 = DoorObject(null, EventFlag.none, 0x0428, 0x0319, 0x0A);
+immutable DoorObject doorEntry324 = DoorObject(null, EventFlag.none, 0x048E, 0x02D1, 0x0C);
+immutable DoorObject doorEntry325 = DoorObject(null, EventFlag.none, 0x0476, 0x02BB, 0x01);
+immutable DoorObject doorEntry326 = DoorObject(null, EventFlag.none, 0x0413, 0x0290, 0x01);
+immutable DoorObject doorEntry327 = DoorObject(null, EventFlag.none, 0x8123, 0x01E3, 0x01);
+immutable DoorObject doorEntry328 = DoorObject(null, EventFlag.none, 0xC41D, 0x023C, 0x01);
+immutable DoorObject doorEntry329 = DoorObject(null, EventFlag.none, 0x81B5, 0x02A2, 0x01);
+immutable DoorObject doorEntry330 = DoorObject(null, EventFlag.none, 0xC123, 0x01FC, 0x01);
+immutable DoorObject doorEntry331 = DoorObject(null, EventFlag.none, 0x8283, 0x01E3, 0x01);
+immutable DoorObject doorEntry332 = DoorObject(null, EventFlag.none, 0xC1BD, 0x02BC, 0x01);
+immutable DoorObject doorEntry333 = DoorObject(null, EventFlag.none, 0x82AD, 0x01E2, 0x01);
+immutable DoorObject doorEntry334 = DoorObject(null, EventFlag.none, 0x82CD, 0x01E2, 0x01);
+immutable DoorObject doorEntry335 = DoorObject(null, EventFlag.none, 0xC283, 0x01FC, 0x01);
+immutable DoorObject doorEntry336 = DoorObject(null, EventFlag.none, 0x0125, 0x0316, 0x01);
+immutable DoorObject doorEntry337 = DoorObject(null, EventFlag.none, 0xC2A5, 0x01FC, 0x01);
+immutable DoorObject doorEntry338 = DoorObject(null, EventFlag.none, 0x0430, 0x02F0, 0x01);
+immutable DoorObject doorEntry339 = DoorObject(null, EventFlag.none, 0xC4E5, 0x0358, 0x07);
+immutable DoorObject doorEntry340 = DoorObject("MSG_THRK_PRISON", EventFlag.thrkPrisonOpen | eventFlagUnset, 0x84BD, 0x0322, 0x07);
+immutable DoorObject doorEntry341 = DoorObject(null, EventFlag.none, 0xC49B, 0x032E, 0x01);
+immutable DoorObject doorEntry342 = DoorObject("TEXT_DOOR_342", EventFlag.thrkTunnelClose, 0x83C2, 0x0140, 0x01);
+immutable DoorObject doorEntry343 = DoorObject(null, EventFlag.none, 0xC4FC, 0x02BB, 0x01);
+immutable DoorObject doorEntry344 = DoorObject(null, EventFlag.none, 0x800C, 0x0304, 0x01);
+immutable DoorObject doorEntry345 = DoorObject(null, EventFlag.none, 0xC3C2, 0x0187, 0x01);
+immutable DoorObject doorEntry346 = DoorObject("TEXT_DOOR_346", EventFlag.none, 0x84E6, 0x0032, 0x01);
+immutable MapObjectObject doorEntry347 = MapObjectObject("MSG_CHECK_THRK_HOSP_ROOM1_SHELF");
+immutable MapObjectObject doorEntry348 = MapObjectObject("MSG_READ_THRK_HOSP_PSSG_SGN1");
+immutable DoorObject doorEntry349 = DoorObject("TEXT_DOOR_349", EventFlag.unknown0340 | eventFlagUnset, 0x0452, 0x02C1, 0x00);
+immutable DoorObject doorEntry350 = DoorObject("TEXT_DOOR_350", EventFlag.unknown0340 | eventFlagUnset, 0x0455, 0x02F5, 0x00);
+immutable DoorObject doorEntry351 = DoorObject("TEXT_DOOR_351", EventFlag.unknown0340 | eventFlagUnset, 0x0449, 0x0305, 0x00);
+immutable DoorObject doorEntry352 = DoorObject("TEXT_DOOR_352", EventFlag.unknown0340 | eventFlagUnset, 0x047C, 0x026D, 0x00);
+immutable DoorObject doorEntry353 = DoorObject("TEXT_DOOR_353", EventFlag.unknown0340 | eventFlagUnset, 0x047A, 0x02D3, 0x00);
+immutable DoorObject doorEntry354 = DoorObject("TEXT_DOOR_354", EventFlag.unknown0340 | eventFlagUnset, 0x0462, 0x030D, 0x00);
+immutable DoorObject doorEntry355 = DoorObject("TEXT_DOOR_355", EventFlag.unknown0340 | eventFlagUnset, 0x0487, 0x02DF, 0x00);
+immutable MapObjectObject doorEntry356 = MapObjectObject("MSG_READ_THRK_SIGN1");
+immutable MapObjectObject doorEntry357 = MapObjectObject("MSG_READ_THRK_SIGN2");
+immutable MapObjectObject doorEntry358 = MapObjectObject("MSG_READ_THRK_SIGN3");
+immutable MapObjectObject doorEntry359 = MapObjectObject("MSG_READ_THRK_SIGN4");
+immutable MapObjectObject doorEntry360 = MapObjectObject("MSG_READ_THRK_SIGN5");
+immutable MapObjectObject doorEntry361 = MapObjectObject("MSG_READ_THRK_SIGN6");
+immutable MapObjectObject doorEntry362 = MapObjectObject("MSG_READ_THRK_SIGN7");
+immutable MapObjectObject doorEntry363 = MapObjectObject("MSG_READ_THRK_SIGN8");
+immutable MapObjectObject doorEntry364 = MapObjectObject("MSG_READ_THRK_SIGN9");
+immutable DoorObject doorEntry365 = DoorObject(null, EventFlag.none, 0xC141, 0x03E8, 0x04);
+immutable DoorObject doorEntry366 = DoorObject(null, EventFlag.none, 0xC13D, 0x03B8, 0x04);
+immutable DoorObject doorEntry367 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC0F8, 0x03CB, 0x01);
+immutable DoorObject doorEntry368 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC0D8, 0x038B, 0x01);
+immutable DoorObject doorEntry369 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC0D8, 0x03CB, 0x01);
+immutable DoorObject doorEntry370 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC0F8, 0x038B, 0x01);
+immutable DoorObject doorEntry371 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0xC014, 0x0280, 0x01);
+immutable DoorObject doorEntry372 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x801C, 0x0267, 0x01);
+immutable DoorObject doorEntry373 = DoorObject("TEXT_DOOR_373", EventFlag.none, 0xC1B8, 0x00F8, 0x01);
+immutable DoorObject doorEntry374 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x81D0, 0x008B, 0x01);
+immutable DoorObject doorEntry375 = DoorObject(null, EventFlag.none, 0xC169, 0x03F8, 0x04);
+immutable DoorObject doorEntry376 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC26C, 0x035C, 0x01);
+immutable DoorObject doorEntry377 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x01C5, 0x036C, 0x01);
+immutable DoorObject doorEntry378 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC2E8, 0x020B, 0x01);
+immutable MapObjectObject doorEntry379 = MapObjectObject("MSG_WINS_CHECK_DRUG");
+immutable DoorObject doorEntry380 = DoorObject(null, EventFlag.none, 0x0124, 0x0057, 0x0A);
+immutable DoorObject doorEntry381 = DoorObject(null, EventFlag.none, 0x013C, 0x03DA, 0x07);
+immutable DoorObject doorEntry382 = DoorObject(null, EventFlag.none, 0x013C, 0x03D1, 0x07);
+immutable DoorObject doorEntry383 = DoorObject(null, EventFlag.none, 0x8164, 0x03E0, 0x0F);
+immutable DoorObject doorEntry384 = DoorObject(null, EventFlag.none, 0x017C, 0x03DA, 0x07);
+immutable DoorObject doorEntry385 = DoorObject(null, EventFlag.none, 0x017C, 0x03D1, 0x07);
+immutable DoorObject doorEntry386 = DoorObject(null, EventFlag.none, 0xC0CD, 0x03D8, 0x07);
+immutable DoorObject doorEntry387 = DoorObject(null, EventFlag.none, 0xC0CD, 0x0394, 0x07);
+immutable DoorObject doorEntry388 = DoorObject(null, EventFlag.none, 0x8181, 0x03C7, 0x0F);
+immutable DoorObject doorEntry389 = DoorObject("TEXT_DOOR_389", EventFlag.none, 0x0112, 0x003E, 0x0A);
+immutable DoorObject doorEntry390 = DoorObject(null, EventFlag.none, 0x0263, 0x0028, 0x0A);
+immutable DoorObject doorEntry391 = DoorObject(null, EventFlag.none, 0x80F0, 0x0364, 0x0F);
+immutable DoorObject doorEntry392 = DoorObject(null, EventFlag.none, 0xC0ED, 0x03D8, 0x07);
+immutable DoorObject doorEntry393 = DoorObject(null, EventFlag.none, 0xC0ED, 0x0398, 0x07);
+immutable DoorObject doorEntry394 = DoorObject(null, EventFlag.none, 0x8141, 0x03C7, 0x0F);
+immutable DoorObject doorEntry395 = DoorObject("TEXT_DOOR_395", EventFlag.none, 0x01A3, 0x002B, 0x01);
+immutable DoorObject doorEntry396 = DoorObject("TEXT_DOOR_395", EventFlag.none, 0x01A7, 0x0033, 0x01);
+immutable DoorObject doorEntry397 = DoorObject("TEXT_DOOR_395", EventFlag.none, 0x01A3, 0x0047, 0x01);
+immutable DoorObject doorEntry398 = DoorObject("TEXT_DOOR_395", EventFlag.none, 0x018F, 0x0063, 0x01);
+immutable DoorObject doorEntry399 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x015B, 0x0043, 0x01);
+immutable DoorObject doorEntry400 = DoorObject(null, EventFlag.none, 0x0245, 0x0061, 0x01);
+immutable DoorObject doorEntry401 = DoorObject("TEXT_DOOR_401", EventFlag.none, 0x024A, 0x0055, 0x01);
+immutable DoorObject doorEntry402 = DoorObject("TEXT_DOOR_402", EventFlag.none, 0x0215, 0x0035, 0x01);
+immutable DoorObject doorEntry403 = DoorObject("TEXT_DOOR_403", EventFlag.winRainBoss | eventFlagUnset, 0x01E1, 0x0019, 0x01);
+immutable DoorObject doorEntry404 = DoorObject(null, EventFlag.none, 0x8434, 0x0167, 0x01);
+immutable DoorObject doorEntry405 = DoorObject(null, EventFlag.none, 0xC034, 0x0298, 0x01);
+immutable DoorObject doorEntry406 = DoorObject(null, EventFlag.none, 0x826C, 0x0307, 0x01);
+immutable DoorObject doorEntry407 = DoorObject(null, EventFlag.none, 0xC438, 0x01BC, 0x01);
+immutable DoorObject doorEntry408 = DoorObject("TEXT_DOOR_408", EventFlag.none, 0x0261, 0x0051, 0x01);
+immutable DoorObject doorEntry409 = DoorObject(null, EventFlag.none, 0x422A, 0x002A, 0x01);
+immutable DoorObject doorEntry410 = DoorObject(null, EventFlag.none, 0x82E5, 0x0322, 0x01);
+immutable DoorObject doorEntry411 = DoorObject(null, EventFlag.none, 0xC1D4, 0x0378, 0x01);
+immutable DoorObject doorEntry412 = DoorObject(null, EventFlag.none, 0xC265, 0x03FC, 0x01);
+immutable DoorObject doorEntry413 = DoorObject(null, EventFlag.none, 0xC2A5, 0x03BC, 0x01);
+immutable DoorObject doorEntry414 = DoorObject(null, EventFlag.none, 0x831D, 0x0322, 0x01);
+immutable DoorObject doorEntry415 = DoorObject(null, EventFlag.none, 0xC2A5, 0x03DC, 0x01);
+immutable DoorObject doorEntry416 = DoorObject(null, EventFlag.none, 0x827D, 0x03C2, 0x01);
+immutable DoorObject doorEntry417 = DoorObject(null, EventFlag.none, 0x827D, 0x03E6, 0x01);
+immutable DoorObject doorEntry418 = DoorObject(null, EventFlag.none, 0x8291, 0x0342, 0x01);
+immutable DoorObject doorEntry419 = DoorObject(null, EventFlag.none, 0xC2BD, 0x03FC, 0x01);
+immutable DoorObject doorEntry420 = DoorObject(null, EventFlag.none, 0xC349, 0x0348, 0x01);
+immutable DoorObject doorEntry421 = DoorObject(null, EventFlag.none, 0x82B5, 0x0302, 0x01);
+immutable DoorObject doorEntry422 = DoorObject(null, EventFlag.none, 0x01CB, 0x030C, 0x01);
+immutable DoorObject doorEntry423 = DoorObject(null, EventFlag.none, 0xC35D, 0x039C, 0x01);
+immutable DoorObject doorEntry424 = DoorObject(null, EventFlag.none, 0x82DD, 0x0343, 0x04);
+immutable DoorObject doorEntry425 = DoorObject(null, EventFlag.none, 0xC22A, 0x0385, 0x07);
+immutable DoorObject doorEntry426 = DoorObject(null, EventFlag.none, 0x8239, 0x0323, 0x07);
+immutable DoorObject doorEntry427 = DoorObject(null, EventFlag.none, 0xC219, 0x035C, 0x07);
+immutable DoorObject doorEntry428 = DoorObject(null, EventFlag.none, 0x8251, 0x03E3, 0x07);
+immutable DoorObject doorEntry429 = DoorObject(null, EventFlag.none, 0xC2FD, 0x03DC, 0x07);
+immutable DoorObject doorEntry430 = DoorObject(null, EventFlag.none, 0x82FD, 0x03C3, 0x07);
+immutable DoorObject doorEntry431 = DoorObject(null, EventFlag.none, 0xC2DD, 0x0358, 0x07);
+immutable DoorObject doorEntry432 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x819B, 0x03A3, 0x01);
+immutable DoorObject doorEntry433 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x02C1, 0x01FC, 0x01);
+immutable DoorObject doorEntry434 = DoorObject(null, EventFlag.none, 0x82D9, 0x01E3, 0x07);
+immutable DoorObject doorEntry435 = DoorObject(null, EventFlag.none, 0x0021, 0x031C, 0x01);
+immutable DoorObject doorEntry436 = DoorObject(null, EventFlag.none, 0x8299, 0x01E3, 0x07);
+immutable DoorObject doorEntry437 = DoorObject(null, EventFlag.none, 0xC252, 0x0249, 0x01);
+immutable DoorObject doorEntry438 = DoorObject(null, EventFlag.none, 0xC2F9, 0x01F4, 0x07);
+immutable DoorObject doorEntry439 = DoorObject(null, EventFlag.none, 0x82B9, 0x01E3, 0x07);
+immutable DoorObject doorEntry440 = DoorObject(null, EventFlag.none, 0xC2A9, 0x01B8, 0x07);
+immutable DoorObject doorEntry441 = DoorObject(null, EventFlag.none, 0xC2DD, 0x01A8, 0x07);
+immutable DoorObject doorEntry442 = DoorObject(null, EventFlag.none, 0xC2B1, 0x0164, 0x07);
+immutable DoorObject doorEntry443 = DoorObject(null, EventFlag.none, 0x82CD, 0x0147, 0x07);
+immutable DoorObject doorEntry444 = DoorObject(null, EventFlag.none, 0x8379, 0x03A3, 0x01);
+immutable DoorObject doorEntry445 = DoorObject(null, EventFlag.none, 0x02CB, 0x0110, 0x01);
+immutable DoorObject doorEntry446 = DoorObject("TEXT_DOOR_446", EventFlag.winMlkyBoss | eventFlagUnset, 0x0295, 0x004E, 0x01);
+immutable DoorObject doorEntry447 = DoorObject("TEXT_DOOR_447", EventFlag.none, 0x02BD, 0x0066, 0x01);
+immutable DoorObject doorEntry448 = DoorObject(null, EventFlag.none, 0x0391, 0x0045, 0x01);
+immutable DoorObject doorEntry449 = DoorObject("TEXT_DOOR_447", EventFlag.none, 0x0295, 0x001E, 0x01);
+immutable DoorObject doorEntry450 = DoorObject(null, EventFlag.none, 0x024F, 0x022E, 0x01);
+immutable DoorObject doorEntry451 = DoorObject(null, EventFlag.none, 0x0395, 0x0035, 0x01);
+immutable DoorObject doorEntry452 = DoorObject(null, EventFlag.none, 0xC279, 0x03B9, 0x01);
+immutable DoorObject doorEntry453 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0x011F, 0x0395, 0x01);
+immutable DoorObject doorEntry454 = DoorObject(null, EventFlag.none, 0x810C, 0x036B, 0x01);
+immutable DoorObject doorEntry455 = DoorObject(null, EventFlag.none, 0x8199, 0x0343, 0x01);
+immutable DoorObject doorEntry456 = DoorObject(null, EventFlag.none, 0x0055, 0x034D, 0x01);
+immutable DoorObject doorEntry457 = DoorObject(null, EventFlag.none, 0x81B9, 0x0343, 0x01);
+immutable DoorObject doorEntry458 = DoorObject(null, EventFlag.none, 0xC199, 0x03BD, 0x01);
+immutable DoorObject doorEntry459 = DoorObject(null, EventFlag.none, 0xC199, 0x03FC, 0x01);
+immutable DoorObject doorEntry460 = DoorObject("TEXT_DOOR_460", EventFlag.none, 0x03E2, 0x0019, 0x01);
+immutable DoorObject doorEntry461 = DoorObject("TEXT_DOOR_461", EventFlag.unknown0340 | eventFlagUnset, 0x0021, 0x031C, 0x01);
+immutable MapObjectObject doorEntry462 = MapObjectObject("MSG_READ_DGPM1_SIGN1");
+immutable DoorObject doorEntry463 = DoorObject(null, EventFlag.none, 0xC3E9, 0x03CB, 0x04);
+immutable DoorObject doorEntry464 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC1A9, 0x0350, 0x01);
+immutable DoorObject doorEntry465 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x0281, 0x018C, 0x01);
+immutable DoorObject doorEntry466 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x828D, 0x0183, 0x01);
+immutable DoorObject doorEntry467 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC379, 0x03F9, 0x01);
+immutable DoorObject doorEntry468 = DoorObject(null, EventFlag.none, 0xC3E9, 0x032B, 0x04);
+immutable DoorObject doorEntry469 = DoorObject(null, EventFlag.none, 0xC3E9, 0x038B, 0x04);
+immutable DoorObject doorEntry470 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC1B9, 0x035C, 0x01);
+immutable DoorObject doorEntry471 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC28D, 0x019C, 0x01);
+immutable DoorObject doorEntry472 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x8279, 0x0383, 0x01);
+immutable DoorObject doorEntry473 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x03CC, 0x001B, 0x0A);
+immutable DoorObject doorEntry474 = DoorObject(null, EventFlag.none, 0x03C4, 0x0037, 0x0A);
+immutable DoorObject doorEntry475 = DoorObject(null, EventFlag.none, 0x03A0, 0x001B, 0x0A);
+immutable DoorObject doorEntry476 = DoorObject(null, EventFlag.none, 0x03A7, 0x0018, 0x01);
+immutable DoorObject doorEntry477 = DoorObject(null, EventFlag.none, 0x03B0, 0x0015, 0x01);
+immutable DoorObject doorEntry478 = DoorObject(null, EventFlag.none, 0x03AA, 0x002D, 0x01);
+immutable DoorObject doorEntry479 = DoorObject(null, EventFlag.none, 0x03AC, 0x0025, 0x01);
+immutable DoorObject doorEntry480 = DoorObject(null, EventFlag.none, 0xC10D, 0x03D8, 0x01);
+immutable DoorObject doorEntry481 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC00C, 0x035B, 0x01);
+immutable DoorObject doorEntry482 = DoorObject(null, EventFlag.none, 0xC0ED, 0x03F4, 0x01);
+immutable DoorObject doorEntry483 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
+immutable DoorObject doorEntry484 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
+immutable DoorObject doorEntry485 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC35A, 0x03F8, 0x01);
+immutable DoorObject doorEntry486 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x0413, 0x0031, 0x01);
+immutable DoorObject doorEntry487 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x0291, 0x03B8, 0x01);
+immutable DoorObject doorEntry488 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x843C, 0x03C4, 0x01);
+immutable DoorObject doorEntry489 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0xC43C, 0x03FB, 0x01);
+immutable MapObjectObject doorEntry490 = MapObjectObject("MSG_CHECK_DESERT_SIGN");
+immutable DoorObject doorEntry491 = DoorObject("TEXT_DOOR_346", EventFlag.none, 0x04B4, 0x01B3, 0x01);
+immutable DoorObject doorEntry492 = DoorObject("TEXT_DOOR_346", EventFlag.none, 0x04DC, 0x00AF, 0x01);
+immutable DoorObject doorEntry493 = DoorObject(null, EventFlag.none, 0x0283, 0x038D, 0x01);
+immutable DoorObject doorEntry494 = DoorObject(null, EventFlag.none, 0x02A3, 0x03F5, 0x01);
+immutable DoorObject doorEntry495 = DoorObject(null, EventFlag.none, 0x0293, 0x0305, 0x01);
+immutable DoorObject doorEntry496 = DoorObject(null, EventFlag.none, 0x0293, 0x0339, 0x01);
+immutable DoorObject doorEntry497 = DoorObject(null, EventFlag.none, 0x02C3, 0x0335, 0x01);
+immutable DoorObject doorEntry498 = DoorObject(null, EventFlag.none, 0x84B4, 0x01CC, 0x01);
+immutable DoorObject doorEntry499 = DoorObject(null, EventFlag.none, 0x02EA, 0x03B5, 0x01);
+immutable DoorObject doorEntry500 = DoorObject(null, EventFlag.none, 0x42EC, 0x03ED, 0x01);
+immutable DoorObject doorEntry501 = DoorObject(null, EventFlag.none, 0x42A8, 0x0375, 0x01);
+immutable DoorObject doorEntry502 = DoorObject(null, EventFlag.none, 0x02CA, 0x03D5, 0x01);
+immutable DoorObject doorEntry503 = DoorObject(null, EventFlag.none, 0x4304, 0x0379, 0x01);
+immutable DoorObject doorEntry504 = DoorObject("TEXT_DOOR_346", EventFlag.none, 0x04B6, 0x01C9, 0x01);
+immutable DoorObject doorEntry505 = DoorObject(null, EventFlag.none, 0x44BC, 0x00C1, 0x01);
+immutable DoorObject doorEntry506 = DoorObject(null, EventFlag.dsrtTjabMove | eventFlagUnset, 0xC2A9, 0x0310, 0x01);
+immutable DoorObject doorEntry507 = DoorObject(null, EventFlag.none, 0xC2C9, 0x0310, 0x01);
+immutable DoorObject doorEntry508 = DoorObject(null, EventFlag.none, 0x02A8, 0x0305, 0x01);
+immutable DoorObject doorEntry509 = DoorObject(null, EventFlag.none, 0xC2E9, 0x030C, 0x01);
+immutable DoorObject doorEntry510 = DoorObject(null, EventFlag.none, 0x02C8, 0x0305, 0x01);
+immutable DoorObject doorEntry511 = DoorObject(null, EventFlag.none, 0x02C8, 0x030D, 0x01);
+immutable DoorObject doorEntry512 = DoorObject(null, EventFlag.none, 0xC309, 0x031C, 0x01);
+immutable DoorObject doorEntry513 = DoorObject(null, EventFlag.none, 0x02A8, 0x030D, 0x01);
+immutable DoorObject doorEntry514 = DoorObject(null, EventFlag.none, 0xC289, 0x032C, 0x01);
+immutable DoorObject doorEntry515 = DoorObject(null, EventFlag.none, 0x0288, 0x0329, 0x01);
+immutable DoorObject doorEntry516 = DoorObject(null, EventFlag.none, 0xC2C9, 0x0358, 0x01);
+immutable DoorObject doorEntry517 = DoorObject(null, EventFlag.none, 0x0288, 0x0325, 0x01);
+immutable DoorObject doorEntry518 = DoorObject(null, EventFlag.none, 0xC2E9, 0x03D0, 0x01);
+immutable DoorObject doorEntry519 = DoorObject(null, EventFlag.none, 0xC2C9, 0x03F4, 0x01);
+immutable DoorObject doorEntry520 = DoorObject(null, EventFlag.none, 0x02E8, 0x03CD, 0x01);
+immutable DoorObject doorEntry521 = DoorObject(null, EventFlag.sarudungeonBOK | eventFlagUnset, 0xC2D9, 0x031C, 0x01);
+immutable DoorObject doorEntry522 = DoorObject(null, EventFlag.sarudungeonAOK | eventFlagUnset, 0xC339, 0x031C, 0x01);
+immutable DoorObject doorEntry523 = DoorObject(null, EventFlag.none, 0x8299, 0x0383, 0x01);
+immutable DoorObject doorEntry524 = DoorObject(null, EventFlag.sarudungeonDOK | eventFlagUnset, 0xC2F9, 0x031C, 0x01);
+immutable DoorObject doorEntry525 = DoorObject(null, EventFlag.sarudungeonCOK | eventFlagUnset, 0xC319, 0x031C, 0x01);
+immutable DoorObject doorEntry526 = DoorObject(null, EventFlag.none, 0x82D9, 0x0303, 0x01);
+immutable DoorObject doorEntry527 = DoorObject(null, EventFlag.none, 0x82F9, 0x0303, 0x01);
+immutable DoorObject doorEntry528 = DoorObject(null, EventFlag.sarudungeonHOK | eventFlagUnset, 0xC325, 0x0308, 0x01);
+immutable DoorObject doorEntry529 = DoorObject(null, EventFlag.sarudungeonGOK | eventFlagUnset, 0xC349, 0x0310, 0x01);
+immutable DoorObject doorEntry530 = DoorObject(null, EventFlag.none, 0x831B, 0x0303, 0x01);
+immutable DoorObject doorEntry531 = DoorObject(null, EventFlag.none, 0x0308, 0x0305, 0x01);
+immutable DoorObject doorEntry532 = DoorObject(null, EventFlag.none, 0x0308, 0x0309, 0x01);
+immutable DoorObject doorEntry533 = DoorObject(null, EventFlag.sarudungeonFOK | eventFlagUnset, 0xC2F9, 0x035C, 0x01);
+immutable DoorObject doorEntry534 = DoorObject(null, EventFlag.sarudungeonEOK | eventFlagUnset, 0xC359, 0x031C, 0x01);
+immutable DoorObject doorEntry535 = DoorObject(null, EventFlag.none, 0x8339, 0x0303, 0x01);
+immutable DoorObject doorEntry536 = DoorObject(null, EventFlag.sarudungeonLOK | eventFlagUnset, 0xC2E9, 0x034C, 0x01);
+immutable DoorObject doorEntry537 = DoorObject(null, EventFlag.sarudungeonKOK | eventFlagUnset, 0xC329, 0x035C, 0x01);
+immutable DoorObject doorEntry538 = DoorObject(null, EventFlag.none, 0x8359, 0x0303, 0x01);
+immutable DoorObject doorEntry539 = DoorObject(null, EventFlag.none, 0x02C8, 0x0345, 0x01);
+immutable DoorObject doorEntry540 = DoorObject(null, EventFlag.none, 0x02C8, 0x0355, 0x01);
+immutable DoorObject doorEntry541 = DoorObject(null, EventFlag.sarudungeonJOK | eventFlagUnset, 0xC309, 0x03CC, 0x01);
+immutable DoorObject doorEntry542 = DoorObject(null, EventFlag.sarudungeonIOK | eventFlagUnset, 0xC319, 0x037C, 0x01);
+immutable DoorObject doorEntry543 = DoorObject(null, EventFlag.none, 0x82F9, 0x0343, 0x01);
+immutable DoorObject doorEntry544 = DoorObject(null, EventFlag.none, 0x02E8, 0x03C5, 0x01);
+immutable DoorObject doorEntry545 = DoorObject(null, EventFlag.dsrtSaruTacoDisappear | eventFlagUnset, 0xC351, 0x03B4, 0x01);
+immutable DoorObject doorEntry546 = DoorObject(null, EventFlag.none, 0x8319, 0x0343, 0x01);
+immutable DoorObject doorEntry547 = DoorObject(null, EventFlag.none, 0x02C8, 0x03E5, 0x01);
+immutable DoorObject doorEntry548 = DoorObject("TEXT_DOOR_548", EventFlag.none, 0xC4E6, 0x02CD, 0x01);
+immutable DoorObject doorEntry549 = DoorObject("MSG_WARP_STEP_FOUR", EventFlag.none, 0x827E, 0x0118, 0x01);
+immutable DoorObject doorEntry550 = DoorObject(null, EventFlag.none, 0xC4E6, 0x020D, 0x01);
+immutable DoorObject doorEntry551 = DoorObject(null, EventFlag.none, 0x84E6, 0x0232, 0x01);
+immutable DoorObject doorEntry552 = DoorObject(null, EventFlag.none, 0xC30D, 0x02DC, 0x01);
+immutable DoorObject doorEntry553 = DoorObject(null, EventFlag.none, 0x8339, 0x02A7, 0x04);
+immutable DoorObject doorEntry554 = DoorObject("TEXT_DOOR_554", EventFlag.none, 0xC35D, 0x02FC, 0x04);
+immutable DoorObject doorEntry555 = DoorObject("TEXT_DOOR_555", EventFlag.none, 0xC2A5, 0x02C8, 0x01);
+immutable DoorObject doorEntry556 = DoorObject("TEXT_DOOR_556", EventFlag.fourTonzuraFree | eventFlagUnset, 0xC357, 0x0296, 0x06);
+immutable DoorObject doorEntry557 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0x0184, 0x01BB, 0x01);
+immutable DoorObject doorEntry558 = DoorObject(null, EventFlag.none, 0xC2B5, 0x027C, 0x04);
+immutable DoorObject doorEntry559 = DoorObject(null, EventFlag.none, 0xC2FD, 0x02FC, 0x01);
+immutable DoorObject doorEntry560 = DoorObject(null, EventFlag.none, 0xC2AD, 0x0238, 0x06);
+immutable DoorObject doorEntry561 = DoorObject("TEXT_DOOR_561", EventFlag.none, 0xC1AC, 0x0317, 0x01);
+immutable DoorObject doorEntry562 = DoorObject(null, EventFlag.none, 0x8209, 0x02A3, 0x04);
+immutable DoorObject doorEntry563 = DoorObject(null, EventFlag.none, 0x0308, 0x02B2, 0x07);
+immutable DoorObject doorEntry564 = DoorObject(null, EventFlag.none, 0x02DB, 0x02C9, 0x07);
+immutable DoorObject doorEntry565 = DoorObject(null, EventFlag.none, 0x02DB, 0x02D1, 0x07);
+immutable DoorObject doorEntry566 = DoorObject("TEXT_DOOR_566", EventFlag.fourElev, 0x82A5, 0x02AB, 0x0D);
+immutable DoorObject doorEntry567 = DoorObject(null, EventFlag.none, 0xC281, 0x02C0, 0x07);
+immutable DoorObject doorEntry568 = DoorObject(null, EventFlag.none, 0xC2C1, 0x02C8, 0x07);
+immutable DoorObject doorEntry569 = DoorObject(null, EventFlag.none, 0x0327, 0x02ED, 0x07);
+immutable DoorObject doorEntry570 = DoorObject(null, EventFlag.none, 0xC28D, 0x0298, 0x07);
+immutable DoorObject doorEntry571 = DoorObject(null, EventFlag.none, 0x02DB, 0x02A9, 0x07);
+immutable DoorObject doorEntry572 = DoorObject(null, EventFlag.none, 0x02DB, 0x02B1, 0x07);
+immutable DoorObject doorEntry573 = DoorObject("TEXT_DOOR_573", EventFlag.none, 0x830C, 0x0224, 0x07);
+immutable DoorObject doorEntry574 = DoorObject(null, EventFlag.none, 0xC28D, 0x02F8, 0x07);
+immutable DoorObject doorEntry575 = DoorObject(null, EventFlag.none, 0xC2AD, 0x0298, 0x07);
+immutable DoorObject doorEntry576 = DoorObject(null, EventFlag.none, 0x0268, 0x02ED, 0x07);
+immutable DoorObject doorEntry577 = DoorObject("TEXT_DOOR_577", EventFlag.fourElev, 0x832D, 0x02E3, 0x0D);
+immutable DoorObject doorEntry578 = DoorObject(null, EventFlag.none, 0x026B, 0x02AE, 0x07);
+immutable DoorObject doorEntry579 = DoorObject(null, EventFlag.none, 0x0288, 0x0290, 0x07);
+immutable DoorObject doorEntry580 = DoorObject(null, EventFlag.none, 0xC32B, 0x029A, 0x07);
+immutable DoorObject doorEntry581 = DoorObject(null, EventFlag.none, 0xC24F, 0x01AF, 0x0C);
+immutable DoorObject doorEntry582 = DoorObject(null, EventFlag.none, 0x82ED, 0x0283, 0x0F);
+immutable DoorObject doorEntry583 = DoorObject(null, EventFlag.none, 0xC2AD, 0x02F8, 0x07);
+immutable DoorObject doorEntry584 = DoorObject(null, EventFlag.none, 0xC2CD, 0x0298, 0x07);
+immutable DoorObject doorEntry585 = DoorObject(null, EventFlag.none, 0x828D, 0x0283, 0x07);
+immutable DoorObject doorEntry586 = DoorObject("TEXT_DOOR_586", EventFlag.fourElev, 0xC32D, 0x02F8, 0x0D);
+immutable DoorObject doorEntry587 = DoorObject("TEXT_DOOR_587", EventFlag.none, 0x0278, 0x0285, 0x0D);
+immutable DoorObject doorEntry588 = DoorObject("TEXT_DOOR_588", EventFlag.none, 0x0203, 0x01B0, 0x01);
+immutable DoorObject doorEntry589 = DoorObject(null, EventFlag.none, 0x02A8, 0x028A, 0x07);
+immutable DoorObject doorEntry590 = DoorObject(null, EventFlag.none, 0x8341, 0x0226, 0x07);
+immutable DoorObject doorEntry591 = DoorObject(null, EventFlag.none, 0xC2CD, 0x02F8, 0x07);
+immutable DoorObject doorEntry592 = DoorObject(null, EventFlag.none, 0xC2ED, 0x02F8, 0x07);
+immutable DoorObject doorEntry593 = DoorObject(null, EventFlag.none, 0x02A8, 0x0290, 0x07);
+immutable DoorObject doorEntry594 = DoorObject("TEXT_DOOR_594", EventFlag.fourElev, 0xC30D, 0x02F8, 0x0D);
+immutable DoorObject doorEntry595 = DoorObject(null, EventFlag.none, 0x826D, 0x02E3, 0x07);
+immutable DoorObject doorEntry596 = DoorObject(null, EventFlag.none, 0xC26D, 0x02F8, 0x07);
+immutable DoorObject doorEntry597 = DoorObject(null, EventFlag.none, 0x026B, 0x02C1, 0x07);
+immutable DoorObject doorEntry598 = DoorObject(null, EventFlag.none, 0x826D, 0x0283, 0x07);
+immutable DoorObject doorEntry599 = DoorObject(null, EventFlag.none, 0xC26D, 0x0298, 0x07);
+immutable DoorObject doorEntry600 = DoorObject(null, EventFlag.none, 0x830D, 0x02E3, 0x07);
+immutable DoorObject doorEntry601 = DoorObject(null, EventFlag.none, 0x02C8, 0x0290, 0x07);
+immutable DoorObject doorEntry602 = DoorObject(null, EventFlag.none, 0x02F8, 0x02F1, 0x07);
+immutable DoorObject doorEntry603 = DoorObject(null, EventFlag.none, 0x82B1, 0x0223, 0x0F);
+immutable DoorObject doorEntry604 = DoorObject("TEXT_DOOR_604", EventFlag.fourOK | eventFlagUnset, 0x82ED, 0x02E3, 0x07);
+immutable DoorObject doorEntry605 = DoorObject(null, EventFlag.fourStairwayAppear | eventFlagUnset, 0xC209, 0x02BC, 0x0F);
+immutable DoorObject doorEntry606 = DoorObject(null, EventFlag.fourYudanRoboDisappear | eventFlagUnset, 0x02EC, 0x02C2, 0x07);
+immutable DoorObject doorEntry607 = DoorObject(null, EventFlag.none, 0x82CD, 0x0283, 0x07);
+immutable DoorObject doorEntry608 = DoorObject(null, EventFlag.none, 0xC2D9, 0x02E8, 0x07);
+immutable DoorObject doorEntry609 = DoorObject(null, EventFlag.none, 0xC31D, 0x02CC, 0x01);
+immutable DoorObject doorEntry610 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0xC24B, 0x0142, 0x01);
+immutable DoorObject doorEntry611 = DoorObject(null, EventFlag.none, 0xC27D, 0x02FC, 0x07);
+immutable DoorObject doorEntry612 = DoorObject(null, EventFlag.none, 0xC27D, 0x0238, 0x07);
+immutable DoorObject doorEntry613 = DoorObject(null, EventFlag.none, 0x832D, 0x02A3, 0x0F);
+immutable DoorObject doorEntry614 = DoorObject(null, EventFlag.none, 0xC33D, 0x02D8, 0x07);
+immutable DoorObject doorEntry615 = DoorObject(null, EventFlag.none, 0xC35D, 0x02D8, 0x07);
+immutable DoorObject doorEntry616 = DoorObject(null, EventFlag.none, 0xC1C9, 0x0173, 0x01);
+immutable DoorObject doorEntry617 = DoorObject(null, EventFlag.none, 0x82FD, 0x02E3, 0x01);
+immutable DoorObject doorEntry618 = DoorObject(null, EventFlag.none, 0xC2DD, 0x02DC, 0x07);
+immutable DoorObject doorEntry619 = DoorObject("TEXT_DOOR_587", EventFlag.none, 0x02D8, 0x0285, 0x0D);
+immutable DoorObject doorEntry620 = DoorObject(null, EventFlag.none, 0x032C, 0x02C5, 0x07);
+immutable DoorObject doorEntry621 = DoorObject(null, EventFlag.none, 0x829D, 0x02E3, 0x07);
+immutable DoorObject doorEntry622 = DoorObject(null, EventFlag.none, 0x830D, 0x02A3, 0x0F);
+immutable DoorObject doorEntry623 = DoorObject(null, EventFlag.none, 0xC31D, 0x02FC, 0x07);
+immutable DoorObject doorEntry624 = DoorObject(null, EventFlag.none, 0xC34D, 0x02DC, 0x07);
+immutable DoorObject doorEntry625 = DoorObject(null, EventFlag.none, 0x0318, 0x02B1, 0x07);
+immutable DoorObject doorEntry626 = DoorObject(null, EventFlag.none, 0xC26D, 0x02CC, 0x07);
+immutable DoorObject doorEntry627 = DoorObject("TEXT_DOOR_587", EventFlag.none, 0x0298, 0x0285, 0x0D);
+immutable DoorObject doorEntry628 = DoorObject("TEXT_DOOR_628", EventFlag.fourMaidThanks | eventFlagUnset, 0x02B8, 0x0285, 0x0D);
+immutable DoorObject doorEntry629 = DoorObject(null, EventFlag.none, 0xC2BD, 0x02FC, 0x07);
+immutable DoorObject doorEntry630 = DoorObject("TEXT_DOOR_630", EventFlag.none, 0xC218, 0x01C2, 0x0C);
+immutable DoorObject doorEntry631 = DoorObject(null, EventFlag.none, 0x032C, 0x02D1, 0x07);
+immutable DoorObject doorEntry632 = DoorObject(null, EventFlag.none, 0x0318, 0x02BD, 0x07);
+immutable DoorObject doorEntry633 = DoorObject("TEXT_DOOR_633", EventFlag.unknown0340 | eventFlagUnset, 0x035E, 0x02BE, 0x00);
+immutable DoorObject doorEntry634 = DoorObject(null, EventFlag.fourKomoritaAppear | eventFlagUnset, 0xC35D, 0x02BC, 0x07);
+immutable DoorObject doorEntry635 = DoorObject(null, EventFlag.none, 0x835D, 0x02E2, 0x01);
+immutable DoorObject doorEntry636 = DoorObject("TEXT_DOOR_636", EventFlag.none, 0xC2DD, 0x026C, 0x07);
+immutable DoorObject doorEntry637 = DoorObject(null, EventFlag.none, 0xC26D, 0x023C, 0x07);
+immutable DoorObject doorEntry638 = DoorObject("TEXT_DOOR_638", EventFlag.none, 0x823E, 0x0179, 0x0A);
+immutable DoorObject doorEntry639 = DoorObject(null, EventFlag.fourTopoloBoyBAppear | eventFlagUnset, 0xC34D, 0x02BC, 0x07);
+immutable DoorObject doorEntry640 = DoorObject("TEXT_DOOR_640", EventFlag.none, 0x02A8, 0x0259, 0x07);
+immutable DoorObject doorEntry641 = DoorObject("TEXT_DOOR_641", EventFlag.none, 0xC1E2, 0x0142, 0x0A);
+immutable DoorObject doorEntry642 = DoorObject("TEXT_DOOR_642", EventFlag.none, 0x82DD, 0x0233, 0x07);
+immutable DoorObject doorEntry643 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x0044, 0x0283, 0x01);
+immutable DoorObject doorEntry644 = DoorObject(null, EventFlag.none, 0x8299, 0x0227, 0x07);
+immutable DoorObject doorEntry645 = DoorObject(null, EventFlag.none, 0x82AB, 0x024D, 0x07);
+immutable DoorObject doorEntry646 = DoorObject(null, EventFlag.none, 0xC297, 0x027B, 0x01);
+immutable DoorObject doorEntry647 = DoorObject("TEXT_DOOR_647", EventFlag.none, 0x0217, 0x0192, 0x0A);
+immutable DoorObject doorEntry648 = DoorObject(null, EventFlag.none, 0x01D9, 0x01B0, 0x0A);
+immutable DoorObject doorEntry649 = DoorObject(null, EventFlag.none, 0x82F1, 0x02AB, 0x0F);
+immutable DoorObject doorEntry650 = DoorObject(null, EventFlag.none, 0xC0B2, 0x001D, 0x01);
+immutable DoorObject doorEntry651 = DoorObject(null, EventFlag.none, 0xC0B6, 0x001D, 0x01);
+immutable DoorObject doorEntry652 = DoorObject(null, EventFlag.none, 0x435A, 0x02AD, 0x01);
+immutable DoorObject doorEntry653 = DoorObject(null, EventFlag.none, 0xC1BC, 0x02D7, 0x07);
+immutable DoorObject doorEntry654 = DoorObject(null, EventFlag.none, 0xC22C, 0x0217, 0x07);
+immutable DoorObject doorEntry655 = DoorObject(null, EventFlag.none, 0x81B6, 0x0362, 0x01);
+immutable DoorObject doorEntry656 = DoorObject(null, EventFlag.none, 0x81BA, 0x0362, 0x01);
+immutable DoorObject doorEntry657 = DoorObject(null, EventFlag.none, 0x8056, 0x0262, 0x01);
+immutable DoorObject doorEntry658 = DoorObject(null, EventFlag.none, 0x805A, 0x0262, 0x01);
+immutable DoorObject doorEntry659 = DoorObject(null, EventFlag.none, 0x0054, 0x0299, 0x07);
+immutable DoorObject doorEntry660 = DoorObject(null, EventFlag.none, 0x004C, 0x02BD, 0x07);
+immutable DoorObject doorEntry661 = DoorObject(null, EventFlag.none, 0xC056, 0x02FD, 0x01);
+immutable DoorObject doorEntry662 = DoorObject(null, EventFlag.none, 0xC05A, 0x02FD, 0x01);
+immutable DoorObject doorEntry663 = DoorObject(null, EventFlag.none, 0xC24C, 0x0217, 0x07);
+immutable DoorObject doorEntry664 = DoorObject(null, EventFlag.none, 0x8196, 0x0182, 0x01);
+immutable DoorObject doorEntry665 = DoorObject(null, EventFlag.none, 0x819A, 0x0182, 0x01);
+immutable DoorObject doorEntry666 = DoorObject(null, EventFlag.none, 0x01AC, 0x039D, 0x07);
+immutable DoorObject doorEntry667 = DoorObject(null, EventFlag.none, 0xC1B6, 0x03FD, 0x01);
+immutable DoorObject doorEntry668 = DoorObject(null, EventFlag.none, 0xC1BA, 0x03FD, 0x01);
+immutable DoorObject doorEntry669 = DoorObject("TEXT_DOOR_669", EventFlag.none, 0x4200, 0x01ED, 0x01);
+immutable DoorObject doorEntry670 = DoorObject(null, EventFlag.none, 0xC26C, 0x021B, 0x07);
+immutable DoorObject doorEntry671 = DoorObject(null, EventFlag.none, 0x0194, 0x01A9, 0x07);
+immutable MapObjectObject doorEntry672 = MapObjectObject("MSG_READ_FOUR_SIGN1");
+immutable MapObjectObject doorEntry673 = MapObjectObject("MSG_READ_FOUR_SIGN2");
+immutable MapObjectObject doorEntry674 = MapObjectObject("MSG_READ_FOUR_SIGN3");
+immutable DoorObject doorEntry675 = DoorObject("TEXT_DOOR_675", EventFlag.unknown0340 | eventFlagUnset, 0x02DB, 0x02B9, 0x00);
+immutable MapObjectObject doorEntry676 = MapObjectObject("MSG_READ_FOUR_HOSP_FRONT_SGN1");
+immutable MapObjectObject doorEntry677 = MapObjectObject("MSG_READ_NO_DOCUMENT");
+immutable MapObjectObject doorEntry678 = MapObjectObject("MSG_READ_FOUR_HOSP_PSSG_SGN2");
+immutable MapObjectObject doorEntry679 = MapObjectObject("MSG_READ_FOUR_MUSE_EXHI_SGN1");
+immutable MapObjectObject doorEntry680 = MapObjectObject("MSG_SEARCH_FOUR_BRGS_BAR_SDOR");
+immutable MapObjectObject doorEntry681 = MapObjectObject("MSG_LIBRARY_PEOPLE_D");
+immutable DoorObject doorEntry682 = DoorObject(null, EventFlag.none, 0xC49D, 0x035C, 0x04);
+immutable DoorObject doorEntry683 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC478, 0x03AB, 0x04);
+immutable DoorObject doorEntry684 = DoorObject(null, EventFlag.none, 0xC47D, 0x035C, 0x04);
+immutable DoorObject doorEntry685 = DoorObject("TEXT_DOOR_685", EventFlag.sumsStoicReserved | eventFlagUnset, 0xC47A, 0x03D9, 0x01);
+immutable DoorObject doorEntry686 = DoorObject("TEXT_DOOR_686", EventFlag.none, 0xC4AD, 0x037C, 0x04);
+immutable DoorObject doorEntry687 = DoorObject(null, EventFlag.none, 0xC4BD, 0x035C, 0x04);
+immutable DoorObject doorEntry688 = DoorObject(null, EventFlag.none, 0xC4CD, 0x03D4, 0x04);
+immutable DoorObject doorEntry689 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC4AD, 0x035C, 0x04);
+immutable DoorObject doorEntry690 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC4A9, 0x0390, 0x04);
+immutable DoorObject doorEntry691 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC4A9, 0x03D0, 0x04);
+immutable DoorObject doorEntry692 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC4CD, 0x0354, 0x04);
+immutable DoorObject doorEntry693 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC4CD, 0x0394, 0x04);
+immutable DoorObject doorEntry694 = DoorObject(null, EventFlag.none, 0x04BC, 0x03C9, 0x07);
+immutable DoorObject doorEntry695 = DoorObject(null, EventFlag.none, 0x04BC, 0x03D1, 0x07);
+immutable DoorObject doorEntry696 = DoorObject(null, EventFlag.none, 0xC4BD, 0x0398, 0x07);
+immutable DoorObject doorEntry697 = DoorObject(null, EventFlag.none, 0x0157, 0x032D, 0x0A);
+immutable DoorObject doorEntry698 = DoorObject(null, EventFlag.none, 0x84BD, 0x03C3, 0x0F);
+immutable DoorObject doorEntry699 = DoorObject(null, EventFlag.none, 0x04B8, 0x0352, 0x07);
+immutable DoorObject doorEntry700 = DoorObject(null, EventFlag.none, 0xC46D, 0x0354, 0x07);
+immutable DoorObject doorEntry701 = DoorObject(null, EventFlag.none, 0xC46D, 0x03D4, 0x07);
+immutable DoorObject doorEntry702 = DoorObject(null, EventFlag.none, 0x84BD, 0x0343, 0x0F);
+immutable DoorObject doorEntry703 = DoorObject(null, EventFlag.none, 0x84AD, 0x03A3, 0x0F);
+immutable DoorObject doorEntry704 = DoorObject("TEXT_DOOR_704", EventFlag.none, 0x84AD, 0x0362, 0x01);
+immutable DoorObject doorEntry705 = DoorObject(null, EventFlag.none, 0xC49D, 0x039C, 0x07);
+immutable DoorObject doorEntry706 = DoorObject(null, EventFlag.none, 0xC470, 0x03F3, 0x0F);
+immutable DoorObject doorEntry707 = DoorObject(null, EventFlag.none, 0xC478, 0x03FB, 0x0F);
+immutable DoorObject doorEntry708 = DoorObject(null, EventFlag.none, 0xC49D, 0x03DC, 0x07);
+immutable DoorObject doorEntry709 = DoorObject(null, EventFlag.none, 0x849D, 0x0343, 0x0F);
+immutable DoorObject doorEntry710 = DoorObject(null, EventFlag.none, 0x0154, 0x0297, 0x0A);
+immutable DoorObject doorEntry711 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0154, 0x0268, 0x0A);
+immutable DoorObject doorEntry712 = DoorObject(null, EventFlag.none, 0x0155, 0x02C2, 0x0F);
+immutable DoorObject doorEntry713 = DoorObject(null, EventFlag.none, 0x8449, 0x038B, 0x0F);
+immutable DoorObject doorEntry714 = DoorObject(null, EventFlag.none, 0x845C, 0x0384, 0x0F);
+immutable DoorObject doorEntry715 = DoorObject(null, EventFlag.none, 0xC45C, 0x03BB, 0x0F);
+immutable DoorObject doorEntry716 = DoorObject("TEXT_DOOR_716", EventFlag.none, 0x0155, 0x0237, 0x0A);
+immutable DoorObject doorEntry717 = DoorObject(null, EventFlag.none, 0x0448, 0x0398, 0x07);
+immutable DoorObject doorEntry718 = DoorObject(null, EventFlag.none, 0x0448, 0x03A8, 0x07);
+immutable DoorObject doorEntry719 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0362, 0x0A);
+immutable DoorObject doorEntry720 = DoorObject(null, EventFlag.none, 0xC457, 0x0379, 0x01);
+immutable DoorObject doorEntry721 = DoorObject("TEXT_DOOR_647", EventFlag.none, 0x0152, 0x02EE, 0x0A);
+immutable DoorObject doorEntry722 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0376, 0x0A);
+immutable DoorObject doorEntry723 = DoorObject(null, EventFlag.none, 0x84AD, 0x03E3, 0x07);
+immutable DoorObject doorEntry724 = DoorObject(null, EventFlag.none, 0x8455, 0x0347, 0x0F);
+immutable DoorObject doorEntry725 = DoorObject("TEXT_DOOR_725", EventFlag.none, 0x0163, 0x0382, 0x0A);
+immutable DoorObject doorEntry726 = DoorObject(null, EventFlag.none, 0x04A8, 0x03AD, 0x07);
+immutable DoorObject doorEntry727 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x0396, 0x0A);
+immutable DoorObject doorEntry728 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0163, 0x03A2, 0x0A);
+immutable DoorObject doorEntry729 = DoorObject(null, EventFlag.none, 0x015B, 0x036A, 0x0A);
+immutable MapObjectObject doorEntry730 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN1");
+immutable MapObjectObject doorEntry731 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN2");
+immutable MapObjectObject doorEntry732 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN4");
+immutable MapObjectObject doorEntry733 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN5");
+immutable MapObjectObject doorEntry734 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN3");
+immutable MapObjectObject doorEntry735 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI1_SGN6");
+immutable MapObjectObject doorEntry736 = MapObjectObject("MSG_READ_SUMS_HIER_EXHI2_SGN1");
+immutable MapObjectObject doorEntry737 = MapObjectObject("MSG_READ_SUMS_HOSP_PSSG_SGN1");
+immutable DoorObject doorEntry738 = DoorObject("TEXT_DOOR_738", EventFlag.unknown0340 | eventFlagUnset, 0x015B, 0x038B, 0x00);
+immutable DoorObject doorEntry739 = DoorObject("TEXT_DOOR_739", EventFlag.unknown0340 | eventFlagUnset, 0x015B, 0x03AB, 0x00);
+immutable MapObjectObject doorEntry740 = MapObjectObject("MSG_READ_SUMMERS_SIGN3");
+immutable MapObjectObject doorEntry741 = MapObjectObject("MSG_READ_SUMMERS_SIGN4");
+immutable MapObjectObject doorEntry742 = MapObjectObject("MSG_READ_SUMMERS_SIGN5");
+immutable DoorObject doorEntry743 = DoorObject(null, EventFlag.none, 0xC411, 0x03F8, 0x01);
+immutable DoorObject doorEntry744 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3C9, 0x0370, 0x01);
+immutable DoorObject doorEntry745 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3F9, 0x03B4, 0x01);
+immutable DoorObject doorEntry746 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3E9, 0x0370, 0x01);
+immutable DoorObject doorEntry747 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3D9, 0x03B0, 0x01);
+immutable DoorObject doorEntry748 = DoorObject("TEXT_DOOR_004", EventFlag.ramaRabbitDisappear | eventFlagUnset, 0xC396, 0x021C, 0x01);
+immutable DoorObject doorEntry749 = DoorObject("TEXT_DOOR_001", EventFlag.none, 0x82B1, 0x0103, 0x01);
+immutable DoorObject doorEntry750 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x01D4, 0x0220, 0x01);
+immutable DoorObject doorEntry751 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x01E4, 0x0250, 0x01);
+immutable DoorObject doorEntry752 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x01F4, 0x0228, 0x01);
+immutable DoorObject doorEntry753 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x01EC, 0x0218, 0x01);
+immutable DoorObject doorEntry754 = DoorObject(null, EventFlag.none, 0x8411, 0x03C7, 0x01);
+immutable DoorObject doorEntry755 = DoorObject(null, EventFlag.none, 0xC411, 0x0368, 0x01);
+immutable DoorObject doorEntry756 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x01BA, 0x0239, 0x01);
+immutable DoorObject doorEntry757 = DoorObject(null, EventFlag.none, 0x023A, 0x024E, 0x05);
+immutable DoorObject doorEntry758 = DoorObject(null, EventFlag.none, 0xC436, 0x023C, 0x01);
+immutable DoorObject doorEntry759 = DoorObject(null, EventFlag.none, 0x020A, 0x021D, 0x01);
+immutable DoorObject doorEntry760 = DoorObject(null, EventFlag.none, 0x0437, 0x0221, 0x05);
+immutable DoorObject doorEntry761 = DoorObject(null, EventFlag.none, 0x0437, 0x0234, 0x05);
+immutable DoorObject doorEntry762 = DoorObject(null, EventFlag.none, 0x0397, 0x01F1, 0x05);
+immutable DoorObject doorEntry763 = DoorObject(null, EventFlag.none, 0x02B7, 0x012E, 0x05);
+immutable DoorObject doorEntry764 = DoorObject(null, EventFlag.none, 0x8399, 0x01E7, 0x01);
+immutable DoorObject doorEntry765 = DoorObject("TEXT_DOOR_765", EventFlag.winPinkBoss | eventFlagUnset, 0x0306, 0x01C5, 0x01);
+immutable DoorObject doorEntry766 = DoorObject(null, EventFlag.none, 0x047A, 0x0216, 0x05);
+immutable DoorObject doorEntry767 = DoorObject(null, EventFlag.none, 0xC42D, 0x03E8, 0x01);
+immutable DoorObject doorEntry768 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3D9, 0x0334, 0x01);
+immutable DoorObject doorEntry769 = DoorObject(null, EventFlag.none, 0xC3B9, 0x0334, 0x01);
+immutable DoorObject doorEntry770 = DoorObject(null, EventFlag.none, 0xC36B, 0x03E6, 0x01);
+immutable DoorObject doorEntry771 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3F9, 0x0334, 0x01);
+immutable DoorObject doorEntry772 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x8139, 0x02C7, 0x01);
+immutable DoorObject doorEntry773 = DoorObject("TEXT_DOOR_773", EventFlag.dungeonMan, 0xC1A9, 0x033C, 0x01);
+immutable MapObjectObject doorEntry774 = MapObjectObject("MSG_SKRB_SPHINX");
+immutable SwitchObject doorEntry775 = SwitchObject(EventFlag.tlptSkrb | eventFlagUnset, "MSG_SKRB_SWITCH_01");
+immutable SwitchObject doorEntry776 = SwitchObject(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_03");
+immutable SwitchObject doorEntry777 = SwitchObject(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_05");
+immutable SwitchObject doorEntry778 = SwitchObject(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_02");
+immutable SwitchObject doorEntry779 = SwitchObject(EventFlag.sphinx | eventFlagUnset, "MSG_SKRB_SWITCH_04");
+immutable DoorObject doorEntry780 = DoorObject("TEXT_DOOR_780", EventFlag.none, 0x0205, 0x0099, 0x01);
+immutable DoorObject doorEntry781 = DoorObject(null, EventFlag.none, 0x0200, 0x00CC, 0x01);
+immutable DoorObject doorEntry782 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x01F8, 0x00B8, 0x01);
+immutable DoorObject doorEntry783 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x0204, 0x00AC, 0x01);
+immutable DoorObject doorEntry784 = DoorObject(null, EventFlag.none, 0x01F8, 0x00A4, 0x01);
+immutable DoorObject doorEntry785 = DoorObject(null, EventFlag.none, 0x0263, 0x00DF, 0x01);
+immutable DoorObject doorEntry786 = DoorObject(null, EventFlag.none, 0x80BD, 0x0023, 0x01);
+immutable DoorObject doorEntry787 = DoorObject(null, EventFlag.none, 0xC139, 0x02D0, 0x01);
+immutable DoorObject doorEntry788 = DoorObject(null, EventFlag.none, 0x8239, 0x0207, 0x01);
+immutable DoorObject doorEntry789 = DoorObject(null, EventFlag.none, 0xC0A9, 0x0044, 0x01);
+immutable DoorObject doorEntry790 = DoorObject(null, EventFlag.none, 0x831D, 0x0167, 0x01);
+immutable DoorObject doorEntry791 = DoorObject(null, EventFlag.none, 0x81D1, 0x0063, 0x01);
+immutable DoorObject doorEntry792 = DoorObject(null, EventFlag.none, 0xC239, 0x0214, 0x01);
+immutable DoorObject doorEntry793 = DoorObject(null, EventFlag.none, 0xC19D, 0x0208, 0x01);
+immutable DoorObject doorEntry794 = DoorObject(null, EventFlag.none, 0x84B9, 0x0223, 0x01);
+immutable DoorObject doorEntry795 = DoorObject(null, EventFlag.skrbPyramidOK | eventFlagUnset, 0x02BE, 0x0206, 0x05);
+immutable DoorObject doorEntry796 = DoorObject(null, EventFlag.none, 0xC2E9, 0x01B4, 0x01);
+immutable DoorObject doorEntry797 = DoorObject(null, EventFlag.none, 0xC259, 0x020C, 0x01);
+immutable DoorObject doorEntry798 = DoorObject(null, EventFlag.none, 0x81CD, 0x0067, 0x01);
+immutable DoorObject doorEntry799 = DoorObject(null, EventFlag.none, 0x8189, 0x01E3, 0x01);
+immutable DoorObject doorEntry800 = DoorObject(null, EventFlag.none, 0xC1CD, 0x0078, 0x01);
+immutable DoorObject doorEntry801 = DoorObject(null, EventFlag.none, 0x8279, 0x0207, 0x01);
+immutable DoorObject doorEntry802 = DoorObject(null, EventFlag.none, 0xC4CD, 0x024C, 0x01);
+immutable DoorObject doorEntry803 = DoorObject(null, EventFlag.none, 0x8429, 0x01C7, 0x01);
+immutable DoorObject doorEntry804 = DoorObject(null, EventFlag.none, 0xC279, 0x0214, 0x01);
+immutable DoorObject doorEntry805 = DoorObject(null, EventFlag.fmonPyraBossDisappear | eventFlagUnset, 0x8299, 0x0207, 0x01);
+immutable DoorObject doorEntry806 = DoorObject(null, EventFlag.none, 0xC45D, 0x0218, 0x01);
+immutable DoorObject doorEntry807 = DoorObject("TEXT_DOOR_807", EventFlag.itemTakanome | eventFlagUnset, 0x81BD, 0x0283, 0x01);
+immutable DoorObject doorEntry808 = DoorObject(null, EventFlag.none, 0xC2B9, 0x0214, 0x01);
+immutable DoorObject doorEntry809 = DoorObject(null, EventFlag.none, 0x82D9, 0x0203, 0x01);
+immutable DoorObject doorEntry810 = DoorObject(null, EventFlag.none, 0xC1A9, 0x02AC, 0x01);
+immutable DoorObject doorEntry811 = DoorObject(null, EventFlag.none, 0x02F9, 0x020A, 0x05);
+immutable DoorObject doorEntry812 = DoorObject(null, EventFlag.none, 0x81BD, 0x02E3, 0x01);
+immutable DoorObject doorEntry813 = DoorObject(null, EventFlag.none, 0xC2F9, 0x0210, 0x01);
+immutable DoorObject doorEntry814 = DoorObject("TEXT_DOOR_814", EventFlag.none, 0x02AC, 0x00D7, 0x01);
 immutable ushort doorEntry815 = 0x015B;
-immutable DoorEntryC doorEntry816 = DoorEntryC("MSG_SKRB_PYRAMID_SWITCH");
-immutable DoorEntryC doorEntry817 = DoorEntryC("MSG_SKRB_PYRAMID_TAKANOME");
-immutable DoorEntryA doorEntry818 = DoorEntryA(null, EventFlag.none, 0x4048, 0x0025, 0x01);
-immutable DoorEntryA doorEntry819 = DoorEntryA(null, EventFlag.none, 0x004A, 0x0035, 0x01);
-immutable DoorEntryA doorEntry820 = DoorEntryA(null, EventFlag.none, 0x004A, 0x002D, 0x01);
-immutable DoorEntryA doorEntry821 = DoorEntryA(null, EventFlag.none, 0x4048, 0x003D, 0x01);
-immutable DoorEntryA doorEntry822 = DoorEntryA(null, EventFlag.none, 0xC34A, 0x02F8, 0x01);
-immutable DoorEntryA doorEntry823 = DoorEntryA(null, EventFlag.none, 0x8055, 0x020B, 0x01);
-immutable DoorEntryA doorEntry824 = DoorEntryA("TEXT_DOOR_824", EventFlag.unknown0340 | eventFlagUnset, 0x0270, 0x00A7, 0x01);
-immutable DoorEntryA doorEntry825 = DoorEntryA(null, EventFlag.none, 0x0002, 0x0227, 0x01);
-immutable DoorEntryA doorEntry826 = DoorEntryA(null, EventFlag.none, 0x0003, 0x022D, 0x01);
-immutable DoorEntryA doorEntry827 = DoorEntryA(null, EventFlag.none, 0x0002, 0x0233, 0x01);
-immutable DoorEntryA doorEntry828 = DoorEntryA(null, EventFlag.none, 0x0003, 0x0239, 0x01);
-immutable DoorEntryA doorEntry829 = DoorEntryA(null, EventFlag.none, 0x4310, 0x01E5, 0x01);
-immutable DoorEntryA doorEntry830 = DoorEntryA(null, EventFlag.none, 0x003B, 0x023D, 0x05);
-immutable DoorEntryA doorEntry831 = DoorEntryA(null, EventFlag.none, 0x0053, 0x0234, 0x05);
-immutable DoorEntryA doorEntry832 = DoorEntryA(null, EventFlag.none, 0x0063, 0x0015, 0x01);
-immutable DoorEntryA doorEntry833 = DoorEntryA(null, EventFlag.none, 0x441C, 0x00C5, 0x01);
-immutable DoorEntryA doorEntry834 = DoorEntryA(null, EventFlag.none, 0x0075, 0x002C, 0x05);
-immutable DoorEntryA doorEntry835 = DoorEntryA(null, EventFlag.none, 0x0075, 0x0041, 0x05);
-immutable DoorEntryA doorEntry836 = DoorEntryA(null, EventFlag.none, 0x0317, 0x01F5, 0x01);
-immutable DoorEntryA doorEntry837 = DoorEntryA(null, EventFlag.none, 0x0324, 0x020A, 0x05);
-immutable DoorEntryA doorEntry838 = DoorEntryA(null, EventFlag.none, 0x0328, 0x01FA, 0x05);
-immutable DoorEntryA doorEntry839 = DoorEntryA("TEXT_DOOR_839", EventFlag.unknown0340 | eventFlagUnset, 0x000A, 0x0251, 0x00);
-immutable DoorEntryC doorEntry840 = DoorEntryC("MSG_READ_DDMM1_SIGN19");
-immutable DoorEntryC doorEntry841 = DoorEntryC("MSG_READ_DDMM1_SIGN21");
-immutable DoorEntryC doorEntry842 = DoorEntryC("MSG_READ_DDMM1_SIGN20");
-immutable DoorEntryC doorEntry843 = DoorEntryC("MSG_READ_DDMM1_SIGN18");
-immutable DoorEntryC doorEntry844 = DoorEntryC("MSG_READ_DDMM1_SIGN10");
-immutable DoorEntryC doorEntry845 = DoorEntryC("MSG_READ_DDMM1_SIGN11");
-immutable DoorEntryC doorEntry846 = DoorEntryC("MSG_READ_DDMM1_SIGN12");
-immutable DoorEntryC doorEntry847 = DoorEntryC("MSG_READ_DDMM1_SIGN17");
-immutable DoorEntryC doorEntry848 = DoorEntryC("MSG_READ_DDMM1_SIGN16");
-immutable DoorEntryC doorEntry849 = DoorEntryC("MSG_READ_DDMM1_SIGN14");
-immutable DoorEntryC doorEntry850 = DoorEntryC("MSG_READ_DDMM1_SIGN15");
-immutable DoorEntryC doorEntry851 = DoorEntryC("MSG_READ_DDMM1_SIGN22");
-immutable DoorEntryC doorEntry852 = DoorEntryC("MSG_READ_DDMM1_SIGN13");
-immutable DoorEntryC doorEntry853 = DoorEntryC("MSG_READ_DDMM1_SIGN8");
-immutable DoorEntryC doorEntry854 = DoorEntryC("MSG_READ_DDMM1_SIGN7");
-immutable DoorEntryC doorEntry855 = DoorEntryC("MSG_READ_DDMM1_SIGN9");
-immutable DoorEntryC doorEntry856 = DoorEntryC("MSG_READ_DDMM1_SIGN3");
-immutable DoorEntryC doorEntry857 = DoorEntryC("MSG_READ_DDMM1_SIGN4");
-immutable DoorEntryC doorEntry858 = DoorEntryC("MSG_READ_DDMM1_SIGN2");
-immutable DoorEntryC doorEntry859 = DoorEntryC("MSG_READ_DDMM1_SIGN6");
-immutable DoorEntryC doorEntry860 = DoorEntryC("MSG_READ_DDMM1_SIGN5");
-immutable DoorEntryC doorEntry861 = DoorEntryC("MSG_READ_DDMM1_SIGN1");
-immutable DoorEntryC doorEntry862 = DoorEntryC("MSG_READ_DDMM1_SIGN44");
-immutable DoorEntryC doorEntry863 = DoorEntryC("MSG_READ_DDMM2_SIGN23");
-immutable DoorEntryC doorEntry864 = DoorEntryC("MSG_READ_DDMM2_SIGN24");
-immutable DoorEntryC doorEntry865 = DoorEntryC("MSG_READ_DDMM2_SIGN25");
-immutable DoorEntryC doorEntry866 = DoorEntryC("MSG_READ_DDMM2_SIGN35");
-immutable DoorEntryC doorEntry867 = DoorEntryC("MSG_READ_DDMM2_SIGN34");
-immutable DoorEntryC doorEntry868 = DoorEntryC("MSG_READ_DDMM2_SIGN29");
-immutable DoorEntryC doorEntry869 = DoorEntryC("MSG_READ_DDMM2_SIGN26");
-immutable DoorEntryC doorEntry870 = DoorEntryC("MSG_READ_DDMM2_SIGN27");
-immutable DoorEntryC doorEntry871 = DoorEntryC("MSG_READ_DDMM2_SIGN33");
-immutable DoorEntryC doorEntry872 = DoorEntryC("MSG_READ_DDMM2_SIGN32");
-immutable DoorEntryC doorEntry873 = DoorEntryC("MSG_READ_DDMM2_SIGN31");
-immutable DoorEntryC doorEntry874 = DoorEntryC("MSG_READ_DDMM2_SIGN28");
-immutable DoorEntryC doorEntry875 = DoorEntryC("MSG_READ_DDMM2_SIGN30");
-immutable DoorEntryC doorEntry876 = DoorEntryC("MSG_READ_DDMM3_SIGN36");
-immutable DoorEntryC doorEntry877 = DoorEntryC("MSG_READ_DDMM3_SIGN39");
-immutable DoorEntryC doorEntry878 = DoorEntryC("MSG_READ_DDMM3_SIGN37");
-immutable DoorEntryC doorEntry879 = DoorEntryC("MSG_READ_DDMM3_SIGN41");
-immutable DoorEntryC doorEntry880 = DoorEntryC("MSG_READ_DDMM3_SIGN40");
-immutable DoorEntryC doorEntry881 = DoorEntryC("MSG_READ_DDMM3_SIGN38");
-immutable DoorEntryC doorEntry882 = DoorEntryC("MSG_READ_DDMM4_SIGN42");
-immutable DoorEntryC doorEntry883 = DoorEntryC("MSG_READ_DDMM4_SIGN43");
-immutable DoorEntryA doorEntry884 = DoorEntryA("TEXT_DOOR_884", EventFlag.none, 0xC00E, 0x0054, 0x01);
-immutable DoorEntryA doorEntry885 = DoorEntryA("TEXT_DOOR_885", EventFlag.winLumiBoss | eventFlagUnset, 0x0257, 0x0392, 0x05);
-immutable DoorEntryA doorEntry886 = DoorEntryA(null, EventFlag.none, 0x010B, 0x01C9, 0x01);
-immutable DoorEntryA doorEntry887 = DoorEntryA(null, EventFlag.none, 0x0107, 0x01E1, 0x01);
-immutable DoorEntryA doorEntry888 = DoorEntryA(null, EventFlag.none, 0x0139, 0x018C, 0x05);
-immutable DoorEntryA doorEntry889 = DoorEntryA(null, EventFlag.none, 0x0143, 0x018D, 0x01);
-immutable DoorEntryA doorEntry890 = DoorEntryA(null, EventFlag.none, 0x0137, 0x01A1, 0x01);
-immutable DoorEntryA doorEntry891 = DoorEntryA(null, EventFlag.none, 0x015F, 0x01A6, 0x05);
-immutable DoorEntryA doorEntry892 = DoorEntryA(null, EventFlag.none, 0x013F, 0x01E5, 0x01);
-immutable DoorEntryA doorEntry893 = DoorEntryA(null, EventFlag.none, 0x015F, 0x018D, 0x01);
-immutable DoorEntryA doorEntry894 = DoorEntryA(null, EventFlag.none, 0x016F, 0x01CD, 0x01);
-immutable DoorEntryA doorEntry895 = DoorEntryA(null, EventFlag.none, 0x8151, 0x0087, 0x01);
-immutable DoorEntryA doorEntry896 = DoorEntryA(null, EventFlag.none, 0x4014, 0x01C7, 0x01);
-immutable DoorEntryA doorEntry897 = DoorEntryA(null, EventFlag.none, 0x4010, 0x01E1, 0x01);
-immutable DoorEntryA doorEntry898 = DoorEntryA(null, EventFlag.none, 0x4040, 0x01A3, 0x01);
-immutable DoorEntryA doorEntry899 = DoorEntryA(null, EventFlag.none, 0x404C, 0x018D, 0x01);
-immutable DoorEntryA doorEntry900 = DoorEntryA(null, EventFlag.none, 0x4068, 0x018D, 0x01);
-immutable DoorEntryA doorEntry901 = DoorEntryA(null, EventFlag.none, 0x4074, 0x01CF, 0x01);
-immutable DoorEntryA doorEntry902 = DoorEntryA(null, EventFlag.none, 0x4044, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry903 = DoorEntryA("TEXT_DOOR_903", EventFlag.none, 0x0090, 0x018F, 0x21);
-immutable DoorEntryA doorEntry904 = DoorEntryA("TEXT_DOOR_904", EventFlag.none, 0x0371, 0x0232, 0x01);
-immutable DoorEntryA doorEntry905 = DoorEntryA(null, EventFlag.gumiCaveOpen | eventFlagUnset, 0x0142, 0x0093, 0x01);
-immutable DoorEntryA doorEntry906 = DoorEntryA(null, EventFlag.none, 0x4030, 0x0013, 0x01);
-immutable DoorEntryA doorEntry907 = DoorEntryA("TEXT_DOOR_907", EventFlag.gumiTalkerStone | eventFlagUnset, 0xC072, 0x01F4, 0x01);
-immutable DoorEntryA doorEntry908 = DoorEntryA(null, EventFlag.none, 0xC4BA, 0x0310, 0x01);
-immutable DoorEntryA doorEntry909 = DoorEntryA(null, EventFlag.none, 0x800E, 0x0037, 0x01);
-immutable DoorEntryC doorEntry910 = DoorEntryC("MSG_READ_GMIM0_SIGN3");
-immutable DoorEntryC doorEntry911 = DoorEntryC("MSG_READ_GMIM0_SIGN1");
-immutable DoorEntryC doorEntry912 = DoorEntryC("MSG_READ_GMIM0_SIGN4");
-immutable DoorEntryA doorEntry913 = DoorEntryA(null, EventFlag.none, 0xC011, 0x02F4, 0x01);
-immutable DoorEntryA doorEntry914 = DoorEntryA("TEXT_DOOR_004", EventFlag.none, 0x8351, 0x0167, 0x01);
-immutable DoorEntryA doorEntry915 = DoorEntryA("TEXT_DOOR_915", EventFlag.winFireBoss | eventFlagUnset, 0x04D3, 0x0319, 0x01);
-immutable DoorEntryA doorEntry916 = DoorEntryA(null, EventFlag.none, 0x813A, 0x0343, 0x01);
-immutable DoorEntryA doorEntry917 = DoorEntryA(null, EventFlag.none, 0x82AA, 0x0203, 0x01);
-immutable DoorEntryA doorEntry918 = DoorEntryA(null, EventFlag.none, 0xC2AA, 0x020C, 0x01);
-immutable DoorEntryA doorEntry919 = DoorEntryA(null, EventFlag.none, 0xC13A, 0x0364, 0x01);
-immutable DoorEntryA doorEntry920 = DoorEntryA(null, EventFlag.none, 0x813A, 0x0353, 0x01);
-immutable DoorEntryA doorEntry921 = DoorEntryA(null, EventFlag.none, 0xC2CA, 0x0210, 0x01);
-immutable DoorEntryA doorEntry922 = DoorEntryA(null, EventFlag.none, 0x82AA, 0x01C3, 0x01);
-immutable DoorEntryA doorEntry923 = DoorEntryA(null, EventFlag.none, 0x0183, 0x00EA, 0x01);
-immutable DoorEntryA doorEntry924 = DoorEntryA(null, EventFlag.none, 0xC2EA, 0x01CC, 0x01);
-immutable DoorEntryA doorEntry925 = DoorEntryA(null, EventFlag.none, 0x82CA, 0x01C3, 0x01);
-immutable DoorEntryA doorEntry926 = DoorEntryA(null, EventFlag.none, 0xC286, 0x0210, 0x01);
-immutable DoorEntryA doorEntry927 = DoorEntryA(null, EventFlag.none, 0x828A, 0x0203, 0x01);
-immutable DoorEntryA doorEntry928 = DoorEntryA(null, EventFlag.none, 0xC2CA, 0x01D8, 0x01);
-immutable DoorEntryA doorEntry929 = DoorEntryA(null, EventFlag.none, 0xC34E, 0x0170, 0x01);
-immutable DoorEntryA doorEntry930 = DoorEntryA(null, EventFlag.none, 0xC34E, 0x0194, 0x01);
-immutable DoorEntryA doorEntry931 = DoorEntryA(null, EventFlag.none, 0x8352, 0x01AF, 0x01);
-immutable DoorEntryA doorEntry932 = DoorEntryA(null, EventFlag.none, 0x8342, 0x019F, 0x01);
-immutable DoorEntryA doorEntry933 = DoorEntryA(null, EventFlag.none, 0x8342, 0x01BF, 0x01);
-immutable DoorEntryA doorEntry934 = DoorEntryA(null, EventFlag.none, 0xC346, 0x01AC, 0x01);
-immutable DoorEntryA doorEntry935 = DoorEntryA(null, EventFlag.none, 0xC33E, 0x0180, 0x01);
-immutable DoorEntryA doorEntry936 = DoorEntryA(null, EventFlag.none, 0x833E, 0x018F, 0x01);
-immutable DoorEntryA doorEntry937 = DoorEntryA(null, EventFlag.none, 0x833A, 0x01A7, 0x01);
-immutable DoorEntryA doorEntry938 = DoorEntryA(null, EventFlag.none, 0xC332, 0x018C, 0x01);
-immutable DoorEntryA doorEntry939 = DoorEntryA(null, EventFlag.none, 0xC332, 0x01A0, 0x01);
-immutable DoorEntryA doorEntry940 = DoorEntryA(null, EventFlag.none, 0x832E, 0x01B3, 0x01);
-immutable DoorEntryA doorEntry941 = DoorEntryA(null, EventFlag.none, 0x031B, 0x01A1, 0x01);
-immutable DoorEntryA doorEntry942 = DoorEntryA(null, EventFlag.none, 0x0149, 0x00F7, 0x01);
-immutable DoorEntryA doorEntry943 = DoorEntryA("TEXT_DOOR_943", EventFlag.none, 0x40FE, 0x0211, 0x01);
-immutable DoorEntryA doorEntry944 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x006C, 0x0E);
-immutable DoorEntryA doorEntry945 = DoorEntryA(null, EventFlag.none, 0x02EC, 0x0054, 0x0E);
-immutable DoorEntryA doorEntry946 = DoorEntryA(null, EventFlag.none, 0x031C, 0x0034, 0x0E);
-immutable DoorEntryA doorEntry947 = DoorEntryA(null, EventFlag.none, 0x0398, 0x0070, 0x0E);
-immutable DoorEntryA doorEntry948 = DoorEntryA(null, EventFlag.none, 0x02F4, 0x0018, 0x01);
-immutable DoorEntryA doorEntry949 = DoorEntryA(null, EventFlag.none, 0xC3FA, 0x03F5, 0x04);
-immutable DoorEntryA doorEntry950 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3EA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry951 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3DA, 0x03F9, 0x04);
-immutable DoorEntryA doorEntry952 = DoorEntryA("TEXT_DOOR_367", EventFlag.none, 0xC3CA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry953 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x824C, 0x02FD, 0x0A);
-immutable DoorEntryA doorEntry954 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x8248, 0x02ED, 0x0A);
-immutable DoorEntryA doorEntry955 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x8250, 0x0281, 0x0A);
-immutable DoorEntryA doorEntry956 = DoorEntryA("TEXT_DOOR_711", EventFlag.none, 0x020C, 0x0291, 0x0A);
-immutable DoorEntryC doorEntry957 = DoorEntryC("MSG_READ_MGKT_SIGN1");
-immutable DoorEntryC doorEntry958 = DoorEntryC("MSG_READ_MGKT_SIGN2");
-immutable DoorEntryC doorEntry959 = DoorEntryC("MSG_CHECK_MGKT_CLOCK");
-immutable DoorEntryC doorEntry960 = DoorEntryC("MSG_CHECK_MGKT_SNOWMAN_1");
-immutable DoorEntryC doorEntry961 = DoorEntryC("MSG_CHECK_MGKT_SNOWMAN_2");
-immutable DoorEntryC doorEntry962 = DoorEntryC("MSG_CHECK_MGKT_SNOWMAN_3");
-immutable DoorEntryA doorEntry963 = DoorEntryA(null, EventFlag.none, 0x8269, 0x0327, 0x04);
-immutable DoorEntryA doorEntry964 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x033C, 0x04);
-immutable DoorEntryA doorEntry965 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry966 = DoorEntryA(null, EventFlag.none, 0xC211, 0x031C, 0x04);
-immutable DoorEntryA doorEntry967 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x03F8, 0x07);
-immutable DoorEntryA doorEntry968 = DoorEntryA(null, EventFlag.none, 0x01E7, 0x03EA, 0x0A);
-immutable DoorEntryA doorEntry969 = DoorEntryA(null, EventFlag.none, 0x026C, 0x039D, 0x07);
-immutable DoorEntryA doorEntry970 = DoorEntryA(null, EventFlag.none, 0xC1DE, 0x0396, 0x0A);
-immutable DoorEntryA doorEntry971 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x0327, 0x07);
-immutable DoorEntryA doorEntry972 = DoorEntryA(null, EventFlag.none, 0xC32D, 0x0334, 0x07);
-immutable DoorEntryA doorEntry973 = DoorEntryA("TEXT_DOOR_101", EventFlag.none, 0x01DC, 0x03DC, 0x0A);
-immutable DoorEntryA doorEntry974 = DoorEntryA(null, EventFlag.none, 0x0207, 0x03DA, 0x0A);
-immutable DoorEntryC doorEntry975 = DoorEntryC("MSG_MOON_MUSEUM_PLATE");
-immutable DoorEntryC doorEntry976 = DoorEntryC("MSG_READ_MOON_SIGN1");
-immutable DoorEntryC doorEntry977 = DoorEntryC("MSG_SYS_NOPROBLEM");
+immutable MapObjectObject doorEntry816 = MapObjectObject("MSG_SKRB_PYRAMID_SWITCH");
+immutable MapObjectObject doorEntry817 = MapObjectObject("MSG_SKRB_PYRAMID_TAKANOME");
+immutable DoorObject doorEntry818 = DoorObject(null, EventFlag.none, 0x4048, 0x0025, 0x01);
+immutable DoorObject doorEntry819 = DoorObject(null, EventFlag.none, 0x004A, 0x0035, 0x01);
+immutable DoorObject doorEntry820 = DoorObject(null, EventFlag.none, 0x004A, 0x002D, 0x01);
+immutable DoorObject doorEntry821 = DoorObject(null, EventFlag.none, 0x4048, 0x003D, 0x01);
+immutable DoorObject doorEntry822 = DoorObject(null, EventFlag.none, 0xC34A, 0x02F8, 0x01);
+immutable DoorObject doorEntry823 = DoorObject(null, EventFlag.none, 0x8055, 0x020B, 0x01);
+immutable DoorObject doorEntry824 = DoorObject("TEXT_DOOR_824", EventFlag.unknown0340 | eventFlagUnset, 0x0270, 0x00A7, 0x01);
+immutable DoorObject doorEntry825 = DoorObject(null, EventFlag.none, 0x0002, 0x0227, 0x01);
+immutable DoorObject doorEntry826 = DoorObject(null, EventFlag.none, 0x0003, 0x022D, 0x01);
+immutable DoorObject doorEntry827 = DoorObject(null, EventFlag.none, 0x0002, 0x0233, 0x01);
+immutable DoorObject doorEntry828 = DoorObject(null, EventFlag.none, 0x0003, 0x0239, 0x01);
+immutable DoorObject doorEntry829 = DoorObject(null, EventFlag.none, 0x4310, 0x01E5, 0x01);
+immutable DoorObject doorEntry830 = DoorObject(null, EventFlag.none, 0x003B, 0x023D, 0x05);
+immutable DoorObject doorEntry831 = DoorObject(null, EventFlag.none, 0x0053, 0x0234, 0x05);
+immutable DoorObject doorEntry832 = DoorObject(null, EventFlag.none, 0x0063, 0x0015, 0x01);
+immutable DoorObject doorEntry833 = DoorObject(null, EventFlag.none, 0x441C, 0x00C5, 0x01);
+immutable DoorObject doorEntry834 = DoorObject(null, EventFlag.none, 0x0075, 0x002C, 0x05);
+immutable DoorObject doorEntry835 = DoorObject(null, EventFlag.none, 0x0075, 0x0041, 0x05);
+immutable DoorObject doorEntry836 = DoorObject(null, EventFlag.none, 0x0317, 0x01F5, 0x01);
+immutable DoorObject doorEntry837 = DoorObject(null, EventFlag.none, 0x0324, 0x020A, 0x05);
+immutable DoorObject doorEntry838 = DoorObject(null, EventFlag.none, 0x0328, 0x01FA, 0x05);
+immutable DoorObject doorEntry839 = DoorObject("TEXT_DOOR_839", EventFlag.unknown0340 | eventFlagUnset, 0x000A, 0x0251, 0x00);
+immutable MapObjectObject doorEntry840 = MapObjectObject("MSG_READ_DDMM1_SIGN19");
+immutable MapObjectObject doorEntry841 = MapObjectObject("MSG_READ_DDMM1_SIGN21");
+immutable MapObjectObject doorEntry842 = MapObjectObject("MSG_READ_DDMM1_SIGN20");
+immutable MapObjectObject doorEntry843 = MapObjectObject("MSG_READ_DDMM1_SIGN18");
+immutable MapObjectObject doorEntry844 = MapObjectObject("MSG_READ_DDMM1_SIGN10");
+immutable MapObjectObject doorEntry845 = MapObjectObject("MSG_READ_DDMM1_SIGN11");
+immutable MapObjectObject doorEntry846 = MapObjectObject("MSG_READ_DDMM1_SIGN12");
+immutable MapObjectObject doorEntry847 = MapObjectObject("MSG_READ_DDMM1_SIGN17");
+immutable MapObjectObject doorEntry848 = MapObjectObject("MSG_READ_DDMM1_SIGN16");
+immutable MapObjectObject doorEntry849 = MapObjectObject("MSG_READ_DDMM1_SIGN14");
+immutable MapObjectObject doorEntry850 = MapObjectObject("MSG_READ_DDMM1_SIGN15");
+immutable MapObjectObject doorEntry851 = MapObjectObject("MSG_READ_DDMM1_SIGN22");
+immutable MapObjectObject doorEntry852 = MapObjectObject("MSG_READ_DDMM1_SIGN13");
+immutable MapObjectObject doorEntry853 = MapObjectObject("MSG_READ_DDMM1_SIGN8");
+immutable MapObjectObject doorEntry854 = MapObjectObject("MSG_READ_DDMM1_SIGN7");
+immutable MapObjectObject doorEntry855 = MapObjectObject("MSG_READ_DDMM1_SIGN9");
+immutable MapObjectObject doorEntry856 = MapObjectObject("MSG_READ_DDMM1_SIGN3");
+immutable MapObjectObject doorEntry857 = MapObjectObject("MSG_READ_DDMM1_SIGN4");
+immutable MapObjectObject doorEntry858 = MapObjectObject("MSG_READ_DDMM1_SIGN2");
+immutable MapObjectObject doorEntry859 = MapObjectObject("MSG_READ_DDMM1_SIGN6");
+immutable MapObjectObject doorEntry860 = MapObjectObject("MSG_READ_DDMM1_SIGN5");
+immutable MapObjectObject doorEntry861 = MapObjectObject("MSG_READ_DDMM1_SIGN1");
+immutable MapObjectObject doorEntry862 = MapObjectObject("MSG_READ_DDMM1_SIGN44");
+immutable MapObjectObject doorEntry863 = MapObjectObject("MSG_READ_DDMM2_SIGN23");
+immutable MapObjectObject doorEntry864 = MapObjectObject("MSG_READ_DDMM2_SIGN24");
+immutable MapObjectObject doorEntry865 = MapObjectObject("MSG_READ_DDMM2_SIGN25");
+immutable MapObjectObject doorEntry866 = MapObjectObject("MSG_READ_DDMM2_SIGN35");
+immutable MapObjectObject doorEntry867 = MapObjectObject("MSG_READ_DDMM2_SIGN34");
+immutable MapObjectObject doorEntry868 = MapObjectObject("MSG_READ_DDMM2_SIGN29");
+immutable MapObjectObject doorEntry869 = MapObjectObject("MSG_READ_DDMM2_SIGN26");
+immutable MapObjectObject doorEntry870 = MapObjectObject("MSG_READ_DDMM2_SIGN27");
+immutable MapObjectObject doorEntry871 = MapObjectObject("MSG_READ_DDMM2_SIGN33");
+immutable MapObjectObject doorEntry872 = MapObjectObject("MSG_READ_DDMM2_SIGN32");
+immutable MapObjectObject doorEntry873 = MapObjectObject("MSG_READ_DDMM2_SIGN31");
+immutable MapObjectObject doorEntry874 = MapObjectObject("MSG_READ_DDMM2_SIGN28");
+immutable MapObjectObject doorEntry875 = MapObjectObject("MSG_READ_DDMM2_SIGN30");
+immutable MapObjectObject doorEntry876 = MapObjectObject("MSG_READ_DDMM3_SIGN36");
+immutable MapObjectObject doorEntry877 = MapObjectObject("MSG_READ_DDMM3_SIGN39");
+immutable MapObjectObject doorEntry878 = MapObjectObject("MSG_READ_DDMM3_SIGN37");
+immutable MapObjectObject doorEntry879 = MapObjectObject("MSG_READ_DDMM3_SIGN41");
+immutable MapObjectObject doorEntry880 = MapObjectObject("MSG_READ_DDMM3_SIGN40");
+immutable MapObjectObject doorEntry881 = MapObjectObject("MSG_READ_DDMM3_SIGN38");
+immutable MapObjectObject doorEntry882 = MapObjectObject("MSG_READ_DDMM4_SIGN42");
+immutable MapObjectObject doorEntry883 = MapObjectObject("MSG_READ_DDMM4_SIGN43");
+immutable DoorObject doorEntry884 = DoorObject("TEXT_DOOR_884", EventFlag.none, 0xC00E, 0x0054, 0x01);
+immutable DoorObject doorEntry885 = DoorObject("TEXT_DOOR_885", EventFlag.winLumiBoss | eventFlagUnset, 0x0257, 0x0392, 0x05);
+immutable DoorObject doorEntry886 = DoorObject(null, EventFlag.none, 0x010B, 0x01C9, 0x01);
+immutable DoorObject doorEntry887 = DoorObject(null, EventFlag.none, 0x0107, 0x01E1, 0x01);
+immutable DoorObject doorEntry888 = DoorObject(null, EventFlag.none, 0x0139, 0x018C, 0x05);
+immutable DoorObject doorEntry889 = DoorObject(null, EventFlag.none, 0x0143, 0x018D, 0x01);
+immutable DoorObject doorEntry890 = DoorObject(null, EventFlag.none, 0x0137, 0x01A1, 0x01);
+immutable DoorObject doorEntry891 = DoorObject(null, EventFlag.none, 0x015F, 0x01A6, 0x05);
+immutable DoorObject doorEntry892 = DoorObject(null, EventFlag.none, 0x013F, 0x01E5, 0x01);
+immutable DoorObject doorEntry893 = DoorObject(null, EventFlag.none, 0x015F, 0x018D, 0x01);
+immutable DoorObject doorEntry894 = DoorObject(null, EventFlag.none, 0x016F, 0x01CD, 0x01);
+immutable DoorObject doorEntry895 = DoorObject(null, EventFlag.none, 0x8151, 0x0087, 0x01);
+immutable DoorObject doorEntry896 = DoorObject(null, EventFlag.none, 0x4014, 0x01C7, 0x01);
+immutable DoorObject doorEntry897 = DoorObject(null, EventFlag.none, 0x4010, 0x01E1, 0x01);
+immutable DoorObject doorEntry898 = DoorObject(null, EventFlag.none, 0x4040, 0x01A3, 0x01);
+immutable DoorObject doorEntry899 = DoorObject(null, EventFlag.none, 0x404C, 0x018D, 0x01);
+immutable DoorObject doorEntry900 = DoorObject(null, EventFlag.none, 0x4068, 0x018D, 0x01);
+immutable DoorObject doorEntry901 = DoorObject(null, EventFlag.none, 0x4074, 0x01CF, 0x01);
+immutable DoorObject doorEntry902 = DoorObject(null, EventFlag.none, 0x4044, 0x01E3, 0x01);
+immutable DoorObject doorEntry903 = DoorObject("TEXT_DOOR_903", EventFlag.none, 0x0090, 0x018F, 0x21);
+immutable DoorObject doorEntry904 = DoorObject("TEXT_DOOR_904", EventFlag.none, 0x0371, 0x0232, 0x01);
+immutable DoorObject doorEntry905 = DoorObject(null, EventFlag.gumiCaveOpen | eventFlagUnset, 0x0142, 0x0093, 0x01);
+immutable DoorObject doorEntry906 = DoorObject(null, EventFlag.none, 0x4030, 0x0013, 0x01);
+immutable DoorObject doorEntry907 = DoorObject("TEXT_DOOR_907", EventFlag.gumiTalkerStone | eventFlagUnset, 0xC072, 0x01F4, 0x01);
+immutable DoorObject doorEntry908 = DoorObject(null, EventFlag.none, 0xC4BA, 0x0310, 0x01);
+immutable DoorObject doorEntry909 = DoorObject(null, EventFlag.none, 0x800E, 0x0037, 0x01);
+immutable MapObjectObject doorEntry910 = MapObjectObject("MSG_READ_GMIM0_SIGN3");
+immutable MapObjectObject doorEntry911 = MapObjectObject("MSG_READ_GMIM0_SIGN1");
+immutable MapObjectObject doorEntry912 = MapObjectObject("MSG_READ_GMIM0_SIGN4");
+immutable DoorObject doorEntry913 = DoorObject(null, EventFlag.none, 0xC011, 0x02F4, 0x01);
+immutable DoorObject doorEntry914 = DoorObject("TEXT_DOOR_004", EventFlag.none, 0x8351, 0x0167, 0x01);
+immutable DoorObject doorEntry915 = DoorObject("TEXT_DOOR_915", EventFlag.winFireBoss | eventFlagUnset, 0x04D3, 0x0319, 0x01);
+immutable DoorObject doorEntry916 = DoorObject(null, EventFlag.none, 0x813A, 0x0343, 0x01);
+immutable DoorObject doorEntry917 = DoorObject(null, EventFlag.none, 0x82AA, 0x0203, 0x01);
+immutable DoorObject doorEntry918 = DoorObject(null, EventFlag.none, 0xC2AA, 0x020C, 0x01);
+immutable DoorObject doorEntry919 = DoorObject(null, EventFlag.none, 0xC13A, 0x0364, 0x01);
+immutable DoorObject doorEntry920 = DoorObject(null, EventFlag.none, 0x813A, 0x0353, 0x01);
+immutable DoorObject doorEntry921 = DoorObject(null, EventFlag.none, 0xC2CA, 0x0210, 0x01);
+immutable DoorObject doorEntry922 = DoorObject(null, EventFlag.none, 0x82AA, 0x01C3, 0x01);
+immutable DoorObject doorEntry923 = DoorObject(null, EventFlag.none, 0x0183, 0x00EA, 0x01);
+immutable DoorObject doorEntry924 = DoorObject(null, EventFlag.none, 0xC2EA, 0x01CC, 0x01);
+immutable DoorObject doorEntry925 = DoorObject(null, EventFlag.none, 0x82CA, 0x01C3, 0x01);
+immutable DoorObject doorEntry926 = DoorObject(null, EventFlag.none, 0xC286, 0x0210, 0x01);
+immutable DoorObject doorEntry927 = DoorObject(null, EventFlag.none, 0x828A, 0x0203, 0x01);
+immutable DoorObject doorEntry928 = DoorObject(null, EventFlag.none, 0xC2CA, 0x01D8, 0x01);
+immutable DoorObject doorEntry929 = DoorObject(null, EventFlag.none, 0xC34E, 0x0170, 0x01);
+immutable DoorObject doorEntry930 = DoorObject(null, EventFlag.none, 0xC34E, 0x0194, 0x01);
+immutable DoorObject doorEntry931 = DoorObject(null, EventFlag.none, 0x8352, 0x01AF, 0x01);
+immutable DoorObject doorEntry932 = DoorObject(null, EventFlag.none, 0x8342, 0x019F, 0x01);
+immutable DoorObject doorEntry933 = DoorObject(null, EventFlag.none, 0x8342, 0x01BF, 0x01);
+immutable DoorObject doorEntry934 = DoorObject(null, EventFlag.none, 0xC346, 0x01AC, 0x01);
+immutable DoorObject doorEntry935 = DoorObject(null, EventFlag.none, 0xC33E, 0x0180, 0x01);
+immutable DoorObject doorEntry936 = DoorObject(null, EventFlag.none, 0x833E, 0x018F, 0x01);
+immutable DoorObject doorEntry937 = DoorObject(null, EventFlag.none, 0x833A, 0x01A7, 0x01);
+immutable DoorObject doorEntry938 = DoorObject(null, EventFlag.none, 0xC332, 0x018C, 0x01);
+immutable DoorObject doorEntry939 = DoorObject(null, EventFlag.none, 0xC332, 0x01A0, 0x01);
+immutable DoorObject doorEntry940 = DoorObject(null, EventFlag.none, 0x832E, 0x01B3, 0x01);
+immutable DoorObject doorEntry941 = DoorObject(null, EventFlag.none, 0x031B, 0x01A1, 0x01);
+immutable DoorObject doorEntry942 = DoorObject(null, EventFlag.none, 0x0149, 0x00F7, 0x01);
+immutable DoorObject doorEntry943 = DoorObject("TEXT_DOOR_943", EventFlag.none, 0x40FE, 0x0211, 0x01);
+immutable DoorObject doorEntry944 = DoorObject(null, EventFlag.none, 0x03B8, 0x006C, 0x0E);
+immutable DoorObject doorEntry945 = DoorObject(null, EventFlag.none, 0x02EC, 0x0054, 0x0E);
+immutable DoorObject doorEntry946 = DoorObject(null, EventFlag.none, 0x031C, 0x0034, 0x0E);
+immutable DoorObject doorEntry947 = DoorObject(null, EventFlag.none, 0x0398, 0x0070, 0x0E);
+immutable DoorObject doorEntry948 = DoorObject(null, EventFlag.none, 0x02F4, 0x0018, 0x01);
+immutable DoorObject doorEntry949 = DoorObject(null, EventFlag.none, 0xC3FA, 0x03F5, 0x04);
+immutable DoorObject doorEntry950 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3EA, 0x03B9, 0x04);
+immutable DoorObject doorEntry951 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3DA, 0x03F9, 0x04);
+immutable DoorObject doorEntry952 = DoorObject("TEXT_DOOR_367", EventFlag.none, 0xC3CA, 0x03B9, 0x04);
+immutable DoorObject doorEntry953 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x824C, 0x02FD, 0x0A);
+immutable DoorObject doorEntry954 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x8248, 0x02ED, 0x0A);
+immutable DoorObject doorEntry955 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x8250, 0x0281, 0x0A);
+immutable DoorObject doorEntry956 = DoorObject("TEXT_DOOR_711", EventFlag.none, 0x020C, 0x0291, 0x0A);
+immutable MapObjectObject doorEntry957 = MapObjectObject("MSG_READ_MGKT_SIGN1");
+immutable MapObjectObject doorEntry958 = MapObjectObject("MSG_READ_MGKT_SIGN2");
+immutable MapObjectObject doorEntry959 = MapObjectObject("MSG_CHECK_MGKT_CLOCK");
+immutable MapObjectObject doorEntry960 = MapObjectObject("MSG_CHECK_MGKT_SNOWMAN_1");
+immutable MapObjectObject doorEntry961 = MapObjectObject("MSG_CHECK_MGKT_SNOWMAN_2");
+immutable MapObjectObject doorEntry962 = MapObjectObject("MSG_CHECK_MGKT_SNOWMAN_3");
+immutable DoorObject doorEntry963 = DoorObject(null, EventFlag.none, 0x8269, 0x0327, 0x04);
+immutable DoorObject doorEntry964 = DoorObject(null, EventFlag.none, 0xC2DD, 0x033C, 0x04);
+immutable DoorObject doorEntry965 = DoorObject(null, EventFlag.none, 0xC26D, 0x03B8, 0x04);
+immutable DoorObject doorEntry966 = DoorObject(null, EventFlag.none, 0xC211, 0x031C, 0x04);
+immutable DoorObject doorEntry967 = DoorObject(null, EventFlag.none, 0xC2DD, 0x03F8, 0x07);
+immutable DoorObject doorEntry968 = DoorObject(null, EventFlag.none, 0x01E7, 0x03EA, 0x0A);
+immutable DoorObject doorEntry969 = DoorObject(null, EventFlag.none, 0x026C, 0x039D, 0x07);
+immutable DoorObject doorEntry970 = DoorObject(null, EventFlag.none, 0xC1DE, 0x0396, 0x0A);
+immutable DoorObject doorEntry971 = DoorObject(null, EventFlag.none, 0x82D9, 0x0327, 0x07);
+immutable DoorObject doorEntry972 = DoorObject(null, EventFlag.none, 0xC32D, 0x0334, 0x07);
+immutable DoorObject doorEntry973 = DoorObject("TEXT_DOOR_101", EventFlag.none, 0x01DC, 0x03DC, 0x0A);
+immutable DoorObject doorEntry974 = DoorObject(null, EventFlag.none, 0x0207, 0x03DA, 0x0A);
+immutable MapObjectObject doorEntry975 = MapObjectObject("MSG_MOON_MUSEUM_PLATE");
+immutable MapObjectObject doorEntry976 = MapObjectObject("MSG_READ_MOON_SIGN1");
+immutable MapObjectObject doorEntry977 = MapObjectObject("MSG_SYS_NOPROBLEM");
 
 /// $CF58EF
 immutable OverworldEventMusic[][165] overworldEventMusicPointerTable = [

@@ -149,7 +149,7 @@ immutable ushort[] allowedInputDirections = [
 ];
 
 /// $C3E148
-immutable short[8] unknownC3E148 = [
+immutable short[8] npcSearchXOffsets = [
 	Direction.up: 0,
 	Direction.upRight: 0,
 	Direction.right: 10,
@@ -161,7 +161,7 @@ immutable short[8] unknownC3E148 = [
 ];
 
 /// $C3E158
-immutable short[8] unknownC3E158 = [
+immutable short[8] npcSearchYOffsets = [
 	Direction.up: -5,
 	Direction.upRight: -5,
 	Direction.right: 0,

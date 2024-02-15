@@ -1237,24 +1237,24 @@ void unknownC43344(short arg1) {
 
 /// $C4334A
 void unknownC4334A(short direction) {
-	short x10 = cast(short)(interactXOffsets[direction] + gameState.leaderX.integer / 8);
-	short x04 = cast(short)((direction == Direction.down) ? (interactYOffsets[direction] + (gameState.leaderY.integer + 1) / 8) :(interactYOffsets[direction] + gameState.leaderY.integer / 8));
-	if ((getMovingCollisionFlags(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) == (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
-		x10 += interactXOffsets[direction];
-		x04 += interactYOffsets[direction];
+	short x = cast(short)(interactXOffsets[direction] + gameState.leaderX.integer / 8);
+	short y = cast(short)((direction == Direction.down) ? (interactYOffsets[direction] + (gameState.leaderY.integer + 1) / 8) :(interactYOffsets[direction] + gameState.leaderY.integer / 8));
+	if ((getMovingCollisionFlags(cast(short)(x * 8), cast(short)(y * 8), gameState.firstPartyMemberEntity, direction) & SurfaceFlags.counterTop) == SurfaceFlags.counterTop) {
+		x += interactXOffsets[direction];
+		y += interactYOffsets[direction];
 	}
-	short x = getDoorAt(x10, x04);
-	if (x == 0xFF) {
-		x = getDoorAt(cast(short)(x10 + 1), x04);
+	short foundObject = getMapObjectAt(x, y);
+	if (foundObject == -1) { // try again a little to the right
+		foundObject = getMapObjectAt(cast(short)(x + 1), y);
 	}
-	if (x == 0xFF) {
-		x = getDoorAt(cast(short)(x10 - 1), x04);
+	if (foundObject == -1) { // try again a little to the left
+		foundObject = getMapObjectAt(cast(short)(x - 1), y);
 	}
-	if ((x != 0xFF) && (x == 5)) {
-		unread7E5DDC = doorFoundType;
-		//mapObjectText = doorData[doorFound & 0x7FFF]
+	if ((foundObject != -1) && (foundObject == ObjectType.object)) {
+		unread7E5DDC = mapObjectFoundType;
+		//mapObjectText = doorData[mapObjectFound & 0x7FFF]
 
-		mapObjectText = doorFound.entryA.textPtr;
+		mapObjectText = mapObjectFound.object.textPtr;
 		interactingNPCID = -2;
 	}
 }

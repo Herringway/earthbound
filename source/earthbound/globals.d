@@ -1742,11 +1742,11 @@ __gshared short unread7E5DBA;
 /** Door pointer found by getDoorAt()
  * Original_Address: $(DOLLAR)5DBC
  */
-__gshared DoorPtr doorFound;
+__gshared MapObjectPtr mapObjectFound;
 /** Type of door found by getDoorAt()
  * Original_Address: $(DOLLAR)5DBC
  */
-__gshared short doorFoundType;
+__gshared short mapObjectFoundType;
 /** The type of the interaction currently being processed
  * Original_Address: $(DOLLAR)5DC0
  */

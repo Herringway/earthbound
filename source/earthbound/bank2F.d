@@ -21657,19 +21657,19 @@ ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
 		}
 	} else if (viewAttributeMode == 1) {
 		if ((arg1 & 0x10) != 0) {
-			switch (getDoorAt(x, y)) {
-				case 2:
+			switch (getMapObjectAt(x, y)) {
+				case ObjectType.door:
 					return 0x2461;
-				case 1:
-				case 3:
-				case 4:
+				case ObjectType.ropeLadder:
+				case ObjectType.escalator:
+				case ObjectType.stairway:
 					return 0x2462;
-				case 5:
-				case 0:
-				case 6:
-				case 7:
+				case ObjectType.object:
+				case ObjectType.switch_:
+				case ObjectType.person:
+				case ObjectType.type7:
 					return 0x2463;
-				default:
+				default: // No object here
 					return 0x2058;
 			}
 		}

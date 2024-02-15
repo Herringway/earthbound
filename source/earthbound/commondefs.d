@@ -4435,7 +4435,7 @@ enum TownMap {
 	summers,
 }
 ///
-enum DoorType {
+enum ObjectType {
 	switch_ = 0,
 	ropeLadder = 1,
 	door = 2,
@@ -4501,6 +4501,7 @@ enum SurfaceFlags {
 	unknown1 = 1<<5,
 	unknown2 = 1<<6,
 	solid = 1<<7,
+	counterTop = solid | obscureUpperBody,
 }
 ///
 enum EntityOverlayFlags : ushort {
@@ -5245,7 +5246,7 @@ enum MusicEffect {
 }
 ///
 enum InteractionType {
-	unknown0,
+	mapSwitch,
 	unknown1,
 	unknown2,
 	unknown3,
@@ -6073,7 +6074,7 @@ struct MovementSpeeds {
 ///
 union QueuedInteractionPtr {
 	const(ubyte)* textPtr; ///
-	const(DoorEntryA)* doorPtr; ///
+	const(DoorObject)* doorPtr; ///
 }
 ///
 struct QueuedInteraction {
@@ -6684,61 +6685,61 @@ struct DisplayTextState {
 	ushort unknown4; ///4
 	WindowTextAttributesCopy savedTextAttributes; ///6
 }
-///
-struct DoorEntryA {
+/// Data for door objects on the overworld map
+struct DoorObject {
 	string textPtr; /// 0
 	ushort eventFlag; /// 4
 	ushort unknown6; /// 6
 	ushort unknown8; /// 8
 	ubyte transitionStyle; /// 10
 }
-///
-struct DoorEntryB {
+/// Data for switch objects on the overworld map
+struct SwitchObject {
 	ushort eventFlag; ///
 	string textPtr; ///
 }
-///
-struct DoorEntryC {
+/// Data for object and NPC objects on the overworld map
+struct MapObjectObject {
 	string textPtr; ///
 }
 ///
-struct SectorDoors {
+struct SectorObjects {
 	ushort length; ///
-	const(DoorConfig)[] doors; ///
+	const(MapObject)[] objects; ///
 }
 ///
-union DoorPtr {
-	immutable(DoorEntryA)* entryA; ///
-	immutable(DoorEntryB)* entryB; ///
-	immutable(DoorEntryC)* entryC; ///
+union MapObjectPtr {
+	immutable(DoorObject)* door; ///
+	immutable(SwitchObject)* mapSwitch; ///
+	immutable(MapObjectObject)* object; ///
 	ushort direction; ///
 }
 ///
-struct DoorConfig {
+struct MapObject {
 	ubyte unknown0; ///
 	ubyte unknown1; ///
 	ubyte type; ///
-	DoorPtr doorPtr; ///
+	MapObjectPtr doorPtr; ///
 	///
-	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryA)* a) {
+	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorObject)* a) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		doorPtr.entryA = a;
+		doorPtr.door = a;
 	}
 	///
-	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryB)* b) {
+	this(ubyte u0, ubyte u1, ubyte t, immutable(SwitchObject)* b) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		doorPtr.entryB = b;
+		doorPtr.mapSwitch = b;
 	}
 	///
-	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryC)* c) {
+	this(ubyte u0, ubyte u1, ubyte t, immutable(MapObjectObject)* c) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		doorPtr.entryC = c;
+		doorPtr.object = c;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, ushort u3) {

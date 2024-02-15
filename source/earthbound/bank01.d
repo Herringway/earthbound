@@ -1905,7 +1905,7 @@ void debugYButtonMenu() {
 const(ubyte)* talkTo() {
 	const(ubyte)* x0A = null;
 	createWindowN(Window.textStandard);
-	findNearbyTalkableTPTEntry();
+	findNearbyTalkableNPC();
 	if (interactingNPCID == 0) {
 		return null;
 	}
@@ -1931,7 +1931,7 @@ const(ubyte)* talkTo() {
 /// $C1323B
 const(ubyte)* check() {
 	createWindowN(Window.textStandard);
-	findNearbyCheckableTPTEntry();
+	findNearbyCheckableNPC();
 	if (interactingNPCID == 0) {
 		return null;
 	}
@@ -5496,7 +5496,7 @@ uint getCNum() {
 
 /// $C1AD42
 short findReceiveItemNPC() {
-	findNearbyCheckableTPTEntry();
+	findNearbyCheckableNPC();
 	if ((interactingNPCID == 0) || (interactingNPCID == -1) || (interactingNPCID == -2)) {
 		return 0;
 	} else {

@@ -2071,28 +2071,29 @@ short mapInputToDirection(short style) {
 
 /// $C04116
 short unknownC04116(short direction) {
-	short x14 = cast(short)(unknownC3E148[direction] + gameState.leaderX.integer);
-	short x04 = cast(short)(unknownC3E158[direction] + gameState.leaderY.integer);
-	short x12 = playerIntangibilityFrames;
-	playerIntangibilityFrames = 1;
+	short x = cast(short)(npcSearchXOffsets[direction] + gameState.leaderX.integer);
+	short y = cast(short)(npcSearchYOffsets[direction] + gameState.leaderY.integer);
+	short intangibilityBackup = playerIntangibilityFrames;
+	playerIntangibilityFrames = 1; //force intangibility on during search to avoid collision flags being set
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
-		if (x10 > 0) {
-			interactingNPCID = entityNPCIDs[x10];
-			interactingNPCEntity = x10;
+		short foundNPC = npcCollisionCheck(x, y, gameState.firstPartyMemberEntity);
+		if (foundNPC > 0) {
+			interactingNPCID = entityNPCIDs[foundNPC];
+			interactingNPCEntity = foundNPC;
 			break;
 		}
-		if ((getMovingCollisionFlags(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+		// check for "counter" collision, to interact with NPCs like shopkeepers behind a counter
+		if ((getMovingCollisionFlags(x, y, gameState.firstPartyMemberEntity, direction) & SurfaceFlags.counterTop) != SurfaceFlags.counterTop) {
 			break;
 		}
-		if (unknownC3E148[direction] != 0) {
-			x14 += ((unknownC3E148[direction] & 0x8000) != 0) ? -8 : 8;
+		if (npcSearchXOffsets[direction] != 0) {
+			x += (npcSearchXOffsets[direction] < 0) ? -8 : 8;
 		}
-		if (unknownC3E158[direction] != 0) {
-			x04 += ((unknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
+		if (npcSearchYOffsets[direction] != 0) {
+			y += (npcSearchYOffsets[direction] < 0) ? -8 : 8;
 		}
 	}
-	playerIntangibilityFrames = x12;
+	playerIntangibilityFrames = intangibilityBackup;
 	if ((interactingNPCID == -1) || (interactingNPCID == 0)) {
 		unknownC4334A(direction);
 	}
@@ -2101,27 +2102,36 @@ short unknownC04116(short direction) {
 
 /// $C041E3
 short unknownC041E3() {
-	short x10 = cast(short)(gameState.leaderDirection & 0xFFFE);
-	short a = unknownC04116(cast(short)(gameState.leaderDirection & 0xFFFE));
+	short directionCardinal = cast(short)(gameState.leaderDirection & 0xFFFE);
+	short tmpDirection = directionCardinal;
+	// try finding something in front of the player
+	short a = unknownC04116(tmpDirection);
 	if ((a != -1) && (a != 0)) {
-		return cast(short)(gameState.leaderDirection & 0xFFFE);
+		return tmpDirection;
 	}
-	gameState.leaderDirection = (((gameState.leaderDirection & 0xFFFE) + 2) & 7);
-	a = unknownC04116(gameState.leaderDirection);
+	// try finding something to the right of the player
+	tmpDirection = (tmpDirection + 2) & 7;
+	gameState.leaderDirection = tmpDirection;
+	a = unknownC04116(tmpDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return tmpDirection;
 	}
-	gameState.leaderDirection = ((gameState.leaderDirection + 4) & 7);
-	a = unknownC04116(gameState.leaderDirection);
+	// try finding something to the left of the player
+	tmpDirection = (tmpDirection + 4) & 7;
+	gameState.leaderDirection = tmpDirection;
+	a = unknownC04116(tmpDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return tmpDirection;
 	}
-	gameState.leaderDirection = ((gameState.leaderDirection - 2) & 7);
-	a = unknownC04116(gameState.leaderDirection);
+	// try finding something behind the player
+	tmpDirection = (tmpDirection - 2) & 7;
+	gameState.leaderDirection = tmpDirection;
+	a = unknownC04116(tmpDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return tmpDirection;
 	}
-	gameState.leaderDirection = x10;
+	// found nothing
+	gameState.leaderDirection = directionCardinal;
 	return -1;
 }
 
@@ -2133,7 +2143,7 @@ void faceOppositeLeader(short arg1) {
 }
 
 /// $C04279
-ushort findNearbyCheckableTPTEntry() {
+ushort findNearbyCheckableNPC() {
 	interactingNPCID = -1;
 	interactingNPCEntity = -1;
 	short x10 = unknownC041E3();
@@ -2147,25 +2157,26 @@ ushort findNearbyCheckableTPTEntry() {
 
 /// $C042EF
 short unknownC042EF(short direction) {
-	short x14 = cast(short)(unknownC3E148[direction] + gameState.leaderX.integer);
-	short x04 = cast(short)(unknownC3E158[direction] + gameState.leaderY.integer);
+	short x = cast(short)(npcSearchXOffsets[direction] + gameState.leaderX.integer);
+	short y = cast(short)(npcSearchYOffsets[direction] + gameState.leaderY.integer);
 	short x12 = playerIntangibilityFrames;
 	playerIntangibilityFrames = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
+		short x10 = npcCollisionCheck(x, y, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
 			interactingNPCID = entityNPCIDs[x10];
 			interactingNPCEntity = x10;
 			break;
 		}
-		if ((getMovingCollisionFlags(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+		// check for "counter" collision, to interact with NPCs like shopkeepers behind a counter
+		if ((getMovingCollisionFlags(x, y, gameState.firstPartyMemberEntity, direction) & SurfaceFlags.counterTop) != SurfaceFlags.counterTop) {
 			break;
 		}
-		if (unknownC3E148[direction] != 0) {
-			x14 += ((unknownC3E148[direction] & 0x8000) != 0) ? -8 : 8;
+		if (npcSearchXOffsets[direction] != 0) {
+			x += (npcSearchXOffsets[direction] < 0) ? -8 : 8;
 		}
-		if (unknownC3E158[direction] != 0) {
-			x04 += ((unknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
+		if (npcSearchYOffsets[direction] != 0) {
+			y += (npcSearchYOffsets[direction] < 0) ? -8 : 8;
 		}
 	}
 	playerIntangibilityFrames = x12;
@@ -2202,7 +2213,7 @@ short unknownC043BC() {
 }
 
 /// $C04452
-ushort findNearbyTalkableTPTEntry() {
+ushort findNearbyTalkableNPC() {
 	interactingNPCID = -1;
 	interactingNPCEntity = -1;
 	short x10 = unknownC043BC();
@@ -2261,33 +2272,33 @@ void handleNormalMovement() {
 	FixedPoint1616 newX = { combined: adjustPositionHorizontal(chosenDirection, gameState.leaderX.combined, x22) };
 	FixedPoint1616 newY = { combined: adjustPositionVertical(chosenDirection, gameState.leaderY.combined, x22) };
 	ladderStairsTileX = 0xFFFF;
-	short x04;
+	short newCollision;
 	if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) {
-		x04 = checkMovementMapCollision(newX.integer, newY.integer, gameState.firstPartyMemberEntity, chosenDirection);
+		newCollision = checkMovementMapCollision(newX.integer, newY.integer, gameState.firstPartyMemberEntity, chosenDirection);
 		if (chosenDirection != finalMovementDirection) {
 			newX.combined = adjustPositionHorizontal(finalMovementDirection, gameState.leaderX.combined, x22);
 			newY.combined = adjustPositionVertical(finalMovementDirection, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
-		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
+		newCollision = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
 	} else {
-		x04 = 0;
+		newCollision = 0;
 	}
-	gameState.troddenTileType = x04;
-	short x02_2 = 1;
+	gameState.troddenTileType = newCollision;
+	bool movementOK = true;
 	npcCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[partyLeaderEntity] != 0xFFFF) {
-		x02_2 = 0;
+		movementOK = false;
 	}
-	if ((x04 & 0xC0) != 0) {
-		x02_2 = 0;
+	if ((newCollision & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		movementOK = false;
 	}
 	if (ladderStairsTileX != 0xFFFF) {
-		x02_2 = unknownC07526(ladderStairsTileX, ladderStairsTileY);
+		movementOK = unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	} else if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		gameState.walkingStyle = WalkingStyle.normal;
 	}
-	if (x02_2 != 0) {
+	if (movementOK) {
 		gameState.leaderX = newX;
 		gameState.leaderY = newY;
 	} else {
@@ -2360,12 +2371,18 @@ void handleEscalatorMovement() {
 	gameState.leaderHasMoved = 1;
 }
 
-/// $C048D3
-void handleBicycleMovement(short arg1) {
-	FixedPoint1616 x10;
-	FixedPoint1616 x14;
-	short x1E = mapInputToDirection(gameState.walkingStyle);
-	short x02 = x1E;
+/** Handles movement while riding a bicycle.
+ * Has a few unique quirks:
+ * - changing direction while moving diagonally has a 4 frame delay
+ * - player does not stop moving forward until a collision or a direction change
+ * - press R to ring the bell!
+ * Original_Address: $(DOLLAR)C048D3
+ */
+void handleBicycleMovement(short hasMoved) {
+	FixedPoint1616 x;
+	FixedPoint1616 y;
+	short direction = mapInputToDirection(gameState.walkingStyle);
+	short originalDirection = direction;
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
 			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
@@ -2378,37 +2395,38 @@ void handleBicycleMovement(short arg1) {
 	if ((padPress[0] & Pad.r) != 0) {
 		playSfx(Sfx.bicycleBell);
 	}
-	if (x1E == -1) {
-		if (arg1 != 0) {
-			x1E = gameState.leaderDirection;
+	if (direction == -1) {
+		// if we've been moving but there's been no input this frame, just keep moving in the same directioin
+		if (hasMoved != 0) {
+			direction = gameState.leaderDirection;
 		} else {
 			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		}
 	}
-	if ((x1E & 1) != 0) {
+	if ((direction & 1) != 0) {
 		bicycleDiagonalTurnCounter = 4;
 	} else if (bicycleDiagonalTurnCounter != 0) {
 		if (--bicycleDiagonalTurnCounter != 0) {
-			x1E = gameState.leaderDirection;
-		} else if (x02 == -1) {
-			x1E = gameState.leaderDirection;
+			direction = gameState.leaderDirection;
+		} else if (originalDirection == -1) {
+			direction = gameState.leaderDirection;
 		}
 	}
-	gameState.leaderDirection = x1E;
-	x10.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
-	x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
+	gameState.leaderDirection = direction;
+	x.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[direction].combined;
+	y.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[direction].combined;
 	ladderStairsTileX = 0xFFFF;
-	short x1A = getMovingCollisionFlags(x10.integer, x14.integer, 0x18, x1E);
-	npcCollisionCheck(x10.integer, x14.integer, gameState.firstPartyMemberEntity);
+	short collision = getMovingCollisionFlags(x.integer, y.integer, 24, direction);
+	npcCollisionCheck(x.integer, y.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[partyLeaderEntity] == -1) {
 		gameState.leaderHasMoved++;
 		playerHasMovedSinceMapLoad++;
-		if ((x1A & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		if ((collision & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
 			gameState.leaderHasMoved = 0;
 		} else {
-			gameState.leaderX.combined = x10.combined;
-			gameState.leaderY.combined = x14.combined;
+			gameState.leaderX.combined = x.combined;
+			gameState.leaderY.combined = y.combined;
 		}
 	}
 }
@@ -2435,7 +2453,7 @@ void unknownC04AAD() {
 		if (x10 == -1) {
 			return;
 		}
-		for (short i = 0x18; i <= 0x1D; i++) {
+		for (short i = 24; i <= 29; i++) {
 			if (entityScriptTable[i] == -1) {
 				continue;
 			}
@@ -2488,7 +2506,7 @@ void handleSpecialCamera() {
  * Original_Address: $(DOLLAR)C04C45
  */
 void movePartyLeader() {
-	short x14 = gameState.leaderHasMoved;
+	short hasMoved = gameState.leaderHasMoved;
 	gameState.leaderHasMoved = 0;
 	if (playerIntangibilityFrames != 0) {
 		playerIntangibilityFlash();
@@ -2506,7 +2524,7 @@ void movePartyLeader() {
 				handleEscalatorMovement();
 				break;
 			case WalkingStyle.bicycle:
-				handleBicycleMovement(x14);
+				handleBicycleMovement(hasMoved);
 				break;
 			default:
 				handleNormalMovement();
@@ -2538,7 +2556,9 @@ void movePartyLeader() {
 	}
 }
 
-/// $C04D78
+/** A single frame of a single party member's movement. Applies direction and position from movement buffer, and updates sprite when necessary
+ * Original_Address: $(DOLLAR)C04D78
+ */
 void partyMemberTick() {
 	if (gameState.cameraMode == CameraMode.unknown3) {
 		return;
@@ -2563,43 +2583,42 @@ void partyMemberTick() {
 	}
 	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].xCoord;
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].yCoord;
-	short x1C = 0;
-	short x12 = void;
+	bool skipPositionIndexRecalc = false;
+	short newPositionIndexOffset = void;
 	if (entityScriptVar0Table[currentEntitySlot] + 1 != gameState.partyMemberIndex[0]) {
 		switch (playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle) {
 			case WalkingStyle.ladder:
 			case WalkingStyle.rope:
-				x12 = 0x1E;
+				newPositionIndexOffset = 30;
 				break;
 			case WalkingStyle.escalator:
 				if (gameState.walkingStyle == WalkingStyle.normal) {
-					x1C = 0x1;
+					skipPositionIndexRecalc = true;
 				} else {
-					x12 = 0x1E;
+					newPositionIndexOffset = 30;
 				}
 				break;
 			case WalkingStyle.stairs:
-				x12 = 0x18;
+				newPositionIndexOffset = 24;
 				break;
 			default:
 				if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
-					x12 = 0x8;
+					newPositionIndexOffset = 8;
 				} else {
-					x12 = 0xC;
+					newPositionIndexOffset = 12;
 				}
 				break;
 		}
 	}
 	currentPartyMemberTick.unknown65 = playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle;
-	short x1A;
-	if ((entityScriptVar0Table[currentEntitySlot] + 1 != gameState.partyMemberIndex[0]) && (x1C == 0)) {
-		//uh oh, x12 may not have been initialized
-		x1A = getNewPositionIndex(entityScriptVar0Table[currentEntitySlot], cast(short)(characterSizes[entityScriptVar0Table[currentEntitySlot]] + x12), currentPartyMemberTick.positionIndex, 2);
+	short newPositionIndex;
+	if ((entityScriptVar0Table[currentEntitySlot] + 1 != gameState.partyMemberIndex[0]) && !skipPositionIndexRecalc) {
+		newPositionIndex = getNewPositionIndex(entityScriptVar0Table[currentEntitySlot], cast(short)(characterSizes[entityScriptVar0Table[currentEntitySlot]] + newPositionIndexOffset), currentPartyMemberTick.positionIndex, 2);
 	} else {
-		x1A = cast(short)(currentPartyMemberTick.positionIndex + 1);
+		newPositionIndex = cast(short)(currentPartyMemberTick.positionIndex + 1);
 		entityScriptVar7Table[currentEntitySlot] &= ~PartyMemberMovementFlags.unknown12;
 	}
-	currentPartyMemberTick.positionIndex = x1A & 0xFF;
+	currentPartyMemberTick.positionIndex = newPositionIndex & 0xFF;
 }
 
 /** Actionscript function - Updates the current position for the party member associated with this entity
@@ -2830,8 +2849,14 @@ short unknownC0546B() {
 	return x10;
 }
 
-/// $C054C9
-short getCollisionAt(short x, short y) {
+/** Gets the collision of a loaded tile at the given coordinates, and sets ladder/stairs coordinates if applicable
+ * Params:
+ * 	x = relative x coordinate (0 - 63)
+ * 	y = relative y coordinate (0 - 63)
+ * Returns: The collision flags at the specified coordinate
+ * Original_Address: $(DOLLAR)C054C9
+ */
+short getCollisionAtLoadedTile(short x, short y) {
 	short result = loadedCollisionTiles[y & 0x3F][x & 0x3F];
 	if ((result & SurfaceFlags.ladderOrStairs) != 0) {
 		ladderStairsTileX = x;
@@ -2897,7 +2922,7 @@ short performCollisionChecks(short directionMask) {
 		if ((directionMask & 1) == 0) {
 			continue;
 		}
-		short flags = getCollisionAt((collisionTestCoordDiffsX[i] + checkedCollisionLeftX) / 8, (collisionTestCoordDiffsY[i] + checkedCollisionTopY) / 8);
+		short flags = getCollisionAtLoadedTile((collisionTestCoordDiffsX[i] + checkedCollisionLeftX) / 8, (collisionTestCoordDiffsY[i] + checkedCollisionTopY) / 8);
 		flagsCombined |= flags;
 		if ((flags & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
 			result |= 0x40;
@@ -3302,60 +3327,69 @@ short unknownC05F82(short x, short y, short entityID) {
 	return tempEntitySurfaceFlags;
 }
 
-/// $C05FD1
-short unknownC05FD1(short arg1, short arg2, short arg3) {
+/**
+ * Original_Address: $(DOLLAR)C05FD1
+ */
+short unknownC05FD1(short x, short y, short entity) {
 	tempEntitySurfaceFlags = 0;
-	tempEntitySurfaceFlags = getCollisionAt(arg1 / 8, (arg2 + 4) / 8);
+	tempEntitySurfaceFlags = getCollisionAtLoadedTile(x / 8, (y + 4) / 8);
 	return tempEntitySurfaceFlags;
 }
 
-/// $C05FF6
-short npcCollisionCheck(short x, short y, short arg3) {
+/** Find any NPCs colliding with entity, respecting intangibility
+ * Returns: Entity index of the first colliding NPC
+ * Original_Address: $(DOLLAR)C05FF6
+ */
+short npcCollisionCheck(short x, short y, short entity) {
 	short result = -1;
-	if ((entityHitboxEnabled[arg3] != 0) && ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
-		short x18;
-		short x04;
-		if ((entityDirections[arg3] == Direction.right) || (entityDirections[arg3] == Direction.left)) {
-			x18 = entityHitboxLeftRightWidth[arg3];
-			x04 = entityHitboxLeftRightHeight[arg3];
+	if ((entityHitboxEnabled[entity] != 0) && ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
+		short subjectWidth;
+		short subjectHeight;
+		if ((entityDirections[entity] == Direction.right) || (entityDirections[entity] == Direction.left)) {
+			subjectWidth = entityHitboxLeftRightWidth[entity];
+			subjectHeight = entityHitboxLeftRightHeight[entity];
 		} else {
-			x18 = entityHitboxUpDownWidth[arg3];
-			x04 = entityHitboxUpDownHeight[arg3];
+			subjectWidth = entityHitboxUpDownWidth[entity];
+			subjectHeight = entityHitboxUpDownHeight[entity];
 		}
-		x -= x18;
-		y -= x04;
+		x -= subjectWidth;
+		y -= subjectHeight;
 		for (short i = 0; i != partyLeaderEntity; i++) {
+			// skip uninitialized entities
 			if (entityScriptTable[i] == -1) {
 				continue;
 			}
+			// skip entities with disabled collision
 			if (entityCollidedObjects[i] == 0x8000) {
 				continue;
 			}
-			if ((playerIntangibilityFrames != 0) && (entityNPCIDs[i] + 1 >= 0x8001)){
+			// skip enemies when intangible
+			if ((playerIntangibilityFrames != 0) && (entityNPCIDs[i] + 1 >= 0x8001)) {
 				continue;
 			}
+			// skip entities with disabled hitboxes
 			if (entityHitboxEnabled[i] == 0) {
 				continue;
 			}
-			short yReg;
-			short x10;
+			short targetWidth;
+			short targetHeight;
 			if ((entityDirections[i] == Direction.right) || (entityDirections[i] == Direction.left)) {
-				yReg = entityHitboxLeftRightWidth[i];
-				x10 = entityHitboxLeftRightHeight[i];
+				targetWidth = entityHitboxLeftRightWidth[i];
+				targetHeight = entityHitboxLeftRightHeight[i];
 			} else {
-				yReg = entityHitboxUpDownWidth[i];
-				x10 = entityHitboxUpDownHeight[i];
+				targetWidth = entityHitboxUpDownWidth[i];
+				targetHeight = entityHitboxUpDownHeight[i];
 			}
-			if (entityAbsYTable[i] - x10 - x04 >= y) {
+			if (entityAbsYTable[i] - targetHeight - subjectHeight >= y) {
 				continue;
 			}
-			if (x10 + entityAbsYTable[i] - x10 <= y) {
+			if (targetHeight + entityAbsYTable[i] - targetHeight <= y) {
 				continue;
 			}
-			if (entityAbsXTable[i] - yReg - x18 * 2 >= x) {
+			if (entityAbsXTable[i] - targetWidth - subjectWidth * 2 >= x) {
 				continue;
 			}
-			if (entityAbsXTable[i] - yReg + yReg * 2 <= x) {
+			if (entityAbsXTable[i] - targetWidth + targetWidth * 2 <= x) {
 				continue;
 			}
 			result = i;
@@ -3588,21 +3622,20 @@ void processEntityCreationRequests() {
 
 /// $C065C2
 void unknownC065C2(short direction) {
-	short x0E = cast(short)((gameState.leaderX.integer / 8) + interactXOffsets[direction]);
-	short x02 = cast(short)((gameState.leaderY.integer / 8) + interactYOffsets[direction]);
+	short x = cast(short)((gameState.leaderX.integer / 8) + interactXOffsets[direction]);
+	short y = cast(short)((gameState.leaderY.integer / 8) + interactYOffsets[direction]);
 	if (direction == Direction.left) {
-		x0E--;
+		x--;
 	}
-	short x = getDoorAt(x0E, x02);
-	if (x == -1) {
-		x = getDoorAt(cast(short)(x0E + 1), x02);
+	short foundObject = getMapObjectAt(x, y);
+	if (foundObject == -1) { // try again, a little to the right
+		foundObject = getMapObjectAt(cast(short)(x + 1), y);
 	}
-	if ((x != -1) && (x == 6)) {
-		unread7E5DDC = doorFoundType;
-		//mapObjectText = doorData[doorFound & 0x7FFF]
+	if ((foundObject != -1) && (foundObject == ObjectType.person)) {
+		unread7E5DDC = mapObjectFoundType;
+		//mapObjectText = doorData[mapObjectFound & 0x7FFF]
 
-		//not sure if this is the correct type...
-		mapObjectText = doorFound.entryA.textPtr;
+		mapObjectText = mapObjectFound.object.textPtr;
 		interactingNPCID = -2;
 	}
 }
@@ -3739,27 +3772,31 @@ void unknownC06A07() {
 	changeMusic(nextMapMusicTrack);
 }
 
-/// $C06A1B
-void unknownC06A1B(const(DoorEntryB)* arg1) {
-	if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > eventFlagUnset) ? 1 : 0) {
-		queueInteraction(InteractionType.unknown0, QueuedInteractionPtr(getTextBlock(arg1.textPtr)));
+/** Handle interaction with a switch on the map
+ * Params:
+ * 	switchEntry = The switch object entry
+ * Original_Address: $(DOLLAR)C06A1B
+ */
+void interactMapSwitch(const(SwitchObject)* switchEntry) {
+	if (getEventFlag(switchEntry.eventFlag & 0x7FFF) == (switchEntry.eventFlag > eventFlagUnset) ? 1 : 0) {
+		queueInteraction(InteractionType.mapSwitch, QueuedInteractionPtr(getTextBlock(switchEntry.textPtr)));
 		ladderStairsTileY = 0;
 		ladderStairsTileX = 0;
 	}
 }
 
 /// $C06A8B
-void unknownC06A8B(const(DoorEntryC)*) {
+void interactObject(const(MapObjectObject)*) {
 	//you wanted something? too bad!
 }
 
 /// $C06A8E
-void unknownC06A8E(const(DoorEntryC)*) {
+void interactMapNPC(const(MapObjectObject)*) {
 	//nothing
 }
 
 /// $C06A91
-void unknownC06A91(short arg1) {
+void interactRopeLadder(short arg1) {
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		return;
 	}
@@ -3773,7 +3810,7 @@ void unknownC06A91(short arg1) {
 }
 
 /// $C06ACA
-void unknownC06ACA(const(DoorEntryA)* arg1) {
+void interactDoor(const(DoorObject)* arg1) {
 	if (playerHasDoneSomethingThisFrame == 0) {
 		return;
 	}
@@ -3814,7 +3851,7 @@ void removeNonTransitionSurvivingInteractions() {
 }
 
 /// $C06BFF
-void doorTransition(const(DoorEntryA)* arg1) {
+void doorTransition(const(DoorObject)* arg1) {
 	if (arg1.textPtr !is null) {
 		displayInteractionText(getTextBlock(arg1.textPtr));
 	}
@@ -3926,7 +3963,7 @@ void exitEscalator() {
 }
 
 /// $C06E6E
-void doEscalatorTransition(ushort arg1, short x, short y) {
+void interactEscalator(ushort arg1, short x, short y) {
 	if (demoFramesLeft != 0) {
 		return;
 	}
@@ -4045,7 +4082,7 @@ short unknownC0705F(ushort arg1) {
 }
 
 /// $C070CB
-void doStairsTransition(ushort direction, short x, short y) {
+void interactStairs(ushort direction, short x, short y) {
 	if (demoFramesLeft != 0) {
 		return;
 	}
@@ -4148,67 +4185,73 @@ void unknownC073C0(short arg1) {
 	gameState.activeHotspotModes[arg1] = 0;
 }
 
-/// $C07477
-byte getDoorAt(short x, short y) {
-	const(SectorDoors)* x0A = &doorConfig[y / 32][x / 32];
+/** Searches for map objects at the given coordinates
+ * Params:
+ * 	x = x coordinate, in pixels
+ * 	y = y coordinate, in pixels
+ * Returns: Type of map object found, or -1 if none
+ * Original_Address: $(DOLLAR)C07477
+ */
+byte getMapObjectAt(short x, short y) {
+	const(SectorObjects)* x0A = &sectorObjects[y / 32][x / 32];
 	if (x0A.length == 0) {
 		return -1;
 	}
-	const(DoorConfig)* x06 = &x0A.doors[0];
-	for (short i = x0A.length; i != 0; x06++, i--) {
-		if (x06.unknown1 != (x % 32)) {
+	const(MapObject)* sectorObject = &x0A.objects[0];
+	for (short i = x0A.length; i != 0; sectorObject++, i--) {
+		if (sectorObject.unknown1 != (x % 32)) {
 			continue;
 		}
-		if (x06.unknown0 != (y % 32)) {
+		if (sectorObject.unknown0 != (y % 32)) {
 			continue;
 		}
-		doorFound = x06.doorPtr;
-		doorFoundType = x06.type;
-		return x06.type;
+		mapObjectFound = sectorObject.doorPtr;
+		mapObjectFoundType = sectorObject.type;
+		return sectorObject.type;
 	}
 	return -1;
 }
 
 /// $C07526
-short unknownC07526(short x, short y) {
+bool unknownC07526(short x, short y) {
 	version(noUndefinedBehaviour) {
-		short x0E = 1;
+		bool result = true;
 	} else {
-		short x0E = void;
+		bool result = void;
 	}
-	switch (getDoorAt(x, y)) {
-		case DoorType.switch_:
-			unknownC06A1B(doorFound.entryB);
-			x0E = 0;
+	switch (getMapObjectAt(x, y)) {
+		case ObjectType.switch_:
+			interactMapSwitch(mapObjectFound.mapSwitch);
+			result = false;
 			break;
-		case DoorType.ropeLadder:
-			unknownC06A91(doorFound.direction);
-			x0E = 1;
+		case ObjectType.ropeLadder:
+			interactRopeLadder(mapObjectFound.direction);
+			result = true;
 			break;
-		case DoorType.door:
-			unknownC06ACA(doorFound.entryA);
-			x0E = 0;
+		case ObjectType.door:
+			interactDoor(mapObjectFound.door);
+			result = false;
 			break;
-		case DoorType.escalator:
-			doEscalatorTransition(doorFound.direction, x, y);
-			x0E = 0;
+		case ObjectType.escalator:
+			interactEscalator(mapObjectFound.direction, x, y);
+			result = false;
 			break;
-		case DoorType.stairway:
-			doStairsTransition(doorFound.direction, x, y);
-			x0E = 1;
+		case ObjectType.stairway:
+			interactStairs(mapObjectFound.direction, x, y);
+			result = true;
 			break;
-		case DoorType.object:
-		case DoorType.type7:
-			unknownC06A8B(doorFound.entryC);
-			x0E = 0;
+		case ObjectType.object:
+		case ObjectType.type7:
+			interactObject(mapObjectFound.object);
+			result = false;
 			break;
-		case DoorType.person:
-			unknownC06A8E(doorFound.entryC);
-			x0E = 0;
+		case ObjectType.person:
+			interactMapNPC(mapObjectFound.object);
+			result = false;
 			break;
 		default: break;
 	}
-	return x0E;
+	return result;
 }
 
 /// $C075DD
@@ -4230,7 +4273,7 @@ void processQueuedInteractions() {
 				dadPhoneQueued = 0;
 			}
 			break;
-		case InteractionType.unknown0:
+		case InteractionType.mapSwitch:
 		case InteractionType.unknown8:
 		case InteractionType.unknown9:
 			displayInteractionText(ptr.textPtr);
@@ -9126,108 +9169,111 @@ short unknownC0D15C() {
 
 /// $C0D19B
 void unknownC0D19B() {
-	short x20 = touchedEnemy;
+	short enemyEntity = touchedEnemy;
 	enemyHasBeenTouched = 0;
-	short x;
-	short y;
-	if (entityMovingDirection[touchedEnemy] == 8) {
-		y = 0;
-		x = 1;
+	bool playerFacingTowardsEnemy;
+	bool enemyFacingTowardsPlayer;
+	if (entityMovingDirection[touchedEnemy] == Direction.none) {
+		enemyFacingTowardsPlayer = false;
+		playerFacingTowardsEnemy = true;
 	} else {
-		short x04 = ((getScreenAngle(entityAbsXTable[x20], entityAbsYTable[x20], entityAbsXTable[enemyPathfindingTargetEntity], entityAbsYTable[enemyPathfindingTargetEntity]) + 0x1000) / 0x2000);
-		switch ((entityMovingDirection[touchedEnemy] - x04) & 7) {
-			case 0:
-			case 1:
-			case 7:
-				 y = 1;
+		short enemyDirection = ((getScreenAngle(entityAbsXTable[enemyEntity], entityAbsYTable[enemyEntity], entityAbsXTable[enemyPathfindingTargetEntity], entityAbsYTable[enemyPathfindingTargetEntity]) + 0x1000) / 0x2000);
+		// normalize enemy direction with player at north
+		switch ((entityMovingDirection[touchedEnemy] - enemyDirection) & 7) {
+			case Direction.up:
+			case Direction.upRight:
+			case Direction.upLeft:
+				 enemyFacingTowardsPlayer = true;
 				 break;
 			default:
-				y = 0;
+				enemyFacingTowardsPlayer = false;
 				break;
 		}
-		switch ((gameState.leaderDirection - x04) & 7) {
-			case 0:
-			case 1:
-			case 7:
-				x = 0;
+		// normalize player direction with enemy at north
+		switch ((gameState.leaderDirection - enemyDirection) & 7) {
+			case Direction.up:
+			case Direction.upRight:
+			case Direction.upLeft:
+				playerFacingTowardsEnemy = false;
 				break;
 			default:
-				x = 1;
+				playerFacingTowardsEnemy = true;
 				break;
 		}
 	}
-	battleInitiative = 0;
-	if ((x == 1) && (y == 0)) {
+	battleInitiative = Initiative.normal;
+	if (playerFacingTowardsEnemy && !enemyFacingTowardsPlayer) {
 		battleInitiative = Initiative.partyFirst;
-	} else if ((y == 1) && (x == 0)) {
+	} else if (enemyFacingTowardsPlayer && !playerFacingTowardsEnemy) {
 		battleInitiative = Initiative.enemiesFirst;
 	}
 	battleSwirlCountdown = 120;
-	currentBattleGroup = entityNPCIDs[x20] & 0x7FFF;
+	currentBattleGroup = entityNPCIDs[enemyEntity] & 0x7FFF;
 	battleSwirlSequence();
-	const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[entityNPCIDs[x20] & 0x7FFF].enemies[0];
+	const(BattleGroupEnemy)* currentEnemy = &battleEntryPointerTable[entityNPCIDs[enemyEntity] & 0x7FFF].enemies[0];
+	short enemyID;
 	for (short i = 0; i != 4; i++) {
-		short x02 = x06.count;
-		if (x02 != 0xFF) {
-			short x1A = x02;
-			if (x1A != 0) {
-				y = x06.enemyID;
-				if (y == entityEnemyIDs[x20]) {
-					entityPathfindingState[x20] = -1;
-					x1A--;
+		short enemyCount = currentEnemy.count;
+		if (enemyCount != 0xFF) { //0xFF terminates the enemy list
+			short enemiesToFind = enemyCount;
+			if (enemiesToFind != 0) {
+				enemyID = currentEnemy.enemyID;
+				if (enemyID == entityEnemyIDs[enemyEntity]) {
+					entityPathfindingState[enemyEntity] = -1;
+					enemiesToFind--;
 				}
-				if (x1A != 0) {
+				if (enemiesToFind != 0) {
 					for (short j = 0; j != partyLeaderEntity; j++) {
 						if (entityScriptTable[j] == -1) {
 							continue;
 						}
-						if (y != entityEnemyIDs[j]) {
+						if (enemyID != entityEnemyIDs[j]) {
 							continue;
 						}
 						entityPathfindingState[j] = -1;
 					}
 				}
 			}
-			x06++;
-		} else {
-			x02 = 0;
-			y = 0;
+			currentEnemy++;
+		} else { // fill remaining slots with 0 null enemies
+			enemyCount = 0;
+			enemyID = 0;
 		}
-		pathfindingEnemyIDs[i] = y;
-		pathfindingEnemyCounts[i] = x02;
+		pathfindingEnemyIDs[i] = enemyID;
+		pathfindingEnemyCounts[i] = enemyCount;
 	}
 	enemiesInBattle = 0;
-	findPathToParty(gameState.partyCount, 0x40, 0x40);
-	x06 = &battleEntryPointerTable[currentBattleGroup].enemies[0];
+	findPathToParty(gameState.partyCount, 64, 64);
+	currentEnemy = &battleEntryPointerTable[currentBattleGroup].enemies[0];
 	for (short i = 0; i != 4; i++) {
-		short x14 = x06.count;
-		if (x14 == 0xFF) {
+		short enemyCount = currentEnemy.count;
+		if (enemyCount == 0xFF) {
 			continue;
 		}
-		if (x14 != 0) {
-			short x1A = x06.enemyID;
-			if (x1A != 0) {
-				short x18 = 0;
+		if (enemyCount != 0) {
+			short searchEnemy = currentEnemy.enemyID;
+			if (searchEnemy != 0) {
+				short matchingEnemies = 0;
 				for (short j = 0; j < pathfindingState.patherCount; j++) {
-					if (pathfindingState.pathers[j].objIndex == x1A) {
-						x18++;
+					if (pathfindingState.pathers[j].objIndex == searchEnemy) {
+						matchingEnemies++;
 					}
 				}
-				if (x18 > x14) {
-					for (short j = cast(short)(x18 - x14); j-- != 0;) {
+				if (matchingEnemies > enemyCount) {
+					for (short j = cast(short)(matchingEnemies - enemyCount); j-- != 0;) {
 						short x10 = -1;
 						short x1C = 0;
 						for (short k = 0; k < pathfindingState.patherCount; k++) {
-							if (entityEnemyIDs[pathfindingState.pathers[k].objIndex] != x1A) {
+							if (entityEnemyIDs[pathfindingState.pathers[k].objIndex] != searchEnemy) {
 								continue;
 							}
 							if (pathfindingState.pathers[k].pointCount <= x1C) {
 								continue;
 							}
-							x10 = x18;
+							x10 = matchingEnemies;
 							x1C = entityEnemyIDs[pathfindingState.pathers[k].pointCount];
 						}
-						if (pathfindingState.pathers[x10].objIndex != x20) {
+						if (pathfindingState.pathers[x10].objIndex != enemyEntity) {
 							pathfindingState.pathers[x10].pointCount = 0;
 							entityPathfindingState[pathfindingState.pathers[x10].objIndex] = 0;
 						}
@@ -9235,10 +9281,10 @@ void unknownC0D19B() {
 				}
 			}
 		}
-		x06++;
+		currentEnemy++;
 	}
 	for (short i = 0; i < partyLeaderEntity; i++) {
-		if (i == x20) {
+		if (i == enemyEntity) {
 			continue;
 		}
 		if (entityPathfindingState[i] == -1) {
@@ -9247,8 +9293,8 @@ void unknownC0D19B() {
 			entitySpriteMapFlags[i] |= SpriteMapFlags.drawDisabled;
 		}
 	}
-	entityPathfindingState[x20] = 0;
-	enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[x20];
+	entityPathfindingState[enemyEntity] = 0;
+	enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[enemyEntity];
 }
 
 /// $C0D4DE
