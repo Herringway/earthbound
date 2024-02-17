@@ -4329,7 +4329,7 @@ void unknownC0777A() {
 }
 
 /// $C0778A
-void unknownC0778A() {
+void updateMiniGhostPosition() {
 	if ((entityCallbackFlags[gameState.firstPartyMemberEntity] & (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled)) != 0) {
 		entityAnimationFrames[currentEntitySlot] = -1;
 		return;
@@ -6711,7 +6711,7 @@ void updateScreenPositionBG12D() {
 }
 
 /// $C0A039
-void unknownC0A039() {
+void updateScreenPositionNoOp() {
 	//nothing
 }
 
@@ -6885,12 +6885,12 @@ void unknownC0A26B() {
 immutable short[6] unknownC0A2AB = [ 0, 17, 32, 47, 62, 77 ];
 
 /// $C0A2B7
-short unknownC0A2B7(short arg1) {
-	short a = entityScreenXTable[arg1 / 2] ^ entityScreenXTable[currentActiveEntityOffset / 2];
+short unknownC0A2B7(short entityOffset) {
+	short a = entityScreenXTable[entityOffset / 2] ^ entityScreenXTable[currentActiveEntityOffset / 2];
 	if (a != 0) {
 		return a;
 	}
-	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
+	a = cast(short)(entityAbsYTable[entityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6905,12 +6905,12 @@ short unknownC0A2B7(short arg1) {
 }
 
 /// $C0A2E1
-short unknownC0A2E1(short arg1) {
-	short a = entityScreenYTable[arg1 / 2] ^ entityScreenYTable[currentActiveEntityOffset / 2];
+short unknownC0A2E1(short entityOffset) {
+	short a = entityScreenYTable[entityOffset / 2] ^ entityScreenYTable[currentActiveEntityOffset / 2];
 	if (a != 0) {
 		return a;
 	}
-	a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
+	a = cast(short)(entityAbsXTable[entityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6928,8 +6928,8 @@ short unknownC0A2E1(short arg1) {
 immutable short[6] unknownC0A30B = [ 0, 11, 22, 32, 43, 54 ];
 
 /// $C0A317
-short unknownC0A317(short arg1) {
-	short a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
+short unknownC0A317(short entityOffset) {
+	short a = cast(short)(entityAbsXTable[entityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6937,7 +6937,7 @@ short unknownC0A317(short arg1) {
 	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2]) {
 		return actionScriptVar00s;
 	}
-	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
+	a = cast(short)(entityAbsYTable[entityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6953,14 +6953,14 @@ short unknownC0A317(short arg1) {
 
 /// $C0A350
 immutable short function(short)[8] unknownC0A350 = [
-	&unknownC0A2B7,
-	&unknownC0A317,
-	&unknownC0A2E1,
-	&unknownC0A317,
-	&unknownC0A2B7,
-	&unknownC0A317,
-	&unknownC0A2E1,
-	&unknownC0A317,
+	Direction.up: &unknownC0A2B7,
+	Direction.upRight: &unknownC0A317,
+	Direction.right: &unknownC0A2E1,
+	Direction.downRight: &unknownC0A317,
+	Direction.down: &unknownC0A2B7,
+	Direction.downLeft: &unknownC0A317,
+	Direction.left: &unknownC0A2E1,
+	Direction.upLeft: &unknownC0A317,
 ];
 
 /// $C0A360

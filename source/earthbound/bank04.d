@@ -3469,7 +3469,7 @@ unittest {
 }
 
 /// $C4730E
-void unknownC4730E() {
+void halveYSpeed() {
 	entityDeltaYTable[currentEntitySlot] /= 2;
 }
 

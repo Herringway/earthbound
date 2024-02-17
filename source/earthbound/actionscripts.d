@@ -1107,12 +1107,12 @@ shared static this() {
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript786;
 shared static this() {
 	actionScript786 = initializeScript(actionScript786.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		PAUSE(8),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		C0778A_WAIT(1),
+		UPDATE_MINI_GHOST_POSITION_WAIT(1),
 		SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
 	);
 }
@@ -2042,7 +2042,7 @@ immutable ubyte[51 + 7 * (const(void)*).sizeof] actionScriptJumpJefS;
 shared static this() {
 	actionScriptJumpJefS = initializeScript(actionScriptJumpJefS.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(0),
 		SET_ANIMATION(255),
@@ -2514,7 +2514,7 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_VAR(ActionScriptVars.v6, 384),
 		SET_VAR(ActionScriptVars.v7, 7624),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -2558,7 +2558,7 @@ immutable ubyte[63 + 15 * (const(void)*).sizeof] actionScriptToSailor;
 shared static this() {
 	actionScriptToSailor = initializeScript(actionScriptToSailor.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -2596,7 +2596,7 @@ immutable ubyte[93 + 14 * (const(void)*).sizeof] actionScriptShipToSkrb1;
 shared static this() {
 	actionScriptShipToSkrb1 = initializeScript(actionScriptShipToSkrb1.length,
 		SHORTCALL(&unknownC3AA38[0]),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_TICK_CALLBACK(&unknownC48BE1),
 		SET_MOVEMENT_SPEED(64),
 		SET_VAR(ActionScriptVars.v5, 1),
@@ -2637,7 +2637,7 @@ shared static this() {
 	actionScriptShipSmall = initializeScript(actionScriptShipSmall.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SHORTCALL(&unknownC3AA38[0]),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_TICK_CALLBACK(&unknownC48BE1),
 		SET_MOVEMENT_SPEED(160),
 		SET_VAR(ActionScriptVars.v5, 1),
@@ -2735,7 +2735,7 @@ shared static this() {
 		SET_X(1560),
 		SET_Y(3672),
 		SHORTCALL(&unknownC3AA38[0]),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_TICK_CALLBACK(&unknownC48BE1),
 		SET_MOVEMENT_SPEED(64),
 		SET_VAR(ActionScriptVars.v5, 1),
@@ -2768,7 +2768,7 @@ shared static this() {
 	actionScriptOutShip = initializeScript(actionScriptOutShip.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		MOVE_PARTY_TO_LEADER_POSITION(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -2787,7 +2787,7 @@ shared static this() {
 	actionScriptSubmarine1 = initializeScript(actionScriptSubmarine1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SHORTCALL(&unknownC3AA38[0]),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_TICK_CALLBACK(&unknownC48BE1),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(128),
@@ -2811,7 +2811,7 @@ shared static this() {
 		SET_X(5856),
 		SET_Y(6792),
 		SHORTCALL(&unknownC3AA38[0]),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_TICK_CALLBACK(&unknownC48BE1),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(128),
@@ -2830,7 +2830,7 @@ shared static this() {
 	actionScriptOutSubmarine = initializeScript(actionScriptOutSubmarine.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		MOVE_PARTY_TO_LEADER_POSITION(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -2949,7 +2949,7 @@ immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptToGuard;
 shared static this() {
 	actionScriptToGuard = initializeScript(actionScriptToGuard.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -3099,7 +3099,7 @@ shared static this() {
 	actionScriptOutSt3 = initializeScript(actionScriptOutSt3.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		MOVE_PARTY_TO_LEADER_POSITION(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -3532,7 +3532,7 @@ shared static this() {
 	actionScriptOutSt2 = initializeScript(actionScriptOutSt2.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		MOVE_PARTY_TO_LEADER_POSITION(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -3550,7 +3550,7 @@ immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScriptPooSyugyou1;
 shared static this() {
 	actionScriptPooSyugyou1 = initializeScript(actionScriptPooSyugyou1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -3765,7 +3765,7 @@ immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScriptKaitenNess;
 shared static this() {
 	actionScriptKaitenNess = initializeScript(actionScriptKaitenNess.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(0),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -7479,7 +7479,7 @@ shared static this() {
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		PAUSE(1),
 		GET_EVENT_FLAG(EventFlag.temp1),
 		JUMP_IF_TRUE(&actionScriptBMonkeyTassi1B[47 + 14 * (const(void)*).sizeof]),
@@ -7565,7 +7565,7 @@ shared static this() {
 		CLEAR_TICK_CALLBACK(),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_MOVEMENT_SPEED(96),
 		SET_VAR(ActionScriptVars.v6, 720),
 		SET_VAR(ActionScriptVars.v7, 3528),
@@ -7629,7 +7629,7 @@ immutable ubyte[70 + 15 * (const(void)*).sizeof] actionScriptRideTassi1;
 shared static this() {
 	actionScriptRideTassi1 = initializeScript(actionScriptRideTassi1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -7669,7 +7669,7 @@ immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScriptOutTassi1;
 shared static this() {
 	actionScriptOutTassi1 = initializeScript(actionScriptOutTassi1.length,
 		C4675C(),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -9155,7 +9155,7 @@ immutable ubyte[8 + 4 * (const(void)*).sizeof] unknownC34E73;
 shared static this() {
 	unknownC34E73 = initializeScript(unknownC34E73.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -9279,7 +9279,7 @@ immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScriptMdHashiBus;
 shared static this() {
 	actionScriptMdHashiBus = initializeScript(actionScriptMdHashiBus.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(0),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -10735,7 +10735,7 @@ shared static this() {
 		ADD(ActionScriptVars.v0, 2048),
 		C46C87(),
 		SPIRAL_MOVEMENT_FRAME(),
-		C4730E(),
+		HALVE_Y_SPEED(),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTJUMP(&actionScript804[24 + 8 * (const(void)*).sizeof]),
 	);
@@ -12034,7 +12034,7 @@ immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptFourFollowMuseumA;
 shared static this() {
 	actionScriptFourFollowMuseumA = initializeScript(actionScriptFourFollowMuseumA.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12106,7 +12106,7 @@ immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptSumsFollowMuseumA;
 shared static this() {
 	actionScriptSumsFollowMuseumA = initializeScript(actionScriptSumsFollowMuseumA.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12814,7 +12814,7 @@ immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScriptPanningWinters1;
 shared static this() {
 	actionScriptPanningWinters1 = initializeScript(actionScriptPanningWinters1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12837,7 +12837,7 @@ immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScriptPanningWinters2;
 shared static this() {
 	actionScriptPanningWinters2 = initializeScript(actionScriptPanningWinters2.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12861,7 +12861,7 @@ immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScriptPanningRamma1;
 shared static this() {
 	actionScriptPanningRamma1 = initializeScript(actionScriptPanningRamma1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12884,7 +12884,7 @@ immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScriptPanningRamma2;
 shared static this() {
 	actionScriptPanningRamma2 = initializeScript(actionScriptPanningRamma2.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -13349,7 +13349,7 @@ shared static this() {
 			ADD(ActionScriptVars.v0, 4096),
 			MOVE_TO_SPRITE(OverworldSprite.starMasterFlyingAway),
 			SPIRAL_MOVEMENT_FRAME(),
-			C4730E(),
+			HALVE_Y_SPEED(),
 			GET_MOVEMENT_SPEED(),
 			ADD_TEMPVAR(128),
 			SET_MOVEMENT_SPEED(),
@@ -13789,7 +13789,7 @@ immutable ubyte[15 + 5 * (const(void)*).sizeof] actionScriptToFountainCommon1;
 shared static this() {
 	actionScriptToFountainCommon1 = initializeScript(actionScriptToFountainCommon1.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -14634,7 +14634,7 @@ immutable ubyte[129 + 21 * (const(void)*).sizeof] actionScriptEvtMonoHeliBoatman
 shared static this() {
 	actionScriptEvtMonoHeliBoatman = initializeScript(actionScriptEvtMonoHeliBoatman.length,
 		MOVE_TO_SPRITE(OverworldSprite.helicopter),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(255),
 		PAUSE(1),
@@ -17074,7 +17074,7 @@ shared static this() {
 immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScript2;
 shared static this() {
 	actionScript2 = initializeScript(actionScript2.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		SET_ANIMATION(0),
 		INITIALIZE_PARTY_MEMBER(),
@@ -17097,7 +17097,7 @@ shared static this() {
 immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScript3;
 shared static this() {
 	actionScript3 = initializeScript(actionScript3.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		SET_ANIMATION(0),
 		BUBBLE_MONKEY_INITIALIZE(),
@@ -18376,7 +18376,7 @@ shared static this() {
 immutable ubyte[6 + 3 * (const(void)*).sizeof] unknownC3AB37;
 shared static this() {
 	unknownC3AB37 = initializeScript(unknownC3AB37.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -18480,7 +18480,7 @@ shared static this() {
 	actionScriptProloguePokey1 = initializeScript(actionScriptProloguePokey1.length,
 		SET_X(2084),
 		SET_Y(1768),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -18504,7 +18504,7 @@ shared static this() {
 	actionScriptProloguePokey2 = initializeScript(actionScriptProloguePokey2.length,
 		SET_X(2000),
 		SET_Y(1424),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -18528,7 +18528,7 @@ shared static this() {
 	actionScriptProloguePokey3 = initializeScript(actionScriptProloguePokey3.length,
 		SET_X(2664),
 		SET_Y(888),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -18750,7 +18750,7 @@ shared static this() {
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptNessTobinoku;
 shared static this() {
 	actionScriptNessTobinoku = initializeScript(actionScriptNessTobinoku.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -18969,7 +18969,7 @@ shared static this() {
 		ADD(ActionScriptVars.v0, 2048),
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SPIRAL_MOVEMENT_FRAME(),
-		C4730E(),
+		HALVE_Y_SPEED(),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTJUMP(&actionScriptBunbuun[21 + 9 * (const(void)*).sizeof]),
 	);
@@ -19257,7 +19257,7 @@ shared static this() {
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScriptGetOutHallMayor;
 shared static this() {
 	actionScriptGetOutHallMayor = initializeScript(actionScriptGetOutHallMayor.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -19523,7 +19523,7 @@ immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutBusR;
 shared static this() {
 	actionScriptOutBusR = initializeScript(actionScriptOutBusR.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -19545,7 +19545,7 @@ immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutBusL;
 shared static this() {
 	actionScriptOutBusL = initializeScript(actionScriptOutBusL.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -19566,7 +19566,7 @@ shared static this() {
 immutable ubyte[45 + 11 * (const(void)*).sizeof] unknownC3B70C;
 shared static this() {
 	unknownC3B70C = initializeScript(unknownC3B70C.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -19616,7 +19616,7 @@ immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutTBusR;
 shared static this() {
 	actionScriptOutTBusR = initializeScript(actionScriptOutTBusR.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -20080,7 +20080,7 @@ shared static this() {
 immutable ubyte[14 + 8 * (const(void)*).sizeof] actionScriptRetGhostTunnel;
 shared static this() {
 	actionScriptRetGhostTunnel = initializeScript(actionScriptRetGhostTunnel.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -22194,7 +22194,7 @@ immutable ubyte[19 + 9 * (const(void)*).sizeof] actionScriptOutSkywalker;
 shared static this() {
 	actionScriptOutSkywalker = initializeScript(actionScriptOutSkywalker.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -22374,7 +22374,7 @@ shared static this() {
 	actionScriptOdorokiNesPola = initializeScript(actionScriptOdorokiNesPola.length,
 		SET_X(6768),
 		SET_Y(10064),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A37A),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -22444,7 +22444,7 @@ shared static this() {
 immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScriptToGorgeousChaous;
 shared static this() {
 	actionScriptToGorgeousChaous = initializeScript(actionScriptToGorgeousChaous.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -22628,7 +22628,7 @@ shared static this() {
 immutable ubyte[27 + 10 * (const(void)*).sizeof] actionScript188;
 shared static this() {
 	actionScript188 = initializeScript(actionScript188.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -22648,7 +22648,7 @@ shared static this() {
 immutable ubyte[18 + 8 * (const(void)*).sizeof] actionScriptTBusRideMono;
 shared static this() {
 	actionScriptTBusRideMono = initializeScript(actionScriptTBusRideMono.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&unknownC48BE1),
@@ -23231,7 +23231,7 @@ shared static this() {
 immutable ubyte[41 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelDsrtRJ;
 shared static this() {
 	actionScriptBusTunnelDsrtRJ = initializeScript(actionScriptBusTunnelDsrtRJ.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(0),
 		SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
@@ -23392,7 +23392,7 @@ immutable ubyte[10 + 5 * (const(void)*).sizeof] unknownC3DBDB;
 shared static this() {
 	unknownC3DBDB = initializeScript(unknownC3DBDB.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(0),
 		SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
@@ -23775,7 +23775,7 @@ shared static this() {
 immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript785;
 shared static this() {
 	actionScript785 = initializeScript(actionScript785.length,
-		SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
+		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
@@ -25925,7 +25925,7 @@ alias C46D4B = CALL!unknownC46D4B;
 alias TEST_IF_LEADER_WITHIN_BOUNDARIES = CALL!isLeaderWithinBoundaries;
 alias C46EF8 = CALL!unknownC46EF8;
 alias GET_DIRECTION_TO_BOUNDARY = CALL!directionToEntityBoundaries;
-alias C4730E = CALL!unknownC4730E;
+alias HALVE_Y_SPEED = CALL!halveYSpeed;
 alias GET_PARTY_COUNT = CALL!getPartyCount;
 alias RELOAD_MAP_BLOCK_EVENT_CHANGES = CALL!reloadMapBlockEventChanges;
 alias RERENDER_ROW = CALL!actionScriptRerenderRow;
@@ -25971,7 +25971,7 @@ alias GET_DELIVERY_EXIT_SPEED = CALL!getDeliveryExitSpeed;
 alias CHECK_DELIVERY_ELIGIBILITY = CALL!checkDeliveryEligibility;
 alias START_DELIVERY = CALL!startDelivery;
 alias FINISH_DELIVERY = CALL!finishDelivery;
-alias C0778A_WAIT = CALLEX!unknownC0778A;
+alias UPDATE_MINI_GHOST_POSITION_WAIT = CALLEX!updateMiniGhostPosition;
 alias C0F3E8_WAIT = CALLEX!unknownC0F3E8;
 alias C0F3B2_WAIT = CALLEX!unknownC0F3B2;
 ubyte[] CHOOSE_RANDOM(T...)(T args) {
