@@ -5788,7 +5788,7 @@ Params:
 	patherCount = Amount of Pather elements in the `pathers` array
 	pathers = Array of Pather for the pathfinding objects
 	unk1 = Unknown (-1 as called from $C0BA35)
-	unk2 = Unknown, always 0xFC
+	maxPoints = maximum number of points to generate in matrix
 	search_radius = Just a guess...
 ++/
 ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort maxPoints, ushort search_radius) {
