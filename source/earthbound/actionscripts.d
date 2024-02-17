@@ -276,7 +276,7 @@ shared static this() {
 		actionScript258[],
 		actionScriptSigeYunboMove[],
 		actionScript260[],
-		actionScriptBMonkeyFope[],
+		actionScriptBMonkeyRope[],
 		actionScriptBMonkeyRopeS[],
 		actionScriptBMonkeyRopeOrosu[],
 		actionScriptBMonkeyRopeDown[],
@@ -1840,9 +1840,9 @@ shared static this() {
 	);
 }
 /// $C30869
-immutable ubyte[61 + 8 * (const(void)*).sizeof] actionScriptBMonkeyFope;
+immutable ubyte[61 + 8 * (const(void)*).sizeof] actionScriptBMonkeyRope;
 shared static this() {
-	actionScriptBMonkeyFope = initializeScript(actionScriptBMonkeyFope.length,
+	actionScriptBMonkeyRope = initializeScript(actionScriptBMonkeyRope.length,
 		SET_X_RELATIVE(7),
 		SHORTCALL(&unknownC3AB26[0]),
 		PLAY_SFX(Sfx.unknown0E),
@@ -1915,7 +1915,7 @@ shared static this() {
 		WRITE_WORD_TEMPVAR(1),
 		SET_EVENT_FLAG(EventFlag.winsRopeSwitch),
 		PLAY_SFX(Sfx.falling),
-		C4733C(),
+		RELOAD_MAP_BLOCK_EVENT_CHANGES(),
 		WRITE_WORD_TEMPVAR(41),
 		LOOP(10),
 			RERENDER_ROW(),
@@ -25927,7 +25927,7 @@ alias C46EF8 = CALL!unknownC46EF8;
 alias GET_DIRECTION_TO_BOUNDARY = CALL!directionToEntityBoundaries;
 alias C4730E = CALL!unknownC4730E;
 alias GET_PARTY_COUNT = CALL!getPartyCount;
-alias C4733C = CALL!unknownC4733C;
+alias RELOAD_MAP_BLOCK_EVENT_CHANGES = CALL!reloadMapBlockEventChanges;
 alias RERENDER_ROW = CALL!actionScriptRerenderRow;
 alias C47369 = CALL!unknownC47369;
 alias C47499 = CALL!unknownC47499;

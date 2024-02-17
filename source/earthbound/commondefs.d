@@ -67,7 +67,7 @@ enum PathfindingTile {
 	unknownFB = 0xFB, ///
 	unknownFC = 0xFC, ///
 	unwalkable = 0xFD, ///
-	maybeStart = 0xFE, /// Is this even correct?
+	unpainted = 0xFE, /// Areas that haven't been painted
 	start = 0xFF, /// Is this even correct?
 }
 
@@ -1500,7 +1500,7 @@ enum ActionScript {
 	unknown258, //258
 	animSigeYunboMove, //259
 	unknown260, //260
-	animBMonkeyFope, //261
+	animBMonkeyRope, //261
 	animBMonkeyRopeS, //262
 	animBMonkeyRopeOrosu, //263
 	animBMonkeyRopeDown, //264
@@ -8318,12 +8318,17 @@ string getBattlerName(ref Battler battler) {
 	return "";
 }
 
-void printPathMatrix() {
+void printPathMatrix(VecYX[] highlights = [], bool gradient = false) {
 	import earthbound.globals : pathMatrixBuffer, pathMatrixCols, pathMatrixRows;
-	import std.stdio : write, writeln;
-	import std.range : chunks, take;
-	foreach (row; pathMatrixBuffer[0 .. pathMatrixCols * pathMatrixRows].chunks(pathMatrixCols).take(pathMatrixRows)) {
-		foreach (block; row) {
+	printPathMatrix(pathMatrixBuffer[0 .. pathMatrixCols * pathMatrixRows], pathMatrixCols, pathMatrixRows, highlights, gradient);
+}
+void printPathMatrix(const ubyte[] buffer, uint cols, uint rows, VecYX[] highlights = [], bool gradient = false) {
+	import std.algorithm.searching : canFind;
+	import std.stdio : write, writefln, writeln;
+	ubyte[3] pathColour = [255, 0, 255];
+	import std.range : chunks, enumerate, take;
+	foreach (i, row; buffer.chunks(cols).take(rows).enumerate) {
+		foreach (j, block; row) {
 			ubyte[3] colour;
 			switch (cast(PathfindingTile)block) {
 				case PathfindingTile.clear: colour = [0, 0, 0]; break;
@@ -8332,13 +8337,22 @@ void printPathMatrix() {
 				case PathfindingTile.unknownFB: colour = [0, 128, 128]; break;
 				case PathfindingTile.unknownFC: colour = [128, 128, 0]; break;
 				case PathfindingTile.unwalkable: colour = [128, 0, 0]; break;
-				case PathfindingTile.maybeStart: colour = [0, 0, 128]; break;
+				case PathfindingTile.unpainted: colour = [0, 0, 128]; break;
 				case PathfindingTile.start: colour = [0, 128, 0]; break;
 				default: writeln(block); break;
+			}
+			if (highlights.canFind(VecYX(cast(short)i, cast(short)j))) {
+				colour = pathColour;
+				if (gradient) {
+					pathColour[] -= cast(ubyte[])[256.0 / highlights.length, -256.0 / highlights.length, 256.0 / highlights.length];
+				}
 			}
 			write("\x1B[38;2;", colour[0], ";", colour[1], ";", colour[2], "m██\x1B[0m");
 		}
 		writeln();
+	}
+	foreach (vec; highlights) {
+		writefln!"Under highlight (%s,%s): %02X"(vec.x, vec.y, buffer[vec.y * cols + vec.x]);
 	}
 }
 

@@ -222,28 +222,26 @@ void function14(short index1, short index2) {
 	tileCollisionBuffer[index1] = tileCollisionBuffer[index2];
 }
 
-/// $C006F2
-void unknownC006F2(short arg1) {
-	const(MapBlockEvent)* x06 = &eventControlPointerTable[arg1][0];
+/** Applies relevant event flag-controlled map changes for the given tileset
+ * Params:
+ * 	id = The palette+tileset combo to lookup
+ * Original_Address: $(DOLLAR)C006F2
+ */
+void loadMapBlockEventChanges(short id) {
+	const(MapBlockEvent)* mapBlockEvent = &eventControlPointerTable[id][0];
 	while (true) {
-		if (x06.eventFlag == 0) {
+		if (mapBlockEvent.eventFlag == 0) {
 			break;
 		}
-		short x0E = getEventFlag(x06.eventFlag & 0x7FFF);
-		short y = x06.count;
-		if (x0E == (x06.eventFlag >= eventFlagUnset) ? 1 : 0) {
-			const(MapBlockPair)* x06_2 = &x06.blocks[0];
-			for (short i = y; i != 0; i--) {
-				function14(x06_2.block1, x06_2.block2);
-				x06_2++;
+		short flag = getEventFlag(mapBlockEvent.eventFlag & 0x7FFF);
+		if (flag == (mapBlockEvent.eventFlag >= eventFlagUnset) ? 1 : 0) {
+			const(MapBlockPair)* blockPair = &mapBlockEvent.blocks[0];
+			for (short i = mapBlockEvent.count; i != 0; i--) {
+				function14(blockPair.block1, blockPair.block2);
+				blockPair++;
 			}
-			// Normally, x06 and x06_2 are the same variable in the SNES ver.
-			// meaning that x06 would be advanced by the above code.
-			// Since that's not the case here, we advance it manually.
-			x06++;
-		} else {
-			x06++;
 		}
+		mapBlockEvent++;
 	}
 }
 
@@ -292,7 +290,7 @@ void loadMapAtSector(short x, short y) {
 	tracef("Loading map tileset %d, palette %d", tileCombo, palette);
 	decomp(&mapDataTileArrangementPtrTable[tilesetTable[tileCombo]][0], &tileArrangementBuffer[0]);
 	loadCollisionData(tilesetTable[tileCombo]);
-	unknownC006F2(tilesetTable[tileCombo]);
+	loadMapBlockEventChanges(tilesetTable[tileCombo]);
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	if (tileCombo != loadedMapTileCombo) {
