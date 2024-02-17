@@ -216,10 +216,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="actionScriptRerenderRow" class="public" href="../earthbound/bank04/actionScriptRerenderRow.html">actionScriptRerenderRow</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="actionScriptRerenderRow" class="public" href="../earthbound/bank04/actionScriptRerenderRow.html">actionScriptRerenderRow</a><span class="tableEntryAnnotation">(y)</span>
 							</code>
 						</td>
-						<td>$C4734C
+						<td>Actionscript helper: Rerenders a row of tiles on the screen
 </td>
 					</tr>
 					<tr>
@@ -994,7 +994,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getPartyCount" class="public" href="../earthbound/bank04/getPartyCount.html">getPartyCount</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C47333
+						<td>Actionscript helper: Get a count of active party members
 </td>
 					</tr>
 					<tr>
@@ -1031,6 +1031,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4D274
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="halveYSpeed" class="public" href="../earthbound/bank04/halveYSpeed.html">halveYSpeed</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C4730E
 </td>
 					</tr>
 					<tr>
@@ -1085,6 +1094,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C43317
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="initializePathers" class="public" href="../earthbound/bank04/initializePathers.html">initializePathers</a><span class="tableEntryAnnotation">(patherCount, inPathers, outPathers)</span>
+							</code>
+						</td>
+						<td>Initializes the pather array with a sorted shallow copy of the input pathers
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="initializePathMatrix" class="public" href="../earthbound/bank04/initializePathMatrix.html">initializePathMatrix</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Adds an impassible border at the perimeter of the pathfinding matrix
 </td>
 					</tr>
 					<tr>
@@ -1315,28 +1342,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="pathC4B859" class="public" href="../earthbound/bank04/pathC4B859.html">pathC4B859</a><span class="tableEntryAnnotation">(patherCount, pathers, pather_table)</span>
+								<a id="paintPathMatrixPass1" class="public" href="../earthbound/bank04/paintPathMatrixPass1.html">paintPathMatrixPass1</a><span class="tableEntryAnnotation">(count, pathers)</span>
 							</code>
 						</td>
-						<td>$C4B859
+						<td>Pass 1 of path matrix painting: all non-solid points are marked unpainted, and start points are set up for all pathers
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="pathC4B923" class="public" href="../earthbound/bank04/pathC4B923.html">pathC4B923</a><span class="tableEntryAnnotation">(count, pathers)</span>
+								<a id="paintPathMatrixPass2" class="public" href="../earthbound/bank04/paintPathMatrixPass2.html">paintPathMatrixPass2</a><span class="tableEntryAnnotation">(targetCount, targetsPos, pather, unk1, maxDistance, unk3)</span>
 							</code>
 						</td>
-						<td>$C4B923 - Finds possible start points?
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="pathC4BAF6" class="public" href="../earthbound/bank04/pathC4BAF6.html">pathC4BAF6</a><span class="tableEntryAnnotation">(targetCount, targetsPos, pather, unk1, unk2, unk3)</span>
-							</code>
-						</td>
-						<td>$C4BAF6
+						<td>Paints the path matrix with distances to targets
 </td>
 					</tr>
 					<tr>
@@ -1369,16 +1387,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="pathInitMatrix" class="public" href="../earthbound/bank04/pathInitMatrix.html">pathInitMatrix</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4B7A5 - Initializes the border around the pathfind matrix to PathfindingTile.unwalkable
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="pathMain" class="public" href="../earthbound/bank04/pathMain.html">pathMain</a><span class="tableEntryAnnotation">(heap_size, heap_start, matrix_dim, matrix, border_size, targetCount, targetsPos, patherCount, pathers, unk1, unk2, search_radius)</span>
+								<a id="pathMain" class="public" href="../earthbound/bank04/pathMain.html">pathMain</a><span class="tableEntryAnnotation">(heap_size, heap_start, matrix_dim, matrix, border_size, targetCount, targetsPos, patherCount, pathers, unk1, maxPoints, search_radius)</span>
 							</code>
 						</td>
 						<td>$C4B59F- Finds a path from pathers to targets
@@ -1589,6 +1598,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4245D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="reloadMapBlockEventChanges" class="public" href="../earthbound/bank04/reloadMapBlockEventChanges.html">reloadMapBlockEventChanges</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Actionscript helper: Reloads event flag-controlled map block changes for the current area
 </td>
 					</tr>
 					<tr>
@@ -2633,24 +2651,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C46EF8
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4730E" class="public" href="../earthbound/bank04/unknownC4730E.html">unknownC4730E</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4730E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4733C" class="public" href="../earthbound/bank04/unknownC4733C.html">unknownC4733C</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4733C
 </td>
 					</tr>
 					<tr>

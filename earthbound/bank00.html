@@ -1647,15 +1647,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="doEscalatorTransition" class="public" href="../earthbound/bank00/doEscalatorTransition.html">doEscalatorTransition</a><span class="tableEntryAnnotation">(arg1, x, y)</span>
-							</code>
-						</td>
-						<td>$C06E6E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="doorTransition" class="public" href="../earthbound/bank00/doorTransition.html">doorTransition</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -1678,15 +1669,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C03C25
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="doStairsTransition" class="public" href="../earthbound/bank00/doStairsTransition.html">doStairsTransition</a><span class="tableEntryAnnotation">(direction, x, y)</span>
-							</code>
-						</td>
-						<td>$C070CB
 </td>
 					</tr>
 					<tr>
@@ -1845,7 +1827,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="findNearbyCheckableTPTEntry" class="public" href="../earthbound/bank00/findNearbyCheckableTPTEntry.html">findNearbyCheckableTPTEntry</a><span class="tableEntryAnnotation">()</span>
+								<a id="findNearbyCheckableNPC" class="public" href="../earthbound/bank00/findNearbyCheckableNPC.html">findNearbyCheckableNPC</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>$C04279
@@ -1854,7 +1836,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="findNearbyTalkableTPTEntry" class="public" href="../earthbound/bank00/findNearbyTalkableTPTEntry.html">findNearbyTalkableTPTEntry</a><span class="tableEntryAnnotation">()</span>
+								<a id="findNearbyTalkableNPC" class="public" href="../earthbound/bank00/findNearbyTalkableNPC.html">findNearbyTalkableNPC</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>$C04452
@@ -1944,10 +1926,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getCollisionAt" class="public" href="../earthbound/bank00/getCollisionAt.html">getCollisionAt</a><span class="tableEntryAnnotation">(x, y)</span>
+								<a id="getCollisionAtLoadedTile" class="public" href="../earthbound/bank00/getCollisionAtLoadedTile.html">getCollisionAtLoadedTile</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$C054C9
+						<td>Gets the collision of a loaded tile at the given coordinates, and sets ladder/stairs coordinates if applicable
 </td>
 					</tr>
 					<tr>
@@ -1989,15 +1971,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getDoorAt" class="public" href="../earthbound/bank00/getDoorAt.html">getDoorAt</a><span class="tableEntryAnnotation">(x, y)</span>
-							</code>
-						</td>
-						<td>$C07477
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="getEncounterGroupID" class="public" href="../earthbound/bank00/getEncounterGroupID.html">getEncounterGroupID</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
@@ -2020,6 +1993,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C06537
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getMapObjectAt" class="public" href="../earthbound/bank00/getMapObjectAt.html">getMapObjectAt</a><span class="tableEntryAnnotation">(x, y)</span>
+							</code>
+						</td>
+						<td>Searches for map objects at the given coordinates
 </td>
 					</tr>
 					<tr>
@@ -2115,10 +2097,14 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="handleBicycleMovement" class="public" href="../earthbound/bank00/handleBicycleMovement.html">handleBicycleMovement</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="handleBicycleMovement" class="public" href="../earthbound/bank00/handleBicycleMovement.html">handleBicycleMovement</a><span class="tableEntryAnnotation">(hasMoved)</span>
 							</code>
 						</td>
-						<td>$C048D3
+						<td>Handles movement while riding a bicycle.
+ Has a few unique quirks:
+ - changing direction while moving diagonally has a 4 frame delay
+ - player does not stop moving forward until a collision or a direction change
+ - press R to ring the bell!
 </td>
 					</tr>
 					<tr>
@@ -2223,6 +2209,69 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="interactDoor" class="public" href="../earthbound/bank00/interactDoor.html">interactDoor</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C06ACA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactEscalator" class="public" href="../earthbound/bank00/interactEscalator.html">interactEscalator</a><span class="tableEntryAnnotation">(arg1, x, y)</span>
+							</code>
+						</td>
+						<td>$C06E6E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactMapNPC" class="public" href="../earthbound/bank00/interactMapNPC.html">interactMapNPC</a><span class="tableEntryAnnotation">(__param_0)</span>
+							</code>
+						</td>
+						<td>$C06A8E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactMapSwitch" class="public" href="../earthbound/bank00/interactMapSwitch.html">interactMapSwitch</a><span class="tableEntryAnnotation">(switchEntry)</span>
+							</code>
+						</td>
+						<td>Handle interaction with a switch on the map
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactObject" class="public" href="../earthbound/bank00/interactObject.html">interactObject</a><span class="tableEntryAnnotation">(__param_0)</span>
+							</code>
+						</td>
+						<td>$C06A8B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactRopeLadder" class="public" href="../earthbound/bank00/interactRopeLadder.html">interactRopeLadder</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C06A91
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="interactStairs" class="public" href="../earthbound/bank00/interactStairs.html">interactStairs</a><span class="tableEntryAnnotation">(direction, x, y)</span>
+							</code>
+						</td>
+						<td>$C070CB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="isEntityOnscreen" class="public" href="../earthbound/bank00/isEntityOnscreen.html">isEntityOnscreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2317,6 +2366,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Loads the map block at (x,y)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadMapBlockEventChanges" class="public" href="../earthbound/bank00/loadMapBlockEventChanges.html">loadMapBlockEventChanges</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Applies relevant event flag-controlled map changes for the given tileset
 </td>
 					</tr>
 					<tr>
@@ -2556,10 +2614,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="npcCollisionCheck" class="public" href="../earthbound/bank00/npcCollisionCheck.html">npcCollisionCheck</a><span class="tableEntryAnnotation">(x, y, arg3)</span>
+								<a id="npcCollisionCheck" class="public" href="../earthbound/bank00/npcCollisionCheck.html">npcCollisionCheck</a><span class="tableEntryAnnotation">(x, y, entity)</span>
 							</code>
 						</td>
-						<td>$C05FF6
+						<td>Find any NPCs colliding with entity, respecting intangibility
 </td>
 					</tr>
 					<tr>
@@ -2604,7 +2662,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="partyMemberTick" class="public" href="../earthbound/bank00/partyMemberTick.html">partyMemberTick</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C04D78
+						<td>A single frame of a single party member's movement. Applies direction and position from movement buffer, and updates sprite when necessary
 </td>
 					</tr>
 					<tr>
@@ -3592,15 +3650,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC006F2" class="public" href="../earthbound/bank00/unknownC006F2.html">unknownC006F2</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C006F2
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC01181" class="public" href="../earthbound/bank00/unknownC01181.html">unknownC01181</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
@@ -3862,11 +3911,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC05FD1" class="public" href="../earthbound/bank00/unknownC05FD1.html">unknownC05FD1</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="unknownC05FD1" class="public" href="../earthbound/bank00/unknownC05FD1.html">unknownC05FD1</a><span class="tableEntryAnnotation">(x, y, entity)</span>
 							</code>
 						</td>
-						<td>$C05FD1
-</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>
@@ -3943,51 +3991,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC06A1B" class="public" href="../earthbound/bank00/unknownC06A1B.html">unknownC06A1B</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C06A1B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC06A8B" class="public" href="../earthbound/bank00/unknownC06A8B.html">unknownC06A8B</a><span class="tableEntryAnnotation">(__param_0)</span>
-							</code>
-						</td>
-						<td>$C06A8B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC06A8E" class="public" href="../earthbound/bank00/unknownC06A8E.html">unknownC06A8E</a><span class="tableEntryAnnotation">(__param_0)</span>
-							</code>
-						</td>
-						<td>$C06A8E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC06A91" class="public" href="../earthbound/bank00/unknownC06A91.html">unknownC06A91</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C06A91
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC06ACA" class="public" href="../earthbound/bank00/unknownC06ACA.html">unknownC06ACA</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C06ACA
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC0705F" class="public" href="../earthbound/bank00/unknownC0705F.html">unknownC0705F</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -4028,15 +4031,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C0777A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC0778A" class="public" href="../earthbound/bank00/unknownC0778A.html">unknownC0778A</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C0778A
 </td>
 					</tr>
 					<tr>
@@ -4249,15 +4243,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC0A039" class="public" href="../earthbound/bank00/unknownC0A039.html">unknownC0A039</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C0A039
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC0A0E3" class="public" href="../earthbound/bank00/unknownC0A0E3.html">unknownC0A0E3</a><span class="tableEntryAnnotation">(arg1, overflowed)</span>
 							</code>
 						</td>
@@ -4294,7 +4279,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC0A2B7" class="public" href="../earthbound/bank00/unknownC0A2B7.html">unknownC0A2B7</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC0A2B7" class="public" href="../earthbound/bank00/unknownC0A2B7.html">unknownC0A2B7</a><span class="tableEntryAnnotation">(entityOffset)</span>
 							</code>
 						</td>
 						<td>$C0A2B7
@@ -4303,7 +4288,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC0A2E1" class="public" href="../earthbound/bank00/unknownC0A2E1.html">unknownC0A2E1</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC0A2E1" class="public" href="../earthbound/bank00/unknownC0A2E1.html">unknownC0A2E1</a><span class="tableEntryAnnotation">(entityOffset)</span>
 							</code>
 						</td>
 						<td>$C0A2E1
@@ -4312,7 +4297,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC0A317" class="public" href="../earthbound/bank00/unknownC0A317.html">unknownC0A317</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC0A317" class="public" href="../earthbound/bank00/unknownC0A317.html">unknownC0A317</a><span class="tableEntryAnnotation">(entityOffset)</span>
 							</code>
 						</td>
 						<td>$C0A317
@@ -4591,7 +4576,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC0BA35" class="public" href="../earthbound/bank00/unknownC0BA35.html">unknownC0BA35</a><span class="tableEntryAnnotation">(arg1, arg2, arg3, arg4, arg5, arg6, arg7)</span>
+								<a id="unknownC0BA35" class="public" href="../earthbound/bank00/unknownC0BA35.html">unknownC0BA35</a><span class="tableEntryAnnotation">(pathState, targets, baseX, baseY, offscreen, arg6, arg7)</span>
 							</code>
 						</td>
 						<td>$C0BA35
@@ -5041,6 +5026,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="updateMiniGhostPosition" class="public" href="../earthbound/bank00/updateMiniGhostPosition.html">updateMiniGhostPosition</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C0778A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="updateOverlayFrame" class="public" href="../earthbound/bank00/updateOverlayFrame.html">updateOverlayFrame</a><span class="tableEntryAnnotation">(arg1, frames, overlay)</span>
 							</code>
 						</td>
@@ -5108,6 +5102,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C0A055
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="updateScreenPositionNoOp" class="public" href="../earthbound/bank00/updateScreenPositionNoOp.html">updateScreenPositionNoOp</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C0A039
 </td>
 					</tr>
 					<tr>

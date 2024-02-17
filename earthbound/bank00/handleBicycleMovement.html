@@ -149,7 +149,11 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function handleBicycleMovement</h1><p>$C048D3
+			<h1>Function handleBicycleMovement</h1><p>Handles movement while riding a bicycle.
+ Has a few unique quirks:
+ - changing direction while moving diagonally has a 4 frame delay
+ - player does not stop moving forward until a collision or a direction change
+ - press R to ring the bell!
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +161,18 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">handleBicycleMovement</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">hasMoved</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Original Address</h2>
+<p>C048D3
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
