@@ -2756,8 +2756,10 @@ void partyLeaderTick() {
 	if (battleMode != BattleMode.noBattle) {
 		return;
 	}
-	if ((possessedPlayerCount == 0) && (miniGhostEntityID != -1)) {
-		unknownC07716();
+	if (possessedPlayerCount != 0) {
+		if (miniGhostEntityID == -1) {
+			unknownC07716();
+		}
 	} else if (miniGhostEntityID != -1) {
 		unknownC0777A();
 	}
