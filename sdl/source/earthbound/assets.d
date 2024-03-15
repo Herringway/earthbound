@@ -112,22 +112,24 @@ struct PlanetArchive {
 }
 
 enum archiveName = "earthbound.planet";
-void tryExtractAssets(string baseDir, bool force) {
+bool tryExtractAssets(string baseDir, bool force) {
 	auto extractorThread = spawn(&tryExtractAssetsThread, thisTid, baseDir, force);
 	bool extractionDone;
 	string lastMessage = "Initializing";
 	void renderExtractionUI(int width, int height) {
 		ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
+		ImGui.SetNextWindowSize(ImVec2(0.0f, 200.0f), ImGuiCond.Appearing);
 		ImGui.Begin("Creating earthbound.planet", null, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse);
 			Spinner("##spinning", 15, 6,  ImGui.GetColorU32(ImGuiCol.ButtonHovered));
 			ImGui.SameLine();
 			ImGui.Text("Extracting assets. Please wait.");
-			ImGui.Text(lastMessage);
+			ImGui.TextWrapped(lastMessage);
 		ImGui.End();
 	}
 	while (!extractionDone) {
 		receiveTimeout(0.seconds,
 			(bool) { extractionDone = true; },
+			(shared Throwable e) { lastMessage = e.msg; errorf("%s", cast()e); },
 			(string msg) { lastMessage = msg; }
 		);
 		SDL_Event event;
@@ -136,7 +138,7 @@ void tryExtractAssets(string baseDir, bool force) {
 			switch (event.type) {
 				default: break;
 				case SDL_QUIT:
-					assert(0);
+					return true;
 			}
 		}
 		startFrame();
@@ -145,8 +147,17 @@ void tryExtractAssets(string baseDir, bool force) {
 		endFrame();
 		waitForNextFrame(true);
 	}
+	return false;
 }
 void tryExtractAssetsThread(Tid main, string baseDir, bool force) {
+	try {
+		tryExtractAssetsThreadInner(main, baseDir, force);
+	} catch (Throwable e) {
+		send(main, cast(shared)e);
+	}
+}
+void tryExtractAssetsThreadInner(Tid main, string baseDir, bool force) {
+	enforce("extract.yaml".exists, "extract.yaml not found - Place extract.yaml in the current directory");
 	if (force | !archiveName.exists) {
 		PlanetArchive archive;
 		send(main, "Loading ROM");

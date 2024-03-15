@@ -109,7 +109,9 @@ int main(string[] args) {
 		uninitializeImgui();
 	}
 
-	tryExtractAssets("data", forceAssetExtraction);
+	if (tryExtractAssets("data", forceAssetExtraction)) {
+		return 4;
+	}
 
 	loadAssets("data");
 
