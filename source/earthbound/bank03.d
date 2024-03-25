@@ -1644,7 +1644,7 @@ immutable ushort[4] unusedForSaleSignSpriteTable = [
 ];
 
 /// $C3FDB5
-immutable ushort[4] unknownC3FDB5 = [
+immutable ushort[4] partyMemberCastTileIDs = [
 	0x180,
 	0x190,
 	0x1A0,

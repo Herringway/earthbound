@@ -1346,7 +1346,7 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 					// can't spawn here, try again
 					continue;
 				}
-				if (unknownC05DE7(positionFlags, newEntity, groupEnemies[0].enemyID) == 0) {
+				if (checkEnemyCanMove(positionFlags, newEntity, groupEnemies[0].enemyID) == 0) {
 					// this spot is fine, proceed
 					goto SpawnSuccess;
 				}
@@ -3240,23 +3240,30 @@ short getCollisionFlags(short x, short y, short size) {
 	return tempEntitySurfaceFlags;
 }
 
-/// $C05DE7
-short unknownC05DE7(short arg1, short arg2, short arg3) {
-	short x = 0;
-	switch (arg1 & 0xC) {
+/** Check if the enemy can spawn on the given collision flags. Translates the given collision flags into a new set, according to the enemy's preferences
+ * Params:
+ * 	collisionFlags = The flags to test against
+ * 	entity = Unused entity ID
+ * 	enemyID = Enemy ID whose flags should be checked
+ * Returns: New collision flags, either solid or not
+ * Original_Address: $(DOLLAR)C05DE7
+ */
+short checkEnemyCanMove(short collisionFlags, short entity, short enemyID) {
+	short flagsToCheck = 0;
+	switch (collisionFlags & 0xC) {
 		case 0:
-			x = EnemyMovementFlags.canMoveOnLand;
+			flagsToCheck = EnemyMovementFlags.canMoveOnLand;
 			break;
 		case SurfaceFlags.causesSunstroke:
-			x = EnemyMovementFlags.canMoveInHeat;
+			flagsToCheck = EnemyMovementFlags.canMoveInHeat;
 			break;
 		case SurfaceFlags.shallowWater:
 		case SurfaceFlags.deepWater:
-			x = EnemyMovementFlags.canMoveInWater;
+			flagsToCheck = EnemyMovementFlags.canMoveInWater;
 			break;
 		default: break;
 	}
-	if ((enemyConfigurationTable[arg3].enemyMovementFlags & x) != 0) {
+	if ((enemyConfigurationTable[enemyID].enemyMovementFlags & flagsToCheck) != 0) {
 		return 0;
 	}
 	return SurfaceFlags.solid;
@@ -3285,7 +3292,7 @@ short unknownC05E82() {
 	if (x0E != 0) {
 		return 0;
 	}
-	short x04 = unknownC05DE7(x0E, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
+	short x04 = checkEnemyCanMove(x0E, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
 	entityObstacleFlags[currentEntitySlot] |= x04;
 	return x04;
 }
@@ -3300,7 +3307,7 @@ short unknownC05ECE() {
 	if (x02 != 0) {
 		return 0;
 	}
-	ushort tmp = x02 | unknownC05DE7(x02, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
+	ushort tmp = x02 | checkEnemyCanMove(x02, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
 	entityObstacleFlags[currentEntitySlot] = tmp;
 	return tmp;
 }
@@ -7383,7 +7390,7 @@ short clearCurrentEntityCollision2(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A841
-void unknownC0A841(short, ref const(ubyte)* arg2) {
+void actionScriptPlaySFX(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	return playSfx(tmp);
@@ -7434,10 +7441,10 @@ void actionScriptQueueInteraction8(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A8A0
-void unknownC0A8A0(short, ref const(ubyte)* arg2) {
+void actionScriptDisplayTextNow(short, ref const(ubyte)* arg2) {
 	string tmp = movementDataReadString(arg2);
 	actionScriptLastRead = arg2;
-	unknownC466F0(getTextBlock(tmp));
+	displayTextForActionScript(getTextBlock(tmp));
 }
 
 /// $C0A8B3
@@ -7531,10 +7538,10 @@ void actionScriptMakeNPCLookAtActiveEntity(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A959
-void unknownC0A959(short, ref const(ubyte)* arg2) {
+void actionScriptMakeSpriteLookAtActiveEntity(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC469F1(tmp);
+	makeSpriteLookAtActiveEntity(tmp);
 }
 
 /// $C0A964
@@ -7575,36 +7582,36 @@ short actionScriptCreateEntityAtV01PlusBG3Y(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A9B3
-void unknownC0A9B3(short, ref const(ubyte)* arg2) {
+void actionScriptPrintCastName(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC4EBAD(tmp, tmp2, tmp3);
+	printCastName(tmp, tmp2, tmp3);
 }
 
 /// $C0A9CF
-void unknownC0A9CF(short, ref const(ubyte)* arg2) {
+void actionScriptPrintCastNameParty(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC4EC05(tmp, tmp2, tmp3);
+	printCastNameParty(tmp, tmp2, tmp3);
 }
 
 /// $C0A9EB
-void unknownC0A9EB(short, ref const(ubyte)* arg2) {
+void actionScriptPrintCastNameEntityVar0(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC4EC52(tmp, tmp2, tmp3);
+	printCastNameEntityVar0(tmp, tmp2, tmp3);
 }
 
 /// $C0AA23

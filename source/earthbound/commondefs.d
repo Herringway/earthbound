@@ -106,68 +106,6 @@ enum SpriteMapFlags : ushort {
 	fading = 0x4000,
 }
 
-enum EntityObstacleFlags {
-	unknown0 = 1 << 0,
-	unknown1 = 1 << 1,
-	unknown2 = 1 << 2,
-	unknown3 = 1 << 3,
-	unknown4 = 1 << 4,
-	unknown5 = 1 << 5,
-	unknown6 = 1 << 6,
-	unknown7 = 1 << 7,
-}
-
-auto printableFlags(EntityCallbackFlags flags) @safe pure {
-	static struct Result {
-		EntityCallbackFlags flags;
-		void toString(W)(ref W writer) const {
-			import std.format : formattedWrite;
-			import std.range : chain, only, take;
-			writer.formattedWrite!"%-(%s, %)"(chain(
-				"Callback disabled".only.take(flags & EntityCallbackFlags.tickDisabled),
-				"Script disabled".only.take(flags & EntityCallbackFlags.moveDisabled),
-				"Enabled".only.take(flags == cast(EntityCallbackFlags)0),
-			));
-		}
-	}
-	return Result(flags);
-}
-auto printableFlags(SpriteMapFlags flags) @safe pure {
-	static struct Result {
-		SpriteMapFlags flags;
-		void toString(W)(ref W writer) const {
-			import std.format : formattedWrite;
-			import std.range : chain, only, take;
-			writer.formattedWrite!"%-(%s, %)"(chain(
-				"Unknown".only.take(flags & SpriteMapFlags.unknown),
-				"None".only.take(flags == cast(SpriteMapFlags)0),
-			));
-		}
-	}
-	return Result(flags);
-}
-auto printableFlags(EntityObstacleFlags flags) @safe pure {
-	static struct Result {
-		EntityObstacleFlags flags;
-		void toString(W)(ref W writer) const {
-			import std.format : formattedWrite;
-			import std.range : chain, only, take;
-			writer.formattedWrite!"%-(%s, %)"(chain(
-				"Unknown 0".only.take(flags & EntityObstacleFlags.unknown0),
-				"Unknown 1".only.take(flags & EntityObstacleFlags.unknown1),
-				"Unknown 2".only.take(flags & EntityObstacleFlags.unknown2),
-				"Unknown 3".only.take(flags & EntityObstacleFlags.unknown3),
-				"Unknown 4".only.take(flags & EntityObstacleFlags.unknown4),
-				"Unknown 5".only.take(flags & EntityObstacleFlags.unknown5),
-				"Unknown 6".only.take(flags & EntityObstacleFlags.unknown6),
-				"Unknown 7".only.take(flags & EntityObstacleFlags.unknown7),
-				"None".only.take(flags == cast(EntityObstacleFlags)0),
-			));
-		}
-	}
-	return Result(flags);
-}
-
 ///
 enum ubyte baseNumberSelectorCharacter1 = 0x10;
 ///
@@ -2040,7 +1978,7 @@ enum ActionScript {
 	titleScreen11, //798
 	unknown799, //799
 	unknown800, //800
-	unknown801, //801
+	castScene, //801
 	unknown802, //802
 	unknown803, //803
 	unknown804, //804
@@ -4524,28 +4462,6 @@ enum EntityOverlayFlags : ushort {
 	sweating = 1 << 15, ///
 }
 
-auto printableFlags(SurfaceFlags flags) @safe pure {
-	static struct Result {
-		SurfaceFlags flags;
-		void toString(W)(ref W writer) const {
-			import std.format : formattedWrite;
-			import std.range : chain, only, take;
-			writer.formattedWrite!"%-(%s, %)"(chain(
-				"Obscures lower body".only.take(flags & SurfaceFlags.obscureLowerBody),
-				"Obscures upper body".only.take(flags & SurfaceFlags.obscureUpperBody),
-				"Deep water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.deepWater),
-				"Shallow water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.shallowWater),
-				"Causes sunstroke".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.causesSunstroke),
-				"Ladder/stairs".only.take(flags & SurfaceFlags.ladderOrStairs),
-				"unknown1".only.take(flags & SurfaceFlags.unknown1),
-				"unknown2".only.take(flags & SurfaceFlags.unknown2),
-				"Solid".only.take(flags & SurfaceFlags.solid),
-				"None".only.take(flags == SurfaceFlags.none),
-			));
-		}
-	}
-	return Result(flags);
-}
 enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); ///0.5x
 enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); ///0.33x
 enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); ///1.5x
@@ -5863,6 +5779,64 @@ enum SpecialCharacter {
 	equipIcon = 0x22,
 }
 
+/// Cast sequence entries
+enum CastSequenceName {
+	invalid = 0,
+	pickyMinch = 1,
+	lardnaMinch = 2,
+	aloysiusMinch = 3,
+	pokeyMinch = 4,
+	buzzBuzz = 5,
+	lierXAgerate = 6,
+	frankFly = 7,
+	theSharks = 8,
+	bhPirkle = 9,
+	captainStrong = 10,
+	onettPoliceForce = 11,
+	paulasMom = 12,
+	paulasDad = 13,
+	appleKid = 14,
+	mouse = 15,
+	orangeKid = 16,
+	mrEverdred = 17,
+	runawayFive = 18,
+	happyHappyists = 19,
+	carpainter = 20,
+	bubbleMonkey = 21,
+	tony = 22,
+	maxwell = 23,
+	tessie = 24,
+	tessieWatchingClub = 25,
+	brickRoad = 26,
+	drAndonuts = 27,
+	mrSaturnNormalFont = 28,
+	masterBelch = 29,
+	georgeMontague = 30,
+	gerardoMontague = 31,
+	talahRama = 32,
+	geldegardeMonotoli = 33,
+	venus = 34,
+	starMaster = 35,
+	poosMaster = 36,
+	dungeonMan = 37,
+	nobleWarrior = 38,
+	tendaTribesmen = 39,
+	flyingMen = 40,
+	dad = 41,
+	tracy = 42,
+	separator = 43,
+	mom = 44,
+	castHeader = 45,
+	castHeaderUnderline = 46,
+	mrSaturn = 47,
+}
+
+/// Extra palettes for cast sprites
+enum SpecialCastPalette {
+	happyHappyists = 0,
+	tessieRipples = 1,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -6910,8 +6884,8 @@ struct EntityOverlaySprite {
 }
 ///
 struct CastSequenceFormattingEntry {
-	ushort unknown0; ///
-	ubyte unknown2; ///
+	ushort tileID; ///
+	ubyte tileWidth; ///
 }
 ///
 struct CreditsDMAQueueEntry {

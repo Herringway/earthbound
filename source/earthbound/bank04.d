@@ -2884,7 +2884,7 @@ void spawnTravellingPhotographer(short arg1) {
 }
 
 /// $C466F0
-void unknownC466F0(const(ubyte)* arg1) {
+void displayTextForActionScript(const(ubyte)* arg1) {
 	displayText(arg1);
 }
 
@@ -2958,51 +2958,77 @@ short unknownC468AF() {
 	return padState[0];
 }
 
-/// $C468B5
-short unknownC468B5(short arg1) {
+/** Test if the current entity is to the right of a given x coordinate.
+ * Returns: 1 if true, 0 otherwise
+ * Params:
+ * 	x = X coordinate to compare against
+ * Original_Address: $(DOLLAR)C468B5
+ */
+short actionScriptTestEntityRightOfXCoord(short x) {
 	// Favorite food naming hangs unless these comparisons are unsigned
-	short x0E = 0;
-	if (cast(ushort)arg1 < cast(ushort)entityAbsXTable[currentEntitySlot]) {
-		x0E = 1;
+	short result = 0;
+	if (cast(ushort)x < cast(ushort)entityAbsXTable[currentEntitySlot]) {
+		result = 1;
 	}
-	return x0E;
+	return result;
 }
 
-/// $C468DC
-short unknownC468DC(short arg1) {
-	short x0E = 0;
-	if (cast(ushort)arg1 < cast(ushort)entityAbsYTable[currentEntitySlot]) {
-		x0E = 1;
+/** Test if the current entity is below a given y coordinate.
+ * Returns: 1 if true, 0 otherwise
+ * Params:
+ * 	y = Y coordinate to compare against
+ * Original_Address: $(DOLLAR)C468DC
+ */
+short actionScriptTestEntityBelowYCoord(short y) {
+	short result = 0;
+	if (cast(ushort)y < cast(ushort)entityAbsYTable[currentEntitySlot]) {
+		result = 1;
 	}
-	return x0E;
+	return result;
 }
 
-/// $C46903
-short unknownC46903(short arg1) {
-	short x = 0;
-	if (arg1 > gameState.leaderY.integer) {
-		x = 1;
+/** Test if the given y coordinate is below the leader entity
+ * Returns: 1 if true, 0 otherwise
+ * Params:
+ * 	y = Y coordinate to test
+ * Original_Address: $(DOLLAR)C46903
+ */
+short actionScriptTestYCoordBelowLeader(short y) {
+	short result = 0;
+	if (y > gameState.leaderY.integer) {
+		result = 1;
 	}
-	return x;
+	return result;
 }
 
-/// $C46914
-short unknownC46914() {
+/** Get the entity's default direction, as defined by the NPC config table
+ * Returns: The NPC's default direction, or down if not a predefined NPC
+ * Original_Address: $(DOLLAR)C46914
+ */
+short actionScriptGetDefaultDirection() {
 	if (entityNPCIDs[currentEntitySlot] == -1) {
-		return 4;
+		return Direction.down;
 	}
 	return npcConfig[entityNPCIDs[currentEntitySlot]].direction;
 }
 
-/// $C46957
-void unknownC46957(short arg1) {
-	if (entityDirections[currentEntitySlot] != arg1) {
-		entityDirections[currentEntitySlot] = arg1;
+/** Turns the entity to face the given direction, if not already facing that direction
+ * Params:
+ * 	newDirection = The new direction to face
+ * Original_Address: $(DOLLAR)C46957
+ */
+void actionScriptFaceDirection(short newDirection) {
+	if (entityDirections[currentEntitySlot] != newDirection) {
+		entityDirections[currentEntitySlot] = newDirection;
 		updateEntitySprite(currentEntitySlot);
 	}
 }
 
-/// $C46984
+/** Make the first entity matching a given NPC id face the currently active entity
+ * Params:
+ * 	id = Sprite ID to search for
+ * Original_Address: $(DOLLAR)C46984
+ */
 void makeNPCLookAtActiveEntity(short id) {
 	short target = findEntityByNPCID(id);
 	if (target == -1) {
@@ -3016,18 +3042,22 @@ void makeNPCLookAtActiveEntity(short id) {
 	updateEntitySprite(target);
 }
 
-/// $C469F1
-void unknownC469F1(short arg1) {
-	short x04 = findEntityBySprite(arg1);
-	if (x04 == -1) {
+/** Make the first entity matching a given sprite id face the currently active entity
+ * Params:
+ * 	id = Sprite ID to search for
+ * Original_Address: $(DOLLAR)C469F1
+ */
+void makeSpriteLookAtActiveEntity(short id) {
+	short target = findEntityBySprite(id);
+	if (target == -1) {
 		return;
 	}
-	short x10 = cast(short)((getScreenAngle(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
-	if (entityDirections[x04] == x10) {
+	short newDirection = cast(short)((getScreenAngle(entityAbsXTable[target], entityAbsYTable[target], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+	if (entityDirections[target] == newDirection) {
 		return;
 	}
-	entityDirections[x04] = x10;
-	updateEntitySprite(x04);
+	entityDirections[target] = newDirection;
+	updateEntitySprite(target);
 }
 
 /// $C46A5E
@@ -6619,8 +6649,10 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	entityFadeStatesLength++;
 }
 
-/// $C4CB4F
-void unknownC4CB4F() {
+/** Clears all active blinking entities
+ * Original_Address: $(DOLLAR)C4CB4F
+ */
+void actionScriptClearAllBlinking() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
 		entitySpriteMapFlags[x06.entityID] &= ~SpriteMapFlags.fading;
@@ -6628,7 +6660,9 @@ void unknownC4CB4F() {
 	}
 }
 
-/// $C4CB8F
+/** Switch to the visible blink sprite
+ * Original_Address: $(DOLLAR)C4CB8F
+ */
 void actionScriptBlinkVisible() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
@@ -6640,7 +6674,9 @@ void actionScriptBlinkVisible() {
 	}
 }
 
-/// $C4CBE3
+/** Switch to the invisible blink sprite
+ * Original_Address: $(DOLLAR)C4CBE3
+ */
 void actionScriptBlinkInvisible() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
@@ -7442,7 +7478,7 @@ void loadCastScene() {
 	memset(&buffer[0], 0, 0x1000);
 	decomp(&unknownE1D6E1[0], &buffer[0x200]);
 	decomp(&castNamesGraphics[0], &buffer[0x600]);
-	unknownC4E7AE();
+	prepareDynamicCastNameText();
 	copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0;
 	loadTextPalette();
@@ -7456,18 +7492,25 @@ void loadCastScene() {
 	setForceBlank();
 }
 
-/// $C4E4DA
-void unknownC4E4DA(short arg1) {
-	entityScriptVar0Table[currentEntitySlot] = cast(short)(arg1 * 8 + bg3YPosition);
+/** Sets the scroll threshold in tiles, after which the actionscript will continue
+ * Params:
+ * 	tiles = Number of tiles
+ * Original_Address: $(DOLLAR)C4E4DA
+ */
+void setCastScrollThreshold(short tiles) {
+	entityScriptVar0Table[currentEntitySlot] = cast(short)(tiles * 8 + bg3YPosition);
 }
 
-/// $C4E4F9
-short unknownC4E4F9() {
-	short x0E = 0;
+/** Check if the cast screen has scrolled past the wait threshold
+ * Returns: true if scrolled past, false otherwise
+ * Original_Address: $(DOLLAR)C4E4F9
+ */
+short checkCastScrollThreshold() {
+	short result = 0;
 	if (entityScriptVar0Table[currentEntitySlot] <= bg3YPosition) {
-		x0E = 1;
+		result = 1;
 	}
-	return x0E;
+	return result;
 }
 
 /// $C4E51E
@@ -7481,28 +7524,34 @@ void unknownC4E51E() {
 	}
 }
 
-/// $C4E583
-void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
+/** Renders text to tiles for the cast scene
+ * Params:
+ * 	text = The text to render
+ * 	width = Width in tiles of the text to render
+ * 	tileID = The first tile ID to overwrite
+ * Original_Address: $(DOLLAR)C4E583
+ */
+void renderCastNameText(ubyte* text, short width, short tileID) {
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
 	textRenderState.upperVRAMPosition = 0;
 	textRenderState.pixelsRendered = 0;
-	unknownC1FF99(-1, arg2, arg1);
-	for (short i = 0; arg1[0] != 0; arg1++, i++) {
-		const(ubyte)* x0A = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
-		short x1E = fontData[fontConfigTable[0].dataID][arg1[0] - ebChar(' ') & 0x7F] + characterPadding;
-		while (x1E > 8) {
-			renderText(x1E, fontConfigTable[0].width, x0A);
-			x1E -= 8;
-			x0A += fontConfigTable[0].width;
+	unknownC1FF99(-1, width, text);
+	for (short i = 0; text[0] != 0; text++, i++) {
+		const(ubyte)* charTile = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (text[0] - ebChar(' ') & 0x7F)];
+		short pixelWidth = fontData[fontConfigTable[0].dataID][text[0] - ebChar(' ') & 0x7F] + characterPadding;
+		while (pixelWidth > 8) {
+			renderText(pixelWidth, fontConfigTable[0].width, charTile);
+			pixelWidth -= 8;
+			charTile += fontConfigTable[0].width;
 		}
-		renderText(x1E, fontConfigTable[0].width, x0A);
+		renderText(pixelWidth, fontConfigTable[0].width, charTile);
 	}
-	unknownC4EEE1(arg2);
-	short x04 = cast(short)(arg3 * 8);
-	short x28 = arg3;
-	for (short i = 0; i < arg2; i++, x04 += 8, x28++) {
+	unknownC4EEE1(width);
+	short x04 = cast(short)(tileID * 8);
+	short x28 = tileID;
+	for (short i = 0; i < width; i++, x04 += 8, x28++) {
 		memcpy(&buffer[((x28 & 0xF) + ((x28 & 0x3F0) * 2)) * 16], &vwfBuffer[i][0], 16);
 		memcpy(&buffer[((x28 & 0xF) + ((x28 & 0x3F0) * 2)) * 16 + 256], &vwfBuffer[i][16], 16);
 	}
@@ -7515,88 +7564,129 @@ immutable ubyte[][3] characterGuardianText = [
 	ebString("'s Master"),
 ];
 
-/// $C4E7AE
-void unknownC4E7AE() {
-	ubyte[16] x16;
+/** Prepares the dynamic cast scene text, like the party member names and their relatives
+ * Original_Address: $(DOLLAR)C4E7AE
+ */
+void prepareDynamicCastNameText() {
+	ubyte[16] buffer;
 	for (short i = 0; i < 4; i++) {
-		memset(&x16[0], 0, 0x10);
-		memcpy(&x16[0], &partyCharacters[i].name[0], 5);
-		unknownC4E583(&x16[0], 6, unknownC3FDB5[i]);
+		memset(&buffer[0], 0, 0x10);
+		memcpy(&buffer[0], &partyCharacters[i].name[0], 5);
+		renderCastNameText(&buffer[0], 6, partyMemberCastTileIDs[i]);
 	}
-	memset(&x16[0], 0, 0x10);
-	memcpy(&x16[0], &gameState.petName[0], 6);
-	unknownC4E583(&x16[0], 6, 0x1C0);
-	memset(&x16[0], 0, 0x10);
-	memcpy(&x16[0], &partyCharacters[1].name[0], 5);
-	strcat(cast(char*)&x16[0], cast(immutable(char)*)&characterGuardianText[0][0]);
-	unknownC4E583(&x16[0], castSequenceFormatting[13].unknown2, castSequenceFormatting[13].unknown0);
-	memset(&x16[0], 0, 0x10);
-	memcpy(&x16[0], &partyCharacters[1].name[0], 5);
-	strcat(cast(char*)&x16[0], cast(immutable(char)*)&characterGuardianText[1][0]);
-	unknownC4E583(&x16[0], castSequenceFormatting[12].unknown2, castSequenceFormatting[12].unknown0);
-	memset(&x16[0], 0, 0x10);
-	memcpy(&x16[0], &partyCharacters[3].name[0], 5);
-	strcat(cast(char*)&x16[0], cast(immutable(char)*)&characterGuardianText[2][0]);
-	unknownC4E583(&x16[0], castSequenceFormatting[36].unknown2, castSequenceFormatting[36].unknown0);
+	memset(&buffer[0], 0, 0x10);
+	memcpy(&buffer[0], &gameState.petName[0], 6);
+	renderCastNameText(&buffer[0], 6, 0x1C0);
+	memset(&buffer[0], 0, 0x10);
+	memcpy(&buffer[0], &partyCharacters[1].name[0], 5);
+	strcat(cast(char*)&buffer[0], cast(immutable(char)*)&characterGuardianText[0][0]);
+	renderCastNameText(&buffer[0], castSequenceFormatting[CastSequenceName.paulasDad].tileWidth, castSequenceFormatting[CastSequenceName.paulasDad].tileID);
+	memset(&buffer[0], 0, 0x10);
+	memcpy(&buffer[0], &partyCharacters[1].name[0], 5);
+	strcat(cast(char*)&buffer[0], cast(immutable(char)*)&characterGuardianText[1][0]);
+	renderCastNameText(&buffer[0], castSequenceFormatting[CastSequenceName.paulasMom].tileWidth, castSequenceFormatting[CastSequenceName.paulasMom].tileID);
+	memset(&buffer[0], 0, 0x10);
+	memcpy(&buffer[0], &partyCharacters[3].name[0], 5);
+	strcat(cast(char*)&buffer[0], cast(immutable(char)*)&characterGuardianText[2][0]);
+	renderCastNameText(&buffer[0], castSequenceFormatting[CastSequenceName.poosMaster].tileWidth, castSequenceFormatting[CastSequenceName.poosMaster].tileID);
 }
 
-/// $C4EA9C
-void unknownC4EA9C(short arg1, short arg2, short arg3) {
-	ushort* x06 = cast(ushort*)&buffer[0x4000 + arg3 * 2];
-	while (arg2-- != 0) {
-		x06[0] = cast(short)(castTileOffset + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
-		x06[0x20] = cast(short)(x06[0] + 0x10);
-		x06++;
-		arg1++;
+/** Prepares a cast name to be copied into VRAM
+ * Params:
+ * 	offset = Tile offset of the first tile
+ * 	tileWidth = The width of the name, in tiles
+ * 	x = The X coordinate to copy to
+ * Original_Address: $(DOLLAR)C4EA9C
+ */
+void prepareCastNameTilemap(short offset, short tileWidth, short x) {
+	ushort* dest = cast(ushort*)&buffer[0x4000 + x * 2];
+	while (tileWidth-- != 0) {
+		dest[0] = cast(short)(castTileOffset + ((offset & 0x3F0) * 2) + (offset & 0xF));
+		dest[0x20] = cast(short)(dest[0] + 0x10);
+		dest++;
+		offset++;
 	}
 }
 
-/// $C4EB04
-void unknownC4EB04(short arg1, short arg2, short arg3) {
-	short x14 = (bg3YPosition / 8 + arg2) & 0x1F;
-	short x04 = cast(short)((x14 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
-	copyToVRAM(0, cast(ushort)(arg3 * 2), x04, &buffer[0x4000 + arg1 * 2]);
-	short x12;
-	if (x14 != 0x1F) {
-		x12 = cast(short)(x04 + 0x20);
+/** Copies the cast name tilemap into VRAM centred on the given coordinates
+ * Params:
+ * 	centreX = The centre X coordinate
+ * 	centreY = The centre Y coordinate
+ * 	tileWidth = The width of this tilemap fragment in tiles
+ * Original_Address: $(DOLLAR)C4EB04
+ */
+void copyCastNameTilemap(short centreX, short centreY, short tileWidth) {
+	short row1TileOffset = (bg3YPosition / 8 + centreY) & 0x1F;
+	short row1Address = cast(short)((row1TileOffset * 32) + centreX + 0x7C00 - (tileWidth + 1) / 2);
+	copyToVRAM(0, cast(ushort)(tileWidth * 2), row1Address, &buffer[0x4000 + centreX * 2]);
+	short row2Address;
+	// if last row, wrap around to first row
+	if (row1TileOffset != 31) {
+		row2Address = cast(short)(row1Address + 0x20);
 	} else {
-		x12 = cast(short)(x04 - 0x3E0);
+		row2Address = cast(short)(row1Address - 0x3E0);
 	}
-	copyToVRAM(0, cast(short)(arg3 * 2), x12, &buffer[0x4000 + arg1 * 2 + 64]);
+	copyToVRAM(0, cast(short)(tileWidth * 2), row2Address, &buffer[0x4000 + centreX * 2 + 64]);
 }
 
-/// $C4EBAD
-void unknownC4EBAD(short arg1, short arg2, short arg3) {
-	unknownC4EA9C(castSequenceFormatting[arg1].unknown0, castSequenceFormatting[arg1].unknown2, arg2);
-	unknownC4EB04(arg2, arg3, castSequenceFormatting[arg1].unknown2);
+/** Prints the given cast name to the given relative tilemap coordinates
+ * Params:
+ * 	name = The ID of the cast name to print
+ * 	x = The tilemap's x coordinate (centred), relative to scroll position
+ * 	y = The tilemap's y coordinate, relative to scroll position
+ * Original_Address: $(DOLLAR)C4EBAD
+ */
+void printCastName(short name, short x, short y) {
+	prepareCastNameTilemap(castSequenceFormatting[name].tileID, castSequenceFormatting[name].tileWidth, x);
+	copyCastNameTilemap(x, y, castSequenceFormatting[name].tileWidth);
 }
 
-/// $C4EC6E
-void unknownC4EC6E(short arg1) {
-	memcpy(&palettes[12][0], &buffer[0x7000 + arg1 * 32], 0x20);
+/** Uploads a special cast palette, for the sprites that need it
+ * $(DOLLAR)C4EC6E
+ */
+void uploadSpecialCastPalette(short id) {
+	memcpy(&palettes[12][0], &buffer[0x7000 + id * 32], 0x20);
 	paletteUploadMode = PaletteUpload.objOnly;
 }
 
-/// $C4EC05
-void unknownC4EC05(short arg1, short arg2, short arg3) {
-	if (arg1 != 7) {
-		unknownC4EA9C(unknownC3FDB5[arg1 - 1], 6, arg2);
-		unknownC4EB04(arg2, arg3, 6);
+/** Prints a cast name for party members
+ * Params:
+ * 	partyMember = The party member whose name should be printed
+ * 	x = The X coordinate (centred) to print the name at
+ * 	y = The Y coordinate, relative to the BG3 scroll, to print the name at
+ * Original_Address: $(DOLLAR)C4EC05
+ */
+void printCastNameParty(short partyMember, short x, short y) {
+	if (partyMember != PartyMember.king) {
+		prepareCastNameTilemap(partyMemberCastTileIDs[partyMember - 1], 6, x);
+		copyCastNameTilemap(x, y, 6);
 	} else {
-		unknownC4EA9C(0x1C0, 6, arg2);
-		unknownC4EB04(arg2, arg3, 6);
+		prepareCastNameTilemap(0x1C0, 6, x);
+		copyCastNameTilemap(x, y, 6);
 	}
 }
 
-/// $C4EC52
-void unknownC4EC52(short arg1, short arg2, short arg3) {
-	unknownC4EBAD(entityScriptVar0Table[currentEntitySlot], arg2, arg3);
+/** Prints the cast name corresponding to the active entity's var 0. In Mother 2, the party member parameter is used
+ * Params:
+ * 	partyMember = Unused in Earthbound
+ * 	x = The X coordinate (centred) to print the name at
+ * 	y = The Y coordinate, relative to the BG3 scroll, to print the name at
+ * Original_Address: $(DOLLAR)C4EC52
+ */
+void printCastNameEntityVar0(short partyMember, short x, short y) {
+	printCastName(entityScriptVar0Table[currentEntitySlot], x, y);
 }
 
-/// $C4ECAD
-short createEntityAtV01PlusBG3Y(short arg1, short arg2) {
+/** Creates an entity with the given sprite and script relative to the active entity's (Var0, Var1) + BG3 Y position
+ * Params:
+ * 	sprite = An overworld sprite ID
+ * 	script: An actionscript ID
+ * Return: The ID of the newly-created entity
+ * Original_Address: $(DOLLAR)C4ECAD
+ */
+short createEntityAtV01PlusBG3Y(short sprite, short script) {
 	newEntityVar0 = initialCastEntitySleepFrames++ & 3;
-	return createEntity(arg1, arg2, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
+	return createEntity(sprite, script, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
 
 /** Tests if the entity is still visible on the cast screen
@@ -7616,7 +7706,7 @@ void playCastScene() {
 	loadCastScene();
 	oamClear();
 	fadeIn(1, 1);
-	initEntityWipe(ActionScript.unknown801, 0, 0);
+	initEntityWipe(ActionScript.castScene, 0, 0);
 	actionscriptState = ActionScriptState.running;
 	while (actionscriptState == ActionScriptState.running) {
 		finishFrame();
@@ -7624,7 +7714,7 @@ void playCastScene() {
 	}
 	fadeOutWithMosaic(1, 1, 0);
 	for (short i = 0; i < maxEntities; i++) {
-		if (entityScriptTable[i] == ActionScript.unknown801) {
+		if (entityScriptTable[i] == ActionScript.castScene) {
 			deleteEntity(i);
 		}
 	}
