@@ -264,9 +264,11 @@ immutable Item[254] itemData = [
 	Item(ebString!25("Carrot key"), 0x3B, 0, ItemFlags.nessCanUse | ItemFlags.paulaCanUse | ItemFlags.jeffCanUse | ItemFlags.pooCanUse, BattleActions.useNoEffect, 0x00, 0x00, 0x00, 0x00, "MSG_EXPL_GDS_KEY_CARROT"),
 ];
 
-/// $D576B2
+/** Items available for sale in stores
+ * Original_Address: $(DOLLAR)D576B2
+ */
 immutable ubyte[7][66] storeTable = [
-	[
+	Store.unknown00: [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
@@ -274,7 +276,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.onetDrug1: [
 		ItemID.crackedBat,
 		ItemID.teeBallBat,
 		ItemID.yoyo,
@@ -282,7 +285,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.cheapBracelet,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.onetDrug2: [
 		ItemID.coldRemedy,
 		ItemID.none,
 		ItemID.none,
@@ -290,7 +294,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.sumsIceShop: [
 		ItemID.gelatoDeResort,
 		ItemID.none,
 		ItemID.none,
@@ -298,7 +303,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.onetHamburger: [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.bagOfFries,
@@ -306,7 +312,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.onetBakery: [
 		ItemID.cookie,
 		ItemID.breadRoll,
 		ItemID.skipSandwich,
@@ -314,7 +321,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.twsnHamburger: [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.bagOfFries,
@@ -322,7 +330,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.twsnBakery: [
 		ItemID.cookie,
 		ItemID.breadRoll,
 		ItemID.skipSandwich,
@@ -330,7 +339,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.twsnDrug1: [
 		ItemID.teeBallBat,
 		ItemID.fryPan,
 		ItemID.slingshot,
@@ -338,7 +348,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.baseballCap,
 		ItemID.ribbon,
 		ItemID.none,
-	], [
+	],
+	Store.twsnDrug2: [
 		ItemID.coldRemedy,
 		ItemID.teddyBear,
 		ItemID.none,
@@ -346,7 +357,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.sumsMagicTorte: [
 		ItemID.magicTart,
 		ItemID.none,
 		ItemID.none,
@@ -354,7 +366,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.twsnGarakuta: [
 		ItemID.defenseSpray,
 		ItemID.rustPromoter,
 		ItemID.travelCharm,
@@ -362,7 +375,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.brokenSprayCan,
 		ItemID.brokenIron,
 		ItemID.none,
-	], [
+	],
+	Store.unknown12: [
 		ItemID.ruler,
 		ItemID.protractor,
 		ItemID.none,
@@ -370,7 +384,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.unknown13: [
 		ItemID.boiledEgg,
 		ItemID.freshEgg,
 		ItemID.none,
@@ -378,7 +393,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.twsnAkanbakery: [
 		ItemID.cookie,
 		ItemID.breadRoll,
 		ItemID.skipSandwich,
@@ -386,7 +402,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.none,
-	], [
+	],
+	Store.twsnFruit: [
 		ItemID.banana,
 		ItemID.none,
 		ItemID.none,
@@ -394,7 +411,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.happyDrug: [
 		ItemID.sandLotBat,
 		ItemID.fryPan,
 		ItemID.copperBracelet,
@@ -402,7 +420,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.ribbon,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.thrkDrug1: [
 		ItemID.minorLeagueBat,
 		ItemID.thickFryPan,
 		ItemID.hardHat,
@@ -410,7 +429,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.copperBracelet,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.thrkDrug2: [
 		ItemID.coldRemedy,
 		ItemID.vialOfSerum,
 		ItemID.refreshingHerb,
@@ -418,7 +438,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.calorieStick,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.thrkWeapon: [
 		ItemID.toyAirGun,
 		ItemID.bomb,
 		ItemID.bottleRocket,
@@ -426,7 +447,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.thrkBakery: [
 		ItemID.cookie,
 		ItemID.breadRoll,
 		ItemID.croissant,
@@ -434,7 +456,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.luckySandwich1,
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
-	], [
+	],
+	Store.skrbWater: [
 		ItemID.bottleOfDXWater,
 		ItemID.none,
 		ItemID.none,
@@ -442,7 +465,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.winsDrug: [
 		ItemID.trexsBat,
 		ItemID.nonstickFrypan,
 		ItemID.coinOfSilence,
@@ -450,7 +474,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.skipSandwichDX,
 		ItemID.luckySandwich1,
 		ItemID.cupOfCoffee,
-	], [
+	],
+	Store.doseiBaka: [
 		ItemID.bionicSlingshot,
 		ItemID.travelCharm,
 		ItemID.greatCharm,
@@ -458,7 +483,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.redRibbon,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.dsrtDrug: [
 		ItemID.mrBaseballBat,
 		ItemID.thickFryPan,
 		ItemID.deluxeFryPan,
@@ -466,7 +492,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.coinOfSlumber,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.dsrtWeapon: [
 		ItemID.zipGun,
 		ItemID.bomb,
 		ItemID.bottleRocket,
@@ -474,7 +501,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourBakery: [
 		ItemID.cookie,
 		ItemID.breadRoll,
 		ItemID.croissant,
@@ -482,7 +510,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.skipSandwichDX,
 		ItemID.luckySandwich1,
 		ItemID.none,
-	], [
+	],
+	Store.fourDrug1: [
 		ItemID.deluxeFryPan,
 		ItemID.chefsFryPan,
 		ItemID.silverBracelet,
@@ -490,7 +519,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.insecticideSpray,
 		ItemID.toothbrush,
 		ItemID.protractor,
-	], [
+	],
+	Store.fourDrug2: [
 		ItemID.coldRemedy,
 		ItemID.refreshingHerb,
 		ItemID.proteinDrink,
@@ -498,7 +528,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourFood: [
 		ItemID.boiledEgg,
 		ItemID.breadRoll,
 		ItemID.croissant,
@@ -506,7 +537,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.picnicLunch,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourFurikake: [
 		ItemID.ketchupPacket,
 		ItemID.sugarPacket,
 		ItemID.tinOfCocoa,
@@ -514,7 +546,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.sprigOfParsley,
 		ItemID.jarOfHotSauce,
 		ItemID.saltPacket,
-	], [
+	],
+	Store.fourToyShop: [
 		ItemID.trickYoyo,
 		ItemID.coinOfSlumber,
 		ItemID.coinOfDefense,
@@ -522,7 +555,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.defenseRibbon,
 		ItemID.teddyBear,
 		ItemID.none,
-	], [
+	],
+	Store.fourSport: [
 		ItemID.sandLotBat,
 		ItemID.minorLeagueBat,
 		ItemID.mrBaseballBat,
@@ -530,7 +564,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourHamburger: [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.bagOfFries,
@@ -538,7 +573,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.doubleBurger,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourWeapon: [
 		ItemID.hyperBeam,
 		ItemID.bomb,
 		ItemID.superBomb,
@@ -546,7 +582,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.bigBottleRocket,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.fourJunk: [
 		ItemID.brokenGadget,
 		ItemID.brokenIron,
 		ItemID.defenseSpray,
@@ -554,7 +591,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.mgktMagicPudding: [
 		ItemID.magicPudding,
 		ItemID.earthPendant,
 		ItemID.none,
@@ -562,7 +600,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.unknown37: [
 		ItemID.coldRemedy,
 		ItemID.vialOfSerum,
 		ItemID.none,
@@ -570,7 +609,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.sumsDrug: [
 		ItemID.bigLeagueBat,
 		ItemID.chefsFryPan,
 		ItemID.luckyCoin,
@@ -578,7 +618,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.platinumBand,
 		ItemID.diamondBand,
 		ItemID.superPlushBear,
-	], [
+	],
+	Store.sumsGrocer: [
 		ItemID.coinOfDefense,
 		ItemID.bottleOfWater,
 		ItemID.secretHerb,
@@ -586,7 +627,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.luckySandwich1,
 		ItemID.cupOfCoffee,
 		ItemID.canOfFruitJuice,
-	], [
+	],
+	Store.sumsDiner: [
 		ItemID.chefsSpecial,
 		ItemID.pastaDiSummers,
 		ItemID.krakenSoup,
@@ -594,7 +636,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.none,
-	], [
+	],
+	Store.skrbDrug: [
 		ItemID.wetTowel,
 		ItemID.vialOfSerum,
 		ItemID.secretHerb,
@@ -602,7 +645,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.proteinDrink,
 		ItemID.banana,
 		ItemID.none,
-	], [
+	],
+	Store.unknown42: [
 		ItemID.coldRemedy,
 		ItemID.none,
 		ItemID.none,
@@ -610,7 +654,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.skrbSnake: [
 		ItemID.snake,
 		ItemID.viper,
 		ItemID.vialOfSerum,
@@ -618,7 +663,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.skrbBazar: [
 		ItemID.bigLeagueBat2,
 		ItemID.platinumBand2,
 		ItemID.defenseSpray,
@@ -626,7 +672,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.brokenCannon,
 		ItemID.piggyNose,
 		ItemID.none,
-	], [
+	],
+	Store.skrbWeapon: [
 		ItemID.bomb,
 		ItemID.superBomb,
 		ItemID.bottleRocket,
@@ -634,7 +681,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.makyoDrug: [
 		ItemID.diamondBand2,
 		ItemID.charmCoin,
 		ItemID.secretHerb,
@@ -642,7 +690,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.cupOfNoodles,
 		ItemID.proteinDrink,
 		ItemID.bottleOfDXWater,
-	], [
+	],
+	Store.unknown47: [
 		ItemID.plainRoll,
 		ItemID.plainYogurt,
 		ItemID.plainRoll,
@@ -650,7 +699,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.talismanCoin,
 		ItemID.spicyJerky,
 		ItemID.hallOfFameBat,
-	], [
+	],
+	Store.happyAutoShop: [
 		ItemID.banana,
 		ItemID.freshEgg,
 		ItemID.none,
@@ -658,7 +708,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.unknown49: [
 		ItemID.holmesHat,
 		ItemID.hardHat,
 		ItemID.ribbon,
@@ -666,7 +717,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.doseiBaka2: [
 		ItemID.flamePendant,
 		ItemID.rainPendant,
 		ItemID.nightPendant,
@@ -674,7 +726,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.skrbOasis: [
 		ItemID.frenchFryPan,
 		ItemID.crusherBeam,
 		ItemID.multiBottleRocket,
@@ -682,7 +735,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.bottleOfDXWater,
 		ItemID.beefJerky,
 		ItemID.secretHerb,
-	], [
+	],
+	Store.makyoWeapon: [
 		ItemID.combatYoyo,
 		ItemID.superBomb,
 		ItemID.multiBottleRocket,
@@ -690,7 +744,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.gumiBDrug: [
 		ItemID.ultimateBat,
 		ItemID.holyFryPan,
 		ItemID.shinyCoin,
@@ -698,7 +753,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.mammothBurger,
 		ItemID.luxuryJerky,
 		ItemID.bottleOfDXWater,
-	], [
+	],
+	Store.twsnFurikake: [
 		ItemID.ketchupPacket,
 		ItemID.sugarPacket,
 		ItemID.tinOfCocoa,
@@ -706,7 +762,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.sprigOfParsley,
 		ItemID.jarOfHotSauce,
 		ItemID.saltPacket,
-	], [
+	],
+	Store.happyDrug2: [
 		ItemID.coldRemedy,
 		ItemID.refreshingHerb,
 		ItemID.croissant,
@@ -714,7 +771,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.luckySandwich1,
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
-	], [
+	],
+	Store.gpftGravekeeper: [
 		ItemID.croissant,
 		ItemID.calorieStick,
 		ItemID.cupOfCoffee,
@@ -722,7 +780,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.doseiBaka3: [
 		ItemID.insecticideSpray,
 		ItemID.stagBeetle,
 		ItemID.refreshingHerb,
@@ -730,7 +789,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.hornOfLife,
 		ItemID.secretHerb,
 		ItemID.picturePostcard,
-	], [
+	],
+	Store.dsrtDrug2: [
 		ItemID.wetTowel,
 		ItemID.refreshingHerb,
 		ItemID.calorieStick,
@@ -738,7 +798,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.luckySandwich1,
 		ItemID.canOfFruitJuice,
 		ItemID.picnicLunch,
-	], [
+	],
+	Store.dsrtBento: [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.hamburger,
@@ -746,7 +807,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.skipSandwich,
 		ItemID.wetTowel,
 		ItemID.popsicle,
-	], [
+	],
+	Store.moonHotel: [
 		ItemID.canOfFruitJuice,
 		ItemID.cupOfCoffee,
 		ItemID.hamburger,
@@ -754,7 +816,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.luckySandwich1,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.ramaOkayu: [
 		ItemID.bottleOfWater,
 		ItemID.bowlOfRiceGruel,
 		ItemID.jarOfDelisauce,
@@ -762,7 +825,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.none,
 		ItemID.none,
 		ItemID.none,
-	], [
+	],
+	Store.skrbBazar2: [
 		ItemID.beanCroquette,
 		ItemID.molokheiyaSoup,
 		ItemID.kabob,
@@ -770,7 +834,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.freshEgg,
 		ItemID.cupOfCoffee,
 		ItemID.bottleOfWater,
-	], [
+	],
+	Store.skrbFurikake: [
 		ItemID.ketchupPacket,
 		ItemID.sugarPacket,
 		ItemID.tinOfCocoa,
@@ -778,7 +843,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.sprigOfParsley,
 		ItemID.jarOfHotSauce,
 		ItemID.saltPacket,
-	], [
+	],
+	Store.winsStohen: [
 		ItemID.cupOfNoodles,
 		ItemID.beefJerky,
 		ItemID.proteinDrink,
@@ -786,7 +852,8 @@ immutable ubyte[7][66] storeTable = [
 		ItemID.bottleOfDXWater,
 		ItemID.secretHerb,
 		ItemID.none,
-	], [
+	],
+	Store.winsStohen2: [
 		ItemID.doubleBurger,
 		ItemID.picnicLunch,
 		ItemID.freshEgg,

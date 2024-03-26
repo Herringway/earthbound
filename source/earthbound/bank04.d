@@ -38,22 +38,31 @@ short isEntityOnscreenResetAnimation() {
 	return isEntityOnscreen();
 }
 
-/// $C40023
-void unknownC40023() {
+/** Sleeps for a number of frames equal to the slot number (modulo 16).
+ * Useful for guaranteeing that multiple entities sharing scripts won't sync up awkwardly.
+ * Original_Address: $(DOLLAR)C40023
+ */
+void sleepSlotFrames() {
 	entityScriptSleepFrames[currentEntityScriptOffset / 2] = currentEntitySlot & 0xF;
 }
 
-/// $C4002F
-void uploadTextTile(short arg1, ushort arg2, ushort arg3) {
-	dmaCopyRAMSource = &vwfBuffer[arg1][0];
+/** Uploads a single 8x16 text tile into VRAM
+ * Params:
+ * 	id = VWF tile index
+ * 	dest1 = Tile offset for the upper half
+ * 	dest2 = Tile offset for the lower half
+ * Original_Address: $(DOLLAR)C4002F
+ */
+void uploadTextTile(short id, ushort dest1, ushort dest2) {
+	dmaCopyRAMSource = &vwfBuffer[id][0];
 	dmaCopyMode = 0;
 	dmaCopySize = 16;
 	//lol segmented addressing
 	//dmaCopyRAMSource = 0x7E
-	dmaCopyVRAMDestination = cast(ushort)((arg2 * 8) + 0x6000);
+	dmaCopyVRAMDestination = cast(ushort)((dest1 * 8) + 0x6000);
 	copyToVRAMCommon();
 	dmaCopyRAMSource += 0x10;
-	dmaCopyVRAMDestination = cast(ushort)((arg3 * 8) + 0x6000);
+	dmaCopyVRAMDestination = cast(ushort)((dest2 * 8) + 0x6000);
 	copyToVRAMCommon();
 	dmaTransferFlag = (mirrorINIDISP & 0x80) ^ 0x80;
 }
@@ -103,7 +112,9 @@ noreturn unknownC40B75() {
 	while (true) {}
 }
 
-/// $C40BD4
+/** Sounds to use for footsteps. First 8 correspond to map sector types, last two are only available for overrides
+ * Original_Address: $(DOLLAR)C40BD4
+ */
 immutable short[10] footstepSoundTable = [
 	Sfx.none,
 	Sfx.none,
@@ -117,7 +128,9 @@ immutable short[10] footstepSoundTable = [
 	Sfx.unknown13,
 ];
 
-/// $C40BE8
+/** 32 blank 4bpp tiles, for convenient erasing of VRAM
+ * Original_Address: $(DOLLAR)C40BE8
+ */
 immutable ubyte[512] blankTiles = [
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -137,27 +150,89 @@ immutable ubyte[512] blankTiles = [
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 ];
 
-/// $C40DE8
-immutable FloatingSpriteTableEntry[12] floatingSpriteTable = [
-	FloatingSpriteTableEntry(OverworldSprite.none, 0x00, 0x00, 0x00),
-	FloatingSpriteTableEntry(OverworldSprite.surpriseMark, 0x02, 0x00, 0xF8),
-	FloatingSpriteTableEntry(OverworldSprite.cellPhoneTendaVillage, 0x05, 0xF8, 0xFC),
-	FloatingSpriteTableEntry(OverworldSprite.exclamationMark, 0x02, 0x08, 0xF8),
-	FloatingSpriteTableEntry(OverworldSprite.lightBulb, 0x02, 0x00, 0xF8),
-	FloatingSpriteTableEntry(OverworldSprite.skyRunnerElectricThingies, 0x02, 0x00, 0xF4),
-	FloatingSpriteTableEntry(OverworldSprite.flagOfTheExtinctHappyPeople, 0x02, 0x00, 0x08),
-	FloatingSpriteTableEntry(OverworldSprite.runaway5MembersHead, 0x02, 0xF8, 0x10),
-	FloatingSpriteTableEntry(OverworldSprite.runaway5MembersHead, 0x02, 0x08, 0x10),
-	FloatingSpriteTableEntry(OverworldSprite.heart, 0x02, 0x00, 0xF8),
-	FloatingSpriteTableEntry(OverworldSprite.busDriverHead, 0x02, 0xF0, 0x10),
-	FloatingSpriteTableEntry(OverworldSprite.busDriverHead, 0x02, 0x10, 0x10),
+/** 漫符 (Manpu, "manga mark"), little emote bubbles that are displayed near entities
+ * Original_Address: $(DOLLAR)C40DE8
+ */
+immutable Manpu[12] manpuTable = [
+	Manpu(
+		sprite: OverworldSprite.none,
+		positioning: ManpuPositioning.none,
+		relX: 0,
+		relY: 0
+	),
+	Manpu(
+		sprite: OverworldSprite.surpriseMark,
+		positioning: ManpuPositioning.above,
+		relX: 0,
+		relY: -8
+	),
+	Manpu(
+		sprite: OverworldSprite.cellPhoneTendaVillage,
+		positioning: ManpuPositioning.centred,
+		relX: -8,
+		relY: -4
+	),
+	Manpu(
+		sprite: OverworldSprite.exclamationMark,
+		positioning: ManpuPositioning.above,
+		relX: 8,
+		relY: -8
+	),
+	Manpu(
+		sprite: OverworldSprite.lightBulb,
+		positioning: ManpuPositioning.above,
+		relX: 0,
+		relY: -8
+	),
+	Manpu(
+		sprite: OverworldSprite.skyRunnerElectricThingies,
+		positioning: ManpuPositioning.above,
+		relX: 0,
+		relY: -12
+	),
+	Manpu(
+		sprite: OverworldSprite.flagOfTheExtinctHappyPeople,
+		positioning: ManpuPositioning.above,
+		relX: 0,
+		relY: 8
+	),
+	Manpu(
+		sprite: OverworldSprite.runaway5MembersHead,
+		positioning: ManpuPositioning.above,
+		relX: -8,
+		relY: 16
+	),
+	Manpu(
+		sprite: OverworldSprite.runaway5MembersHead,
+		positioning: ManpuPositioning.above,
+		relX: 8,
+		relY: 16
+	),
+	Manpu(
+		sprite: OverworldSprite.heart,
+		positioning: ManpuPositioning.above,
+		relX: 0,
+		relY: -8
+	),
+	Manpu(
+		sprite: OverworldSprite.busDriverHead,
+		positioning: ManpuPositioning.above,
+		relX: -16,
+		relY: 16
+	),
+	Manpu(
+		sprite: OverworldSprite.busDriverHead,
+		positioning: ManpuPositioning.above,
+		relX: 16,
+		relY: 16
+	),
 ];
 
 /// $C40E31
 immutable ubyte entityOverlayCount = 4;
 
 /// $C40E32
-immutable EntityOverlaySprite[4] entityOverlaySprites = [
+immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 	EntityOverlaySprite(OverworldSprite.sweat, 0, 1),
 	EntityOverlaySprite(OverworldSprite.littleMushroom, 0, 0xFF),
 	EntityOverlaySprite(OverworldSprite.waterRipple, 0, 0xFF),
@@ -5682,22 +5757,31 @@ void useSoundStone(short arg1) {
 	fadeIn(1, 1);
 }
 
-/// $C4B1B8
-ushort unknownC4B1B8(ushort arg1, ushort arg2, ushort arg3) {
-	if (arg3 == 0xFF) {
-		return arg1;
+/** Uploads a full frame of an entity overlay sprite
+ * Params:
+ * 	vramBase = The base address for this frame
+ * 	sprite = The [OverworldSprite] id
+ * 	frame = The sprite frame to upload, or 0xFF for no frame
+ * Returns: The VRAM address for the next frame to be uploaded to
+ * Original_Address: $(DOLLAR)C4B1B8
+ */
+ushort allocateAndUploadOverlaySprite(ushort vramBase, ushort sprite, ushort frame) {
+	if (frame == 0xFF) {
+		return vramBase;
 	}
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, arg1, &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][0]);
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][spriteGroupingPointers[arg2].width]);
-	return cast(ushort)(arg1 + spriteGroupingPointers[arg2].width);
+	copyToVRAM(0, spriteGroupingPointers[sprite].width * 2, vramBase, &sprites[spriteGroupingPointers[sprite].sprites[frame].id][0]);
+	copyToVRAM(0, spriteGroupingPointers[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroupingPointers[sprite].sprites[frame].id][spriteGroupingPointers[sprite].width]);
+	return cast(ushort)(vramBase + spriteGroupingPointers[sprite].width);
 }
 
-/// $C4B26B
+/** Loads overlay sprites into VRAM and initializes the script pointers for all entities
+ * Original_Address: $(DOLLAR)C4B26B
+ */
 void loadOverlaySprites() {
-	ushort x12 = 0x5600;
+	ushort vramPosition = 0x5600;
 	for (short i = 0; i < entityOverlayCount; i++) {
-		short x10 = unknownC4B1B8(x12, entityOverlaySprites[i].spriteID, entityOverlaySprites[i].unknown2);
-		x12 = unknownC4B1B8(x10, entityOverlaySprites[i].spriteID, entityOverlaySprites[i].unknown3);
+		short vramPosition2 = allocateAndUploadOverlaySprite(vramPosition, entityOverlaySprites[i].spriteID, entityOverlaySprites[i].frame1);
+		vramPosition = allocateAndUploadOverlaySprite(vramPosition2, entityOverlaySprites[i].spriteID, entityOverlaySprites[i].frame2);
 	}
 	for (short i = 0; i < maxEntities; i++) {
 		entityMushroomizedOverlayPtrs[i] = &entityOverlayMushroomized[0];
@@ -5707,88 +5791,129 @@ void loadOverlaySprites() {
 	}
 }
 
-/// $C4B329
-void unknownC4B329(short arg1, short arg2) {
-	switch (arg1) {
-		case 1:
-			activeManpuY -= collisionHeights1[arg2] + 8;
+/** Adjusts the _positioning of a manpu entity being created with respect to its parent entity's size
+ * Params:
+ * 	positioning = Manpu _positioning style (see [ManpuPositioning])
+ * 	parentSize = The size of the parent (see [EntitySize])
+ * Original_Address: $(DOLLAR)C4B329
+ */
+void adjustManpuPositioning(short positioning, short parentSize) {
+	switch (positioning) {
+		case ManpuPositioning.aboveLeft:
+			activeManpuY -= collisionHeights1[parentSize] + 8;
 			goto case;
-		case 4:
-			activeManpuX -= collisionWidths[arg2] - 8;
+		case ManpuPositioning.left:
+			activeManpuX -= collisionWidths[parentSize] - 8;
 			break;
-		case 2:
-			activeManpuY -= collisionHeights1[arg2] - 8;
+		case ManpuPositioning.above:
+			activeManpuY -= collisionHeights1[parentSize] - 8;
 			goto case;
-		case 5: break;
-		case 3:
-			activeManpuY -= collisionHeights1[arg2] + 8;
+		case ManpuPositioning.centred: break;
+		case ManpuPositioning.aboveLeft2:
+			activeManpuY -= collisionHeights1[parentSize] + 8;
 			goto case;
-		case 6:
-			activeManpuX -= collisionWidths[arg2] + 8;
+		case ManpuPositioning.left2:
+			activeManpuX -= collisionWidths[parentSize] + 8;
 			break;
 		default: break;
 	}
 }
 
-/// $C4B3D0
-void spawnFloatingSprite(short arg1, short arg2) {
-	if (arg1 == -1) {
+/** Creates a 'manpu' entity (emotes) and attach it to a parent entity
+ * Params:
+ * 	parent = Parent entity to attach to
+ * 	manpu = Manpu index (see `manpuTable`)
+ * Original_Address: $(DOLLAR)C4B3D0
+ */
+void createManpu(short parent, short manpu) {
+	if (parent == -1) {
 		return;
 	}
-	if (entityScriptTable[arg1] == -1) {
+	if (entityScriptTable[parent] == -1) {
 		return;
 	}
-	activeManpuX = entityAbsXTable[arg1];
-	activeManpuY = entityAbsYTable[arg1];
-	unknownC4B329(floatingSpriteTable[arg2].unknown2, entitySizes[arg1]);
-	activeManpuX += floatingSpriteTable[arg2].unknown3 | (((floatingSpriteTable[arg2].unknown3 & 0x80) != 0) ? -256 : 0);
-	activeManpuY += floatingSpriteTable[arg2].unknown4 | (((floatingSpriteTable[arg2].unknown4 & 0x80) != 0) ? -256 : 0);
-	short x12 = createEntity(floatingSpriteTable[arg2].sprite, ActionScript.unknown785, -1, activeManpuX, activeManpuY);
-	entityDrawPriority[x12] = cast(ushort)(arg1 | DrawPriority.parent | DrawPriority.dontClearIfParent);
-	entitySurfaceFlags[x12] = entitySurfaceFlags[arg1];
+	activeManpuX = entityAbsXTable[parent];
+	activeManpuY = entityAbsYTable[parent];
+	adjustManpuPositioning(manpuTable[manpu].positioning, entitySizes[parent]);
+	activeManpuX += manpuTable[manpu].relX;
+	activeManpuY += manpuTable[manpu].relY;
+	short manpuEntity = createEntity(manpuTable[manpu].sprite, ActionScript.unknown785, -1, activeManpuX, activeManpuY);
+	entityDrawPriority[manpuEntity] = cast(ushort)(parent | DrawPriority.parent | DrawPriority.dontClearIfParent);
+	entitySurfaceFlags[manpuEntity] = entitySurfaceFlags[parent];
 }
 
-/// $C4B4BE
-void unknownC4B4BE(short arg1) {
-	if (arg1 == -1) {
+/** Deletes all manpu attached to the given entity
+ * Params:
+ * 	parent = The entity whose manpu children should be deleted
+ * Original_Address: $(DOLLAR)C4B4BE
+ */
+void deleteManpu(short parent) {
+	if (parent == -1) {
 		return;
 	}
 	for (short i = 0; i < maxEntities; i++) {
-		if (entityDrawPriority[i] == (arg1 | DrawPriority.parent | DrawPriority.dontClearIfParent)) {
+		if (entityDrawPriority[i] == (parent | DrawPriority.parent | DrawPriority.dontClearIfParent)) {
 			entityDrawPriority[i] = 0;
 			unknownC02140(i);
 		}
 	}
 }
 
-/// $C4B4FE
-void unknownC4B4FE(short arg1, short arg2) {
-	spawnFloatingSprite(findEntityByPartyMemberID(arg1), arg2);
+/** Creates a manpu entity for a party member
+ * Params:
+ * 	partyMember = Character ID
+ * 	manpu = Manpu ID
+ * Original_Address: $(DOLLAR)C4B4FE
+ */
+void createManpuByPartyMember(short partyMember, short manpu) {
+	createManpu(findEntityByPartyMemberID(partyMember), manpu);
 }
 
-/// $C4B524
-void unknownC4B524(short arg1, short arg2) {
-	spawnFloatingSprite(findEntityByNPCID(arg1), arg2);
+/** Creates a manpu entity for a matching NPC
+ * Params:
+ * 	npc = NPC ID
+ * 	manpu = Manpu ID
+ * Original_Address: $(DOLLAR)C4B524
+ */
+void createManpuByNPCID(short npc, short manpu) {
+	createManpu(findEntityByNPCID(npc), manpu);
 }
 
-/// $C4B519
-void unknownC4B519(short arg1) {
-	unknownC4B4BE(findEntityByPartyMemberID(arg1));
+/** Deletes all manpu entities attached to a party member
+ * Params:
+ * 	partyMember = Character ID
+ * Original_Address: $(DOLLAR)C4B519
+ */
+void deleteManpuByPartyMember(short partyMember) {
+	deleteManpu(findEntityByPartyMemberID(partyMember));
 }
 
-/// $C4B53F
-void unknownC4B53F(short arg1) {
-	unknownC4B4BE(findEntityByNPCID(arg1));
+/** Deletes all manpu entities attached to a matching NPC
+ * Params:
+ * 	npc = NPC ID
+ * Original_Address: $(DOLLAR)C4B53F
+ */
+void deleteManpuByNPCID(short npc) {
+	deleteManpu(findEntityByNPCID(npc));
 }
 
-/// $C4B54A
-void unknownC4B54A(short arg1, short arg2) {
-	spawnFloatingSprite(findEntityBySprite(arg1), arg2);
+/** Creates a manpu entity for an entity with a matching sprite
+ * Params:
+ * 	sprite = Sprite ID
+ * 	manpu = Manpu ID
+ * Original_Address: $(DOLLAR)C4B54A
+ */
+void createManpuBySprite(short sprite, short manpu) {
+	createManpu(findEntityBySprite(sprite), manpu);
 }
 
-/// $C4B565
-void unknownC4B565(short arg1) {
-	unknownC4B4BE(findEntityBySprite(arg1));
+/** Deletes all manpu entities attached to an entity with a matching sprite
+ * Params:
+ * 	sprite = Sprite ID
+ * Original_Address: $(DOLLAR)C4B565
+ */
+void deleteManpuBySprite(short sprite) {
+	deleteManpu(findEntityBySprite(sprite));
 }
 
 /// $C4B587
@@ -7680,7 +7805,7 @@ void printCastNameEntityVar0(short partyMember, short x, short y) {
 /** Creates an entity with the given sprite and script relative to the active entity's (Var0, Var1) + BG3 Y position
  * Params:
  * 	sprite = An overworld sprite ID
- * 	script: An actionscript ID
+ * 	script = An actionscript ID
  * Return: The ID of the newly-created entity
  * Original_Address: $(DOLLAR)C4ECAD
  */

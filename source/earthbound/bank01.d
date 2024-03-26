@@ -2847,7 +2847,7 @@ void* cc1A06(DisplayTextState* arg1, ubyte arg2) {
 	clearInstantPrinting();
 	createWindowN(currentFocusWindow);
 	windowTick();
-	setMainRegister(WorkingMemory(unknownC19DB5(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
+	setMainRegister(WorkingMemory(itemStoreSelection(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
 	setWindowFocus(currentFocusWindow);
 	return null;
 }
@@ -3368,7 +3368,7 @@ void* cc1F19(DisplayTextState* arg1, ubyte arg2) {
 /// $C165D2
 void* cc1F1A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1AArguments);
-	unknownC4B524(
+	createManpuByNPCID(
 		getCCParameters!ArgType(arg2).tpt,
 		getCCParameters!ArgType(arg2).sprite
 	);
@@ -3378,14 +3378,14 @@ void* cc1F1A(DisplayTextState* arg1, ubyte arg2) {
 /// $C1662A
 void* cc1F1B(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4B53F(getCCParameters!ArgType(arg2));
+	deleteManpuByNPCID(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C1666D
 void* cc1F1C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1CArguments);
-	unknownC4B4FE(
+	createManpuByPartyMember(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		cast(short)(getCCParameters!ArgType(arg2).sprite.useVariableIfZero(getSubRegister()))
 	);
@@ -3394,7 +3394,7 @@ void* cc1F1C(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C166DD
 void* cc1F1D(DisplayTextState* arg1, ubyte arg2) {
-	unknownC4B519(cast(ushort)(arg2 != 0 ? arg2 : getMainRegister().integer));
+	deleteManpuByPartyMember(cast(ushort)(arg2 != 0 ? arg2 : getMainRegister().integer));
 	return null;
 }
 
@@ -3682,14 +3682,14 @@ void* cc1FD2(DisplayTextState* arg1, ubyte arg2) {
 /// $C17325 - [1F F3 XX XX YY]
 void* cc1FF3(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF3Arguments);
-	unknownC4B54A(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
+	createManpuBySprite(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
 /// $C1737D - [1F F4 XX XX]
 void* cc1FF4(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4B565(getCCParameters!ArgType(arg2));
+	deleteManpuBySprite(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -5038,23 +5038,25 @@ void unknownC19D49() {
 	redrawAllWindows = 1;
 }
 
-/// $C19DB5
-ushort unknownC19DB5(short arg1) {
+/** Creates a menu for selecting items available for sale at a store
+ * Original_Address: $(DOLLAR)C19DB5
+ */
+ushort itemStoreSelection(short store) {
 	openWalletWindow();
 	setInstantPrinting();
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown0c);
 	setCurrentWindowPadding(5);
 	for (short i = 0; i < 7; i++) {
-		short x1A = storeTable[arg1][i];
-		if (x1A == ItemID.none) {
+		short item = storeTable[store][i];
+		if (item == ItemID.none) {
 			continue;
 		}
-		memcpy(&temporaryTextBuffer[0], &itemData[x1A].name[0], Item.name.length);
+		memcpy(&temporaryTextBuffer[0], &itemData[item].name[0], Item.name.length);
 		temporaryTextBuffer[Item.name.length] = 0;
-		createNewMenuOptionWithUserdata(x1A, &temporaryTextBuffer[0], null);
+		createNewMenuOptionWithUserdata(item, &temporaryTextBuffer[0], null);
 		moveCurrentTextCursor(0, i);
-		printPrice(itemData[x1A].cost);
+		printPrice(itemData[item].cost);
 	}
 	moveCurrentTextCursor(0, 0);
 	printMenuOptionTable(1, 0, 0);

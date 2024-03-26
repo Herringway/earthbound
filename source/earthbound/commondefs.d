@@ -1978,13 +1978,13 @@ enum ActionScript {
 	titleScreen11, //798
 	unknown799, //799
 	unknown800, //800
-	castScene, //801
+	castScene, // 801 - Runs the cast scene, spawning characters and adding text
 	unknown802, //802
 	unknown803, //803
 	unknown804, //804
 	unknown805, //805
 	unknown806, //806
-	unknown807, //807
+	castPhaseDistorter, //807
 	unknown808, //808
 	unknown809, //809
 	unknown810, //810
@@ -5837,6 +5837,86 @@ enum SpecialCastPalette {
 	tessieRipples = 1,
 }
 
+enum Store {
+	unknown00 = 0,
+	onetDrug1 = 1,
+	onetDrug2 = 2,
+	sumsIceShop = 3,
+	onetHamburger = 4,
+	onetBakery = 5,
+	twsnHamburger = 6,
+	twsnBakery = 7,
+	twsnDrug1 = 8,
+	twsnDrug2 = 9,
+	sumsMagicTorte = 0xA,
+	twsnGarakuta = 0xB,
+	unknown12 = 0xC,
+	unknown13 = 0xD,
+	twsnAkanbakery = 0xE,
+	twsnFruit = 0xF,
+	happyDrug = 0x10,
+	thrkDrug1 = 0x11,
+	thrkDrug2 = 0x12,
+	thrkWeapon = 0x13,
+	thrkBakery = 0x14,
+	skrbWater = 0x15,
+	winsDrug = 0x16,
+	doseiBaka = 0x17,
+	dsrtDrug = 0x18,
+	dsrtWeapon = 0x19,
+	fourBakery = 0x1A,
+	fourDrug1 = 0x1B,
+	fourDrug2 = 0x1C,
+	fourFood = 0x1D,
+	fourFurikake = 0x1E,
+	fourToyShop = 0x1F,
+	fourSport = 0x20,
+	fourHamburger = 0x21,
+	fourWeapon = 0x22,
+	fourJunk = 0x23,
+	mgktMagicPudding = 0x24,
+	unknown37 = 0x25,
+	sumsDrug = 0x26,
+	sumsGrocer = 0x27,
+	sumsDiner = 0x28,
+	skrbDrug = 0x29,
+	unknown42 = 0x2A,
+	skrbSnake = 0x2B,
+	skrbBazar = 0x2C,
+	skrbWeapon = 0x2D,
+	makyoDrug = 0x2E,
+	unknown47 = 0x2F,
+	happyAutoShop = 0x30,
+	unknown49 = 0x31,
+	doseiBaka2 = 0x32,
+	skrbOasis = 0x33,
+	makyoWeapon = 0x34,
+	gumiBDrug = 0x35,
+	twsnFurikake = 0x36,
+	happyDrug2 = 0x37,
+	gpftGravekeeper = 0x38,
+	doseiBaka3 = 0x39,
+	dsrtDrug2 = 0x3A,
+	dsrtBento = 0x3B,
+	moonHotel = 0x3C,
+	ramaOkayu = 0x3D,
+	skrbBazar2 = 0x3E,
+	skrbFurikake = 0x3F,
+	winsStohen = 0x40,
+	winsStohen2 = 0x41,
+}
+
+/// Positioning for manpu entities, relative to their parents
+enum ManpuPositioning {
+	none = 0, /// Identical coordinates as the parent entity
+	aboveLeft = 1, /// Above and to the left of the parent entity
+	above = 2, /// Slightly above the parent entity
+	aboveLeft2 = 3, /// Further above and to the left of the parent entity compared to `aboveLeft`
+	left = 4, /// To the left of the parent entity
+	centred = 5, /// Identical coordinates as the parent entity
+	left2 = 6, /// Further to the left of the parent entity compared to `left`
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -6876,11 +6956,11 @@ struct CC1C01Entry {
 	ubyte size; ///
 	void* address; ///
 }
-///
+/// Sprite definitions for the entity overlays, simple sprite-based effects for overworld entities
 struct EntityOverlaySprite {
-	ushort spriteID; ///
-	ubyte unknown2; ///
-	ubyte unknown3; ///
+	ushort spriteID; /// Sprite ID (See [OverworldSprite])
+	ubyte frame1; /// First frame for the overlay
+	ubyte frame2; /// Second frame for the overlay
 }
 ///
 struct CastSequenceFormattingEntry {
@@ -6908,8 +6988,8 @@ struct TelephoneContact {
 }
 ///
 struct PSIAbility {
-	ubyte name; /// The base name for this PSI (See earthbound.commondefs.PSIID for values)
-	ubyte level; /// The PSI level (see earthbound.commondefs.PSILevel for value values)
+	ubyte name; /// The base name for this PSI (See [PSIID] for values)
+	ubyte level; /// The PSI level (see [PSILevel] for value values)
 	ubyte category; /// The PSI category, which determines which menu it appears in
 	ubyte usability; /// Where the PSI may be used
 	short battleAction; /// The battle action that is called when used
@@ -6930,11 +7010,11 @@ struct ActiveHotspot {
 	@skip const(ubyte)* pointer; ///
 }
 ///
-struct FloatingSpriteTableEntry {
-	short sprite; ///
-	ubyte unknown2; ///
-	ubyte unknown3; ///
-	ubyte unknown4; ///
+struct Manpu {
+	short sprite; /// Overworld sprite to use
+	ubyte positioning; /// Positioning style to use. See `ManpuPositioning` for details
+	byte relX; /// X offset to add
+	byte relY; /// Y offset to add
 }
 ///
 struct SpriteFadeState {

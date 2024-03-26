@@ -822,7 +822,7 @@ shared static this() {
 		actionScript804[],
 		actionScript805[],
 		actionScript806[],
-		actionScript807[],
+		actionScriptCastScenePhaseDistorter[],
 		actionScript808[],
 		actionScript809[],
 		actionScript810[],
@@ -954,8 +954,8 @@ shared static this() {
 		"unknownC34D39": unknownC34D39[],
 		"unknownC34E73": unknownC34E73[],
 		"waitCreditsTiles": waitCreditsTiles[],
-		"unknownC35F8B": unknownC35F8B[],
-		"unknownC35FB6": unknownC35FB6[],
+		"animateCastSpriteTask": animateCastSpriteTask[],
+		"castSceneStandInPlace": castSceneStandInPlace[],
 		"unknownC35FCD": unknownC35FCD[],
 		"unknownC362C0": unknownC362C0[],
 		"unknownC36834": unknownC36834[],
@@ -992,7 +992,7 @@ shared static this() {
 		"unknownC3A1F3": unknownC3A1F3[],
 		"unknownC3A209": unknownC3A209[],
 		"unknownC3A20E": unknownC3A20E[],
-		"unknownC3A262": unknownC3A262[],
+		"checkCollisionTask": checkCollisionTask[],
 		"unknownC3A401": unknownC3A401[],
 		"unknownC3A426": unknownC3A426[],
 		"unknownC3A42D": unknownC3A42D[],
@@ -1168,7 +1168,7 @@ shared static this() {
 		PAUSE(1),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		START_TASK(&animateD8F2[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_VAR(ActionScriptVars.v5, 21),
 		GET_POSITION_OF_PARTY_MEMBER(254),
 		SHORTCALL(&unknownC3AB44[0]),
@@ -8677,7 +8677,7 @@ shared static this() {
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		END_LAST_TASK(),
 		YIELD_TO_TEXT(),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		PAUSE(5),
 		IS_ENTITY_ONSCREEN(),
 		JUMP_IF_TRUE(&actionScriptComeBackJef[151 + 27 * (const(void)*).sizeof]),
@@ -9906,7 +9906,7 @@ shared static this() {
 		WRITE_WORD_WRAM(&castTileOffset, 0),
 		SET_VAR(ActionScriptVars.v0, 128),
 		SET_VAR(ActionScriptVars.v1, 136),
-		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.phaseDistorter, ActionScript.unknown807),
+		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.phaseDistorter, ActionScript.castPhaseDistorter),
 		WRITE_WORD_TEMPVAR(2),
 		SHORTCALL(&waitCreditsTiles[0]),
 		SET_VAR(ActionScriptVars.v0, 304),
@@ -10277,37 +10277,44 @@ shared static this() {
 		SHORT_RETURN(),
 	);
 }
-/// $C35F8B
-immutable ubyte[21 + 9 * (const(void)*).sizeof] unknownC35F8B;
+/** Animates a credits entity's sprite by alternating between frame 0 and 1, ending when the sprite scrolls offscreen
+ * Var 3 specifies delay in frames before switching to the other sprite frame
+ * Var 4, if 1, disables sprite updates
+ * Original_Address: $(DOLLAR)C35F8B
+ */
+immutable ubyte[21 + 9 * (const(void)*).sizeof] animateCastSpriteTask;
 shared static this() {
-	unknownC35F8B = initializeScript(unknownC35F8B.length,
+	animateCastSpriteTask = initializeScript(animateCastSpriteTask.length,
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v3),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
-		JUMP_IF_TRUE(&unknownC35F8B[8 + 2 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&animateCastSpriteTask[8 + 2 * (const(void)*).sizeof]),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v3),
 		IS_ENTITY_ONSCREEN_CAST(),
-		JUMP_IF_FALSE(&unknownC35F8B[20 + 8 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&animateCastSpriteTask[20 + 8 * (const(void)*).sizeof]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
-		JUMP_IF_TRUE(&unknownC35F8B[18 + 6 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&animateCastSpriteTask[18 + 6 * (const(void)*).sizeof]),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		IS_ENTITY_ONSCREEN_CAST(),
-		JUMP_IF_TRUE(&unknownC35F8B[0]),
+		JUMP_IF_TRUE(&animateCastSpriteTask[0]),
 		SHORTJUMP(&actionScript35[0]),
 	);
 }
-/// $C35FB6
-immutable ubyte[17 + 3 * (const(void)*).sizeof] unknownC35FB6;
+/** Have cast scene entities just stand in place, alternating between frame 0 and 1 every 16 frames (about 3.75 times per second)
+ * Var 0 specifies a delay in frames before starting
+ * Original_Address: $(DOLLAR)C35FB6
+ */
+immutable ubyte[17 + 3 * (const(void)*).sizeof] castSceneStandInPlace;
 shared static this() {
-	unknownC35FB6 = initializeScript(unknownC35FB6.length,
+	castSceneStandInPlace = initializeScript(castSceneStandInPlace.length,
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 		SET_VAR(ActionScriptVars.v3, 16),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(0),
-		START_TASK(&unknownC35F8B[0]),
+		START_TASK(&animateCastSpriteTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		SHORT_RETURN(),
@@ -10321,7 +10328,7 @@ shared static this() {
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13DDupe),
 		SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
 		SET_ANIMATION(0),
-		START_TASK(&unknownC35F8B[0]),
+		START_TASK(&animateCastSpriteTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		SHORT_RETURN(),
@@ -10331,7 +10338,7 @@ shared static this() {
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript802;
 shared static this() {
 	actionScript802 = initializeScript(actionScript802.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10342,7 +10349,7 @@ shared static this() {
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript803;
 shared static this() {
 	actionScript803 = initializeScript(actionScript803.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.up),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10353,7 +10360,7 @@ shared static this() {
 immutable ubyte[65 + 17 * (const(void)*).sizeof] actionScript809;
 shared static this() {
 	actionScript809 = initializeScript(actionScript809.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10395,7 +10402,7 @@ shared static this() {
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript810;
 shared static this() {
 	actionScript810 = initializeScript(actionScript810.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10411,7 +10418,7 @@ shared static this() {
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript811;
 shared static this() {
 	actionScript811 = initializeScript(actionScript811.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10427,7 +10434,7 @@ shared static this() {
 immutable ubyte[36 + 8 * (const(void)*).sizeof] actionScript812;
 shared static this() {
 	actionScript812 = initializeScript(actionScript812.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 8),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -10452,7 +10459,7 @@ shared static this() {
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript813;
 shared static this() {
 	actionScript813 = initializeScript(actionScript813.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 16),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		PAUSE(140),
@@ -10474,7 +10481,7 @@ shared static this() {
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(90),
 		SET_VAR(ActionScriptVars.v3, 16),
-		START_TASK(&unknownC35F8B[0]),
+		START_TASK(&animateCastSpriteTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		WRITE_WORD_TEMPVAR(Direction.left),
@@ -10491,7 +10498,7 @@ shared static this() {
 immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScript815;
 shared static this() {
 	actionScript815 = initializeScript(actionScript815.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_MOVEMENT_SPEED(384),
 		WRITE_WORD_TEMPVAR(2),
 		SHORTCALL(&unknownC3AA1E[0]),
@@ -10509,7 +10516,7 @@ shared static this() {
 immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript816;
 shared static this() {
 	actionScript816 = initializeScript(actionScript816.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10536,7 +10543,7 @@ immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript817;
 shared static this() {
 	actionScript817 = initializeScript(actionScript817.length,
 		SET_PRIORITY(3),
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10548,7 +10555,7 @@ immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript818;
 shared static this() {
 	actionScript818 = initializeScript(actionScript818.length,
 		SET_PRIORITY(0),
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10570,7 +10577,7 @@ shared static this() {
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript820;
 shared static this() {
 	actionScript820 = initializeScript(actionScript820.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.right),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10587,7 +10594,7 @@ shared static this() {
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript821;
 shared static this() {
 	actionScript821 = initializeScript(actionScript821.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10603,7 +10610,7 @@ shared static this() {
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript822;
 shared static this() {
 	actionScript822 = initializeScript(actionScript822.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10620,7 +10627,7 @@ shared static this() {
 immutable ubyte[33 + 7 * (const(void)*).sizeof] actionScript823;
 shared static this() {
 	actionScript823 = initializeScript(actionScript823.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10643,7 +10650,7 @@ shared static this() {
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript824;
 shared static this() {
 	actionScript824 = initializeScript(actionScript824.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10664,7 +10671,7 @@ shared static this() {
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript825;
 shared static this() {
 	actionScript825 = initializeScript(actionScript825.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10718,7 +10725,7 @@ shared static this() {
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript827;
 shared static this() {
 	actionScript827 = initializeScript(actionScript827.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10729,7 +10736,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript828;
 shared static this() {
 	actionScript828 = initializeScript(actionScript828.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 12),
 		SET_MOVEMENT_SPEED(341),
 		WRITE_WORD_TEMPVAR(6),
@@ -10742,7 +10749,7 @@ shared static this() {
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript829;
 shared static this() {
 	actionScript829 = initializeScript(actionScript829.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_MOVEMENT_SPEED(384),
 		WRITE_WORD_TEMPVAR(6),
 		SHORTCALL(&unknownC3AA1E[0]),
@@ -10758,7 +10765,7 @@ shared static this() {
 immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScript804;
 shared static this() {
 	actionScript804 = initializeScript(actionScript804.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		COPY_XY_TO_VARS(),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v6),
@@ -10831,7 +10838,7 @@ shared static this() {
 immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript808;
 shared static this() {
 	actionScript808 = initializeScript(actionScript808.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10856,14 +10863,14 @@ shared static this() {
 	);
 }
 /// $C36447
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript807;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptCastScenePhaseDistorter;
 shared static this() {
-	actionScript807 = initializeScript(actionScript807.length,
+	actionScriptCastScenePhaseDistorter = initializeScript(actionScriptCastScenePhaseDistorter.length,
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(0),
 		SET_VAR(ActionScriptVars.v3, 16),
-		START_TASK(&unknownC35F8B[0]),
+		START_TASK(&animateCastSpriteTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 1),
 		WRITE_WORD_TEMPVAR(Direction.down),
@@ -10883,7 +10890,7 @@ shared static this() {
 immutable ubyte[36 + 9 * (const(void)*).sizeof] actionScript836;
 shared static this() {
 	actionScript836 = initializeScript(actionScript836.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.up),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10908,7 +10915,7 @@ shared static this() {
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript837;
 shared static this() {
 	actionScript837 = initializeScript(actionScript837.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 8),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -10952,7 +10959,7 @@ shared static this() {
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript838;
 shared static this() {
 	actionScript838 = initializeScript(actionScript838.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 8),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -10996,7 +11003,7 @@ shared static this() {
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript839;
 shared static this() {
 	actionScript839 = initializeScript(actionScript839.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 8),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -11040,7 +11047,7 @@ shared static this() {
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript831;
 shared static this() {
 	actionScript831 = initializeScript(actionScript831.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11060,7 +11067,7 @@ shared static this() {
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript832;
 shared static this() {
 	actionScript832 = initializeScript(actionScript832.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		LOOP(3),
 			WRITE_WORD_TEMPVAR(Direction.left),
 			SET_DIRECTION(),
@@ -11090,7 +11097,7 @@ shared static this() {
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript833;
 shared static this() {
 	actionScript833 = initializeScript(actionScript833.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 12),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
@@ -11109,7 +11116,7 @@ shared static this() {
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript830;
 shared static this() {
 	actionScript830 = initializeScript(actionScript830.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11123,7 +11130,7 @@ shared static this() {
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript834;
 shared static this() {
 	actionScript834 = initializeScript(actionScript834.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11150,7 +11157,7 @@ shared static this() {
 immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScript835;
 shared static this() {
 	actionScript835 = initializeScript(actionScript835.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v4, 1),
 		LOOP(2),
 			UPDATE_SPRITE_DIRECTION(Direction.down, 1),
@@ -11208,7 +11215,7 @@ shared static this() {
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript842;
 shared static this() {
 	actionScript842 = initializeScript(actionScript842.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_VAR(ActionScriptVars.v3, 12),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -11234,7 +11241,7 @@ shared static this() {
 immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScript843;
 shared static this() {
 	actionScript843 = initializeScript(actionScript843.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11256,7 +11263,7 @@ shared static this() {
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript844;
 shared static this() {
 	actionScript844 = initializeScript(actionScript844.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		PAUSE(60),
 		SET_MOVEMENT_SPEED(256),
 		WRITE_WORD_TEMPVAR(2),
@@ -11281,7 +11288,7 @@ shared static this() {
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript845;
 shared static this() {
 	actionScript845 = initializeScript(actionScript845.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11293,7 +11300,7 @@ shared static this() {
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript846;
 shared static this() {
 	actionScript846 = initializeScript(actionScript846.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11306,7 +11313,7 @@ shared static this() {
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript847;
 shared static this() {
 	actionScript847 = initializeScript(actionScript847.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11319,7 +11326,7 @@ shared static this() {
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript848;
 shared static this() {
 	actionScript848 = initializeScript(actionScript848.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11332,7 +11339,7 @@ shared static this() {
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript849;
 shared static this() {
 	actionScript849 = initializeScript(actionScript849.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11345,7 +11352,7 @@ shared static this() {
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript850;
 shared static this() {
 	actionScript850 = initializeScript(actionScript850.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11364,7 +11371,7 @@ shared static this() {
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript851;
 shared static this() {
 	actionScript851 = initializeScript(actionScript851.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.right),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11440,7 +11447,7 @@ shared static this() {
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript853;
 shared static this() {
 	actionScript853 = initializeScript(actionScript853.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11455,7 +11462,7 @@ shared static this() {
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript854;
 shared static this() {
 	actionScript854 = initializeScript(actionScript854.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11466,7 +11473,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript855;
 shared static this() {
 	actionScript855 = initializeScript(actionScript855.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_MOVEMENT_SPEED(128),
 		WRITE_WORD_TEMPVAR(2),
 		SHORTCALL(&unknownC3AA1E[0]),
@@ -11480,7 +11487,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript856;
 shared static this() {
 	actionScript856 = initializeScript(actionScript856.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		SET_MOVEMENT_SPEED(128),
 		WRITE_WORD_TEMPVAR(6),
 		SHORTCALL(&unknownC3AA1E[0]),
@@ -11494,7 +11501,7 @@ shared static this() {
 immutable ubyte[32 + 6 * (const(void)*).sizeof] actionScript857;
 shared static this() {
 	actionScript857 = initializeScript(actionScript857.length,
-		SHORTCALL(&unknownC35FB6[0]),
+		SHORTCALL(&castSceneStandInPlace[0]),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		PAUSE(140),
 		PAUSE(140),
@@ -11536,7 +11543,7 @@ shared static this() {
 	unknownC36A41 = initializeScript(unknownC36A41.length,
 		SET_PHYSICS_CALLBACK(&unknownC0A384),
 		START_TASK(&unknownC3A1F3[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
 		SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
@@ -11888,7 +11895,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_VAR(ActionScriptVars.v0, 4),
 		START_TASK(&unknownC3A20E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		START_TASK(&unknownC36D18[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORTJUMP(&actionScript20[6 + 4 * (const(void)*).sizeof]),
@@ -11904,7 +11911,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_VAR(ActionScriptVars.v0, 4),
 		START_TASK(&unknownC3A20E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		START_TASK(&unknownC36D18[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORTJUMP(&actionScript31[12 + 5 * (const(void)*).sizeof]),
@@ -11919,7 +11926,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_VAR(ActionScriptVars.v0, 3),
 		START_TASK(&unknownC3A20E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		START_TASK(&unknownC36D18[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORTJUMP(&actionScript29[10 + 4 * (const(void)*).sizeof]),
@@ -11932,7 +11939,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		START_TASK(&unknownC3A20E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		START_TASK(&unknownC36D18[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(704),
@@ -11993,7 +12000,7 @@ shared static this() {
 immutable ubyte[6 + 4 * (const(void)*).sizeof] unknownC36E41;
 shared static this() {
 	unknownC36E41 = initializeScript(unknownC36E41.length,
-		C40023(),
+		SLEEP_SLOT_FRAMES(),
 		GET_DEFAULT_DIRECTION(),
 		FACE_DIRECTION(),
 		PAUSE(80),
@@ -12464,7 +12471,7 @@ shared static this() {
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		START_TASK(&unknownC3A15E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v6, 2136),
@@ -13344,7 +13351,7 @@ immutable ubyte[56 + 13 * (const(void)*).sizeof] actionScript666;
 shared static this() {
 	actionScript666 = initializeScript(actionScript666.length,
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		START_TASK(&actionScriptMapObjStillEntry2[0]),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
@@ -16637,7 +16644,7 @@ shared static this() {
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		START_TASK(&unknownC3A15E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_MOVEMENT_SPEED(64),
 		SET_VAR(ActionScriptVars.v4, 0),
 		CHOOSE_RANDOM(Direction.up, Direction.right, Direction.down, Direction.left),
@@ -17264,7 +17271,7 @@ shared static this() {
 immutable ubyte[14 + 6 * (const(void)*).sizeof] unknownC3A15E;
 shared static this() {
 	unknownC3A15E = initializeScript(unknownC3A15E.length,
-		C40023(),
+		SLEEP_SLOT_FRAMES(),
 		PAUSE(8),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		JUMP_IF_TRUE(&unknownC3A15E[9 + 3 * (const(void)*).sizeof]),
@@ -17419,14 +17426,16 @@ shared static this() {
 		SHORT_RETURN(),
 	);
 }
-/// $C3A262
-immutable ubyte[4 + 4 * (const(void)*).sizeof] unknownC3A262;
+/** A task that checks if the active entity has collided with the map or other entities once per frame
+ * Original_Address: $(DOLLAR)C3A262
+ */
+immutable ubyte[4 + 4 * (const(void)*).sizeof] checkCollisionTask;
 shared static this() {
-	unknownC3A262 = initializeScript(unknownC3A262.length,
+	checkCollisionTask = initializeScript(checkCollisionTask.length,
 		CLEAR_CURRENT_ENTITY_COLLISION(),
-		C05E76(),
-		C064A6_WAIT(1),
-		SHORTJUMP(&unknownC3A262[1 + 1 * (const(void)*).sizeof]),
+		CHECK_PROSPECTIVE_MAP_COLLISION(),
+		CHECK_PROSPECTIVE_ENTITY_COLLISION_WAIT(1),
+		SHORTJUMP(&checkCollisionTask[1 + 1 * (const(void)*).sizeof]),
 	);
 }
 /// $C3A273
@@ -17521,7 +17530,7 @@ shared static this() {
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		START_TASK(&unknownC3A15E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v4, 0),
 		CHOOSE_RANDOM(Direction.up, Direction.right, Direction.down, Direction.left),
@@ -17588,7 +17597,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
 		SET_BOUNDARIES(8, 8),
@@ -17602,7 +17611,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A15E[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
 		SHORT_RETURN(),
@@ -18230,7 +18239,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A1F3[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SHORT_RETURN(),
 	);
@@ -18687,7 +18696,7 @@ shared static this() {
 		JUMP_IF_FALSE(&actionScript18[0]),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		START_TASK(&animateD8F2[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -18721,7 +18730,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
 		START_TASK(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		SET_VAR(ActionScriptVars.v4, 0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
@@ -18734,7 +18743,7 @@ immutable ubyte[4 + 4 * (const(void)*).sizeof] actionScriptPeopleWalk0Live;
 shared static this() {
 	actionScriptPeopleWalk0Live = initializeScript(actionScriptPeopleWalk0Live.length,
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORTJUMP(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	);
@@ -20262,7 +20271,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&animateD8F2[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
 		SET_BOUNDARIES(24, 24),
@@ -20312,7 +20321,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A1F3[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
 		SET_BOUNDARIES(8, 8),
@@ -21082,7 +21091,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&animateDVAR4F2[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(384),
 		SET_VELOCITIES_ZERO(),
@@ -21203,7 +21212,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A1F3[0]),
-		START_TASK(&unknownC3A262[0]),
+		START_TASK(&checkCollisionTask[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
 		SET_BOUNDARIES(24, 24),
@@ -25849,11 +25858,11 @@ alias UPDATE_MAP_PALETTE_ANIMATION = CALL!updateMapPaletteAnimation;
 alias CLEANUP_SELF = CALL!activeScriptCleanupSelf;
 alias INITIALIZE_PARTY_MEMBER = CALL!actionScriptInitializePartyMember;
 alias UPDATE_PARTY_MEMBER_POSITION = CALL!actionScriptUpdatePartyMemberPosition;
-alias C05E76 = CALL!unknownC05E76;
+alias CHECK_PROSPECTIVE_MAP_COLLISION = CALL!actionScriptGetActiveEntityMapCollisionProspective;
 alias C05E82 = CALL!unknownC05E82;
 alias C05ECE = CALL!unknownC05ECE;
 alias C06478 = CALL!unknownC06478;
-alias C064A6_WAIT = CALLEX!unknownC064A6;
+alias CHECK_PROSPECTIVE_ENTITY_COLLISION_WAIT = CALLEX!actionScriptSetEntityToEntityCollisionProspective;
 alias UNFREEZE_ENTITIES = CALL!unfreezeEntities;
 alias C09E71 = CALL!(unknownC09E71, ushort);
 alias BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE = CALL!backupEntityCallbackFlagsAndDisable;
@@ -25929,7 +25938,7 @@ alias CLOSE_OVAL_WINDOW = CALL!closeOvalWindow;
 alias C2EACF = CALL!unknownC2EACF;
 alias TEST_IN_BIG_AREA = CALL!actionScriptTestInBigArea;
 alias IS_ENTITY_ONSCREEN_RESET_ANIMATION = CALL!isEntityOnscreenResetAnimation;
-alias C40023 = CALL!unknownC40023;
+alias SLEEP_SLOT_FRAMES = CALL!sleepSlotFrames;
 alias C423DC = CALL!unknownC423DC;
 alias C4240A = CALL!unknownC4240A;
 alias C4248A = CALL!unknownC4248A;

@@ -1221,7 +1221,12 @@ short getEncounterGroupID(short x, short y) {
 	return mapEnemyPlacement[y][x];
 }
 
-/// $C02668
+/** Spawns the enemies in the encounter group, if the conditions for doing so are met.
+ * If enemy spawn debugging is enabled, will spawn enemies from the test group (0). Every 16th spawn attempt (successful or not) will instead attempt to spawn a magic butterfly.
+ * If a pirated copy of the game is detected, enemy spawning will ALWAYS succeed, even when the spawn chance is set to 0%. Only one instance of a group can be spawned in an area, subsequent attempts will fail
+ * until the first instance despawns.
+ * Original_Address: $(DOLLAR)C02668
+ */
 void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 	short group;
 	const(BattleGroupEnemy)* groupEnemies;
@@ -1371,7 +1376,13 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 	}
 }
 
-/// $C02A6B
+/** Attempts to spawn enemies when the player moves vertically. Makes up to six attempts for each of six of the enemy sectors at the top or bottom of the screen.
+ * Enemies will not spawn if sysMonsterOff or winGiegu are set, if enemySpawnsEnabled is set to allDisabled, or if the row is out of bounds or perfectly divisible by 8.
+ * Params:
+ * 	tileX = The X tile coordinate of the row (leftmost edge)
+ * 	tileY = The Y tile coordinate of the row
+ * Original_Address: $(DOLLAR)C02A6B
+ */
 void spawnEnemiesRow(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
@@ -1412,7 +1423,13 @@ void spawnEnemiesRow(short tileX, short tileY) {
 	}
 }
 
-/// $C02B55
+/** Attempts to spawn enemies when the player moves horizontally. Makes up to six attempts for each of six of the enemy sectors at the left or right of the screen.
+ * Enemies will not spawn if sysMonsterOff or winGiegu are set, if enemySpawnsEnabled is set to allDisabled, or if the column is out of bounds or perfectly divisible by 8.
+ * Params:
+ * 	tileX = The X tile coordinate of the column
+ * 	tileY = The Y tile coordinate of the column (top edge)
+ * Original_Address: $C02B55
+ */
 void spawnEnemiesColumn(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
@@ -1453,8 +1470,10 @@ void spawnEnemiesColumn(short tileX, short tileY) {
 	}
 }
 
-/// $C02C3E
-void enableMushroomizedWalking() {
+/** Updates mushroomized walking state if anyone is mushroomized, forcing the player off a bicycle and resetting the input shuffle timer to 30 seconds as needed
+ * Original_Address: $(DOLLAR)C02C3E
+ */
+void updateMushroomizedWalking() {
 	if (partyCharacters[gameState.playerControlledPartyMembers[0]].afflictions[1] == Status1.mushroomized) {
 		mushroomizedWalkingFlag = 1;
 		if (mushroomizationTimer == 0) {
@@ -1469,7 +1488,10 @@ void enableMushroomizedWalking() {
 	}
 }
 
-/// $C02C89
+/** Shuffles inputs if mushroomization is active, switching to a different shuffled mapping every 30 seconds.
+ * Has no effect during demo playback.
+ * Original_Address: $(DOLLAR)C02C89
+ */
 void mushroomizationMovementSwap() {
 	if (mushroomizationTimer == 0) {
 		mushroomizationTimer = 30 * 60;
@@ -1486,7 +1508,9 @@ void mushroomizationMovementSwap() {
 	padState[0] = (padState[0] & 0xF0FF) | mushroomizationDirectionRemapTables[mushroomizationModifier - 1][(padState[0] >> 8) & 0xF];
 }
 
-/// $C02D29
+/** Remove everyone and everything in the party
+ * Original_Address: $(DOLLAR)C02D29
+ */
 void clearParty() {
 	entitySizes[partyLeaderEntity] = 1;
 	miniGhostEntityID = -1;
@@ -1506,37 +1530,50 @@ void clearParty() {
 	pajamaFlag = getEventFlag(nessPajamaFlag);
 }
 
-/// $C02D8F
-uint adjustPositionHorizontal(short arg1, uint arg2, short arg3) {
-	switch (arg3 & SurfaceFlags.deepWater) {
+/** Gets a character's new horizontal position after a single frame of movement speed, taking into account the type of surface currently being walked upon
+ * Params:
+ * 	direction = The direction the character is moving in
+ * 	baseX = The character's base X coordinate
+ * 	flags = Collision flags for the character's surface
+ * Original_Address: $(DOLLAR)C02D8F
+ */
+uint getNewX(short direction, uint baseX, short flags) {
+	switch (flags & SurfaceFlags.deepWater) {
 		case SurfaceFlags.shallowWater:
-			return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * ShallowWaterSpeed.combined) / 256) + arg2;
+			return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * ShallowWaterSpeed.combined) / 256) + baseX;
 		case SurfaceFlags.deepWater:
-			return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
+			return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * DeepWaterSpeed.combined) / 256) + baseX;
 		default:
 			if (demoFramesLeft != 0) {
-				return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+				return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined + baseX;
 			} else if ((gameState.partyStatus == PartyStatus.speedBoost) && (gameState.walkingStyle == 0)) {
-				return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
+				return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * SkipSandwichSpeed.combined) / 256) + baseX;
 			}
-			return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+			return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined + baseX;
 	}
 }
 
-/// $C03017
-uint adjustPositionVertical(short arg1, uint arg2, short arg3) {
-	switch (arg3 & SurfaceFlags.deepWater) {
+
+/** Gets a character's new vertical position after a single frame of movement speed, taking into account the type of surface currently being walked upon
+ * Params:
+ * 	direction = The direction the character is moving in
+ * 	baseY = The character's base Y coordinate
+ * 	flags = Collision flags for the character's surface
+ * Original_Address: $(DOLLAR)C03017
+ */
+uint getNewY(short direction, uint baseY, short flags) {
+	switch (flags & SurfaceFlags.deepWater) {
 		case SurfaceFlags.shallowWater:
-			return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * ShallowWaterSpeed.combined) / 256) + arg2;
+			return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * ShallowWaterSpeed.combined) / 256) + baseY;
 		case SurfaceFlags.deepWater:
-			return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
+			return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * DeepWaterSpeed.combined) / 256) + baseY;
 		default:
 			if (demoFramesLeft != 0) {
-				return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+				return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined + baseY;
 			} else if ((gameState.partyStatus == PartyStatus.speedBoost) && (gameState.walkingStyle == 0)) {
-				return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
+				return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined / 256) * SkipSandwichSpeed.combined) / 256) + baseY;
 			}
-			return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+			return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[direction].combined + baseY;
 	}
 }
 
@@ -1619,7 +1656,7 @@ void updateParty() {
 	}
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	updatePartyNPCs();
-	enableMushroomizedWalking();
+	updateMushroomizedWalking();
 	loadTextPalette();
 }
 
@@ -2223,7 +2260,12 @@ ushort findNearbyTalkableNPC() {
 	return interactingNPCID;
 }
 
-/// $C0449B
+/** Handle a single frame of standard movement, from determining movement direction from input to collision checks to setting the player's final position.
+ * Decrease battle countdown if active, performing the entity collision checks necessary for other enemies to join in.
+ * Movement on stairs is restricted to two directions, depending on their orientation.
+ * Also checks for active hotspot collisions, but only one of the two are checked per frame.
+ * Original_Address: $(DOLLAR)C0449B
+ */
 void handleNormalMovement() {
 	gameState.leaderHasMoved = 0;
 	if (mushroomizedWalkingFlag != 0) {
@@ -2267,15 +2309,15 @@ void handleNormalMovement() {
 	playerHasMovedSinceMapLoad++;
 	gameState.leaderHasMoved++;
 	short x22 = gameState.troddenTileType;
-	FixedPoint1616 newX = { combined: adjustPositionHorizontal(chosenDirection, gameState.leaderX.combined, x22) };
-	FixedPoint1616 newY = { combined: adjustPositionVertical(chosenDirection, gameState.leaderY.combined, x22) };
+	FixedPoint1616 newX = { combined: getNewX(chosenDirection, gameState.leaderX.combined, x22) };
+	FixedPoint1616 newY = { combined: getNewY(chosenDirection, gameState.leaderY.combined, x22) };
 	ladderStairsTileX = 0xFFFF;
 	short newCollision;
 	if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) {
 		newCollision = checkMovementMapCollision(newX.integer, newY.integer, gameState.firstPartyMemberEntity, chosenDirection);
 		if (chosenDirection != finalMovementDirection) {
-			newX.combined = adjustPositionHorizontal(finalMovementDirection, gameState.leaderX.combined, x22);
-			newY.combined = adjustPositionVertical(finalMovementDirection, gameState.leaderY.combined, x22);
+			newX.combined = getNewX(finalMovementDirection, gameState.leaderX.combined, x22);
+			newY.combined = getNewY(finalMovementDirection, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
 		newCollision = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
@@ -2303,10 +2345,10 @@ void handleNormalMovement() {
 		gameState.leaderHasMoved = 0;
 	}
 	if (((frameCounter & 1) == 0) && (activeHotspots[0].mode != 0)) {
-		unknownC073C0(0);
+		queueHotspotInteraction(0);
 	}
 	if (((frameCounter & 1) != 0) && (activeHotspots[1].mode != 0)) {
-		unknownC073C0(1);
+		queueHotspotInteraction(1);
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		gameState.leaderX.integer = cast(short)((ladderStairsTileX * 8) + 8);
@@ -2811,8 +2853,8 @@ void unknownC052D4(short arg1) {
 	short x22 = gameState.leaderY.integer;
 	short x20 = gameState.troddenTileType;
 	short x1E = gameState.walkingStyle;
-	FixedPoint1616 x12 = { combined: adjustPositionHorizontal((arg1 + 4) & 7, gameState.leaderX.combined, gameState.troddenTileType) - gameState.leaderX.combined };
-	FixedPoint1616 x16 = { combined: adjustPositionVertical((arg1 + 4) & 7, gameState.leaderY.combined, gameState.troddenTileType) - gameState.leaderY.combined };
+	FixedPoint1616 x12 = { combined: getNewX((arg1 + 4) & 7, gameState.leaderX.combined, gameState.troddenTileType) - gameState.leaderX.combined };
+	FixedPoint1616 x16 = { combined: getNewY((arg1 + 4) & 7, gameState.leaderY.combined, gameState.troddenTileType) - gameState.leaderY.combined };
 	short x1C = 0x100;
 	while(x1C != 0) {
 		x1C--;
@@ -3278,8 +3320,11 @@ short unknownC05E3B(short arg1) {
 	return entityObstacleFlags[arg1];
 }
 
-/// $C05E76
-short unknownC05E76() {
+/** Gets the map collision for where the active entity intends to move and sets its collision flags
+ * Returns: The collision flags, or 0 if movement is disabled
+ * Original_Address: $(DOLLAR)C05E76
+ */
+short actionScriptGetActiveEntityMapCollisionProspective() {
 	return cast(ubyte)unknownC05E3B(currentEntitySlot);
 }
 
@@ -3344,6 +3389,10 @@ short unknownC05FD1(short x, short y, short entity) {
 }
 
 /** Find any NPCs colliding with entity, respecting intangibility
+ * Params:
+ * 	x = The X coordinate the entity is assumed to be at
+ * 	y = The Y coordinate the entity is assumed to be at
+ * 	entity = The entity ID whose hitboxes will be used
  * Returns: Entity index of the first colliding NPC
  * Original_Address: $(DOLLAR)C05FF6
  */
@@ -3410,7 +3459,7 @@ short npcCollisionCheck(short x, short y, short entity) {
 
 /// $C0613C
 void unknownC0613C(short arg1, short arg2, short arg3) {
-	ushort x1A = 0xFFFF;
+	ushort result = 0xFFFF;
 	if (entityHitboxEnabled[arg3] != 0) {
 		short x18;
 		short x04;
@@ -3461,11 +3510,11 @@ void unknownC0613C(short arg1, short arg2, short arg3) {
 			if (entityAbsXTable[i] - y + y * 2 <= x16) {
 				continue;
 			}
-			x1A = i;
+			result = i;
 			break;
 		}
 	}
-	entityCollidedObjects[arg3] = x1A;
+	entityCollidedObjects[arg3] = result;
 }
 
 /// $C06267
@@ -3574,8 +3623,10 @@ void unknownC06478() {
 	unknownC06267(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
 }
 
-/// $C064A6
-void unknownC064A6() {
+/** Tests for colliding entities where the active entity wants to move and sets the collision field as needed
+ * Original_Address: $(DOLLAR)C064A6
+ */
+void actionScriptSetEntityToEntityCollisionProspective() {
 	if (entityCollidedObjects[currentEntitySlot] == 0x8000) {
 		return;
 	}
@@ -4149,27 +4200,38 @@ void reloadHotspots() {
 	}
 }
 
-/// $C072CF
-void activateHotspot(short arg1, short arg2, const(ubyte)* arg3) {
-	short x;
-	if ((gameState.leaderX.integer > mapHotspots[arg2].x1) && (gameState.leaderX.integer < mapHotspots[arg2].x2) && (gameState.leaderY.integer > mapHotspots[arg2].y1) && (gameState.leaderY.integer < mapHotspots[arg2].y2)) {
-		x = 1;
+/** Activates a hotspot with preset coordinates and text pointer.
+ * If player is already inside the hotspot coordinates, will instead trigger when the player steps outside of the area.
+ * Params:
+ * 	id = 1-based index of hotspot to enable
+ * 	preset = Preset coordinates to use
+ * 	text = Pointer to text to display upon triggering
+ * Original_Address: $(DOLLAR)C072CF
+ */
+void activateHotspot(short id, short preset, const(ubyte)* text) {
+	short mode;
+	if ((gameState.leaderX.integer > mapHotspots[preset].x1) && (gameState.leaderX.integer < mapHotspots[preset].x2) && (gameState.leaderY.integer > mapHotspots[preset].y1) && (gameState.leaderY.integer < mapHotspots[preset].y2)) {
+		mode = 1;
 	} else {
-		x = 2;
+		mode = 2;
 	}
-	activeHotspots[arg1 - 1].mode = x;
-	activeHotspots[arg1 - 1].x1 = cast(ushort)(mapHotspots[arg2].x1 * 8);
-	activeHotspots[arg1 - 1].y1 = cast(ushort)(mapHotspots[arg2].y1 * 8);
-	activeHotspots[arg1 - 1].x2 = cast(ushort)(mapHotspots[arg2].x2 * 8);
-	activeHotspots[arg1 - 1].y2 = cast(ushort)(mapHotspots[arg2].y2 * 8);
-	activeHotspots[arg1 - 1].pointer = arg3;
-	gameState.activeHotspotModes[arg1 - 1] = cast(ubyte)x;
-	gameState.activeHotspotIDs[arg1 - 1] = cast(ubyte)arg2;
-	gameState.activeHotspotPointers[arg1 - 1] = arg3;
+	activeHotspots[id - 1].mode = mode;
+	activeHotspots[id - 1].x1 = cast(ushort)(mapHotspots[preset].x1 * 8);
+	activeHotspots[id - 1].y1 = cast(ushort)(mapHotspots[preset].y1 * 8);
+	activeHotspots[id - 1].x2 = cast(ushort)(mapHotspots[preset].x2 * 8);
+	activeHotspots[id - 1].y2 = cast(ushort)(mapHotspots[preset].y2 * 8);
+	activeHotspots[id - 1].pointer = text;
+	gameState.activeHotspotModes[id - 1] = cast(ubyte)mode;
+	gameState.activeHotspotIDs[id - 1] = cast(ubyte)preset;
+	gameState.activeHotspotPointers[id - 1] = text;
 }
 
-/// $C073C0
-void unknownC073C0(short arg1) {
+/** Queues up a hotspot interaction, as long as the player is within bounds and isn't teleporting
+ * Params:
+ * 	id = The active hotspot index
+ * Original_Address: $(DOLLAR)C073C0
+ */
+void queueHotspotInteraction(short id) {
 	// don't ask. I don't know either
 	if ((nextQueuedInteraction ^ nextQueuedInteraction) != 0) {
 		return;
@@ -4177,19 +4239,19 @@ void unknownC073C0(short arg1) {
 	if (psiTeleportDestination != 0) {
 		return;
 	}
-	short x12 = activeHotspots[arg1].mode;
-	if (x12 == 1) {
-		if ((gameState.leaderX.integer >= activeHotspots[arg1].x1) && (gameState.leaderX.integer < activeHotspots[arg1].x2) && (gameState.leaderY.integer >= activeHotspots[arg1].y1) && (gameState.leaderY.integer < activeHotspots[arg1].y2)) {
+	short mode = activeHotspots[id].mode;
+	if (mode == 1) {
+		if ((gameState.leaderX.integer >= activeHotspots[id].x1) && (gameState.leaderX.integer < activeHotspots[id].x2) && (gameState.leaderY.integer >= activeHotspots[id].y1) && (gameState.leaderY.integer < activeHotspots[id].y2)) {
 			return;
 		}
 	} else {
-		if ((gameState.leaderX.integer <= activeHotspots[arg1].x1) || (gameState.leaderX.integer >= activeHotspots[arg1].x2) || (gameState.leaderY.integer <= activeHotspots[arg1].y1) || (gameState.leaderY.integer >= activeHotspots[arg1].y2)) {
+		if ((gameState.leaderX.integer <= activeHotspots[id].x1) || (gameState.leaderX.integer >= activeHotspots[id].x2) || (gameState.leaderY.integer <= activeHotspots[id].y1) || (gameState.leaderY.integer >= activeHotspots[id].y2)) {
 			return;
 		}
 	}
-	activeHotspots[arg1].mode = 0;
-	queueInteraction(InteractionType.unknown9, QueuedInteractionPtr(activeHotspots[arg1].pointer));
-	gameState.activeHotspotModes[arg1] = 0;
+	activeHotspots[id].mode = 0;
+	queueInteraction(InteractionType.unknown9, QueuedInteractionPtr(activeHotspots[id].pointer));
+	gameState.activeHotspotModes[id] = 0;
 }
 
 /** Searches for map objects at the given coordinates
