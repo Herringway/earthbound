@@ -228,10 +228,14 @@ immutable Manpu[12] manpuTable = [
 	),
 ];
 
-/// $C40E31
+/** Number of entity overlays
+ * Original_Address: $(DOLLAR)C40E31
+ */
 immutable ubyte entityOverlayCount = 4;
 
-/// $C40E32
+/** Sprites used for entity overlays
+ * Original_Address: $(DOLLAR)C40E32
+ */
 immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 	EntityOverlaySprite(OverworldSprite.sweat, 0, 1),
 	EntityOverlaySprite(OverworldSprite.littleMushroom, 0, 0xFF),
@@ -299,16 +303,57 @@ immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
 
 ///
 immutable OverlayScript[13] entityOverlaySweating;
+shared static this() {
+	entityOverlaySweating = [
+		OverlayScript.show(entityOverlaySweatingFrame41.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(entityOverlaySweatingFrame42.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(cast(const(SpriteMap)*)null),
+		OverlayScript.delay(16),
+		OverlayScript.show(entityOverlaySweatingFrame43.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(entityOverlaySweatingFrame44.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(cast(const(SpriteMap)*)null),
+		OverlayScript.delay(16),
+		OverlayScript.jump(entityOverlaySweating.ptr),
+	];
+}
 
 ///
 immutable OverlayScript[3] entityOverlayMushroomized;
+shared static this() {
+	entityOverlayMushroomized = [
+		OverlayScript.show(entityOverlayMushroomizedFrame1.ptr),
+		OverlayScript.delay(255),
+		OverlayScript.jump(entityOverlayMushroomized.ptr)
+	];
+}
 
 ///
 immutable OverlayScript[5] entityOverlayRipple;
+shared static this() {
+	entityOverlayRipple = [
+		OverlayScript.show(entityOverlayRippleFrame1.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.show(entityOverlayRippleFrame2.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.jump(entityOverlayRipple.ptr)
+	];
+}
 
 ///
 immutable OverlayScript[5] entityOverlayBigRipple;
-
+shared static this() {
+	entityOverlayBigRipple = [
+		OverlayScript.show(entityOverlayBigRippleFrame1.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.show(entityOverlayBigRippleFrame2.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.jump(entityOverlayBigRipple.ptr)
+	];
+}
 /// $C41A9E
 void decomp(const(ubyte)* data, void* buffer) {
 	//I'm not gonna redo perfectly good work that already exists
@@ -8116,40 +8161,6 @@ void setBoundaryBehaviour(short val) {
 
 shared static this() {
 	import std.array : join;
-	entityOverlaySweating = [
-		OverlayScript.show(entityOverlaySweatingFrame41.ptr),
-		OverlayScript.delay(8),
-		OverlayScript.show(entityOverlaySweatingFrame42.ptr),
-		OverlayScript.delay(8),
-		OverlayScript.show(cast(const(SpriteMap)*)null),
-		OverlayScript.delay(16),
-		OverlayScript.show(entityOverlaySweatingFrame43.ptr),
-		OverlayScript.delay(8),
-		OverlayScript.show(entityOverlaySweatingFrame44.ptr),
-		OverlayScript.delay(8),
-		OverlayScript.show(cast(const(SpriteMap)*)null),
-		OverlayScript.delay(16),
-		OverlayScript.jump(entityOverlaySweating.ptr),
-	];
-	entityOverlayMushroomized = [
-		OverlayScript.show(entityOverlayMushroomizedFrame1.ptr),
-		OverlayScript.delay(255),
-		OverlayScript.jump(entityOverlayMushroomized.ptr)
-	];
-	entityOverlayRipple = [
-		OverlayScript.show(entityOverlayRippleFrame1.ptr),
-		OverlayScript.delay(12),
-		OverlayScript.show(entityOverlayRippleFrame2.ptr),
-		OverlayScript.delay(12),
-		OverlayScript.jump(entityOverlayRipple.ptr)
-	];
-	entityOverlayBigRipple = [
-		OverlayScript.show(entityOverlayBigRippleFrame1.ptr),
-		OverlayScript.delay(12),
-		OverlayScript.show(entityOverlayBigRippleFrame2.ptr),
-		OverlayScript.delay(12),
-		OverlayScript.jump(entityOverlayBigRipple.ptr)
-	];
 	cc1C01Table = [
 		CC1C01Entry(0, null),
 		CC1C01Entry(CC1C01Type.string | gameState.mother2PlayerName.sizeof, &gameState.mother2PlayerName[0]),
