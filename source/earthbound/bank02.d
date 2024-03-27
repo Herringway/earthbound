@@ -6313,7 +6313,7 @@ void eatFood() {
 		default: break;
 	}
 	if (x18.special != 0) {
-		boostPartySpeed(x18.special);
+		boostPartySpeed(x18.special * 6);
 	}
 }
 
