@@ -94,7 +94,7 @@ short unknownC40085() {
 }
 
 /// $C40B51
-void unknownC40B51() {
+void prepareGameFailure() {
 	stopMusic();
 	setBGMODE(BGMode.mode1);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
@@ -103,7 +103,7 @@ void unknownC40B51() {
 }
 
 /// $C40B75
-noreturn unknownC40B75() {
+noreturn gameFailureLoop() {
 	copyToVRAM(0, 0xA00, 0, &buffer[0]);
 	copyToVRAM(0, 0x800, 0x4000, &buffer[0x4000]);
 	memcpy(&palettes[0][0], &warningPalette[0], 0x10);
@@ -2889,7 +2889,7 @@ void unhideCharacterOrParty(short arg1) {
 
 /// $C464B5
 short createPreparedEntityNPC(short npcID, short actionScript) {
-	short result = createEntity(npcConfig[npcID].sprite, actionScript, -1, entityPreparedXCoordinate, entityPreparedYCoordinate);
+	short result = createOverworldEntity(npcConfig[npcID].sprite, actionScript, -1, entityPreparedXCoordinate, entityPreparedYCoordinate);
 	entityDirections[result] = entityPreparedDirection;
 	entityNPCIDs[result] = npcID;
 	return result;
@@ -2897,14 +2897,14 @@ short createPreparedEntityNPC(short npcID, short actionScript) {
 
 /// $C46507
 short createPreparedEntitySprite(short sprite, short actionScript) {
-	short result = createEntity(sprite, actionScript, -1, entityPreparedXCoordinate, entityPreparedYCoordinate);
+	short result = createOverworldEntity(sprite, actionScript, -1, entityPreparedXCoordinate, entityPreparedYCoordinate);
 	entityDirections[result] = entityPreparedDirection;
 	return result;
 }
 
 /// $C46534
 short spawnEntityAtSelf(short sprite, short actionScriptID) {
-	return createEntity(sprite, actionScriptID, -1, entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]);
+	return createOverworldEntity(sprite, actionScriptID, -1, entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]);
 }
 
 /// $C4655E
@@ -5882,7 +5882,7 @@ void createManpu(short parent, short manpu) {
 	adjustManpuPositioning(manpuTable[manpu].positioning, entitySizes[parent]);
 	activeManpuX += manpuTable[manpu].relX;
 	activeManpuY += manpuTable[manpu].relY;
-	short manpuEntity = createEntity(manpuTable[manpu].sprite, ActionScript.unknown785, -1, activeManpuX, activeManpuY);
+	short manpuEntity = createOverworldEntity(manpuTable[manpu].sprite, ActionScript.unknown785, -1, activeManpuX, activeManpuY);
 	entityDrawPriority[manpuEntity] = cast(ushort)(parent | DrawPriority.parent | DrawPriority.dontClearIfParent);
 	entitySurfaceFlags[manpuEntity] = entitySurfaceFlags[parent];
 }
@@ -5899,7 +5899,7 @@ void deleteManpu(short parent) {
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityDrawPriority[i] == (parent | DrawPriority.parent | DrawPriority.dontClearIfParent)) {
 			entityDrawPriority[i] = 0;
-			unknownC02140(i);
+			deleteOverworldEntity(i);
 		}
 	}
 }
@@ -7253,7 +7253,7 @@ void townMapDebug() {
 /// $C4D7D9
 void displayAnimatedNamingSprite(short arg1) {
 	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1][0]; x06.sprite != 0; x06++) {
-		createEntity(x06.sprite, x06.script, -1, 0, 0);
+		createOverworldEntity(x06.sprite, x06.script, -1, 0, 0);
 	}
 	waitForNamingScreenActionScript = 0;
 }
@@ -7287,7 +7287,7 @@ void unknownC4D830(short arg1) {
 /// $C4D8FA
 void unknownC4D8FA() {
 	for (short i = 0; i < 5; i++) {
-		entityDirections[createEntity(fileSelectSummarySpriteConfig[i].sprite, fileSelectSummarySpriteConfig[i].script, -1, fileSelectSummarySpriteConfig[i].x, fileSelectSummarySpriteConfig[i].y)] = Direction.down;
+		entityDirections[createOverworldEntity(fileSelectSummarySpriteConfig[i].sprite, fileSelectSummarySpriteConfig[i].script, -1, fileSelectSummarySpriteConfig[i].x, fileSelectSummarySpriteConfig[i].y)] = Direction.down;
 	}
 }
 
@@ -7856,7 +7856,7 @@ void printCastNameEntityVar0(short partyMember, short x, short y) {
  */
 short createEntityAtV01PlusBG3Y(short sprite, short script) {
 	newEntityVar0 = initialCastEntitySleepFrames++ & 3;
-	return createEntity(sprite, script, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
+	return createOverworldEntity(sprite, script, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
 
 /** Tests if the entity is still visible on the cast screen
@@ -8017,7 +8017,7 @@ short unknownC4F264(short arg1) {
 			continue;
 		}
 		newEntityVar0 = x1A++;
-		createEntity(photographerConfigTable[arg1].objectConfig[i].sprite, ActionScript.unknown799, -1, photographerConfigTable[arg1].objectConfig[i].tileX, photographerConfigTable[arg1].objectConfig[i].tileY);
+		createOverworldEntity(photographerConfigTable[arg1].objectConfig[i].sprite, ActionScript.unknown799, -1, photographerConfigTable[arg1].objectConfig[i].tileX, photographerConfigTable[arg1].objectConfig[i].tileY);
 	}
 	for (short i = 0; i < 6; i++) {
 		if ((gameState.savedPhotoStates[arg1].partyMembers[i] & 0x1F) >= 18) {
@@ -8027,7 +8027,7 @@ short unknownC4F264(short arg1) {
 			continue;
 		}
 		newEntityVar0 = x1A++;
-		unknownC07A31(createEntity(unknownC079EC(gameState.savedPhotoStates[arg1].partyMembers[i]), ActionScript.unknown800, -1, photographerConfigTable[arg1].partyConfig[i].x, photographerConfigTable[arg1].partyConfig[i].y), gameState.savedPhotoStates[arg1].partyMembers[i]);
+		unknownC07A31(createOverworldEntity(unknownC079EC(gameState.savedPhotoStates[arg1].partyMembers[i]), ActionScript.unknown800, -1, photographerConfigTable[arg1].partyConfig[i].x, photographerConfigTable[arg1].partyConfig[i].y), gameState.savedPhotoStates[arg1].partyMembers[i]);
 	}
 	return 1;
 }

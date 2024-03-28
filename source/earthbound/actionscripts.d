@@ -25202,16 +25202,16 @@ shared static this() {
 		WRITE_WRAM_TEMPVAR(&titleScreenQuickMode),
 		JUMP_IF_TRUE(&actionScriptTitleScreen1[4 + 2 * (const(void)*).sizeof]),
 		PAUSE(60),
-		C09E71(ActionScript.titleScreen2),
-		C09E71(ActionScript.titleScreen3),
-		C09E71(ActionScript.titleScreen4),
-		C09E71(ActionScript.titleScreen5),
-		C09E71(ActionScript.titleScreen6),
-		C09E71(ActionScript.titleScreen7),
-		C09E71(ActionScript.titleScreen8),
-		C09E71(ActionScript.titleScreen9),
-		C09E71(ActionScript.titleScreen10),
-		C09E71(ActionScript.titleScreen11),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen2),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen3),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen4),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen5),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen6),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen7),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen8),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen9),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen10),
+		CREATE_TITLE_SCREEN_ENTITY(ActionScript.titleScreen11),
 		PAUSE(150),
 		PAUSE(30),
 		PAUSE(60),
@@ -25593,24 +25593,24 @@ ubyte[] BREAK_IF_TRUE(const(ubyte)* ptr) {
 	return actionCommand(0x17, ptr);
 }
 
-ubyte[] BINOP_WRAM(void* ptr, ubyte op, ubyte val) {
+ubyte[] BINOP_WRAM8(void* ptr, ubyte op, ubyte val) {
 	return actionCommand(0x18, ptr, op, val);
 }
 
-ubyte[] AND_WRAM(void* ptr, ubyte val) {
-	return BINOP_WRAM(ptr, 0, val);
+ubyte[] AND_WRAM8(void* ptr, ubyte val) {
+	return BINOP_WRAM8(ptr, 0, val);
 }
 
-ubyte[] OR_WRAM(void* ptr, ubyte val) {
-	return BINOP_WRAM(ptr, 1, val);
+ubyte[] OR_WRAM8(void* ptr, ubyte val) {
+	return BINOP_WRAM8(ptr, 1, val);
 }
 
-ubyte[] ADD_WRAM(void* ptr, ubyte val) {
-	return BINOP_WRAM(ptr, 2, val);
+ubyte[] ADD_WRAM8(void* ptr, ubyte val) {
+	return BINOP_WRAM8(ptr, 2, val);
 }
 
-ubyte[] XOR_WRAM(void* ptr, ubyte val) {
-	return BINOP_WRAM(ptr, 3, val);
+ubyte[] XOR_WRAM8(void* ptr, ubyte val) {
+	return BINOP_WRAM8(ptr, 3, val);
 }
 
 ubyte[] SHORTJUMP(const void* ptr) {
@@ -25864,7 +25864,7 @@ alias C05ECE = CALL!unknownC05ECE;
 alias C06478 = CALL!unknownC06478;
 alias CHECK_PROSPECTIVE_ENTITY_COLLISION_WAIT = CALLEX!actionScriptSetEntityToEntityCollisionProspective;
 alias UNFREEZE_ENTITIES = CALL!unfreezeEntities;
-alias C09E71 = CALL!(unknownC09E71, ushort);
+alias CREATE_TITLE_SCREEN_ENTITY = CALL!(actionScriptCreateTitleScreenEntity, ushort);
 alias BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE = CALL!backupEntityCallbackFlagsAndDisable;
 alias RESTORE_ENTITY_CALLBACK_FLAGS = CALL!restoreEntityCallbackFlags;
 alias PICK_RANDOM_ANGLE = CALL!actionScriptGenerateRandomAngle;

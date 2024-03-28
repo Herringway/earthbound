@@ -549,7 +549,7 @@ short getDeliveryExitSpeed() {
 /// $EF0EAD
 void getDeliverySpriteAndPlaceholder(short arg1) {
 	newEntityVar0 = cast(short)(arg1 - 1);
-	createEntity((timedDeliveries[arg1].spriteID == 0) ? unusedForSaleSignSpriteTable[rand() & 3] : timedDeliveries[arg1].spriteID, ActionScript.unknown499, -1, 0, 0);
+	createOverworldEntity((timedDeliveries[arg1].spriteID == 0) ? unusedForSaleSignSpriteTable[rand() & 3] : timedDeliveries[arg1].spriteID, ActionScript.unknown499, -1, 0, 0);
 }
 
 /// $EF0EE8
@@ -563,7 +563,7 @@ void resolveActiveDeliveries() {
 		if (sprite == 0) {
 			sprite = unusedForSaleSignSpriteTable[rand()&3];
 		}
-		createEntity(sprite, ActionScript.unknown500, -1, 0, 0);
+		createOverworldEntity(sprite, ActionScript.unknown500, -1, 0, 0);
 	}
 }
 
@@ -21755,7 +21755,7 @@ void debugMain() {
 	entityScreenXTable[24] = 0x80;
 	entityScreenYTable[24] = 0x70;
 	if (debugModeNumber == DebugMode.viewCharacter) {
-		x1A = createEntity(debugViewCharacterSprite, ActionScript.characterViewer, -1, 0x20, 0x20);
+		x1A = createOverworldEntity(debugViewCharacterSprite, ActionScript.characterViewer, -1, 0x20, 0x20);
 		entityCallbackFlags[x1A] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 		entitySpriteMapFlags[x1A] |= SpriteMapFlags.drawDisabled;
 	}
@@ -21826,11 +21826,11 @@ void debugMain() {
 				entitySpriteMapFlags[x1A] &= ~SpriteMapFlags.drawDisabled;
 			}
 			if (debugViewCharacterSprite != x1C) {
-				unknownC02140(x1A);
-				entityNPCIDs[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
+				deleteOverworldEntity(x1A);
+				entityNPCIDs[createOverworldEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
 			}
 			if (((padPress[1] & Pad.a) != 0) && ((entityCallbackFlags[x1A] & EntityCallbackFlags.tickDisabled) == 0)) {
-				entityNPCIDs[createEntity(x1C, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
+				entityNPCIDs[createOverworldEntity(x1C, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
 			}
 			if ((padPress[1] & Pad.b) != 0) {
 				for (short i = 0; i < 0x1E; i++) {
@@ -21838,7 +21838,7 @@ void debugMain() {
 						entityPathfindingState[i] = 0;
 					}
 				}
-				entityPathfindingState[createEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
+				entityPathfindingState[createOverworldEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
 				unknownC0BD96();
 			}
 		}
@@ -21866,7 +21866,7 @@ void debugMain() {
 				openMenuButton();
 			}
 			if ((currentQueuedInteraction - nextQueuedInteraction) != 0) {
-				processQueuedInteractions();
+				processQueuedInteraction();
 			}
 			updateScreen();
 			waitUntilNextFrame();

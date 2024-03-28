@@ -1207,7 +1207,7 @@ struct SpawnEntity {
 	@Label("X") short x;
 	@Label("Y") short y;
 	void execute() const {
-		createEntity(cast(short)sprite, cast(short)script, index, x, y);
+		createOverworldEntity(cast(short)sprite, cast(short)script, index, x, y);
 	}
 }
 
