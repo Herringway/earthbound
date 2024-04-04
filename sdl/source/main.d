@@ -127,7 +127,7 @@ int main(string[] args) {
 	earthbound.commondefs.playSFX = playSFXFunction;
 	earthbound.commondefs.playMusicExternal = playMusicExternalFunction;
 	earthbound.commondefs.stopMusicExternal = stopMusicExternalFunction;
-	earthbound.commondefs.setAudioChannels = setAudioChannelsFunction;
+	earthbound.commondefs.setAudioChannelsExternal = setAudioChannelsFunction;
 	earthbound.commondefs.doMusicEffect = doMusicEffectFunction;
 	earthbound.commondefs.setStatic = setStaticFunction;
 	earthbound.commondefs.getControllerState = &earthbound.sdl.gamepad.getControllerState;

@@ -4191,10 +4191,10 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x04:
 			return &cc1F04;
 		case 0x05:
-			setBoundaryBehaviour(0);
+			setAutoSectorMusicChanges(0);
 			break;
 		case 0x06:
-			setBoundaryBehaviour(1);
+			setAutoSectorMusicChanges(1);
 			break;
 		case 0x07:
 			return &cc1F07;

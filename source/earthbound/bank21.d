@@ -104,7 +104,7 @@ immutable CreditsPhotograph[32] photographerConfigTable = [
 
 /// $E1374A
 @ROMSource(0x21374A, 2549)
-immutable(ubyte)[] compressedPaletteUnknown;
+immutable(ubyte)[] photographMapPalettes;
 
 /// $E1413F
 immutable ubyte[] staffText = convertStaffText("

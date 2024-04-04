@@ -3186,7 +3186,7 @@ void instantWinHandler() {
 	}
 	unknownC26189(0);
 	memcpy(&buffer[0], &buffer[0x2000], 0x200);
-	unknownC496E7(6, -1);
+	prepareLoadedPaletteFadeTables(6, PaletteMask.all);
 	for (short i = 0; i < 6; i++) {
 		updateMapPaletteAnimation();
 		waitUntilNextFrame();
@@ -3289,7 +3289,7 @@ void magicButterflyRecovery() {
 		for (short j = 0; j < 0x100; j++) {
 			(cast(ushort*)&palettes[0][0])[j] = 0x5D70;
 		}
-		unknownC496E7(12, -1);
+		prepareLoadedPaletteFadeTables(12, PaletteMask.all);
 		for (short j = 0; j < 12; j++) {
 			updateMapPaletteAnimation();
 			waitUntilNextFrame();
@@ -6857,7 +6857,7 @@ void battleActionPokeySpeech() {
 	displayInBattleText(getTextBlock("MSG_BTL_MECHPOKEY_1_TALK_B"));
 	battlersTable[9].consciousness = 0;
 	currentGiygasPhase = GiygasPhase.giygasStartsAttacking;
-	unknownC3FDC5();
+	nullC3FDC5();
 	giygasTransformBattler8(EnemyID.giygas4);
 	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhase2, Music.giygasPhase2);
 	skipDeathTextAndCleanup = 1;

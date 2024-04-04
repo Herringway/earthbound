@@ -549,7 +549,7 @@ short getDeliveryExitSpeed() {
 /// $EF0EAD
 void getDeliverySpriteAndPlaceholder(short arg1) {
 	newEntityVar0 = cast(short)(arg1 - 1);
-	createOverworldEntity((timedDeliveries[arg1].spriteID == 0) ? unusedForSaleSignSpriteTable[rand() & 3] : timedDeliveries[arg1].spriteID, ActionScript.unknown499, -1, 0, 0);
+	createOverworldEntity((timedDeliveries[arg1].spriteID == 0) ? forSaleSignSpriteTable[rand() & 3] : timedDeliveries[arg1].spriteID, ActionScript.unknown499, -1, 0, 0);
 }
 
 /// $EF0EE8
@@ -561,7 +561,7 @@ void resolveActiveDeliveries() {
 		newEntityVar0 = i;
 		ushort sprite = timedDeliveries[i].spriteID;
 		if (sprite == 0) {
-			sprite = unusedForSaleSignSpriteTable[rand()&3];
+			sprite = forSaleSignSpriteTable[rand()&3];
 		}
 		createOverworldEntity(sprite, ActionScript.unknown500, -1, 0, 0);
 	}
@@ -656,7 +656,7 @@ immutable(ubyte[])[] mapDataTileArrangementPtrTable;
 
 /// $EF10FB
 @mapPaletteSource
-immutable(ubyte[])[] mapPalettePointerTable;
+immutable(ubyte[])[] mapPalettes;
 
 /// $EF117B
 immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [

@@ -196,7 +196,7 @@ void adjustSpritePalettesByAverage() {
 
 /// $C005E7
 void prepareAverageForSpritePalettes() {
-	memcpy(&palettes[2][0], &mapPalettePointerTable[1][0], 0xC0);
+	memcpy(&palettes[2][0], &mapPalettes[1][0], 0xC0);
 	getColorAverage(&palettes[2][0]);
 	savedColourAverageRed = colourAverageRed;
 	savedColourAverageGreen = colourAverageGreen;
@@ -212,14 +212,19 @@ void loadCollisionData(short tileset) {
 	}
 }
 
-/// $C0067E
-void function14(short index1, short index2) {
-	ushort* x0A = &tileArrangementBuffer[index1 * 16];
-	ushort* x06 = &tileArrangementBuffer[index2 * 16];
+/** Replaces a loaded overworld block with another
+ * Params:
+ * 	target = The block being replaced
+ * 	source = The block to replace the target with
+ * Original_Address: $(DOLLAR)C0067E
+ */
+void replaceBlock(short target, short source) {
+	ushort* dest = &tileArrangementBuffer[target * 16];
+	ushort* src = &tileArrangementBuffer[source * 16];
 	for (short i = 0; i < 16; i++) {
-		*(x0A++) = *(x06++);
+		*(dest++) = *(src++);
 	}
-	tileCollisionBuffer[index1] = tileCollisionBuffer[index2];
+	tileCollisionBuffer[target] = tileCollisionBuffer[source];
 }
 
 /** Applies relevant event flag-controlled map changes for the given tileset
@@ -237,7 +242,7 @@ void loadMapBlockEventChanges(short id) {
 		if (flag == (mapBlockEvent.eventFlag >= eventFlagUnset) ? 1 : 0) {
 			const(MapBlockPair)* blockPair = &mapBlockEvent.blocks[0];
 			for (short i = mapBlockEvent.count; i != 0; i--) {
-				function14(blockPair.block1, blockPair.block2);
+				replaceBlock(blockPair.block1, blockPair.block2);
 				blockPair++;
 			}
 		}
@@ -245,23 +250,31 @@ void loadMapBlockEventChanges(short id) {
 	}
 }
 
-/// $C00778
+/** Loads sprite palette 4, using bg palette 4's transparent colour as a palette index to copy from
+ * Original_Address: $(DOLLAR)C00778
+ */
 void loadSpecialSpritePalette() {
 	if (palettes[4][0] == 0) {
 		return;
 	}
-	ushort* x10 = &palettes[palettes[4][0]][0];
-	for (short i = 0; i < 0x10; i++) {
-		palettes[12][i] = *(x10++);
+	ushort* src = &palettes[palettes[4][0]][0];
+	for (short i = 0; i < 16; i++) {
+		palettes[12][i] = *(src++);
 	}
 }
 
-/// $C007B6
-void loadMapPalette(short arg1, short arg2) {
-	const(ubyte)* x16 = &mapPalettePointerTable[arg1][arg2 * 192];
+/** Loads the specified map palette. If the flag in bg palette 2's transparent colour is set, try the palette pointed to by bg palette 3's transparent colour until a palette with a non-set flag is reached.
+ * Params:
+ * 	tileCombo = The map tile/palette combo
+ * 	palette = The subpalettes to load
+ * Original_Address: $(DOLLAR)C007B6
+ */
+void loadMapPalette(short tileCombo, short palette) {
+	enum mapPaletteSize = 6 * 16 * ushort.sizeof;
+	const(ubyte)* src = &mapPalettes[tileCombo][palette * mapPaletteSize];
 	if (photographMapLoadingMode == 0) {
 		while (true) {
-			memcpy(&palettes[2][0], x16, 0xC0);
+			memcpy(&palettes[2][0], src, mapPaletteSize);
 			if (palettes[2][0] == 0) {
 				break;
 			}
@@ -269,15 +282,20 @@ void loadMapPalette(short arg1, short arg2) {
 				break;
 			}
 			//the original code used palettes[3][0] as a raw near pointer, which isn't possible on most platforms
-			x16 = &paletteOffsetToPointer(palettes[3][0])[0];
+			src = &paletteOffsetToPointer(palettes[3][0])[0];
 		}
 	} else {
-		decomp(&compressedPaletteUnknown[0], &buffer[0]);
-		memcpy(&palettes[2][0], &buffer[photographerConfigTable[currentPhotoDisplay].creditsMapPalettesOffset], 0xC0);
+		decomp(&photographMapPalettes[0], &buffer[0]);
+		memcpy(&palettes[2][0], &buffer[photographerConfigTable[currentPhotoDisplay].creditsMapPalettesOffset], mapPaletteSize);
 	}
 }
 
-/// $C008C3
+/** Loads all map data for the specified map sector - palette, graphics, collision, etc.
+ * Params:
+ * 	x = X coordinate of the sector to load (in pixel/32 units)
+ * 	y = Y coordinate of the sector to load (in pixel/16 units)
+ * Original_Address: $(DOLLAR)C008C3
+ */
 void loadMapAtSector(short x, short y) {
 	tracef("Loading map sector %d, %d", x, y);
 	if ((currentTeleportDestinationX | currentTeleportDestinationY) != 0) {
@@ -335,9 +353,14 @@ void loadMapAtSector(short x, short y) {
 	loadedMapPalette = palette;
 }
 
-/// $C00AA1
-short loadSectorAttributes(ushort arg1, ushort arg2) {
-	currentSectorAttributes = mapDataPerSectorAttributesTable[(arg2 &0xFF80) >> 7][arg1 >> 8];
+/** Sets and retrieves the sector attributes for the specified coordinates
+ * Params:
+ * 	x = X coordinate (pixels)
+ * 	y = Y coordinate (pixels)
+ * Original_Address: $(DOLLAR)C00AA1
+ */
+short loadSectorAttributes(ushort x, ushort y) {
+	currentSectorAttributes = mapDataPerSectorAttributesTable[(y &0xFF80) >> 7][x >> 8];
 	return currentSectorAttributes;
 }
 
@@ -1133,7 +1156,7 @@ void trySpawnNPCs(short x, short y) {
 				if (0x140 <= xreg) {
 					continue;
 				}
-				x1A = -1;
+				short newEntity = -1;
 				if (photographMapLoadingMode == 0) {
 					if ((debugging != 0) && (npcConfig[npc].appearanceStyle != NPCConfigFlagStyle.showAlways) && (isDebugViewMapMode() != 0) && ((((npcConfig[npc].appearanceStyle - 2) ^ getEventFlag(npcConfig[npc].eventFlag)) & 1) == 0)) {
 						continue;
@@ -1142,19 +1165,19 @@ void trySpawnNPCs(short x, short y) {
 					}
 					if (debugging != 0) {
 						if ((showNPCFlag == 0) || (npcConfig[npc].type == 3)) {
-							x1A = createOverworldEntity(npcConfig[npc].sprite, debugViewMapLimitActionscript(npcConfig[npc].actionScript), -1, x18, x16);
+							newEntity = createOverworldEntity(npcConfig[npc].sprite, debugViewMapLimitActionscript(npcConfig[npc].actionScript), -1, x18, x16);
 						}
 					} else {
 						if ((showNPCFlag == 0) || (npcConfig[npc].type == 3)) {
-							x1A = createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, x18, x16);
+							newEntity = createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, x18, x16);
 						}
 					}
 				} else if (npcConfig[npc].appearanceStyle == NPCConfigFlagStyle.showAlways) {
-					x1A = createOverworldEntity(npcConfig[npc].sprite, ActionScript.unknown799, -1, x18, x16);
+					newEntity = createOverworldEntity(npcConfig[npc].sprite, ActionScript.creditsObject, -1, x18, x16);
 				}
-				if (x1A != -1) {
-					entityDirections[x1A] = npcConfig[npc].direction;
-					entityNPCIDs[x1A] = npc;
+				if (newEntity != -1) {
+					entityDirections[newEntity] = npcConfig[npc].direction;
+					entityNPCIDs[newEntity] = npc;
 				}
 			}
 		}
@@ -1902,7 +1925,7 @@ void getOnBicycle() {
 	entityScriptVar7Table[partyMemberEntityStart] |= PartyMemberMovementFlags.unknown12 | PartyMemberMovementFlags.unknown13;
 	entityAnimationFrames[partyMemberEntityStart] = 0;
 	entityDirections[partyMemberEntityStart] = gameState.leaderDirection;
-	setBoundaryBehaviour(0);
+	setAutoSectorMusicChanges(0);
 	gameState.leaderHasMoved = 1;
 	unread7E5DBA = 1;
 	inputDisableFrameCounter = 2;
@@ -1913,7 +1936,7 @@ void getOffBicycle() {
 	if (gameState.walkingStyle != WalkingStyle.bicycle) {
 		return;
 	}
-	setBoundaryBehaviour(1);
+	setAutoSectorMusicChanges(1);
 	if ((battleMode == BattleMode.noBattle) && (pendingInteractions == 0)) {
 		unknownC06A07();
 	}
@@ -3706,7 +3729,7 @@ void unknownC065C2(short direction) {
 
 /// $C06662
 void screenTransition(short arg1, short arg2) {
-	short x02 = screenTransitionConfigTable[arg1].duration == 0xFF ? 900 : screenTransitionConfigTable[arg1].duration;
+	short duration = screenTransitionConfigTable[arg1].duration == 0xFF ? 900 : screenTransitionConfigTable[arg1].duration;
 	unknownC42631(screenTransitionConfigTable[arg1].unknown5, screenTransitionConfigTable[arg1].direction * 4);
 	if (arg2 == 1) {
 		freezeEntities();
@@ -3714,9 +3737,9 @@ void screenTransition(short arg1, short arg2) {
 		if (screenTransitionConfigTable[arg1].animationID != 0) {
 			startSwirl(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.invert);
 		}
-		unknownC4954C(screenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
-		unknownC496E7(x02, -1);
-		for (short i = 0; i < x02; i++) {
+		multiplyPalettes(screenTransitionConfigTable[arg1].fadeMultiplier, &palettes[0][0]);
+		prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
+		for (short i = 0; i < duration; i++) {
 			if (paletteUploadMode != PaletteUpload.none) {
 				waitUntilNextFrame();
 			}
@@ -3729,7 +3752,7 @@ void screenTransition(short arg1, short arg2) {
 			unknownC4A7B0();
 			waitUntilNextFrame();
 		}
-		if (screenTransitionConfigTable[arg1].fadeStyle <= 50) {
+		if (screenTransitionConfigTable[arg1].fadeMultiplier <= 50) {
 			prepareForImmediateDMA();
 		} else {
 			memset(&palettes[0][0], 0xFF, 0x200);
@@ -3739,11 +3762,11 @@ void screenTransition(short arg1, short arg2) {
 		}
 		unfreezeEntities();
 	} else {
-		short x1D = (screenTransitionConfigTable[arg1].fadeStyle <= 50) ? 1 : 0;
+		short x1D = (screenTransitionConfigTable[arg1].fadeMultiplier <= 50) ? 1 : 0;
 		if (x1D != 0) {
 			fadeIn(1, 1);
 		} else {
-			unknownC496E7(screenTransitionConfigTable[arg1].secondaryDuration, -1);
+			prepareLoadedPaletteFadeTables(screenTransitionConfigTable[arg1].secondaryDuration, PaletteMask.all);
 		}
 		if (screenTransitionConfigTable[arg1].secondaryAnimationID != 0) {
 			startSwirl(screenTransitionConfigTable[arg1].secondaryAnimationID, screenTransitionConfigTable[arg1].secondaryAnimationFlags);
@@ -4523,7 +4546,7 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 }
 
 /// $C079EC
-short unknownC079EC(short arg1) {
+short getCreditsPhotographPartySprite(short arg1) {
 	short x = 0;
 	if ((arg1 & 0x20) != 0) {
 		x = 1;
@@ -8007,14 +8030,14 @@ void unknownC0AAAC() {
 }
 
 /// $C0AAB5
-void unknownC0AAB5(short, ref const(ubyte)* arg2) {
-	short tmp = actionScriptRead16(arg2);
+void actionScriptPerformPaletteFade(short, ref const(ubyte)* arg2) {
+	short affectedPalettes = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	short tmp2 = actionScriptRead8(arg2);
+	short multiplier = actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	short tmp3 = actionScriptRead8(arg2);
+	short duration = actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	unknownC497C0(tmp3, tmp2, tmp);
+	performPaletteFade(duration, multiplier, affectedPalettes);
 }
 
 /// $C0AACD
@@ -8627,7 +8650,7 @@ void fileSelectInit() {
 	fadeOutWithMosaic(1, 1, 0);
 	deleteEntity(partyLeaderEntity);
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
-	unknownC4FD18(gameState.soundSetting - 1);
+	setAudioChannels(gameState.soundSetting - 1);
 }
 
 /// $C0B65F
@@ -8654,7 +8677,7 @@ void unknownC0B67F() {
 	overworldEnemyMaximum = 10;
 	battleSwirlCountdown = 0;
 	pendingInteractions = 0;
-	setBoundaryBehaviour(1);
+	setAutoSectorMusicChanges(1);
 	dadPhoneTimer = 0x697;
 	setIRQCallback(&processOverworldTasks);
 	psiTeleportStyle = PSITeleportStyle.none;
@@ -10642,7 +10665,7 @@ void unknownC0ECB7() {
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	unknownC496F9();
 	memset(&palettes[0][0], 0, 0x100);
-	unknownC496E7(0xA5, 0xFF);
+	prepareLoadedPaletteFadeTables(165, PaletteMask.allBGs);
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -10782,7 +10805,7 @@ void gasStationLoad() {
 	memset(&buffer[0x40], 0, 0x20);
 	memset(&palettes[0][0], 0, 0x40);
 	memset(&palettes[3][0], 0, 0x1A0);
-	unknownC496E7(0x1E0, -1);
+	prepareLoadedPaletteFadeTables(480, PaletteMask.all);
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.bg2;
 	CGWSEL = 2;
@@ -10791,10 +10814,10 @@ void gasStationLoad() {
 }
 
 /// $C0F1D2
-void unknownC0F1D2(short arg1) {
+void unknownC0F1D2(short duration) {
 	//the original code also seems to set the bank byte separately, for some reason.
-	unknownC4954C(100, &palettes[0][0]);
-	unknownC496E7(arg1, -1);
+	multiplyPalettes(100, &palettes[0][0]);
+	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
 }
 
 /** Runs the portion of the gas station intro screen that can end early when a button is pressed
@@ -10869,19 +10892,25 @@ short gasStation() {
 	return x11;
 }
 
-/// $C0F3B2
-void unknownC0F3B2() {
+/** Loads the 'flash' palette for the gas station screen
+ * Original_Address: $(DOLLAR)C0F3B2
+ */
+void loadGasStationFlashPalette() {
 	decomp(&gasStationPalette2[0], &palettes[0][0]);
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C0F3E8
-void unknownC0F3E8() {
+/** Loads the original gas station screen palette
+ * Original_Address: $(DOLLAR)C0F3E8
+ */
+void loadGasStationPalette() {
 	decomp(&gasStationPalette[0], &palettes[0][0]);
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C0F41E
+/** Performs a single frame of scrolling for the credits scene
+ * Original_Address: $(DOLLAR)C0F41E
+ */
 void creditsScrollFrame() {
 	if (bg3YPosition > creditsNextCreditPosition) {
 		short x23 = creditsCurrentRow;
@@ -10901,7 +10930,7 @@ void creditsScrollFrame() {
 					(x17++)[0] = cast(ushort)((x1B++)[0] + 0x2000);
 					x02++;
 				}
-				unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
+				enqueueCreditsDMA(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 				break;
 			case 2:
 				creditsNextCreditPosition += 16;
@@ -10910,13 +10939,13 @@ void creditsScrollFrame() {
 					(x0A++)[0] = cast(ushort)((x1B++)[0] + 0x2410);
 					x02++;
 				}
-				unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
+				enqueueCreditsDMA(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 				if (x04 != 0x1F) {
 					x23 = cast(short)(cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)) + 0x20);
 				} else {
 					x23 = cast(short)(cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)) - 0x3E0);
 				}
-				unknownC4EFC4(0, cast(short)(x02 * 2), x23, cast(ubyte*)&bg2Buffer[x21 * 32]);
+				enqueueCreditsDMA(0, cast(short)(x02 * 2), x23, cast(ubyte*)&bg2Buffer[x21 * 32]);
 				break;
 			case 3:
 				creditsNextCreditPosition += x1B[0] * 8;
@@ -10953,13 +10982,13 @@ void creditsScrollFrame() {
 						(x0A++)[0] = cast(ushort)((creditsPlayerNameBuffer[i] & 0xF0) + creditsPlayerNameBuffer[i] + 0x2410);
 						x02++;
 					}
-					unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
+					enqueueCreditsDMA(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 					if (x04 != 0x1F) {
 						x23 = cast(short)(cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)) + 0x20);
 					} else {
 						x23 = cast(short)(cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)) - 0x3E0);
 					}
-					unknownC4EFC4(0, cast(short)(x02 * 2), x23, cast(ubyte*)&bg2Buffer[x21 * 32]);
+					enqueueCreditsDMA(0, cast(short)(x02 * 2), x23, cast(ubyte*)&bg2Buffer[x21 * 32]);
 				}
 				x1B--;
 				break;
@@ -10972,7 +11001,7 @@ void creditsScrollFrame() {
 	}
 	if (creditsRowWipeThreshold < bg3YPosition) {
 		creditsRowWipeThreshold += 8;
-		unknownC4EFC4(3, 0x40, ((((bg3YPosition / 8) - 1) & 0x1F) * 32) + 0x6C00, &blankTiles[0]);
+		enqueueCreditsDMA(3, 0x40, ((((bg3YPosition / 8) - 1) & 0x1F) * 32) + 0x6C00, &blankTiles[0]);
 	}
 	creditsScrollPosition.combined += 0x4000;
 	bg3YPosition = creditsScrollPosition.integer;

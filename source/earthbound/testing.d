@@ -170,3 +170,22 @@ DemoEntry[] generateDemoFromString(string str) @safe pure {
 	assert(generateDemoFromString("xy20ab") == [DemoEntry(frames: 20, padState: Pad.x | Pad.y), DemoEntry(frames: 1, padState: Pad.a | Pad.b), DemoEntry()]);
 	assert(generateDemoFromString(".20") == [DemoEntry(frames: 20, padState: 0), DemoEntry()]);
 }
+
+void prettyCompare(string fmt = "%s", T)(const T[] value1, const T[] value2, string file = __FILE__, size_t line = __LINE__) {
+	import core.exception : AssertError;
+	import std.range : zip;
+	import std.stdio : write, writef, writeln;
+	if (value1 != value2) {
+		foreach (a, b; zip(value1, value2)) {
+			if (a != b) {
+				write("\x1B[1;31m");
+			} else {
+				write("\x1B[1;32m");
+			}
+			writef!fmt(a);
+			write(" ");
+		}
+		writeln("\x1B[0m");
+		throw new AssertError("Assertion failure", file, line);
+	}
+}

@@ -1711,7 +1711,7 @@ enum ActionScript {
 	unknown531, //531
 	unknown532, //532
 	unknown533, //533
-	unknown534, //534
+	kingSleepingNameSummary, //534
 	animMdToto, //535
 	animMdThrk, //536
 	animMdMakyo, //537
@@ -1976,8 +1976,8 @@ enum ActionScript {
 	titleScreen9, //796
 	titleScreen10, //797
 	titleScreen11, //798
-	unknown799, //799
-	unknown800, //800
+	creditsObject, //799
+	creditsPartyMember, //800
 	castScene, // 801 - Runs the cast scene, spawning characters and adding text
 	unknown802, //802
 	unknown803, //803
@@ -2038,7 +2038,7 @@ enum ActionScript {
 	unknown858, //858
 	unknown859, //859
 	gasStationFlashing, //860
-	unknown861, //861
+	animPeopleWalk0NameSummary, //861
 	unknown862, //862
 	unknown863, //863
 	unknown864, //864
@@ -5917,6 +5917,28 @@ enum ManpuPositioning {
 	left2 = 6, /// Further to the left of the parent entity compared to `left`
 }
 
+enum PaletteMask {
+	bg0 = 1 << 0,
+	bg1 = 1 << 1,
+	bg2 = 1 << 2,
+	bg3 = 1 << 3,
+	bg4 = 1 << 4,
+	bg5 = 1 << 5,
+	bg6 = 1 << 6,
+	bg7 = 1 << 7,
+	sprite0 = 1 << 8,
+	sprite1 = 1 << 9,
+	sprite2 = 1 << 10,
+	sprite3 = 1 << 11,
+	sprite4 = 1 << 12,
+	sprite5 = 1 << 13,
+	sprite6 = 1 << 14,
+	sprite7 = 1 << 15,
+	allBGs = bg0 | bg1 | bg2 | bg3 | bg4 | bg5 | bg6 | bg7,
+	allSprites = sprite0 | sprite1 | sprite2 | sprite3 | sprite4 | sprite5 | sprite6 | sprite7,
+	all = allBGs | allSprites,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -6814,7 +6836,7 @@ struct ScreenTransitionConfig {
 	ubyte duration; ///0
 	ubyte animationID; ///1
 	ubyte animationFlags; ///2
-	ubyte fadeStyle; ///3
+	ubyte fadeMultiplier; ///3
 	ubyte direction; ///4
 	ubyte unknown5; ///5
 	ubyte slideSpeed; ///6
@@ -7210,7 +7232,7 @@ void function(ushort) playMusicExternal = (ushort) {};
 ///
 void function() stopMusicExternal = () {};
 ///
-void function(ushort) setAudioChannels = (ushort) {};
+void function(ushort) setAudioChannelsExternal = (ushort) {};
 ///
 void function(short) doMusicEffect = (short) {};
 ///
@@ -7615,7 +7637,7 @@ void XBA(T)(ref T val) {
 ///
 const(ubyte)[] paletteOffsetToPointer(ushort offset) {
 	import std.range : enumerate, slide;
-	import earthbound.bank2F : mapPalettePointerTable;
+	import earthbound.bank2F : mapPalettes;
 	static immutable ushort[] offsetList = [
 		0x7CA7,
 		0x7FA7,
@@ -7654,11 +7676,11 @@ const(ubyte)[] paletteOffsetToPointer(ushort offset) {
 	foreach (idx, pair; offsetList.slide(2).enumerate) {
 		if ((offset >= pair[0]) && (offset < pair[1])) {
 			const subOffset = (offset - pair[0]) / 0xC0;
-			return mapPalettePointerTable[idx][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
+			return mapPalettes[idx][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
 		}
 	}
 	const subOffset = (offset - offsetList[$ - 1]) / 0xC0;
-	return mapPalettePointerTable[$ - 1][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
+	return mapPalettes[$ - 1][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
 }
 ///
 size_t decompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {

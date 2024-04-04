@@ -2386,8 +2386,112 @@ immutable ubyte[13] battleFrontRowText = ebString!13("the Front Row");
 /// $C45502
 immutable ubyte[13] battleBackRowText = ebString!13("the Back Row");
 
-/// $C4550F
+/** Pointers to data used in text CC [1C 01 XX] along with types and sizes
+ * Original_Address: $(DOLLAR)C4550F
+ */
 const CC1C01Entry[96] cc1C01Table;
+
+shared static this() {
+	import std.array : join;
+	cc1C01Table = [
+		CC1C01Entry(0, null),
+		CC1C01Entry(CC1C01Type.string | gameState.mother2PlayerName.sizeof, &gameState.mother2PlayerName[0]),
+		CC1C01Entry(CC1C01Type.string | gameState.earthboundPlayerName.sizeof, &gameState.earthboundPlayerName[0]),
+		CC1C01Entry(CC1C01Type.string | gameState.petName.sizeof, &gameState.petName[0]),
+		CC1C01Entry(CC1C01Type.string | gameState.favouriteFood.sizeof, &gameState.favouriteFood[0]),
+		CC1C01Entry(CC1C01Type.string | gameState.favouriteThing.sizeof, &gameState.favouriteThing[0]),
+		CC1C01Entry(CC1C01Type.integer | gameState.moneyCarried.sizeof, &gameState.moneyCarried),
+		CC1C01Entry(CC1C01Type.integer | gameState.bankBalance.sizeof, &gameState.bankBalance),
+		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[0].name),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[0].level),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[0].exp),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[0].hp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[0].hp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[0].maxHP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[0].pp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[0].pp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[0].maxPP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[0].offense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[0].defense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[0].speed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[0].guts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[0].luck),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[0].vitality),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[0].iq),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[0].baseIQ),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[0].baseOffense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[0].baseDefense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[0].baseSpeed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[0].baseGuts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[0].baseLuck),
+		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[1].name),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[1].level),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[1].exp),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[1].hp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[1].hp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[1].maxHP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[1].pp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[1].pp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[1].maxPP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[1].offense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[1].defense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[1].speed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[1].guts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[1].luck),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[1].vitality),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[1].iq),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[1].baseIQ),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[1].baseOffense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[1].baseDefense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[1].baseSpeed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[1].baseGuts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[1].baseLuck),
+		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[2].name),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[2].level),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[2].exp),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[2].hp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[2].hp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[2].maxHP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[2].pp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[2].pp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[2].maxPP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[2].offense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[2].defense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[2].speed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[2].guts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[2].luck),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[2].vitality),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[2].iq),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[2].baseIQ),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[2].baseOffense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[2].baseDefense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[2].baseSpeed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[2].baseGuts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[2].baseLuck),
+		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[3].name),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[3].level),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[3].exp),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[3].hp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[3].hp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[3].maxHP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[3].pp.current.integer),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[3].pp.target),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[3].maxPP),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[3].offense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[3].defense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[3].speed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[3].guts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[3].luck),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[3].vitality),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[3].iq),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[3].baseIQ),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[3].baseOffense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[3].baseDefense),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[3].baseSpeed),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[3].baseGuts),
+		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[3].baseLuck),
+	];
+}
 
 /// $C4562F
 immutable ubyte[8] powersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];
@@ -3068,13 +3172,17 @@ void displayTextWindowless(const(ubyte)* script) {
 	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(script));
 }
 
-/// $C468A9
-short unknownC468A9() {
+/**
+ * Original_Address: $(DOLLAR)C468A9
+ */
+short actionScriptGetPressedButtons() {
 	return padPress[0];
 }
 
-/// $C468AF
-short unknownC468AF() {
+/** ActionScript helper: Get the current pad state
+ * Original_Address: $(DOLLAR)C468AF
+ */
+short actionScriptGetPadState() {
 	return padState[0];
 }
 
@@ -4303,30 +4411,40 @@ void makePartyLookAtActiveEntity() {
 	}
 }
 
-/// $C48BDA
-void unknownC48BDA() {
+/** ActionScript tick callback for updating animated backgrounds and misc effects each frame
+ * Original_Address: $(DOLLAR)C48BDA
+ */
+void actionScriptAnimatedBackgroundCallback() {
 	drawBattleFrame();
 }
 
-/// $C48BE1
-void unknownC48BE1() {
+/** ActionScript tick callback for setting the screen coordinates of an entity from its absolute coords relative to the BG1 position
+ * Original_Address: $(DOLLAR)C48BE1
+ */
+void actionScriptSimpleScreenPositionCallback() {
 	entityScreenXTable[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition);
 	entityScreenYTable[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition);
 }
 
-/// $C48C02
-void unknownC48C02() {
+/** ActionScript tick callback for setting the screen coordinates of an entity from its absolute coords relative to the BG1 position, offset by vars 0 + 1
+ * Original_Address: $(DOLLAR)C48C02
+ */
+void actionScriptSimpleScreenPositionCallbackOffset() {
 	entityScreenXTable[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition + entityScriptVar0Table[currentEntitySlot]);
 	entityScreenYTable[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition + entityScriptVar1Table[currentEntitySlot]);
 }
 
-/// $C48C2B
-void unknownC48C2B() {
+/** ActionScript tick callback for centering the screen on this entity's absolute coordinates
+ * Original_Address: $(DOLLAR)C48C2B
+ */
+void actionScriptCentreScreenOnEntityCallback() {
 	centerScreen(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]);
 }
 
-/// $C48C3E
-void unknownC48C3E() {
+/** ActionScript tick callback for centering the screen on this entity's absolute coordinates, offset by vars 0 + 1
+ * Original_Address: $(DOLLAR)C48C3E
+ */
+void actionScriptCentreScreenOnEntityCallbackOffset() {
 	centerScreen(cast(short)(entityAbsXTable[currentEntitySlot] + entityScriptVar0Table[currentEntitySlot]), cast(short)(entityAbsYTable[currentEntitySlot] + entityScriptVar1Table[currentEntitySlot]));
 }
 
@@ -4503,19 +4621,19 @@ short getDistanceToMagicTruffle() {
 
 
 /// $C491EE
-ushort getColourFadeSlope(ushort arg1, ushort arg2, short arg3) {
-	return cast(ushort)(((arg2 - arg1) << 8) / arg3);
+ushort getColourFadeSlope(ushort colour1, ushort colour2, short duration) {
+	return cast(ushort)(((colour2 - colour1) << 8) / duration);
 }
 
 /// $C49208
-void initializeMapPaletteFade(short arg1) {
+void initializeMapPaletteFade(short duration) {
 	ushort* endColorPtr = &paletteAnimTargetPalette()[0];
 	for (short i = 0; i < 0x60; i++) {
 		ushort endColor = endColorPtr[0];
 		ushort startColor = (&palettes[2][0])[i];
-		paletteAnimRedSlope()[i] = getColourFadeSlope(startColor & 0x1F, endColor & 0x1F, arg1);
-		paletteAnimGreenSlope()[i] = getColourFadeSlope((startColor & 0x3E0) >> 5, (endColor & 0x3E0) >> 5, arg1);
-		paletteAnimBlueSlope()[i] = getColourFadeSlope((startColor & 0x7C00) >> 10, (endColor & 0x7C00) >> 10, arg1);
+		paletteAnimRedSlope()[i] = getColourFadeSlope(startColor & 0x1F, endColor & 0x1F, duration);
+		paletteAnimGreenSlope()[i] = getColourFadeSlope((startColor & 0x3E0) >> 5, (endColor & 0x3E0) >> 5, duration);
+		paletteAnimBlueSlope()[i] = getColourFadeSlope((startColor & 0x7C00) >> 10, (endColor & 0x7C00) >> 10, duration);
 
 		paletteAnimRedAccum()[i] = ((startColor & 0x1F) << 8) & 0xFF00;
 		paletteAnimGreenAccum()[i] = (startColor & 0x3E0) << 3;
@@ -4544,15 +4662,15 @@ void stepMapPaletteFade() {
 void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 	mapPaletteAnimationLoaded = 0;
 	if (fadeDuration == 0) {
-		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
+		memcpy(&palettes[2][0], &mapPalettes[tilesetNum][paletteNum * 0xC0], 0xC0);
 	} else {
-		memcpy(&paletteAnimTargetPalette()[0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
+		memcpy(&paletteAnimTargetPalette()[0], &mapPalettes[tilesetNum][paletteNum * 0xC0], 0xC0);
 		initializeMapPaletteFade(fadeDuration);
 		for (short i = 0; i < fadeDuration; i++) {
 			waitUntilNextFrame();
 			stepMapPaletteFade();
 		}
-		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
+		memcpy(&palettes[2][0], &mapPalettes[tilesetNum][paletteNum * 0xC0], 0xC0);
 		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 		adjustSpritePalettesByAverage();
 		loadSpecialSpritePalette();
@@ -4561,15 +4679,20 @@ void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 	}
 }
 
-/// $C49496
-ushort unknownC49496(ushort colour, short arg2) {
+/** Multiplies a colour by a scalar. Multiplies each individual channel separately, and recombines them
+ * Params:
+ * 	colour = Colour to multiply
+ * 	value = Value to multiply colour by
+ * Original_Address: $(DOLLAR)C49496
+ */
+ushort multiplyColour(ushort colour, short value) {
 	ushort red;
 	ushort green;
 	ushort blue;
-	if (arg2 < 50) {
-		red = cast(ushort)((colour & 0x1F) * arg2 * 5);
-		green = cast(ushort)(((colour >> 5) & 0x1F) * arg2 * 5);
-		blue = cast(ushort)(((colour >> 10) & 0x1F) * arg2 * 5);
+	if (value < 50) {
+		red = cast(ushort)((colour & 0x1F) * value * 5);
+		green = cast(ushort)(((colour >> 5) & 0x1F) * value * 5);
+		blue = cast(ushort)(((colour >> 10) & 0x1F) * value * 5);
 		if (red > 0x1E45) {
 			red = 0x1F00;
 		}
@@ -4579,7 +4702,7 @@ ushort unknownC49496(ushort colour, short arg2) {
 		if (blue > 0x1E45) {
 			blue = 0x1F00;
 		}
-	} else if (arg2 != 50) {
+	} else if (value != 50) {
 		red = 0x1F00;
 		green = 0x1F00;
 		blue = 0x1F00;
@@ -4587,44 +4710,69 @@ ushort unknownC49496(ushort colour, short arg2) {
 	return cast(ushort)(((red >> 8) & 0xFF) | (((green >> 8) & 0xFF) << 5) | (((blue >> 8) & 0xFF) << 10));
 }
 
-/// $C4954C
-void unknownC4954C(short style, ushort* arg2) {
-	ushort* x06 = cast(ushort*)(&buffer[0]);
+/** Multiplies all the colours in the specified palette by a scalar value
+ * Params:
+ * 	multiplier = Value to multiply all colours by
+ * 	palettes = 16 palettes worth of colours
+ * Original_Address: $(DOLLAR)C4954C
+ */
+void multiplyPalettes(short multiplier, ushort* palettes) {
+	ushort* dest = cast(ushort*)(&buffer[0]);
 	for (short i = 0; i < 0x100; i++) {
-		*(x06++) = unknownC49496(*(arg2++), style);
+		*(dest++) = multiplyColour(*(palettes++), multiplier);
 	}
 }
 
-/// $C4958E
-void unknownC4958E(short arg1, short arg2, ushort* palette) {
-	ushort* x06 = cast(ushort*)&buffer[0];
-	// why clear 0x0200 - 0x1200? 0x0000-0x0700 is used here
+/** Precalculates palette tables for fading. Places six separate tables at buffer[0x200 .. 0xE00] - Separate fade slopes for red, green and blue channels, followed by separate red, green and blue values multiplied by 256
+ * Params:
+ * 	duration = Number of frames for fading
+ * 	affectedPalettes = The palettes to calculate fades for, expressed as a bitmask (See [PaletteMask])
+ * 	palette = The source palettes to calculate fades for
+ * Original_Address: $(DOLLAR)C4958E
+ */
+void preparePaletteFadeTables(short duration, ushort affectedPalettes, ushort* palette) {
+	ushort* dest = cast(ushort*)&buffer[0];
 	memset(&buffer[0x200], 0, 0x1000);
 	for (ushort i = 0; i < 0x100; i += 16) {
+		// calculate fade slopes for palette
 		for (ushort j = i; i + 16 > j; j++) {
-			ushort x02;
-			if ((arg2 & 1) != 0) {
-				x02 = x06[j];
+			ushort colour;
+			if ((affectedPalettes & 1) != 0) {
+				colour = dest[j];
 			} else {
-				x02 = palette[j];
-				x06[j] = x02;
+				colour = palette[j];
+				dest[j] = colour;
 			}
-			x06[0x100 + j] = getColourFadeSlope(palette[j] & 0x1F, x02 & 0x1F, arg1);
-			x06[0x200 + j] = getColourFadeSlope((palette[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
-			x06[0x300 + j] = getColourFadeSlope((palette[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
+			dest[0x100 + j] = getColourFadeSlope(palette[j] & 0x1F, colour & 0x1F, duration);
+			dest[0x200 + j] = getColourFadeSlope((palette[j] & 0x3E0) >> 5, (colour & 0x3E0) >> 5, duration);
+			dest[0x300 + j] = getColourFadeSlope((palette[j] & 0x7C00) >> 10, (colour & 0x7C00) >> 10, duration);
 		}
+		// multiply palette by 256
 		for (short j = i; j < i + 16; j++) {
-			x06[0x400 + j] = (palette[j] & 0x1F) << 8;
-			x06[0x500 + j] = (palette[j] & 0x3E0) << 3;
-			x06[0x600 + j] = (palette[j] & 0x7C00) >> 2;
+			dest[0x400 + j] = (palette[j] & 0x1F) << 8;
+			dest[0x500 + j] = (palette[j] & 0x3E0) << 3;
+			dest[0x600 + j] = (palette[j] & 0x7C00) >> 2;
 		}
-		arg2 >>= 1;
+		affectedPalettes >>= 1;
 	}
 }
 
-/// $C496E7
-void unknownC496E7(short arg1, short arg2) {
-	unknownC4958E(arg1, arg2, &palettes[0][0]);
+/** Prepares fade tables for the currently loaded palettes
+ * See_Also: preparePaletteFadeTables
+ * Params:
+ * 	duration = Number of fade frames
+ * 	affectedPalettes = Palettes affected by the fade (See [PaletteMask])
+ * Original_Address: $(DOLLAR)C496E7
+ */
+void prepareLoadedPaletteFadeTables(short duration, ushort affectedPalettes) {
+	preparePaletteFadeTables(duration, affectedPalettes, &palettes[0][0]);
+}
+
+unittest {
+	palettes = cast(immutable(ushort[16])[])import("intropalette.bin");
+	prepareLoadedPaletteFadeTables(480, PaletteMask.all);
+	// TODO: fixme
+	//prettyCompare!"%04X"(cast(ushort[])(buffer[0x200 .. 0xE00]), cast(immutable(ushort)[])import("introfade.bin"));
 }
 
 /// $C496F9
@@ -4638,17 +4786,26 @@ void unknownC49740() {
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C4978E
-void unknownC4978E() {
-	memcpy(&mapPaletteBackup[0][0], &palettes[0][0], 0x200);
+/** Makes a backup of the current palettes
+ * Original_Address: $(DOLLAR)C4978E
+ */
+void backupPalettes() {
+	memcpy(&mapPaletteBackup[0][0], &palettes[0][0], palettes.sizeof);
 }
 
-/// $C497C0
-void unknownC497C0(short arg1, short arg2, short arg3) {
-	unknownC4954C(arg2, &mapPaletteBackup[0][0]);
-	unknownC496E7(arg1, arg2);
-	if (arg1 != 1) {
-		for (short i = 0; i < arg1; i++) {
+/** Fades palettes to some scalar multiple of the backed up palette over the specified number of frames
+ * Params:
+ * 	duration = Number of frames the fade effect lasts for
+ * 	multiplier = The scalar value to multiply each colour in the palette by
+ * 	affectedPalettes = The palettes affected by the fade (See [PaletteMask])
+ * Original_Address: $(DOLLAR)C497C0
+ */
+void performPaletteFade(short duration, short multiplier, ushort affectedPalettes) {
+	// TODO: Fix these args
+	multiplyPalettes(multiplier, &mapPaletteBackup[0][0]);
+	prepareLoadedPaletteFadeTables(duration, multiplier);
+	if (duration != 1) {
+		for (short i = 0; i < duration; i++) {
 			updateMapPaletteAnimation();
 			waitUntilNextFrame();
 		}
@@ -5025,7 +5182,7 @@ immutable ubyte[12] battleMenuTextDoNothing = ebString!12("Do Nothing");
 /** A list of battle actions that don't ignore or force retargetting when targetted at the dead
  * Original_Address: $(DOLLAR)C4A08D
  */
-immutable ushort[33] deadTargettableActions = [
+immutable BattleActions[33] deadTargettableActions = [
 	BattleActions.psiLifeupAlpha,
 	BattleActions.psiLifeupBeta,
 	BattleActions.psiLifeupGamma,
@@ -5058,7 +5215,7 @@ immutable ushort[33] deadTargettableActions = [
 	BattleActions.action156,
 	BattleActions.action157,
 	BattleActions.action158,
-	0,
+	cast(BattleActions)0,
 ];
 
 /** Figure out which character is in greatest need of healing of a specific status effect
@@ -6606,22 +6763,22 @@ short doGameOverPaletteFade(short animFrame, short fadeDuration) {
 }
 
 /// $C4C567
-short skippablePause(short arg1) {
-	while (arg1 != 0) {
+short skippablePause(short duration) {
+	while (duration != 0) {
 		if (padPress[0] != 0) {
 			return -1;
 		}
 		waitUntilNextFrame();
-		arg1--;
+		duration--;
 	}
 	return 0;
 }
 
 /// $C4C58F
-void unknownC4C58F(short arg1) {
-	unknownC4954C(100, &palettes[0][0]);
-	unknownC496E7(arg1, -1);
-	for (short i = 0; i < arg1; i++) {
+void unknownC4C58F(short duration) {
+	multiplyPalettes(100, &palettes[0][0]);
+	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
+	for (short i = 0; i < duration; i++) {
 		updateMapPaletteAnimation();
 		waitUntilNextFrame();
 	}
@@ -6631,9 +6788,9 @@ void unknownC4C58F(short arg1) {
 }
 
 /// $C4C60E
-void unknownC4C60E(short arg1) {
-	unknownC496E7(arg1, -1);
-	for (short i = 0; i < arg1; i++) {
+void unknownC4C60E(short duration) {
+	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
+	for (short i = 0; i < duration; i++) {
 		updateMapPaletteAnimation();
 		oamClear();
 		runActionscriptFrame();
@@ -7252,7 +7409,7 @@ void townMapDebug() {
 
 /// $C4D7D9
 void displayAnimatedNamingSprite(short arg1) {
-	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1][0]; x06.sprite != 0; x06++) {
+	for (const(NamingScreenEntity)* x06 = &namingScreenEntities[arg1][0]; x06.sprite != 0; x06++) {
 		createOverworldEntity(x06.sprite, x06.script, -1, 0, 0);
 	}
 	waitForNamingScreenActionScript = 0;
@@ -7263,7 +7420,7 @@ void unknownC4D830(short arg1) {
 	while (waitForNamingScreenActionScript != 0) {
 		finishFrame();
 	}
-	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1 + 7][0]; x06.sprite != 0; x06++) {
+	for (const(NamingScreenEntity)* x06 = &namingScreenEntities[arg1 + 7][0]; x06.sprite != 0; x06++) {
 		short x = findEntityBySprite(x06.sprite);
 		if (x == -1) {
 			continue;
@@ -7299,7 +7456,7 @@ short runAttractModeScene(short arg1) {
 	initializeMiscObjectData();
 	npcSpawnsEnabled = SpawnControl.offscreenOnly;
 	enemySpawnsEnabled = SpawnControl.allDisabled;
-	setBoundaryBehaviour(0);
+	setAutoSectorMusicChanges(0);
 	entityAllocationMinSlot = partyLeaderEntity;
 	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	initEntity(1, 0, 0);
@@ -7599,28 +7756,32 @@ void displayYourSanctuaryLocation(short arg1) {
 	bg1XPosition = 0;
 }
 
-/// $C4E366 - some debugging code deleted from earthbound
+/** Some sanctuary display debugging code deleted from earthbound
+ * Original_Address: $(DOLLAR)C4E366
+ */
 void testYourSanctuaryDisplay() {
 	version(JPN) {
 		initializeYourSanctuaryDisplay();
-		short x0E = 0;
+		short location = 0;
 		while (true) {
 			bg1XPosition = 0;
 			bg1YPosition = 0;
 			updateScreen();
 			waitUntilNextFrame();
 			if ((padState[0] & Pad.r) == 0) {
-				displayYourSanctuaryLocation(x0E);
+				displayYourSanctuaryLocation(location);
 				enableYourSanctuaryDisplay();
-				if (++x0E == 8) {
-					x0E = 0;
+				if (++location == 8) {
+					location = 0;
 				}
 			}
 		}
 	}
 }
 
-/// $C4E369
+/** Loads data and prepares hardware for the cast scene
+ * Original_Address: $(DOLLAR)C4E369
+ */
 void loadCastScene() {
 	itemTransformationsLoaded = 0;
 	fadeOutWithMosaic(1, 1, 0);
@@ -7683,8 +7844,10 @@ short checkCastScrollThreshold() {
 	return result;
 }
 
-/// $C4E51E
-void unknownC4E51E() {
+/** ActionScript tick callback used for scrolling the cast scene and erasing old lines as they scroll offscreen
+ * Original_Address: $(DOLLAR)C4E51E
+ */
+void handleCastScrolling() {
 	ubyte* x06 = &buffer[0x7FFE];
 	bg3YPosition = entityAbsYTable[currentEntitySlot];
 	if (entityScriptVar7Table[currentEntitySlot] < entityAbsYTable[currentEntitySlot]) {
@@ -7718,7 +7881,7 @@ void renderCastNameText(ubyte* text, short width, short tileID) {
 		}
 		renderText(pixelWidth, fontConfigTable[0].width, charTile);
 	}
-	unknownC4EEE1(width);
+	changeVWF2BPPto3Colour(width);
 	short x04 = cast(short)(tileID * 8);
 	short x28 = tileID;
 	for (short i = 0; i < width; i++, x04 += 8, x28++) {
@@ -7811,14 +7974,6 @@ void printCastName(short name, short x, short y) {
 	copyCastNameTilemap(x, y, castSequenceFormatting[name].tileWidth);
 }
 
-/** Uploads a special cast palette, for the sprites that need it
- * $(DOLLAR)C4EC6E
- */
-void uploadSpecialCastPalette(short id) {
-	memcpy(&palettes[12][0], &buffer[0x7000 + id * 32], 0x20);
-	paletteUploadMode = PaletteUpload.objOnly;
-}
-
 /** Prints a cast name for party members
  * Params:
  * 	partyMember = The party member whose name should be printed
@@ -7847,6 +8002,14 @@ void printCastNameEntityVar0(short partyMember, short x, short y) {
 	printCastName(entityScriptVar0Table[currentEntitySlot], x, y);
 }
 
+/** Uploads a special cast palette, for the sprites that need it
+ * $(DOLLAR)C4EC6E
+ */
+void uploadSpecialCastPalette(short id) {
+	memcpy(&palettes[12][0], &buffer[0x7000 + id * 32], 0x20);
+	paletteUploadMode = PaletteUpload.objOnly;
+}
+
 /** Creates an entity with the given sprite and script relative to the active entity's (Var0, Var1) + BG3 Y position
  * Params:
  * 	sprite = An overworld sprite ID
@@ -7871,7 +8034,9 @@ short isEntityStillOnCastScreen() {
 	return result;
 }
 
-/// $C4ED0E
+/** Starts the cast scene
+ * Original_Address: $(DOLLAR)C4ED0E
+ */
 void playCastScene() {
 	loadCastScene();
 	oamClear();
@@ -7898,14 +8063,18 @@ void playCastScene() {
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 }
 
-/// $C4EEE1
-void unknownC4EEE1(short arg1) {
-	ubyte* x = &vwfBuffer[0][0];
-	for (short i = 0; i < arg1 * 16; i++) {
+/** Replaces colour 3 with colour 0 in 2bpp graphics tiles
+ * Params:
+ * 	tiles = Number of tiles to process
+ * Original_Address: $(DOLLAR)C4EEE1
+ */
+void changeVWF2BPPto3Colour(short tiles) {
+	ubyte* buffer = &vwfBuffer[0][0];
+	for (short i = 0; i < tiles * 16; i++) {
 		ubyte x0F = 0;
 		ubyte x00 = 0;
-		ubyte x0E = x[0];
-		ubyte x01 = x[1];
+		ubyte x0E = buffer[0];
+		ubyte x01 = buffer[1];
 		for (short j = 0; j < 8; j++) {
 			x00 *= 2;
 			x0F *= 2;
@@ -7919,14 +8088,21 @@ void unknownC4EEE1(short arg1) {
 			x0E *= 2;
 			x01 *= 2;
 		}
-		x[1] = x0F;
-		x[0] = x00;
-		x += 2;
+		buffer[1] = x0F;
+		buffer[0] = x00;
+		buffer += 2;
 	}
 }
 
-/// $C4EFC4
-void unknownC4EFC4(short mode, short count, short address, const(ubyte)* data) {
+/** Enqueues a credits DMA transfer
+ * Params:
+ * 	mode = DMA mode (see [earthbound.bank00.dmaTable])
+ * 	count = Number of bytes to transfer
+ * 	address = VRAM address
+ * 	data = The CPU memory buffer
+ * Original_Address: $(DOLLAR)C4EFC4
+ */
+void enqueueCreditsDMA(short mode, short count, short address, const(ubyte)* data) {
 	creditsDMAQueue[creditsDMAQueueStart].mode = cast(ubyte)mode;
 	creditsDMAQueue[creditsDMAQueueStart].count = count;
 	creditsDMAQueue[creditsDMAQueueStart].data = data;
@@ -7934,8 +8110,10 @@ void unknownC4EFC4(short mode, short count, short address, const(ubyte)* data) {
 	creditsDMAQueueStart = (creditsDMAQueueStart + 1) & 0x7F;
 }
 
-/// $C4F01D
-void unknownC4F01D() {
+/** Processes a single credits DMA queue entry, if there are any to process
+ * Original_Address: $(DOLLAR)C4F01D
+ */
+void processCreditsDMAQueue() {
 	if (creditsDMAQueueStart == creditsDMAQueueEnd) {
 		return;
 	}
@@ -7943,8 +8121,10 @@ void unknownC4F01D() {
 	creditsDMAQueueEnd = (creditsDMAQueueEnd + 1) & 0x7F;
 }
 
-/// $C4F07D
-void unknownC4F07D() {
+/** Initializes the credits scene. Sets up hardware, transfers eeded graphics data, etc.
+ * Original_Address: $(DOLLAR)C4F07D
+ */
+void initializeCreditsScene() {
 	prepareForImmediateDMA();
 	unknownC021E6();
 	creditsCurrentRow = 0;
@@ -7990,14 +8170,16 @@ void unknownC4F07D() {
 	setForceBlank();
 }
 
-/// $C4F264
-short unknownC4F264(short arg1) {
-	if (getEventFlag(photographerConfigTable[arg1].eventFlag) == 0) {
+/** Attempts to render a credits photograph on BG1
+ * Original_Address: $(DOLLAR)C4F264
+ */
+short tryRenderingPhotograph(short id) {
+	if (getEventFlag(photographerConfigTable[id].eventFlag) == 0) {
 		return 0;
 	}
 	photographMapLoadingMode = 1;
-	currentPhotoDisplay = arg1;
-	short x02 = enemySpawnsEnabled;
+	currentPhotoDisplay = id;
+	short enemySpawnFlagBackup = enemySpawnsEnabled;
 	enemySpawnsEnabled = SpawnControl.allDisabled;
 	ushort* x = cast(ushort*)&heap[0][0];
 	// the original code went way beyond the heap. the heap appears to be 0x400 bytes, so perhaps they just forgot to factor the size of a short?
@@ -8006,101 +8188,111 @@ short unknownC4F264(short arg1) {
 	}
 	paletteUploadMode = PaletteUpload.none;
 	memcpy(&palettes[1][0], &unknownE1E92A[0], 32);
-	loadMapAtPosition(photographerConfigTable[arg1].mapX, photographerConfigTable[arg1].mapY);
-	enemySpawnsEnabled = x02;
+	loadMapAtPosition(photographerConfigTable[id].mapX, photographerConfigTable[id].mapY);
+	enemySpawnsEnabled = enemySpawnFlagBackup;
 	bg2YPosition = 0;
 	bg2XPosition = 0;
 	photographMapLoadingMode = 0;
-	short x1A = 0;
+	// ensures that the photograph's entities's scripts don't all execute on the same frame, causing lag
+	short entityWaitFrames = 0;
 	for (short i = 0; i < 4; i++) {
-		if (photographerConfigTable[arg1].objectConfig[i].sprite == 0) {
+		if (photographerConfigTable[id].objectConfig[i].sprite == 0) {
 			continue;
 		}
-		newEntityVar0 = x1A++;
-		createOverworldEntity(photographerConfigTable[arg1].objectConfig[i].sprite, ActionScript.unknown799, -1, photographerConfigTable[arg1].objectConfig[i].tileX, photographerConfigTable[arg1].objectConfig[i].tileY);
+		newEntityVar0 = entityWaitFrames++;
+		createOverworldEntity(photographerConfigTable[id].objectConfig[i].sprite, ActionScript.creditsObject, -1, photographerConfigTable[id].objectConfig[i].tileX, photographerConfigTable[id].objectConfig[i].tileY);
 	}
 	for (short i = 0; i < 6; i++) {
-		if ((gameState.savedPhotoStates[arg1].partyMembers[i] & 0x1F) >= 18) {
+		if ((gameState.savedPhotoStates[id].partyMembers[i] & 0x1F) >= 18) {
 			continue;
 		}
-		if ((gameState.savedPhotoStates[arg1].partyMembers[i] & 0x1F) == 0) {
+		if ((gameState.savedPhotoStates[id].partyMembers[i] & 0x1F) == 0) {
 			continue;
 		}
-		newEntityVar0 = x1A++;
-		unknownC07A31(createOverworldEntity(unknownC079EC(gameState.savedPhotoStates[arg1].partyMembers[i]), ActionScript.unknown800, -1, photographerConfigTable[arg1].partyConfig[i].x, photographerConfigTable[arg1].partyConfig[i].y), gameState.savedPhotoStates[arg1].partyMembers[i]);
+		newEntityVar0 = entityWaitFrames++;
+		unknownC07A31(createOverworldEntity(getCreditsPhotographPartySprite(gameState.savedPhotoStates[id].partyMembers[i]), ActionScript.creditsPartyMember, -1, photographerConfigTable[id].partyConfig[i].x, photographerConfigTable[id].partyConfig[i].y), gameState.savedPhotoStates[id].partyMembers[i]);
 	}
 	return 1;
 }
 
-/// $C4F433
+/** Counts the number of photographs to display in the credits
+ * Original_Address: $(DOLLAR)C4F433
+ */
 short countPhotoFlags() {
-	short x10 = 0;
+	short result = 0;
 	for (short i = 0; i < 32; i++) {
 		if (getEventFlag(photographerConfigTable[i].eventFlag) != 0) {
-			x10++;
+			result++;
 		}
 	}
-	return x10;
+	return result;
 }
 
-/// $C4F46F
-void unknownC4F46F(short arg1) {
-	auto x0A = unknownC41FFF(cast(short)(photographerConfigTable[arg1].slideDirection * 0x400), 0x100);
-	short x18 = bg1XPosition;
-	short x16 = bg1YPosition;
-	short x02 = 0;
-	short x04 = 0;
-	for (short i = 0; i < (photographerConfigTable[arg1].slideDistance << 8) / 0x100; i++) {
-		x02 += x0A.x;
-		x04 += x0A.y;
-		bg1XPosition = cast(ushort)((x02 / 0x100) + x18);
-		bg1YPosition = cast(ushort)((x04 / 0x100) + x16);
-		bg2XPosition = cast(ushort)(x02 / 0x100);
-		bg2YPosition = cast(ushort)(x04 / 0x100);
-		unknownC4F01D();
+/** Handles the sliding animation for photographs in the credits sequence
+ * Params:
+ * 	id = A photograph index
+ * Original_Address: $(DOLLAR)C4F46F
+ */
+void slideCreditsPhotograph(short id) {
+	enum speed = 256;
+	auto slideIncrements = unknownC41FFF(cast(short)(photographerConfigTable[id].slideDirection * 0x400), speed);
+	short startX = bg1XPosition;
+	short startY = bg1YPosition;
+	short newXOffset = 0;
+	short newYOffset = 0;
+	for (short i = 0; i < (photographerConfigTable[id].slideDistance << 8) / speed; i++) {
+		newXOffset += slideIncrements.x;
+		newYOffset += slideIncrements.y;
+		bg1XPosition = cast(ushort)((newXOffset / speed) + startX);
+		bg1YPosition = cast(ushort)((newYOffset / speed) + startY);
+		bg2XPosition = cast(ushort)(newXOffset / speed);
+		bg2YPosition = cast(ushort)(newYOffset / speed);
+		processCreditsDMAQueue();
 		finishFrame();
 	}
 }
 
-/// $C4F554
+/** Plays the credits sequence
+ * Original_Address: $(DOLLAR)C4F554
+ */
 void playCredits() {
 	disabledTransitions = 1;
-	unknownC4F07D();
+	initializeCreditsScene();
 	oamClear();
 	fadeIn(1, 2);
 	short x04 = (countPhotoFlags() != 0) ? (4528 / countPhotoFlags()) : 4528;
 	short x02 = x04;
 	setIRQCallback(&creditsScrollFrame);
 	for (short i = 0; i < 32; i++) {
-		if (unknownC4F264(i) != 0) {
-			unknownC496E7(64, -1);
+		if (tryRenderingPhotograph(i) != 0) {
+			prepareLoadedPaletteFadeTables(64, PaletteMask.all);
 			for (short j = 0x40; j != 0; j--) {
 				updateMapPaletteAnimation();
-				unknownC4F01D();
+				processCreditsDMAQueue();
 				finishFrame();
 			}
 			unknownC49740();
-			unknownC4F46F(i);
+			slideCreditsPhotograph(i);
 			while (x02 > bg3YPosition) {
-				unknownC4F01D();
+				processCreditsDMAQueue();
 				finishFrame();
 			}
 			memset(&buffer[32], 0, 0x1E0);
-			unknownC496E7(64, -1);
+			prepareLoadedPaletteFadeTables(64, PaletteMask.all);
 			for (short j = 0; j < 64; j++) {
 				updateMapPaletteAnimation();
-				unknownC4F01D();
+				processCreditsDMAQueue();
 				finishFrame();
 			}
 			memset(&palettes[1][0], 0, 0x1E0);
 			preparePaletteUpload(PaletteUpload.full);
-			unknownC4F01D();
+			processCreditsDMAQueue();
 			finishFrame();
 			x02 += x04;
 		}
 	}
 	while (bg3YPosition < 4528) {
-		unknownC4F01D();
+		processCreditsDMAQueue();
 		finishFrame();
 	}
 	resetIRQCallback();
@@ -8127,7 +8319,24 @@ void playCredits() {
 	disabledTransitions = 0;
 }
 
-/// $C4FBBD
+/** Gets the real audio bank of an audio pack. Effectively a no-op in Earthbound
+ * Returns: The fixed bank portion of an audio pack
+ * Params:
+ * 	val = The bank portion of an audio pack
+ * Original_Address: $(DOLLAR)C4FB42
+ */
+ushort getAudioBank(ushort val) {
+	sequencePackMask = -1;
+	version(mother2) {
+		return cast(ushort)(val + 0xE2);
+	} else {
+		return val;
+	}
+}
+
+/** Changes the currently-playing music track
+ * Original_Address: $(DOLLAR)C4FBBD
+ */
 void changeMusic(short track) {
 	if (track == currentMusicTrack) {
 		return;
@@ -8144,119 +8353,27 @@ void changeMusic(short track) {
 	playMusicExternal(track);
 }
 
-/// $C4FB58
+/** Initializes the music subsystem
+ * Original_Address: $(DOLLAR)C4FB58
+ */
 void initializeSPC700() {
 	enableAutoSectorMusicChanges = 1;
 }
 
-/// $C4FD18
-void unknownC4FD18(short arg1) {
-	setAudioChannels(arg1);
+/** Sets number of audio channels
+ * Params:
+ * 	channels = Number of channels (minus one)
+ * Original_Address: $(DOLLAR)C4FD18
+ */
+void setAudioChannels(short channels) {
+	setAudioChannelsExternal(channels);
 }
 
-/// $C4FD45
-void setBoundaryBehaviour(short val) {
+/** Turns automatic sector music changes on or off
+ * Params:
+ * 	val = 0 to disable, 1 to enable
+ * Original_Address: $(DOLLAR)C4FD45
+ */
+void setAutoSectorMusicChanges(short val) {
 	enableAutoSectorMusicChanges = val;
-}
-
-shared static this() {
-	import std.array : join;
-	cc1C01Table = [
-		CC1C01Entry(0, null),
-		CC1C01Entry(CC1C01Type.string | gameState.mother2PlayerName.sizeof, &gameState.mother2PlayerName[0]),
-		CC1C01Entry(CC1C01Type.string | gameState.earthboundPlayerName.sizeof, &gameState.earthboundPlayerName[0]),
-		CC1C01Entry(CC1C01Type.string | gameState.petName.sizeof, &gameState.petName[0]),
-		CC1C01Entry(CC1C01Type.string | gameState.favouriteFood.sizeof, &gameState.favouriteFood[0]),
-		CC1C01Entry(CC1C01Type.string | gameState.favouriteThing.sizeof, &gameState.favouriteThing[0]),
-		CC1C01Entry(CC1C01Type.integer | gameState.moneyCarried.sizeof, &gameState.moneyCarried),
-		CC1C01Entry(CC1C01Type.integer | gameState.bankBalance.sizeof, &gameState.bankBalance),
-		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[0].name),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[0].level),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[0].exp),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[0].hp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[0].hp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[0].maxHP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[0].pp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[0].pp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[0].maxPP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[0].offense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[0].defense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[0].speed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[0].guts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[0].luck),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[0].vitality),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[0].iq),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[0].baseIQ),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[0].baseOffense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[0].baseDefense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[0].baseSpeed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[0].baseGuts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[0].baseLuck),
-		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[1].name),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[1].level),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[1].exp),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[1].hp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[1].hp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[1].maxHP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[1].pp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[1].pp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[1].maxPP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[1].offense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[1].defense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[1].speed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[1].guts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[1].luck),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[1].vitality),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[1].iq),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[1].baseIQ),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[1].baseOffense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[1].baseDefense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[1].baseSpeed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[1].baseGuts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[1].baseLuck),
-		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[2].name),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[2].level),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[2].exp),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[2].hp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[2].hp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[2].maxHP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[2].pp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[2].pp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[2].maxPP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[2].offense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[2].defense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[2].speed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[2].guts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[2].luck),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[2].vitality),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[2].iq),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[2].baseIQ),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[2].baseOffense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[2].baseDefense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[2].baseSpeed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[2].baseGuts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[2].baseLuck),
-		CC1C01Entry(CC1C01Type.string | PartyCharacter.name.sizeof, &partyCharacters[3].name),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.level.sizeof, &partyCharacters[3].level),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.exp.sizeof, &partyCharacters[3].exp),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.current.integer.sizeof, &partyCharacters[3].hp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.hp.target.sizeof, &partyCharacters[3].hp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxHP.sizeof, &partyCharacters[3].maxHP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.current.integer.sizeof, &partyCharacters[3].pp.current.integer),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.pp.target.sizeof, &partyCharacters[3].pp.target),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.maxPP.sizeof, &partyCharacters[3].maxPP),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.offense.sizeof, &partyCharacters[3].offense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.defense.sizeof, &partyCharacters[3].defense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.speed.sizeof, &partyCharacters[3].speed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.guts.sizeof, &partyCharacters[3].guts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.luck.sizeof, &partyCharacters[3].luck),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.vitality.sizeof, &partyCharacters[3].vitality),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.iq.sizeof, &partyCharacters[3].iq),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseIQ.sizeof, &partyCharacters[3].baseIQ),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseOffense.sizeof, &partyCharacters[3].baseOffense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseDefense.sizeof, &partyCharacters[3].baseDefense),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseSpeed.sizeof, &partyCharacters[3].baseSpeed),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseGuts.sizeof, &partyCharacters[3].baseGuts),
-		CC1C01Entry(CC1C01Type.integer | PartyCharacter.baseLuck.sizeof, &partyCharacters[3].baseLuck),
-	];
 }

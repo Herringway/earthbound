@@ -1160,7 +1160,7 @@ short showTitleScreen(short quick) {
 		decomp(&unknownE1AE7C[0], &palettes[8][0]);
 		unknownC496F9();
 		memset(&palettes[0][0], 0, 0x200);
-		unknownC496E7(0x3C, 0x100);
+		prepareLoadedPaletteFadeTables(60, PaletteMask.sprite0);
 		paletteUploadMode = PaletteUpload.full;
 		for (short i = 0; 0x3C > i; i++) {
 			updateMapPaletteAnimation();
@@ -1534,7 +1534,7 @@ immutable uint[3] hpMeterSpeeds = [
 ];
 
 /// $C3FD2D
-immutable NamingScreenEntity[][14] unknownC3FD2D = [
+immutable NamingScreenEntity[][14] namingScreenEntities = [
 	[
 		NamingScreenEntity(OverworldSprite.ness, ActionScript.unknown502),
 		NamingScreenEntity(OverworldSprite.nessPosing, ActionScript.unknown503),
@@ -1616,16 +1616,20 @@ immutable NamingScreenEntity[][14] unknownC3FD2D = [
 	]
 ];
 
-/// $C3FD65
+/** Table for configuring the entities that appear on the naming sequence confirmation page
+ * Original_Address: $(DOLLAR)C3FD65
+ */
 immutable FileSelectSummarySpriteConfigEntry[5] fileSelectSummarySpriteConfig = [
-	FileSelectSummarySpriteConfigEntry(OverworldSprite.ness, ActionScript.unknown861, 40, 44),
-	FileSelectSummarySpriteConfigEntry(OverworldSprite.paula, ActionScript.unknown861, 40, 76),
-	FileSelectSummarySpriteConfigEntry(OverworldSprite.jeff, ActionScript.unknown861, 40, 108),
-	FileSelectSummarySpriteConfigEntry(OverworldSprite.poo, ActionScript.unknown861, 40, 140),
-	FileSelectSummarySpriteConfigEntry(OverworldSprite.nessDogSleeping, ActionScript.unknown534, 136, 40)
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.ness, ActionScript.animPeopleWalk0NameSummary, 40, 44),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.paula, ActionScript.animPeopleWalk0NameSummary, 40, 76),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.jeff, ActionScript.animPeopleWalk0NameSummary, 40, 108),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.poo, ActionScript.animPeopleWalk0NameSummary, 40, 140),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.nessDogSleeping, ActionScript.kingSleepingNameSummary, 136, 40)
 ];
 
-/// $C3FD8D
+/** Text labels that run the attract mode demos
+ * Original_Address: $(DOLLAR)C3FD8D
+ */
 immutable string[10] attractModeText = [
 	"MSG_MD_TOTO",
 	"MSG_MD_THRK",
@@ -1639,15 +1643,19 @@ immutable string[10] attractModeText = [
 	"MSG_MD_ONET",
 ];
 
-/// $C3FDBD
-immutable ushort[4] unusedForSaleSignSpriteTable = [
+/** Table for randomly-selected for sale sign customers
+ * Original_Address: $(DOLLAR)C3FDBD
+ */
+immutable ushort[4] forSaleSignSpriteTable = [
 	OverworldSprite.guyInBlueClothes,
 	OverworldSprite.jamaicanGuy,
 	OverworldSprite.mrT,
 	OverworldSprite.oldGuyWithCane,
 ];
 
-/// $C3FDB5
+/** Base tile IDs for party member cast text rendering
+ * Original_Address: $(DOLLAR)C3FDB5
+ */
 immutable ushort[4] partyMemberCastTileIDs = [
 	0x180,
 	0x190,
@@ -1655,8 +1663,9 @@ immutable ushort[4] partyMemberCastTileIDs = [
 	0x1B0,
 ];
 
-/// $C3FDC5
-short unknownC3FDC5() {
-	//nope. not doing this one, sorry
+/** Does nothing.
+ * Original_Address: $(DOLLAR)C3FDC5
+ */
+short nullC3FDC5() {
 	return 0;
 }
