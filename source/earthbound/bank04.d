@@ -3112,32 +3112,40 @@ void displayTextForActionScript(const(ubyte)* arg1) {
 	displayText(arg1);
 }
 
-/// $C46712
-void unknownC46712() {
+/** Disables party member entities for the tessie trips
+ * Original_Address: $(DOLLAR)C46712
+ */
+void preparePartyForTessieTrip() {
 	entityCallbackFlags[gameState.partyEntities[0]] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
 	for (short i = 0; i < gameState.partyCount; i++) {
 		entitySpriteMapFlags[gameState.partyEntities[i]] |= SpriteMapFlags.drawDisabled;
 	}
 }
 
-/// $C4675C
-void unknownC4675C() {
+/** Restores party after preparePartyForTessieTrip, except for the bubble monkey
+ * Original_Address: $(DOLLAR)C4675C
+ */
+void preparePartyForTessieTripEnd() {
 	entityCallbackFlags[gameState.partyEntities[0]] &= ~(EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 	for (short i = 1; i < gameState.partyCount; i++) {
-		if (gameState.partyMemberIndex[i] == 9) {
+		if (gameState.partyMemberIndex[i] == PartyMember.bubbleMonkey) {
 			continue;
 		}
 		entitySpriteMapFlags[gameState.partyEntities[i]] &= ~SpriteMapFlags.drawDisabled;
 	}
 }
 
-/// $C467B4
-short unknownC467B4() {
+/** Generates a random number between 12 and 43 for delaying falling leaves in winters
+ * Original_Address: $(DOLLAR)C467B4
+ */
+short generateRandomLeafDelay() {
 	return cast(short)((rand() & 0x1F) + 12);
 }
 
-/// $C467C2
-short unknownC467C2() {
+/** Generates a random number for delaying falling leaves exiting the screen, ensuring a wait at least long enough to reach the bottom of the screen
+ * Original_Address: $(DOLLAR)C467C2
+ */
+short generateRandomLeafDelay2() {
 	return cast(short)((0x100 - entityScreenYTable[currentEntitySlot] / 4) + (rand() & 0x1F));
 }
 

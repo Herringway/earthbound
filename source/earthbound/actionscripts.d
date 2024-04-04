@@ -7669,7 +7669,7 @@ shared static this() {
 		SET_DIRECTION(),
 		PAUSE(2),
 		YIELD_TO_TEXT(),
-		C46712(),
+		PREPARE_PARTY_FOR_TESSIE_TRIP(),
 		MOVE_TO_SPRITE(OverworldSprite.tessie),
 		SET_X_RELATIVE(-8),
 		SET_Y_RELATIVE(-22),
@@ -7681,7 +7681,7 @@ shared static this() {
 immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScriptOutTassi1;
 shared static this() {
 	actionScriptOutTassi1 = initializeScript(actionScriptOutTassi1.length,
-		C4675C(),
+		PREPARE_PARTY_FOR_TESSIE_TRIP_END(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
@@ -7847,7 +7847,7 @@ shared static this() {
 		C46D23(),
 		SET_X_VELOCITY(-1024),
 		SET_Y_VELOCITY(1024),
-		C467B4(),
+		GENERATE_RANDOM_LEAF_DELAY(),
 		WRITE_TEMPVAR_WAITTIMER(),
 		SET_X_VELOCITY(-768),
 		SET_Y_VELOCITY(0),
@@ -7866,7 +7866,7 @@ shared static this() {
 		PAUSE(4),
 		SET_X_VELOCITY(-1024),
 		SET_Y_VELOCITY(1024),
-		C467C2(),
+		GENERATE_RANDOM_LEAF_DELAY(),
 		WRITE_TEMPVAR_WAITTIMER(),
 		GET_EVENT_FLAG(EventFlag.winsTassiEnter),
 		JUMP_IF_TRUE(&actionScriptLeaf1[14 + 6 * (const(void)*).sizeof]),
@@ -25988,10 +25988,10 @@ alias C4257F = CALL!unknownC4257F;
 alias C4258C = CALL!unknownC4258C;
 alias C425F3 = CALL!unknownC425F3;
 alias C42624 = CALL!unknownC42624;
-alias C46712 = CALL!unknownC46712;
-alias C4675C = CALL!unknownC4675C;
-alias C467B4 = CALL!unknownC467B4;
-alias C467C2 = CALL!unknownC467C2;
+alias PREPARE_PARTY_FOR_TESSIE_TRIP = CALL!preparePartyForTessieTrip;
+alias PREPARE_PARTY_FOR_TESSIE_TRIP_END = CALL!preparePartyForTessieTripEnd;
+alias GENERATE_RANDOM_LEAF_DELAY = CALL!generateRandomLeafDelay;
+alias GENERATE_RANDOM_LEAF_DELAY2 = CALL!generateRandomLeafDelay2;
 alias UNFREEZE_TESSIE_LEAVES = CALL!unfreezeTessieLeaves;
 alias C4681A = CALL!unknownC4681A;
 alias GET_PRESSED_BUTTONS = CALL!actionScriptGetPressedButtons;
