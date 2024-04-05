@@ -1120,12 +1120,12 @@ shared static this() {
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript0;
 shared static this() {
 	actionScript0 = initializeScript(actionScript0.length,
-		SET_ANIMATION_POINTER(&unknownEFF5BB[0]),
+		SET_ANIMATION_POINTER(&debugCursorSpritemap[0]),
 		SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 		SET_DRAW_CALLBACK(&unknownC0A0FA),
 		SET_ANIMATION(0),
 		PAUSE(5),
-		LOAD_KIRBY_SPRITE(),
+		LOAD_DEBUG_CURSOR_GRAPHICS(),
 		SHORTJUMP(&actionScript0[5 + 3 * (const(void)*).sizeof]),
 	);
 }
@@ -25893,7 +25893,7 @@ alias DECOMP_ITOI_PRODUCTION = CALL!decompItoiProduction;
 alias DECOMP_NINTENDO_PRESENTATION = CALL!decompNintendoPresentation;
 alias DISPLAY_ANTI_PIRACY_SCREEN = CALL!displayAntiPiracyScreen;
 alias INFLICT_SUNSTROKE_CHECK = CALL!inflictSunstrokeCheck;
-alias LOAD_KIRBY_SPRITE = CALL!loadKirbySprite;
+alias LOAD_DEBUG_CURSOR_GRAPHICS = CALL!loadDebugCursorGraphics;
 alias SRAM_CHECK_ROUTINE_CHECKSUM = CALL!sramCheckRoutineChecksum;
 alias UPDATE_MAP_PALETTE_ANIMATION = CALL!updateMapPaletteAnimation;
 alias CLEANUP_SELF = CALL!activeScriptCleanupSelf;

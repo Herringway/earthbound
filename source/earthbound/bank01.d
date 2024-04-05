@@ -7222,7 +7222,7 @@ short enterYourNamePlease(short arg1) {
 		}
 		moveCurrentTextCursor(0, 1);
 		result = textInputDialog(Window.unknown27, 24, &gameState.earthboundPlayerName[0], 0, -1);
-		unknownC4D065(&temporaryTextBuffer[0], &gameState.earthboundPlayerName[0]);
+		transliterateString(&temporaryTextBuffer[0], &gameState.earthboundPlayerName[0]);
 		memcpy(&gameState.mother2PlayerName[0], &temporaryTextBuffer[0], 12);
 	}
 	closeWindow(Window.fileSelectNamingKeyboard);

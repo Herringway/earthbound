@@ -1483,37 +1483,46 @@ short attackerIsEnemy() {
 /// $C3FB2B
 immutable ubyte[26] nameRegistryRequestString = ebString!26("Register your name, please");
 
-/// $C3FB45
-immutable ubyte[10][26] unknownC3FB45 = [
-	[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-	[0xAA, 0x00, 0x6A, 0x00, 0x7A, 0x00, 0x8A, 0x00, 0x9A, 0x00],
-	[0x62, 0x00, 0x74, 0x00, 0x82, 0x00, 0x94, 0x00, 0xA2, 0x00],
-	[0x97, 0x00, 0x97, 0x71, 0x97, 0x8E, 0xA7, 0x00, 0x67, 0x00],
-	[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-	[0x89, 0x61, 0x89, 0x71, 0x89, 0x00, 0x89, 0x91, 0x89, 0xA1],
-	[0x93, 0x00, 0xA3, 0x00, 0x63, 0x00, 0x73, 0x00, 0x83, 0x00],
-	[0x89, 0x00, 0x89, 0x00, 0x89, 0x00, 0x89, 0x00, 0x89, 0x00],
-	[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-	[0x75, 0x6E, 0x75, 0x00, 0x75, 0x8E, 0x75, 0x91, 0x75, 0xAE],
-	[0x63, 0x00, 0x73, 0x00, 0x83, 0x00, 0x93, 0x00, 0xA3, 0x00],
-	[0x7F, 0x00, 0x8F, 0x00, 0x9F, 0x00, 0xAF, 0x00, 0x6F, 0x00],
-	[0xAC, 0x00, 0x9C, 0x00, 0x9C, 0x00, 0xAC, 0x00, 0x9C, 0x00],
-	[0x6C, 0x00, 0x7C, 0x00, 0x8C, 0x00, 0x9C, 0x00, 0xAC, 0x00],
-	[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-	[0x6B, 0x00, 0x7B, 0x00, 0x8B, 0x00, 0x9B, 0x00, 0xAB, 0x00],
-	[0x82, 0x61, 0x82, 0x71, 0x82, 0x81, 0x82, 0x91, 0x82, 0xA1],
-	[0x9F, 0x00, 0x9F, 0x00, 0x9F, 0x00, 0x9F, 0x00, 0x9F, 0x00],
-	[0x94, 0x00, 0xA4, 0x00, 0x64, 0x00, 0x74, 0x00, 0x84, 0x00],
-	[0x96, 0x00, 0x96, 0x71, 0xA6, 0x81, 0x96, 0x71, 0x66, 0x81],
-	[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-	[0x6A, 0x00, 0x7A, 0x00, 0x8A, 0x00, 0x9A, 0x00, 0xAA, 0x00],
-	[0x80, 0x71, 0x80, 0x71, 0x80, 0x00, 0x80, 0x91, 0x80, 0x71],
-	[0x65, 0x00, 0x85, 0x71, 0x85, 0x00, 0x95, 0x00, 0xA5, 0x00],
-	[0x7D, 0x00, 0x70, 0x00, 0x80, 0x00, 0x70, 0x91, 0x9E, 0x00],
-	[0xA5, 0x00, 0x65, 0x00, 0x75, 0x00, 0x85, 0x00, 0x95, 0x00],
+/** Consonant/vowel pair -> hiragana mappings, used for Mother 2's player name transliteration
+ * Original_Address: $(DOLLAR)C3FB45
+ */
+immutable ubyte[2][5][26] consonantVowelTransliterationPairs = [
+	// A	I	U	E	O
+	[ebString!2(""), ebString!2(""), ebString!2(""), ebString!2(""), ebString!2("")], // A
+	[ebString!2("ぼ"), ebString!2("ば"), ebString!2("び"), ebString!2("ぶ"), ebString!2("べ")], // B
+	[ebString!2("か"), ebString!2("し"), ebString!2("く"), ebString!2("せ"), ebString!2("こ")], // C
+	[ebString!2("で"), ebString!2("でぃ"), ebString!2("でゅ"), ebString!2("ど"), ebString!2("だ")], // D
+	[ebString!2(""), ebString!2(""), ebString!2(""), ebString!2(""), ebString!2("")], // E
+	[ebString!2("ふぁ"), ebString!2("ふぃ"), ebString!2("ふ"), ebString!2("ふぇ"), ebString!2("ふぉ")], // F
+	[ebString!2("げ"), ebString!2("ご"), ebString!2("が"), ebString!2("ぎ"), ebString!2("ぐ")], // G
+	[ebString!2("ふ"), ebString!2("ふ"), ebString!2("ふ"), ebString!2("ふ"), ebString!2("ふ")], // H
+	[ebString!2(""), ebString!2(""), ebString!2(""), ebString!2(""), ebString!2("")], // I
+	[ebString!2("じゃ"), ebString!2("じ"), ebString!2("じゅ"), ebString!2("じぇ"), ebString!2("じょ")], // J
+	[ebString!2("が"), ebString!2("ぎ"), ebString!2("ぐ"), ebString!2("げ"), ebString!2("ご")], // K
+	[ebString!2("り"), ebString!2("る"), ebString!2("れ"), ebString!2("ろ"), ebString!2("ら")], // L
+	[ebString!2("も"), ebString!2("め"), ebString!2("め"), ebString!2("も"), ebString!2("め")], // M
+	[ebString!2("ま"), ebString!2("み"), ebString!2("む"), ebString!2("め"), ebString!2("も")], // N
+	[ebString!2(""), ebString!2(""), ebString!2(""), ebString!2(""), ebString!2("")], // O
+	[ebString!2("ぱ"), ebString!2("ぴ"), ebString!2("ぷ"), ebString!2("ぺ"), ebString!2("ぽ")], // P
+	[ebString!2("くぁ"), ebString!2("くぃ"), ebString!2("くぅ"), ebString!2("くぇ"), ebString!2("くぉ")], // Q
+	[ebString!2("れ"), ebString!2("れ"), ebString!2("れ"), ebString!2("れ"), ebString!2("れ")], // R
+	[ebString!2("せ"), ebString!2("そ"), ebString!2("さ"), ebString!2("し"), ebString!2("す")], // S
+	[ebString!2("て"), ebString!2("てぃ"), ebString!2("とぅ"), ebString!2("てぃ"), ebString!2("たぅ")], // T
+	[ebString!2(""), ebString!2(""), ebString!2(""), ebString!2(""), ebString!2("")], // U
+	[ebString!2("ば"), ebString!2("び"), ebString!2("ぶ"), ebString!2("べ"), ebString!2("ぼ")], // V
+	[ebString!2("うぃ"), ebString!2("うぃ"), ebString!2("う"), ebString!2("うぇ"), ebString!2("うぃ")], // W
+	[ebString!2("ざ"), ebString!2("ずぃ"), ebString!2("ず"), ebString!2("ぜ"), ebString!2("ぞ")], // X
+	[ebString!2("わ"), ebString!2("い"), ebString!2("う"), ebString!2("いぇ"), ebString!2("を")], // Y
+	[ebString!2("ぞ"), ebString!2("ざ"), ebString!2("じ"), ebString!2("ず"), ebString!2("ぜ")], // Z
 ];
 
-/// $C3FAC9
+/** Starts a battle animation, automatically selecting the animation depending on the target. No animation if targetting the tiny lil ghost.
+ * Returns: 0 if targetting friends, 1 if targetting anything else
+ * Params:
+ * 	toPartyAnimation = The animation to use if targetting friends
+ * 	toEnemyAnimation = The animation to use if targetting enemies
+ * Original_Address: $(DOLLAR)C3FAC9
+ */
 short startEnemyOrAllyBattleAnimation(ushort toPartyAnimation, ushort toEnemyAnimation) {
 	if (currentTarget.npcID == EnemyID.tinyLilGhost) {
 		return 1;
@@ -1526,14 +1535,18 @@ short startEnemyOrAllyBattleAnimation(ushort toPartyAnimation, ushort toEnemyAni
 	return 1;
 }
 
-/// $C3FB1F
+/** Normal HP meter speeds, one for each text speed
+ * Original_Address: $(DOLLAR)C3FB1F
+ */
 immutable uint[3] hpMeterSpeeds = [
 	0x12000,
 	0x11800,
 	0x11000,
 ];
 
-/// $C3FD2D
+/** Sprite+script combinations to create for the naming sequence
+ * Original_Address: $(DOLLAR)C3FD2D
+ */
 immutable NamingScreenEntity[][14] namingScreenEntities = [
 	[
 		NamingScreenEntity(OverworldSprite.ness, ActionScript.unknown502),
@@ -1643,16 +1656,6 @@ immutable string[10] attractModeText = [
 	"MSG_MD_ONET",
 ];
 
-/** Table for randomly-selected for sale sign customers
- * Original_Address: $(DOLLAR)C3FDBD
- */
-immutable ushort[4] forSaleSignSpriteTable = [
-	OverworldSprite.guyInBlueClothes,
-	OverworldSprite.jamaicanGuy,
-	OverworldSprite.mrT,
-	OverworldSprite.oldGuyWithCane,
-];
-
 /** Base tile IDs for party member cast text rendering
  * Original_Address: $(DOLLAR)C3FDB5
  */
@@ -1661,6 +1664,16 @@ immutable ushort[4] partyMemberCastTileIDs = [
 	0x190,
 	0x1A0,
 	0x1B0,
+];
+
+/** Table for randomly-selected for sale sign customers
+ * Original_Address: $(DOLLAR)C3FDBD
+ */
+immutable ushort[4] forSaleSignSpriteTable = [
+	OverworldSprite.guyInBlueClothes,
+	OverworldSprite.jamaicanGuy,
+	OverworldSprite.mrT,
+	OverworldSprite.oldGuyWithCane,
 ];
 
 /** Does nothing.

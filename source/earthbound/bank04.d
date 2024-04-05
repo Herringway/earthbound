@@ -7123,96 +7123,108 @@ void actionScriptObjFXDots() {
 	}
 }
 
-/// $C4D00F
-ubyte* unknownC4D00F(ubyte* arg1, short arg2, short arg3) {
-	const(ubyte)* x06 = &unknownC3FB45[(arg2 - 0x41)][arg3 * 2];
+/** Transliterates a consonant/vowel pair using the english alphabet to hiragana, such as "CA" -> "か"
+ * Params:
+ * 	dest = The destination buffer for transliteration
+ * 	consonant = The consonant half of the pair. Vowels are allowed, but won't produce useful results
+ * 	vowel = The vowel half of the pair. Uses gojuon ordering - 0 for 'A', 1 for 'I', 2 for 'U', 3 for 'E', 4 for 'O'
+ * Returns: The position of the destination buffer immediately after the copied characters
+ * Original_Address: $(DOLLAR)C4D00F
+ */
+ubyte* transliterateConsonantVowelPair(ubyte* dest, short consonant, short vowel) {
+	const(ubyte)* x06 = &consonantVowelTransliterationPairs[(consonant - 0x41)][vowel][0];
 	for (short i = 2; (i != 0) && (x06[0] != 0); i--) {
-		(arg1++)[0] = (x06++)[0];
+		(dest++)[0] = (x06++)[0];
 	}
-	return arg1;
+	return dest;
 }
 
-/// $C4D065
-void unknownC4D065(ubyte* arg1, ubyte* arg2) {
-	short x0E = 0;
-	while (arg2[0] != 0) {
-		short x00 = (arg2++)[0];
-		if (x0E != 0) {
-			if (x0E == x00) {
-				(arg1++)[0] = 0x7E;
+/** Transliterates an english-y string into hiragana
+ * Params:
+ * 	dest = Destination buffer
+ * 	src = Source string, null terminated
+ * Original_Address: $(DOLLAR)C4D065
+ */
+void transliterateString(ubyte* dest, const(ubyte)* src) {
+	short previousChar = 0;
+	while (src[0] != 0) {
+		short thisChar = (src++)[0];
+		if (previousChar != 0) {
+			if (previousChar == thisChar) {
+				(dest++)[0] = ebChar('っ');
 			} else {
-				switch (x00) {
-					case 0x41:
-						arg1 = unknownC4D00F(arg1, x0E, 0);
+				switch (thisChar) {
+					case 0x41: // A
+						dest = transliterateConsonantVowelPair(dest, previousChar, 0);
 						break;
-					case 0x49:
-						arg1 = unknownC4D00F(arg1, x0E, 1);
+					case 0x49: // I
+						dest = transliterateConsonantVowelPair(dest, previousChar, 1);
 						break;
-					case 0x55:
-						arg1 = unknownC4D00F(arg1, x0E, 2);
+					case 0x55: // U
+						dest = transliterateConsonantVowelPair(dest, previousChar, 2);
 						break;
-					case 0x45:
-						arg1 = unknownC4D00F(arg1, x0E, 3);
+					case 0x45: // E
+						dest = transliterateConsonantVowelPair(dest, previousChar, 3);
 						break;
-					case 0x4F:
-						arg1 = unknownC4D00F(arg1, x0E, 4);
+					case 0x4F: // O
+						dest = transliterateConsonantVowelPair(dest, previousChar, 4);
 						break;
 					default:
-						if ((0x41 <= x00) && (x00 <= 0x5A)) {
-							if (x0E == 0x4E) {
-								(arg1++)[0] = 0x9D;
+						if ((0x41 <= thisChar) && (thisChar <= 0x5A)) { // inside of A-Z range
+							if (previousChar == 0x4E) { // N, not followed by vowel
+								(dest++)[0] = ebChar('ん');
 							} else {
-								arg1 = unknownC4D00F(arg1, x0E, 1);
+								dest = transliterateConsonantVowelPair(dest, previousChar, 1); //treat as _I
 							}
-							x0E = x00;
+							previousChar = thisChar;
 							continue;
-						} else {
-							if (x0E ==0x4E) {
-								(arg1++)[0] = 0x9D;
+						} else { // outside A-Z, just copy
+							if (previousChar == 0x4E) { // N, not followed by vowel
+								(dest++)[0] = ebChar('ん');
 							} else {
-								arg1 = unknownC4D00F(arg1, x0E, 1);
+								dest = transliterateConsonantVowelPair(dest, previousChar, 1);
 							}
-							(arg1++)[0] = cast(ubyte)x00;
+							(dest++)[0] = cast(ubyte)thisChar;
 						}
 						break;
 				}
-				x0E = 0;
+				previousChar = 0;
 			}
 		} else {
-			switch (x00) {
-				case 0x41:
-					(arg1++)[0] = 0x60;
+			switch (thisChar) {
+				case 0x41: // A
+					(dest++)[0] = ebChar('あ');
 					break;
-				case 0x49:
-					(arg1++)[0] = 0x70;
+				case 0x49: // I
+					(dest++)[0] = ebChar('い');
 					break;
-				case 0x55:
-					(arg1++)[0] = 0x80;
+				case 0x55: // U
+					(dest++)[0] = ebChar('う');
 					break;
-				case 0x45:
-					(arg1++)[0] = 0x90;
+				case 0x45: // E
+					(dest++)[0] = ebChar('え');
 					break;
-				case 0x4F:
-					(arg1++)[0] = 0xA0;
+				case 0x4F: // O
+					(dest++)[0] = ebChar('お');
 					break;
 				default:
-					if ((0x41 <= x00) && (x00 <= 0x5A)) {
-						x0E = x00;
-					} else {
-						(arg1++)[0] = cast(ubyte)x00;
+					if ((0x41 <= thisChar) && (thisChar <= 0x5A)) { // inside A-Z
+						previousChar = thisChar;
+					} else { // outside A-Z, just copy
+						(dest++)[0] = cast(ubyte)thisChar;
 					}
 					break;
 			}
 		}
 	}
-	if (x0E != 0) {
-		if (x0E == 0x4E) {
-			(arg1++)[0] = 0x9D;
+	if (previousChar != 0) { // handle end character
+		if (previousChar == 0x4E) { // N
+			(dest++)[0] = ebChar('ん');
 		} else {
-			arg1 = unknownC4D00F(arg1, x0E, 1);
+			dest = transliterateConsonantVowelPair(dest, previousChar, 1); // treat as _I
 		}
 	}
-	arg1[0] = 0;
+	dest[0] = 0;
 }
 
 /// $C4D274

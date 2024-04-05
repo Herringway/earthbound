@@ -21500,7 +21500,7 @@ void unknownEFD95E() {
 		if (debugModeNumber != DebugMode.viewAttribute) {
 			palettes[0][2] = 0xFFFF;
 		} else {
-			memcpy(&palettes[0][0], &debugFontPalette[0], 0x18);
+			memcpy(&palettes[0][0], &debugFontPalette[0][0], debugFontPalette.sizeof);
 		}
 	}
 	paletteUploadMode = PaletteUpload.full;
@@ -21532,7 +21532,7 @@ void initDebugMenuScreen() {
 	setOAMSize(2);
 	buffer[0] = 0;
 	copyToVRAM(3, 0, 0, &buffer[0]);
-	memcpy(&palettes[0][0], &unknownEFF1BB[0], 0x200);
+	memcpy(&palettes[0][0], &debugMenuPalettes[0][0], 0x200);
 	unknownEFD95E();
 	entityAllocationMinSlot = 0;
 	entityAllocationMaxSlot = 1;
@@ -21681,7 +21681,12 @@ ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
 	return 0;
 }
 
-/// $EFDFC4
+/** Renders a row of attribute overlay tiles, with the leftmost tile at the given coordinates
+ * Params:
+ * 	x = Absolute X coordinate of the leftmost tile
+ * 	y = Absolute Y coordinate of the leftmost tile
+ * Original_Address: $(DOLLAR)EFDFC4
+ */
 void renderAttributeRow(ushort x, ushort y) {
 	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
@@ -21700,7 +21705,12 @@ void renderAttributeRow(ushort x, ushort y) {
 	copyToVRAM(0, 0x40, cast(ushort)(0x7C00 + y * 32), cast(ubyte*)x16);
 }
 
-/// $EFE07C
+/** Renders a column of attribute overlay tiles, with the topmost tile at the specified coordinates
+ * Params:
+ * 	x = Absolute X coordinate of the topmost tile
+ * 	y = Absolute Y coordinate of the topmost tile
+ * Original_Address: $(DOLLAR)EFE07C
+ */
 void renderAttributeColumn(short x, short y) {
 	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
@@ -21719,14 +21729,21 @@ void renderAttributeColumn(short x, short y) {
 	copyToVRAM(0x1B, 0x40, 0x7C00 + (x & 0x1F), cast(ubyte*)x16);
 }
 
-/// $EFE133
+/** Renders a tile attribute overlay on top of the entire screen, centred on the given coordinates
+ * Params:
+ * 	x = The absolute X coordinate of the centre of the screen
+ * 	y = The absolute Y coordinate of the centre of the screen
+ * Original_Address: $(DOLLAR)EFE133
+ */
 void renderAllAttributeRows(short x, short y) {
 	for (short i = -1; i != 0x1F; i++) {
 		renderAttributeRow(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
 	}
 }
 
-/// $EFE175
+/** Copy of [earthbound.bank00.ebMain] used for debug modes
+ * Original_Address: $(DOLLAR)EFE175
+ */
 void debugMain() {
 	short x1A;
 	*(cast(ushort*)&buffer[0]) = 0;
@@ -21875,13 +21892,17 @@ void debugMain() {
 	} while(true);
 }
 
-/// $EFE556
-short loadKirbySprite(short, ref const(ubyte)*) {
-	copyToVRAM(0, 0x200, 0x4000, &kirby[0]);
+/** Loads the graphics data for the debug menu cursor
+ * Original_Address: $(DOLLAR)EFE556
+ */
+short loadDebugCursorGraphics(short, ref const(ubyte)*) {
+	copyToVRAM(0, 0x200, 0x4000, &debugCursorGraphics[0]);
 	return 0;
 }
 
-/// $EFE5D3
+/** Handles the player selecting the different debug menu options
+ * Original_Address: $(DOLLAR)EFE5D3
+ */
 void debugProcessCommandSelection() {
 	if (debugMenuButtonPressed == 0) {
 		return;
@@ -21929,7 +21950,9 @@ void debugProcessCommandSelection() {
 	fadeIn(1, 1);
 }
 
-/// $EFE578
+/** Handles the player moving the cursor around on the debug menu
+ * Original_Address: $(DOLLAR)EFE578
+ */
 void debugHandleCursorMovement() {
 	if ((padHeld[0] & Pad.up) != 0) {
 		if (debugMenuCursorPosition != 0) {
@@ -21945,15 +21968,17 @@ void debugHandleCursorMovement() {
 			debugMenuCursorPosition = 0;
 		}
 	}
-	entityAbsYTable[debugCursorEntity] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
+	entityAbsYTable[debugCursorEntity] = cast(short)((debugMenuCursorPosition * 24) + 52);
 	debugMenuButtonPressed = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
 }
 
-/// $EFE689
+/** Loads and handles the debug menu
+ * Original_Address: $(DOLLAR)EFE689
+ */
 noreturn debugMenuLoad() {
 	initializePartyPointers();
-	debugStartPositionX = 0x80;
-	debugStartPositionY = 0x70;
+	debugStartPositionX = 128;
+	debugStartPositionY = 112;
 	debugViewCharacterSprite = OverworldSprite.lardnaMinch;
 	dadPhoneTimer = 0xFFFF;
 	unknownC0927C();
@@ -21970,7 +21995,10 @@ noreturn debugMenuLoad() {
 	}
 }
 
-/// $EFE6CF
+/** Tests if the game is in the 'view map' debug mode
+ * Returns: 0 if in 'view map' mode, -1 otherwise
+ * Original_Address: $(DOLLAR)EFE6CF
+ */
 short isDebugViewMapMode() {
 	if (debugModeNumber == DebugMode.viewMap) {
 		return 0;
@@ -21978,16 +22006,24 @@ short isDebugViewMapMode() {
 	return -1;
 }
 
-/// $EFE6E2 - Limits the actionscript ID of NPCs to 10? but why?
-short debugViewMapLimitActionscript(short arg1) {
-	if ((debugModeNumber == DebugMode.viewMap) && (arg1 > 10)) {
-		arg1 = 10;
+/** Limits the ActionScript ID of NPCs to 10 while in 'view map' mode
+ * Params:
+ * 	num = An ActionScript ID
+ * Returns: The ID passed, limited to 10 if in view map mode
+ * Original_Address: $(DOLLAR)EFE6E2
+ */
+short debugViewMapLimitActionscript(short num) {
+	if ((debugModeNumber == DebugMode.viewMap) && (num > 10)) {
+		num = 10;
 	}
-	return arg1;
+	return num;
 }
 
-/// $EFE708
-short unknownEFE708() {
+/** Debugging function to check if the battle should be cancelled by player input. If in view character mode, also wait until the player presses B.
+ * Returns: 0 if the battle should proceed. -1 if in view character mode, or if the player held Y while the battle started
+ * Original_Address: $(DOLLAR)EFE708
+ */
+short debugTryCancellingBattle() {
 	short result = 0;
 	if (debugModeNumber == DebugMode.viewCharacter) {
 		while ((padState[0] & Pad.b) == 0) {
@@ -22003,7 +22039,10 @@ short unknownEFE708() {
 	return result;
 }
 
-/// $EFE746
+/** Tests if the game is in the view character debug mode
+ * Returns: 0 if in view character mode, 1 otherwise
+ * Original_Address: $(DOLLAR)EFE746
+ */
 short debugCheckViewCharacterMode() {
 	if (debugModeNumber == DebugMode.viewCharacter) {
 		return 0;
@@ -22011,7 +22050,10 @@ short debugCheckViewCharacterMode() {
 	return 1;
 }
 
-/// $EFE759
+/** Tests if enemies are enabled in the current debug mode. The game must be in view character mode and the X button must be held
+ * Returns: -1 if debug enemies are enabled, 0 otherwise
+ * Original_Address: $(DOLLAR)EFE759
+ */
 short debugEnemiesEnabled() {
 	if ((debugModeNumber == DebugMode.viewCharacter) && (debugEnemiesEnabledFlag != 0)) {
 		return -1;
@@ -22019,7 +22061,9 @@ short debugEnemiesEnabled() {
 	return 0;
 }
 
-/// $EFE771
+/** Starts recording a demo to SRAM, if it's large enough (retail cartridges do not have enough SRAM for this feature)
+ * Original_Address: $(DOLLAR)EFE771
+ */
 void saveReplaySaveSlot() {
 	if (testSRAMSize() == 0) {
 		return;
@@ -22031,7 +22075,11 @@ void saveReplaySaveSlot() {
 	demoRecordingStart(sram3.ptr);
 }
 
-/// $EFE895
+/** Backs up some game state for demo playback, if SRAM is large enough for demo recording
+ * Params:
+ * 	style = Replay transition style (See [earthbound.bank10.screenTransitionConfigTable])
+ * Original_Address: $(DOLLAR)EFE895
+ */
 void storePersistentReplayState(short style) {
 	if (testSRAMSize() != 0) {
 		randABackup = randA;
@@ -22041,7 +22089,9 @@ void storePersistentReplayState(short style) {
 	}
 }
 
-/// $EFE8C7
+/** Loads game state from the replay slot in SRAM. Note that retail cartridges do not have enough SRAM for this to function
+ * Original_Address: $(DOLLAR)EFE8C7
+ */
 void loadReplaySaveSlot() {
 	if (testSRAMSize() == 0) {
 		return;
@@ -22057,7 +22107,9 @@ void loadReplaySaveSlot() {
 	demoReplayStart(sram3.ptr);
 }
 
-/// $EFEA4A
+/** Loads a demo from the demo slot in SRAM and starts playback. Note that retail cartridges do not have enough SRAM for this to function
+ * Original_Address: $(DOLLAR)EFEA4A
+ */
 void startReplay() {
 	if (testSRAMSize() == 0) {
 		return;
@@ -22072,12 +22124,16 @@ void startReplay() {
 	freezeEntities();
 }
 
-/// $EFEA9E
+/** Ends a demo replay
+ * Original_Address: $(DOLLAR)EFEA9E
+ */
 void endReplay() {
 	replayModeActive = 0;
 }
 
-/// $EFEAC8
+/** Enables the coordinate overlay's black background HDMA effect
+ * Original_Address: $(DOLLAR)EFEAC8
+ */
 void debugCheckPositionOverlayBackground() {
 	WOBJSEL = 0x20;
 	WH0 = 0x18;
@@ -22092,7 +22148,9 @@ void debugCheckPositionOverlayBackground() {
 	mirrorHDMAEN = 0x10;
 }
 
-/// $EFEB1D
+/** HDMA table for the coordinate overlay's black background
+ * Original_Address: $(DOLLAR)EFEB1D
+ */
 version(bugfix) {
 	immutable ubyte[19] checkPositionOverlayBackgroundHDMATable = [
 		11, 0x80, 0x7F, // disable window for 16 lines
@@ -22113,35 +22171,72 @@ version(bugfix) {
 	];
 }
 
-/// $EFEB2A
+/** Ends all active HDMA effects and resets the windows
+ * Original_Address: $(DOLLAR)EFEB2A
+ */
 void debugClearHDMA() {
 	mirrorHDMAEN = 0;
 	WH0 = 0x80;
 	WH1 = 0x7F;
 }
 
-/// $EFEB5F
+/** Font graphics for the boot debug menu
+ * Original_Address: $(DOLLAR)EFEB5F
+ */
 @ROMSource(0x2FEB5F, 1024)
 immutable(ubyte)[] debugMenuFont;
 
-/// $EFEF70
-immutable ubyte[47] unknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+/** Unused data
+ * Original_Address: $(DOLLAR)EFEF70
+ */
+immutable ubyte[47] unusedEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
 
-/// $EFEF9F
-immutable RGB[12] debugFontPalette = [RGB(0, 0, 0), RGB(0, 31, 31), RGB(31, 31, 6), RGB(31, 6, 6), RGB(0, 0, 0), RGB(26, 0, 26), RGB(11, 11, 31), RGB(6, 31, 6), RGB(0, 0, 0), RGB(0, 0, 26), RGB(31, 16, 0), RGB(31, 21, 21)];
+/** Font palettes used by the boot debug menu
+ * Original_Address: $(DOLLAR)EFEF9F
+ */
+immutable RGB[4][3] debugFontPalette = [
+	[ RGB(0, 0, 0), RGB(0, 31, 31), RGB(31, 31, 6), RGB(31, 6, 6), ],
+	[ RGB(0, 0, 0), RGB(26, 0, 26), RGB(11, 11, 31), RGB(6, 31, 6), ],
+	[ RGB(0, 0, 0), RGB(0, 0, 26), RGB(31, 16, 0), RGB(31, 21, 21), ],
+];
 
-/// $EFFF9F
-immutable ubyte[71] unknownEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
+/** Unused data
+ * Original_Address: $(DOLLAR)EFFF9F
+ */
+immutable ubyte[71] unusedEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
 
-/// $EFEFB7
+/** Cursor graphics for the boot debug menu
+ * Original_Address: $(DOLLAR)EFEFB7
+ */
 @ROMSource(0x2FEFB7, 288)
-immutable(ubyte)[] kirby;
+immutable(ubyte)[] debugCursorGraphics;
 
-/// $EFF1BB
-immutable ushort[256] unknownEFF1BB = [0x620C, 0x5F19, 0x5B7C, 0x7EA9, 0x0265, 0x5A94, 0x5F19, 0x7EA9, 0x0265, 0x7F64, 0x7FEF, 0x7FF8, 0x0265, 0x5287, 0x4A48, 0x7E89, 0x35AD, 0x7FD8, 0x7E67, 0x7F0B, 0x0265, 0x7E67, 0x7E89, 0x7F0A, 0x0265, 0x45FF, 0x0000, 0x1CF7, 0x0000, 0x7FFF, 0x43FF, 0x3D5F, 0x35AD, 0x0000, 0x0006, 0x000D, 0x1CF7, 0x2D5A, 0x45FF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x7FFF, 0x35AD, 0x3D28, 0x637B, 0x55EE, 0x7BFF, 0x7D5F, 0x3095, 0x7FFF, 0x7FFF, 0x726F, 0x3480, 0x5DE7, 0x0000, 0x7F73, 0x7F3F, 0x7D5F, 0x35AD, 0x211F, 0x1094, 0x000C, 0x0000, 0x0000, 0x03E0, 0x4314, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x1E41, 0x2EC5, 0x3F49, 0x00A6, 0x012A, 0x09AE, 0x1611, 0x2274, 0x2ED7, 0x3B3A, 0x19A6, 0x2EAB, 0x19B5, 0x42BB, 0x5F5F, 0x35AD, 0x2BF4, 0x032F, 0x0227, 0x7FFF, 0x2085, 0x70A5, 0x7EE1, 0x1A7D, 0x277F, 0x6EF8, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x03E0, 0x3907, 0x456A, 0x51CD, 0x5E30, 0x51D2, 0x5B39, 0x637B, 0x6BBD, 0x73FF, 0x31D0, 0x1D2B, 0x35F1, 0x214C, 0x4C9A, 0x2D6B, 0x0421, 0x2C9C, 0x453F, 0x61DF, 0x7A7F, 0x7F5F, 0x294A, 0x7FFF, 0x1CE7, 0x35AD, 0x000B, 0x2D29, 0x4A30, 0x6B58, 0x7FFF, 0x2D6B, 0x0C63, 0x00D4, 0x11F9, 0x331C, 0x537D, 0x6BFF, 0x294A, 0x7FFF, 0x1CE7, 0x1869, 0x3CDF, 0x61DF, 0x7A7F, 0x7F5F, 0x7FFF, 0x2D6B, 0x0C63, 0x01C0, 0x0240, 0x0300, 0x03E0, 0x77FC, 0x33D5, 0x0220, 0x5BFD, 0x0CC8, 0x09D1, 0x0297, 0x033F, 0x5FFF, 0x7FFF, 0x2D6B, 0x02B5, 0x0318, 0x037B, 0x03FF, 0x6FFF, 0x01EF, 0x2ED7, 0x4BBE, 0x4E73, 0x1CE7, 0x314A, 0x41CF, 0x4E52, 0x6B5A, 0x7FFF, 0x2D6B, 0x0000, 0x0005, 0x0010, 0x00BF, 0x067F, 0x27EB, 0x5B39, 0x637B, 0x6BBD, 0x105A, 0x21D0, 0x090A, 0x00C8, 0x03E0, 0x7FFF, 0x2D6B, 0x0000, 0x08EA, 0x2592, 0x3277, 0x00E0, 0x0180, 0x02C0, 0x00C9, 0x2995, 0x46BA, 0x102A, 0x3CF9, 0x727F, 0x14A5, 0x7FFF, 0x2D6B, 0x0000, 0x0924, 0x1607, 0x1D90, 0x3698, 0x5F5F, 0x2D34, 0x55FD, 0x7FFF, 0x00A9, 0x0112, 0x01F6, 0x1CE7, 0x3DEF, 0x7FFF, 0x2D6B, 0x0000, 0x0000, 0x0000, 0x0903, 0x1E08, 0x36ED, 0x0000, 0x0000, 0x033F, 0x1A57, 0x158F, 0x03FF, 0x0299, 0x01D1, 0x7FFF];
+/** Palettes used for the boot debug menu
+ * Original_Address: $(DOLLAR)EFF1BB
+ */
+immutable RGB[16][16] debugMenuPalettes = [
+	[RGB(12, 16, 24), RGB(25, 24, 23), RGB(28, 27, 22), RGB(9, 21, 31), RGB(5, 19, 0), RGB(20, 20, 22), RGB(25, 24, 23), RGB(9, 21, 31), RGB(5, 19, 0), RGB(4, 27, 31), RGB(15, 31, 31), RGB(24, 31, 31), RGB(5, 19, 0), RGB(7, 20, 20), RGB(8, 18, 18), RGB(9, 20, 31)],
+	[RGB(13, 13, 13), RGB(24, 30, 31), RGB(7, 19, 31), RGB(11, 24, 31), RGB(5, 19, 0), RGB(7, 19, 31), RGB(9, 20, 31), RGB(10, 24, 31), RGB(5, 19, 0), RGB(31, 15, 17), RGB(0, 0, 0), RGB(23, 7, 7), RGB(0, 0, 0), RGB(31, 31, 31), RGB(31, 31, 16), RGB(31, 10, 15)],
+	[RGB(13, 13, 13), RGB(0, 0, 0), RGB(6, 0, 0), RGB(13, 0, 0), RGB(23, 7, 7), RGB(26, 10, 11), RGB(31, 15, 17), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(31, 31, 31)],
+	[RGB(13, 13, 13), RGB(8, 9, 15), RGB(27, 27, 24), RGB(14, 15, 21), RGB(31, 31, 30), RGB(31, 10, 31), RGB(21, 4, 12), RGB(31, 31, 31), RGB(31, 31, 31), RGB(15, 19, 28), RGB(0, 4, 13), RGB(7, 15, 23), RGB(0, 0, 0), RGB(19, 27, 31), RGB(31, 25, 31), RGB(31, 10, 31)],
+	[RGB(13, 13, 13), RGB(31, 8, 8), RGB(20, 4, 4), RGB(12, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 31, 0), RGB(20, 24, 16), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0)],
+	[RGB(13, 13, 13), RGB(1, 18, 7), RGB(5, 22, 11), RGB(9, 26, 15), RGB(6, 5, 0), RGB(10, 9, 0), RGB(14, 13, 2), RGB(17, 16, 5), RGB(20, 19, 8), RGB(23, 22, 11), RGB(26, 25, 14), RGB(6, 13, 6), RGB(11, 21, 11), RGB(21, 13, 6), RGB(27, 21, 16), RGB(31, 26, 23)],
+	[RGB(13, 13, 13), RGB(20, 31, 10), RGB(15, 25, 0), RGB(7, 17, 0), RGB(31, 31, 31), RGB(5, 4, 8), RGB(5, 5, 28), RGB(1, 23, 31), RGB(29, 19, 6), RGB(31, 27, 9), RGB(24, 23, 27), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0)],
+	[RGB(13, 13, 13), RGB(0, 31, 0), RGB(7, 8, 14), RGB(10, 11, 17), RGB(13, 14, 20), RGB(16, 17, 23), RGB(18, 14, 20), RGB(25, 25, 22), RGB(27, 27, 24), RGB(29, 29, 26), RGB(31, 31, 28), RGB(16, 14, 12), RGB(11, 9, 7), RGB(17, 15, 13), RGB(12, 10, 8), RGB(26, 4, 19)],
+	[RGB(11, 11, 11), RGB(1, 1, 1), RGB(28, 4, 11), RGB(31, 9, 17), RGB(31, 14, 24), RGB(31, 19, 30), RGB(31, 26, 31), RGB(10, 10, 10), RGB(31, 31, 31), RGB(7, 7, 7), RGB(13, 13, 13), RGB(11, 0, 0), RGB(9, 9, 11), RGB(16, 17, 18), RGB(24, 26, 26), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(3, 3, 3), RGB(20, 6, 0), RGB(25, 15, 4), RGB(28, 24, 12), RGB(29, 27, 20), RGB(31, 31, 26), RGB(10, 10, 10), RGB(31, 31, 31), RGB(7, 7, 7), RGB(9, 3, 6), RGB(31, 6, 15), RGB(31, 14, 24), RGB(31, 19, 30), RGB(31, 26, 31), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(3, 3, 3), RGB(0, 14, 0), RGB(0, 18, 0), RGB(0, 24, 0), RGB(0, 31, 0), RGB(28, 31, 29), RGB(21, 30, 12), RGB(0, 17, 0), RGB(29, 31, 22), RGB(8, 6, 3), RGB(17, 14, 2), RGB(23, 20, 0), RGB(31, 25, 0), RGB(31, 31, 23), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(21, 21, 0), RGB(24, 24, 0), RGB(27, 27, 0), RGB(31, 31, 0), RGB(31, 31, 27), RGB(15, 15, 0), RGB(23, 22, 11), RGB(30, 29, 18), RGB(19, 19, 19), RGB(7, 7, 7), RGB(10, 10, 12), RGB(15, 14, 16), RGB(18, 18, 19), RGB(26, 26, 26), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(0, 0, 0), RGB(5, 0, 0), RGB(16, 0, 0), RGB(31, 5, 0), RGB(31, 19, 1), RGB(11, 31, 9), RGB(25, 25, 22), RGB(27, 27, 24), RGB(29, 29, 26), RGB(26, 2, 4), RGB(16, 14, 8), RGB(10, 8, 2), RGB(8, 6, 0), RGB(0, 31, 0), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(0, 0, 0), RGB(10, 7, 2), RGB(18, 12, 9), RGB(23, 19, 12), RGB(0, 7, 0), RGB(0, 12, 0), RGB(0, 22, 0), RGB(9, 6, 0), RGB(21, 12, 10), RGB(26, 21, 17), RGB(10, 1, 4), RGB(25, 7, 15), RGB(31, 19, 28), RGB(5, 5, 5), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(0, 0, 0), RGB(4, 9, 2), RGB(7, 16, 5), RGB(16, 12, 7), RGB(24, 20, 13), RGB(31, 26, 23), RGB(20, 9, 11), RGB(29, 15, 21), RGB(31, 31, 31), RGB(9, 5, 0), RGB(18, 8, 0), RGB(22, 15, 0), RGB(7, 7, 7), RGB(15, 15, 15), RGB(31, 31, 31)],
+	[RGB(11, 11, 11), RGB(0, 0, 0), RGB(0, 0, 0), RGB(0, 0, 0), RGB(3, 8, 2), RGB(8, 16, 7), RGB(13, 23, 13), RGB(0, 0, 0), RGB(0, 0, 0), RGB(31, 25, 0), RGB(23, 18, 6), RGB(15, 12, 5), RGB(31, 31, 0), RGB(25, 20, 0), RGB(17, 14, 0), RGB(31, 31, 31)],
+];
 
-/// $EFF5BB
-immutable SpriteMap*[1] unknownEFF5BB = [[
+/** Cursor spritemap for the boot debug menu
+ * Original_Address: $(DOLLAR)EFF5BB
+ */
+immutable SpriteMap*[1] debugCursorSpritemap = [[
 	SpriteMap(0xF4, 0x00, 0x30, 0xF4, 0x00),
 	SpriteMap(0xF4, 0x01, 0x30, 0xFC, 0x00),
 	SpriteMap(0xF4, 0x02, 0x30, 0x04, 0x00),

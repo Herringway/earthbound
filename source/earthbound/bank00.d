@@ -8707,7 +8707,8 @@ void initBattleOverworld() {
 	if (battleMode == BattleMode.noBattle) {
 		return;
 	}
-	if ((debugging == 0) || (unknownEFE708() != -1)) {
+	// if in debug mode, don't start battle until player releases Y button
+	if ((debugging == 0) || (debugTryCancellingBattle() != -1)) {
 		if (instantWinCheck() != 0) {
 			instantWinHandler();
 			battleMode = BattleMode.noBattle;
