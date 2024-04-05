@@ -283,7 +283,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugCheckPositionOverlayBackground" class="public" href="../earthbound/bank2F/debugCheckPositionOverlayBackground.html">debugCheckPositionOverlayBackground</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFEAC8
+						<td>Enables the coordinate overlay's black background HDMA effect
 </td>
 					</tr>
 					<tr>
@@ -292,7 +292,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugCheckViewCharacterMode" class="public" href="../earthbound/bank2F/debugCheckViewCharacterMode.html">debugCheckViewCharacterMode</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE746
+						<td>Tests if the game is in the view character debug mode
 </td>
 					</tr>
 					<tr>
@@ -301,7 +301,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugClearHDMA" class="public" href="../earthbound/bank2F/debugClearHDMA.html">debugClearHDMA</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFEB2A
+						<td>Ends all active HDMA effects and resets the windows
 </td>
 					</tr>
 					<tr>
@@ -319,7 +319,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugEnemiesEnabled" class="public" href="../earthbound/bank2F/debugEnemiesEnabled.html">debugEnemiesEnabled</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE759
+						<td>Tests if enemies are enabled in the current debug mode. The game must be in view character mode and the X button must be held
 </td>
 					</tr>
 					<tr>
@@ -328,7 +328,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugHandleCursorMovement" class="public" href="../earthbound/bank2F/debugHandleCursorMovement.html">debugHandleCursorMovement</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE578
+						<td>Handles the player moving the cursor around on the debug menu
 </td>
 					</tr>
 					<tr>
@@ -337,7 +337,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugMain" class="public" href="../earthbound/bank2F/debugMain.html">debugMain</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE175
+						<td>Copy of [earthbound.bank00.ebMain] used for debug modes
 </td>
 					</tr>
 					<tr>
@@ -346,7 +346,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugMenuLoad" class="public" href="../earthbound/bank2F/debugMenuLoad.html">debugMenuLoad</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE689
+						<td>Loads and handles the debug menu
 </td>
 					</tr>
 					<tr>
@@ -355,7 +355,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugProcessCommandSelection" class="public" href="../earthbound/bank2F/debugProcessCommandSelection.html">debugProcessCommandSelection</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE5D3
+						<td>Handles the player selecting the different debug menu options
 </td>
 					</tr>
 					<tr>
@@ -370,10 +370,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="debugViewMapLimitActionscript" class="public" href="../earthbound/bank2F/debugViewMapLimitActionscript.html">debugViewMapLimitActionscript</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="debugTryCancellingBattle" class="public" href="../earthbound/bank2F/debugTryCancellingBattle.html">debugTryCancellingBattle</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE6E2 - Limits the actionscript ID of NPCs to 10? but why?
+						<td>Debugging function to check if the battle should be cancelled by player input. If in view character mode, also wait until the player presses B.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="debugViewMapLimitActionscript" class="public" href="../earthbound/bank2F/debugViewMapLimitActionscript.html">debugViewMapLimitActionscript</a><span class="tableEntryAnnotation">(num)</span>
+							</code>
+						</td>
+						<td>Limits the ActionScript ID of NPCs to 10 while in 'view map' mode
 </td>
 					</tr>
 					<tr>
@@ -418,7 +427,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="endReplay" class="public" href="../earthbound/bank2F/endReplay.html">endReplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFEA9E
+						<td>Ends a demo replay
 </td>
 					</tr>
 					<tr>
@@ -553,7 +562,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="isDebugViewMapMode" class="public" href="../earthbound/bank2F/isDebugViewMapMode.html">isDebugViewMapMode</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE6CF
+						<td>Tests if the game is in the 'view map' debug mode
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadDebugCursorGraphics" class="public" href="../earthbound/bank2F/loadDebugCursorGraphics.html">loadDebugCursorGraphics</a><span class="tableEntryAnnotation">(__param_0, __param_1)</span>
+							</code>
+						</td>
+						<td>Loads the graphics data for the debug menu cursor
 </td>
 					</tr>
 					<tr>
@@ -568,19 +586,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="loadKirbySprite" class="public" href="../earthbound/bank2F/loadKirbySprite.html">loadKirbySprite</a><span class="tableEntryAnnotation">(__param_0, __param_1)</span>
-							</code>
-						</td>
-						<td>$EFE556
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="loadReplaySaveSlot" class="public" href="../earthbound/bank2F/loadReplaySaveSlot.html">loadReplaySaveSlot</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE8C7
+						<td>Loads game state from the replay slot in SRAM. Note that retail cartridges do not have enough SRAM for this to function
 </td>
 					</tr>
 					<tr>
@@ -607,7 +616,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderAllAttributeRows" class="public" href="../earthbound/bank2F/renderAllAttributeRows.html">renderAllAttributeRows</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$EFE133
+						<td>Renders a tile attribute overlay on top of the entire screen, centred on the given coordinates
 </td>
 					</tr>
 					<tr>
@@ -616,7 +625,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderAttributeColumn" class="public" href="../earthbound/bank2F/renderAttributeColumn.html">renderAttributeColumn</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$EFE07C
+						<td>Renders a column of attribute overlay tiles, with the topmost tile at the specified coordinates
 </td>
 					</tr>
 					<tr>
@@ -625,7 +634,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderAttributeRow" class="public" href="../earthbound/bank2F/renderAttributeRow.html">renderAttributeRow</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$EFDFC4
+						<td>Renders a row of attribute overlay tiles, with the leftmost tile at the given coordinates
 </td>
 					</tr>
 					<tr>
@@ -706,7 +715,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="saveReplaySaveSlot" class="public" href="../earthbound/bank2F/saveReplaySaveSlot.html">saveReplaySaveSlot</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFE771
+						<td>Starts recording a demo to SRAM, if it's large enough (retail cartridges do not have enough SRAM for this feature)
 </td>
 					</tr>
 					<tr>
@@ -778,7 +787,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startReplay" class="public" href="../earthbound/bank2F/startReplay.html">startReplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFEA4A
+						<td>Loads a demo from the demo slot in SRAM and starts playback. Note that retail cartridges do not have enough SRAM for this to function
 </td>
 					</tr>
 					<tr>
@@ -796,7 +805,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="storePersistentReplayState" class="public" href="../earthbound/bank2F/storePersistentReplayState.html">storePersistentReplayState</a><span class="tableEntryAnnotation">(style)</span>
 							</code>
 						</td>
-						<td>$EFE895
+						<td>Backs up some game state for demo playback, if SRAM is large enough for demo recording
 </td>
 					</tr>
 					<tr>
@@ -847,15 +856,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownEFE708" class="public" href="../earthbound/bank2F/unknownEFE708.html">unknownEFE708</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EFE708
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="validateSaveBlockChecksums" class="public" href="../earthbound/bank2F/validateSaveBlockChecksums.html">validateSaveBlockChecksums</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
@@ -880,7 +880,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFEB1D
+						<td>HDMA table for the coordinate overlay's black background
 </td>
 					</tr>
 					<tr>
@@ -897,14 +897,38 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="debugCursorGraphics" class="public" href="../earthbound/bank2F/debugCursorGraphics.html">
+								<code>debugCursorGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Cursor graphics for the boot debug menu
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="debugCursorSpritemap" class="public" href="../earthbound/bank2F/debugCursorSpritemap.html">
+								<code>debugCursorSpritemap</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">*</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Cursor spritemap for the boot debug menu
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="debugFontPalette" class="public" href="../earthbound/bank2F/debugFontPalette.html">
 								<code>debugFontPalette</code>
 							</a>
 						</td>
 						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">12</span><span class="pun">]</span><span class="pun">)</span></code>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFEF9F
+						<td>Font palettes used by the boot debug menu
 </td>
 					</tr>
 					<tr>
@@ -916,7 +940,19 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>$EFEB5F
+						<td>Font graphics for the boot debug menu
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="debugMenuPalettes" class="public" href="../earthbound/bank2F/debugMenuPalettes.html">
+								<code>debugMenuPalettes</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Palettes used for the boot debug menu
 </td>
 					</tr>
 					<tr>
@@ -941,18 +977,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<a id="kirby" class="public" href="../earthbound/bank2F/kirby.html">
-								<code>kirby</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$EFEFB7
-</td>
 					</tr>
 					<tr>
 						<td>
@@ -1028,8 +1052,8 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="mapPalettePointerTable" class="public" href="../earthbound/bank2F/mapPalettePointerTable.html">
-								<code>mapPalettePointerTable</code>
+							<a id="mapPalettes" class="public" href="../earthbound/bank2F/mapPalettes.html">
+								<code>mapPalettes</code>
 							</a>
 						</td>
 						<td>
@@ -1112,50 +1136,26 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownEFEF70" class="public" href="../earthbound/bank2F/unknownEFEF70.html">
-								<code>unknownEFEF70</code>
+							<a id="unusedEFEF70" class="public" href="../earthbound/bank2F/unusedEFEF70.html">
+								<code>unusedEFEF70</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">47</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFEF70
+						<td>Unused data
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownEFEF9F" class="public" href="../earthbound/bank2F/unknownEFEF9F.html">
-								<code>unknownEFEF9F</code>
+							<a id="unusedEFEF9F" class="public" href="../earthbound/bank2F/unusedEFEF9F.html">
+								<code>unusedEFEF9F</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">71</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFFF9F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownEFF1BB" class="public" href="../earthbound/bank2F/unknownEFF1BB.html">
-								<code>unknownEFF1BB</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">256</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EFF1BB
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownEFF5BB" class="public" href="../earthbound/bank2F/unknownEFF5BB.html">
-								<code>unknownEFF5BB</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">*</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EFF5BB
+						<td>Unused data
 </td>
 					</tr>
 				</table>

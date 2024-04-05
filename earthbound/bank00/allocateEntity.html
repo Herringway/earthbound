@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function allocateEntity</h1><p>$C09C02 - allocates an entity slot
+			<h1>Function allocateEntity</h1><p>Allocates an unused slot for a new entity
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -164,7 +164,20 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="flag">flag</td><td> True if the allocation failed, false if successful (Originally indicated by the carry flag)</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The new entity slot, or -1 if a failure occurred (Originally garbage on failure)
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C09C02
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

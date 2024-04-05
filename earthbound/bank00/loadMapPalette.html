@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function loadMapPalette</h1><p>$C007B6
+			<h1>Function loadMapPalette</h1><p>Loads the specified map palette. If the flag in bg palette 2's transparent colour is set, try the palette pointed to by bg palette 3's transparent colour until a palette with a non-set flag is reached.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,26 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">loadMapPalette</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tileCombo</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">palette</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tileCombo">tileCombo</td><td> The map tile/palette combo</td></tr>
+<tr><td id="palette">palette</td><td> The subpalettes to load</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C007B6
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

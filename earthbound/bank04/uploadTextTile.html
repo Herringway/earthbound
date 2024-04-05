@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function uploadTextTile</h1><p>$C4002F
+			<h1>Function uploadTextTile</h1><p>Uploads a single 8x16 text tile into VRAM
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,18 +157,29 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">uploadTextTile</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">id</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">dest1</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">dest2</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> VWF tile index</td></tr>
+<tr><td id="dest1">dest1</td><td> Tile offset for the upper half</td></tr>
+<tr><td id="dest2">dest2</td><td> Tile offset for the lower half</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C4002F
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

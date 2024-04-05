@@ -149,7 +149,8 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function spawnEnemiesRow</h1><p>$C02A6B
+			<h1>Function spawnEnemiesRow</h1><p>Attempts to spawn enemies when the player moves vertically. Makes up to six attempts for each of six of the enemy sectors at the top or bottom of the screen.
+ Enemies will not spawn if sysMonsterOff or winGiegu are set, if enemySpawnsEnabled is set to allDisabled, or if the row is out of bounds or perfectly divisible by 8.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,7 +167,17 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tileX">tileX</td><td> The X tile coordinate of the row (leftmost edge)</td></tr>
+<tr><td id="tileY">tileY</td><td> The Y tile coordinate of the row</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C02A6B
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

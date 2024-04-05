@@ -149,7 +149,10 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function handleNormalMovement</h1><p>$C0449B
+			<h1>Function handleNormalMovement</h1><p>Handle a single frame of standard movement, from determining movement direction from input to collision checks to setting the player's final position.
+ Decrease battle countdown if active, performing the entity collision checks necessary for other enemies to join in.
+ Movement on stairs is restricted to two directions, depending on their orientation.
+ Also checks for active hotspot collisions, but only one of the two are checked per frame.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -159,7 +162,11 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Original Address</h2>
+<p>C0449B
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

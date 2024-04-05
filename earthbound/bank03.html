@@ -210,7 +210,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="displayAntiPiracyScreen" class="public" href="../earthbound/bank03/displayAntiPiracyScreen.html">displayAntiPiracyScreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C30100
+						<td>Display the anti-piracy error screen and loop endlessly
 </td>
 					</tr>
 					<tr>
@@ -219,7 +219,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="displayFaultyGamepakScreen" class="public" href="../earthbound/bank03/displayFaultyGamepakScreen.html">displayFaultyGamepakScreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C30142
+						<td>Display the faulty gamepak error screen and loop endlessly
 </td>
 					</tr>
 					<tr>
@@ -238,6 +238,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C3EF23
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="nullC3FDC5" class="public" href="../earthbound/bank03/nullC3FDC5.html">nullC3FDC5</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Does nothing.
 </td>
 					</tr>
 					<tr>
@@ -300,7 +309,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startEnemyOrAllyBattleAnimation" class="public" href="../earthbound/bank03/startEnemyOrAllyBattleAnimation.html">startEnemyOrAllyBattleAnimation</a><span class="tableEntryAnnotation">(toPartyAnimation, toEnemyAnimation)</span>
 							</code>
 						</td>
-						<td>$C3FAC9
+						<td>Starts a battle animation, automatically selecting the animation depending on the target. No animation if targetting the tiny lil ghost.
 </td>
 					</tr>
 					<tr>
@@ -441,15 +450,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC3FDC5" class="public" href="../earthbound/bank03/unknownC3FDC5.html">unknownC3FDC5</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C3FDC5
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="windowTickWithoutInstantPrinting" class="public" href="../earthbound/bank03/windowTickWithoutInstantPrinting.html">windowTickWithoutInstantPrinting</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -486,7 +486,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3FD8D
+						<td>Text labels that run the attract mode demos
 </td>
 					</tr>
 					<tr>
@@ -563,6 +563,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="consonantVowelTransliterationPairs" class="public" href="../earthbound/bank03/consonantVowelTransliterationPairs.html">
+								<code>consonantVowelTransliterationPairs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">[</span><span class="lit">26</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Consonant/vowel pair -&gt; hiragana mappings, used for Mother 2's player name transliteration
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="debugMenuText" class="public" href="../earthbound/bank03/debugMenuText.html">
 								<code>debugMenuText</code>
 							</a>
@@ -630,7 +642,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/FileSelectSummarySpriteConfigEntry.html"><span class="typ">FileSelectSummarySpriteConfigEntry</span></a><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3FD65
+						<td>Table for configuring the entities that appear on the naming sequence confirmation page
 </td>
 					</tr>
 					<tr>
@@ -647,6 +659,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="forSaleSignSpriteTable" class="public" href="../earthbound/bank03/forSaleSignSpriteTable.html">
+								<code>forSaleSignSpriteTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Table for randomly-selected for sale sign customers
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="hpMeterSpeeds" class="public" href="../earthbound/bank03/hpMeterSpeeds.html">
 								<code>hpMeterSpeeds</code>
 							</a>
@@ -654,7 +678,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">uint</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3FB1F
+						<td>Normal HP meter speeds, one for each text speed
 </td>
 					</tr>
 					<tr>
@@ -743,6 +767,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="namingScreenEntities" class="public" href="../earthbound/bank03/namingScreenEntities.html">
+								<code>namingScreenEntities</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/NamingScreenEntity.html"><span class="typ">NamingScreenEntity</span></a><span class="pun">[]</span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Sprite+script combinations to create for the naming sequence
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="nessPajamaFlag" class="public" href="../earthbound/bank03/nessPajamaFlag.html">
 								<code>nessPajamaFlag</code>
 							</a>
@@ -811,6 +847,18 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C3F2B5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="partyMemberCastTileIDs" class="public" href="../earthbound/bank03/partyMemberCastTileIDs.html">
+								<code>partyMemberCastTileIDs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Base tile IDs for party member cast text rendering
 </td>
 					</tr>
 					<tr>
@@ -1051,54 +1099,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C3F8F1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC3FB45" class="public" href="../earthbound/bank03/unknownC3FB45.html">
-								<code>unknownC3FB45</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">[</span><span class="lit">26</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3FB45
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC3FD2D" class="public" href="../earthbound/bank03/unknownC3FD2D.html">
-								<code>unknownC3FD2D</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/NamingScreenEntity.html"><span class="typ">NamingScreenEntity</span></a><span class="pun">[]</span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3FD2D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC3FDB5" class="public" href="../earthbound/bank03/unknownC3FDB5.html">
-								<code>unknownC3FDB5</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3FDB5
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unusedForSaleSignSpriteTable" class="public" href="../earthbound/bank03/unusedForSaleSignSpriteTable.html">
-								<code>unusedForSaleSignSpriteTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3FDBD
 </td>
 					</tr>
 					<tr>

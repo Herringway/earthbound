@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function loadSectorAttributes</h1><p>$C00AA1
+			<h1>Function loadSectorAttributes</h1><p>Sets and retrieves the sector attributes for the specified coordinates
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,26 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">short</span> <span class="pln">loadSectorAttributes</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">x</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">y</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="x">x</td><td> X coordinate (pixels)</td></tr>
+<tr><td id="y">y</td><td> Y coordinate (pixels)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C00AA1
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function startEnemyOrAllyBattleAnimation</h1><p>$C3FAC9
+			<h1>Function startEnemyOrAllyBattleAnimation</h1><p>Starts a battle animation, automatically selecting the animation depending on the target. No animation if targetting the tiny lil ghost.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,7 +166,21 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Returns</h2>
+<p>0 if targetting friends, 1 if targetting anything else
+</p>
+</section>
+<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="toPartyAnimation">toPartyAnimation</td><td> The animation to use if targetting friends</td></tr>
+<tr><td id="toEnemyAnimation">toEnemyAnimation</td><td> The animation to use if targetting enemies</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C3FAC9
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
