@@ -4809,9 +4809,8 @@ void backupPalettes() {
  * Original_Address: $(DOLLAR)C497C0
  */
 void performPaletteFade(short duration, short multiplier, ushort affectedPalettes) {
-	// TODO: Fix these args
 	multiplyPalettes(multiplier, &mapPaletteBackup[0][0]);
-	prepareLoadedPaletteFadeTables(duration, multiplier);
+	prepareLoadedPaletteFadeTables(duration, affectedPalettes);
 	if (duration != 1) {
 		for (short i = 0; i < duration; i++) {
 			updateMapPaletteAnimation();
