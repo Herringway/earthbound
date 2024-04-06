@@ -3936,9 +3936,8 @@ void unknownC47765(short arg1, short arg2, short arg3) {
 	short x12 = cast(short)(arg3 - bg1XPosition);
 	for (short i = 0; i < 16; i++) {
 		(x0A++)[0] = 1;
-		(x0A++)[0] = cast(ubyte)y;
-		(x0A++)[0] = cast(ubyte)x12;
-		x12--;
+		(x0A++)[0] = cast(ubyte)(y++);
+		(x0A++)[0] = cast(ubyte)(x12--);
 	}
 	(x0A++)[0] = 1;
 	(x0A++)[0] = 0x80;
