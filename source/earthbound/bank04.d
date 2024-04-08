@@ -3979,7 +3979,7 @@ ubyte* rectangleWindowAddHdmaEntry(short numLines, short winL, short winR, ubyte
 }
 
 /// $C47930 - Configures HDMA + window to create a rectangular window on screen
-void rectangleWindowConfigure(short xmin, short xmax, short ymin, short ymax) {
+void rectangleWindowConfigure(short xmin, short ymin, short xmax, short ymax) {
 	short bufferOffset;
 	if ((rectangleWindowBufferIndex & 1) != 0) {
 		bufferOffset = 0;
