@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC425FD</title>
+		<title>Function enableStageHDMA</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,22 +149,37 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC425FD</h1><p>$C425FD
+			<h1>Function enableStageHDMA</h1><p>Enables the HDMA used for stage lighting during the Runaway Five concerts. Lightens the screen until it reaches the y coordinate, at which point it lightens only the portion between xStart and xEnd, decreasing width by two pixels for 16 rows
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC425FD</span>
+			<span class="typ">void</span> <span class="pln">enableStageHDMA</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">xStart</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">y</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">xEnd</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="xStart">xStart</td><td> The x coordinate of the top left edge of the portion of the stage jutting downward</td></tr>
+<tr><td id="y">y</td><td> The y coordinate of the stage portion jutting outward</td></tr>
+<tr><td id="xEnd">xEnd</td><td> The x coordinate of the top right edge of the portion of the stage jutting downward</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C47765
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

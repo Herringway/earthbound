@@ -764,6 +764,24 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="darkenScreen" class="public" href="../earthbound/bank04/darkenScreen.html">darkenScreen</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Darkens the entire screen using a colour math window. Allows fine-grained control over which portions of the screen are darkened, such as during Runaway Five concerts.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="darkenScreen2Window" class="public" href="../earthbound/bank04/darkenScreen2Window.html">darkenScreen2Window</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Same as darkenScreen, but allows the use of two windows for controlling which portions are darkened. This allows, for example, two spotlights during Runaway Five concerts.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="decomp" class="public" href="../earthbound/bank04/decomp.html">decomp</a><span class="tableEntryAnnotation">(data, buffer)</span>
 							</code>
 						</td>
@@ -836,6 +854,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="disableBrightnessHDMA" class="public" href="../earthbound/bank04/disableBrightnessHDMA.html">disableBrightnessHDMA</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Disables the HDMA for window darkening/brightening
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="disableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/disableEntityByCharacterOrParty.html">disableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -858,6 +885,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4655E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="disableSpotlightHDMA1" class="public" href="../earthbound/bank04/disableSpotlightHDMA1.html">disableSpotlightHDMA1</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Disables the HDMA for the first spotlight effect
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="disableSpotlightHDMA2" class="public" href="../earthbound/bank04/disableSpotlightHDMA2.html">disableSpotlightHDMA2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Disables the HDMA for the second spotlight effect
 </td>
 					</tr>
 					<tr>
@@ -927,6 +972,23 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="elevaterConfigure" class="public" href="../earthbound/bank04/elevaterConfigure.html">elevaterConfigure</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="enableBrightnessHDMA" class="public" href="../earthbound/bank04/enableBrightnessHDMA.html">enableBrightnessHDMA</a><span class="tableEntryAnnotation">(table)</span>
+							</code>
+						</td>
+						<td>Enables HDMA for window darkening/lightening on channel 4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="enableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/enableEntityByCharacterOrParty.html">enableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -958,6 +1020,33 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C429E8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="enableSpotlightHDMA1" class="public" href="../earthbound/bank04/enableSpotlightHDMA1.html">enableSpotlightHDMA1</a><span class="tableEntryAnnotation">(table)</span>
+							</code>
+						</td>
+						<td>Enables HDMA for the first spotlight effect on channel 4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="enableSpotlightHDMA2" class="public" href="../earthbound/bank04/enableSpotlightHDMA2.html">enableSpotlightHDMA2</a><span class="tableEntryAnnotation">(table)</span>
+							</code>
+						</td>
+						<td>Enables HDMA for the second spotlight effect on channel 5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="enableStageHDMA" class="public" href="../earthbound/bank04/enableStageHDMA.html">enableStageHDMA</a><span class="tableEntryAnnotation">(xStart, y, xEnd)</span>
+							</code>
+						</td>
+						<td>Enables the HDMA used for stage lighting during the Runaway Five concerts. Lightens the screen until it reaches the y coordinate, at which point it lightens only the portion between xStart and xEnd, decreasing width by two pixels for 16 rows
 </td>
 					</tr>
 					<tr>
@@ -2034,7 +2123,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="rectangleWindowConfigure" class="public" href="../earthbound/bank04/rectangleWindowConfigure.html">rectangleWindowConfigure</a><span class="tableEntryAnnotation">(xmin, xmax, ymin, ymax)</span>
+								<a id="rectangleWindowConfigure" class="public" href="../earthbound/bank04/rectangleWindowConfigure.html">rectangleWindowConfigure</a><span class="tableEntryAnnotation">(xmin, ymin, xmax, ymax)</span>
 							</code>
 						</td>
 						<td>$C47930 - Configures HDMA + window to create a rectangular window on screen
@@ -2295,6 +2384,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setWindowBrightness" class="public" href="../earthbound/bank04/setWindowBrightness.html">setWindowBrightness</a><span class="tableEntryAnnotation">(cgadsub, intensity)</span>
+							</code>
+						</td>
+						<td>Sets up a fullscreen colour math window using the specified CGADSUB setting
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="skippablePause" class="public" href="../earthbound/bank04/skippablePause.html">skippablePause</a><span class="tableEntryAnnotation">(duration)</span>
 							</code>
 						</td>
@@ -2498,87 +2596,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4248A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4249A" class="public" href="../earthbound/bank04/unknownC4249A.html">unknownC4249A</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C4249A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC424D1" class="public" href="../earthbound/bank04/unknownC424D1.html">unknownC424D1</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C424D1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC42542" class="public" href="../earthbound/bank04/unknownC42542.html">unknownC42542</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C42542
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4257F" class="public" href="../earthbound/bank04/unknownC4257F.html">unknownC4257F</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4257F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4258C" class="public" href="../earthbound/bank04/unknownC4258C.html">unknownC4258C</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4258C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC425CC" class="public" href="../earthbound/bank04/unknownC425CC.html">unknownC425CC</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C425CC
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC425F3" class="public" href="../earthbound/bank04/unknownC425F3.html">unknownC425F3</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C425F3
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC425FD" class="public" href="../earthbound/bank04/unknownC425FD.html">unknownC425FD</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C425FD
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC42624" class="public" href="../earthbound/bank04/unknownC42624.html">unknownC42624</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C42624
 </td>
 					</tr>
 					<tr>
@@ -3106,28 +3123,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC47765" class="public" href="../earthbound/bank04/unknownC47765.html">unknownC47765</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C47765
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC47866" class="public" href="../earthbound/bank04/unknownC47866.html">unknownC47866</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
 						<td>$C47866
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47A27" class="public" href="../earthbound/bank04/unknownC47A27.html">unknownC47A27</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47A27
 </td>
 					</tr>
 					<tr>

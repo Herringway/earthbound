@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function singleEnemyFlashingOn</h1><p>$EF0052
+			<h1>Function singleEnemyFlashingOn</h1><p>Enables single enemy flashing mode
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,26 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">singleEnemyFlashingOn</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">row</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">enemyRowIndex</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="row">row</td><td> The enemy's row, either Row.front or Row.back</td></tr>
+<tr><td id="enemyRowIndex">enemyRowIndex</td><td> The enemy's position in the row</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>EF0052
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

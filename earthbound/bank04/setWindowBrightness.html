@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function bubbleMonkeyInitialize</title>
+		<title>Function setWindowBrightness</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -125,7 +125,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank2F.html">bank2F</a>
 					</div>
 				</li>
@@ -149,18 +149,31 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function bubbleMonkeyInitialize</h1><p>Initializes bubble monkey movement with half a second until the next change
+			<h1>Function setWindowBrightness</h1><p>Sets up a fullscreen colour math window using the specified CGADSUB setting
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">bubbleMonkeyInitialize</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">void</span> <span class="pln">setWindowBrightness</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">cgadsub</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">intensity</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Original Address</h2>
-<p>EF027D
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="cgadsub">cgadsub</td><td> Layers to affect and addition/substraction mode</td></tr>
+<tr><td id="intensity">intensity</td><td> Intensity. Meaningful values are 0 - 31</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C4249A
 </p>
 </section>
 

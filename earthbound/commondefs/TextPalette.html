@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC47765</title>
+		<title>Enum TextPalette</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,25 +149,81 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC47765</h1><p>$C47765
+			<h1>Enum TextPalette</h1><p>Palettes used for the 2BPP text layer. By convention, each palette consists of a transparent colour (required by hardware), a primary text colour (close to white, flavour-dependent), a secondary text colour (used for non-text elements), and a background colour (usually black, but not always)
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC47765</span>
-			<span class="pun">(</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
-			<br/>
-			<span class="pun">)</span><span class="pun">;</span>
+			<span class="kwd">enum</span> <span class="typ">TextPalette</span>
+			 <span class="pun">:</span> <span class="typ">int</span> <span class="pun">{ ... }</span>
 					</div>
 				</code>
 			</div>
 			
+			<section><h2>Enum members</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td id="highlighted">
+							<code>highlighted</code>
+						</td>
+						<td>White text on purple background, for highlighted text like selected menu options
+</td>
+					</tr>
+					<tr>
+						<td id="hpPPBackground">
+							<code>hpPPBackground</code>
+						</td>
+						<td>Flavour-dependent colours. Used for HP/PP window backgrounds
+</td>
+					</tr>
+					<tr>
+						<td id="miscUIElements">
+							<code>miscUIElements</code>
+						</td>
+						<td>White text on black background, greenish-gray secondary colour. Used for cursors, HP/PP window borders
+</td>
+					</tr>
+					<tr>
+						<td id="normal">
+							<code>normal</code>
+						</td>
+						<td>Normal text colours
+</td>
+					</tr>
+					<tr>
+						<td id="specialGraphics">
+							<code>specialGraphics</code>
+						</td>
+						<td>White text on black background,  purple secondary colour. used for special graphical text like "YOU WON!" and "SMAAAASH!!" and equip icons
+</td>
+					</tr>
+					<tr>
+						<td id="unknown2">
+							<code>unknown2</code>
+						</td>
+						<td>White text on hot pink background
+</td>
+					</tr>
+					<tr>
+						<td id="unknown5">
+							<code>unknown5</code>
+						</td>
+						<td>Identical to miscUIElements?
+</td>
+					</tr>
+					<tr>
+						<td id="windowBorders">
+							<code>windowBorders</code>
+						</td>
+						<td>Flavour-dependent colours. Used for standard window borders
+</td>
+					</tr>
+				</table>
+			</section>
 			
 			<footer>
 				<table class="license-info">
