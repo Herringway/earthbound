@@ -5451,8 +5451,10 @@ immutable DMATableEntry[18] dmaTable = [
 /// $C08FE6 - unused. these bytes happen to correspond to XBA / TYA opcodes, however
 immutable ubyte[2] unknownC08FE6 = [ 0xEB, 0x98 ];
 
-/// $C0927C
-void unknownC0927C() {
+/** Resets entity subsystem state for a fresh start
+ * Original_Address: $(DOLLAR)C0927C
+ */
+void initializeEntitySubsystem() {
 	actionScriptDrawCallback = &actionScriptDrawEntities;
 	firstEntity = -1;
 	entityNextEntityTable[29] = -1;
@@ -7983,14 +7985,14 @@ void actionScriptPrintCastNameEntityVar0(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0AA23
-void unknownC0AA23(short, ref const(ubyte)* arg2) {
+void actionScriptEnableStageHDMA(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp2 = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
 	short tmp3 = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC47765(tmp, tmp2, tmp3);
+	enableStageHDMA(tmp, tmp2, tmp3);
 }
 
 /// $C0AA3F
@@ -8616,7 +8618,7 @@ short sineMult(short factor, ubyte angle) {
 /// $C0B525
 void fileSelectInit() {
 	prepareForImmediateDMA();
-	unknownC0927C();
+	initializeEntitySubsystem();
 	oamClear();
 	updateScreen();
 	clearSpriteTable();
@@ -8666,7 +8668,7 @@ void setLeaderLocation(short arg1, short arg2) {
 
 /// $C0B67F
 void unknownC0B67F() {
-	unknownC0927C();
+	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
@@ -10870,7 +10872,7 @@ short runGasStationSkippablePortion() {
 
 /// $C0F33C
 short gasStation() {
-	unknownC0927C();
+	initializeEntitySubsystem();
 	gasStationLoad();
 	fadeIn(1, 11);
 	short x11 = runGasStationSkippablePortion();

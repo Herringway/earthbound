@@ -5917,6 +5917,7 @@ enum ManpuPositioning {
 	left2 = 6, /// Further to the left of the parent entity compared to `left`
 }
 
+///
 enum PaletteMask {
 	bg0 = 1 << 0,
 	bg1 = 1 << 1,
@@ -5937,6 +5938,18 @@ enum PaletteMask {
 	allBGs = bg0 | bg1 | bg2 | bg3 | bg4 | bg5 | bg6 | bg7,
 	allSprites = sprite0 | sprite1 | sprite2 | sprite3 | sprite4 | sprite5 | sprite6 | sprite7,
 	all = allBGs | allSprites,
+}
+
+/// Palettes used for the 2BPP text layer. By convention, each palette consists of a transparent colour (required by hardware), a primary text colour (close to white, flavour-dependent), a secondary text colour (used for non-text elements), and a background colour (usually black, but not always)
+enum TextPalette {
+	normal, /// Normal text colours
+	miscUIElements, /// White text on black background, greenish-gray secondary colour. Used for cursors, HP/PP window borders
+	unknown2, /// White text on hot pink background
+	specialGraphics, /// White text on black background,  purple secondary colour. used for special graphical text like "YOU WON!" and "SMAAAASH!!" and equip icons
+	hpPPBackground, /// Flavour-dependent colours. Used for HP/PP window backgrounds
+	unknown5, /// Identical to miscUIElements?
+	highlighted, /// White text on purple background, for highlighted text like selected menu options
+	windowBorders, /// Flavour-dependent colours. Used for standard window borders
 }
 
 ///

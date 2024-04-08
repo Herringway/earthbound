@@ -640,24 +640,30 @@ short unknownC4213F(short arg1, short arg2) {
 
 /// $C423DC
 void unknownC423DC() {
-	WH0 = 0x80;
-	WH2 = 0x80;
-	WH1 = 0x7F;
-	WH3 = 0x7F;
-	CGWSEL = 0x10;
-	TMW = 0x13;
+	// Put the left sides of the windows to the right of the right sides, ensuring the windows cover none of the screen
+	WH0 = 128;
+	WH2 = 128;
+	WH1 = 127;
+	WH3 = 127;
+
+	CGWSEL = 0b00010000; // disable colour math only outside of window
+	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	// OR mask on all layers
 	WBGLOG = 0;
 	WOBJLOG = 0;
 }
 
 /// $C4240A
 void unknownC4240A() {
+	// Have both windows cover full width of screen
 	WH0 = 0;
 	WH2 = 0;
-	WH1 = 0xFF;
-	WH3 = 0xFF;
-	CGWSEL = 0x20;
-	TMW = 0x13;
+	WH1 = 255;
+	WH3 = 255;
+
+	CGWSEL = 0b00100000; // disable colour math only inside of window
+	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	// OR mask on all layers
 	WBGLOG = 0;
 	WOBJLOG = 0;
 }
@@ -685,83 +691,117 @@ void unknownC4248A() {
 	WOBJSEL = 0;
 }
 
-/// $C4249A
-void unknownC4249A(ubyte arg1, ubyte arg2) {
-	CGADSUB = arg1;
-	WOBJSEL = 0x20;
+/** Sets up a fullscreen colour math window using the specified CGADSUB setting
+ * Params:
+ * 	cgadsub = Layers to affect and addition/substraction mode
+ * 	intensity = Intensity. Meaningful values are 0 - 31
+ * Original_Address: $(DOLLAR)C4249A
+ */
+void setWindowBrightness(ubyte cgadsub, ubyte intensity) {
+	CGADSUB = cgadsub;
+	WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
+	// Cover full width of screen
 	WH0 = 0;
-	WH1 = 0xFF;
-	TMW = 0x13;
+	WH1 = 255;
+
+	TMW = 0x13; //BG1, BG2, OBJ
+	// OR mask on all layers
 	WBGLOG = 0;
 	WOBJLOG = 0;
-	CGWSEL = 0x10;
-	setFixedColourData(arg2 | 0xE0);
+	CGWSEL = 0b00010000; // disable colour math only outside of window
+	setFixedColourData(intensity | 0xE0); // same intensity for all colour channels
 }
 
-/// $C424D1
-void unknownC424D1() {
-	WOBJSEL = 0x20;
-	WH0 = 0x80;
-	WH1 = 0x7F;
-	TMW = 0x13;
+/** Darkens the entire screen using a colour math window. Allows fine-grained control over which portions of the screen are darkened, such as during Runaway Five concerts.
+ * Original_Address: $(DOLLAR)C424D1
+ */
+void darkenScreen() {
+	WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
+	// Put the left side of the window to the right of the right side, ensuring the window covers none of the screen
+	WH0 = 128;
+	WH1 = 127;
+
+	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	// OR mask on all layers
 	WBGLOG = 0;
 	WOBJLOG = 0;
-	CGWSEL = 0x20;
-	CGADSUB = 0xB3;
-	setFixedColourData(0xEF);
+
+	CGWSEL = 0b00100000; // disable colour math only inside of window
+	CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
+	setFixedColourData(0xEF); // maximum intensity on all channels
 }
 
-/// $C42542
-void unknownC42542(ubyte* arg1) {
-	dmaChannels[4].DMAP = 1;
-	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = arg1;
+/** Enables HDMA for window darkening/lightening on channel 4
+ * Params:
+ * 	table = Direct HDMA table
+ * Original_Address: $(DOLLAR)C42542
+ */
+void enableBrightnessHDMA(ubyte* table) {
+	dmaChannels[4].DMAP = 1; // word transfer
+	dmaChannels[4].BBAD = 0x26; //WH0 + WH1
+	dmaChannels[4].A1T = table;
 	mirrorHDMAEN |= 0x10;
 }
 
-/// $C4257F
-void unknownC4257F() {
+/** Disables the HDMA for window darkening/brightening
+ * Original_Address: $(DOLLAR)C4257F
+ */
+void disableBrightnessHDMA() {
 	mirrorHDMAEN &= ~0x10;
 }
 
-/// $C4258C
-void unknownC4258C() {
-	WOBJSEL = 0xA0;
-	WH0 = 0x80;
-	WH2 = 0x80;
-	WH1 = 0x7F;
-	WH3 = 0x7F;
-	TMW = 0x13;
+/** Same as darkenScreen, but allows the use of two windows for controlling which portions are darkened. This allows, for example, two spotlights during Runaway Five concerts.
+ * Original_Address: $(DOLLAR)C4258C
+ */
+void darkenScreen2Window() {
+	WOBJSEL = 0b10100000; // window 1 and 2 enabled for BG2, BG4, colour math
+	// Put the left side of both windows to the right of the right side, ensuring the windows cover none of the screen
+	WH0 = 128;
+	WH2 = 128;
+	WH1 = 127;
+	WH3 = 127;
+
+	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	// OR mask for all layers
 	WBGLOG = 0;
 	WOBJLOG = 0;
-	CGWSEL = 0x20;
-	CGADSUB = 0xB3;
-	setFixedColourData(0xEF);
+
+	CGWSEL = 0b00100000; // disable colour math only inside of window
+	CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
+	setFixedColourData(0xEF); // maximum intensity on all channels
 }
 
-/// $C425CC
-void unknownC425CC(ubyte* arg1) {
-	dmaChannels[4].DMAP = 1;
-	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = arg1;
+/** Enables HDMA for the first spotlight effect on channel 4
+ * Original_Address: $(DOLLAR)C425CC
+ */
+void enableSpotlightHDMA1(ubyte* table) {
+	dmaChannels[4].DMAP = 1; // word transfer
+	dmaChannels[4].BBAD = 0x26; // WH0 + WH1
+	dmaChannels[4].A1T = table;
 	mirrorHDMAEN |= 0x10;
 }
 
-/// $C425F3
-void unknownC425F3() {
+/** Disables the HDMA for the first spotlight effect
+ * Original_Address: $(DOLLAR)C425F3
+ */
+void disableSpotlightHDMA1() {
 	mirrorHDMAEN &= ~0x10;
 }
 
-/// $C425FD
-void unknownC425FD(ubyte* arg1) {
-	dmaChannels[5].DMAP = 1;
-	dmaChannels[5].BBAD = 0x28;
-	dmaChannels[5].A1T = arg1;
+/** Enables HDMA for the second spotlight effect on channel 5
+ * Original_Address: $(DOLLAR)C425FD
+ */
+void enableSpotlightHDMA2(ubyte* table) {
+	dmaChannels[5].DMAP = 1; // word transfer
+	dmaChannels[5].BBAD = 0x28; // WH2 + WH3
+	dmaChannels[5].A1T = table;
 	mirrorHDMAEN |= 0x20;
 }
 
-/// $C42624
-void unknownC42624() {
+/** Disables the HDMA for the second spotlight effect
+ * Original_Address: $(DOLLAR)C42624
+ */
+void disableSpotlightHDMA2() {
 	mirrorHDMAEN &= ~0x20;
 }
 
@@ -3828,9 +3868,10 @@ void unknownC47499() {
 /// $C474A8
 // calls to this seem to specify an argument, but the registers are clobbered immediately
 void unknownC474A8() {
-	unknownC4249A(
-		(0 <= entityScriptVar0Table[currentEntitySlot]) ? 0x33 : 0xB3,
-		cast(ubyte)((0 <= entityScriptVar0Table[currentEntitySlot]) ? entityScriptVar0Table[currentEntitySlot] : cast(short)-cast(int)entityScriptVar0Table[currentEntitySlot])
+	enum commonCGADSUB = CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop;
+	setWindowBrightness(
+		(0 <= entityScriptVar0Table[currentEntitySlot]) ? commonCGADSUB : (commonCGADSUB | CGADSUBFlags.ColourMathAddsub),
+		cast(ubyte)((0 <= entityScriptVar0Table[currentEntitySlot]) ? entityScriptVar0Table[currentEntitySlot] : cast(short)-entityScriptVar0Table[currentEntitySlot])
 	);
 }
 
@@ -3901,7 +3942,7 @@ void unknownC476A5() {
 		x16 = 0x2FE;
 	}
 	unknownC47501(&buffer[x16]);
-	unknownC425CC(&buffer[x16]);
+	enableSpotlightHDMA1(&buffer[x16]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
 
@@ -3914,36 +3955,44 @@ void unknownC47705() {
 		x16 = 0x8FA;
 	}
 	unknownC47501(&buffer[x16]);
-	unknownC425FD(&buffer[x16]);
+	enableSpotlightHDMA2(&buffer[x16]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
 
-/// $C47765
-void unknownC47765(short arg1, short arg2, short arg3) {
-	ubyte* x0A = &buffer[0xBF8];
-	short x14 = cast(short)(arg2 - bg1YPosition);
-	if (x14 > 0x7F) {
-		x0A[0] = 0x7F;
+/** Enables the HDMA used for stage lighting during the Runaway Five concerts. Lightens the screen until it reaches the y coordinate, at which point it lightens only the portion between xStart and xEnd, decreasing width by two pixels for 16 rows
+ * Params:
+ * 	xStart = The x coordinate of the top left edge of the portion of the stage jutting downward
+ * 	y = The y coordinate of the stage portion jutting outward
+ * 	xEnd = The x coordinate of the top right edge of the portion of the stage jutting downward
+ * Original_Address: $(DOLLAR)C47765
+ */
+void enableStageHDMA(short xStart, short y, short xEnd) {
+	ubyte* dest = &buffer[0xBF8];
+	short yStart = cast(short)(y - bg1YPosition);
+	// HDMA is limited to 127 line batches, so handle the case where the Y coordinate is over halfway down the screen
+	if (yStart > 0x7F) {
+		// is this the result of some kinda optimization?
+		dest[0] = 0x7F;
 		buffer[0xBF9] = 0;
 		buffer[0xBFA] = 0xFF;
-		x0A = &buffer[0xBFB];
-		x14 -= 0x7F;
+		dest = &buffer[0xBFB];
+		yStart -= 0x7F;
 	}
-	(x0A++)[0] = cast(ubyte)x14;
-	(x0A++)[0] = 0;
-	(x0A++)[0] = 0xFF;
-	short y = cast(short)(arg1 - bg1XPosition);
-	short x12 = cast(short)(arg3 - bg1XPosition);
+	(dest++)[0] = cast(ubyte)yStart;
+	(dest++)[0] = 0;
+	(dest++)[0] = 0xFF;
+	short left = cast(short)(xStart - bg1XPosition);
+	short right = cast(short)(xEnd - bg1XPosition);
 	for (short i = 0; i < 16; i++) {
-		(x0A++)[0] = 1;
-		(x0A++)[0] = cast(ubyte)(y++);
-		(x0A++)[0] = cast(ubyte)(x12--);
+		(dest++)[0] = 1;
+		(dest++)[0] = cast(ubyte)(left++);
+		(dest++)[0] = cast(ubyte)(right--);
 	}
-	(x0A++)[0] = 1;
-	(x0A++)[0] = 0x80;
-	(x0A++)[0] = 0x7F;
-	(x0A++)[0] = 0;
-	unknownC42542(&buffer[0xBF8]);
+	(dest++)[0] = 1;
+	(dest++)[0] = 0x80;
+	(dest++)[0] = 0x7F;
+	(dest++)[0] = 0;
+	enableBrightnessHDMA(&buffer[0xBF8]);
 }
 
 /// $C47866
@@ -4015,11 +4064,13 @@ void bunbuunBeamConfigure() {
 	rectangleWindowConfigure(cast(short)(objX - beamSize), ymin, cast(short)(objX + beamSize), cast(short)(objY + beamSize));
 }
 
-/// $C47A27
-void unknownC47A27() {
-	bg1YPosition = cast(short)(entityAbsYTable[currentEntitySlot] - 0x70);
-	short x10 = cast(short)(entityAbsYTable[gameState.firstPartyMemberEntity] - (entityAbsYTable[currentEntitySlot] - 0x70));
-	rectangleWindowConfigure(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
+/**
+ * Original_Address: $(DOLLAR)C47A27
+ */
+void elevaterConfigure() {
+	bg1YPosition = cast(short)(entityAbsYTable[currentEntitySlot] - 112);
+	short x10 = cast(short)(entityAbsYTable[gameState.firstPartyMemberEntity] - (entityAbsYTable[currentEntitySlot] - 112));
+	rectangleWindowConfigure(16, cast(short)(x10 - 96), 240, cast(short)(x10 + 96));
 }
 
 /// $C47A6B
@@ -7468,7 +7519,7 @@ void unknownC4D8FA() {
 
 /// $C4D989
 short runAttractModeScene(short arg1) {
-	unknownC0927C();
+	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
@@ -7525,7 +7576,7 @@ void initIntro() {
 	short x02 = 0;
 	disabledTransitions = 1;
 	musicEffect(MusicEffect.quickFade);
-	unknownC0927C();
+	initializeEntitySubsystem();
 	initializeTextSystem();
 	unknownC432B1();
 	disableMusicChanges = 1;
@@ -8318,7 +8369,7 @@ void playCredits() {
 		finishFrame();
 	}
 	fadeOutWithMosaic(1, 2, 0);
-	unknownC4249A(0xB3, 0);
+	setWindowBrightness(0xB3, 0);
 	prepareForImmediateDMA();
 	overworldSetupVRAM();
 	unknownC021E6();

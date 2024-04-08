@@ -1122,7 +1122,7 @@ short showTitleScreen(short quick) {
 	titleScreenQuickMode = quick;
 	short x04 = 0;
 	prepareForImmediateDMA();
-	unknownC0927C();
+	initializeEntitySubsystem();
 	if (0) { //interesting... this is unreachable and the entry statement seems to have been optimized out, but the body, condition and post-body statement remain
 		for (short i = 0; i < 30; i++) {
 			entitySpriteMapFlags[i] |= SpriteMapFlags.drawDisabled;
@@ -1189,7 +1189,7 @@ short showTitleScreen(short quick) {
 	if (x04 == 0) {
 		actionscriptState = ActionScriptState.running;
 		unknownC474A8(/+0+/);
-		unknownC0927C();
+		initializeEntitySubsystem();
 		return x02;
 	}
 	for (short i = 0; i < 0x1E; i++) {

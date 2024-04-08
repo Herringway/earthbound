@@ -16,7 +16,9 @@ import earthbound.hardware;
 import earthbound.text;
 import core.stdc.string;
 
-/// $EF0000
+/** Exits single enemy flashing mode.
+ * Original_Address: $(DOLLAR)EF0000
+ */
 void singleEnemyFlashingOff() {
 	if (currentFlashingEnemy == -1) {
 		return;
@@ -31,14 +33,19 @@ void singleEnemyFlashingOff() {
 	redrawAllWindows = 1;
 }
 
-/// $EF0052
-void singleEnemyFlashingOn(short arg1, short arg2) {
+/** Enables single enemy flashing mode
+ * Params:
+ * 	row = The enemy's row, either Row.front or Row.back
+ * 	enemyRowIndex = The enemy's position in the row
+ * Original_Address: $(DOLLAR)EF0052
+ */
+void singleEnemyFlashingOn(short row, short enemyRowIndex) {
 	if (currentFlashingEnemy != -1) {
 		singleEnemyFlashingOff();
 	}
-	currentFlashingEnemy = arg2;
-	currentFlashingEnemyRow = arg1;
-	if (arg1 != Row.front) {
+	currentFlashingEnemy = enemyRowIndex;
+	currentFlashingEnemyRow = row;
+	if (row != Row.front) {
 		battlersTable[backRowBattlers[currentFlashingEnemy]].isFlashing = 1;
 	} else {
 		battlersTable[frontRowBattlers[currentFlashingEnemy]].isFlashing = 1;
@@ -81,7 +88,7 @@ void removeWindowFromScreen(short window) {
 		if (*buffer != 0) {
 			freeTileSafe(*buffer);
 		}
-		*buffer = 0x0040;
+		*buffer = 0x040;
 		buffer++;
 		tilesLeft--;
 	}
@@ -89,7 +96,9 @@ void removeWindowFromScreen(short window) {
 	playerIntangibilityFlash();
 }
 
-/// $EF016F
+/** Backs up a menu selection, allowing a new menu to be opened
+ * Original_Address: $(DOLLAR)EF016F
+ */
 void backupMenuSelection() {
 	menuBackupSelectedTextX = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textX;
 	menuBackupSelectedTextY = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textY;
@@ -97,16 +106,22 @@ void backupMenuSelection() {
 	menuBackupSelectedOption = windowStats[windowTable[currentFocusWindow]].selectedOption;
 }
 
-/// $EF01D2
-void unknownEF01D2(short arg1) {
-	short x0E = fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding;
-	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + x0E) {
+/** Inserts a newline if printing chr would overflow the window
+ * Params:
+ * 	chr = The character that would be printed
+ * Original_Address: $(DOLLAR)EF01D2
+ */
+void printNewLineIfNeeded(short chr) {
+	short charWidth = fontData[fontConfigTable[0].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding;
+	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + charWidth) {
 		printNewLineF();
 		vwfIndentNewLine = 1;
 	}
 }
 
-/// $EF0256
+/** Turns off HP/PP rolling.
+ * Original_Address: $(DOLLAR)EF0256
+ */
 void stopHPPPRolling() {
 	disableHPPPRolling = 1;
 }
@@ -118,14 +133,16 @@ void enableHalfHPMeterSpeed() {
 	halfHPMeterSpeed = 1;
 }
 
-/// $EF026E
+/** Resumes HP/PP meter rolling at normal speed
+ * Original_Address: $(DOLLAR)EF026E
+ */
 void resumeHPPPRolling() {
 	halfHPMeterSpeed = 0;
 	disableHPPPRolling = 0;
 }
 
 /** Initializes bubble monkey movement with half a second until the next change
- * $(DOLLAR)EF027D
+ * Original_Address: $(DOLLAR)EF027D
  */
 void bubbleMonkeyInitialize() {
 	bubbleMonkeyMode = BubbleMonkeyMode.normal;
@@ -216,20 +233,20 @@ void bubbleMonkeyTick() {
 short unknownEF04DC() {
 	short x04 = 0;
 	prepareForImmediateDMA();
-	unknownC0927C();
+	initializeEntitySubsystem();
 	loadTitleScreenGraphics();
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
 	titleScreenQuickMode = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
-	actionscriptState = 0;
+	actionscriptState = ActionScriptState.running;
 	finishFrame();
 	fadeIn(16, 1);
 	for (short i = 0; i < 60; i++) {
 		finishFrame();
 	}
 	short x02 = 0;
-	while ((actionscriptState == 0) || (actionscriptState == 2)) {
+	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
 		if ((x04 == 0) && (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0))) {
 			x02 = 1;
 			break;
@@ -237,9 +254,9 @@ short unknownEF04DC() {
 		finishFrame();
 	}
 	fadeOutWithMosaic(1, 4, 0);
-	actionscriptState = 0;
+	actionscriptState = ActionScriptState.running;
 	unknownC474A8(/+0+/);
-	unknownC0927C();
+	initializeEntitySubsystem();
 	return x02;
 }
 
@@ -21338,13 +21355,13 @@ void renderDebugDigit(short x, short y, ushort amount) {
 	if (digit >= 10) {
 		digit += 7;
 	}
-	buf[0] = cast(ushort)(digit + 0x2030);
+	buf[0] = cast(ushort)(digit + (TilemapFlag.priority | 0x30));
 
 	digit = amount & 0xF;
 	if (digit >= 10) {
 		digit += 7;
 	}
-	buf[1] = cast(ushort)(digit + 0x2030);
+	buf[1] = cast(ushort)(digit + (TilemapFlag.priority | 0x30));
 
 	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
@@ -21352,7 +21369,7 @@ void renderDebugDigit(short x, short y, ushort amount) {
 /// $EFD5D9
 void resetDebugSoundModeMenu(ushort entityID) {
 	fadeOutWithMosaic(4, 1, 0);
-	unknownC0927C();
+	initializeEntitySubsystem();
 	initDebugMenuScreen();
 	renderDebugMenuString(10, 5, &debugSoundModeMenuText[0][0]);
 	renderDebugMenuString(10, 10, &debugSoundModeMenuText[1][0]);
@@ -21546,7 +21563,7 @@ void renderDebugMenuString(short x, short y, const(char)* str) {
 	ushort* yReg = cast(ushort*)sbrk(32 * ushort.sizeof);
 	ushort* xReg = yReg;
 	while(*str != 0) {
-		*xReg = *str + 0x2000;
+		*xReg = TilemapFlag.priority | *str;
 		str++;
 		xReg++;
 		x02 += 2;
@@ -21575,7 +21592,7 @@ ushort* integerToHexDebugTiles(short arg1) {
 		} else {
 			x0E = arg1 & 0xF;
 		}
-		x02[i] = cast(ushort)(x0E + 0x2030);
+		x02[i] = cast(ushort)(x0E + (TilemapFlag.priority | 0x30));
 		arg1 /= 16;
 	}
 	return x02;
@@ -21592,7 +21609,7 @@ ushort* integerToDecimalDebugTiles(short arg1) {
 		} else {
 			x0E = (arg1 / x14) % 10;
 		}
-		x12[i] = cast(ushort)(x0E + 0x2030);
+		x12[i] = cast(ushort)(x0E + (TilemapFlag.priority | 0x30));
 		x14 *= 10;
 	}
 	return x12;
@@ -21604,9 +21621,9 @@ ushort* integerToBinaryDebugTiles(short arg1) {
 	for (short i = 0; i < 8; i++) {
 		ushort x0E;
 		if ((arg1 & 0x80) != 0) {
-			x0E = 0x2031;
+			x0E = TilemapFlag.priority | 0x31;
 		} else {
-			x0E = 0x2030;
+			x0E = TilemapFlag.priority | 0x30;
 		}
 		x02[i] = x0E;
 		arg1 <<= 1;
@@ -21646,35 +21663,35 @@ void displayViewCharacterDebugOverlay() {
 ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
 	if (viewAttributeMode == 0) {
 		if ((arg1 & 2) != 0) {
-			return 0x2061;
+			return TilemapFlag.priority | 0x61;
 		} else if ((arg1 & 1) != 0) {
-			return 0x2062;
+			return TilemapFlag.priority | 0x62;
 		} else if ((arg1 & 0x80) != 0) {
-			return 0x2063;
+			return TilemapFlag.priority | 0x63;
 		} else if ((arg1 & 0x40) != 0) {
-			return 0x2063;
+			return TilemapFlag.priority | 0x63;
 		}
 	} else if (viewAttributeMode == 1) {
 		if ((arg1 & 0x10) != 0) {
 			switch (getMapObjectAt(x, y)) {
 				case ObjectType.door:
-					return 0x2461;
+					return TilemapFlag.priority | TilemapFlag.palette1 | 0x61;
 				case ObjectType.ropeLadder:
 				case ObjectType.escalator:
 				case ObjectType.stairway:
-					return 0x2462;
+					return TilemapFlag.priority | TilemapFlag.palette1 | 0x62;
 				case ObjectType.object:
 				case ObjectType.switch_:
 				case ObjectType.person:
 				case ObjectType.type7:
-					return 0x2463;
+					return TilemapFlag.priority | TilemapFlag.palette1 | 0x63;
 				default: // No object here
-					return 0x2058;
+					return TilemapFlag.priority | 0x58;
 			}
 		}
 	} else if (viewAttributeMode == 2) {
 		if ((arg1 & 0x20) != 0) {
-			return 0x2261;
+			return TilemapFlag.priority | 0x261;
 		}
 	}
 	return 0;
@@ -21747,7 +21764,7 @@ void debugMain() {
 	short x1A;
 	*(cast(ushort*)&buffer[0]) = 0;
 	prepareForImmediateDMA();
-	unknownC0927C();
+	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
@@ -21943,7 +21960,7 @@ void debugProcessCommandSelection() {
 	debugClearHDMA();
 	debugMenuButtonPressed = 0;
 	debugModeNumber = DebugMode.none;
-	unknownC0927C();
+	initializeEntitySubsystem();
 	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(1, 1);
@@ -21980,7 +21997,7 @@ noreturn debugMenuLoad() {
 	debugStartPositionY = 112;
 	debugViewCharacterSprite = OverworldSprite.lardnaMinch;
 	dadPhoneTimer = 0xFFFF;
-	unknownC0927C();
+	initializeEntitySubsystem();
 	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(4, 1);

@@ -4355,7 +4355,7 @@ shared static this() {
 		PAUSE(30),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		SHORTCALL(&unknownC31EC1[0]),
 		PAUSE(10),
@@ -4490,12 +4490,12 @@ shared static this() {
 		PAUSE(30),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		C42624(),
+		DISABLE_SPOT_LIGHT_2(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(10),
 		SHORTCALL(&unknownC31ED8[0]),
-		C424D1(),
-		C0AA23(6848, 8560, 6976),
+		DARKEN_SCREEN(),
+		ENABLE_STAGE_HDMA(6848, 8560, 6976),
 		SET_VAR(ActionScriptVars.v4, 15),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -4571,7 +4571,7 @@ shared static this() {
 		SHORTCALL(&unknownC32138[0]),
 		SHORTCALL(&unknownC31EEF[0]),
 		PAUSE(22),
-		C4257F(),
+		DARKEN_SCREEN_END(),
 		PAUSE(60),
 		YIELD_TO_TEXT(),
 		PAUSE(180),
@@ -4722,7 +4722,7 @@ immutable ubyte[55 + 7 * (const(void)*).sizeof] actionScriptTStage1FlipTurn;
 shared static this() {
 	actionScriptTStage1FlipTurn = initializeScript(actionScriptTStage1FlipTurn.length,
 		SHORTCALL(&unknownC31D4F[0]),
-		C4258C(),
+		DARKEN_SCREEN_2_WINDOW(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		PAUSE(80),
 		SET_VAR(ActionScriptVars.v4, 40),
@@ -4849,7 +4849,7 @@ shared static this() {
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptTStage2SpotInitPlayer;
 shared static this() {
 	actionScriptTStage2SpotInitPlayer = initializeScript(actionScriptTStage2SpotInitPlayer.length,
-		C4258C(),
+		DARKEN_SCREEN_2_WINDOW(),
 		SHORTJUMP(&actionScriptTStage2Player[0]),
 	);
 }
@@ -4872,7 +4872,7 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		SET_TICK_CALLBACK(&unknownC476A5),
 		PAUSE(29),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		HALT(),
 	);
@@ -5119,7 +5119,7 @@ shared static this() {
 		PAUSE(45),
 		PAUSE(60),
 		PAUSE(60),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(30),
 		PAUSE(120),
@@ -5139,7 +5139,7 @@ shared static this() {
 		END_LAST_TASK(),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(120),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(180),
 		SHORTJUMP(&actionScript35[0]),
@@ -5512,7 +5512,7 @@ shared static this() {
 		PAUSE(45),
 		PAUSE(60),
 		PAUSE(60),
-		C42624(),
+		DISABLE_SPOT_LIGHT_2(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(30),
 		SET_X(4704),
@@ -5530,11 +5530,11 @@ shared static this() {
 		END_LAST_TASK(),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(120),
-		C42624(),
+		DISABLE_SPOT_LIGHT_2(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(3),
-		C424D1(),
-		C0AA23(4640, 5744, 4832),
+		DARKEN_SCREEN(),
+		ENABLE_STAGE_HDMA(4640, 5744, 4832),
 		PAUSE(120),
 		PAUSE(120),
 		PAUSE(120),
@@ -5556,7 +5556,7 @@ shared static this() {
 		PAUSE(120),
 		PAUSE(120),
 		PAUSE(30),
-		C4257F(),
+		DARKEN_SCREEN_END(),
 		SHORTJUMP(&actionScript35[0]),
 	);
 }
@@ -5842,15 +5842,15 @@ shared static this() {
 		PAUSE(30),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		C42624(),
+		DISABLE_SPOT_LIGHT_2(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(10),
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORTCALL(&unknownC31ED8[0]),
-		C424D1(),
-		C0AA23(4640, 5744, 4832),
+		DARKEN_SCREEN(),
+		ENABLE_STAGE_HDMA(4640, 5744, 4832),
 		SET_VAR(ActionScriptVars.v4, 30),
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		SET_X_VELOCITY(-68),
@@ -5967,7 +5967,7 @@ shared static this() {
 		PAUSE(90),
 		PAUSE(90),
 		PAUSE(60),
-		C4257F(),
+		DARKEN_SCREEN_END(),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -6009,7 +6009,7 @@ shared static this() {
 		PAUSE(30),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		PAUSE(10),
 		WRITE_WORD_TEMPVAR(Direction.left),
@@ -6357,7 +6357,7 @@ shared static this() {
 	actionScriptTStage3Thank3 = initializeScript(actionScriptTStage3Thank3.length,
 		SHORTCALL(&unknownC31D4F[0]),
 		SET_VAR(ActionScriptVars.v4, 40),
-		C4258C(),
+		DARKEN_SCREEN_2_WINDOW(),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		HALT(),
 	);
@@ -6617,7 +6617,7 @@ shared static this() {
 		SET_Y(5736),
 		SHORTCALL(&unknownC31D4F[0]),
 		SET_VAR(ActionScriptVars.v4, 0),
-		C4258C(),
+		DARKEN_SCREEN_2_WINDOW(),
 		SET_VAR(ActionScriptVars.v0, 0),
 		UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 		PAUSE(94),
@@ -6960,7 +6960,7 @@ shared static this() {
 		PAUSE(63),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		PAUSE(94),
-		C425F3(),
+		DISABLE_SPOT_LIGHT_1(),
 		CLEAR_TICK_CALLBACK(),
 		YIELD_TO_TEXT(),
 		PAUSE(188),
@@ -9127,7 +9127,7 @@ shared static this() {
 		C4240A(),
 		WRITE_WORD_TEMPVAR(1),
 		C0AA3F(24, 24, 24),
-		SET_TICK_CALLBACK(&unknownC47A27),
+		SET_TICK_CALLBACK(&elevaterConfigure),
 		START_TASK(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
 		SET_MOVEMENT_SPEED(0),
 		LOOP(64),
@@ -25922,7 +25922,7 @@ alias SET_BOUNDARIES = CALL!(actionScriptSetEntityBoundaries, ushort, ushort);
 alias SPAWN_ENTITY_AT_SELF = CALL!(actionScriptSpawnEntityAtSelf, ushort, ushort);
 alias PRINT_CAST_NAME_PARTY = CALL!(actionScriptPrintCastNameParty, ushort, ushort, ushort);
 alias PRINT_CAST_NAME_VAR0 = CALL!(actionScriptPrintCastNameEntityVar0, ushort, ushort, ushort);
-alias C0AA23 = CALL!(unknownC0AA23, ushort, ushort, ushort);
+alias ENABLE_STAGE_HDMA = CALL!(actionScriptEnableStageHDMA, ushort, ushort, ushort);
 alias C0AA3F = CALL!(unknownC0AA3F, ubyte, ubyte, ubyte);
 alias GET_NPC_COORDINATES = CALL!(actionScriptFindNPCLocationForActiveEntity, ushort);
 alias GET_EVENT_FLAG = CALL!(actionScriptGetEventFlag, ushort);
@@ -25983,11 +25983,11 @@ alias SLEEP_SLOT_FRAMES = CALL!sleepSlotFrames;
 alias C423DC = CALL!unknownC423DC;
 alias C4240A = CALL!unknownC4240A;
 alias C4248A = CALL!unknownC4248A;
-alias C424D1 = CALL!unknownC424D1;
-alias C4257F = CALL!unknownC4257F;
-alias C4258C = CALL!unknownC4258C;
-alias C425F3 = CALL!unknownC425F3;
-alias C42624 = CALL!unknownC42624;
+alias DARKEN_SCREEN = CALL!darkenScreen;
+alias DARKEN_SCREEN_END = CALL!disableBrightnessHDMA;
+alias DARKEN_SCREEN_2_WINDOW = CALL!darkenScreen2Window;
+alias DISABLE_SPOT_LIGHT_1 = CALL!disableSpotlightHDMA1;
+alias DISABLE_SPOT_LIGHT_2 = CALL!disableSpotlightHDMA2;
 alias PREPARE_PARTY_FOR_TESSIE_TRIP = CALL!preparePartyForTessieTrip;
 alias PREPARE_PARTY_FOR_TESSIE_TRIP_END = CALL!preparePartyForTessieTripEnd;
 alias GENERATE_RANDOM_LEAF_DELAY = CALL!generateRandomLeafDelay;

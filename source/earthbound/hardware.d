@@ -147,6 +147,20 @@ enum CGADSUBFlags {
 	ColourMathMainIsBG1 = 1 << 0,
 }
 
+enum TilemapFlag {
+	palette0 = 0x0000,
+	palette1 = 0x0400,
+	palette2 = 0x0800,
+	palette3 = 0x0C00,
+	palette4 = 0x1000,
+	palette5 = 0x1400,
+	palette6 = 0x1800,
+	palette7 = 0x1C00,
+	priority = 0x2000,
+	hFlip = 0x4000,
+	vFlip = 0x8000,
+}
+
 ///
 enum BGR555Mask {
 	Red = 0x1F,

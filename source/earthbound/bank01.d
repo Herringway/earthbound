@@ -13,6 +13,7 @@ import earthbound.bank15;
 import earthbound.bank20;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.hardware;
 import earthbound.text;
 
 import core.stdc.string;
@@ -697,7 +698,7 @@ void windowSetTextColor(short windowID) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	windowStats[windowTable[currentFocusWindow]].tileAttributes = cast(ushort)(windowID * 0x400);
+	windowStats[windowTable[currentFocusWindow]].tileAttributes = cast(ushort)(windowID * TilemapFlag.palette1);
 }
 
 /// $C1101C
@@ -933,10 +934,10 @@ void printMenuItems() {
 		if ((option.page == windowStats[windowTable[currentFocusWindow]].menuPage) || (option.page == 0)) {
 			unknownC43DDB(option);
 			if (option.page == 0) {
-				windowSetTextColor(0);
+				windowSetTextColor(TextPalette.normal);
 				unknownC43F77(0x14F);
 				nextVWFTile();
-				windowSetTextColor(0);
+				windowSetTextColor(TextPalette.normal);
 				ubyte* src = &windowStats[windowTable[currentFocusWindow]].title[0];
 				if (src[0] != 0) {
 					ubyte* dest;
@@ -1102,9 +1103,9 @@ short selectionMenu(short cancelable) {
 		}
 
 		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
-		windowSetTextColor(1);
+		windowSetTextColor(TextPalette.miscUIElements);
 		drawTallTextTileFocusedRedraw(0x21); // draw cursor
-		windowSetTextColor(0);
+		windowSetTextColor(TextPalette.normal);
 		windowTick();
 
 		short cursorFrame = 1;
@@ -1164,7 +1165,7 @@ short selectionMenu(short cancelable) {
 						playSfx(highlightedOption.sfx);
 						moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
 						drawTallTextTileFocusedRedraw(0x2F); // draw over cursor
-						windowSetTextColor(6);
+						windowSetTextColor(TextPalette.highlighted);
 
 						if (enableWordWrap) {
 							if (allowTextOverflow != 1) {
@@ -1180,7 +1181,7 @@ short selectionMenu(short cancelable) {
 							fillRestOfWindowLine();
 						}
 
-						windowSetTextColor(0);
+						windowSetTextColor(TextPalette.normal);
 						clearInstantPrinting();
 
 						window.selectedOption = selectedOptionIndex;
@@ -1684,7 +1685,7 @@ short unknownC12BD5(short arg1) {
 
 /// $C12BF3
 void printSMAAAASH() {
-	windowSetTextColor(3);
+	windowSetTextColor(TextPalette.specialGraphics);
 	const(ushort)* x06 = &smaaaashTiles[0];
 	while (x06[0] != 0) {
 		drawTallTextTileFocusedRedraw(*(x06++));
@@ -1692,12 +1693,12 @@ void printSMAAAASH() {
 			windowTick();
 		}
 	}
-	windowSetTextColor(0);
+	windowSetTextColor(TextPalette.normal);
 }
 
 /// $C12C36
 void printYouWon() {
-	windowSetTextColor(3);
+	windowSetTextColor(TextPalette.specialGraphics);
 	const(ushort)* x06 = &youWonTiles[0];
 	for (short i = 0; i < 4; i++) {
 		drawTallTextTileFocusedRedraw(*(x06++));
@@ -1714,7 +1715,7 @@ void printYouWon() {
 			windowTick();
 		}
 	}
-	windowSetTextColor(0);
+	windowSetTextColor(TextPalette.normal);
 }
 
 /// $C12D17
@@ -2450,7 +2451,7 @@ void* cc1C01(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C140CF
 void* cc1C11(DisplayTextState* arg1, ubyte arg2) {
-	unknownEF01D2(arg2 == 0 ? cast(short)getSubRegister() : arg2);
+	printNewLineIfNeeded(arg2 == 0 ? cast(short)getSubRegister() : arg2);
 	return null;
 }
 
@@ -2461,8 +2462,8 @@ void* cc1C09(DisplayTextState* arg1, ubyte arg2) {
 }
 
 /// $C140F9
-void* cc1C00(DisplayTextState* arg1, ubyte arg2) {
-	windowSetTextColor(arg2);
+void* cc1C00(DisplayTextState* arg1, ubyte palette) {
+	windowSetTextColor(palette);
 	return null;
 }
 
@@ -5210,9 +5211,9 @@ void printEquipmentStats(short arg1) {
 	forceLeftTextAlignment = 0;
 	if (compareEquipmentMode != 0) {
 		forcePixelAlignment(76, 0);
-		windowSetTextColor(1);
+		windowSetTextColor(TextPalette.miscUIElements);
 		unknownC43F77(0x14E);
-		windowSetTextColor(0);
+		windowSetTextColor(TextPalette.normal);
 		short x14_2 = partyCharacters[arg1].baseOffense;
 		if (temporaryWeapon != 0) {
 			short x16_2 = 0;
@@ -5235,7 +5236,7 @@ void printEquipmentStats(short arg1) {
 		printNumber(a);
 		forceLeftTextAlignment = 0;
 		forcePixelAlignment(76, 1);
-		windowSetTextColor(1);
+		windowSetTextColor(TextPalette.miscUIElements);
 		unknownC43F77(0x14E);
 
 		x16 = partyCharacters[arg1].baseDefense;
@@ -5730,7 +5731,7 @@ short overworldPSIMenu() {
 		do {
 			setWindowFocus(Window.textStandard);
 			if (psiSelected != 0xFF) {
-				unknownC1CA72(psiSelected, 0);
+				unknownC1CA72(psiSelected, TextPalette.normal);
 				printMenuItems();
 			}
 			unknownC11F5A(&unknownC1C8BC);
@@ -5738,7 +5739,7 @@ short overworldPSIMenu() {
 			unknownC11F8A();
 			if (psiSelected != 0) {
 				if (onlyOneCharacterWithPSI == 0) {
-					unknownC1CA72(psiSelected, 6);
+					unknownC1CA72(psiSelected, TextPalette.highlighted);
 				}
 				if (battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
 					createWindowN(Window.textBattle);
@@ -6254,7 +6255,7 @@ void printPSIName(short id) {
 }
 
 /// $C1CA72
-void unknownC1CA72(short arg1, short arg2) {
+void unknownC1CA72(short arg1, short palette) {
 	setInstantPrinting();
 	short x0E = windowStats[windowTable[currentFocusWindow]].textY;
 	removeWindowFromScreen(currentFocusWindow);
@@ -6263,9 +6264,9 @@ void unknownC1CA72(short arg1, short arg2) {
 	printMenuItems();
 	windowStats[windowTable[currentFocusWindow]].textY = x0E;
 	moveCurrentTextCursor(0, getTextY());
-	windowSetTextColor(arg2);
+	windowSetTextColor(palette);
 	getPSIName(psiAbilityTable[arg1].name);
-	windowSetTextColor(0);
+	windowSetTextColor(TextPalette.normal);
 	clearInstantPrinting();
 }
 
@@ -6369,9 +6370,9 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 						// create a window with the PSI name highlighted
 						createWindowN(Window.itemPSINameWhileTargetting);
 						setInstantPrinting();
-						windowSetTextColor(6);
+						windowSetTextColor(TextPalette.highlighted);
 						printPSIName(selectedPSI);
-						windowSetTextColor(0);
+						windowSetTextColor(TextPalette.normal);
 					}
 				}
 				psiTargetting = determineTargetting(psiAbilityTable[selectedPSI].battleAction, arg1.user);
@@ -7081,9 +7082,9 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 		l1: while (true) {
 			clearInstantPrinting();
 			moveCurrentTextCursor(x, y);
-			windowSetTextColor(1);
+			windowSetTextColor(TextPalette.miscUIElements);
 			drawTallTextTileFocusedRedraw(33);
-			windowSetTextColor(0);
+			windowSetTextColor(TextPalette.normal);
 			windowTick();
 			selectionCursorFrame = 1;
 			l2: while (true) {
@@ -7345,11 +7346,11 @@ short fileSelectMenu(short arg1) {
 		for (short i = cast(short)(currentSaveSlot - 1); i != 0; i--) {
 			x1C_2 = &menuOptions[x1C_2.next];
 		}
-		windowSetTextColor(6);
+		windowSetTextColor(TextPalette.highlighted);
 		moveCurrentTextCursor(cast(short)(x1C_2.textX + 1), x1C_2.textY);
 		enableWordWrap = 0;
 		fillRestOfWindowLine();
-		windowSetTextColor(0);
+		windowSetTextColor(TextPalette.normal);
 	} else {
 		corruptionCheck();
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
@@ -7556,10 +7557,10 @@ short unknownC1F497(short openWindow) {
 		for (short i = cast(short)(gameState.textSpeed - 1); i != 0; i--) {
 			option = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
-		windowSetTextColor(6);
+		windowSetTextColor(TextPalette.highlighted);
 		moveCurrentTextCursor(cast(short)(option.textX + 1), option.textY);
 		setTextHighlighting(0xFFFF, 1, &option.label[0]);
-		windowSetTextColor(0);
+		windowSetTextColor(TextPalette.normal);
 		textSpeed = gameState.textSpeed;
 	} else {
 		enableWordWrap = 0;
@@ -7593,10 +7594,10 @@ short unknownC1F616(short openWindow) {
 		for (short i = gameState.soundSetting; i != 0; i--) {
 			x14 = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
-		windowSetTextColor(6);
+		windowSetTextColor(TextPalette.highlighted);
 		moveCurrentTextCursor(cast(short)(x14.textX + 1), x14.textY);
 		setTextHighlighting(0xFFFF, 1, &x14.label[0]);
-		windowSetTextColor(0);
+		windowSetTextColor(TextPalette.normal);
 		x12 = gameState.soundSetting;
 	} else {
 		x12 = selectionMenu(1);
