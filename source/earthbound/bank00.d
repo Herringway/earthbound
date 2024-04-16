@@ -4987,7 +4987,7 @@ void* sbrk(ushort i) {
 			currentHeapAddress += i;
 			return result;
 		}
-		while (newFrameStarted != 0) { waitForInterrupt(); }
+		while (newFrameStarted == 0) { waitForInterrupt(); }
 		newFrameStarted = 0;
 	}
 }
@@ -4998,7 +4998,7 @@ void prepareForImmediateDMA() {
 	mirrorHDMAEN = 0;
 	fadeParameters.step = 0;
 	newFrameStarted = 0;
-	while (newFrameStarted != 0) { waitForInterrupt(); }
+	while (newFrameStarted == 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
@@ -5006,7 +5006,7 @@ void prepareForImmediateDMA() {
 void setForceBlank() {
 	mirrorINIDISP = 0x80;
 	newFrameStarted = 0;
-	while (newFrameStarted != 0) { waitForInterrupt(); }
+	while (newFrameStarted == 0) { waitForInterrupt(); }
 }
 
 /// $C08715
@@ -5085,7 +5085,7 @@ void fadeOutWithMosaic(short arg1, short arg2, short arg3) {
 	setINIDISP(0x80);
 	mirrorHDMAEN = 0;
 	newFrameStarted = 0;
-	while (newFrameStarted != 0) { waitForInterrupt(); }
+	while (newFrameStarted == 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
