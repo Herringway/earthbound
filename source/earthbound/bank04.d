@@ -4081,7 +4081,7 @@ void unknownC47A6B() {
 /// $C47A9E
 void unknownC47A9E() {
 	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
-	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
+	copyToVRAMChunked(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
 	memcpy(&palettes[0][0], &buffer[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
 	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
@@ -7368,7 +7368,7 @@ void loadTownMapData(short arg1) {
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
 	copyToVRAM(0, 0x800, 0x3000, &buffer[0x40]);
-	copyToVRAM2(0, 0x4000, 0, &buffer[0x840]);
+	copyToVRAMChunked(0, 0x4000, 0, &buffer[0x840]);
 	decomp(&townMapLabelGfx[0], &buffer[0]);
 	copyToVRAM(0, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);

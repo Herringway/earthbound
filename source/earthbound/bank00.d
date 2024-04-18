@@ -316,9 +316,9 @@ void loadMapAtSector(short x, short y) {
 		decomp(&mapDataTilesetPtrTable[tilesetTable[tileCombo]][0], &buffer[0]);
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
-			copyToVRAM2(0, 0x7000, 0, &buffer[0]);
+			copyToVRAMChunked(0, 0x7000, 0, &buffer[0]);
 		} else {
-			copyToVRAM2(0, 0x4000, 0, &buffer[0]);
+			copyToVRAMChunked(0, 0x4000, 0, &buffer[0]);
 		}
 	}
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
@@ -4656,6 +4656,9 @@ void start() {
 	gameInit();
 }
 
+/** Interrupt handler routine. Runs exactly once every frame, syncing buffered registers to hardware, resetting the heap and starting queued DMA requests.
+ * Original_Address: $(DOLLAR)C0814F
+ */
 void irqNMICommon() {
 	// a read from RDNMI is required on real hardware during NMI, apparently
 	//ubyte __unused = RDNMI;
@@ -4818,7 +4821,9 @@ void readJoypad() {
 	padRaw[0] = getControllerState(0);
 }
 
-/// $C08456
+/** Records a frame of input if a demo is actively being recorded. Be aware that this combines both pad 1 and pad 2's input into a single pad state.
+ * Original_Address: $(DOLLAR)C08456
+ */
 void demoRecordButtons() {
 	if ((demoRecordingFlags & DemoRecordingFlags.recordingEnabled) == 0) {
 		return;
@@ -4842,8 +4847,14 @@ void demoRecordButtons() {
 	demoRecordingFlags &= ~DemoRecordingFlags.recordingEnabled;
 }
 
-/// $C08496
-void unknownC08496() {
+/** Updates the pad* variables with gamepad input. Unless debugging is enabled, pad 2's state is a copy of pad 1's. Also records a frame of demo input, if active.
+ *
+ * padPress bits are set when a button was pressed this frame but not the last.
+ * padState bits are set when the button was down this frame, regardless of previous frames.
+ * padHeld bits are set when the buttons have been held down for at least 20 frames, as well as the first frame when the pad state changes
+ * Original_Address: $(DOLLAR)C08496
+ */
+void updatePadState() {
 	while ((HVBJOY & 1) == 1) {}
 	readJoypad();
 	demoRecordButtons();
@@ -4887,33 +4898,50 @@ void unknownC08496() {
 	}
 }
 
-/// $C08518
+/** Executes the IRQ callback for the interrupt handler. Has its own function due to function pointers being awkward in 65816 assembly.
+ * Original_Address: $(DOLLAR)C08518
+ */
 void executeIRQCallback() {
 	irqCallback();
 }
 
-/// $C0851B
-void defaultIRQCallback() {
-	//nothing
-}
+/** The default callback called every frame by the interrupt handler. Does nothing.
+ * Original_Address: $(DOLLAR)C0851B
+ */
+void defaultIRQCallback() {}
 
-/// $C0851C
+/** Sets an IRQ callback to be run each frame during the interrupt handler. Make sure this function executes quickly, otherwise you won't have much CPU time per frame.
+ * Original_Address: $(DOLLAR)C0851C
+ */
 void setIRQCallback(void function() arg1) {
 	irqCallback = arg1;
 }
 
-/// $C08522
+/** Clears the IRQ callback by setting it to the default no-op function.
+ * Original_Address: $(DOLLAR)C08522
+ */
 void resetIRQCallback() {
 	irqCallback = &defaultIRQCallback;
 }
 
-/// $C0856B
-void preparePaletteUpload(short arg1) {
-	paletteUploadMode = cast(ubyte)arg1;
+/** Signals to the interrupt handler that a palette upload is meant to happen next frame.
+ * Original_Address: $(DOLLAR)C0856B
+ */
+void preparePaletteUpload(PaletteUpload mode) {
+	paletteUploadMode = cast(ubyte)mode;
 }
 
-/// $C085B7 - Copy data to VRAM in chunks of 0x1200
-void copyToVRAM2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
+/** Immediately copy data to VRAM in 4608-byte chunks, presumably to avoid lag frames.
+ *
+ * This call blocks until any outstanding queued DMAs are complete and the specified data is fully transferred.
+ * Params:
+ * 	mode = DMA mode, as defined by dmaTable
+ * 	count = Total number of bytes to transfer
+ * 	address = The word-based VRAM address to transfer data to (not byte-based!)
+ * 	data = The data to transfer
+ * Original_Address: $(DOLLAR)C085B7
+ */
+void copyToVRAMChunked(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	dmaCopyMode = mode;
 	while (dmaBytesCopied != 0) { waitForInterrupt(); }
 	dmaCopyRAMSource = data;
@@ -4934,7 +4962,14 @@ void copyToVRAM2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	while (dmaBytesCopied != 0) { waitForInterrupt(); }
 }
 
-/// $C08616 - Copy data to VRAM
+/** Queues up a DMA transfer to VRAM
+ * Params:
+ * 	mode = DMA mode, as defined by dmaTable
+ * 	count = Number of bytes to transfer
+ * 	address = The word-based VRAM address to transfer data to (not byte-based!)
+ * 	data = The data to transfer
+ * Original_Address: $(DOLLAR)C08616
+ */
 void copyToVRAM(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	dmaCopyMode = mode;
 	dmaCopySize = count;
@@ -4942,17 +4977,28 @@ void copyToVRAM(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	dmaCopyVRAMDestination = address;
 	copyToVRAMCommon();
 }
-// this actually splits the address into bank/address parameters, but we don't need that
+
+/** Identical to copyToVRAM, but used far pointers split into bank and near addresses.
+ * Original_Address: $(DOLLAR)C0862E
+ */
 void copyToVRAMAlt(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	copyToVRAM(mode, count, address, data);
 }
 
+/** Common code for copyToVRAM and copyToVRAMAlt
+ * Original_Address: $(DOLLAR)C08643
+ */
 void copyToVRAMCommon() {
-	copyToVRAMInternal();
+	queueVRAMDMAInternal();
 }
 
-/// $C0865F
-void copyToVRAMInternal() {
+/** Queues up a DMA transfer in 4608-byte chunks, with one sent per frame.
+ *
+ * If force-blanking is enabled, this will wait until any outstanding transfers are complete before starting a new one. Otherwise, it will queue up a new transfer.
+ * When force blanking is disabled, queuing a second transfer with the same mode as an outstanding transfer WILL cancel the existing transfer and start a new one!
+ * Original_Address: $(DOLLAR)C0865F
+ */
+void queueVRAMDMAInternal() {
 	debug(printVRAMDMA) tracef("Copying %s bytes to $%04X, mode %s", dmaCopySize, dmaCopyVRAMDestination, dmaCopyMode);
 	// if ((mirrorINIDISP & 0x80) != 0) {
 	// 	ushort tmp92 = cast(ushort)(dmaCopySize + dmaBytesCopied);
@@ -4979,12 +5025,18 @@ void copyToVRAMInternal() {
 	// }
 }
 
-/// $C086DE
-void* sbrk(ushort i) {
+/** Reserve some memory from the heap
+ *
+ * Any memory reserved lasts for a maximum of two frames. In case of overflow, wait a frame and allocate from the other heap instead
+ * Params:
+ * 	bytes = Number of bytes to reserve
+ * Original_Address: $(DOLLAR)C086DE
+ */
+void* sbrk(ushort bytes) {
 	while (true) {
-		if (i + currentHeapAddress - heap[0].length < heapBaseAddress) {
+		if (bytes + currentHeapAddress - heap[0].length < heapBaseAddress) {
 			void* result = currentHeapAddress;
-			currentHeapAddress += i;
+			currentHeapAddress += bytes;
 			return result;
 		}
 		while (newFrameStarted == 0) { waitForInterrupt(); }
@@ -5026,7 +5078,7 @@ void waitUntilNextFrame() {
 	// }
 	waitForInterrupt();
 	newFrameStarted = 0;
-	unknownC08496();
+	updatePadState();
 }
 
 /// $C0878B

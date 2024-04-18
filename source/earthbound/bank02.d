@@ -7623,7 +7623,7 @@ void unknownC2E0E7() {
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
 		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0x8000]);
-		copyToVRAM2(0, 0x1000, 0, &buffer[0x8000]);
+		copyToVRAMChunked(0, 0x1000, 0, &buffer[0x8000]);
 		psiAnimationPalette = &palettes[3][0];
 	} else {
 		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0]);
@@ -7647,7 +7647,7 @@ void showPSIAnimation(short arg1) {
 			(x0A++)[0] = 0;
 			(x0A++)[0] = 0;
 		}
-		copyToVRAM2(0, 0x2000, 0, &buffer[0x8000]);
+		copyToVRAMChunked(0, 0x2000, 0, &buffer[0x8000]);
 		psiAnimationPalette = &palettes[4][0];
 	}
 	waitUntilNextFrame();
