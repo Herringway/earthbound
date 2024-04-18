@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function copyToVRAM</h1><p>$C08616 - Copy data to VRAM
+			<h1>Function copyToVRAM</h1><p>Queues up a DMA transfer to VRAM
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -170,7 +170,19 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="mode">mode</td><td> DMA mode, as defined by dmaTable</td></tr>
+<tr><td id="count">count</td><td> Number of bytes to transfer</td></tr>
+<tr><td id="address">address</td><td> The word-based VRAM address to transfer data to (not byte-based!)</td></tr>
+<tr><td id="data">data</td><td> The data to transfer</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C08616
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

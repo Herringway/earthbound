@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function setIRQCallback</title>
+		<title>Function copyToVRAMAlt</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,15 +149,21 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setIRQCallback</h1><p>Sets an IRQ callback to be run each frame during the interrupt handler. Make sure this function executes quickly, otherwise you won't have much CPU time per frame.
+			<h1>Function copyToVRAMAlt</h1><p>Identical to copyToVRAM, but used far pointers split into bank and near addresses.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">setIRQCallback</span>
+			<span class="typ">void</span> <span class="pln">copyToVRAMAlt</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">void</span> <span class="kwd">function</span><span class="pun">(</span><span class="pun">)</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">mode</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">count</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">address</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">data</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
@@ -165,7 +171,7 @@ $('#symbolSearchPane').show();</script>
 			</div>
 			
 			<section><h2>Original Address</h2>
-<p>C0851C
+<p>C0862E
 </p>
 </section>
 

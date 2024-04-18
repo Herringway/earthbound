@@ -177,8 +177,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/clearSpriteTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/copyMapPaletteFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAM.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAM2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAMInternal.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAMAlt.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAMChunked.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAMCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/cosineMult.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/createMiniGhostEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/createOverworldEntity.html</loc></url>
@@ -275,6 +276,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/interactObject.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/interactRopeLadder.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/interactStairs.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/irqNMICommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/isEntityOnscreen.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/isEntityWeak.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/layerConfigCGADSUBs.html</loc></url>
@@ -357,6 +359,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/queueEntityCreationRequest.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/queueHotspotInteraction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/queueInteraction.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/queueVRAMDMAInternal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/rand.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/readJoypad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/recalculateEntityScreenPosition.html</loc></url>
@@ -475,7 +478,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0780F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC07A31.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC07B52.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC08496.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC087AB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0888B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC08C53.html</loc></url>
@@ -575,6 +577,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/updateMiniGhostPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/updateMushroomizedWalking.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/updateOverlayFrame.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/updatePadState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/updateParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/updatePartyNPCs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/updateScreen.html</loc></url>

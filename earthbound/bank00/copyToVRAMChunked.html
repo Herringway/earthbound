@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function copyToVRAM2</title>
+		<title>Function copyToVRAMChunked</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,12 +149,12 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function copyToVRAM2</h1><p>$C085B7 - Copy data to VRAM in chunks of 0x1200
+			<h1>Function copyToVRAMChunked</h1><p>Immediately copy data to VRAM in 4608-byte chunks, presumably to avoid lag frames.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">copyToVRAM2</span>
+			<span class="typ">void</span> <span class="pln">copyToVRAMChunked</span>
 			<span class="pun">(</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">mode</span><span class="pun">,</span>
@@ -169,8 +169,23 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>This call blocks until any outstanding queued DMAs are complete and the specified data is fully transferred.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="mode">mode</td><td> DMA mode, as defined by dmaTable</td></tr>
+<tr><td id="count">count</td><td> Total number of bytes to transfer</td></tr>
+<tr><td id="address">address</td><td> The word-based VRAM address to transfer data to (not byte-based!)</td></tr>
+<tr><td id="data">data</td><td> The data to transfer</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C085B7
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

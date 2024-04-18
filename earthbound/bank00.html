@@ -1698,25 +1698,34 @@ $('#symbolSearchPane').show();</script>
 								<a id="copyToVRAM" class="public" href="../earthbound/bank00/copyToVRAM.html">copyToVRAM</a><span class="tableEntryAnnotation">(mode, count, address, data)</span>
 							</code>
 						</td>
-						<td>$C08616 - Copy data to VRAM
+						<td>Queues up a DMA transfer to VRAM
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="copyToVRAM2" class="public" href="../earthbound/bank00/copyToVRAM2.html">copyToVRAM2</a><span class="tableEntryAnnotation">(mode, count, address, data)</span>
+								<a id="copyToVRAMAlt" class="public" href="../earthbound/bank00/copyToVRAMAlt.html">copyToVRAMAlt</a><span class="tableEntryAnnotation">(mode, count, address, data)</span>
 							</code>
 						</td>
-						<td>$C085B7 - Copy data to VRAM in chunks of 0x1200
+						<td>Identical to copyToVRAM, but used far pointers split into bank and near addresses.
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="copyToVRAMInternal" class="public" href="../earthbound/bank00/copyToVRAMInternal.html">copyToVRAMInternal</a><span class="tableEntryAnnotation">()</span>
+								<a id="copyToVRAMChunked" class="public" href="../earthbound/bank00/copyToVRAMChunked.html">copyToVRAMChunked</a><span class="tableEntryAnnotation">(mode, count, address, data)</span>
 							</code>
 						</td>
-						<td>$C0865F
+						<td>Immediately copy data to VRAM in 4608-byte chunks, presumably to avoid lag frames.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="copyToVRAMCommon" class="public" href="../earthbound/bank00/copyToVRAMCommon.html">copyToVRAMCommon</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Common code for copyToVRAM and copyToVRAMAlt
 </td>
 					</tr>
 					<tr>
@@ -1761,7 +1770,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="defaultIRQCallback" class="public" href="../earthbound/bank00/defaultIRQCallback.html">defaultIRQCallback</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C0851B
+						<td>The default callback called every frame by the interrupt handler. Does nothing.
 </td>
 					</tr>
 					<tr>
@@ -1815,7 +1824,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="demoRecordButtons" class="public" href="../earthbound/bank00/demoRecordButtons.html">demoRecordButtons</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08456
+						<td>Records a frame of input if a demo is actively being recorded. Be aware that this combines both pad 1 and pad 2's input into a single pad state.
 </td>
 					</tr>
 					<tr>
@@ -1977,7 +1986,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="executeIRQCallback" class="public" href="../earthbound/bank00/executeIRQCallback.html">executeIRQCallback</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08518
+						<td>Executes the IRQ callback for the interrupt handler. Has its own function due to function pointers being awkward in 65816 assembly.
 </td>
 					</tr>
 					<tr>
@@ -2530,6 +2539,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="irqNMICommon" class="public" href="../earthbound/bank00/irqNMICommon.html">irqNMICommon</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Interrupt handler routine. Runs exactly once every frame, syncing buffered registers to hardware, resetting the heap and starting queued DMA requests.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="isEntityOnscreen" class="public" href="../earthbound/bank00/isEntityOnscreen.html">isEntityOnscreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2972,10 +2990,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="preparePaletteUpload" class="public" href="../earthbound/bank00/preparePaletteUpload.html">preparePaletteUpload</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="preparePaletteUpload" class="public" href="../earthbound/bank00/preparePaletteUpload.html">preparePaletteUpload</a><span class="tableEntryAnnotation">(mode)</span>
 							</code>
 						</td>
-						<td>$C0856B
+						<td>Signals to the interrupt handler that a palette upload is meant to happen next frame.
 </td>
 					</tr>
 					<tr>
@@ -3225,6 +3243,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="queueVRAMDMAInternal" class="public" href="../earthbound/bank00/queueVRAMDMAInternal.html">queueVRAMDMAInternal</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Queues up a DMA transfer in 4608-byte chunks, with one sent per frame.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="rand" class="public" href="../earthbound/bank00/rand.html">rand</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3354,7 +3381,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="resetIRQCallback" class="public" href="../earthbound/bank00/resetIRQCallback.html">resetIRQCallback</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08522
+						<td>Clears the IRQ callback by setting it to the default no-op function.
 </td>
 					</tr>
 					<tr>
@@ -3441,10 +3468,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="sbrk" class="public" href="../earthbound/bank00/sbrk.html">sbrk</a><span class="tableEntryAnnotation">(i)</span>
+								<a id="sbrk" class="public" href="../earthbound/bank00/sbrk.html">sbrk</a><span class="tableEntryAnnotation">(bytes)</span>
 							</code>
 						</td>
-						<td>$C086DE
+						<td>Reserve some memory from the heap
 </td>
 					</tr>
 					<tr>
@@ -3606,7 +3633,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="setIRQCallback" class="public" href="../earthbound/bank00/setIRQCallback.html">setIRQCallback</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
-						<td>$C0851C
+						<td>Sets an IRQ callback to be run each frame during the interrupt handler. Make sure this function executes quickly, otherwise you won't have much CPU time per frame.
 </td>
 					</tr>
 					<tr>
@@ -4250,15 +4277,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C07B52
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC08496" class="public" href="../earthbound/bank00/unknownC08496.html">unknownC08496</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C08496
 </td>
 					</tr>
 					<tr>
@@ -5087,6 +5105,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C0AD56
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="updatePadState" class="public" href="../earthbound/bank00/updatePadState.html">updatePadState</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Updates the pad* variables with gamepad input. Unless debugging is enabled, pad 2's state is a copy of pad 1's. Also records a frame of demo input, if active.
 </td>
 					</tr>
 					<tr>

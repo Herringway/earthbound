@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function setIRQCallback</title>
+		<title>Function updatePadState</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,23 +149,23 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setIRQCallback</h1><p>Sets an IRQ callback to be run each frame during the interrupt handler. Make sure this function executes quickly, otherwise you won't have much CPU time per frame.
+			<h1>Function updatePadState</h1><p>Updates the pad* variables with gamepad input. Unless debugging is enabled, pad 2's state is a copy of pad 1's. Also records a frame of demo input, if active.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">setIRQCallback</span>
-			<span class="pun">(</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">void</span> <span class="kwd">function</span><span class="pun">(</span><span class="pun">)</span> <span class="pln">arg1</span>
-			<br/>
-			<span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">void</span> <span class="pln">updatePadState</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
+			<section><p>padPress bits are set when a button was pressed this frame but not the last.
+ padState bits are set when the button was down this frame, regardless of previous frames.
+ padHeld bits are set when the buttons have been held down for at least 20 frames, as well as the first frame when the pad state changes
+</p>
+</section>
+
 			<section><h2>Original Address</h2>
-<p>C0851C
+<p>C08496
 </p>
 </section>
 
