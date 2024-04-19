@@ -7384,7 +7384,7 @@ short displayTownMap() {
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
 	framesUntilMapIconPaletteUpdate = 12;
-	short mapID = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
+	short mapID = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer) & 0xF;
 	if (mapID == 0) {
 		return 0;
 	}
