@@ -211,7 +211,7 @@ StructuredText[][string][] parseTextData(const(ubyte)[] source, ulong offset, co
             tmpCompbuff ~= textTable[first];
             continue;
         }
-        if ((first >= 0x15) && (first <= 0x18)) {
+        if ((first >= 0x15) && (first < 0x18)) {
             flushBuff();
         } else {
             flushBuffs();
