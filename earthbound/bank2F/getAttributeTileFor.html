@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function getAttributeTileFor</h1><p>$EFDF0B
+			<h1>Function getAttributeTileFor</h1><p>Gets the attribute highlight tile to render for the given collision and coordinates
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,7 +157,7 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ushort</span> <span class="pln">getAttributeTileFor</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">tileCollision</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">x</span><span class="pun">,</span>
 			<br/>
@@ -167,8 +167,28 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>In view attribute mode 0, highlight the collision.
+ In view attribute mode 1, highlight the object type found at the given coordinates (if any).
+ In view attribute mode 2, highlight unknown1 collision.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tileCollision">tileCollision</td><td> The tile collision at the given coordinates</td></tr>
+<tr><td id="x">x</td><td> The X coordinate (in tiles)</td></tr>
+<tr><td id="y">y</td><td> The Y coordinate (in tiles)</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A tilemap entry suitable for writing directly to VRAM
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>EFDF0B
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

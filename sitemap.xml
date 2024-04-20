@@ -205,7 +205,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/doPartyMovementFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/doSectorMusicUpdate.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/drawSprite.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/drawSpriteF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ebMain.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/enableNMIJoypad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/enableSwirlWindowHDMA.html</loc></url>
@@ -233,6 +232,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/gasStationLoad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/generateSwirlHDMATable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getAngleTowardsPlayerUnlessWeak.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/getCharacterPositionIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getCollisionAtLoadedTile.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getCollisionFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getColorAverage.html</loc></url>
@@ -253,6 +253,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/getOnBicycle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getOnStairs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getOverworldSpriteTileSize.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/getPositionIndexDelta.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getScreenTransitionSoundEffect.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/getSurfaceFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/handleBicycleMovement.html</loc></url>
@@ -450,8 +451,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC03903.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC03A24.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC03A94.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC03E5A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC03E9D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC03FA9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC04116.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC041E3.html</loc></url>
@@ -1586,6 +1585,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/displayYourSanctuaryLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/doGameOverPaletteFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/drawTownMapIcons.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/drawTownMapPlayerIcon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/elevaterConfigure.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/enableBrightnessHDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/enableEntityByCharacterOrParty.html</loc></url>
@@ -1729,6 +1729,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareDynamicCastNameText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareGameFailure.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareLoadedPaletteFadeTables.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/prepareLoadedPalettesForFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntityAtExistingEntityLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntityAtTeleportDestination.html</loc></url>
@@ -1888,7 +1889,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4810E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4880C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC48A6D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC496F9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC49740.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4981F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC49841.html</loc></url>
@@ -1901,7 +1901,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C2DE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C58F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C60E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D2F0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D830.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D8FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/updateMapPaletteAnimation.html</loc></url>
@@ -1993,6 +1992,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank21/apeArrangement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/apeGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/apePalette.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank21/blinkingTownMapIcons.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/castNamesGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/castSequenceFormatting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/coffeeSequenceText.html</loc></url>
@@ -2019,13 +2019,13 @@
 <url><loc>http://127.0.0.1/earthbound/bank21/teaSequenceText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenArrangement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenGraphics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank21/titleScreenLetterPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconPlacementTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconSpritemaps.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapLabelGfx.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE14DE8.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank21/unknownE1AE7C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1AE83.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1AEFD.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1C6E5.html</loc></url>
@@ -2039,13 +2039,13 @@
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1E924.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1E92A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1E94A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank21/unknownE1F47A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/backupMenuSelection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/bubbleMonkeyInitialize.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/bubbleMonkeyTick.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/calcSaveBlockAddChecksum.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/calcSaveBlockXORChecksum.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/cancelTitleScreenSequence.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/checkAllBlocksSignature.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/checkBlockSignature.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/checkDeliveryEligibility.html</loc></url>
@@ -2073,6 +2073,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/debugMenuText2Lines.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/debugProcessCommandSelection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/debugSoundMenu.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/debugSoundModeMenuText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/debugTryCancellingBattle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/debugViewMapLimitActionscript.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/displayCheckPositionDebugOverlay.html</loc></url>
@@ -2096,6 +2097,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/integerToHexDebugTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/isDebugViewMapMode.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/loadDebugCursorGraphics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/loadDebugTextGraphics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/loadDebugTextGraphicsAuto.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/loadGameSlot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/loadReplaySaveSlot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/mapDataAnimatedTilesets.html</loc></url>
@@ -2112,7 +2115,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/renderAllAttributeRows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/renderAttributeColumn.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/renderAttributeRow.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/renderDebugDigit.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/renderDebugByte.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/renderDebugMenuString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/resetDebugSoundModeMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/resetEntityDeliveryAttemptCount.html</loc></url>
@@ -2135,11 +2138,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/stopHPPPRolling.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/storePersistentReplayState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/tilesetTable.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/townMapMapping.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/unknownEF04DC.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/townMapPlayerIcons.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/unknownEF0C3D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/unknownEFD95E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/unknownEFD9F3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/unusedEFEF70.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/unusedEFEF9F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/validateSaveBlockChecksums.html</loc></url>
@@ -2203,6 +2203,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.horizontalVelocity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.verticalAcceleration.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.verticalVelocity.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/bankbyte.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/baseNumberSelectorCharacter1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/baseNumberSelectorCharacter2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleAction.html</loc></url>
@@ -2648,6 +2649,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapDataPaletteAnimationPointer.count.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapDataPaletteAnimationPointer.entries.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapDataPaletteAnimationPointer.ptr.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/MapIconDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapObject.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapObject.doorPtr.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapObject.this.html</loc></url>
@@ -3059,14 +3061,15 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/totalPartyCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.unknown0.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.unknown1.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.unknown2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.areaIcon.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.x.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapData.y.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapIconPlacement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapIconPlacement.eventFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapIconPlacement.sprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapIconPlacement.x.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TownMapIconPlacement.y.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/TownMapLabel.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Unknown7EAEFCEntry.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Unknown7EAEFCEntry.unknown0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Unknown7EAEFCEntry.unknown2.html</loc></url>

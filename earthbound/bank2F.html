@@ -207,6 +207,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="cancelTitleScreenSequence" class="public" href="../earthbound/bank2F/cancelTitleScreenSequence.html">cancelTitleScreenSequence</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$EF04DC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="checkAllBlocksSignature" class="public" href="../earthbound/bank2F/checkAllBlocksSignature.html">checkAllBlocksSignature</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -309,7 +318,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugDisplayMenuOptions" class="public" href="../earthbound/bank2F/debugDisplayMenuOptions.html">debugDisplayMenuOptions</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFDB21
+						<td>Renders the debug menu options to the screen
 </td>
 					</tr>
 					<tr>
@@ -390,7 +399,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="displayCheckPositionDebugOverlay" class="public" href="../earthbound/bank2F/displayCheckPositionDebugOverlay.html">displayCheckPositionDebugOverlay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFDCBC
+						<td>Draws the 'Show Position' debug overlay
 </td>
 					</tr>
 					<tr>
@@ -399,7 +408,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="displayViewCharacterDebugOverlay" class="public" href="../earthbound/bank2F/displayViewCharacterDebugOverlay.html">displayViewCharacterDebugOverlay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFDE1A
+						<td>Draws the 'View character' debug overlay
 </td>
 					</tr>
 					<tr>
@@ -459,10 +468,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getAttributeTileFor" class="public" href="../earthbound/bank2F/getAttributeTileFor.html">getAttributeTileFor</a><span class="tableEntryAnnotation">(arg1, x, y)</span>
+								<a id="getAttributeTileFor" class="public" href="../earthbound/bank2F/getAttributeTileFor.html">getAttributeTileFor</a><span class="tableEntryAnnotation">(tileCollision, x, y)</span>
 							</code>
 						</td>
-						<td>$EFDF0B
+						<td>Gets the attribute highlight tile to render for the given collision and coordinates
 </td>
 					</tr>
 					<tr>
@@ -525,34 +534,34 @@ $('#symbolSearchPane').show();</script>
 								<a id="initDebugMenuScreen" class="public" href="../earthbound/bank2F/initDebugMenuScreen.html">initDebugMenuScreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EFDA05
+						<td>Initializes debug menu state and prepares hardware
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="integerToBinaryDebugTiles" class="public" href="../earthbound/bank2F/integerToBinaryDebugTiles.html">integerToBinaryDebugTiles</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="integerToBinaryDebugTiles" class="public" href="../earthbound/bank2F/integerToBinaryDebugTiles.html">integerToBinaryDebugTiles</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
-						<td>$EFDC69
+						<td>Translates a binary value into a series of 0/1 tiles for display
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="integerToDecimalDebugTiles" class="public" href="../earthbound/bank2F/integerToDecimalDebugTiles.html">integerToDecimalDebugTiles</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="integerToDecimalDebugTiles" class="public" href="../earthbound/bank2F/integerToDecimalDebugTiles.html">integerToDecimalDebugTiles</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
-						<td>$EFDBF0
+						<td>Translates a decimal value into a series of 0-9 tiles for display
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="integerToHexDebugTiles" class="public" href="../earthbound/bank2F/integerToHexDebugTiles.html">integerToHexDebugTiles</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="integerToHexDebugTiles" class="public" href="../earthbound/bank2F/integerToHexDebugTiles.html">integerToHexDebugTiles</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
-						<td>$EFDB95
+						<td>Translates a decimal value into a series of 0-F tiles for display
 </td>
 					</tr>
 					<tr>
@@ -576,6 +585,24 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="loadDebugTextGraphics" class="public" href="../earthbound/bank2F/loadDebugTextGraphics.html">loadDebugTextGraphics</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Loads extra graphics used for debugging overlays
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadDebugTextGraphicsAuto" class="public" href="../earthbound/bank2F/loadDebugTextGraphicsAuto.html">loadDebugTextGraphicsAuto</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Load text palette. If in a debugging mode, load debug graphics too
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="loadGameSlot" class="public" href="../earthbound/bank2F/loadGameSlot.html">loadGameSlot</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
@@ -594,7 +621,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="pickNextBubbleMonkeyMovementMode" class="public" href="../earthbound/bank2F/pickNextBubbleMonkeyMovementMode.html">pickNextBubbleMonkeyMovementMode</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="pickNextBubbleMonkeyMovementMode" class="public" href="../earthbound/bank2F/pickNextBubbleMonkeyMovementMode.html">pickNextBubbleMonkeyMovementMode</a><span class="tableEntryAnnotation">(partyMember)</span>
 							</code>
 						</td>
 						<td>Picks a new movement mode for the bubble monkey
@@ -648,7 +675,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="renderDebugDigit" class="public" href="../earthbound/bank2F/renderDebugDigit.html">renderDebugDigit</a><span class="tableEntryAnnotation">(x, y, amount)</span>
+								<a id="renderDebugByte" class="public" href="../earthbound/bank2F/renderDebugByte.html">renderDebugByte</a><span class="tableEntryAnnotation">(x, y, amount)</span>
 							</code>
 						</td>
 						<td>$EFD56F
@@ -660,7 +687,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderDebugMenuString" class="public" href="../earthbound/bank2F/renderDebugMenuString.html">renderDebugMenuString</a><span class="tableEntryAnnotation">(x, y, str)</span>
 							</code>
 						</td>
-						<td>$EFDABD
+						<td>Renders a string for the boot debug menu
 </td>
 					</tr>
 					<tr>
@@ -819,37 +846,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownEF04DC" class="public" href="../earthbound/bank2F/unknownEF04DC.html">unknownEF04DC</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EF04DC
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownEF0C3D" class="public" href="../earthbound/bank2F/unknownEF0C3D.html">unknownEF0C3D</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>$EF0C3D - unused
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEFD95E" class="public" href="../earthbound/bank2F/unknownEFD95E.html">unknownEFD95E</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EFD95E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEFD9F3" class="public" href="../earthbound/bank2F/unknownEFD9F3.html">unknownEFD9F3</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EFD9F3
 </td>
 					</tr>
 					<tr>
@@ -963,7 +963,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[</span><span class="lit">33</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFD8B5
+						<td>Debug menu header text
 </td>
 					</tr>
 					<tr>
@@ -975,7 +975,20 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Debug menu options text
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="debugSoundModeMenuText" class="public" href="../earthbound/bank2F/debugSoundModeMenuText.html">
+								<code>debugSoundModeMenuText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>ASCII text for the sound debug menu options
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -998,7 +1011,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TownMapData.html"><span class="typ">TownMapData</span></a><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">[</span><span class="lit">80</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFA70F
+						<td>Town map settings, with each entry representing a 256x128 pixel area. Includes area ID and player icon positioning.
 </td>
 					</tr>
 					<tr>
@@ -1123,8 +1136,8 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="townMapMapping" class="public" href="../earthbound/bank2F/townMapMapping.html">
-								<code>townMapMapping</code>
+							<a id="townMapPlayerIcons" class="public" href="../earthbound/bank2F/townMapPlayerIcons.html">
+								<code>townMapPlayerIcons</code>
 							</a>
 						</td>
 						<td>

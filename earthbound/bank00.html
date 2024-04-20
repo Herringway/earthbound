@@ -1653,7 +1653,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="clearEntityDrawSortingTable" class="public" href="../earthbound/bank00/clearEntityDrawSortingTable.html">clearEntityDrawSortingTable</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C00000
+						<td>Clears and returns the entity draw sorting table
 </td>
 					</tr>
 					<tr>
@@ -1833,16 +1833,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="demoRecordingEnd" class="public" href="../earthbound/bank00/demoRecordingEnd.html">demoRecordingEnd</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C083B8
+						<td>Stops recording a game demo
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="demoRecordingStart" class="public" href="../earthbound/bank00/demoRecordingStart.html">demoRecordingStart</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="demoRecordingStart" class="public" href="../earthbound/bank00/demoRecordingStart.html">demoRecordingStart</a><span class="tableEntryAnnotation">(buffer)</span>
 							</code>
 						</td>
-						<td>$C083C1
+						<td>Starts recording a game demo to the specified buffer
 </td>
 					</tr>
 					<tr>
@@ -1924,15 +1924,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C08C58
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="drawSpriteF" class="public" href="../earthbound/bank00/drawSpriteF.html">drawSpriteF</a><span class="tableEntryAnnotation">(spriteMap, x, y)</span>
-							</code>
-						</td>
-						<td>$C08C54
 </td>
 					</tr>
 					<tr>
@@ -2154,6 +2145,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="getCharacterPositionIndex" class="public" href="../earthbound/bank00/getCharacterPositionIndex.html">getCharacterPositionIndex</a><span class="tableEntryAnnotation">(characterID)</span>
+							</code>
+						</td>
+						<td>$C03E5A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="getCollisionAtLoadedTile" class="public" href="../earthbound/bank00/getCollisionAtLoadedTile.html">getCollisionAtLoadedTile</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
@@ -2329,6 +2329,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C01DED
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getPositionIndexDelta" class="public" href="../earthbound/bank00/getPositionIndexDelta.html">getPositionIndexDelta</a><span class="tableEntryAnnotation">(characterID)</span>
+							</code>
+						</td>
+						<td>$C03E9D
 </td>
 					</tr>
 					<tr>
@@ -2894,7 +2903,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="overworldSetupVRAM" class="public" href="../earthbound/bank00/overworldSetupVRAM.html">overworldSetupVRAM</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C00013
+						<td>Sets up the PPU for the overworld game mode
 </td>
 					</tr>
 					<tr>
@@ -3809,7 +3818,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="start" class="public" href="../earthbound/bank00/start.html">start</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08000
+						<td>SNES entry point. Prepare hardware for running C code.
 </td>
 					</tr>
 					<tr>
@@ -4026,24 +4035,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C03A94
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC03E5A" class="public" href="../earthbound/bank00/unknownC03E5A.html">unknownC03E5A</a><span class="tableEntryAnnotation">(characterID)</span>
-							</code>
-						</td>
-						<td>$C03E5A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC03E9D" class="public" href="../earthbound/bank00/unknownC03E9D.html">unknownC03E9D</a><span class="tableEntryAnnotation">(characterID)</span>
-							</code>
-						</td>
-						<td>$C03E9D
 </td>
 					</tr>
 					<tr>
