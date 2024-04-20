@@ -269,11 +269,9 @@ const(void)[] fromBytes(const(ubyte)[] textChunk) {
 
 const(ubyte)* getTextBlock(const(char)[] label) {
 	import std.logger : tracef;
-	tracef("Looking for text '%s'", label);
 	static immutable ubyte[1] r = [2];
-	debug if (!(label in textData)) {
-		tracef("Not found!");
-	}
+	const found = !!(label in textData);
+	tracef("%s text '%s'", found ? "Found" : "Couldn't find", label);
 	return cast(const(ubyte)*)&(textData.get(label, r[]))[0];
 }
 
