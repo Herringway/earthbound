@@ -275,7 +275,7 @@ const(ubyte)* getTextBlock(const(char)[] label) {
 	return cast(const(ubyte)*)&(textData.get(label, r[]))[0];
 }
 
-void loadText(const StructuredText[] script, const string label, const string nextLabel) {
+ubyte[] asBytes(const StructuredText[] script, const string nextLabel) {
 	import std.algorithm.comparison : among;
 	ubyte[] data;
 	bool properlyTerminated;
@@ -725,7 +725,10 @@ void loadText(const StructuredText[] script, const string label, const string ne
 		assert(nextLabel != "", "No label specified!");
 		data ~= allBytes(MainCC.jump, nextLabel);
 	}
-	textData[label] = data;
+	return data;
+}
+void loadText(const StructuredText[] script, const string label, const string nextLabel) {
+	textData[label] = asBytes(script, nextLabel);
 }
 
 ubyte[] textCommand(T...)(ubyte command, T args) {
