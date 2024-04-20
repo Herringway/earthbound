@@ -21333,7 +21333,9 @@ immutable TownMapData[32][80] mapDataPerSectorTownMapData = [
 	]
 ];
 
-/// $EFC50F
+/** Sprites used for the player icon on the town map screen
+ * Original_Address: $(DOLLAR)EFC50F
+ */
 immutable ushort[6] townMapPlayerIcons = [
 	TownMapLabel.nessLarge,
 	TownMapLabel.nessSmall,
@@ -21355,7 +21357,13 @@ immutable char[14][6] debugSoundModeMenuText = [
 	"1994/05/12\0\0\0\0",
 ];
 
-/// $EFD56F
+/** Draws a byte value as two hexadecimal digits
+ * Params:
+ * 	x = Screen X tile coordinate
+ * 	y = Screen Y tile coordinate
+ * 	amount = Value to render to text
+ * Original_Address: $(DOLLAR)EFD56F
+ */
 void renderDebugByte(short x, short y, ushort amount) {
 	ushort* buf = cast(ushort*)sbrk(2 * ushort.sizeof);
 	ushort digit = (amount >> 4);
@@ -21373,8 +21381,12 @@ void renderDebugByte(short x, short y, ushort amount) {
 	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
 
-/// $EFD5D9
-void resetDebugSoundModeMenu(ushort entityID) {
+/** Reinitialize debug sound menu state and redraw
+ * Params:
+ * 	cursorEntity = ID of the existing cursor entity
+ * Original_Address: $(DOLLAR)EFD5D9
+ */
+void resetDebugSoundModeMenu(ushort cursorEntity) {
 	fadeOutWithMosaic(4, 1, 0);
 	initializeEntitySubsystem();
 	initDebugMenuScreen();
@@ -21384,12 +21396,16 @@ void resetDebugSoundModeMenu(ushort entityID) {
 	renderDebugMenuString(10, 14, &debugSoundModeMenuText[3][0]);
 	renderDebugMenuString(9, 20, &debugSoundModeMenuText[4][0]);
 	renderDebugMenuString(10, 22, &debugSoundModeMenuText[5][0]);
-	entityAbsXTable[entityID] = 0x40;
-	entityAbsYTable[entityID] = 0x50;
+	entityAbsXTable[cursorEntity] = 0x40;
+	entityAbsYTable[cursorEntity] = 0x50;
 	fadeInWithMosaic(4, 1, 0);
 }
 
-/// $EFD6D4
+/** Handles the sound menu in the boot debug menu
+ * Params:
+ * 	cursorEntity = ID of the existing cursor entity
+ * Original_Address: $(DOLLAR)EFD6D4
+ */
 void debugSoundMenu(ushort cursorEntity) {
 	enum Options { bgm = 0, soundEffects = 1, audioEffects = 2 }
 	short selectedOption = 0;
