@@ -7330,13 +7330,20 @@ ubyte[length] ebString(size_t length)(const(char)[] str) {
 }
 ///
 ubyte[] ebString(const(char)[] str) {
-	ubyte[] result = new ubyte[](str.length);
-	size_t idx;
+	ubyte[] result;
+	result.reserve(str.length);
 	foreach (dchar c; str) {
-		result[idx++] = ebChar(c);
+		result ~= ebChar(c);
 	}
 	return result;
 }
+
+unittest { // ensure UTF-8 characters don't get nulls tacked on to the end
+	import earthbound.testing : prettyCompare;
+	immutable string data = "±A±B±C±D±E±F±G±H±I";
+	prettyCompare(ebString(data), [0x2F, 0x71, 0x2F, 0x72, 0x2F, 0x73, 0x2F, 0x74, 0x2F, 0x75, 0x2F, 0x76, 0x2F, 0x77, 0x2F, 0x78, 0x2F, 0x79]);
+}
+
 ///
 ubyte[] ebStringz(const(char)[] str) @safe pure {
 	ubyte[] result = new ubyte[](str.length + 1);
