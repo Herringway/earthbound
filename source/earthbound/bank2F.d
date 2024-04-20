@@ -21477,11 +21477,11 @@ void debugSoundMenu(ushort cursorEntity) {
 			if ((padHeld[0] & Pad.right) != 0) {
 				debugSoundMenuSelectedEffect++;
 			}
-			if (debugSoundMenuSelectedSE == MusicEffect.min - 1) {
-				debugSoundMenuSelectedSE = MusicEffect.max;
+			if (debugSoundMenuSelectedEffect == MusicEffect.min - 1) {
+				debugSoundMenuSelectedEffect = MusicEffect.max;
 			}
-			if (debugSoundMenuSelectedSE == MusicEffect.max + 1) {
-				debugSoundMenuSelectedSE = MusicEffect.min + 1;
+			if (debugSoundMenuSelectedEffect == MusicEffect.max + 1) {
+				debugSoundMenuSelectedEffect = MusicEffect.min + 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
 				musicEffect(debugSoundMenuSelectedEffect);
