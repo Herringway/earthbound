@@ -697,6 +697,16 @@ StructuredText[][string][] parseTextData(const(ubyte)[] source, ulong offset, co
     return resultUncompressed;
 }
 
+unittest {
+    import earthbound.testing : prettyCompare;
+    static immutable ubyte[] sample1 = cast(immutable(ubyte)[])import("keyboardsample.bin");
+    const result = parseTextData(sample1, 0, ["KEYBOARD": [0: "KEYBOARD_LAYOUT_1"]], [DumpInfo("KEYBOARD", 0, sample1.length)]);
+    assert(result.length == 1);
+    assert("KEYBOARD_LAYOUT_1" in result[0]);
+
+    prettyCompare(result[0]["KEYBOARD_LAYOUT_1"].asBytes(""), sample1);
+}
+
 enum textTable = [
 	0x2F: '±',
 	0x50: ' ',

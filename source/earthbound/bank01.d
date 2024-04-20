@@ -7050,15 +7050,15 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 	setInstantPrinting();
 	createWindowN(Window.fileSelectNamingKeyboard);
 	if (arg5 == -1) {
-		displayText(&nameInputWindowSelectionLayoutPointers[5][0]);
+		displayText(getTextBlock(keyboardText[5]));
 	} else {
-		displayText(&nameInputWindowSelectionLayoutPointers[4][0]);
+		displayText(getTextBlock(keyboardText[4]));
 	}
 	characterPadding = 0;
 	if (arg5 == -1) {
-		displayText(&nameInputWindowSelectionLayoutPointers[2 + arg4][0]);
+		displayText(getTextBlock(keyboardText[2 + arg4]));
 	} else {
-		displayText(&nameInputWindowSelectionLayoutPointers[arg4][0]);
+		displayText(getTextBlock(keyboardText[arg4]));
 	}
 	characterPadding = 1;
 	l0: while (true) {
@@ -7067,15 +7067,15 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 			createWindowN(Window.fileSelectNamingKeyboard);
 			windowTickWithoutInstantPrinting();
 			if (arg5 == -1) {
-				displayText(&nameInputWindowSelectionLayoutPointers[5][0]);
+				displayText(getTextBlock(keyboardText[5]));
 			} else {
-				displayText(&nameInputWindowSelectionLayoutPointers[4][0]);
+				displayText(getTextBlock(keyboardText[4]));
 			}
 			characterPadding = 0;
 			if (arg5 == -1) {
-				displayText(&nameInputWindowSelectionLayoutPointers[2 + arg4][0]);
+				displayText(getTextBlock(keyboardText[2 + arg4]));
 			} else {
-				displayText(&nameInputWindowSelectionLayoutPointers[arg4][0]);
+				displayText(getTextBlock(keyboardText[arg4]));
 			}
 			characterPadding = 1;
 		}

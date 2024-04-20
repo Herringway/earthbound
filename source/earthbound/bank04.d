@@ -1807,7 +1807,7 @@ void unknownC43F77(short tile) {
 
 /// $C4406A
 short getCharacterAtCursorPosition(short arg1, short arg2, short arg3) {
-	return nameInputWindowSelectionLayoutPointers[arg3][nameEntryGridCharacterOffsetTable[arg2][arg1]];
+	return getTextBlock(keyboardText[arg3])[nameEntryGridCharacterOffsetTable[arg2][arg1]];
 }
 
 /// $C440B5
