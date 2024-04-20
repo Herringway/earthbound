@@ -2181,7 +2181,7 @@ enum OverworldSprite {
 	palmTanGuy = 103,
 	sunBathingGirl = 104,
 	chineseMonkGuy = 105,
-	invisible = 106,
+	hitChr = 106,
 	rabbit = 107,
 	bigSmileLady = 108,
 	bodyguard = 109,
@@ -2514,9 +2514,9 @@ enum OverworldSprite {
 	exitMouse = 436,
 	nessInPajamas = 437,
 	zombieLyingDown = 438,
-	unknown439 = 439,
-	unknown441 = 440,
-	unknown440 = 441,
+	hitChr2 = 439,
+	hitChr3 = 440,
+	hitChr4 = 441,
 	hotelSign = 442,
 	camel = 443,
 	trickOrTrickKid = 444,
@@ -4365,12 +4365,49 @@ enum MapSectorTownMap {
 }
 ///
 enum TownMap {
+	none,
 	onett,
 	twoson,
 	threed,
 	fourside,
 	scaraba,
 	summers,
+}
+
+///
+enum TownMapLabel {
+	invalid,
+	burger,
+	bakery,
+	hotel,
+	restaurant,
+	hospital,
+	shop,
+	deptStore,
+	busStop,
+	toTwosonSouth,
+	toOnettNorth,
+	toThreedSouth,
+	toTwosonWest,
+	toDesertEast,
+	toDesertWest,
+	toTotoEast,
+	hint,
+	nessLarge,
+	nessSmall,
+	upArrow,
+	downArrow,
+	leftArrow,
+	rightArrow,
+}
+
+///
+enum MapIconDirection {
+	onscreen = 0x00,
+	north = 0x10,
+	south = 0x20,
+	east = 0x30,
+	west = 0x40,
 }
 ///
 enum ObjectType {
@@ -5159,6 +5196,7 @@ enum MusicEffect {
 	unknown29 = 29,
 	unknown30 = 30,
 	unknown31 = 31,
+	unknown32 = 32,
 }
 ///
 enum InteractionType {
@@ -6643,9 +6681,9 @@ struct FullOAMTable {
 }
 ///
 struct TownMapData {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ubyte unknown2; ///
+	ubyte areaIcon; /// ?xxxyyyy - x = Extra icon to use (0 = none, 1 = up, 2 = down, 3 = right, 4 = left), y = map id
+	ubyte x; /// X coordinate at which to draw the player's icon
+	ubyte y; /// Y coordinate at which to draw the player's icon
 }
 ///
 struct OvalWindowAnimation {
@@ -8457,4 +8495,13 @@ void printCollision(const ubyte[64][64] collision) {
 
 struct EntityExtra {
 	bool breakpoint;
+}
+
+/// Gets the bank of the given far pointer. no-op on modern systems
+ubyte bankbyte(const void*) {
+	return 0;
+}
+
+ushort tilemapCoords(ubyte x, ubyte y) {
+	return cast(ushort)(y * 32 + x);
 }

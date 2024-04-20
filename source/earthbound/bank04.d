@@ -857,47 +857,47 @@ void unknownC426C7() {
 void updateMapPaletteAnimation() {
 	// Use ushort addition instead of byte addition since we need carrying
 	// At that point, it's easier to just use 7F0000 as ushort everywhere
-	ushort* Word7F0000 = cast(ushort*)(&buffer[0]);
+	ushort* buf = cast(ushort*)(&buffer[0]);
 	for (short i = 0; i < 0x100; i += 1) {
 		// Red channel
-		Word7F0000[0x400 + i] += Word7F0000[0x100 + i];
-		ushort a = Word7F0000[0x400 + i];
+		buf[0x400 + i] += buf[0x100 + i];
+		ushort a = buf[0x400 + i];
 		if ((a & 0x8000) != 0) {
-			Word7F0000[0x100 + i] = 0;
+			buf[0x100 + i] = 0;
 			a = 0;
 		} else {
 			a &= 0x1F00;
 			if (a == 0x1F00) {
-				Word7F0000[0x100 + i] = 0;
+				buf[0x100 + i] = 0;
 			}
 		}
 		a = (a >> 8) & 0x1F;
 		// Green channel
-		Word7F0000[0x500 + i] += Word7F0000[0x200 + i];
-		ushort a2 = Word7F0000[0x500 + i];
+		buf[0x500 + i] += buf[0x200 + i];
+		ushort a2 = buf[0x500 + i];
 		if ((a2 & 0x8000) != 0) {
-			Word7F0000[0x200 + i] = 0;
+			buf[0x200 + i] = 0;
 			a2 = 0;
 		} else {
 			a2 &= 0x1F00;
 			if (a2 == 0x1F00) {
-				Word7F0000[0x200 + i] = 0;
+				buf[0x200 + i] = 0;
 			}
 		}
 		a = cast(ushort)((a2 >> 3) | a);
 		// Blue channel
-		Word7F0000[0x600 + i] += Word7F0000[0x300 + i];
-		a2 = Word7F0000[0x600 + i];
+		buf[0x600 + i] += buf[0x300 + i];
+		a2 = buf[0x600 + i];
 		if ((a2 & 0x8000) != 0) {
 			// Vanilla bug: we set the slope for the green channel to 0 instead of blue channel.
-			// Word7F0000[0x200 + i] = 0;
+			// buf[0x200 + i] = 0;
 			// Intended behaviour:
-			Word7F0000[0x300 + i] = 0;
+			buf[0x300 + i] = 0;
 			a2 = 0;
 		} else {
 			a2 &= 0x1F00;
 			if (a2 == 0x1F00) {
-				Word7F0000[0x300 + i] = 0;
+				buf[0x300 + i] = 0;
 			}
 		}
 		(cast(ushort*)&palettes)[i] = cast(ushort)((a2 << 2) | a);
@@ -4833,14 +4833,16 @@ unittest {
 	//prettyCompare!"%04X"(cast(ushort[])(buffer[0x200 .. 0xE00]), cast(immutable(ushort)[])import("introfade.bin"));
 }
 
-/// $C496F9
-void unknownC496F9() {
-	memcpy(&buffer[0], &palettes[0][0], 0x200);
+/** Prepares the currently-loaded palette for fading
+ * Original_Address: $(DOLLAR)C496F9
+ */
+void prepareLoadedPalettesForFade() {
+	memcpy(&buffer[0], &palettes[0][0], palettes.sizeof);
 }
 
 /// $C49740
 void unknownC49740() {
-	memcpy(palettes.ptr, buffer.ptr, 0x200);
+	memcpy(&palettes[0][0], &buffer[0], palettes.sizeof);
 	preparePaletteUpload(PaletteUpload.full);
 }
 
@@ -7278,7 +7280,7 @@ void transliterateString(ubyte* dest, const(ubyte)* src) {
 
 /// $C4D274
 ubyte getTownMapID(short x, short y) {
-	return mapDataPerSectorTownMapData[y / 0x80][((x >> 8) & 0xFF)].unknown0;
+	return mapDataPerSectorTownMapData[y / 0x80][((x >> 8) & 0xFF)].areaIcon;
 }
 
 /// $C4D2A8
@@ -7295,62 +7297,75 @@ void animateTownMapIconPalette() {
 	framesUntilMapIconPaletteUpdate--;
 }
 
-/// $C4D2F0
-void unknownC4D2F0() {
-	switch (mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
-		case 0x10:
-			drawSpriteF(&townMapIconSpritemaps[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+/** Draws the player location icon on the map, with little arrow if offscreen
+ * Original_Address: $(DOLLAR)C4D2F0
+ */
+void drawTownMapPlayerIcon() {
+	const icon = &mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF];
+	// draw the arrow
+	switch (icon.areaIcon & 0x70) {
+		case MapIconDirection.north:
+			drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[2]][0], icon.x, icon.y - 8);
 			break;
-		case 0x20:
-			drawSpriteF(&townMapIconSpritemaps[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
+		case MapIconDirection.south:
+			drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[3]][0], icon.x, icon.y + 8);
 			break;
-		case 0x40:
-			drawSpriteF(&townMapIconSpritemaps[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+		case MapIconDirection.west:
+			drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[4]][0], icon.x - 8, icon.y - 8);
 			break;
-		case 0x30:
-			drawSpriteF(&townMapIconSpritemaps[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		case MapIconDirection.east:
+			drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[5]][0], icon.x + 16, icon.y);
 			break;
 		default:
 			break;
 	}
+	// make player icon throb with a 20 frame loop
 	if (townMapPlayerIconAnimationFrame < 10) {
-		drawSpriteF(&townMapIconSpritemaps[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[1]][0], icon.x, icon.y);
 	} else {
-		drawSpriteF(&townMapIconSpritemaps[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		drawSprite(&townMapIconSpritemaps[townMapPlayerIcons[0]][0], icon.x, icon.y);
 	}
 	if (--townMapPlayerIconAnimationFrame == 0) {
 		townMapPlayerIconAnimationFrame = 20;
 	}
 }
 
-/// $C4D43F
+/** Draws all town map icons
+ * Original_Address: $(DOLLAR)C4D43F
+ */
 void drawTownMapIcons(short map) {
 	currentSpriteDrawingPriority = 0;
-	//not used - segmented addressing stuff
-	//ubyte savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
-	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[map][0]; x06.x != 0xFF; x06++) {
-		short x14 = 1;
-		if ((unknownE1F47A[x06.sprite] != 0) && (townMapIconAnimationFrame < 10)) {
-			x14 = 0;
+	ushort savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
+	for (const(TownMapIconPlacement)* icon = &townMapIconPlacementTable[map][0]; icon.x != 0xFF; icon++) {
+		bool drawIcon = true;
+
+		// does this icon blink? if so, skip it for the first 10 frames of every second
+		if ((blinkingTownMapIcons[icon.sprite] != 0) && (townMapIconAnimationFrame < 10)) {
+			drawIcon = false;
 		}
-		short x12 = 0;
-		if (x06.eventFlag >= eventFlagUnset) {
-			x12 = 1;
+
+		// skip icon if flag state mismatched
+		short expectedFlagState = 0;
+		if (icon.eventFlag >= eventFlagUnset) {
+			expectedFlagState = 1;
 		}
-		if (getEventFlag(x06.eventFlag & 0x7FFF) != x12) {
-			x14 = 0;
+		if (getEventFlag(icon.eventFlag & 0x7FFF) != expectedFlagState) {
+			drawIcon = false;
 		}
-		if (x14 == 0) {
+
+		if (drawIcon == false) {
 			continue;
 		}
-		drawSpriteF(&townMapIconSpritemaps[x06.sprite][0], x06.x, x06.y);
+		drawSprite(&townMapIconSpritemaps[icon.sprite][0], icon.x, icon.y);
 	}
-	unknownC4D2F0();
+	drawTownMapPlayerIcon();
+	// blinking effect loops every second
 	if (--townMapIconAnimationFrame == 0) {
 		townMapIconAnimationFrame = 60;
 	}
-	// see above
-	//setSpritemapBank(savedBank);
+	setSpritemapBank(savedBank);
+
+	// unused town map palette animation
 	animateTownMapIconPalette();
 }
 

@@ -3180,15 +3180,15 @@ __gshared ushort enableAutoSectorMusicChanges;
 /** The currently selected music in the sound debug menu
  * Original_Address: $(DOLLAR)B54B
  */
-__gshared ushort debugSoundMenuSelectedBGM;
+__gshared short debugSoundMenuSelectedBGM;
 /** The currently selected sound effect in the sound debug menu
  * Original_Address: $(DOLLAR)B54D
  */
-__gshared ushort debugSoundMenuSelectedSE;
+__gshared short debugSoundMenuSelectedSE;
 /** The currently selected audio effect in the sound debug menu
  * Original_Address: $(DOLLAR)B54F
  */
-__gshared ushort debugSoundMenuSelectedEffect;
+__gshared short debugSoundMenuSelectedEffect;
 /** Unknown. Never read, only set to 0 on debug menu initialization
  * Original_Address: $(DOLLAR)B551
  */

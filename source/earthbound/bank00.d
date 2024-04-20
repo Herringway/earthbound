@@ -25,13 +25,17 @@ import core.stdc.string;
 import core.bitop;
 import std.logger;
 
-/// $C00000
+/** Clears and returns the entity draw sorting table
+ * Original_Address: $(DOLLAR)C00000
+ */
 short* clearEntityDrawSortingTable() {
 	entityDrawSorting[] = 0;
 	return entityDrawSorting.ptr;
 }
 
-/// $C00013
+/** Sets up the PPU for the overworld game mode
+ * Original_Address: $(DOLLAR)C00013
+ */
 void overworldSetupVRAM() {
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
@@ -332,7 +336,7 @@ void loadMapAtSector(short x, short y) {
 	}
 	if (photographMapLoadingMode == 0) {
 		if (debugging != 0) {
-			unknownEFD9F3();
+			loadDebugTextGraphicsAuto();
 		} else {
 			loadTextPalette();
 		}
@@ -340,12 +344,12 @@ void loadMapAtSector(short x, short y) {
 	}
 	memcpy(&mapPaletteBackup[0], &palettes[2][0], 0x1C0);
 	if (wipePalettesOnMapLoad != 0) {
-		unknownC496F9();
+		prepareLoadedPalettesForFade();
 		memset(&palettes[0][0], 0xFF, 0x200);
 		wipePalettesOnMapLoad = 0;
 	}
 	if (photographMapLoadingMode != 0) {
-		unknownC496F9();
+		prepareLoadedPalettesForFade();
 		memset(&palettes[1][0], 0, 0x1E0);
 	}
 	preparePaletteUpload(PaletteUpload.full);
@@ -792,7 +796,7 @@ void reloadMap() {
 	}
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	if (debugging != 0) {
-		unknownEFD9F3();
+		loadDebugTextGraphicsAuto();
 	}
 	setForceBlank();
 }
@@ -1968,7 +1972,7 @@ void getOffBicycle() {
 }
 
 /// $C03E5A
-short unknownC03E5A(short characterID) {
+short getCharacterPositionIndex(short characterID) {
 	short x;
 	version(bugfix) {
 		for (x = 0; (x < gameState.partyMemberIndex.length) && (gameState.partyMemberIndex[x] != characterID + 1); x++) {}
@@ -1982,17 +1986,17 @@ short unknownC03E5A(short characterID) {
 }
 
 /// $C03E9D
-short unknownC03E9D(short characterID) {
-	short x0E = unknownC03E5A(characterID);
-	if (x0E < currentPartyMemberTick.positionIndex) {
-		x0E += 0x100;
+short getPositionIndexDelta(short characterID) {
+	short positionIndex = getCharacterPositionIndex(characterID);
+	if (positionIndex < currentPartyMemberTick.positionIndex) {
+		positionIndex += 0x100;
 	}
-	return cast(short)(x0E - currentPartyMemberTick.positionIndex);
+	return cast(short)(positionIndex - currentPartyMemberTick.positionIndex);
 }
 
 /// $C03EC3
 short getNewPositionIndex(short characterID, short distance, short arg3, short arg4) {
-	short tmp = unknownC03E9D(characterID);
+	short tmp = getPositionIndexDelta(characterID);
 	if (tmp == distance) {
 		arg3++;
 		entityScriptVar7Table[currentEntitySlot] &= ~PartyMemberMovementFlags.unknown12;
@@ -4636,7 +4640,9 @@ void playerIntangibilityFlash() {
 	}
 }
 
-/// $C08000
+/** SNES entry point. Prepare hardware for running C code.
+ * Original_Address: $(DOLLAR)C08000
+ */
 void start() {
 	dmaQueueIndex = 0;
 
@@ -4757,14 +4763,20 @@ void irqNMICommon() {
 	timer++;
 }
 
-/// $C083B8
+/** Stops recording a game demo
+ * Original_Address: $(DOLLAR)C083B8
+ */
 void demoRecordingEnd() {
 	demoRecordingFlags = 0;
 }
 
-/// $C083C1
-void demoRecordingStart(DemoEntry* arg1) {
-	demoWriteDestination = arg1;
+/** Starts recording a game demo to the specified buffer
+ * Params:
+ * 	buffer = The buffer that will hold the completed demo
+ * Original_Address: $(DOLLAR)C083C1
+ */
+void demoRecordingStart(DemoEntry* buffer) {
+	demoWriteDestination = buffer;
 	demoLastInput = padState[0];
 	demoSameInputFrames = 1;
 	demoRecordingFlags |= DemoRecordingFlags.recordingEnabled;
@@ -5268,11 +5280,6 @@ void renderSpritesToOAM() {
 /// $C08C53 - It's hard to guess what this one did
 void unknownC08C53() {
 	//You Get: Nothing
-}
-
-/// $C08C54
-void drawSpriteF(const(SpriteMap)* spriteMap, short x, short y) {
-	drawSprite(spriteMap, x, y);
 }
 
 /// $C08C58
@@ -10718,7 +10725,7 @@ void unknownC0EC77(short arg1) {
 void unknownC0ECB7() {
 	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
-	unknownC496F9();
+	prepareLoadedPalettesForFade();
 	memset(&palettes[0][0], 0, 0x100);
 	prepareLoadedPaletteFadeTables(165, PaletteMask.allBGs);
 	paletteUploadMode = PaletteUpload.full;
@@ -10856,7 +10863,7 @@ void gasStationLoad() {
 	copyToVRAM(0, 0x800, 0x7800, &buffer[0]);
 	decomp(&gasStationPalette[0], &palettes[0][0]);
 	unknownC4A377();
-	unknownC496F9();
+	prepareLoadedPalettesForFade();
 	memset(&buffer[0x40], 0, 0x20);
 	memset(&palettes[0][0], 0, 0x40);
 	memset(&palettes[3][0], 0, 0x1A0);

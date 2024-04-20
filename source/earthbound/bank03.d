@@ -1120,10 +1120,11 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 /// $C3F3C5
 short showTitleScreen(short quick) {
 	titleScreenQuickMode = quick;
-	short x04 = 0;
+	short nonCancellable = 0; // in earlier revisions, this was = quick
 	prepareForImmediateDMA();
-	initializeEntitySubsystem();
-	if (0) { //interesting... this is unreachable and the entry statement seems to have been optimized out, but the body, condition and post-body statement remain
+	if (!nonCancellable) {
+		initializeEntitySubsystem();
+	} else  {
 		for (short i = 0; i < 30; i++) {
 			entitySpriteMapFlags[i] |= SpriteMapFlags.drawDisabled;
 		}
@@ -1151,48 +1152,53 @@ short showTitleScreen(short quick) {
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	actionscriptState = ActionScriptState.running;
 	if (titleScreenQuickMode == 0) {
-		memset(&palettes[0][0], 0, 0x200);
+		// set all colours to black
+		memset(&palettes[0][0], 0, palettes.sizeof);
 		paletteUploadMode = PaletteUpload.full;
+		// turn off screen for one frame
 		setForceBlank();
+		// set brightness to maximum
 		mirrorINIDISP = 0xF;
 		waitUntilNextFrame();
+		// load letter palette, prepare a one-second fade in
+		// make sure the palette doesn't get uploaded until we're done calculating the fade
 		paletteUploadMode = PaletteUpload.none;
-		decomp(&unknownE1AE7C[0], &palettes[8][0]);
-		unknownC496F9();
-		memset(&palettes[0][0], 0, 0x200);
+		decomp(&titleScreenLetterPalette[0], &palettes[8][0]);
+		prepareLoadedPalettesForFade();
+		memset(&palettes[0][0], 0, palettes.sizeof);
 		prepareLoadedPaletteFadeTables(60, PaletteMask.sprite0);
 		paletteUploadMode = PaletteUpload.full;
-		for (short i = 0; 0x3C > i; i++) {
+		for (short i = 0; 60 > i; i++) { // fade in over one second
 			updateMapPaletteAnimation();
 			finishFrame();
 		}
 	} else {
 		fadeIn(4, 1);
-		for (short i = 0; 0x3C > i; i++) {
+		for (short i = 0; 60 > i; i++) { // wait for one second
 			finishFrame();
 		}
 	}
-	short x02 = 0;
+	short playerExited = 0;
 	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
-		if (x04 == 0) {
+		if (nonCancellable == 0) {
 			if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
-				x02 = 1;
+				playerExited = 1;
 				break;
 			}
 		}
 		finishFrame();
 	}
 	if ((titleScreenQuickMode == 0) && (actionscriptState == ActionScriptState.running)) {
-		x02 = unknownEF04DC();
+		playerExited = cancelTitleScreenSequence();
 	}
 	fadeOutWithMosaic(1, 4, 0);
-	if (x04 == 0) {
+	if (nonCancellable == 0) { // always true
 		actionscriptState = ActionScriptState.running;
 		unknownC474A8(/+0+/);
 		initializeEntitySubsystem();
-		return x02;
+		return playerExited;
 	}
-	for (short i = 0; i < 0x1E; i++) {
+	for (short i = 0; i < maxEntities; i++) {
 		if ((entityScriptTable[i] >= ActionScript.titleScreen1) && (entityScriptTable[i] <= ActionScript.titleScreen11)) {
 			deleteEntity(i);
 		}
