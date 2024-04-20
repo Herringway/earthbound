@@ -7374,6 +7374,7 @@ ubyte ebChar(dchar c) @safe pure {
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '±': return 0x2F;
 		case '&': return 0x52;
 		case '{': return 0x53;
 		case '%': return 0x55;
@@ -7386,8 +7387,10 @@ ubyte ebChar(dchar c) @safe pure {
 		case '>': return 0x6E;
 		case '?': return 0x6F;
 		case '@': return 0x70;
-		case '~': return 0x8B;
+		case '~': return 0xAE;
+		case '¶': return 0xAF;
 		case '^': return 0x8C;
+		case '©': return 0x8B;
 		case '[': return 0x8D;
 		case ']': return 0x8E;
 		case '#': return 0x8F;

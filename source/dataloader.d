@@ -698,6 +698,7 @@ StructuredText[][string][] parseTextData(const(ubyte)[] source, ulong offset, co
 }
 
 enum textTable = [
+	0x2F: '±',
 	0x50: ' ',
 	0x51: '!',
 	0x52: '&',
@@ -712,6 +713,7 @@ enum textTable = [
 	0x5C: ',',
 	0x5D: '-',
 	0x5E: '.',
+	0x5F: '/',
 	0x60: '0',
 	0x61: '1',
 	0x62: '2',
@@ -755,7 +757,7 @@ enum textTable = [
 	0x88: 'X',
 	0x89: 'Y',
 	0x8A: 'Z',
-	0x8B: '~',
+	0x8B: '©',
 	0x8C: '^',
 	0x8D: '[',
 	0x8E: ']',
@@ -790,4 +792,6 @@ enum textTable = [
 	0xAB: '[',
 	0xAC: '|',
 	0xAD: ']',
+	0xAE: '~',
+	0xAF: '¶',
 ];
