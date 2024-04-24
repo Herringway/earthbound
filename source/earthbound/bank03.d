@@ -891,7 +891,7 @@ immutable(ubyte[])[] fontGraphics;
 
 /// $C3F112
 immutable ubyte[2][5] psiSuffixes = [
-	ebString!2("~"),
+	ebString!2("©"),
 	ebString!2("^"),
 	ebString!2("["),
 	ebString!2("]"),
