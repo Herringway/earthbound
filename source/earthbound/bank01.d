@@ -4851,7 +4851,7 @@ void unknownC1952F(short arg1) {
 	createWindowN(Window.statusMenu);
 	windowTickWithoutInstantPrinting();
 	forceLeftTextAlignment = 1;
-	displayText(&statusWindowText[0]);
+	displayText(getTextBlock("STATUS_WINDOW"));
 	forceLeftTextAlignment = 0;
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.statusMenu;

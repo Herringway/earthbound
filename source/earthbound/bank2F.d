@@ -13198,23 +13198,6 @@ immutable ubyte[10][6] commandMenuText = [
 	ebString!10("Status"),
 ];
 
-/// $EFA3B6
-immutable ubyte[163] statusWindowText =
-	cast(ubyte[])[0x18, 0x05, 0x08, 0x00] ~ ebString!6("Level:") ~
-	cast(ubyte[])[0x18, 0x05, 0x2C, 0x03] ~ ebString!11("Hit Points:") ~
-	cast(ubyte[])[0x18, 0x05, 0x17, 0x04] ~ ebString!15("Psychic Points:") ~
-	cast(ubyte[])[0x18, 0x05, 0x0A, 0x05] ~ ebString!18("Experience Points:") ~
-	cast(ubyte[])[0x18, 0x05, 0x39, 0x06] ~ ebString!20("Exp. for next level.") ~
-	cast(ubyte[])[0x18, 0x05, 0x9C, 0x00] ~ ebString!8("Offense:") ~
-	cast(ubyte[])[0x18, 0x05, 0x9B, 0x01] ~ ebString!8("Defense:") ~
-	cast(ubyte[])[0x18, 0x05, 0xA4, 0x02] ~ ebString!6("Speed:") ~
-	cast(ubyte[])[0x18, 0x05, 0xAA, 0x03] ~ ebString!5("Guts:") ~
-	cast(ubyte[])[0x18, 0x05, 0x9F, 0x04] ~ ebString!9("Vitality:") ~
-	cast(ubyte[])[0x18, 0x05, 0xB6, 0x05] ~ ebString!3("IQ:") ~
-	cast(ubyte[])[0x18, 0x05, 0xAA, 0x06] ~ ebString!5("Luck:") ~
-	cast(ubyte[])[0x02];
-
-
 __gshared SpriteGrouping[464] spriteGroupingPointers = [
 	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
 	OverworldSprite.none: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,

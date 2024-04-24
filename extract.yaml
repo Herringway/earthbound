@@ -183,6 +183,9 @@ text:
 - name: 'KEYBOARD'
   offset: 0x2FA460
   size: 627
+- name: 'STATUS_WINDOW'
+  offset: 0x2FA3B6
+  size: 163
 renameLabels:
   E01ONET0:
     0x0000: MSG_ONET_SHARK_INFO_FRANK
@@ -6468,4 +6471,6 @@ renameLabels:
     0x189: KEYBOARD_LAYOUT_3
     0x20C: KEYBOARD_LAYOUT_4
     0x247: KEYBOARD_LAYOUT_5
+  STATUS_WINDOW:
+    0x0: STATUS_WINDOW
 ...
