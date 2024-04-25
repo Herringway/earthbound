@@ -5990,6 +5990,12 @@ enum TextPalette {
 	windowBorders, /// Flavour-dependent colours. Used for standard window borders
 }
 
+/// Palette effect ids for the title screen
+enum TitleScreenPaletteEffect {
+	letterShimmer = 0,
+	letterGlow = 1,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///

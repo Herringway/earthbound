@@ -3191,7 +3191,7 @@ void instantWinHandler() {
 		updateMapPaletteAnimation();
 		waitUntilNextFrame();
 	}
-	unknownC49740();
+	finishPaletteFade();
 	freezeEntities();
 	createWindow(Window.textBattle);
 	battleMoneyScratch = 0;
@@ -3294,7 +3294,7 @@ void magicButterflyRecovery() {
 			updateMapPaletteAnimation();
 			waitUntilNextFrame();
 		}
-		unknownC49740();
+		finishPaletteFade();
 	}
 	for (short i = 0; i < 6; i++) {
 		if ((gameState.partyMembers[i] == 1) || (gameState.partyMembers[i] == 2) || (gameState.partyMembers[i] == 4)) {

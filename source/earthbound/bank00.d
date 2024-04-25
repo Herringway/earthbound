@@ -3792,7 +3792,7 @@ void screenTransition(short arg1, short arg2) {
 			}
 		}
 		if (x1D == 0) {
-			unknownC49740();
+			finishPaletteFade();
 		}
 	}
 	if (currentGiygasPhase < GiygasPhase.startPraying) {
@@ -10790,27 +10790,35 @@ void teleportMainLoop() {
 	psiTeleportDestination = 0;
 }
 
-/// $C0EBE0
+/** Loads the graphics data needed for the title screen
+ * Original_Address: $(DOLLAR)C0EBE0
+ */
 void loadTitleScreenGraphics() {
-	decomp(&titleScreenGraphics[0], &buffer[0]);
+	decomp(&titleScreenTiles[0], &buffer[0]);
 	copyToVRAM(0, 0x8000, 0, &buffer[0]);
-	decomp(&titleScreenArrangement[0], &buffer[0]);
+	decomp(&titleScreenTilemap[0], &buffer[0]);
 	copyToVRAM(0, 0x1000, 0x5800, &buffer[0]);
-	decomp(&titleScreenLetterSprites[0], &buffer[0]);
+	decomp(&titleScreenLetterTiles[0], &buffer[0]);
 	copyToVRAM(0, 0x4000, 0x6000, &buffer[0]);
 }
 
-/// $C0EC77
-void unknownC0EC77(short arg1) {
-	if (arg1 == 0) {
-		decomp(&unknownE1AE83[0], &buffer[0]);
+/** Loads the palettes for one of the two special title screen effects
+ * Params:
+ * 	id = The palette effect to load (see TitleScreenPaletteEffect for valid options)
+ * Original_Address: $(DOLLAR)C0EC77
+ */
+void loadTitleScreenPaletteEffect(short id) {
+	if (id == TitleScreenPaletteEffect.letterShimmer) {
+		decomp(&titleScreenLetterShimmerPalette[0], &buffer[0]);
 	} else {
-		decomp(&unknownE1AEFD[0], &buffer[0]);
+		decomp(&titleScreenLetterGlowPalette[0], &buffer[0]);
 	}
 }
 
-/// $C0ECB7
-void unknownC0ECB7() {
+/** Prepares the background fade-in effect for the title screen
+ * Original_Address: $(DOLLAR)C0ECB7
+ */
+void prepareTitleScreenFadeIn() {
 	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	prepareLoadedPalettesForFade();
@@ -10819,13 +10827,17 @@ void unknownC0ECB7() {
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C0ED14
+/** Sets all BG palettes to white
+ * Original_Address: $(DOLLAR)C0ED14
+ */
 void setBGPalettesWhite() {
 	memset(&palettes[0][0], 0xFF, 0x100);
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C0ED39
+/** Sets all BG palettes to black
+ * Original_Address: $(DOLLAR)C0ED39
+ */
 void setBGPalettesBlack() {
 	memset(&palettes[0][0], 0, 0x100);
 	paletteUploadMode = PaletteUpload.full;
@@ -10835,29 +10847,37 @@ void setBGPalettesBlack() {
 void unknownC0ED5C() {
 	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
-	unknownC0EC77(0);
+	loadTitleScreenPaletteEffect(TitleScreenPaletteEffect.letterShimmer);
 	memcpy(&palettes[8][0], &buffer[0x1A0], 0x20);
-	unknownC0EC77(1);
+	loadTitleScreenPaletteEffect(TitleScreenPaletteEffect.letterGlow);
 	memcpy(&palettes[7][0], &buffer[0x260], 0x20);
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C0EDD1
-void unknownC0EDD1() {
+/** Sets the ActionScript interpreter state to a special title screen state, which is identical to the running state except interrupting the title screen script is forbidden
+ * Original_Address: $(DOLLAR)C0EDD1
+ */
+void setTitleScreenActionScriptState() {
 	actionscriptState = ActionScriptState.titleScreenSpecial;
 }
 
-/// $C0EDDA
-void unknownC0EDDA() {
-	short x16 = entityScriptVar0Table[currentEntitySlot];
-	short x14 = entityScriptVar1Table[currentEntitySlot];
-	short x02 = entityScriptVar2Table[currentEntitySlot];
-	memcpy(&palettes[x14][0], &buffer[x16 * 32], 0x20);
-	short x12 = cast(short)(x16 + 1);
-	if (x12 == x02) {
-		x12 = 0;
+/** Rotates in a loaded palette based on VAR0, VAR1 and VAR2 of the active entity
+ *
+ * VAR0 is the source palette ID, and is incremented automatically
+ * VAR1 is the target palette ID
+ * VAR2 is the maximum source palette ID, after which the palette will automatically rotate back to 0
+ * Original_Address: $(DOLLAR)C0EDDA
+ */
+void rotateLoadedPalette() {
+	short palette = entityScriptVar0Table[currentEntitySlot];
+	short targetPalette = entityScriptVar1Table[currentEntitySlot];
+	short paletteLimit = entityScriptVar2Table[currentEntitySlot];
+	memcpy(&palettes[targetPalette][0], &buffer[palette * 32], 0x20);
+	short nextPalette = cast(short)(palette + 1);
+	if (nextPalette == paletteLimit) {
+		nextPalette = 0;
 	}
-	entityScriptVar0Table[currentEntitySlot] = x12;
+	entityScriptVar0Table[currentEntitySlot] = nextPalette;
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -10878,19 +10898,19 @@ void logoScreenLoad(short arg1) {
 	mirrorTM = TMTD.bg3;
 	switch (arg1) {
 		case 0:
-			decomp(&nintendoGraphics[0], &buffer[0]);
-			decomp(&nintendoArrangement[0], &introBG2Buffer[0]);
-			decomp(&nintendoPalette[0], &palettes[0][0]);
+			decomp(&splashScreen1Tiles[0], &buffer[0]);
+			decomp(&splashScreen1Tilemap[0], &introBG2Buffer[0]);
+			decomp(&splashScreen1Palette[0], &palettes[0][0]);
 			break;
 		case 1:
-			decomp(&apeGraphics[0], &buffer[0]);
-			decomp(&apeArrangement[0], &introBG2Buffer[0]);
-			decomp(&apePalette[0], &palettes[0][0]);
+			decomp(&splashScreen2Tiles[0], &buffer[0]);
+			decomp(&splashScreen2Tilemap[0], &introBG2Buffer[0]);
+			decomp(&splashScreen2Palette[0], &palettes[0][0]);
 			break;
 		case 2:
-			decomp(&halkenGraphics[0], &buffer[0]);
-			decomp(&halkenArrangement[0], &introBG2Buffer[0]);
-			decomp(&halkenPalette[0], &palettes[0][0]);
+			decomp(&splashScreen3Tiles[0], &buffer[0]);
+			decomp(&splashScreen3Tilemap[0], &introBG2Buffer[0]);
+			decomp(&splashScreen3Palette[0], &palettes[0][0]);
 			break;
 		default: break;
 	}
@@ -10945,9 +10965,9 @@ void gasStationLoad() {
 	bg2XPosition = 0;
 	bg1YPosition = 0;
 	bg1XPosition = 0;
-	decomp(&gasStationGraphics[0], &buffer[0]);
+	decomp(&gasStationTiles[0], &buffer[0]);
 	copyToVRAM(0, 0xC000, 0, &buffer[0]);
-	decomp(&gasStationArrangement[0], &buffer[0]);
+	decomp(&gasStationTilemap[0], &buffer[0]);
 	copyToVRAM(0, 0x800, 0x7800, &buffer[0]);
 	decomp(&gasStationPalette[0], &palettes[0][0]);
 	unknownC4A377();
@@ -10995,7 +11015,7 @@ short runGasStationSkippablePortion() {
 		paletteUploadMode = PaletteUpload.full;
 		waitUntilNextFrame();
 	}
-	unknownC49740();
+	finishPaletteFade();
 	CGADSUB = 0;
 	CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
@@ -11046,7 +11066,7 @@ short gasStation() {
  * Original_Address: $(DOLLAR)C0F3B2
  */
 void loadGasStationFlashPalette() {
-	decomp(&gasStationPalette2[0], &palettes[0][0]);
+	decomp(&gasStationFlashPalette[0], &palettes[0][0]);
 	preparePaletteUpload(PaletteUpload.full);
 }
 

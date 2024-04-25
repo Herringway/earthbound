@@ -6,15 +6,21 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.globals;
 
-/// $E10000
+/** Script for the coffee scene
+ * Original_Address: $(DOLLAR)E10000
+ */
 @ROMSource(0x210000, 1618)
 immutable(ubyte)[] coffeeSequenceText;
 
-/// $E10652
+/** Script for the tea scene
+ * Original_Address: $(DOLLAR)E10652
+ */
 @ROMSource(0x210652, 1332)
 immutable(ubyte)[] teaSequenceText;
 
-/// $E12EFA
+/** Tile data offsets and widths of the names used in the cast scene
+ * Original_Address: $(DOLLAR)E12EFA
+ */
 immutable CastSequenceFormattingEntry[48] castSequenceFormatting = [
 	CastSequenceName.invalid: CastSequenceFormattingEntry(0x0030, 0),
 	CastSequenceName.pickyMinch: CastSequenceFormattingEntry(0x0030, 8),
@@ -66,7 +72,9 @@ immutable CastSequenceFormattingEntry[48] castSequenceFormatting = [
 	CastSequenceName.mrSaturn: CastSequenceFormattingEntry(0x0020, 12),
 ];
 
-/// $E12F8A
+/** All the data needed to set up the photograph scenes used in the staff credits
+ * Original_Address: $(DOLLAR)E12F8A
+ */
 immutable CreditsPhotograph[32] photographerConfigTable = [
 	CreditsPhotograph(EventFlag.photo1, 332, 43, 0x0000, 0x00, 0x00, 329, 56, [ Coordinates(331, 45), Coordinates(329, 44), Coordinates(333, 44), Coordinates(335, 43), Coordinates(327, 44), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
 	CreditsPhotograph(EventFlag.photo2, 944, 186, 0x00C0, 0x28, 0x55, 938, 190, [ Coordinates(944, 188), Coordinates(942, 189), Coordinates(947, 189), Coordinates(949, 190), Coordinates(939, 188), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
@@ -102,11 +110,15 @@ immutable CreditsPhotograph[32] photographerConfigTable = [
 	CreditsPhotograph(EventFlag.photo32, 48, 955, 0x0600, 0x00, 0x00, 49, 969, [ Coordinates(48, 953), Coordinates(52, 952), Coordinates(50, 950), Coordinates(46, 951), Coordinates(0, 0), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(49, 956, OverworldSprite.drAndonuts), PhotographerConfigEntryObject(44, 955, OverworldSprite.appleKid), PhotographerConfigEntryObject(53, 955, OverworldSprite.mrSaturn), PhotographerConfigEntryObject(42, 951, OverworldSprite.miner) ]),
 ];
 
-/// $E1374A
+/** Palette data used for the staff credits photographs (compressed)
+ * Original_Address: $(DOLLAR)E1374A
+ */
 @ROMSource(0x21374A, 2549)
 immutable(ubyte)[] photographMapPalettes;
 
-/// $E1413F
+/** Text data used for the staff credits
+ * Original_Address: $(DOLLAR)E1413F
+ */
 immutable ubyte[] staffText = convertStaffText("
 	\x03\x02
 	\x02STAFF\x00
@@ -397,101 +409,149 @@ void debugBattlerInfo() {
 	}
 }
 
-/// $E14EC1
+/** Tilemap for the second splash screen (compressed)
+ * Original_Address: $(DOLLAR)E14EC1
+ */
 @ROMSource(0x214EC1, 105)
-immutable(ubyte)[] apeArrangement;
+immutable(ubyte)[] splashScreen2Tilemap;
 
-/// $E14F2A
+/** Tile data for the second splash screen (compressed)
+ * Original_Address: $(DOLLAR)E14F2A
+ */
 @ROMSource(0x214F2A, 518)
-immutable(ubyte)[] apeGraphics;
+immutable(ubyte)[] splashScreen2Tiles;
 
-/// $E15130
+/** Palette for the second splash screen (compressed)
+ * Original_Address: $(DOLLAR)E15130
+ */
 @ROMSource(0x215130, 68)
-immutable(ubyte)[] apePalette;
+immutable(ubyte)[] splashScreen2Palette;
 
-/// $E15174
+/** Tilemap for the third splash screen (compressed)
+ * Original_Address: $(DOLLAR)E15174
+ */
 @ROMSource(0x215174, 116)
-immutable(ubyte)[] halkenArrangement;
+immutable(ubyte)[] splashScreen3Tilemap;
 
-/// $E151E8
+/** Tile data for the third splash screen (compressed)
+ * Original_Address: $(DOLLAR)E151E8
+ */
 @ROMSource(0x2151E8, 464)
-immutable(ubyte)[] halkenGraphics;
+immutable(ubyte)[] splashScreen3Tiles;
 
-/// $E153B8
+/** Palette for the third splash screen (compressed)
+ * Original_Address: $(DOLLAR)E153B8
+ */
 @ROMSource(0x2153B8, 157)
-immutable(ubyte)[] halkenPalette;
+immutable(ubyte)[] splashScreen3Palette;
 
-/// $E15455
+/** The tilemap for the first splash screen (compressed)
+ * Original_Address: $(DOLLAR)E15455
+ */
 @ROMSource(0x215455, 73)
-immutable(ubyte)[] nintendoArrangement;
+immutable(ubyte)[] splashScreen1Tilemap;
 
-/// $E1549E
+/** Tile data for the first splash screen (compressed)
+ * Original_Address: $(DOLLAR)E1549E
+ */
 @ROMSource(0x21549E, 241)
-immutable(ubyte)[] nintendoGraphics;
+immutable(ubyte)[] splashScreen1Tiles;
 
-/// $E1558F
+/** Palette for the first splash screen (compressed)
+ * Original_Address: $(DOLLAR)E1558F
+ */
 @ROMSource(0x21558F, 68)
-immutable(ubyte)[] nintendoPalette;
+immutable(ubyte)[] splashScreen1Palette;
 
-/// $E155D3
+/** The tilemap for the gas station intro screen (compressed)
+ * Original_Address: $(DOLLAR)E155D3
+ */
 @ROMSource(0x2155D3, 1376)
-immutable(ubyte)[] gasStationArrangement;
+immutable(ubyte)[] gasStationTilemap;
 
-/// $E15B33
+/** The 8bpp tile data for the gas station intro screen (compressed)
+ * Original_Address: $(DOLLAR)E15B33
+ */
 @ROMSource(0x215B33, 20100)
-immutable(ubyte)[] gasStationGraphics;
+immutable(ubyte)[] gasStationTiles;
 
-/// $E1A9B7
+/** The 8bpp normal palette for the gas station intro screen (compressed)
+ * Original_Address: $(DOLLAR)E1A9B7
+ */
 @ROMSource(0x21A9B7, 166)
 immutable(ubyte)[] gasStationPalette;
 
-/// $E1AA5D
+/** The 8bpp flash palette for the gas station intro screen (compressed)
+ * Original_Address: $(DOLLAR)E1AA5D
+ */
 @ROMSource(0x21AA5D, 130)
-immutable(ubyte)[] gasStationPalette2;
+immutable(ubyte)[] gasStationFlashPalette;
 
-/// $E1AADF
+/** Tilemap for the Itoi production text overlay in attract mode (compressed)
+ * Original_Address: $(DOLLAR)E1AADF
+ */
 @ROMSource(0x21AADF, 108)
-immutable(ubyte)[] producedItoiArrangement;
+immutable(ubyte)[] attractModeOverlay1Tilemap;
 
-/// $E1AB4B
+/** Tile data for the Itoi production text overlay in attract mode (compressed)
+ * Original_Address: $(DOLLAR)E1AB4B
+ */
 @ROMSource(0x21AB4B, 438)
-immutable(ubyte)[] producedItoiGraphics;
+immutable(ubyte)[] attractModeOverlay1Tiles;
 
-/// $E1AD01
+/** Tilemap for the Nintendo presentation text overlay in attract mode (compressed)
+ * Original_Address: $(DOLLAR)E1AD01
+ */
 @ROMSource(0x21AD01, 77)
-immutable(ubyte)[] nintendoPresentationArrangement;
+immutable(ubyte)[] attractModeOverlay2Tilemap;
 
-/// $E1AD4E
+/** Tile data for the Nintendo presentation text overlay in attract mode (compressed)
+ * Original_Address: $(DOLLAR)E1AD4E
+ */
 @ROMSource(0x21AD4E, 289)
-immutable(ubyte)[] nintendoPresentationGraphics;
+immutable(ubyte)[] attractModeOverlay2Tiles;
 
-/// $E1AE6F
+/** The palette used by the attract mode's text overlays (compressed)
+ * Original_Address: $(DOLLAR)E1AE6F
+ */
 @ROMSource(0x21AE6F, 13)
-immutable(ubyte)[] nintendoItoiPalette;
+immutable(ubyte)[] attractModeOverlayPalette;
 
-/// $E1AE7C
+/** The initial all-white palette used for the letters on the title screen (compressed)
+ * Original_Address: $(DOLLAR)E1AE7C
+ */
 @ROMSource(0x21AE7C, 7)
 immutable(ubyte)[] titleScreenLetterPalette;
 
-/// $E1AE83
+/** Palettes used for the shimmer effect on the title screen letters (compressed)
+ * Original_Address: $(DOLLAR)E1AE83
+ */
 @ROMSource(0x21AE83, 122)
-immutable(ubyte)[] unknownE1AE83;
+immutable(ubyte)[] titleScreenLetterShimmerPalette;
 
-/// $E1AEFD
+/** Palettes used for the glow effect on the title screen letters (compressed)
+ * Original_Address: $(DOLLAR)E1AEFD
+ */
 @ROMSource(0x21AEFD, 128)
-immutable(ubyte)[] unknownE1AEFD;
+immutable(ubyte)[] titleScreenLetterGlowPalette;
 
-/// $E1AF7D
+/** Tilemap for the title screen background (compressed)
+ * Original_Address: $(DOLLAR)E1AF7D
+ */
 @ROMSource(0x21AF7D, 660)
-immutable(ubyte)[] titleScreenArrangement;
+immutable(ubyte)[] titleScreenTilemap;
 
-/// $E1B211
+/** Tile data for the title screen background (compressed)
+ * Original_Address: $(DOLLAR)E1B211
+ */
 @ROMSource(0x21B211, 5332)
-immutable(ubyte)[] titleScreenGraphics;
+immutable(ubyte)[] titleScreenTiles;
 
-/// $E1C6E5
+/** Tile data for the title screen letters (compressed)
+ * Original_Address: $(DOLLAR)E1C6E5
+ */
 @ROMSource(0x21C6E5, 1788)
-immutable(ubyte)[] titleScreenLetterSprites;
+immutable(ubyte)[] titleScreenLetterTiles;
 
 /** Palettes used on the title screen (compressed)
  * Original_Address: $(DOLLAR)E1CDE1
@@ -604,59 +664,110 @@ immutable SpriteMap*[9] titleScreenLetterSpriteMaps = [
 	]
 ];
 
-/// $E1CFAF
+/** Tiles for the game over screen (compressed)
+ *
+ * Note: There are actually two separate tilesets compressed together here. The second is expected to start at uncompressed offset 0x8000.
+ * Original_Address: $(DOLLAR)E1CFAF
+ */
 @ROMSource(0x21CFAF, 1349)
-immutable(ubyte)[] unknownE1CFAF;
+immutable(ubyte)[] gameOverTiles;
 
-/// $E1D4F4
+/** Palette data used for the game over screen (compressed)
+ * Original_Address: $(DOLLAR)E1D4F4
+ */
 @ROMSource(0x21D4F4, 244)
-immutable(ubyte)[] unknownE1D4F4;
+immutable(ubyte)[] gameOverPalette;
 
-/// $E1D5E8
+/** Tilemap used for the game over screen (compressed)
+ * Original_Address: $(DOLLAR)E1D5E8
+ */
 @ROMSource(0x21D5E8, 249)
-immutable(ubyte)[] unknownE1D5E8;
+immutable(ubyte)[] gameOverTilemap;
 
-/// $E1D6E1
+/** Graphics for the "CAST" and Mr. Saturn name in the cast scene (compressed)
+ * Original_Address: $(DOLLAR)E1D6E1
+ */
 @ROMSource(0x21D6E1, 308)
-immutable(ubyte)[] unknownE1D6E1;
+immutable(ubyte)[] specialCastNamesGraphics;
 
-/// $E1D815
-immutable ubyte[] unknownE1D815 = [0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10];
+/** Palette data used for the prerendered cast name text
+ * Original_Address: $(DOLLAR)E1D815
+ */
+@ROMSource(0x21D815, 0x20)
+immutable(ubyte)[] castTextPalette;
 
-/// $E1D835
+/** Prerendered name graphics for the cast scene (compressed)
+ * Original_Address: $(DOLLAR)E1D835
+ */
 @ROMSource(0x21D835, 3249)
 immutable(ubyte)[] castNamesGraphics;
 
-/// $E1E4E6
+/** Extra palettes used for some of the sprites in the cast scene (compressed)
+ * Original_Address: $(DOLLAR)E1E4E6
+ */
 @ROMSource(0x21E4E6, 66)
-immutable(ubyte)[] unknownE1E4E6;
+immutable(ubyte)[] castExtraPalettes;
 
-/// $E1E528
+/** Graphics used for the text in the staff credits (compressed)
+ * Original_Address: $(DOLLAR)E1E528
+ */
 @ROMSource(0x21E528, 1004)
 immutable(ubyte)[] staffCreditsFontGraphics;
 
-/// $E1E914
+/** Palettes used for the text in the staff credits
+ * Original_Address: $(DOLLAR)E1E914
+ */
 @ROMSource(0x21E914, 16)
 immutable(ubyte)[] staffCreditsFontPalette;
 
-/// $E1E924
+/** Unknown. No references to this data exist. Possibly palette data?
+ * Original_Address: $(DOLLAR)E1E924
+ */
 immutable ubyte[] unknownE1E924 = [ 0x04, 0x00, 0x7F, 0x1F, 0x58, 0x32 ];
 
-/// $E1E92A
-immutable ubyte[] unknownE1E92A = [ 0x1F, 0x3D, 0xFF, 0x7F, 0xE0, 0x07, 0x86, 0x10, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xDF, 0x57, 0xE0, 0x07, 0x55, 0x25, 0x00, 0x00 ];
+/** The palette for the photo frame border in the staff credits
+ * Original_Address: $(DOLLAR)E1E92A
+ */
+immutable RGB[16] creditsPhotographBorderPalette = [
+	RGB(31, 8, 15),
+	RGB(31, 31, 31),
+	RGB(0, 31, 1),
+	RGB(6, 4, 4),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(0, 31, 1),
+	RGB(31, 30, 21),
+	RGB(0, 31, 1),
+	RGB(21, 10, 9),
+	RGB(0, 0, 0),
+];
 
-/// $E1E94A
-immutable ubyte[] unknownE1E94A = [ 0xE8, 0x62, 0x0C, 0x24, 0x00, 0x0D, 0x57, 0x24, 0x0E, 0x02, 0x24, 0x0D, 0x64, 0x45, 0x0C, 0x24, 0x00, 0x0F, 0x57, 0x24, 0x00, 0x02, 0x24, 0x0F, 0xE4, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF2, 0x7F, 0x00, 0xFA, 0x45, 0x0C, 0x24, 0x01, 0x0D, 0xA4, 0x57, 0x0E, 0xE4, 0x01, 0x0D, 0xE4, 0xE8, 0x62, 0x0C, 0x24, 0x3F, 0x00, 0x03, 0x3C, 0x3C, 0x7E, 0x42, 0x43, 0xFF, 0x99, 0x01, 0x7E, 0x42, 0xD1, 0x07, 0x21, 0x0F, 0x1C, 0x1C, 0x3C, 0x34, 0x7C, 0x44, 0x7C, 0x64, 0x3C, 0x24, 0xFF, 0xE7, 0xFF, 0x81, 0xFF, 0xFF, 0x2F, 0x00, 0x84, 0x07, 0x20, 0x06, 0xB9, 0x7F, 0x79, 0x7E, 0x42, 0xFE, 0x9E, 0x98, 0x07, 0x4C, 0x04, 0x99, 0x7E, 0x72, 0x7F, 0x79, 0x95, 0x07, 0x2A, 0x0F, 0x06, 0x06, 0x0E, 0x0A, 0x1E, 0x12, 0x3E, 0x22, 0x7F, 0x53, 0xFF, 0x81, 0xFF, 0xF3, 0x0E, 0x0E, 0x2F, 0x00, 0x22, 0xFF, 0x04, 0x81, 0xFE, 0x9E, 0xFE, 0x82, 0x97, 0x07, 0x88, 0x07, 0x3E, 0x3E, 0x7E, 0x42, 0xFC, 0x9C, 0xFE, 0x82, 0x97, 0x07, 0x28, 0x83, 0x07, 0xC0, 0x03, 0xFF, 0x99, 0xFE, 0xF2, 0x42, 0x3C, 0x24, 0x91, 0x07, 0x2E, 0x86, 0x07, 0x80, 0x00, 0x42, 0x97, 0x07, 0x28, 0x87, 0x07, 0x20, 0x07, 0x7F, 0x41, 0x3F, 0x39, 0x7E, 0x42, 0x7C, 0x7C, 0x31, 0x00, 0x83, 0x07, 0xA0, 0x07, 0x1C, 0x14, 0x38, 0x28, 0x70, 0x50, 0x60, 0x60, 0x31, 0x00, 0x3F, 0xFF, 0x2B, 0x00, 0x03, 0x03, 0x00, 0x02, 0x01, 0x2B, 0xFF, 0x03, 0xFC, 0xFC, 0xFD, 0xFD, 0xCC, 0x08, 0xAB, 0xCE, 0x08, 0xA1, 0x83, 0x08, 0xCD, 0x47, 0x02, 0x01, 0x2F, 0xFD, 0xFF ];
+/** Tilemap for the photo frame border in the staff credits (compressed)
+ * Original_Address: $(DOLLAR)E1E94A
+ */
+@ROMSource(0x21E94A, 262)
+immutable(ubyte)[] creditsPhotographBorderTilemap;
 
-/// $E1EA50
+/** Graphics used for the town map icon sprites (compressed)
+ * Original_Address: $(DOLLAR)E1EA50
+ */
 @ROMSource(0x21EA50, 1907)
-immutable(ubyte)[] townMapLabelGfx;
+immutable(ubyte)[] townMapIconGraphics;
 
-/// $E1F1C3
+/** Palettes used for the town map icon sprites
+ * Original_Address: $(DOLLAR)E1F1C3
+ */
 @ROMSource(0x21F1C3, 64)
 immutable(ubyte)[] townMapIconPalette;
 
-/// $E1F44C
+/** Spritemaps for the various town map icons
+ * Original_Address: $(DOLLAR)E1F44C
+ */
 immutable SpriteMap[][24] townMapIconSpritemaps = [
 	TownMapLabel.invalid: [
 		SpriteMap(0x00, 0x0C, 0x32, 0x00, 0x01),

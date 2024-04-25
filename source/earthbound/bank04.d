@@ -4841,7 +4841,7 @@ void prepareLoadedPalettesForFade() {
 }
 
 /// $C49740
-void unknownC49740() {
+void finishPaletteFade() {
 	memcpy(&palettes[0][0], &buffer[0], palettes.sizeof);
 	preparePaletteUpload(PaletteUpload.full);
 }
@@ -4869,7 +4869,7 @@ void performPaletteFade(short duration, short multiplier, ushort affectedPalette
 			waitUntilNextFrame();
 		}
 	}
-	unknownC49740();
+	finishPaletteFade();
 	preparePaletteUpload(PaletteUpload.full);
 }
 
@@ -6767,15 +6767,15 @@ void unknownC4C2DE() {
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&unknownE1CFAF[0], &buffer[0]);
+	decomp(&gameOverTiles[0], &buffer[0]);
 	if (gameState.partyMembers[0] == 3) {
 		copyToVRAM(0, 0x8000, 0, &buffer[0x8000]);
 	} else {
 		copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	}
-	decomp(&unknownE1D5E8[0], &buffer[0]);
+	decomp(&gameOverTilemap[0], &buffer[0]);
 	copyToVRAM(0, 0x800, 0x5800, &buffer[0]);
-	decomp(&unknownE1D4F4[0], cast(ubyte*)&palettes[0][0]);
+	decomp(&gameOverPalette[0], cast(ubyte*)&palettes[0][0]);
 	memcpy(&palettes[7][0], &palettes[0][0], 0x20);
 	memset(&palettes[1][0], 0, 0xC0);
 	memcpy(&palettes[2][0], &palettes[7][0], 0x20);
@@ -6856,7 +6856,7 @@ void unknownC4C60E(short duration) {
 		updateScreen();
 		waitUntilNextFrame();
 	}
-	unknownC49740();
+	finishPaletteFade();
 }
 
 /// $C4C64D
@@ -7384,7 +7384,7 @@ void loadTownMapData(short arg1) {
 	mirrorTD = TMTD.none;
 	copyToVRAM(0, 0x800, 0x3000, &buffer[0x40]);
 	copyToVRAMChunked(0, 0x4000, 0, &buffer[0x840]);
-	decomp(&townMapLabelGfx[0], &buffer[0]);
+	decomp(&townMapIconGraphics[0], &buffer[0]);
 	copyToVRAM(0, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = TMTD.obj | TMTD.bg1;
@@ -7700,24 +7700,24 @@ void setDecompressedArrangementPriorityBit() {
 
 /// $C4DD28
 void decompItoiProduction() {
-	decomp(&producedItoiArrangement[0], &buffer[0]);
+	decomp(&attractModeOverlay1Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
 	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
-	decomp(&producedItoiGraphics[0], &buffer[0x800]);
+	decomp(&attractModeOverlay1Tiles[0], &buffer[0x800]);
 	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
-	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
+	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C4DDD0
 void decompNintendoPresentation() {
-	decomp(&nintendoPresentationArrangement[0], &buffer[0]);
+	decomp(&attractModeOverlay2Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
 	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
-	decomp(&nintendoPresentationGraphics[0], &buffer[0x800]);
+	decomp(&attractModeOverlay2Tiles[0], &buffer[0x800]);
 	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
-	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
+	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
 }
@@ -7891,15 +7891,15 @@ void loadCastScene() {
 	copyToVRAM(3, 0x800, 0x7C00, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0xFF;
 	memset(&buffer[0], 0, 0x1000);
-	decomp(&unknownE1D6E1[0], &buffer[0x200]);
+	decomp(&specialCastNamesGraphics[0], &buffer[0x200]);
 	decomp(&castNamesGraphics[0], &buffer[0x600]);
 	prepareDynamicCastNameText();
 	copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0;
 	loadTextPalette();
-	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
+	memcpy(&palettes[0][0], &castTextPalette[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
-	decomp(&unknownE1E4E6[0], &buffer[0x7000]);
+	decomp(&castExtraPalettes[0], &buffer[0x7000]);
 	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = TMTD.obj | TMTD.bg3;
 	unread7EB4CF = 0;
@@ -8230,8 +8230,8 @@ void initializeCreditsScene() {
 	*(cast(ushort*)&buffer[0]) = 0x240C;
 	copyToVRAM(9, 0x1000, 0x7000, &buffer[0]);
 	copyToVRAM(15, 0x1000, 0x7000, &buffer[1]);
-	decomp(&unknownE1E94A[0], &buffer[0]);
-	memcpy(&palettes[1][0], &unknownE1E92A[0], 0x20);
+	decomp(&creditsPhotographBorderTilemap[0], &buffer[0]);
+	memcpy(&palettes[1][0], &creditsPhotographBorderPalette[0], 0x20);
 	copyToVRAM(0, 0x700, 0x7000, &buffer[0]);
 	copyToVRAM(0, 0x2000, 0x2000, &buffer[0x700]);
 	*(cast(ushort*)&buffer[0]) = 0;
@@ -8271,7 +8271,7 @@ short tryRenderingPhotograph(short id) {
 		*(x++) = 0;
 	}
 	paletteUploadMode = PaletteUpload.none;
-	memcpy(&palettes[1][0], &unknownE1E92A[0], 32);
+	memcpy(&palettes[1][0], &creditsPhotographBorderPalette[0], 32);
 	loadMapAtPosition(photographerConfigTable[id].mapX, photographerConfigTable[id].mapY);
 	enemySpawnsEnabled = enemySpawnFlagBackup;
 	bg2YPosition = 0;
@@ -8355,7 +8355,7 @@ void playCredits() {
 				processCreditsDMAQueue();
 				finishFrame();
 			}
-			unknownC49740();
+			finishPaletteFade();
 			slideCreditsPhotograph(i);
 			while (x02 > bg3YPosition) {
 				processCreditsDMAQueue();

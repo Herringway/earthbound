@@ -1095,7 +1095,7 @@ shared static this() {
 		"unknownC41A7D": unknownC41A7D[],
 		"actionScriptTitleScreenCommonInit": actionScriptTitleScreenCommonInit[],
 		"actionScriptTitleScreenFlashTask": actionScriptTitleScreenFlashTask[],
-		"unknownC42235": unknownC42235[],
+		"animateCompletedTitleScreen": animateCompletedTitleScreen[],
 		"actionScriptRunFadeEffect": actionScriptRunFadeEffect[],
 		"actionScriptRunBlinkEffect": actionScriptRunBlinkEffect[],
 		"actionScriptRunHStripeEffect": actionScriptRunHStripeEffect[],
@@ -25202,45 +25202,57 @@ immutable ubyte[4 + 3 * (const(void)*).sizeof] actionScriptTitleScreen2;
 shared static this() {
 	actionScriptTitleScreen2 = initializeScript(actionScriptTitleScreen2.length,
 		WRITE_WRAM_TEMPVAR(&titleScreenQuickMode),
-		JUMP_IF_FALSE(&unknownC42235[0]),
+		JUMP_IF_FALSE(&animateCompletedTitleScreen[0]),
 		C0ED5C(),
 		END(),
 	);
 }
-/// $C42235
-immutable ubyte[65 + 9 * (const(void)*).sizeof] unknownC42235;
+/** Runs the animations on the "completed" title screen (ie the letters have fallen into place), including the flash, letter shimmer, background fade-in and letter glow
+ * Original_Address: $(DOLLAR)C42235
+ */
+immutable ubyte[65 + 9 * (const(void)*).sizeof] animateCompletedTitleScreen;
 shared static this() {
-	unknownC42235 = initializeScript(unknownC42235.length,
+	animateCompletedTitleScreen = initializeScript(animateCompletedTitleScreen.length,
 		PAUSE(150),
 		PAUSE(30),
+		// make the backgound flash
 		START_TASK(&actionScriptTitleScreenFlashTask[0]),
-		WRITE_WORD_TEMPVAR(0),
-		C0EC77(),
-		SET_VAR(ActionScriptVars.v0, 0),
-		SET_VAR(ActionScriptVars.v1, 8),
-		SET_VAR(ActionScriptVars.v2, 14),
+
+		// start the letter shimmer effect
+		WRITE_WORD_TEMPVAR(TitleScreenPaletteEffect.letterShimmer),
+		LOAD_TITLE_SCREEN_PALETTE_EFFECT(),
+		SET_VAR(ActionScriptVars.v0, 0), // start at loaded palette 0
+		SET_VAR(ActionScriptVars.v1, 8), // copy over palette 8 (sprite palette 0, for the letters)
+		SET_VAR(ActionScriptVars.v2, 14), // maximum of 14 palettes to rotate in
 		LOOP(14),
-			C0EDDA(),
+			ROTATE_LOADED_PALETTE(),
 			PAUSE(2),
 		LOOP_END(),
+
 		PAUSE(32),
 		PAUSE(30),
-		C0ECB7(),
+
+		// start fading in the background
+		PREPARE_TITLE_SCREEN_FADE_IN(),
 		LOOP(165),
 			UPDATE_MAP_PALETTE_ANIMATION(),
 			PAUSE(1),
 		LOOP_END(),
-		C49740(),
-		WRITE_WORD_TEMPVAR(1),
-		C0EC77(),
-		SET_VAR(ActionScriptVars.v0, 0),
-		SET_VAR(ActionScriptVars.v1, 7),
-		SET_VAR(ActionScriptVars.v2, 20),
+		FINISH_PALETTE_FADE(),
+
+		// start the glow effect for the letters
+		WRITE_WORD_TEMPVAR(TitleScreenPaletteEffect.letterGlow),
+		LOAD_TITLE_SCREEN_PALETTE_EFFECT(),
+		SET_VAR(ActionScriptVars.v0, 0), // start at loaded palette 0
+		SET_VAR(ActionScriptVars.v1, 7), // copy to palette 7 (bg palette 7, for the background glow)
+		SET_VAR(ActionScriptVars.v2, 20), // maximum of 20 palettes
 		LOOP(20),
-			C0EDDA(),
+			ROTATE_LOADED_PALETTE(),
 			PAUSE(8),
 		LOOP_END(),
-		C0EDD1(),
+
+		// can't be interrupted anymore
+		SET_TITLE_SCREEN_ACTIONSCRIPT_STATE(),
 		PAUSE(133),
 		END(),
 	);
@@ -25971,13 +25983,13 @@ alias C0D77F = CALL!unknownC0D77F;
 alias BACKUP_POSITION = CALL!actionScriptBackupPosition;
 alias RESTORE_POSITION_BACKUP = CALL!actionScriptRestorePositionBackup;
 alias C0D98F = CALL!unknownC0D98F;
-alias C0EC77 = CALL!unknownC0EC77;
-alias C0ECB7 = CALL!unknownC0ECB7;
+alias LOAD_TITLE_SCREEN_PALETTE_EFFECT = CALL!loadTitleScreenPaletteEffect;
+alias PREPARE_TITLE_SCREEN_FADE_IN = CALL!prepareTitleScreenFadeIn;
 alias SET_BG_PALETTES_WHITE = CALL!setBGPalettesWhite;
 alias SET_BG_PALETTES_BLACK = CALL!setBGPalettesBlack;
 alias C0ED5C = CALL!unknownC0ED5C;
-alias C0EDD1 = CALL!unknownC0EDD1;
-alias C0EDDA = CALL!unknownC0EDDA;
+alias SET_TITLE_SCREEN_ACTIONSCRIPT_STATE = CALL!setTitleScreenActionScriptState;
+alias ROTATE_LOADED_PALETTE = CALL!rotateLoadedPalette;
 alias C0EE53 = CALL!unknownC0EE53;
 alias LOAD_GAS_STATION_FLASH_PALETTE = CALL!loadGasStationFlashPalette;
 alias LOAD_GAS_STATION_PALETTE = CALL!loadGasStationPalette;
@@ -26039,7 +26051,7 @@ alias C4880C = CALL!unknownC4880C;
 alias C48A6D = CALL!unknownC48A6D;
 alias START_PSI_TELEPORT_TUTORIAL = CALL!actionScriptStartPSITeleportTutorial;
 alias MAKE_PARTY_LOOK_AT_SELF = CALL!makePartyLookAtActiveEntity;
-alias C49740 = CALL!unknownC49740;
+alias FINISH_PALETTE_FADE = CALL!finishPaletteFade;
 alias BACKUP_PALETTES = CALL!backupPalettes;
 alias PREPARE_FADE_PALETTE = BACKUP_PALETTES;
 alias C4981F = CALL!unknownC4981F;
