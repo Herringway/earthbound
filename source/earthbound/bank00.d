@@ -10796,7 +10796,7 @@ void loadTitleScreenGraphics() {
 	copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	decomp(&titleScreenArrangement[0], &buffer[0]);
 	copyToVRAM(0, 0x1000, 0x5800, &buffer[0]);
-	decomp(&unknownE1C6E5[0], &buffer[0]);
+	decomp(&titleScreenLetterSprites[0], &buffer[0]);
 	copyToVRAM(0, 0x4000, 0x6000, &buffer[0]);
 }
 

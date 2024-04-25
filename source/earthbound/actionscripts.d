@@ -25179,7 +25179,7 @@ shared static this() {
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScriptTitleScreenCommonInit;
 shared static this() {
 	actionScriptTitleScreenCommonInit = initializeScript(actionScriptTitleScreenCommonInit.length,
-		SET_ANIMATION_POINTER(&unknownE1CF9D[0]),
+		SET_ANIMATION_POINTER(&titleScreenLetterSpriteMaps[0]),
 		SET_DRAW_CALLBACK(&unknownC0A0FA),
 		SET_PRIORITY(1),
 		SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),

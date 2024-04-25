@@ -1629,7 +1629,7 @@ short battleSelectionMenu(short partyMemberID, short partyMemberOrder) {
 					resumeHPPPRolling();
 					return -1;
 				} else if ((padState[0] & Pad.r) != 0){
-					unknownE14DE8();
+					debugBattlerInfo();
 					continue;
 				}
 			}

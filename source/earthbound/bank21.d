@@ -355,8 +355,10 @@ immutable ubyte[] staffText = convertStaffText("
 	\xFF
 ");
 
-/// $E14DE8
-void unknownE14DE8() {
+/** Likely was meant to show info on a battler for debugging purposes. Only input handling remains in the final game
+ * Original_Address: $(DOLLAR)E14DE8
+ */
+void debugBattlerInfo() {
 	short x12 = 1;
 	short x10 = 0;
 	while (true) {
@@ -489,14 +491,18 @@ immutable(ubyte)[] titleScreenGraphics;
 
 /// $E1C6E5
 @ROMSource(0x21C6E5, 1788)
-immutable(ubyte)[] unknownE1C6E5;
+immutable(ubyte)[] titleScreenLetterSprites;
 
-/// $E1CDE1
+/** Palettes used on the title screen (compressed)
+ * Original_Address: $(DOLLAR)E1CDE1
+ */
 @ROMSource(0x21CDE1, 39)
 immutable(ubyte)[] titleScreenPalette;
 
-/// $E1CE08
-immutable SpriteMap*[9] unknownE1CF9D = [
+/** Spritemaps making up each letter (except B) of the EarthBound title screen logo
+ * Original_Address: $(DOLLAR)E1CE08
+ */
+immutable SpriteMap*[9] titleScreenLetterSpriteMaps = [
 	[
 		SpriteMap(0x10, 0x52, 0x30, 0x04, 0x00),
 		SpriteMap(0x08, 0x42, 0x30, 0x04, 0x00),
@@ -740,7 +746,7 @@ immutable SpriteMap[][24] townMapIconSpritemaps = [
 		SpriteMap(0x00, 0x9C, 0x32, 0x00, 0x01),
 		SpriteMap(0x00, 0x9E, 0x32, 0x10, 0x81),
 	],
-	TownMapLabel.toThreedSouth: [
+	TownMapLabel.toThreedEast: [
 		SpriteMap(0x00, 0x65, 0x32, 0x00, 0x01),
 		SpriteMap(0x00, 0x67, 0x32, 0x10, 0x01),
 		SpriteMap(0x00, 0x69, 0x32, 0x20, 0x00),
@@ -823,7 +829,9 @@ immutable SpriteMap[][24] townMapIconSpritemaps = [
 	]
 ];
 
-/// $E1F47A
+/** List of icons that blink on/off on the town map screen
+ * Original_Address: $(DOLLAR)E1F47A
+ */
 immutable ubyte[23] blinkingTownMapIcons = [
 	TownMapLabel.invalid: 0x00,
 	TownMapLabel.burger: 0x01,
@@ -836,7 +844,7 @@ immutable ubyte[23] blinkingTownMapIcons = [
 	TownMapLabel.busStop: 0x01,
 	TownMapLabel.toTwosonSouth: 0x01,
 	TownMapLabel.toOnettNorth: 0x01,
-	TownMapLabel.toThreedSouth: 0x01,
+	TownMapLabel.toThreedEast: 0x01,
 	TownMapLabel.toTwosonWest: 0x01,
 	TownMapLabel.toDesertEast: 0x01,
 	TownMapLabel.toDesertWest: 0x01,
@@ -850,66 +858,68 @@ immutable ubyte[23] blinkingTownMapIcons = [
 	TownMapLabel.rightArrow: 0x00
 ];
 
-/// $E1F491
+/** Icon placement data for each town map
+ * Original_Address: $(DOLLAR)E1F491
+ */
 immutable TownMapIconPlacement[][6] townMapIconPlacementTable = [
 	[
-		TownMapIconPlacement(0x55, 0x5B, 0x06, EventFlag.unknown0558),
-		TownMapIconPlacement(0x6A, 0x5E, 0x01, EventFlag.unknown0559),
-		TownMapIconPlacement(0x8C, 0x7B, 0x03, EventFlag.unknown0560),
-		TownMapIconPlacement(0x1D, 0x9E, 0x05, EventFlag.unknown0561),
-		TownMapIconPlacement(0x75, 0xA6, 0x02, EventFlag.unknown0562),
-		TownMapIconPlacement(0x60, 0xBE, 0x09, EventFlag.unknown0563),
-		TownMapIconPlacement(0xBB, 0x5E, 0x10, EventFlag.gmOnetHint | eventFlagUnset),
+		TownMapIconPlacement(85, 91, TownMapLabel.shop, EventFlag.hideOnettDrugstore),
+		TownMapIconPlacement(106, 94, TownMapLabel.burger, EventFlag.hideOnettBurgerShop),
+		TownMapIconPlacement(140, 123, TownMapLabel.hotel, EventFlag.hideOnettHotel),
+		TownMapIconPlacement(29, 158, TownMapLabel.hospital, EventFlag.hideOnettHospital),
+		TownMapIconPlacement(117, 166, TownMapLabel.bakery, EventFlag.hideOnettBakery),
+		TownMapIconPlacement(96, 190, TownMapLabel.toTwosonSouth, EventFlag.hideOnettToTwoson),
+		TownMapIconPlacement(187, 94, TownMapLabel.hint, EventFlag.gmOnetHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x48, 0x2A, 0x03, EventFlag.unknown0564),
-		TownMapIconPlacement(0x70, 0x2E, 0x07, EventFlag.unknown0565),
-		TownMapIconPlacement(0x20, 0x30, 0x0A, EventFlag.unknown0566),
-		TownMapIconPlacement(0xD0, 0x9A, 0x08, EventFlag.unknown0567),
-		TownMapIconPlacement(0xB8, 0x09, 0x05, EventFlag.unknown0568),
-		TownMapIconPlacement(0x78, 0xB8, 0x0B, EventFlag.unknown0569),
-		TownMapIconPlacement(0x60, 0x70, 0x02, EventFlag.unknown0673),
-		TownMapIconPlacement(0xD0, 0x3D, 0x10, EventFlag.gmTwosonHint | eventFlagUnset),
+		TownMapIconPlacement(72, 42, TownMapLabel.hotel, EventFlag.hideTwosonHotel),
+		TownMapIconPlacement(112, 46, TownMapLabel.deptStore, EventFlag.hideTwosonDeptStore),
+		TownMapIconPlacement(32, 48, TownMapLabel.toOnettNorth, EventFlag.hideTwosonToOnett),
+		TownMapIconPlacement(208, 154, TownMapLabel.busStop, EventFlag.hideTwosonBusStop),
+		TownMapIconPlacement(184, 9, TownMapLabel.hospital, EventFlag.hideTwosonHospital),
+		TownMapIconPlacement(120, 184, TownMapLabel.toThreedEast, EventFlag.hideTwosonToThreed),
+		TownMapIconPlacement(96, 112, TownMapLabel.bakery, EventFlag.hideTwosonBakery),
+		TownMapIconPlacement(208, 61, TownMapLabel.hint, EventFlag.gmTwosonHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x48, 0x6B, 0x06, EventFlag.unknown0570),
-		TownMapIconPlacement(0x70, 0x3B, 0x03, EventFlag.unknown0571),
-		TownMapIconPlacement(0x8C, 0x67, 0x02, EventFlag.unknown0573),
-		TownMapIconPlacement(0x7E, 0x6B, 0x05, EventFlag.unknown0574),
-		TownMapIconPlacement(0x18, 0x8E, 0x0C, EventFlag.unknown0642),
-		TownMapIconPlacement(0xB0, 0x8E, 0x0D, EventFlag.unknown0641),
-		TownMapIconPlacement(0x6C, 0x5D, 0x08, EventFlag.unknown0676),
-		TownMapIconPlacement(0x73, 0x61, 0x08, EventFlag.unknown0677),
-		TownMapIconPlacement(0xD7, 0x0A, 0x10, EventFlag.gmThreekHint | eventFlagUnset),
+		TownMapIconPlacement(72, 107, TownMapLabel.shop, EventFlag.hideThreedShop),
+		TownMapIconPlacement(112, 59, TownMapLabel.hotel, EventFlag.hideThreedHotel),
+		TownMapIconPlacement(140, 103, TownMapLabel.bakery, EventFlag.hideThreedBakery),
+		TownMapIconPlacement(126, 107, TownMapLabel.hospital, EventFlag.hideThreedHospital),
+		TownMapIconPlacement(24, 142, TownMapLabel.toTwosonWest, EventFlag.hideThreedToTwoson),
+		TownMapIconPlacement(176, 142, TownMapLabel.toDesertEast, EventFlag.hideThreedToDesert),
+		TownMapIconPlacement(108, 93, TownMapLabel.busStop, EventFlag.hideThreedBusStop1),
+		TownMapIconPlacement(115, 97, TownMapLabel.busStop, EventFlag.hideThreedBusStop2),
+		TownMapIconPlacement(215, 10, TownMapLabel.hint, EventFlag.gmThreekHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x74, 0x0A, 0x05, EventFlag.unknown0575),
-		TownMapIconPlacement(0xC2, 0x28, 0x07, EventFlag.unknown0576),
-		TownMapIconPlacement(0xAC, 0x84, 0x02, EventFlag.unknown0577),
-		TownMapIconPlacement(0x40, 0x7B, 0x03, EventFlag.unknown0578),
-		TownMapIconPlacement(0x10, 0xC0, 0x0E, EventFlag.unknown0640),
-		TownMapIconPlacement(0x3E, 0xC8, 0x08, EventFlag.unknown0678),
-		TownMapIconPlacement(0x58, 0x77, 0x10, EventFlag.gmFoursideHint | eventFlagUnset),
+		TownMapIconPlacement(116, 10, TownMapLabel.hospital, EventFlag.hideFoursideHospital),
+		TownMapIconPlacement(194, 40, TownMapLabel.deptStore, EventFlag.hideFoursideDeptStore),
+		TownMapIconPlacement(172, 132, TownMapLabel.bakery, EventFlag.hideFoursideBakery),
+		TownMapIconPlacement(64, 123, TownMapLabel.hotel, EventFlag.hideFoursideHotel),
+		TownMapIconPlacement(16, 192, TownMapLabel.toDesertWest, EventFlag.hideFoursideToDesert),
+		TownMapIconPlacement(62, 200, TownMapLabel.busStop, EventFlag.hideFoursideBusStop),
+		TownMapIconPlacement(88, 119, TownMapLabel.hint, EventFlag.gmFoursideHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x80, 0x1B, 0x03, EventFlag.unknown0579),
-		TownMapIconPlacement(0x88, 0x09, 0x05, EventFlag.unknown0580),
-		TownMapIconPlacement(0xB0, 0x12, 0x06, EventFlag.unknown0581),
-		TownMapIconPlacement(0xAC, 0x2E, 0x02, EventFlag.unknown0674),
-		TownMapIconPlacement(0x8D, 0x5E, 0x10, EventFlag.gmScarabiHint | eventFlagUnset),
+		TownMapIconPlacement(128, 27, TownMapLabel.hotel, EventFlag.hideScarabaHotel),
+		TownMapIconPlacement(136, 9, TownMapLabel.hospital, EventFlag.hideScarabaHospital),
+		TownMapIconPlacement(176, 18, TownMapLabel.shop, EventFlag.hideScarabaShop),
+		TownMapIconPlacement(172, 46, TownMapLabel.bakery, EventFlag.hideScarabaBakery),
+		TownMapIconPlacement(141, 94, TownMapLabel.hint, EventFlag.gmScarabiHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x40, 0x04, 0x03, EventFlag.unknown0582),
-		TownMapIconPlacement(0x71, 0x04, 0x04, EventFlag.unknown0583),
-		TownMapIconPlacement(0xA5, 0x04, 0x06, EventFlag.unknown0584),
-		TownMapIconPlacement(0x61, 0x6C, 0x05, EventFlag.unknown0585),
-		TownMapIconPlacement(0xA0, 0x72, 0x06, EventFlag.unknown0586),
-		TownMapIconPlacement(0x48, 0x6C, 0x10, EventFlag.gmSummersHint | eventFlagUnset),
+		TownMapIconPlacement(64, 4, TownMapLabel.hotel, EventFlag.hideSummersHotel),
+		TownMapIconPlacement(113, 4, TownMapLabel.restaurant, EventFlag.hideSummersRestaurant),
+		TownMapIconPlacement(165, 4, TownMapLabel.shop, EventFlag.hideSummersShop1),
+		TownMapIconPlacement(97, 108, TownMapLabel.hospital, EventFlag.hideSummersHospital),
+		TownMapIconPlacement(160, 114, TownMapLabel.shop, EventFlag.hideSummersShop2),
+		TownMapIconPlacement(72, 108, TownMapLabel.hint, EventFlag.gmSummersHint | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	]
 ];
