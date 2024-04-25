@@ -231,22 +231,31 @@ void bubbleMonkeyTick() {
 	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].tileFlags;
 }
 
-/// $EF04DC
+/** Draws the cancelled title screen sequence. Quickly fades into the completed title screen image.
+ * Returns: 1 if the player pressed A, B or start after the fade-in completed, 0 otherwise
+ * Original_Address: $(DOLLAR)EF04DC
+ */
 short cancelTitleScreenSequence() {
+	// This was likely a parameter at some point like the other title screen functions, but now it's always zero
 	short nonCancellable = 0;
+	// load graphics, reset entity state
 	prepareForImmediateDMA();
 	initializeEntitySubsystem();
 	loadTitleScreenGraphics();
+	// enable only sprites and BG1
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
+	// create title screen entities and let them complete a full frame while the DMA occurs
 	titleScreenQuickMode = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	actionscriptState = ActionScriptState.running;
 	finishFrame();
+	// fade in quickly
 	fadeIn(16, 1);
 	for (short i = 0; i < 60; i++) {
 		finishFrame();
 	}
+	// display the title screen until the scripts are done running. Watch for player input and exit early if this is a cancellable sequence
 	short cancelled = 0;
 	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
 		if ((nonCancellable == 0) && (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0))) {
@@ -255,6 +264,7 @@ short cancelTitleScreenSequence() {
 		}
 		finishFrame();
 	}
+	// sequence is done, so fade out and clean up
 	fadeOutWithMosaic(1, 4, 0);
 	actionscriptState = ActionScriptState.running;
 	unknownC474A8(/+0+/);
@@ -262,7 +272,9 @@ short cancelTitleScreenSequence() {
 	return cancelled;
 }
 
-/// $EF0591
+/** Magic value for determining whether or not a save is present
+ * Original_Address: $(DOLLAR)EF0591
+ */
 immutable string sramSignature = "HAL Laboratory, inc.";
 
 /** Bitmasks to represent the three save slots as a single combined value
@@ -270,7 +282,11 @@ immutable string sramSignature = "HAL Laboratory, inc.";
  */
 immutable ubyte[3] sramSlotBitmasks = [1 << 0, 1 << 1, 1 << 2];
 
-/// $EF05A9
+/** Erases a save block, preparing it for a new save
+ * Params:
+ * 	id = The index of the save block (0-5 on retail cartridges)
+ * Original_Address: $(DOLLAR)EF05A9
+ */
 void eraseSaveBlock(short id) {
 	version(savememory) {
 		memset(&sram.saves[id], 0, SaveBlock.sizeof);
@@ -281,7 +297,12 @@ void eraseSaveBlock(short id) {
 	}
 }
 
-/// $EF0630
+/** Checks if a save is valid, erasing it if it isn't
+ * Params:
+ * 	id = The index of the save block (0-5 on retail cartridges)
+ * Returns: 1 if the save was invalid and got erased, 0 otherwise
+ * Original_Address: $(DOLLAR)EF0630
+ */
 short checkBlockSignature(short id) {
 	version(savememory) {
 		if (strcmp(&sramSignature[0], &sram.saves[id].signature[0]) != 0) {
@@ -298,7 +319,9 @@ short checkBlockSignature(short id) {
 	return 0;
 }
 
-/// $EF0683
+/** Check the save signatures for all blocks, automatically erasing them on failure
+ * Original_Address: $(DOLLAR)EF0683
+ */
 void checkAllBlocksSignature() {
 	version(savememory) {
 		for (short i = 0; i < 6; i++) {
@@ -311,7 +334,12 @@ void checkAllBlocksSignature() {
 	}
 }
 
-/// $EF06A2
+/** Copies a save block over another save block
+ * Params:
+ * 	to = The destination save block (0-5 valid on retail cartridges)
+ * 	from = The source save block (0-5 valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF06A2
+ */
 void copySaveBlock(short to, short from) {
 	version(savememory) {
 		memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
@@ -321,7 +349,12 @@ void copySaveBlock(short to, short from) {
 	}
 }
 
-/// $EF0734
+/** Calculates a sum checksum for a save block by adding together every byte in the block
+ * Params:
+ * 	id = The index of the save block to read (0-5 valid on retail cartridges)
+ * Returns: The checksum
+ * Original_Address: $(DOLLAR)EF0734
+ */
 ushort calcSaveBlockAddChecksum(short id) {
 	version(savememory) {
 		ubyte* x06 = &sram.saves[id].rawData[0];
@@ -337,7 +370,12 @@ ushort calcSaveBlockAddChecksum(short id) {
 	return checksum;
 }
 
-/// $EF077B
+/** Calculates an XOR checksum for a save block by XORing every byte in the block together
+ * Params:
+ * 	id = The index of the save block to read (0-5 are valid on retail cartridges)
+ * Returns: The checksum
+ * Original_Address: $(DOLLAR)EF077B
+ */
 ushort calcSaveBlockXORChecksum(short id) {
 	version(savememory) {
 		ubyte* x06 = &sram.saves[id].rawData[0];
@@ -353,7 +391,12 @@ ushort calcSaveBlockXORChecksum(short id) {
 	return checksum;
 }
 
-/// $EF07C0
+/** Detects corruption in a save block by calculating two checksums and comparing them to the stored checksum
+ * Params:
+ * 	id = The index of the save block to read (0-5 are valid on retail cartridges)
+ * Returns: 0 if the checksums don't match, -1 otherwise
+ * Original_Address: $(DOLLAR)EF07C0
+ */
 short validateSaveBlockChecksums(short id) {
 	version(savememory) {
 		if ((calcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (calcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
@@ -368,7 +411,11 @@ short validateSaveBlockChecksums(short id) {
 	return -1;
 }
 
- /// $EF0825
+ /** Checks a save file for corruption by testing the first block's checksums. If either mismatch, erase the save and check the second block's checksums, and copy the second block over the first one. If both sets of checksums fail, erase the save entirely.
+ * Params:
+ * 	id = The index of the save file to read (0-2 are valid on retail cartridges)
+  * Original_Address: $(DOLLAR)EF0825
+  */
 void checkSaveCorruption(short id) {
 	if (validateSaveBlockChecksums(cast(short)(id * 2)) != 0) {
 		eraseSaveBlock(cast(short)(id * 2));
@@ -393,7 +440,11 @@ void checkSaveCorruption(short id) {
 	}
 }
 
-/// $EF088F
+/** Saves a game block. Writes a copy of the GameState structure, the party member stats, event flags and the checksums. To make sure the save succeeds, both checksums are validated immediately and the process restarts if mismatched.
+ * Params:
+ * 	id = The index of the save block to read (0-5 are valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF088F
+ */
 void saveGameBlock(short id) {
 	gameState.timer = timer;
 	Retry:
@@ -427,7 +478,11 @@ void saveGameBlock(short id) {
 	}
 }
 
-/// $EF0A4D
+/** Saves a game slot. A game slot is made up of two game blocks to guard against corruption.
+ * Params:
+ * 	id = The index of the save slot to read (0-2 are valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF0A4D
+ */
 void saveGameSlot(short id) {
 	saveGameBlock(cast(short)(id * 2));
 	version(savememory) { // only need to write two blocks when SRAM is used
@@ -435,7 +490,11 @@ void saveGameSlot(short id) {
 	}
 }
 
-/// $EF0A68
+/** Copies game state, party characters and flags from a save file. Does not perform any validation.
+ * Params:
+ * 	id = The index of the save slot to read (0-2 are valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF0A68
+ */
 void loadGameSlot(short id) {
 	version (savememory) {
 		memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, GameState.sizeof);
@@ -450,7 +509,11 @@ void loadGameSlot(short id) {
 	timer = gameState.timer;
 }
 
-/// $EF0B9E
+/** Tests SRAM integrity, by comparing SRAM versions, verifying signatures and validating checksums of all save blocks.
+ *
+ * Known versions include 1162 for mother 2, 1170 for a localization prototype and 1171 for the retail version of earthbound.
+ * Original_Address: $(DOLLAR)EF0B9E
+ */
 void checkSRAMIntegrity() {
 	sramVersion = 0x493;
 	version(savememory) {
@@ -466,7 +529,11 @@ void checkSRAMIntegrity() {
 	}
 }
 
-/// $EF0BFA
+/** Erases a save slot. Erases both of the component save blocks.
+ * Params:
+ * 	id = The index of the save slot to read (0-2 are valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF0BFA
+ */
 void eraseSaveSlot(short id) {
 	eraseSaveBlock(cast(short)(id * 2));
 	version(savememory) {
@@ -474,7 +541,12 @@ void eraseSaveSlot(short id) {
 	}
 }
 
-/// $EF0C15
+/** Copies a save from one slot to another. Copies the component save blocks separately.
+ * Params:
+ * 	to = The destination save slot to copy to (0-2 are valid on retail cartridges)
+ * from = The source save slot to copy from (0-2 are valid on retail cartridges)
+ * Original_Address: $(DOLLAR)EF0C15
+ */
 void copySaveSlot(short to, short from) {
 	copySaveBlock(cast(short)(to * 2), cast(short)(from * 2));
 	version(savememory) {
@@ -482,8 +554,10 @@ void copySaveSlot(short to, short from) {
 	}
 }
 
-/// $EF0C3D - unused
-void unknownEF0C3D() {
+/** Unused function. May have been used for game demos like the one at CES '95. Loads the save in slot 3 and immediately spawns the player
+ * Original_Address: $(DOLLAR)EF0C3D
+ */
+void unusedEF0C3D() {
 	loadGameSlot(3);
 	fadeOut(1, 1);
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
@@ -531,12 +605,17 @@ short getTimeBetweenDeliveryAttempts() {
 	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].secondsBetweenDeliveryAttempts;
 }
 
-/// $EF0D46
+/** Initializes a delivery countdown for the active entity, determining the number of seconds until the next attempt is made
+ * Original_Address: $(DOLLAR)EF0D46
+ */
 void startDeliveryCountdown() {
 	deliveryTimers[entityScriptVar0Table[currentEntitySlot]] = timedDeliveries[entityScriptVar0Table[currentEntitySlot]].deliveryTime;
 }
 
-/// $EF0D73
+/** Processes a single second of the active entity's delivery countdown
+ * Returns: The number of ticks remaining until the next delivery attempt
+ * Original_Address: $(DOLLAR)EF0D73
+ */
 ushort doDeliveryCountdown() {
 	if (deliveryTimers[entityScriptVar0Table[currentEntitySlot]] != 0) {
 		deliveryTimers[entityScriptVar0Table[currentEntitySlot]]--;
@@ -544,48 +623,80 @@ ushort doDeliveryCountdown() {
 	return deliveryTimers[entityScriptVar0Table[currentEntitySlot]];
 }
 
-/// $EF0D8D
+/** Displays the delivery success text associated with the active entity
+ * Original_Address: $(DOLLAR)EF0D8D
+ */
 void startDeliverySuccessText() {
 	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
-/// $EF0DFA
+/** Displays the delivery failure text associated with the active entity
+ * Original_Address: $(DOLLAR)EF0DFA
+ */
 void startDeliveryFailText() {
 	queueInteraction(InteractionType.textSurvivesDoorTransition, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
-/// $EF0E67
+/** Gets the speed at which the active delivery entity runs towards the player. Undefined results if active entity is not a delivery entity.
+ * Returns: A speed in (TODO: what unit?)
+ * Original_Address: $(DOLLAR)EF0E67
+ */
 short getDeliveryEnterSpeed() {
 	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].enterSpeed;
 }
 
-/// $EF0E8A
+/** Gets the speed at which the active delivery entity runs away. Undefined results if active entity is not a delivery entity.
+ * Returns: A speed in (TODO: what unit?)
+ * Original_Address: $(DOLLAR)EF0E8A
+ */
 short getDeliveryExitSpeed() {
 	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].exitSpeed;
 }
 
-/// $EF0EAD
-void getDeliverySpriteAndPlaceholder(short arg1) {
-	newEntityVar0 = cast(short)(arg1 - 1);
-	createOverworldEntity((timedDeliveries[arg1].spriteID == 0) ? forSaleSignSpriteTable[rand() & 3] : timedDeliveries[arg1].spriteID, ActionScript.unknown499, -1, 0, 0);
+/** Spawns a preconfigured delivery entity. Makes an attempt at delivery at a defined interval, then executes the failure/success text script associated with the entry as appropriate.
+ * Params:
+ * 	id = The 1-based index corresponding to the desired entry in the timedDeliveries table
+ * Original_Address: $(DOLLAR)EF0EAD
+ */
+void createDeliveryEntity(short id) {
+	newEntityVar0 = cast(short)(id - 1);
+	createOverworldEntity((timedDeliveries[id].spriteID == 0) ? forSaleSignSpriteTable[rand() & 3] : timedDeliveries[id].spriteID, ActionScript.freshDelivery, -1, 0, 0);
 }
 
-/// $EF0EE8
-void resolveActiveDeliveries() {
+/** Respawns all delivery entities after a warp. Uses a slightly different script, which attempts to make a delivery immediately if any attempts have been made already
+ * Original_Address: $(DOLLAR)EF0EE8
+ */
+void respawnDeliveryEntities() {
 	for (short i = 0; i < 10; i++) {
+		// if required flag not set, skip
 		if (getEventFlag(timedDeliveries[i].eventFlag) == 0) {
 			continue;
 		}
+		// VAR0 = active delivery index
 		newEntityVar0 = i;
 		ushort sprite = timedDeliveries[i].spriteID;
-		if (sprite == 0) {
-			sprite = forSaleSignSpriteTable[rand()&3];
+		// if no sprite, pick one from the table at random instead
+		if (sprite == OverworldSprite.none) {
+			sprite = forSaleSignSpriteTable[rand() & 3];
 		}
-		createOverworldEntity(sprite, ActionScript.unknown500, -1, 0, 0);
+		// create the delivery entity
+		createOverworldEntity(sprite, ActionScript.respawnedDelivery, -1, 0, 0);
 	}
 }
 
-/// $EF0F60
+/** Tests if the player is eligible for a delivery
+ *
+ * The following checks are done:
+ * - No screen fades are active
+ * - No text windows are open
+ * - No entities are fading away
+ * - Overworld status suppression is disabled
+ * - Party leader sprite is currently visible
+ * - Party leader is not on a ladder, rope, escalator or stairs
+ * - No pending interactions (if party leader can move)
+ * Returns: 1 if any checks failed, 0 otherwise
+ * Original_Address: $(DOLLAR)EF0F60
+ */
 short checkDeliveryEligibility() {
 	if ((fadeParameters.step != 0) || ((mirrorINIDISP & 0xF) != 0)) {
 		return 1;
@@ -608,7 +719,9 @@ short checkDeliveryEligibility() {
 	return ((entityCallbackFlags[partyLeaderEntity] & (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled)) != 0) ? 0 : pendingInteractions;
 }
 
-/// $EF0FDB
+/** Prepares for a delivery NPC to arrive, enabling status suppression, changing the music and forcing the player off the bicycle
+ * Original_Address: $(DOLLAR)EF0FDB
+ */
 void startDelivery() {
 	overworldStatusSuppression = 1;
 	pendingInteractions = 1;
@@ -617,19 +730,23 @@ void startDelivery() {
 	getOffBicycle();
 }
 
-/// $EF0FF6
+/** Clean up after a delivery is done, restoring music and the status suppression flag
+ * Original_Address: $(DOLLAR)EF0FF6
+ */
 void finishDelivery() {
 	pendingInteractions = 0;
 	overworldStatusSuppression = getEventFlag(EventFlag.winGiegu);
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
 	} else {
-		unknownC06A07();
+		reloadMapMusic();
 	}
 }
 
-/// $EF101B
-immutable ubyte[32] tilesetTable = [
+/** Tileset combo -> tile graphics mapping
+ * Original_Address: $(DOLLAR)EF101B
+ */
+immutable ubyte[32] tilesetGraphicsMapping = [
 	0x00,
 	0x01,
 	0x02,
@@ -664,20 +781,28 @@ immutable ubyte[32] tilesetTable = [
 	0x00,
 ];
 
-/// $EF105B
+/** Tile graphics for overworld map tilesets (compressed)
+ * Original_Address: $(DOLLAR)EF105B
+ */
 @mapDataTilesetSource
-immutable(ubyte[])[] mapDataTilesetPtrTable;
+immutable(ubyte[])[] mapTilesetGraphics;
 
-/// $EF10AB
+/** Tile arrangements for overworld map tilesets (compressed)
+ * Original_Address: $(DOLLAR)EF10AB
+ */
 @mapDataArrangementSource
-immutable(ubyte[])[] mapDataTileArrangementPtrTable;
+immutable(ubyte[])[] mapTilesetArrangements;
 
-/// $EF10FB
+/** Palette data used for overworld map tilesets
+ * Original_Address: $(DOLLAR)EF10FB
+ */
 @mapPaletteSource
 immutable(ubyte[])[] mapPalettes;
 
-/// $EF117B
-immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [
+/** Tileset collision data
+ * Original_Address: $(DOLLAR)EF117B
+ */
+immutable ubyte[4][4]*[][20] mapTileCollisionData = [
 	[
 		&mapDataTileCollision0,
 		&mapDataTileCollision0,
@@ -13124,12 +13249,16 @@ immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [
 	]
 ];
 
-/// $EF11CB
+/** Graphics data for overworld tileset animations
+ * Original_Address: $(DOLLAR)EF11CB
+ */
 @mapDataTileAnimationSource
 immutable(ubyte[])[] mapDataAnimatedTilesets;
 
-/// $EF121B
-immutable TilesetAnimation[20] mapDataTilesetAnimationPointerTable = [
+/** Overworld tileset animation definitions
+ * Original_Address: $(DOLLAR)EF121B
+ */
+immutable TilesetAnimation[20] mapTilesetAnimations = [
 	TilesetAnimation(5, [
 		AnimatedTiles(0x04, 0x0C, 0x0060, 0x0020, 0x0010),
 		AnimatedTiles(0x04, 0x0F, 0x0060, 0x01A0, 0x0040),
@@ -13188,7 +13317,9 @@ immutable TilesetAnimation[20] mapDataTilesetAnimationPointerTable = [
 	]),
 ];
 
-/// $EFA37A
+/** Strings used for the overworld command menu
+ * Original_Address: $(DOLLAR)EFA37A
+ */
 immutable ubyte[10][6] commandMenuText = [
 	ebString!10("Talk to"),
 	ebString!10("Goods"),
@@ -13198,7 +13329,10 @@ immutable ubyte[10][6] commandMenuText = [
 	ebString!10("Status"),
 ];
 
-__gshared SpriteGrouping[464] spriteGroupingPointers = [
+/** Definitions for overworld sprite groups
+ * Original_Address: $(DOLLAR)EF133F
+ */
+__gshared SpriteGrouping[464] spriteGroups = [
 	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
 	OverworldSprite.none: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
@@ -21917,7 +22051,7 @@ void debugMain() {
 						entityPathfindingState[i] = 0;
 					}
 				}
-				entityPathfindingState[createOverworldEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
+				entityPathfindingState[createOverworldEntity(0x8A, ActionScript.freshDelivery, -1, bg1XPosition, bg1YPosition)] = -1;
 				unknownC0BD96();
 			}
 		}

@@ -56,19 +56,19 @@ void overworldInitialize() {
 /// $C00085
 void loadTilesetAnim() {
 	loadedAnimatedTileCount = 0;
-	if (mapDataTilesetAnimationPointerTable[loadedMapTileset].count == 0) {
+	if (mapTilesetAnimations[loadedMapTileset].count == 0) {
 		return;
 	}
 	decomp(&mapDataAnimatedTilesets[loadedMapTileset][0], &animatedTilesetBuffer[0]);
-	loadedAnimatedTileCount = mapDataTilesetAnimationPointerTable[loadedMapTileset].count;
+	loadedAnimatedTileCount = mapTilesetAnimations[loadedMapTileset].count;
 	for (short i = 0; i < loadedAnimatedTileCount; i++) {
-		overworldTilesetAnim[i].frameCount = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].frameCount;
-		overworldTilesetAnim[i].framesUntilUpdate = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].frameDelay;
-		overworldTilesetAnim[i].frameDelay = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].frameDelay;
-		overworldTilesetAnim[i].copySize = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].copySize;
-		overworldTilesetAnim[i].sourceOffset = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].sourceOffset;
-		overworldTilesetAnim[i].sourceOffset2 = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].sourceOffset;
-		overworldTilesetAnim[i].destinationAddress = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].destinationAddress;
+		overworldTilesetAnim[i].frameCount = mapTilesetAnimations[loadedMapTileset].animations[i].frameCount;
+		overworldTilesetAnim[i].framesUntilUpdate = mapTilesetAnimations[loadedMapTileset].animations[i].frameDelay;
+		overworldTilesetAnim[i].frameDelay = mapTilesetAnimations[loadedMapTileset].animations[i].frameDelay;
+		overworldTilesetAnim[i].copySize = mapTilesetAnimations[loadedMapTileset].animations[i].copySize;
+		overworldTilesetAnim[i].sourceOffset = mapTilesetAnimations[loadedMapTileset].animations[i].sourceOffset;
+		overworldTilesetAnim[i].sourceOffset2 = mapTilesetAnimations[loadedMapTileset].animations[i].sourceOffset;
+		overworldTilesetAnim[i].destinationAddress = mapTilesetAnimations[loadedMapTileset].animations[i].destinationAddress;
 		overworldTilesetAnim[i].frameCounter = 0;
 	}
 }
@@ -209,7 +209,7 @@ void prepareAverageForSpritePalettes() {
 
 /// $C0062A
 void loadCollisionData(short tileset) {
-	const(ubyte[4][4]*)* src = &mapDataTileCollisionPointerTable[tileset][0];
+	const(ubyte[4][4]*)* src = &mapTileCollisionData[tileset][0];
 	const(ubyte[4][4])** dest = &tileCollisionBuffer[0];
 	for (short i = 0; i < 0x3C0; i++) {
 		*(dest++) = *(src++);
@@ -310,14 +310,14 @@ void loadMapAtSector(short x, short y) {
 	ubyte palette = x1A & 7;
 	ubyte tileCombo = x1A >> 3;
 	tracef("Loading map tileset %d, palette %d", tileCombo, palette);
-	decomp(&mapDataTileArrangementPtrTable[tilesetTable[tileCombo]][0], &tileArrangementBuffer[0]);
-	loadCollisionData(tilesetTable[tileCombo]);
-	loadMapBlockEventChanges(tilesetTable[tileCombo]);
+	decomp(&mapTilesetArrangements[tilesetGraphicsMapping[tileCombo]][0], &tileArrangementBuffer[0]);
+	loadCollisionData(tilesetGraphicsMapping[tileCombo]);
+	loadMapBlockEventChanges(tilesetGraphicsMapping[tileCombo]);
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	if (tileCombo != loadedMapTileCombo) {
-		loadedMapTileset = tilesetTable[tileCombo];
-		decomp(&mapDataTilesetPtrTable[tilesetTable[tileCombo]][0], &buffer[0]);
+		loadedMapTileset = tilesetGraphicsMapping[tileCombo];
+		decomp(&mapTilesetGraphics[tilesetGraphicsMapping[tileCombo]][0], &buffer[0]);
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
 			copyToVRAMChunked(0, 0x7000, 0, &buffer[0]);
@@ -981,9 +981,9 @@ void prepareSpriteMap(short arg1, short arg2, short flags, const(SpriteMapTempla
 
 /// $C01DED
 short getOverworldSpriteTileSize(short arg1) {
-	newSpriteTileWidth = spriteGroupingPointers[arg1].width / 16;
-	newSpriteTileHeight = spriteGroupingPointers[arg1].height;
-	return spriteGroupingPointers[arg1].size;
+	newSpriteTileWidth = spriteGroups[arg1].width / 16;
+	newSpriteTileHeight = spriteGroups[arg1].height;
+	return spriteGroups[arg1].size;
 }
 
 /** Creates a new overworld entity with the given sprite, script and coordinates
@@ -1003,7 +1003,7 @@ short createOverworldEntity(short sprite, short actionScript, short index, short
 	short newSpriteMapIndex = findFreeSpriteMap(overworldSpriteTemplates[newEntitySize].count * 10);
 	assert(newSpriteMapIndex >= 0);
 	newEntityPriority = 1;
-	prepareSpriteMap(newSpriteMapIndex, spriteMapBeginningIndex, spriteGroupingPointers[sprite].spritemapFlags, &overworldSpriteTemplates[newEntitySize]);
+	prepareSpriteMap(newSpriteMapIndex, spriteMapBeginningIndex, spriteGroups[sprite].spritemapFlags, &overworldSpriteTemplates[newEntitySize]);
 	if (index != -1) {
 		entityAllocationMinSlot = index;
 		entityAllocationMaxSlot = cast(short)(index + 1);
@@ -1018,22 +1018,22 @@ short createOverworldEntity(short sprite, short actionScript, short index, short
 	entitySpriteMapSizes[result] = overworldSpriteTemplates[newEntitySize].count * 5;
 	entitySpriteMapBeginningIndices[result] = spriteMapBeginningIndex;
 	entityVramAddresses[result] = cast(ushort)(overworldSpriteVRAMOffsets[spriteMapBeginningIndex] + 0x4000);
-	entityByteWidths[result] = spriteGroupingPointers[sprite].width * 2;
-	entityTileHeights[result] = spriteGroupingPointers[sprite].height;
-	//UNKNOWN_30X2_TABLE_31[result] = spriteGroupingPointers[sprite].spriteBank;
+	entityByteWidths[result] = spriteGroups[sprite].width * 2;
+	entityTileHeights[result] = spriteGroups[sprite].height;
+	//UNKNOWN_30X2_TABLE_31[result] = spriteGroups[sprite].spriteBank;
 	entitySpriteIDs[result] = sprite;
-	//EntityGraphicsPointerHigh[result] = &spriteGroupingPointers[sprite];
-	//EntityGraphicsPointerLow[result] = &spriteGroupingPointers[sprite];
-	entityGraphicsPointers[result] = &spriteGroupingPointers[sprite].sprites[0];
+	//EntityGraphicsPointerHigh[result] = &spriteGroups[sprite];
+	//EntityGraphicsPointerLow[result] = &spriteGroups[sprite];
+	entityGraphicsPointers[result] = &spriteGroups[sprite].sprites[0];
 	if ((newSpriteTileHeight & 1) != 0) {
 		entityVramAddresses[result] += 0x100;
 	}
-	entitySizes[result] = spriteGroupingPointers[sprite].size;
-	entityHitboxUpDownWidth[result] = spriteGroupingPointers[sprite].hitboxWidthUD;
-	entityHitboxUpDownHeight[result] = spriteGroupingPointers[sprite].hitboxHeightUD;
-	entityHitboxLeftRightWidth[result] = spriteGroupingPointers[sprite].hitboxWidthLR;
-	entityHitboxLeftRightHeight[result] = spriteGroupingPointers[sprite].hitboxHeightLR;
-	entityHitboxEnabled[result] = collisionHeights2[spriteGroupingPointers[sprite].size];
+	entitySizes[result] = spriteGroups[sprite].size;
+	entityHitboxUpDownWidth[result] = spriteGroups[sprite].hitboxWidthUD;
+	entityHitboxUpDownHeight[result] = spriteGroups[sprite].hitboxHeightUD;
+	entityHitboxLeftRightWidth[result] = spriteGroups[sprite].hitboxWidthLR;
+	entityHitboxLeftRightHeight[result] = spriteGroups[sprite].hitboxHeightLR;
+	entityHitboxEnabled[result] = collisionHeights2[spriteGroups[sprite].size];
 	entityUpperLowerBodyDivide[result] = cast(ushort)((overworldSpriteTemplates[newEntitySize].lowerBodyCount << 8) | (overworldSpriteTemplates[newEntitySize].count - overworldSpriteTemplates[newEntitySize].lowerBodyCount));
 	entityEnemySpawnTiles[result] = 0xFFFF;
 	entityEnemyIDs[result] = -1;
@@ -1942,7 +1942,7 @@ void getOffBicycle() {
 	}
 	setAutoSectorMusicChanges(1);
 	if ((battleMode == BattleMode.noBattle) && (pendingInteractions == 0)) {
-		unknownC06A07();
+		reloadMapMusic();
 	}
 	deleteOverworldEntity(0x18);
 	gameState.specialGameState = SpecialGameState.none;
@@ -3857,8 +3857,10 @@ short unknownC069F7() {
 	return nextMapMusicTrack;
 }
 
-/// $C06A07
-void unknownC06A07() {
+/** Changes the music track to the normal overworld music for the player's location
+ * Original_Address: $(DOLLAR)C06A07
+ */
+void reloadMapMusic() {
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	changeMusic(nextMapMusicTrack);
 }
@@ -3923,7 +3925,7 @@ void interactDoor(const(DoorObject)* arg1) {
 /// $C06B21
 void spawnBuzzBuzz() {
 	displayText(getTextBlock("MSG_EVT_BUNBUNBUN"));
-	resolveActiveDeliveries();
+	respawnDeliveryEntities();
 }
 
 /// $C06B3D
@@ -4580,7 +4582,7 @@ void doPartyMovementFrame(short characterID, short walkingStyle, short entityID)
 	if (x12 == -1) {
 		entityAnimationFrames[x04] = x12;
 	} else {
-		auto x0E = spriteGroupingPointers[x12];
+		auto x0E = spriteGroups[x12];
 		entityGraphicsPointers[x04] = &x0E.sprites[0];
 		//UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
 		entityWalkingStyles[x04] = x02;
@@ -4653,7 +4655,7 @@ void start() {
 
 	currentHeapAddress = &heap[0][0];
 	heapBaseAddress = &heap[0][0];
-	unused7E2402 = -1;
+	spriteRenderDebugPriority = -1;
 	randA = 0x1234;
 	randB = 0x5678;
 	nextFrameBufferID = 1;
@@ -5056,30 +5058,43 @@ void* sbrk(ushort bytes) {
 	}
 }
 
-/// $C08726
+/** Ensures hardware is in a state appropriate for VRAM DMA. Blocks for a single frame
+ * Original_Address: $(DOLLAR)C08726
+ */
 void prepareForImmediateDMA() {
+	// turn on forced blanking
 	mirrorINIDISP = 0x80;
+	// clear all ongoing HDMAs
 	mirrorHDMAEN = 0;
+	// disable fade
 	fadeParameters.step = 0;
+	// wait for next frame
 	newFrameStarted = 0;
 	while (newFrameStarted == 0) { waitForInterrupt(); }
+	// clear all ongoing HDMAs. again. just to be sure, I guess
 	HDMAEN = 0;
 }
 
-/// $C08744
+/** Turns off the display. Blocks for a single frame to guarantee that the display is off before returning.
+ * Original_Address: $(DOLLAR)C08744
+ */
 void setForceBlank() {
 	mirrorINIDISP = 0x80;
 	newFrameStarted = 0;
 	while (newFrameStarted == 0) { waitForInterrupt(); }
 }
 
-/// $C08715
+/** Enables vertical blank interrupts and joypad auto-reading
+ * Original_Address: $(DOLLAR)C08715
+ */
 void enableNMIJoypad() {
 	mirrorNMITIMEN |= 0x81;
 	NMITIMEN = mirrorNMITIMEN;
 }
 
-/// $C08756
+/** Waits a single frame, with gamepad state updated appropriately
+ * Original_Address: $(DOLLAR)C08756
+ */
 void waitUntilNextFrame() {
 	// if ((mirrorNMITIMEN & 0xB0) != 0) {
 	// 	while (newFrameStarted == 0) {}
@@ -5093,82 +5108,133 @@ void waitUntilNextFrame() {
 	updatePadState();
 }
 
-/// $C0878B
-void waitNFrames(ubyte arg1) {
+/** Wait at least one frame
+ * Original_Address: $(DOLLAR)C0878B
+ */
+void waitNFrames(ubyte frames) {
 	do {
 		nextFrameDisplayID++;
 		waitUntilNextFrame();
-	} while (--arg1 != 0);
+	} while (--frames != 0);
 }
 
-/// $C0879D
-void setINIDISP(ubyte arg1) {
-	mirrorINIDISP = arg1 & 0x8F;
+/** Configures screen brightness. Can also turn screen black.
+ * Params:
+ * 	value = Either a value between 0-15 for brightness, or 0x80 to blank the screen
+ * Original_Address: $(DOLLAR)C0879D
+ */
+void setINIDISP(ubyte value) {
+	mirrorINIDISP = value & 0x8F;
 }
 
-/// $C087AB
-void unknownC087AB(ubyte arg1) {
-	mirrorMOSAIC = (((mirrorINIDISP ^ 0xFF) << 4) & 0xF0) | arg1;
+/** Configures the MOSAIC register using the screen's current brightness for the specified layers
+ * Params:
+ * 	layers = A bitfield denoting the layers that should be mosaic-ified
+ * Original_Address:$(DOLLAR)C087AB
+ */
+void setMOSAICFade(ubyte layers) {
+	mirrorMOSAIC = (((mirrorINIDISP ^ 0xFF) << 4) & 0xF0) | layers;
 }
 
-/// $C087CE
-void fadeInWithMosaic(short arg1, short arg2, short arg3) {
+/** Performs a fade-in effect with optional mosaic
+ * Params:
+ * 	step = Number of brightness levels to increase by each frame (useful values are 1 - 15)
+ * 	timeBetweenFrames = The number of frames to wait between each step
+ * 	mosaicLayers = A bitmask of the layers that should be mosaic-ified (0b0001 - BG1, 0b0010 - BG2, 0b0100 - BG3, 0b1000 - BG4)
+ * Original_Address: $(DOLLAR)C087CE
+ */
+void fadeInWithMosaic(short step, short timeBetweenFrames, short mosaicLayers) {
+	// Start with minimum brightness, cancel any existing fades
 	fadeParameters.step = 0;
 	mirrorINIDISP = 0;
 	while(true) {
+		// clear MOSAIC just in case
 		mirrorMOSAIC = 0;
-		if (mirrorINIDISP + arg1 >= 0x0F) {
+		// check if any more steps are left
+		if (mirrorINIDISP + step >= 0x0F) {
 			break;
 		}
-		setINIDISP(cast(ubyte)(mirrorINIDISP + arg1));
-		if (arg3 != 0) {
-			unknownC087AB(cast(ubyte)arg3);
+		// set new brightness level
+		setINIDISP(cast(ubyte)(mirrorINIDISP + step));
+		// also mosaicify if requested
+		if (mosaicLayers != 0) {
+			setMOSAICFade(cast(ubyte)mosaicLayers);
 		}
-		waitNFrames(cast(ubyte)arg2);
+		// wait for next step
+		waitNFrames(cast(ubyte)timeBetweenFrames);
 	}
+	// make sure brightness is set to normal at end
 	setINIDISP(0xF);
 }
 
-/// $C08814
-void fadeOutWithMosaic(short arg1, short arg2, short arg3) {
+/** Performs a fade-out effect with optional mosaic
+ * Params:
+ * 	step = Number of brightness levels to decrease by each frame (useful values are 1 - 15)
+ * 	timeBetweenFrames = The number of frames to wait between each step
+ * 	mosaicLayers = A bitmask of the layers that should be mosaic-ified (0b0001 - BG1, 0b0010 - BG2, 0b0100 - BG3, 0b1000 - BG4)
+ * Original_Address: $(DOLLAR)C08814
+ */
+void fadeOutWithMosaic(short step, short timeBetweenFrames, short mosaicLayers) {
+	// cancel any existing fades
 	fadeParameters.step = 0;
 	while (true) {
+		// clear MOSAIC just in case
 		mirrorMOSAIC = 0;
+		// screen is already off entirely, nothing left to do
 		if ((mirrorINIDISP & 0x80) != 0) {
 			break;
 		}
-		if (mirrorINIDISP - arg1 < 0) {
+		// check if there are any steps left
+		if (mirrorINIDISP - step < 0) {
 			break;
 		}
-		setINIDISP(cast(ubyte)(mirrorINIDISP - arg1));
-		if (arg3 != 0) {
-			unknownC087AB(cast(ubyte)arg3);
+		// set new brightness level
+		setINIDISP(cast(ubyte)(mirrorINIDISP - step));
+		// also mosaicify if requested
+		if (mosaicLayers != 0) {
+			setMOSAICFade(cast(ubyte)mosaicLayers);
 		}
-		waitNFrames(cast(ubyte)arg2);
+		// wait for next step
+		waitNFrames(cast(ubyte)timeBetweenFrames);
 	}
+	// forced blanking on
 	setINIDISP(0x80);
+
+	// force any active HDMAs to stop
 	mirrorHDMAEN = 0;
 	newFrameStarted = 0;
 	while (newFrameStarted == 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
-/// $C0886C
-void fadeIn(ubyte arg1, ubyte arg2) {
-	fadeParameters.step = arg1;
-	fadeParameters.delay = arg2;
-	fadeDelayFramesLeft = arg2;
+/** Perform an asynchronous fade-in. Useful for performing extra work while the effect occurs
+ * Params:
+ * 	step = Number of brightness levels to increase by each frame (useful values are 1-15)
+ * 	timeBetweenFrames = The number of frames to wait between each step
+ * Original_Address: $(DOLLAR)C0886C
+ */
+void fadeIn(ubyte step, ubyte timeBetweenFrames) {
+	fadeParameters.step = step;
+	fadeParameters.delay = timeBetweenFrames;
+	fadeDelayFramesLeft = timeBetweenFrames;
 }
 
-/// $C0887A
-void fadeOut(ubyte arg1, ubyte arg2) {
-	fadeParameters.step = cast(ubyte)((arg1^0xFF) + 1);
-	fadeParameters.delay = arg2;
-	fadeDelayFramesLeft = arg2;
+/** Perform an asynchronous fade-out. Useful for performing extra work while the effect occurs
+ * Params:
+ * 	step = Number of brightness levels to decrease by each frame (useful values are 1-15)
+ * 	timeBetweenFrames = The number of frames to wait between each step
+ * Original_Address: $(DOLLAR)C0887A
+ */
+void fadeOut(ubyte step, ubyte timeBetweenFrames) {
+	fadeParameters.step = cast(ubyte)((step^0xFF) + 1); // negation
+	fadeParameters.delay = timeBetweenFrames;
+	fadeDelayFramesLeft = timeBetweenFrames;
 }
 
-/// $C0888B
-void unknownC0888B() {
+/** Waits for an asynchronous fade effect to finish. Same as waitForFadeToFinish, but actionscripts aren't executed
+ * Original_Address: $(DOLLAR)C0888B
+ */
+void waitForFadeToFinishNoActionScript() {
 	while (true) {
 		if (fadeParameters.step == 0) {
 			return;
@@ -5179,7 +5245,9 @@ void unknownC0888B() {
 	}
 }
 
-/// $C088B1
+/** Clears the OAM state in preparation for a new frame
+ * Original_Address: $(DOLLAR)C088B1
+ */
 void oamClear() {
 	priority0SpriteOffset = 0;
 	priority1SpriteOffset = 0;
@@ -5204,24 +5272,35 @@ void oamClear() {
 	}
 }
 
-/// $C088A5
-ushort setSpritemapBank(ushort arg1) {
-	ushort tmp = spritemapBank;
-	spritemapBank = arg1;
-	return tmp;
+/** Sets the bank address for spritemaps (not used on modern systems)
+ * Params:
+ * 	bank = The upper 8 bits of a 24-bit FAR address, if relevant
+ * Returns: The previous spritemap bank address
+ * Original_Address: $(DOLLAR)C088A5
+ */
+ushort setSpritemapBank(ushort bank) {
+	ushort old = spritemapBank;
+	spritemapBank = bank;
+	return old;
 }
 
-/// $C08B19
+/** Renders the first frame of the game
+ * Original_Address: $(DOLLAR)C08B19
+ */
 void renderFirstFrame() {
 	unread7E0009 = 0;
 	oamClear();
 	updateScreen();
 }
 
-/// $C08B26
+/** Updates the screen state for a new frame. Updates OAM and BG layer positioning
+ * Original_Address: $(DOLLAR)C08B26
+ */
 void updateScreen() {
+	// do an OAM update
 	renderSpritesToOAM();
-	if (false /+Actually tests if the DBR is 0xFF, which should never happen+/) while(true) {}
+	enum DataBankRegister = 0; // no equivalent on modern platforms
+	assert(DataBankRegister != 0xFF, "Data bank register invalid");
 	ubyte oamHighTableBufferTmp = oamHighTableBuffer;
 	if (oamHighTableBufferTmp != 0x80) {
 		// Shift right by two until a bit carries out
@@ -5232,7 +5311,9 @@ void updateScreen() {
 		}
 		oamHighTableBufferTmp >>= 2;
 	}
+	// reset the high table address for the next frame
 	*oamHighTableAddr = oamHighTableBufferTmp;
+	// set new BG positions
 	bg1XPositionBuffer[nextFrameBufferID - 1] = bg1XPosition;
 	bg1YPositionBuffer[nextFrameBufferID - 1] = bg1YPosition;
 	bg2XPositionBuffer[nextFrameBufferID - 1] = bg2XPosition;
@@ -5241,35 +5322,40 @@ void updateScreen() {
 	bg3YPositionBuffer[nextFrameBufferID - 1] = bg3YPosition;
 	bg4XPositionBuffer[nextFrameBufferID - 1] = bg4XPosition;
 	bg4YPositionBuffer[nextFrameBufferID - 1] = bg4YPosition;
+	// prepare for next frame render
 	nextFrameDisplayID = nextFrameBufferID;
 	nextFrameBufferID ^= 3;
 }
 
-/// $C08B8E
+/** Renders all sprites to OAM, sorted by priority first and order queued second
+ *
+ * Set spriteRenderDebugPriority to a priority to have renderSpriteDebug called immediately before that priority is rendered.
+ * Original_Address: $(DOLLAR)C08B8E
+ */
 void renderSpritesToOAM() {
-	if (unused7E2402 == 0) {
-		unknownC08C53();
+	if (spriteRenderDebugPriority == 0) {
+		renderSpriteDebug();
 	}
 	for (short i = 0; i < priority0SpriteOffset / 2; i++) {
 		spritemapBank = priority0SpriteMapBanks[i];
 		renderSpriteToOAM(priority0SpriteMaps[i], priority0SpriteX[i], priority0SpriteY[i]);
 	}
-	if (unused7E2402 == 1) {
-		unknownC08C53();
+	if (spriteRenderDebugPriority == 1) {
+		renderSpriteDebug();
 	}
 	for (short i = 0; i < priority1SpriteOffset / 2; i++) {
 		spritemapBank = priority1SpriteMapBanks[i];
 		renderSpriteToOAM(priority1SpriteMaps[i], priority1SpriteX[i], priority1SpriteY[i]);
 	}
-	if (unused7E2402 == 2) {
-		unknownC08C53();
+	if (spriteRenderDebugPriority == 2) {
+		renderSpriteDebug();
 	}
 	for (short i = 0; i < priority2SpriteOffset / 2; i++) {
 		spritemapBank = priority2SpriteMapBanks[i];
 		renderSpriteToOAM(priority2SpriteMaps[i], priority2SpriteX[i], priority2SpriteY[i]);
 	}
-	if (unused7E2402 == 3) {
-		unknownC08C53();
+	if (spriteRenderDebugPriority == 3) {
+		renderSpriteDebug();
 	}
 	for (short i = 0; i < priority3SpriteOffset / 2; i++) {
 		spritemapBank = priority3SpriteMapBanks[i];
@@ -5277,8 +5363,10 @@ void renderSpritesToOAM() {
 	}
 }
 
-/// $C08C53 - It's hard to guess what this one did
-void unknownC08C53() {
+/** Called immediately before the sprite priority specified by spriteRenderDebugPriority. Debugging leftover
+ * Original_Address: $(DOLLAR)C08C53
+ */
+void renderSpriteDebug() {
 	//You Get: Nothing
 }
 

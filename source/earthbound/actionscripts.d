@@ -514,8 +514,8 @@ shared static this() {
 		actionScriptLeaf2[],
 		actionScript497[],
 		actionScript498[],
-		actionScript499[],
-		actionScript500[],
+		actionScriptFreshDelivery[],
+		actionScriptRespawnedDelivery[],
 		actionScript501[],
 		actionScript502[],
 		actionScript503[],
@@ -8078,23 +8078,31 @@ shared static this() {
 		SHORTJUMP(&actionScript35[0]),
 	);
 }
-/// $C34402
-immutable ubyte[9 + 6 * (const(void)*).sizeof] actionScript500;
+/** Tries to make a delivery like actionScriptFreshDelivery, but an attempt is made immediately if any attempts have been made before
+ *
+ * Expects VAR0 to be set to an active delivery index.
+ * Original_Address: $(DOLLAR)C34402
+ */
+immutable ubyte[9 + 6 * (const(void)*).sizeof] actionScriptRespawnedDelivery;
 shared static this() {
-	actionScript500 = initializeScript(actionScript500.length,
+	actionScriptRespawnedDelivery = initializeScript(actionScriptRespawnedDelivery.length,
 		C0A643(1311),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SET_VELOCITIES_ZERO(),
 		GET_DELIVERY_ATTEMPT_COUNT(),
-		JUMP_IF_TRUE(&actionScript499_500_Common[12 + 6 * (const(void)*).sizeof]),
-		SHORTJUMP(&actionScript499_500_Common[0]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[12 + 6 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[0]),
 	);
 }
-/// $C3441A
-immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScript499;
+/** Repeatedly tries to make a delivery at a predefined interval until it either succeeds or runs out of attempts.
+ *
+ * Expects VAR0 to be set to an active delivery index.
+ * Original_Address: $(DOLLAR)C3441A
+ */
+immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScriptFreshDelivery;
 shared static this() {
-	actionScript499 = initializeScript(actionScript499.length,
+	actionScriptFreshDelivery = initializeScript(actionScriptFreshDelivery.length,
 		C0A643(1311),
 		RESET_DELIVERY_ATTEMPT_COUNT(),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -8102,42 +8110,42 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_VELOCITIES_ZERO(),
 		START_DELIVERY_COUNTDOWN(),
-		SHORTJUMP(&actionScript499_500_Common[0]),
+		SHORTJUMP(&actionScriptDeliveryCommon[0]),
 	);
 }
 /// $C34432
-immutable ubyte[95 + 48 * (const(void)*).sizeof] actionScript499_500_Common;
+immutable ubyte[95 + 48 * (const(void)*).sizeof] actionScriptDeliveryCommon;
 shared static this() {
-	actionScript499_500_Common = initializeScript(actionScript499_500_Common.length,
+	actionScriptDeliveryCommon = initializeScript(actionScriptDeliveryCommon.length,
 		PAUSE(60),
 		DO_DELIVERY_COUNTDOWN(),
-		JUMP_IF_TRUE(&actionScript499_500_Common[0]),
-		SHORTJUMP(&actionScript499_500_Common[12 + 6 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[0]),
+		SHORTJUMP(&actionScriptDeliveryCommon[12 + 6 * (const(void)*).sizeof]),
 
 		HAS_DELIVERY_ATTEMPTS_LEFT(),
-		JUMP_IF_FALSE(&actionScript499_500_Common[29 + 19 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDeliveryCommon[29 + 19 * (const(void)*).sizeof]),
 		GET_DELIVERY_ATTEMPT_DELAY(),
 		LOOP_TEMPVAR(),
 			PAUSE(60),
 		LOOP_END(),
 
 		CHECK_DELIVERY_ELIGIBILITY(),
-		JUMP_IF_FALSE(&actionScript499_500_Common[15 + 9 * (const(void)*).sizeof]),
-		SHORTJUMP(&actionScript499_500_Common[5 + 3 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDeliveryCommon[15 + 9 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[5 + 3 * (const(void)*).sizeof]),
 
 		TEST_IN_BIG_AREA(),
-		JUMP_IF_TRUE(&actionScript499_500_Common[29 + 19 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[29 + 19 * (const(void)*).sizeof]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		PREPARE_DELIVERY_ENTRANCE_PATH(),
-		JUMP_IF_TRUE(&actionScript499_500_Common[5 + 3 * (const(void)*).sizeof]),
-		START_TASK(&actionScript499_500_Common[28 + 18 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[5 + 3 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptDeliveryCommon[28 + 18 * (const(void)*).sizeof]),
 		PAUSE(1),
 		START_DELIVERY(),
-		SHORTCALL(&actionScript499_500_Common[32 + 22 * (const(void)*).sizeof]),
+		SHORTCALL(&actionScriptDeliveryCommon[32 + 22 * (const(void)*).sizeof]),
 		START_DELIVERY_SUCCESS_TEXT(),
-		SHORTJUMP(&actionScript499_500_Common[52 + 27 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[52 + 27 * (const(void)*).sizeof]),
 
-		SHORTCALL(&actionScript499_500_Common[73 + 40 * (const(void)*).sizeof]),
+		SHORTCALL(&actionScriptDeliveryCommon[73 + 40 * (const(void)*).sizeof]),
 
 		FINISH_DELIVERY(),
 		START_DELIVERY_FAIL_TEXT(),
@@ -8151,9 +8159,9 @@ shared static this() {
 
 		PAUSE(1),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
-		JUMP_IF_TRUE(&actionScript499_500_Common[51 + 27 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[51 + 27 * (const(void)*).sizeof]),
 		C46EF8(),
-		JUMP_IF_FALSE(&actionScript499_500_Common[44 + 24 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDeliveryCommon[44 + 24 * (const(void)*).sizeof]),
 
 		SHORT_RETURN(),
 
@@ -8164,15 +8172,15 @@ shared static this() {
 		START_TASK(&unknownC343DB[0]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		PREPARE_DELIVERY_EXIT_PATH(),
-		JUMP_IF_TRUE(&actionScript499_500_Common[69 + 37 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptDeliveryCommon[69 + 37 * (const(void)*).sizeof]),
 		GET_DELIVERY_EXIT_SPEED(),
 		SET_MOVEMENT_SPEED(),
 
 		C0D98F(),
-		JUMP_IF_FALSE(&actionScript499_500_Common[69 + 37 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDeliveryCommon[69 + 37 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 		C46C87(),
-		SHORTJUMP(&actionScript499_500_Common[64 + 32 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[64 + 32 * (const(void)*).sizeof]),
 
 		SET_VELOCITIES_ZERO(),
 		FINISH_DELIVERY(),
@@ -8186,14 +8194,14 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v4, 0),
 
 		C0D98F(),
-		JUMP_IF_FALSE(&actionScript499_500_Common[88 + 47 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDeliveryCommon[88 + 47 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 		C46C87(),
-		SHORTJUMP(&actionScript499_500_Common[83 + 42 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[83 + 42 * (const(void)*).sizeof]),
 
 		SET_VAR(ActionScriptVars.v4, 1),
 		PAUSE(240),
-		SHORTJUMP(&actionScript499_500_Common[88 + 47 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDeliveryCommon[88 + 47 * (const(void)*).sizeof]),
 	);
 }
 /// $C34508

@@ -1676,8 +1676,8 @@ enum ActionScript {
 	animLeaf2, //496
 	unknown497, //497
 	unknown498, //498
-	unknown499, //499
-	unknown500, //500
+	freshDelivery, //499
+	respawnedDelivery, //500
 	unknown501, //501
 	unknown502, //502
 	unknown503, //503

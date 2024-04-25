@@ -2403,14 +2403,14 @@ immutable CharacterInitialStats[4] initialStats = [
 
 /// $D5F645
 immutable TimedDelivery[10] timedDeliveries = [
-	TimedDelivery(OverworldSprite.machPizzaGuy, EventFlag.deliveryPizza, 0x0006, 15, 0x00B4, "MSG_PIZZA_SEND", "MSG_PIZZA_SEND_RETRY_OVER", 0x0200, 0x0200),
-	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsou, 0x0006, 15, 0x000A, "MSG_UNSOU_SEND", "MSG_UNSOU_SEND_RETRY_OVER", 0x0180, 0x0180),
-	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouB, 0x0006, 15, 0x000A, "MSG_UNSOU_LEAVE", "MSG_UNSOU_LEAVE_RETRY_OVER", 0x0180, 0x0180),
-	TimedDelivery(OverworldSprite.guyInBlueClothes, EventFlag.deliveryCustomer, 0x0006, 15, 0x0001, "MSG_CUSTOMER_A", "MSG_CUSTOMER_RETRY_OVER", 0x0280, 0x0280),
-	TimedDelivery(OverworldSprite.bigSmileLady, EventFlag.deliveryCustomerB, 0x0006, 15, 0x0002, "MSG_CUSTOMER_B", "MSG_CUSTOMER_RETRY_OVER", 0x0280, 0x0280),
-	TimedDelivery(OverworldSprite.blondeGuyInBlueSuit, EventFlag.deliveryCustomerC, 0x0006, 15, 0x0003, "MSG_CUSTOMER_C", "MSG_CUSTOMER_RETRY_OVER", 0x0280, 0x0280),
-	TimedDelivery(OverworldSprite.punkGuy, EventFlag.deliveryCustomerD, 0x0006, 15, 0x0004, "MSG_CUSTOMER_D", "MSG_CUSTOMER_RETRY_OVER", 0x0280, 0x0280),
-	TimedDelivery(OverworldSprite.machPizzaGuy, EventFlag.deliveryHoihoi, 0x00FF, 0xFF, 0x0005, "MSG_THRK_MACH", "MSG_EVT_HOIHOI_RETRY", 0x0180, 0x0180),
-	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouTakokeshi, 0x0006, 15, 0x000A, "MSG_GLOBAL_DELIVERY_TACO", "MSG_TAKOKESHI_RETRY_OVER", 0x0180, 0x0180),
-	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouTakanome, 0x0006, 15, 0x000A, "MSG_GLOBAL_DELIVERY_TAKA", "MSG_TAKANOME_RETRY_OVER", 0x0180, 0x0180),
+	TimedDelivery(OverworldSprite.machPizzaGuy, EventFlag.deliveryPizza, 6, 15, 180, "MSG_PIZZA_SEND", "MSG_PIZZA_SEND_RETRY_OVER", 512, 512),
+	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsou, 6, 15, 10, "MSG_UNSOU_SEND", "MSG_UNSOU_SEND_RETRY_OVER", 384, 384),
+	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouB, 6, 15, 10, "MSG_UNSOU_LEAVE", "MSG_UNSOU_LEAVE_RETRY_OVER", 384, 384),
+	TimedDelivery(OverworldSprite.guyInBlueClothes, EventFlag.deliveryCustomer, 6, 15, 1, "MSG_CUSTOMER_A", "MSG_CUSTOMER_RETRY_OVER", 640, 640),
+	TimedDelivery(OverworldSprite.bigSmileLady, EventFlag.deliveryCustomerB, 6, 15, 2, "MSG_CUSTOMER_B", "MSG_CUSTOMER_RETRY_OVER", 640, 640),
+	TimedDelivery(OverworldSprite.blondeGuyInBlueSuit, EventFlag.deliveryCustomerC, 6, 15, 3, "MSG_CUSTOMER_C", "MSG_CUSTOMER_RETRY_OVER", 640, 640),
+	TimedDelivery(OverworldSprite.punkGuy, EventFlag.deliveryCustomerD, 6, 15, 4, "MSG_CUSTOMER_D", "MSG_CUSTOMER_RETRY_OVER", 640, 640),
+	TimedDelivery(OverworldSprite.machPizzaGuy, EventFlag.deliveryHoihoi, 0xFF, 0xFF, 5, "MSG_THRK_MACH", "MSG_EVT_HOIHOI_RETRY", 384, 384),
+	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouTakokeshi, 6, 15, 10, "MSG_GLOBAL_DELIVERY_TACO", "MSG_TAKOKESHI_RETRY_OVER", 384, 384),
+	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsouTakanome, 6, 15, 10, "MSG_GLOBAL_DELIVERY_TAKA", "MSG_TAKANOME_RETRY_OVER", 384, 384),
 ];

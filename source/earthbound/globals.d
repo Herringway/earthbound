@@ -874,10 +874,10 @@ __gshared ubyte[0x200][2] heap;
  * Original_Address: $(DOLLAR)2400
  */
 __gshared ushort currentSpriteDrawingPriority;
-/** Unknown. Initialized to -1, checked for 0-3 values. May have been a removed debugging function
+/** Debugging leftover. Calls a function before sprites of the specified priority are drawn
  * Original_Address: $(DOLLAR)2402
  */
-__gshared short unused7E2402;
+__gshared short spriteRenderDebugPriority;
 /** Priority 0 (first) spritemaps queued for drawing this frame
  * Original_Address: $(DOLLAR)2404
  */

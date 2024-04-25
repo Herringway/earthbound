@@ -3791,7 +3791,7 @@ short getPartyCount() {
  * Original_Address: $(DOLLAR)C4733C
  */
 void reloadMapBlockEventChanges() {
-	loadMapBlockEventChanges(tilesetTable[loadedMapTileCombo]);
+	loadMapBlockEventChanges(tilesetGraphicsMapping[loadedMapTileCombo]);
 }
 
 /** Actionscript helper: Rerenders a row of tiles on the screen
@@ -6030,9 +6030,9 @@ ushort allocateAndUploadOverlaySprite(ushort vramBase, ushort sprite, ushort fra
 	if (frame == 0xFF) {
 		return vramBase;
 	}
-	copyToVRAM(0, spriteGroupingPointers[sprite].width * 2, vramBase, &sprites[spriteGroupingPointers[sprite].sprites[frame].id][0]);
-	copyToVRAM(0, spriteGroupingPointers[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroupingPointers[sprite].sprites[frame].id][spriteGroupingPointers[sprite].width]);
-	return cast(ushort)(vramBase + spriteGroupingPointers[sprite].width);
+	copyToVRAM(0, spriteGroups[sprite].width * 2, vramBase, &sprites[spriteGroups[sprite].sprites[frame].id][0]);
+	copyToVRAM(0, spriteGroups[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroups[sprite].sprites[frame].id][spriteGroups[sprite].width]);
+	return cast(ushort)(vramBase + spriteGroups[sprite].width);
 }
 
 /** Loads overlay sprites into VRAM and initializes the script pointers for all entities
@@ -6791,7 +6791,7 @@ void unknownC4C2DE() {
 	bg1XPosition = 0;
 	bg1XPosition = 0;
 	fadeIn(1, 1);
-	unknownC0888B();
+	waitForFadeToFinishNoActionScript();
 }
 
 /// $C4C45F
@@ -7808,9 +7808,9 @@ void loadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
 	short x1A = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	loadedMapTileCombo = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	prepareYourSanctuaryLocationPaletteData(x1A, arg3);
-	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x1A]][0], &buffer[0x8000]);
+	decomp(&mapTilesetArrangements[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
-	decomp(&mapDataTilesetPtrTable[tilesetTable[x1A]][0], &buffer[0x8000]);
+	decomp(&mapTilesetGraphics[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTilesetData(arg3);
 	totalYourSanctuaryLoadedTilesetTiles += yourSanctuaryLoadedTilesetTiles;
 }

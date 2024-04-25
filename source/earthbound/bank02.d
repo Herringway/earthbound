@@ -3276,7 +3276,7 @@ void instantWinHandler() {
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
 	} else {
-		unknownC06A07();
+		reloadMapMusic();
 	}
 	unfreezeEntities();
 }

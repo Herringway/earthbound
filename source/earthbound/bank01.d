@@ -3718,7 +3718,7 @@ void* cc1F07(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C17440
 void* cc1FD3(DisplayTextState* arg1, ubyte arg2) {
-	getDeliverySpriteAndPlaceholder(arg2);
+	createDeliveryEntity(arg2);
 	return null;
 }
 
