@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function checkSaveCorruption</h1><p>$EF0825
+			<h1>Function checkSaveCorruption</h1><p>Checks a save file for corruption by testing the first block's checksums. If either mismatch, erase the save and check the second block's checksums, and copy the second block over the first one. If both sets of checksums fail, erase the save entirely.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -164,7 +164,16 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> The index of the save file to read (0-2 are valid on retail cartridges)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>EF0825
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

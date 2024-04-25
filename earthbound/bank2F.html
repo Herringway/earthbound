@@ -192,7 +192,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="calcSaveBlockAddChecksum" class="public" href="../earthbound/bank2F/calcSaveBlockAddChecksum.html">calcSaveBlockAddChecksum</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0734
+						<td>Calculates a sum checksum for a save block by adding together every byte in the block
 </td>
 					</tr>
 					<tr>
@@ -201,7 +201,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="calcSaveBlockXORChecksum" class="public" href="../earthbound/bank2F/calcSaveBlockXORChecksum.html">calcSaveBlockXORChecksum</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF077B
+						<td>Calculates an XOR checksum for a save block by XORing every byte in the block together
 </td>
 					</tr>
 					<tr>
@@ -210,7 +210,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="cancelTitleScreenSequence" class="public" href="../earthbound/bank2F/cancelTitleScreenSequence.html">cancelTitleScreenSequence</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF04DC
+						<td>Draws the cancelled title screen sequence. Quickly fades into the completed title screen image.
 </td>
 					</tr>
 					<tr>
@@ -219,7 +219,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="checkAllBlocksSignature" class="public" href="../earthbound/bank2F/checkAllBlocksSignature.html">checkAllBlocksSignature</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0683
+						<td>Check the save signatures for all blocks, automatically erasing them on failure
 </td>
 					</tr>
 					<tr>
@@ -228,7 +228,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="checkBlockSignature" class="public" href="../earthbound/bank2F/checkBlockSignature.html">checkBlockSignature</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0630
+						<td>Checks if a save is valid, erasing it if it isn't
 </td>
 					</tr>
 					<tr>
@@ -237,7 +237,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="checkDeliveryEligibility" class="public" href="../earthbound/bank2F/checkDeliveryEligibility.html">checkDeliveryEligibility</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0F60
+						<td>Tests if the player is eligible for a delivery
 </td>
 					</tr>
 					<tr>
@@ -246,7 +246,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="checkSaveCorruption" class="public" href="../earthbound/bank2F/checkSaveCorruption.html">checkSaveCorruption</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0825
+						<td>Checks a save file for corruption by testing the first block's checksums. If either mismatch, erase the save and check the second block's checksums, and copy the second block over the first one. If both sets of checksums fail, erase the save entirely.
 </td>
 					</tr>
 					<tr>
@@ -255,7 +255,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="checkSRAMIntegrity" class="public" href="../earthbound/bank2F/checkSRAMIntegrity.html">checkSRAMIntegrity</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0B9E
+						<td>Tests SRAM integrity, by comparing SRAM versions, verifying signatures and validating checksums of all save blocks.
 </td>
 					</tr>
 					<tr>
@@ -273,7 +273,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="copySaveBlock" class="public" href="../earthbound/bank2F/copySaveBlock.html">copySaveBlock</a><span class="tableEntryAnnotation">(to, from)</span>
 							</code>
 						</td>
-						<td>$EF06A2
+						<td>Copies a save block over another save block
 </td>
 					</tr>
 					<tr>
@@ -282,7 +282,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="copySaveSlot" class="public" href="../earthbound/bank2F/copySaveSlot.html">copySaveSlot</a><span class="tableEntryAnnotation">(to, from)</span>
 							</code>
 						</td>
-						<td>$EF0C15
+						<td>Copies a save from one slot to another. Copies the component save blocks separately.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="createDeliveryEntity" class="public" href="../earthbound/bank2F/createDeliveryEntity.html">createDeliveryEntity</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Spawns a preconfigured delivery entity. Makes an attempt at delivery at a defined interval, then executes the failure/success text script associated with the entry as appropriate.
 </td>
 					</tr>
 					<tr>
@@ -372,7 +381,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="debugSoundMenu" class="public" href="../earthbound/bank2F/debugSoundMenu.html">debugSoundMenu</a><span class="tableEntryAnnotation">(cursorEntity)</span>
 							</code>
 						</td>
-						<td>$EFD6D4
+						<td>Handles the sound menu in the boot debug menu
 </td>
 					</tr>
 					<tr>
@@ -417,7 +426,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="doDeliveryCountdown" class="public" href="../earthbound/bank2F/doDeliveryCountdown.html">doDeliveryCountdown</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0D73
+						<td>Processes a single second of the active entity's delivery countdown
 </td>
 					</tr>
 					<tr>
@@ -444,7 +453,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="eraseSaveBlock" class="public" href="../earthbound/bank2F/eraseSaveBlock.html">eraseSaveBlock</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF05A9
+						<td>Erases a save block, preparing it for a new save
 </td>
 					</tr>
 					<tr>
@@ -453,7 +462,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="eraseSaveSlot" class="public" href="../earthbound/bank2F/eraseSaveSlot.html">eraseSaveSlot</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0BFA
+						<td>Erases a save slot. Erases both of the component save blocks.
 </td>
 					</tr>
 					<tr>
@@ -462,7 +471,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="finishDelivery" class="public" href="../earthbound/bank2F/finishDelivery.html">finishDelivery</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0FF6
+						<td>Clean up after a delivery is done, restoring music and the status suppression flag
 </td>
 					</tr>
 					<tr>
@@ -480,7 +489,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getDeliveryEnterSpeed" class="public" href="../earthbound/bank2F/getDeliveryEnterSpeed.html">getDeliveryEnterSpeed</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0E67
+						<td>Gets the speed at which the active delivery entity runs towards the player. Undefined results if active entity is not a delivery entity.
 </td>
 					</tr>
 					<tr>
@@ -489,16 +498,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getDeliveryExitSpeed" class="public" href="../earthbound/bank2F/getDeliveryExitSpeed.html">getDeliveryExitSpeed</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0E8A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="getDeliverySpriteAndPlaceholder" class="public" href="../earthbound/bank2F/getDeliverySpriteAndPlaceholder.html">getDeliverySpriteAndPlaceholder</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$EF0EAD
+						<td>Gets the speed at which the active delivery entity runs away. Undefined results if active entity is not a delivery entity.
 </td>
 					</tr>
 					<tr>
@@ -606,7 +606,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="loadGameSlot" class="public" href="../earthbound/bank2F/loadGameSlot.html">loadGameSlot</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0A68
+						<td>Copies game state, party characters and flags from a save file. Does not perform any validation.
 </td>
 					</tr>
 					<tr>
@@ -678,7 +678,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderDebugByte" class="public" href="../earthbound/bank2F/renderDebugByte.html">renderDebugByte</a><span class="tableEntryAnnotation">(x, y, amount)</span>
 							</code>
 						</td>
-						<td>$EFD56F
+						<td>Draws a byte value as two hexadecimal digits
 </td>
 					</tr>
 					<tr>
@@ -693,10 +693,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="resetDebugSoundModeMenu" class="public" href="../earthbound/bank2F/resetDebugSoundModeMenu.html">resetDebugSoundModeMenu</a><span class="tableEntryAnnotation">(entityID)</span>
+								<a id="resetDebugSoundModeMenu" class="public" href="../earthbound/bank2F/resetDebugSoundModeMenu.html">resetDebugSoundModeMenu</a><span class="tableEntryAnnotation">(cursorEntity)</span>
 							</code>
 						</td>
-						<td>$EFD5D9
+						<td>Reinitialize debug sound menu state and redraw
 </td>
 					</tr>
 					<tr>
@@ -711,10 +711,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="resolveActiveDeliveries" class="public" href="../earthbound/bank2F/resolveActiveDeliveries.html">resolveActiveDeliveries</a><span class="tableEntryAnnotation">()</span>
+								<a id="respawnDeliveryEntities" class="public" href="../earthbound/bank2F/respawnDeliveryEntities.html">respawnDeliveryEntities</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0EE8
+						<td>Respawns all delivery entities after a warp. Uses a slightly different script, which attempts to make a delivery immediately if any attempts have been made already
 </td>
 					</tr>
 					<tr>
@@ -732,7 +732,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="saveGameBlock" class="public" href="../earthbound/bank2F/saveGameBlock.html">saveGameBlock</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF088F
+						<td>Saves a game block. Writes a copy of the GameState structure, the party member stats, event flags and the checksums. To make sure the save succeeds, both checksums are validated immediately and the process restarts if mismatched.
 </td>
 					</tr>
 					<tr>
@@ -741,7 +741,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="saveGameSlot" class="public" href="../earthbound/bank2F/saveGameSlot.html">saveGameSlot</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF0A4D
+						<td>Saves a game slot. A game slot is made up of two game blocks to guard against corruption.
 </td>
 					</tr>
 					<tr>
@@ -786,7 +786,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startDelivery" class="public" href="../earthbound/bank2F/startDelivery.html">startDelivery</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0FDB
+						<td>Prepares for a delivery NPC to arrive, enabling status suppression, changing the music and forcing the player off the bicycle
 </td>
 					</tr>
 					<tr>
@@ -795,7 +795,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startDeliveryCountdown" class="public" href="../earthbound/bank2F/startDeliveryCountdown.html">startDeliveryCountdown</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0D46
+						<td>Initializes a delivery countdown for the active entity, determining the number of seconds until the next attempt is made
 </td>
 					</tr>
 					<tr>
@@ -804,7 +804,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startDeliveryFailText" class="public" href="../earthbound/bank2F/startDeliveryFailText.html">startDeliveryFailText</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0DFA
+						<td>Displays the delivery failure text associated with the active entity
 </td>
 					</tr>
 					<tr>
@@ -813,7 +813,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startDeliverySuccessText" class="public" href="../earthbound/bank2F/startDeliverySuccessText.html">startDeliverySuccessText</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0D8D
+						<td>Displays the delivery success text associated with the active entity
 </td>
 					</tr>
 					<tr>
@@ -846,10 +846,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownEF0C3D" class="public" href="../earthbound/bank2F/unknownEF0C3D.html">unknownEF0C3D</a><span class="tableEntryAnnotation">()</span>
+								<a id="unusedEF0C3D" class="public" href="../earthbound/bank2F/unusedEF0C3D.html">unusedEF0C3D</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$EF0C3D - unused
+						<td>Unused function. May have been used for game demos like the one at CES '95. Loads the save in slot 3 and immediately spawns the player
 </td>
 					</tr>
 					<tr>
@@ -858,7 +858,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="validateSaveBlockChecksums" class="public" href="../earthbound/bank2F/validateSaveBlockChecksums.html">validateSaveBlockChecksums</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$EF07C0
+						<td>Detects corruption in a save block by calculating two checksums and comparing them to the stored checksum
 </td>
 					</tr>
 				</table>
@@ -891,7 +891,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFA37A
+						<td>Strings used for the overworld command menu
 </td>
 					</tr>
 					<tr>
@@ -992,6 +992,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="keyboardText" class="public" href="../earthbound/bank2F/keyboardText.html">
+								<code>keyboardText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Text strings used for text input screens
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="mapDataAnimatedTilesets" class="public" href="../earthbound/bank2F/mapDataAnimatedTilesets.html">
 								<code>mapDataAnimatedTilesets</code>
 							</a>
@@ -999,7 +1011,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>$EF11CB
+						<td>Graphics data for overworld tileset animations
 </td>
 					</tr>
 					<tr>
@@ -1016,54 +1028,6 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="mapDataTileArrangementPtrTable" class="public" href="../earthbound/bank2F/mapDataTileArrangementPtrTable.html">
-								<code>mapDataTileArrangementPtrTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$EF10AB
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="mapDataTileCollisionPointerTable" class="public" href="../earthbound/bank2F/mapDataTileCollisionPointerTable.html">
-								<code>mapDataTileCollisionPointerTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">*</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EF117B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="mapDataTilesetAnimationPointerTable" class="public" href="../earthbound/bank2F/mapDataTilesetAnimationPointerTable.html">
-								<code>mapDataTilesetAnimationPointerTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TilesetAnimation.html"><span class="typ">TilesetAnimation</span></a><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EF121B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="mapDataTilesetPtrTable" class="public" href="../earthbound/bank2F/mapDataTilesetPtrTable.html">
-								<code>mapDataTilesetPtrTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$EF105B
-</td>
-					</tr>
-					<tr>
-						<td>
 							<a id="mapPalettes" class="public" href="../earthbound/bank2F/mapPalettes.html">
 								<code>mapPalettes</code>
 							</a>
@@ -1071,19 +1035,67 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>$EF10FB
+						<td>Palette data used for overworld map tilesets
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="nameInputWindowSelectionLayoutPointers" class="public" href="../earthbound/bank2F/nameInputWindowSelectionLayoutPointers.html">
-								<code>nameInputWindowSelectionLayoutPointers</code>
+							<a id="mapTileCollisionData" class="public" href="../earthbound/bank2F/mapTileCollisionData.html">
+								<code>mapTileCollisionData</code>
 							</a>
 						</td>
 						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">*</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFA6D3
+						<td>Tileset collision data
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="mapTilesetAnimations" class="public" href="../earthbound/bank2F/mapTilesetAnimations.html">
+								<code>mapTilesetAnimations</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TilesetAnimation.html"><span class="typ">TilesetAnimation</span></a><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Overworld tileset animation definitions
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="mapTilesetArrangements" class="public" href="../earthbound/bank2F/mapTilesetArrangements.html">
+								<code>mapTilesetArrangements</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Tile arrangements for overworld map tilesets (compressed)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="mapTilesetGraphics" class="public" href="../earthbound/bank2F/mapTilesetGraphics.html">
+								<code>mapTilesetGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Tile graphics for overworld map tilesets (compressed)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="spriteGroups" class="public" href="../earthbound/bank2F/spriteGroups.html">
+								<code>spriteGroups</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><a href="../earthbound/commondefs/SpriteGrouping.html"><span class="typ">SpriteGrouping</span></a><span class="pun">[</span><span class="lit">464</span><span class="pun">]</span></code>
+						</td>
+						<td>Definitions for overworld sprite groups
 </td>
 					</tr>
 					<tr>
@@ -1095,7 +1107,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">char</span><span class="pun">[]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EF0591
+						<td>Magic value for determining whether or not a save is present
 </td>
 					</tr>
 					<tr>
@@ -1112,26 +1124,14 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="statusWindowText" class="public" href="../earthbound/bank2F/statusWindowText.html">
-								<code>statusWindowText</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">163</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EFA3B6
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="tilesetTable" class="public" href="../earthbound/bank2F/tilesetTable.html">
-								<code>tilesetTable</code>
+							<a id="tilesetGraphicsMapping" class="public" href="../earthbound/bank2F/tilesetGraphicsMapping.html">
+								<code>tilesetGraphicsMapping</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EF101B
+						<td>Tileset combo -&gt; tile graphics mapping
 </td>
 					</tr>
 					<tr>
@@ -1143,7 +1143,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$EFC50F
+						<td>Sprites used for the player icon on the town map screen
 </td>
 					</tr>
 					<tr>

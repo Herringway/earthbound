@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setSpritemapBank</h1><p>$C088A5
+			<h1>Function setSpritemapBank</h1><p>Sets the bank address for spritemaps (not used on modern systems)
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +157,27 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ushort</span> <span class="pln">setSpritemapBank</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">bank</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="bank">bank</td><td> The upper 8 bits of a 24-bit FAR address, if relevant</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The previous spritemap bank address
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C088A5
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

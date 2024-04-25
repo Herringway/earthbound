@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function fadeOutWithMosaic</h1><p>$C08814
+			<h1>Function fadeOutWithMosaic</h1><p>Performs a fade-out effect with optional mosaic
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,18 +157,29 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">fadeOutWithMosaic</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">step</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">timeBetweenFrames</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">mosaicLayers</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="step">step</td><td> Number of brightness levels to decrease by each frame (useful values are 1 - 15)</td></tr>
+<tr><td id="timeBetweenFrames">timeBetweenFrames</td><td> The number of frames to wait between each step</td></tr>
+<tr><td id="mosaicLayers">mosaicLayers</td><td> A bitmask of the layers that should be mosaic-ified (0b0001 - BG1, 0b0010 - BG2, 0b0100 - BG3, 0b1000 - BG4)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C08814
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

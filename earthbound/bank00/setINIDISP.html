@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setINIDISP</h1><p>$C0879D
+			<h1>Function setINIDISP</h1><p>Configures screen brightness. Can also turn screen black.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +157,23 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">setINIDISP</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">value</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="value">value</td><td> Either a value between 0-15 for brightness, or 0x80 to blank the screen</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C0879D
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

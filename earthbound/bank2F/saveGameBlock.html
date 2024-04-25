@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function saveGameBlock</h1><p>$EF088F
+			<h1>Function saveGameBlock</h1><p>Saves a game block. Writes a copy of the GameState structure, the party member stats, event flags and the checksums. To make sure the save succeeds, both checksums are validated immediately and the process restarts if mismatched.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -164,7 +164,16 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> The index of the save block to read (0-5 are valid on retail cartridges)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>EF088F
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -1941,7 +1941,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="enableNMIJoypad" class="public" href="../earthbound/bank00/enableNMIJoypad.html">enableNMIJoypad</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08715
+						<td>Enables vertical blank interrupts and joypad auto-reading
 </td>
 					</tr>
 					<tr>
@@ -2001,37 +2001,37 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="fadeIn" class="public" href="../earthbound/bank00/fadeIn.html">fadeIn</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="fadeIn" class="public" href="../earthbound/bank00/fadeIn.html">fadeIn</a><span class="tableEntryAnnotation">(step, timeBetweenFrames)</span>
 							</code>
 						</td>
-						<td>$C0886C
+						<td>Perform an asynchronous fade-in. Useful for performing extra work while the effect occurs
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="fadeInWithMosaic" class="public" href="../earthbound/bank00/fadeInWithMosaic.html">fadeInWithMosaic</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="fadeInWithMosaic" class="public" href="../earthbound/bank00/fadeInWithMosaic.html">fadeInWithMosaic</a><span class="tableEntryAnnotation">(step, timeBetweenFrames, mosaicLayers)</span>
 							</code>
 						</td>
-						<td>$C087CE
+						<td>Performs a fade-in effect with optional mosaic
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="fadeOut" class="public" href="../earthbound/bank00/fadeOut.html">fadeOut</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="fadeOut" class="public" href="../earthbound/bank00/fadeOut.html">fadeOut</a><span class="tableEntryAnnotation">(step, timeBetweenFrames)</span>
 							</code>
 						</td>
-						<td>$C0887A
+						<td>Perform an asynchronous fade-out. Useful for performing extra work while the effect occurs
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="fadeOutWithMosaic" class="public" href="../earthbound/bank00/fadeOutWithMosaic.html">fadeOutWithMosaic</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="fadeOutWithMosaic" class="public" href="../earthbound/bank00/fadeOutWithMosaic.html">fadeOutWithMosaic</a><span class="tableEntryAnnotation">(step, timeBetweenFrames, mosaicLayers)</span>
 							</code>
 						</td>
-						<td>$C08814
+						<td>Performs a fade-out effect with optional mosaic
 </td>
 					</tr>
 					<tr>
@@ -2885,7 +2885,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="oamClear" class="public" href="../earthbound/bank00/oamClear.html">oamClear</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C088B1
+						<td>Clears the OAM state in preparation for a new frame
 </td>
 					</tr>
 					<tr>
@@ -2993,7 +2993,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="prepareForImmediateDMA" class="public" href="../earthbound/bank00/prepareForImmediateDMA.html">prepareForImmediateDMA</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08726
+						<td>Ensures hardware is in a state appropriate for VRAM DMA. Blocks for a single frame
 </td>
 					</tr>
 					<tr>
@@ -3333,6 +3333,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="reloadMapMusic" class="public" href="../earthbound/bank00/reloadMapMusic.html">reloadMapMusic</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Changes the music track to the normal overworld music for the player's location
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="removeNonTransitionSurvivingInteractions" class="public" href="../earthbound/bank00/removeNonTransitionSurvivingInteractions.html">removeNonTransitionSurvivingInteractions</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3345,7 +3354,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderFirstFrame" class="public" href="../earthbound/bank00/renderFirstFrame.html">renderFirstFrame</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08B19
+						<td>Renders the first frame of the game
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="renderSpriteDebug" class="public" href="../earthbound/bank00/renderSpriteDebug.html">renderSpriteDebug</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Called immediately before the sprite priority specified by spriteRenderDebugPriority. Debugging leftover
 </td>
 					</tr>
 					<tr>
@@ -3354,7 +3372,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderSpritesToOAM" class="public" href="../earthbound/bank00/renderSpritesToOAM.html">renderSpritesToOAM</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08B8E
+						<td>Renders all sprites to OAM, sorted by priority first and order queued second
 </td>
 					</tr>
 					<tr>
@@ -3624,16 +3642,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="setForceBlank" class="public" href="../earthbound/bank00/setForceBlank.html">setForceBlank</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08744
+						<td>Turns off the display. Blocks for a single frame to guarantee that the display is off before returning.
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="setINIDISP" class="public" href="../earthbound/bank00/setINIDISP.html">setINIDISP</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="setINIDISP" class="public" href="../earthbound/bank00/setINIDISP.html">setINIDISP</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
-						<td>$C0879D
+						<td>Configures screen brightness. Can also turn screen black.
 </td>
 					</tr>
 					<tr>
@@ -3666,6 +3684,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setMOSAICFade" class="public" href="../earthbound/bank00/setMOSAICFade.html">setMOSAICFade</a><span class="tableEntryAnnotation">(layers)</span>
+							</code>
+						</td>
+						<td>Configures the MOSAIC register using the screen's current brightness for the specified layers
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setMovementSpeed" class="public" href="../earthbound/bank00/setMovementSpeed.html">setMovementSpeed</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
@@ -3684,10 +3711,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="setSpritemapBank" class="public" href="../earthbound/bank00/setSpritemapBank.html">setSpritemapBank</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="setSpritemapBank" class="public" href="../earthbound/bank00/setSpritemapBank.html">setSpritemapBank</a><span class="tableEntryAnnotation">(bank)</span>
 							</code>
 						</td>
-						<td>$C088A5
+						<td>Sets the bank address for spritemaps (not used on modern systems)
 </td>
 					</tr>
 					<tr>
@@ -4219,15 +4246,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC06A07" class="public" href="../earthbound/bank00/unknownC06A07.html">unknownC06A07</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C06A07
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC0705F" class="public" href="../earthbound/bank00/unknownC0705F.html">unknownC0705F</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -4268,33 +4286,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C07B52
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC087AB" class="public" href="../earthbound/bank00/unknownC087AB.html">unknownC087AB</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C087AB
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC0888B" class="public" href="../earthbound/bank00/unknownC0888B.html">unknownC0888B</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C0888B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC08C53" class="public" href="../earthbound/bank00/unknownC08C53.html">unknownC08C53</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C08C53 - It's hard to guess what this one did
 </td>
 					</tr>
 					<tr>
@@ -5131,7 +5122,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="updateScreen" class="public" href="../earthbound/bank00/updateScreen.html">updateScreen</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08B26
+						<td>Updates the screen state for a new frame. Updates OAM and BG layer positioning
 </td>
 					</tr>
 					<tr>
@@ -5209,10 +5200,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="waitNFrames" class="public" href="../earthbound/bank00/waitNFrames.html">waitNFrames</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="waitForFadeToFinishNoActionScript" class="public" href="../earthbound/bank00/waitForFadeToFinishNoActionScript.html">waitForFadeToFinishNoActionScript</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C0878B
+						<td>Waits for an asynchronous fade effect to finish. Same as waitForFadeToFinish, but actionscripts aren't executed
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="waitNFrames" class="public" href="../earthbound/bank00/waitNFrames.html">waitNFrames</a><span class="tableEntryAnnotation">(frames)</span>
+							</code>
+						</td>
+						<td>Wait at least one frame
 </td>
 					</tr>
 					<tr>
@@ -5221,7 +5221,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="waitUntilNextFrame" class="public" href="../earthbound/bank00/waitUntilNextFrame.html">waitUntilNextFrame</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C08756
+						<td>Waits a single frame, with gamepad state updated appropriately
 </td>
 					</tr>
 					<tr>

@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function validateSaveBlockChecksums</h1><p>$EF07C0
+			<h1>Function validateSaveBlockChecksums</h1><p>Detects corruption in a save block by calculating two checksums and comparing them to the stored checksum
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -164,7 +164,20 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> The index of the save block to read (0-5 are valid on retail cartridges)</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 if the checksums don't match, -1 otherwise
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>EF07C0
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

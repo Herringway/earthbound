@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function checkDeliveryEligibility</h1><p>$EF0F60
+			<h1>Function checkDeliveryEligibility</h1><p>Tests if the player is eligible for a delivery
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -158,8 +158,26 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>The following checks are done:
+ - No screen fades are active
+ - No text windows are open
+ - No entities are fading away
+ - Overworld status suppression is disabled
+ - Party leader sprite is currently visible
+ - Party leader is not on a ladder, rope, escalator or stairs
+ - No pending interactions (if party leader can move)
+</p>
+</section>
+
+			<section><h2>Returns</h2>
+<p>1 if any checks failed, 0 otherwise
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>EF0F60
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

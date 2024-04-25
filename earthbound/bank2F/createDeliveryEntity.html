@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable unused7E2402</title>
+		<title>Function createDeliveryEntity</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -125,7 +125,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank2F.html">bank2F</a>
 					</div>
 				</li>
@@ -135,7 +135,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/globals.html">globals</a>
 					</div>
 				</li>
@@ -149,19 +149,28 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable unused7E2402</h1><p>Unknown. Initialized to -1, checked for 0-3 values. May have been a removed debugging function
+			<h1>Function createDeliveryEntity</h1><p>Spawns a preconfigured delivery entity. Makes an attempt at delivery at a defined interval, then executes the failure/success text script associated with the entry as appropriate.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unused7E2402</span>
-			<span class="pun">;</span>
+			<span class="typ">void</span> <span class="pln">createDeliveryEntity</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">id</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Original Address</h2>
-<p>2402
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> The 1-based index corresponding to the desired entry in the timedDeliveries table</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>EF0EAD
 </p>
 </section>
 
