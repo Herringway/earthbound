@@ -8092,7 +8092,7 @@ shared static this() {
 	);
 }
 /// $C3441A
-immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript499;
+immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScript499;
 shared static this() {
 	actionScript499 = initializeScript(actionScript499.length,
 		C0A643(1311),
@@ -8102,6 +8102,7 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_VELOCITIES_ZERO(),
 		START_DELIVERY_COUNTDOWN(),
+		SHORTJUMP(&actionScript499_500_Common[0]),
 	);
 }
 /// $C34432
