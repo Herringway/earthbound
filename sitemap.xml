@@ -1996,6 +1996,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank21/castNamesGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/castSequenceFormatting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/coffeeSequenceText.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank21/debugBattlerInfo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/gasStationArrangement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/gasStationGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/gasStationPalette.html</loc></url>
@@ -2020,16 +2021,15 @@
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenArrangement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenLetterPalette.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank21/titleScreenLetterSpriteMaps.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank21/titleScreenLetterSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/titleScreenPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconPlacementTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapIconSpritemaps.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/townMapLabelGfx.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank21/unknownE14DE8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1AE83.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1AEFD.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank21/unknownE1C6E5.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank21/unknownE1CF9D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1CFAF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1D4F4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank21/unknownE1D5E8.html</loc></url>
