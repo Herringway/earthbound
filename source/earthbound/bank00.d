@@ -8774,13 +8774,13 @@ void fileSelectInit() {
 	overworldSetupVRAM();
 	unknownC432B1();
 	prepareAverageForSpritePalettes();
-	memcpy(&palettes[8][0], spriteGroupPalettes.ptr, 0x100);
+	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	initializeTextSystem();
 	copyToVRAM(3, 0x800, 0x7C00, buffer.ptr);
-	decomp(textWindowGraphics.ptr, buffer.ptr);
+	decomp(&textWindowTiles[0], buffer.ptr);
 	memcpy(&buffer[0x2000], &buffer[0x1000], 0x2A00);
 	loadWindowGraphics(WindowGraphicsToLoad.all);
-	memcpy(&palettes[0][0], textWindowFlavourPalettes.ptr, 0x40);
+	memcpy(&palettes[0][0], &textWindowFlavourPalettes[0][0], 0x40);
 	if (config.autoLoadFile.isNull) {
 		loadBackgroundAnimation(BackgroundLayer.fileSelect, 0);
 	}

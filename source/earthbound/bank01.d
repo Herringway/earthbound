@@ -5024,7 +5024,7 @@ void unknownC19CDD() {
 	for (short i = 0; i < 4; i++) {
 		partyCharacters[i].hpPPWindowOptions = 0x400;
 	}
-	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20], 8);
+	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20], ushort[4].sizeof);
 	paletteUploadMode = PaletteUpload.full;
 	redrawAllWindows = 1;
 }
@@ -5034,7 +5034,7 @@ void unknownC19D49() {
 	for (short i = 0; i < 4; i++) {
 		partyCharacters[i].hpPPWindowOptions = 0x400;
 	}
-	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][12], 8);
+	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][12], ushort[4].sizeof);
 	paletteUploadMode = PaletteUpload.full;
 	redrawAllWindows = 1;
 }

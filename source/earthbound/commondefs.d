@@ -5995,7 +5995,11 @@ enum TitleScreenPaletteEffect {
 	letterShimmer = 0,
 	letterGlow = 1,
 }
-
+///
+enum FlavourGraphicsSet {
+	plain = 1,
+	flavoured = 8,
+}
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -6293,7 +6297,7 @@ struct Battler {
 ///
 struct TextWindowPropertiesEntry {
 	ushort offset; ///
-	ubyte unknown; ///
+	ubyte graphicsSet; ///
 }
 ///
 align(1) struct RGB {

@@ -3,24 +3,32 @@ module earthbound.bank20;
 
 import earthbound.commondefs;
 
-/// $E00000
+/** Tile data for the text layer (compressed)
+ * Original_Address: $(DOLLAR)E00000
+ */
 @ROMSource(0x200000, 1876)
-immutable(ubyte)[] textWindowGraphics;
+immutable(ubyte)[] textWindowTiles;
 
-/// $E00751
+/** Tile data used for flavoured windows, overwriting part of textWindowTiles when loaded (compressed)
+ * Original_Address: $(DOLLAR)E00751
+ */
 @ROMSource(0x200754, 76)
-immutable(ubyte)[] flavouredTextGraphics;
+immutable(ubyte)[] flavouredTextTiles;
 
-/// $E01FB9
+/** Text flavour configurations
+ * Original_Address: $(DOLLAR)E01FB9
+ */
 immutable TextWindowPropertiesEntry[5] textWindowProperties = [
-	TextWindowPropertiesEntry(0x00, 1),
-	TextWindowPropertiesEntry(0x40, 8),
-	TextWindowPropertiesEntry(0x80, 8),
-	TextWindowPropertiesEntry(0xC0, 8),
-	TextWindowPropertiesEntry(0x100, 8),
+	TextWindowPropertiesEntry(0x00, FlavourGraphicsSet.plain),
+	TextWindowPropertiesEntry(0x40, FlavourGraphicsSet.flavoured),
+	TextWindowPropertiesEntry(0x80, FlavourGraphicsSet.flavoured),
+	TextWindowPropertiesEntry(0xC0, FlavourGraphicsSet.flavoured),
+	TextWindowPropertiesEntry(0x100, FlavourGraphicsSet.flavoured),
 ];
 
-/// $E01FC8
+/** Text palettes, one for each window flavour
+ * Original_Address: $(DOLLAR)E01FC8
+ */
 immutable RGB[32][6] textWindowFlavourPalettes = [
 	[
 		RGB(0, 0, 0),
@@ -227,6 +235,9 @@ immutable RGB[32][6] textWindowFlavourPalettes = [
 		RGB(14, 5, 9),
 	]
 ];
+/** Text palettes used when the party is in bad shape
+ * Original_Address: $(DOLLAR)E02148
+ */
 immutable RGB[32] textWindowDeathPalette =[
 	RGB(0, 28, 14),
 	RGB(30, 30, 30),
@@ -262,6 +273,10 @@ immutable RGB[32] textWindowDeathPalette =[
 	RGB(5, 1, 5),
 ];
 
-/// $E02190
+/** Town map graphics data
+ *
+ * 2x 4bpp palettes (64 bytes total), followed by a 2KB tilemap, followed by a maximum of 16KB of tile data, all compressed as one chunk
+ * Original_Address: $(DOLLAR)E02190
+ */
 @([ROMSource(0x2021A8, 10104), ROMSource(0x204920, 7681), ROMSource(0x206721, 7256), ROMSource(0x208379, 10811), ROMSource(0x20ADB4, 6717), ROMSource(0x20C7F1, 9490)])
-immutable(ubyte[])[] townMapGraphicsPointerTable;
+immutable(ubyte[])[] townMapGraphics;

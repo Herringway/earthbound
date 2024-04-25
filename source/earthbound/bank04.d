@@ -4100,14 +4100,14 @@ short unknownC47B77() {
 /// $C47C3F
 //definitely need to check this one over
 void prepareWindowGraphics() {
-	decomp(&textWindowGraphics[0], &buffer[0]);
+	decomp(&textWindowTiles[0], &buffer[0]);
 	memcpy(&buffer[0x2000], &buffer[0x1000], 0x2A00);
 	memset(&buffer[0x3200], 0, 0x600);
 	if (gameState.textFlavour == 0) {
 		gameState.textFlavour = 1;
 	}
-	if (textWindowProperties[gameState.textFlavour - 1].unknown == 8) {
-		decomp(&flavouredTextGraphics[0], &buffer[0x100]);
+	if (textWindowProperties[gameState.textFlavour - 1].graphicsSet == 8) {
+		decomp(&flavouredTextTiles[0], &buffer[0x100]);
 	}
 	ushort* x24 = cast(ushort*)&buffer[0x2A00];
 	for (short i = 0; i < 4; i++) {
@@ -7372,7 +7372,7 @@ void drawTownMapIcons(short map) {
 /// $C4D552
 void loadTownMapData(short arg1) {
 	fadeOut(2, 1);
-	decomp(&townMapGraphicsPointerTable[arg1][0], &buffer[0]);
+	decomp(&townMapGraphics[arg1][0], &buffer[0]);
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	memcpy(&palettes[0][0], &buffer[0], 0x40);
 	memcpy(&palettes[8][0], &townMapIconPalette[0], 0x100);
