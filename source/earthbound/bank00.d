@@ -96,15 +96,15 @@ void loadPaletteAnim() {
 	if (palettes[5][0] == 0) {
 		return;
 	}
-	if (mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count == 0) {
+	if (mapPaletteAnimations[palettes[5][0] - 1].count == 0) {
 		return;
 	}
-	decomp(&mapDataPaletteAnimations[mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].id][0], &animatedMapPaletteBuffer[0]);
+	decomp(&mapPaletteAnimationData[mapPaletteAnimations[palettes[5][0] - 1].id][0], &animatedMapPaletteBuffer[0]);
 	for (short i = 0; i < overworldPaletteAnim.delays.length; i++) {
 		overworldPaletteAnim.delays[i] = 0;
 	}
-	for (short i = 0; i < mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count; i++) {
-		overworldPaletteAnim.delays[i] = mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].entries[i];
+	for (short i = 0; i < mapPaletteAnimations[palettes[5][0] - 1].count; i++) {
+		overworldPaletteAnim.delays[i] = mapPaletteAnimations[palettes[5][0] - 1].entries[i];
 	}
 	overworldPaletteAnim.timer = overworldPaletteAnim.delays[0];
 	mapPaletteAnimationLoaded = 1;
@@ -126,7 +126,7 @@ void animatePalette() {
 
 /// $C0035B
 ushort unknownC0035B(ushort a, ushort x, ushort y) {
-	return tileArrangementBuffer[a * 16 + x + y * 4];
+	return tilemapBuffer[a * 16 + x + y * 4];
 }
 
 /// $C00391
@@ -223,8 +223,8 @@ void loadCollisionData(short tileset) {
  * Original_Address: $(DOLLAR)C0067E
  */
 void replaceBlock(short target, short source) {
-	ushort* dest = &tileArrangementBuffer[target * 16];
-	ushort* src = &tileArrangementBuffer[source * 16];
+	ushort* dest = &tilemapBuffer[target * 16];
+	ushort* src = &tilemapBuffer[source * 16];
 	for (short i = 0; i < 16; i++) {
 		*(dest++) = *(src++);
 	}
@@ -310,14 +310,14 @@ void loadMapAtSector(short x, short y) {
 	ubyte palette = x1A & 7;
 	ubyte tileCombo = x1A >> 3;
 	tracef("Loading map tileset %d, palette %d", tileCombo, palette);
-	decomp(&mapTilesetArrangements[tilesetGraphicsMapping[tileCombo]][0], &tileArrangementBuffer[0]);
+	decomp(&mapTilemaps[tilesetGraphicsMapping[tileCombo]][0], &tilemapBuffer[0]);
 	loadCollisionData(tilesetGraphicsMapping[tileCombo]);
 	loadMapBlockEventChanges(tilesetGraphicsMapping[tileCombo]);
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	if (tileCombo != loadedMapTileCombo) {
 		loadedMapTileset = tilesetGraphicsMapping[tileCombo];
-		decomp(&mapTilesetGraphics[tilesetGraphicsMapping[tileCombo]][0], &buffer[0]);
+		decomp(&mapTiles[tilesetGraphicsMapping[tileCombo]][0], &buffer[0]);
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
 			copyToVRAMChunked(0, 0x7000, 0, &buffer[0]);
@@ -533,7 +533,7 @@ void loadMapRowVRAM(short x, short y) {
 		if ((x & 3) == 0) {
 			x18 = cast(ushort)((loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4));
 		}
-		ushort x12 = tileArrangementBuffer[x18];
+		ushort x12 = tilemapBuffer[x18];
 		x1E[x16] = x12;
 		x18++;
 		if ((x12 & 0x3FF) < 0x180) {
@@ -567,7 +567,7 @@ void loadMapColumnVRAM(short x, short y) {
 		if ((y & 3) == 0) {
 			x18 = cast(ushort)((loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + (x & 3));
 		}
-		ushort x12 = tileArrangementBuffer[x18];
+		ushort x12 = tilemapBuffer[x18];
 		x1E[x16] = x12;
 		if ((x12 & 0x3FF) < 0x180) {
 			x12 |= 0x2000;

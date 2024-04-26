@@ -7777,8 +7777,8 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 			} else {
 				x0F = 0;
 			}
-			yourSanctuaryLocationTileOffsets[tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
-			(x06++)[0] = tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
+			yourSanctuaryLocationTileOffsets[tilemapBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
+			(x06++)[0] = tilemapBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
 		}
 	}
 }
@@ -7789,7 +7789,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		if (yourSanctuaryLocationTileOffsets[i] == 0) {
 			continue;
 		}
-		copyToVRAM(0, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tileArrangementBuffer[i * 16]);
+		copyToVRAM(0, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tilemapBuffer[i * 16]);
 		yourSanctuaryLocationTileOffsets[i] = nextYourSanctuaryLocationTileIndex;
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
@@ -7808,9 +7808,9 @@ void loadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
 	short x1A = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	loadedMapTileCombo = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	prepareYourSanctuaryLocationPaletteData(x1A, arg3);
-	decomp(&mapTilesetArrangements[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
+	decomp(&mapTilemaps[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
-	decomp(&mapTilesetGraphics[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
+	decomp(&mapTiles[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTilesetData(arg3);
 	totalYourSanctuaryLoadedTilesetTiles += yourSanctuaryLoadedTilesetTiles;
 }

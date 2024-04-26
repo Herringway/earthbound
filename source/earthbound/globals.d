@@ -3310,7 +3310,7 @@ ref ushort[0x80] paletteAnimBlueAccum() { return (cast(ushort*)&buffer[0x7E00])[
 /** The currently-loaded tile arrangements for each of the map blocks
  * Original_Address: $(DOLLAR)7F8000
  */
-__gshared ushort[0x3C00] tileArrangementBuffer;
+__gshared ushort[0x3C00] tilemapBuffer;
 /** The currently-loaded tile collision data for each of the map blocks
  * Original_Address: $(DOLLAR)7FF800
  */

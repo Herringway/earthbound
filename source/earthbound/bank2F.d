@@ -781,17 +781,17 @@ immutable ubyte[32] tilesetGraphicsMapping = [
 	0x00,
 ];
 
-/** Tile graphics for overworld map tilesets (compressed)
+/** Tile data for overworld map tilesets (compressed)
  * Original_Address: $(DOLLAR)EF105B
  */
 @mapDataTilesetSource
-immutable(ubyte[])[] mapTilesetGraphics;
+immutable(ubyte[])[] mapTiles;
 
-/** Tile arrangements for overworld map tilesets (compressed)
+/** Tilemaps for overworld map tilesets (compressed)
  * Original_Address: $(DOLLAR)EF10AB
  */
 @mapDataArrangementSource
-immutable(ubyte[])[] mapTilesetArrangements;
+immutable(ubyte[])[] mapTilemaps;
 
 /** Palette data used for overworld map tilesets
  * Original_Address: $(DOLLAR)EF10FB
