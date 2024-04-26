@@ -5121,7 +5121,7 @@ void coffeeTeaScene(short id) {
 	fadeOutWithMosaic(1, 1, 0);
 	prepareNewFlyoverCoffeeTeaScene();
 	oamClear();
-	loadBackgroundAnimation((id == 0) ? BattleBGLayer.coffee1 : BattleBGLayer.tea1, (id == 0) ? BattleBGLayer.coffee2 : BattleBGLayer.tea2);
+	loadBackgroundAnimation((id == 0) ? BackgroundLayer.coffee1 : BackgroundLayer.tea1, (id == 0) ? BackgroundLayer.coffee2 : BackgroundLayer.tea2);
 	fadeIn(1, 1);
 	flyoverScreenOffset = 28; // start at the very last line onscreen.
 	short scrollRemainder = 0;
@@ -5485,17 +5485,17 @@ void unknownC4A377() {
 	setBGMODE(BGMode.mode3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&animatedBackgroundTiles[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTiles[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
 	copyToVRAM(0, 0x2000, 0x6000, &buffer[0]);
-	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
 	for (short i = 0; i < 0x800; i += 2) {
 		buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 	}
 	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
-	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BattleBGLayer.introGiygas]);
+	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BackgroundLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
-	memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
-	memcpy(&loadedBGDataLayer1.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[BackgroundLayer.introGiygas].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[BackgroundLayer.introGiygas].palette][0], 0x20);
 	memcpy(&loadedBGDataLayer1.palettePointer[0], &loadedBGDataLayer1.palette[0], 0x20);
 	loadedBGDataLayer1.targetLayer = 2;
 	generateBattleBGFrame(&loadedBGDataLayer1, 0);

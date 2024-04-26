@@ -3607,7 +3607,7 @@ shared static this() {
 		// fade out, bring in the ancestor's spirit - also interruptable
 		FADE_OUT_WITH_MOSAIC(1, 1, 0),
 		// set up background
-		LOAD_BATTLE_BG(BattleBGLayer.muTraining, BattleBGLayer.none),
+		LOAD_BATTLE_BG(BackgroundLayer.muTraining, BackgroundLayer.none),
 		SET_X(128),
 		SET_Y(112),
 		FADE_IN(1, 1),
@@ -15952,7 +15952,7 @@ shared static this() {
 		SET_VELOCITIES_ZERO(),
 		SET_ANIMATION(255),
 		FADE_OUT_WITH_MOSAIC(1, 1, 0),
-		LOAD_BATTLE_BG(BattleBGLayer.magicCake1, BattleBGLayer.magicCake2),
+		LOAD_BATTLE_BG(BackgroundLayer.magicCake1, BackgroundLayer.magicCake2),
 		SET_X(128),
 		SET_Y(112),
 		FADE_IN(1, 1),
