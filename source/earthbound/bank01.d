@@ -7669,7 +7669,7 @@ void fileMenuLoop() {
 				partyCharacters[i].hpPPWindowOptions = 0x400;
 			}
 			gameState.moneyCarried = initialStats[0].money;
-			setLeaderLocation(initialStats[0].unknown0, initialStats[0].unknown2);
+			setLeaderLocation(initialStats[0].startX, initialStats[0].startY);
 			gameState.favouriteThing[0] = ebChar('P');
 			gameState.favouriteThing[1] = ebChar('S');
 			gameState.favouriteThing[2] = ebChar('I');
@@ -7852,7 +7852,7 @@ void fileMenuLoop() {
 									partyCharacters[i].hpPPWindowOptions = 0x400;
 								}
 								gameState.moneyCarried = initialStats[0].money;
-								setLeaderLocation(initialStats[0].unknown0, initialStats[0].unknown2);
+								setLeaderLocation(initialStats[0].startX, initialStats[0].startY);
 								gameState.favouriteThing[0] = ebChar('P');
 								gameState.favouriteThing[1] = ebChar('S');
 								gameState.favouriteThing[2] = ebChar('I');

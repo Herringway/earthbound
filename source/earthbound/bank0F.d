@@ -4,7 +4,9 @@ module earthbound.bank0F;
 import earthbound.commondefs;
 import earthbound.text;
 
-/// $CF0000
+/** Inanimate objects for the overworld map, grouped by 256x256 pixel areas
+ * Original_Address: $(DOLLAR)CF0000
+ */
 immutable SectorObjects[32][40] sectorObjects = [
 	[
 		SectorObjects(1, [MapObject(0x11, 0x15, ObjectType.object, &doorEntry910)]),
@@ -2308,7 +2310,11 @@ immutable MapObjectObject doorEntry975 = MapObjectObject("MSG_MOON_MUSEUM_PLATE"
 immutable MapObjectObject doorEntry976 = MapObjectObject("MSG_READ_MOON_SIGN1");
 immutable MapObjectObject doorEntry977 = MapObjectObject("MSG_SYS_NOPROBLEM");
 
-/// $CF58EF
+/** Music entries referenced by `mapDataPerSectorMusic`
+ *
+ * The game chooses the first entry whose flag config DOESN'T match the game state when deciding what to play. 0 means any state.
+ * Original_Address: $(DOLLAR)CF58EF
+ */
 immutable OverworldEventMusic[][165] overworldEventMusicPointerTable = [
 	[],
 	[
@@ -3130,7 +3136,9 @@ immutable OverworldEventMusic[][165] overworldEventMusicPointerTable = [
 	]
 ];
 
-/// $CF61E7
+/** Predefined NPCs to spawn for each 256x256 pixel area of the overworld
+ * Original_Address: $(DOLLAR)CF61E7
+ */
 immutable SpritePlacementEntry*[32][40] spritePlacementPointerTable = [
 	[
 		&spritePlacementEntry0,
@@ -7919,7 +7927,9 @@ immutable SpritePlacementEntry spritePlacementEntry626 = SpritePlacementEntry(21
 	SpritePlacement(NPCID.unknown0473, 0xE0, 0x9C),
 ]);
 
-/// $CF8985
+/** Sprites, actionscripts, text scripts, etc. for each predefined NPC
+ * Original_Address: $(DOLLAR)CF8985
+ */
 immutable NPC[1584] npcConfig = [
 	NPCID.unknown0000: NPC(NPCType.person, OverworldSprite.ness, Direction.down, ActionScript.animPeopleWalk0, EventFlag.none, NPCConfigFlagStyle.showIfOff, null, null),
 	NPCID.unknown0001: NPC(NPCType.person, OverworldSprite.skatePunk, Direction.down, ActionScript.animMapObjTBack, EventFlag.onetGuardSharkDisappear, NPCConfigFlagStyle.showIfOff, "MSG_ONET_SHARK_D", null),

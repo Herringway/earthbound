@@ -7135,8 +7135,8 @@ struct StatsGrowth {
 }
 ///
 struct CharacterInitialStats {
-	short unknown0; ///
-	short unknown2; ///
+	short startX; ///
+	short startY; ///
 	short money; ///
 	short level; ///
 	short exp; ///
@@ -7246,9 +7246,9 @@ union FadeParameters {
 ///
 struct AnimationSequence {
 	ubyte id; ///
-	ushort unknown4; ///
-	ubyte unknown6; ///
-	ubyte unknown7; ///
+	ushort tileSize; ///
+	ubyte frames; ///
+	ubyte frameDelay; ///
 }
 ///
 struct YourSanctuaryLocation {

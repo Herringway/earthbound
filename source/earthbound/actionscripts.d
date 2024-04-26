@@ -7209,18 +7209,18 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_VAR(ActionScriptVars.v0, 1),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		PAUSE(5),
 		PLAY_SFX(Sfx.unknown0D),
 		SET_VAR(ActionScriptVars.v1, 5),
 		LOOP(6),
-			C47B77(),
+			UPDATE_FULLSCREEN_ANIMATION(),
 			PAUSE(3),
 			ADD(ActionScriptVars.v1, -1),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v1, 0),
 		LOOP(5),
-			C47B77(),
+			UPDATE_FULLSCREEN_ANIMATION(),
 			PAUSE(3),
 			ADD(ActionScriptVars.v1, 1),
 		LOOP_END(),
@@ -7235,9 +7235,9 @@ shared static this() {
 	unknownC33BFB = initializeScript(unknownC33BFB.length,
 		SET_ANIMATION(255),
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SET_VAR(ActionScriptVars.v1, 0),
-		C47B77(),
+		UPDATE_FULLSCREEN_ANIMATION(),
 		JUMP_IF_FALSE(&unknownC33C18[0]),
 		WRITE_TEMPVAR_WAITTIMER(),
 		ADD(ActionScriptVars.v1, 1),
@@ -7258,7 +7258,7 @@ shared static this() {
 	unknownC33C1D = initializeScript(unknownC33C1D.length,
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 		LOOP_TEMPVAR(),
-			C47B77(),
+			UPDATE_FULLSCREEN_ANIMATION(),
 			BREAK_IF_FALSE(&unknownC33C1D[13 + 2 * (const(void)*).sizeof]),
 			WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v3),
 			ADD(ActionScriptVars.v1, 1),
@@ -12332,7 +12332,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 6),
 		SET_VAR(ActionScriptVars.v3, 8),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SHORTCALL(&unknownC33C1D[0]),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		SET_ANIMATION(0),
@@ -13081,7 +13081,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
 		SET_VAR(ActionScriptVars.v3, 4),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SHORTCALL(&unknownC33C1D[0]),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 3),
@@ -14586,7 +14586,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 4),
 		SET_VAR(ActionScriptVars.v3, 7),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SHORTCALL(&unknownC33C1D[0]),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SHORTCALL(&unknownC33C1D[0]),
@@ -14610,7 +14610,7 @@ shared static this() {
 		SET_VELOCITIES_ZERO(),
 		SET_ANIMATION(255),
 		SET_VAR(ActionScriptVars.v0, 2),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SET_VAR(ActionScriptVars.v2, 4),
 		SET_VAR(ActionScriptVars.v3, 7),
 		LOOP(3),
@@ -14622,7 +14622,7 @@ shared static this() {
 		YIELD_TO_TEXT(),
 		SET_VAR(ActionScriptVars.v1, 3),
 		LOOP(4),
-			C47B77(),
+			UPDATE_FULLSCREEN_ANIMATION(),
 			PAUSE(10),
 			ADD(ActionScriptVars.v1, -1),
 		LOOP_END(),
@@ -16986,7 +16986,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
 		SET_VAR(ActionScriptVars.v3, 120),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		PLAY_SFX(Sfx.missed),
 		SHORTCALL(&unknownC33C1D[0]),
 		SHORTJUMP(&actionScript35[0]),
@@ -17159,7 +17159,7 @@ shared static this() {
 	actionScript1 = initializeScript(actionScript1.length,
 		SRAM_CHECK_ROUTINE_CHECKSUM(),
 		JUMP_IF_FALSE(&actionScript1[3 + 3 * (const(void)*).sizeof]),
-		DISPLAY_ANTI_PIRACY_SCREEN(),
+		DISPLAY_COPYRIGHT_WARNING_SCREEN(),
 		SET_TICK_CALLBACK(&partyLeaderTick),
 		LOOP(6),
 			PAUSE(200),
@@ -22123,7 +22123,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
 		SET_VAR(ActionScriptVars.v3, 3),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SHORTCALL(&unknownC33C1D[0]),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v3, 6),
@@ -22350,7 +22350,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
 		SET_VAR(ActionScriptVars.v3, 3),
-		C47A9E(),
+		LOAD_FULLSCREEN_ANIMATION(),
 		SHORTCALL(&unknownC33C1D[0]),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v3, 6),
@@ -25912,7 +25912,7 @@ alias RELOAD_MAP = CALL!reloadMap;
 alias RESTORE_MAP_RENDERING = CALL!restoreMapRendering;
 alias DECOMP_ITOI_PRODUCTION = CALL!decompItoiProduction;
 alias DECOMP_NINTENDO_PRESENTATION = CALL!decompNintendoPresentation;
-alias DISPLAY_ANTI_PIRACY_SCREEN = CALL!displayAntiPiracyScreen;
+alias DISPLAY_COPYRIGHT_WARNING_SCREEN = CALL!displayCopyrightWarningScreen;
 alias INFLICT_SUNSTROKE_CHECK = CALL!inflictSunstrokeCheck;
 alias LOAD_DEBUG_CURSOR_GRAPHICS = CALL!loadDebugCursorGraphics;
 alias SRAM_CHECK_ROUTINE_CHECKSUM = CALL!sramCheckRoutineChecksum;
@@ -26045,8 +26045,8 @@ alias C47369 = CALL!unknownC47369;
 alias C47499 = CALL!unknownC47499;
 alias C474A8 = CALL!unknownC474A8;
 alias C47A6B = CALL!unknownC47A6B;
-alias C47A9E = CALL!unknownC47A9E;
-alias C47B77 = CALL!unknownC47B77;
+alias LOAD_FULLSCREEN_ANIMATION = CALL!loadActionScriptAnimation;
+alias UPDATE_FULLSCREEN_ANIMATION = CALL!updateActionScriptAnimationFrame;
 alias C4880C = CALL!unknownC4880C;
 alias C48A6D = CALL!unknownC48A6D;
 alias START_PSI_TELEPORT_TUTORIAL = CALL!actionScriptStartPSITeleportTutorial;

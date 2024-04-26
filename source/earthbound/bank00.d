@@ -7303,7 +7303,7 @@ void checkHardware() {
 	//AntiPiracyScratchSpace = 0x30;
 	//AntiPiracyMirrorTest = 0x31;
 	if (false/*AntiPiracyScratchSpace != AntiPiracyMirrorTest*/) {
-		displayAntiPiracyScreen();
+		displayCopyrightWarningScreen();
 	}
 	if ((STAT78 & 0x10) != 0) {
 		displayFaultyGamepakScreen();

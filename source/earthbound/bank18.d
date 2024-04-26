@@ -3,7 +3,8 @@ module earthbound.bank18;
 
 import earthbound.commondefs;
 
-/// $D80000
+// Collision data for all map tiles
+// Original_Address: $(DOLLAR)D80000
 immutable ubyte[4][4] mapDataTileCollision0 = [
 	[0x80, 0x80, 0x80, 0x80],
 	[0x80, 0x80, 0x80, 0x80],
@@ -16055,22 +16056,32 @@ immutable ubyte[4][4] mapDataTileCollision2292 = [
 	[0x80, 0x80, 0x80, 0x80],
 ];
 
-/// $D8F05E
+/** Tilemap for the copyright warning screen
+ * Original_Address: $(DOLLAR)D8F05E
+ */
 @ROMSource(0x18F05E, 431)
-immutable(ubyte)[] antiPiracyNoticeArrangement;
+immutable(ubyte)[] copyrightWarningTilemap;
 
-/// $D8F05E
+/** Tile data for the copyright warning screen
+ * Original_Address: $(DOLLAR)D8F05E
+ */
 @ROMSource(0x18F20D, 433)
-immutable(ubyte)[] antiPiracyNoticeGraphics;
+immutable(ubyte)[] copyrightWarningTiles;
 
-/// $D8F3BE
+/** Palette used for warning screens
+ * Original_Address: $(DOLLAR)D8F3BE
+ */
 @ROMSource(0x18F3BE, 8)
 immutable(ubyte)[] warningPalette;
 
-/// $D8F8CE
+/** Tilemap for the region protection warning screen
+ * Original_Address: $(DOLLAR)D8F8CE
+ */
 @ROMSource(0x18F3C6, 510)
-immutable(ubyte)[] faultyGamepakArrangement;
+immutable(ubyte)[] regionProtectionWarningTilemap;
 
-/// $D8F5C4
+/** Tile data for the region protection warning screen
+ * Original_Address: $(DOLLAR)D8F5C4
+ */
 @ROMSource(0x18F5C4, 243)
-immutable(ubyte)[] faultyGamepakGraphics;
+immutable(ubyte)[] regionProtectionWarningTiles;

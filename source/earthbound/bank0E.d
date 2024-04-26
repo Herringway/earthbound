@@ -3,8 +3,10 @@ module earthbound.bank0E;
 
 import earthbound.commondefs;
 
-/// $CE62EE
-immutable BattleSpritePointer[110] battleSpritePointers = [
+/** Sprites for enemies in battle
+ * Original_Address: $(DOLLAR)CE62EE
+ */
+immutable BattleSpritePointer[110] battleSprites = [
 	BattleSpritePointer(0, BattleSpriteSize._32X32),
 	BattleSpritePointer(1, BattleSpriteSize._32X32),
 	BattleSpritePointer(2, BattleSpriteSize._32X32),
@@ -117,37 +119,51 @@ immutable BattleSpritePointer[110] battleSpritePointers = [
 	BattleSpritePointer(109, BattleSpriteSize._64X64),
 ];
 
-@battleSpriteSource
-immutable(ubyte[])[] battleSpriteGraphics;
+/** Tiles used for enemy battle sprites (compressed)
+ */
+@battleSpriteTileSource
+immutable(ubyte[])[] battleSpriteTiles;
 
-/// $CE6514
+/** Palettes used with battle sprites
+ *
+ * Many of these palettes are shared between multiple sprites
+ * Original_Address: $(DOLLAR)CE6514
+ */
 @ROMSource(0xE6514, 32 * 32)
 immutable(ushort[16])[] battleSpritePalettes;
 
-/// $CEDC45
-@swirlDataSource
-immutable(ubyte[])[] swirlPointerTable;
+/** HDMA tables for various battle-related effects, like the swirls on entering battles
+ * Original_Address: $(DOLLAR)CEDC45
+ */
+@swirlHDMASource
+immutable(ubyte[])[] swirlHDMATables;
 
-/// $CEDD41
-immutable BattleSwirlConfig[7] swirlPrimaryTable = [
-	{ 0x00, 0x00, 0x00, 0x00 },
-	{ 0x02, 0x00, 0x17, 0x00 },
-	{ 0x04, 0x17, 0x0F, 0x00 },
-	{ 0x03, 0x26, 0x16, 0x00 },
-	{ 0x04, 0x3C, 0x15, 0x00 },
-	{ 0x02, 0x51, 0x1C, 0x00 },
-	{ 0x03, 0x6D, 0x11, 0x00 },
+/** Parameters for swirl animations, including frame rate and which frames to use
+ * Original_Address: $(DOLLAR)CEDD41
+ */
+immutable BattleSwirlConfig[7] swirlAnimationConfig = [
+	BattleSwirlConfig(),
+	BattleSwirlConfig(2, 0, 23),
+	BattleSwirlConfig(4, 23, 15),
+	BattleSwirlConfig(3, 38, 22),
+	BattleSwirlConfig(4, 60, 21),
+	BattleSwirlConfig(2, 81, 28),
+	BattleSwirlConfig(3, 109, 17),
 ];
 
-/// $CEDD5D
+/** Sprite tiles used by the sound stone screen (compressed)
+ * Original_Address: $(DOLLAR)CEDD5D
+ */
 @ROMSource(0xEDD5D, 6825)
-immutable(ubyte)[] soundStoneGraphics;
+immutable(ubyte)[] soundStoneSpriteTiles;
 
-/// $CEF806
+/** Palettes used by the sound stone sprites
+ * Original_Address: $(DOLLAR)CEF806
+ */
 @ROMSource(0xEF806, 192)
-immutable(ubyte)[] soundStonePalette;
+immutable(ubyte)[] soundStoneSpritePalettes;
 
-enum swirlDataSource = [
+enum swirlHDMASource = [
 	ROMSource(0xE6914, 8),
 	ROMSource(0xE691C, 23),
 	ROMSource(0xE6933, 81),
@@ -276,7 +292,7 @@ enum swirlDataSource = [
 	ROMSource(0xEDC3A, 11),
 ];
 
-enum battleSpriteSource = [
+enum battleSpriteTileSource = [
 	ROMSource(0xE606D, 235),
 	ROMSource(0xE4E6D, 351),
 	ROMSource(0xE429C, 406),

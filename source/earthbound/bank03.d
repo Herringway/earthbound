@@ -20,23 +20,23 @@ import std.logger;
 @ROMSource(0x30000, 256)
 immutable(ushort[16])[] spriteGroupPalettes;
 
-/** Display the anti-piracy error screen and loop endlessly
+/** Display the copyright warning screen and loop endlessly
  * Original_Address: $(DOLLAR)C30100
  */
-noreturn displayAntiPiracyScreen() {
+noreturn displayCopyrightWarningScreen() {
 	prepareGameFailure();
-	decomp(&antiPiracyNoticeGraphics[0], &buffer[0]);
-	decomp(&antiPiracyNoticeArrangement[0], &buffer[0x4000]);
+	decomp(&copyrightWarningTiles[0], &buffer[0]);
+	decomp(&copyrightWarningTilemap[0], &buffer[0x4000]);
 	gameFailureLoop();
 }
 
-/** Display the faulty gamepak error screen and loop endlessly
+/** Display the faulty game pack error screen and loop endlessly
  * Original_Address: $(DOLLAR)C30142
  */
 noreturn displayFaultyGamepakScreen() {
 	prepareGameFailure();
-	decomp(&faultyGamepakGraphics[0], &buffer[0]);
-	decomp(&faultyGamepakArrangement[0], &buffer[0x4000]);
+	decomp(&regionProtectionWarningTiles[0], &buffer[0]);
+	decomp(&regionProtectionWarningTilemap[0], &buffer[0x4000]);
 	gameFailureLoop();
 }
 

@@ -7290,7 +7290,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	letterboxEffectEndingTop = 0x7000;
 	enableBackgroundDarkening = 0;
 	backgroundBrightness = 0xFFFF;
-	decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTiles[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (currentBattleGroup == 0x1DE) {
 		setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x3000);
 		copyToVRAM(0, 0x5000, 0x3000, &buffer[0]);
@@ -7300,7 +7300,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	*(cast(ushort*)&buffer[0]) = 0;
 	copyToVRAM(3, 0x800, 0x5800, &buffer[0]);
 	copyToVRAM(3, 0x800, 0, &buffer[0]);
-	decomp(&battleBGArrangementPointers[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (animatedBackgrounds[layer1].bitsPerPixel == 4) {
 		setBGMODE(BGMode.mode1 | BG3Priority);
 		for (short i = 0; i < 0x800; i += 2) {
@@ -7309,8 +7309,8 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		copyToVRAM(0, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[2];
-		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&loadedBGDataLayer1.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
 		memcpy(loadedBGDataLayer1.palettePointer, &loadedBGDataLayer1.palette[0], 32);
 		loadedBGDataLayer1.targetLayer = 2;
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
@@ -7323,9 +7323,9 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			if ((letterbox & 4) != 0) {
 				currentLayerConfig = LayerConfig.ColourBackdropBG2AddAvg;
 				setLayerConfig(currentLayerConfig);
-				decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+				decomp(&animatedBackgroundTiles[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 				copyToVRAM(0, 0x2000, 0, &buffer[0]);
-				decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+				decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 				for (short i = 0; i < 0x800; i += 2) {
 					buffer[i + 1] = (buffer[i + 1] & 0xDF) | 16;
 				}
@@ -7333,8 +7333,8 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
 				loadedBGDataLayer2.palettePointer = &palettes[4];
 				loadedBGDataLayer2.targetLayer = 1;
-				memcpy(&loadedBGDataLayer2.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-				memcpy(&loadedBGDataLayer2.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+				memcpy(&loadedBGDataLayer2.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer2].palette][0], 32);
+				memcpy(&loadedBGDataLayer2.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[layer2].palette][0], 32);
 				memcpy(loadedBGDataLayer2.palettePointer, &loadedBGDataLayer2.palette[0], 32);
 				generateBattleBGFrame(&loadedBGDataLayer2, 1);
 				letterboxVisibleScreenValue = TMTD.obj | TMTD.bg3 | TMTD.bg1 | ((TMTD.bg2) << 8);
@@ -7357,25 +7357,25 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		copyToVRAM(0, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[4];
-		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&loadedBGDataLayer1.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
 		memcpy(loadedBGDataLayer1.palettePointer, &loadedBGDataLayer1.palette[0], 32);
 		loadedBGDataLayer1.targetLayer = 3;
 		if (layer2 != 0) {
 			currentLayerConfig = LayerConfig.ColourBackdropBG4AddAvg;
 			setLayerConfig(currentLayerConfig);
 
-			decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+			decomp(&animatedBackgroundTiles[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 			copyToVRAM(0, 0x1800, 0x3000, &buffer[0]);
-			decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+			decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 			for (short i = 0; i < 0x800; i += 2) {
 				buffer[i + 1] = (buffer[i + 1] & 0xDF);
 			}
 			copyToVRAM(0, 0x800, 0xC00, &buffer[0]);
 			loadBackgroundAnimationInfo(&loadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
 			loadedBGDataLayer2.palettePointer = &palettes[6];
-			memcpy(&loadedBGDataLayer2.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-			memcpy(&loadedBGDataLayer2.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+			memcpy(&loadedBGDataLayer2.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer2].palette][0], 32);
+			memcpy(&loadedBGDataLayer2.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[layer2].palette][0], 32);
 			memcpy(loadedBGDataLayer2.palettePointer, &loadedBGDataLayer2.palette[0], 32);
 			loadedBGDataLayer2.targetLayer = 4;
 		} else {
@@ -7622,11 +7622,11 @@ void unknownC2E0E7() {
 /// $C2E116
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
-		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0x8000]);
+		decomp(&psiAnimationTilesets[psiAnimationConfig[arg1].graphics][0], &buffer[0x8000]);
 		copyToVRAMChunked(0, 0x1000, 0, &buffer[0x8000]);
 		psiAnimationPalette = &palettes[3][0];
 	} else {
-		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0]);
+		decomp(&psiAnimationTilesets[psiAnimationConfig[arg1].graphics][0], &buffer[0]);
 		ushort* x06 = cast(ushort*)&buffer[0];
 		ushort* x0A = cast(ushort*)&buffer[0x8000];
 		for (short i = 0; i < 0x100; i++) {
@@ -7666,7 +7666,7 @@ void showPSIAnimation(short arg1) {
 	psiAnimationEnemyColourChangeRed = psiAnimationConfig[arg1].enemyColour & 0x1F;
 	psiAnimationEnemyColourChangeGreen = (psiAnimationConfig[arg1].enemyColour >> 5) & 0x1F;
 	psiAnimationEnemyColourChangeBlue = (psiAnimationConfig[arg1].enemyColour >> 10) & 0x1F;
-	decomp(&psiAnimationPointers[arg1][0], &buffer[0]);
+	decomp(&psiAnimationTilemaps[arg1][0], &buffer[0]);
 	darkenAnimatedBackgrounds();
 	memcpy(&palettes[12][0], &palettes[8][0], 0x80);
 	for (short i = 0; i < 4; i++) {
@@ -7947,9 +7947,9 @@ void loadBattleSprite(short id) {
 		newSpriteMap[i].specialFlags = 1;
 	}
 	version(noUndefinedBehaviour) {
-		// sprite 0 aka "no sprite" ends up indexing out of bounds and using *cast(ubyte*)&battleSpritePointers[0] as a size instead, which only works because invalid sizes are ignored
+		// sprite 0 aka "no sprite" ends up indexing out of bounds and using *cast(ubyte*)&battleSprites[0] as a size instead, which only works because invalid sizes are ignored
 		// so just do the bare minimum and return
-		if ((id < 0) || (id >= battleSpritePointers.length)) {
+		if ((id < 0) || (id >= battleSprites.length)) {
 			newSpriteMap[(spritemapHeight * spritemapWidth) - 1].specialFlags = 0x81;
 			memcpy(&altBattleSpritemaps[currentBattleSpritesAllocated][0], &battleSpritemaps[currentBattleSpritesAllocated][0], 16 * SpriteMap.sizeof);
 			for (short i = 0; i < 16; i++) {
@@ -7961,7 +7961,7 @@ void loadBattleSprite(short id) {
 			return;
 		}
 	}
-	switch (battleSpritePointers[id].size) {
+	switch (battleSprites[id].size) {
 		case BattleSpriteSize._64X32:
 			spritemapWidth = 2;
 			newSpriteMap.xOffset = 0xE0;
@@ -8040,7 +8040,7 @@ void loadBattleSprite(short id) {
 	currentBattleSpriteHeights[currentBattleSpritesAllocated] = cast(ubyte)spritemapHeight;
 	currentBattleSpritesAllocated++;
 	ubyte* spriteSource = &buffer[0x8000];
-	decomp(&battleSpriteGraphics[battleSpritePointers[id].sprite][0], spriteSource);
+	decomp(&battleSpriteTiles[battleSprites[id].sprite][0], spriteSource);
 	short y = cast(short)(spritemapHeight * spritemapWidth);
 	while (y-- != 0) {
 		ubyte* dest = &buffer[battleSpritemapVRAMMapping[currentBattleSpritemapsAllocated++]];
@@ -8071,11 +8071,11 @@ void unknownC2EEE7() {
 /// $C2EFFD
 short getBattleSpriteWidth(short sprite) {
 	version(noUndefinedBehaviour) {
-		if ((sprite <= 0) || (sprite > battleSpritePointers.length)) {
+		if ((sprite <= 0) || (sprite > battleSprites.length)) {
 			return 0;
 		}
 	}
-	switch (battleSpritePointers[sprite - 1].size) {
+	switch (battleSprites[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._32X64:
 			return 4;
@@ -8093,11 +8093,11 @@ short getBattleSpriteWidth(short sprite) {
 /// $C2F04E
 short getBattleSpriteHeight(short sprite) {
 	version(noUndefinedBehaviour) {
-		if ((sprite <= 0) || (sprite > battleSpritePointers.length)) {
+		if ((sprite <= 0) || (sprite > battleSprites.length)) {
 			return 0;
 		}
 	}
-	switch (battleSpritePointers[sprite - 1].size) {
+	switch (battleSprites[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._64X32:
 			return 4;

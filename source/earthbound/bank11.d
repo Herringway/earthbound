@@ -4,6 +4,9 @@ module earthbound.bank11;
 import earthbound.commondefs;
 
 @spriteSource
+/** Sprite tile data
+ * Original_Address: $(DOLLAR)D10000 - $(DOLLAR)D545C0
+ */
 immutable(ubyte[])[] sprites;
 
 enum spriteSource = [

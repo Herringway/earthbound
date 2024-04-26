@@ -4078,23 +4078,36 @@ void unknownC47A6B() {
 	entityAbsYTable[currentEntitySlot] = cast(short)(entityScriptVar7Table[currentEntitySlot] - (entityAbsYTable[currentEntitySlot] - entityScriptVar7Table[currentEntitySlot]));
 }
 
-/// $C47A9E
-void unknownC47A9E() {
-	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
-	copyToVRAMChunked(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
-	memcpy(&palettes[0][0], &buffer[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
+/** Loads a fullscreen animation based on the active entity's variables
+ *
+ * Entity VAR0 = Animation ID
+ * Original_Address: $(DOLLAR)C47A9E
+ */
+void loadActionScriptAnimation() {
+	decomp(&animationGraphics[animationSequences[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
+	copyToVRAMChunked(0, animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize, 0x6000, &buffer[0]);
+	memcpy(&palettes[0][0], &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize], ushort[4].sizeof);
 	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
 }
 
-/// $C47B77
-short unknownC47B77() {
+/** Updates an animation frame according to the active entity's variables
+ *
+ * Entity VAR0 = Animation ID
+ * Entity VAR1 = Frame index
+ * Returns: Number of frames to wait for the next frame update or 0 if no frames left
+ * Original_Address: $(DOLLAR)C47B77
+ */
+short updateActionScriptAnimationFrame() {
+	// set BG3 Y position to -1. A minor adjustment to account for overscan, perhaps?
 	bg3YPosition = 0xFFFF;
-	copyToVRAM(0, 0x700, 0x7C00, &buffer[8 + animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4 + entityScriptVar1Table[currentEntitySlot] * 0x700]);
-	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown6) {
+	// The animation is assumed to have been decompressed into the buffer already, in the order of tiles + 2bpp palette + N 32x28 tilemaps
+	copyToVRAM(0, 0x700, 0x7C00, &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize + ushort[4].sizeof + entityScriptVar1Table[currentEntitySlot] * 0x700]);
+	// last frame played? return 0 if so
+	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequences[entityScriptVar0Table[currentEntitySlot]].frames) {
 		return 0;
 	}
-	return animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown7;
+	return animationSequences[entityScriptVar0Table[currentEntitySlot]].frameDelay;
 }
 
 /// $C47C3F
@@ -5472,17 +5485,17 @@ void unknownC4A377() {
 	setBGMODE(BGMode.mode3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&battleBGGraphicsPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTiles[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
 	copyToVRAM(0, 0x2000, 0x6000, &buffer[0]);
-	decomp(&battleBGArrangementPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
+	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
 	for (short i = 0; i < 0x800; i += 2) {
 		buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 	}
 	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
 	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BattleBGLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
-	memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
-	memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette2[0], &animatedBackgroundPalettes[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
 	memcpy(&loadedBGDataLayer1.palettePointer[0], &loadedBGDataLayer1.palette[0], 0x20);
 	loadedBGDataLayer1.targetLayer = 2;
 	generateBattleBGFrame(&loadedBGDataLayer1, 0);
@@ -5537,9 +5550,9 @@ void startSwirl(short swirl, short flags) {
 		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4 | SwirlMask.obj; // on/off mask
 	}
 	framesLeftUntilNextSwirlUpdate = 1;
-	framesUntilNextSwirlFrame = swirlPrimaryTable[swirl].timeBetweenFrames;
-	swirlFramesLeft = swirlPrimaryTable[swirl].swirlFrames;
-	swirlHDMATableID = swirlPrimaryTable[swirl].startingHDMATableID;
+	framesUntilNextSwirlFrame = swirlAnimationConfig[swirl].timeBetweenFrames;
+	swirlFramesLeft = swirlAnimationConfig[swirl].swirlFrames;
+	swirlHDMATableID = swirlAnimationConfig[swirl].startingHDMATableID;
 	if (swirlReversed != 0) {
 		swirlHDMATableID += swirlFramesLeft;
 	}
@@ -5627,9 +5640,9 @@ void unknownC4A7B0() {
 			swirlHDMAChannelOffset++;
 			swirlHDMAChannelOffset &= 1;
 			if (swirlReversed == 0) {
-				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlPointerTable[swirlHDMATableID++][0]);
+				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlHDMATables[swirlHDMATableID++][0]);
 			} else {
-				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlPointerTable[--swirlHDMATableID][0]);
+				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlHDMATables[--swirlHDMATableID][0]);
 			}
 			setWindowMask(swirlMaskSettings, swirlInvertEnabled);
 			swirlFramesLeft--;
@@ -5637,8 +5650,8 @@ void unknownC4A7B0() {
 		}
 		if (swirlNextSwirl != 0) {
 			if (--swirlRepeatsUntilSpeedUp != 0) {
-				swirlFramesLeft = swirlPrimaryTable[swirlNextSwirl].swirlFrames;
-				swirlRepeatsUntilSpeedUp = swirlPrimaryTable[swirlNextSwirl].startingHDMATableID;
+				swirlFramesLeft = swirlAnimationConfig[swirlNextSwirl].swirlFrames;
+				swirlRepeatsUntilSpeedUp = swirlAnimationConfig[swirlNextSwirl].startingHDMATableID;
 				if (swirlReversed == 0) {
 					continue;
 				}
@@ -5876,9 +5889,9 @@ void useSoundStone(short arg1) {
 	prepareForImmediateDMA();
 	stopMusic();
 	loadEnemyBattleSprites();
-	decomp(&soundStoneGraphics[0], &buffer[0]);
+	decomp(&soundStoneSpriteTiles[0], &buffer[0]);
 	copyToVRAM(0, 0x2C00, 0x2000, &buffer[0]);
-	memcpy(&palettes[8][0], &soundStonePalette[0], 0xC0);
+	memcpy(&palettes[8][0], &soundStoneSpritePalettes[0], 0xC0);
 	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
 	memset(&soundStoneSpriteTilemap1, 0, SpriteMap.sizeof);

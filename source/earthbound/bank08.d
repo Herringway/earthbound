@@ -4,13 +4,17 @@ module earthbound.bank08;
 import earthbound.commondefs;
 import earthbound.text;
 
-/// $C8CDED
+/** Strings of compressed text, used by the [15/16/17 XX] CCs to conserve space
+ * Original_Address: $(DOLLAR)C8CDED
+ */
 immutable ubyte[][256][3] compressedText = [
 	convertStrings(compressedTextStrings[0]),
 	convertStrings(compressedTextStrings[1]),
 	convertStrings(compressedTextStrings[2]),
 ];
-immutable string[256][3] compressedTextStrings = [
+
+// compressed text strings, kept separately for clarity
+enum string[256][3] compressedTextStrings = [
 	[
 		"                ",
 		" in the ",

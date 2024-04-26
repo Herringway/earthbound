@@ -3,19 +3,27 @@ module earthbound.bank0A;
 
 import earthbound.commondefs;
 
-/// $CAD7A1
+/** Sets of tile data used for animated backgrounds (compressed)
+ * Original_Address: $(DOLLAR)CAD7A1
+ */
 @battleBGGraphicsSource
-immutable(ubyte[])[] battleBGGraphicsPointers;
+immutable(ubyte[])[] animatedBackgroundTiles;
 
-/// $CAD93D
+/** Sets of tilemaps used for animated backgrounds (compressed)
+ * Original_Address: $(DOLLAR)CAD93D
+ */
 @battleBGArrangementSource
-immutable(ubyte[])[] battleBGArrangementPointers;
+immutable(ubyte[])[] animatedBackgroundTilemaps;
 
-/// $CADAD9
+/** Sets of palettes used for animated backgrounds
+ * Original_Address: $(DOLLAR)CADAD9
+ */
 @battleBGPaletteSource
-immutable(ubyte[])[] battleBGPalettePointers;
+immutable(ubyte[])[] animatedBackgroundPalettes;
 
-/// $CADCA1
+/** Animated background configuration, includes graphical data, palette cycling mode, scrolling and distortion
+ * Original_Address: $(DOLLAR)CADCA1
+ */
 immutable AnimatedBackground[327] animatedBackgrounds = [
 	AnimatedBackground(0x00, 0x00, 2, PaletteShiftingStyle.unknown3, 0x01, 0x03, 0x00, 0x00, 0x1E, [0x00, 0x00, 0x00, 0x00], [0x00, 0x00, 0x00, 0x00]),
 	AnimatedBackground(0x01, 0x01, 4, PaletteShiftingStyle.unknown3, 0x02, 0x0F, 0x00, 0x00, 0x08, [0x4C, 0x00, 0x00, 0x00], [0x3C, 0x00, 0x00, 0x00]),
@@ -346,9 +354,11 @@ immutable AnimatedBackground[327] animatedBackgrounds = [
 	AnimatedBackground(0x32, 0x47, 2, PaletteShiftingStyle.unknown0, 0x00, 0x00, 0x00, 0x00, 0x00, [0x1D, 0x00, 0x00, 0x00], [0x2D, 0x00, 0x00, 0x00]),
 ];
 
-/// $CAF258
+/** Scrolling configurations for animated backgrounds, setting how fast they scroll and for how long
+ * Original_Address: $(DOLLAR)CAF258
+ */
 immutable BackgroundScrollingEntry[120] backgroundScrollingTable = [
-	BackgroundScrollingEntry(0, 0, 0, 0, 0),
+	BackgroundScrollingEntry(),
 	BackgroundScrollingEntry(180, -256, 256, 0, 0),
 	BackgroundScrollingEntry(180, 256, 256, 0, 0),
 	BackgroundScrollingEntry(180, 256, -256, 0, 0),
@@ -470,7 +480,9 @@ immutable BackgroundScrollingEntry[120] backgroundScrollingTable = [
 	BackgroundScrollingEntry(180, -128, -128, 0, 0),
 ];
 
-/// $CAF708
+/** Animated background distortions, using HDMA tables to move the background around each scanline, producing a variety of different effects
+ * Original_Address: $(DOLLAR)CAF708
+ */
 immutable BackgroundDistortionEntry[135] backgroundDistortionTable = [
 	BackgroundDistortionEntry(0, DistortionStyle.none, 0, 0, 0, 0, 0, 0, 0, 0),
 	BackgroundDistortionEntry(0, DistortionStyle.horizontalSmooth, 1024, 2048, 0, 0, 0, 0, 2, 0),

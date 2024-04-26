@@ -6,7 +6,9 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.text;
 
-/// $D55000
+/** Item data for every item in the game. Names, usability, effects, etc.
+ * Original_Address: $(DOLLAR)D55000
+ */
 immutable Item[254] itemData = [
 	Item(ebString!25("Null"), 0xFF, 2, 0x00, BattleActions.useNoEffect, 0x00, 0x00, 0x00, 0x00, "MSG_EXPL_GDS_BAT_BOR"),
 	Item(ebString!25("Franklin badge"), 0x00, 0, ItemFlags.nessCanUse | ItemFlags.paulaCanUse | ItemFlags.jeffCanUse | ItemFlags.pooCanUse, BattleActions.useNoEffect, 0x00, 0x00, 0x00, 0x00, "MSG_EXPL_GDS_FRANKLIN_BADGE"),
@@ -864,7 +866,11 @@ immutable ubyte[7][66] storeTable = [
 	]
 ];
 
-/// $D57880
+/** Destinations that can be reached through PSI teleport (including special event teleports)
+ *
+ * The teleport menu will ignore all entries past the first entry with no name (entry 0 is always skipped)
+ * Original_Address: $(DOLLAR)D57880
+ */
 immutable PSITeleportDestination[17] psiTeleportDestinationTable = [
 	PSITeleportDestination(ebString!25(""), EventFlag.none, 0, 0),
 	PSITeleportDestination(ebString!25("Onett"), EventFlag.tlptOnet, 253, 186),
@@ -885,7 +891,11 @@ immutable PSITeleportDestination[17] psiTeleportDestinationTable = [
 	PSITeleportDestination(ebString!25(""), EventFlag.none, 0, 0),
 ];
 
-/// $D57A8F
+/** Telephone contacts that may show up when making a phone call
+ *
+ * The phone menu will stop at the first entry without a name (entry 0 is always skipped)
+ * Original_Address: $(DOLLAR)D57A8F
+ */
 immutable TelephoneContact[7] telephoneContacts = [
 	TelephoneContact(ebString!25(""), EventFlag.none, null),
 	TelephoneContact(ebString!25("Dad"), EventFlag.sysPhonePapa, "MSG_PAPA"),
@@ -896,329 +906,335 @@ immutable TelephoneContact[7] telephoneContacts = [
 	TelephoneContact(ebString!25(""), EventFlag.none, null),
 ];
 
-/// $D57B68
+/** All actions that are usable in battle, with their targetting and effects
+ * Original_Address: $(DOLLAR)D57B68
+ */
 immutable BattleAction[318] battleActionTable = [
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.nothing, 0x00, "MSG_BTL_NULL", &battleActionNull4), //NO_EFFECT
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_NO_EFFECT", &battleActionNull4), //USE_NO_EFFECT
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_NO_EFFECT_ON_BTL", &battleActionNull4), //ACTION_002
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_WRONG_USER", &battleActionNull4), //ACTION_003
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_TATAKU", &battleActionBash), //BASH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_UTU", &battleActionShoot), //SHOOT
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CHECK", &battleActionSpy), //SPY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU", &battleActionPray), //PRAY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MAMORU", &battleActionNull), //GUARD
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull5), //ACTION_009
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionPSIRockinAlpha), //PSI_ROCKIN_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x0E, "MSG_BTL_PSI", &battleActionPSIRockinBeta), //PSI_ROCKIN_BETA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x28, "MSG_BTL_PSI", &battleActionPSIRockinGamma), //PSI_ROCKIN_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x62, "MSG_BTL_PSI", &battleActionPSIRockinOmega), //PSI_ROCKIN_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionPSIFireAlpha), //PSI_FIRE_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x0C, "MSG_BTL_PSI", &battleActionPSIFireBeta), //PSI_FIRE_BETA
-	BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionPSIFireGamma), //PSI_FIRE_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIFireOmega), //PSI_FIRE_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x04, "MSG_BTL_PSI", &battleActionPSIFreezeAlpha), //PSI_FREEZE_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x09, "MSG_BTL_PSI", &battleActionPSIFreezeBeta), //PSI_FREEZE_BETA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionPSIFreezeGamma), //PSI_FREEZE_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x1C, "MSG_BTL_PSI", &battleActionPSIFreezeOmega), //PSI_FREEZE_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x03, "MSG_BTL_PSI", &battleActionPSIThunderAlpha), //PSI_THUNDER_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x07, "MSG_BTL_PSI", &battleActionPSIThunderBeta), //PSI_THUNDER_BETA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x10, "MSG_BTL_PSI", &battleActionPSIThunderGamma), //PSI_THUNDER_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionPSIThunderOmega), //PSI_THUNDER_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionPSIFlashAlpha), //PSI_FLASH_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x10, "MSG_BTL_PSI", &battleActionPSIFlashBeta), //PSI_FLASH_BETA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIFlashGamma), //PSI_FLASH_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x20, "MSG_BTL_PSI", &battleActionPSIFlashOmega), //PSI_FLASH_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIStarstormAlpha), //PSI_STARSTORM_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIStarstormOmega), //PSI_STARSTORM_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x05, "MSG_BTL_PSI", &battleActionLifeupAlpha), //PSI_LIFEUP_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionLifeupBeta), //PSI_LIFEUP_BETA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0D, "MSG_BTL_PSI", &battleActionLifeupGamma), //PSI_LIFEUP_GAMMA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionLifeupOmega), //PSI_LIFEUP_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x05, "MSG_BTL_PSI", &battleActionHealingAlpha), //PSI_HEALING_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionHealingBeta), //PSI_HEALING_BETA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionHealingGamma), //PSI_HEALING_GAMMA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x26, "MSG_BTL_PSI", &battleActionHealingOmega), //PSI_HEALING_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionShieldAlpha), //PSI_SHIELD_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionShieldBeta), //PSI_SHIELD_BETA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionShieldSigma), //PSI_SHIELD_SIGMA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionShieldOmega), //PSI_SHIELD_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionPSIShieldAlpha), //PSI_PSI_SHIELD_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0E, "MSG_BTL_PSI", &battleActionPSIShieldBeta), //PSI_PSI_SHIELD_BETA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIShieldSigma), //PSI_PSI_SHIELD_SIGMA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIShieldOmega), //PSI_PSI_SHIELD_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionOffenseUpAlpha), //PSI_OFFENSE_UP_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionOffenseUpOmega), //PSI_OFFENSE_UP_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionDefenseDownAlpha), //PSI_DEFENSE_DOWN_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionDefenseDownOmega), //PSI_DEFENSE_DOWN_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionHypnosisAlpha), //PSI_HYPNOSIS_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionHypnosisAlpha), //PSI_HYPNOSIS_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x00, "MSG_BTL_PSI", &battleActionPSIMagnetAlpha), //PSI_MAGNET_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x00, "MSG_BTL_PSI", &battleActionPSIMagnetOmega), //PSI_MAGNET_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionParalysisAlpha), //PSI_PARALYSIS_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionParalysisOmega), //PSI_PARALYSIS_OMEGA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionBrainshockAlpha), //PSI_BRAINSHOCK_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionBrainshockOmega), //PSI_BRAINSHOCK_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x02, "MSG_BTL_PSI", &battleActionNull4), //PSI_TELEPORT_ALPHA
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionNull4), //PSI_TELEPORT_OMEGA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NAKAMA0", &battleActionCallForHelp), //CALL_FOR_HELP
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TANEMAKI0", &battleActionSowSeeds), //SOW_SEEDS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_EXPLOSION", &battleActionSuperBomb), //EXPLODE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_BURN", &battleActionSuperBomb), //BURST_INTO_FLAMES
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_GOODS", &battleActionSteal), //STEAL
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_TIMESTOP", &battleActionFreezeTime), //FREEZE_IN_TIME
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_MANAZASHI", &battleActionDiamondize), //EERIE_GLARE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KAIDENPA", &battleActionParalyze), //ELECTRIC_FIELD
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YORO_KAIDENPA", &battleActionSolidify), //CLUMSY_BEAM
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_GEPPU_IKI", &battleActionNauseate), //NAUSEATING_BURP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_DOKUBARI", &battleActionPoison), //POISON_STING
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_DEATH_KISS", &battleActionPoison), //KISS_OF_DEATH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_TUMETAI_IKI", &battleActionCold), //COLD_BREATH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HOUSHI", &battleActionMushroomize), //SCATTER_SPORES
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_TORITUKI", &battleActionPossess), //POSSESS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YOI_KAORI", &battleActionHypnosisAlphaCopy), //WONDERFUL_POWDER
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KABI_HOUSI", &battleActionCrying), //MOLD_SPORES
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SHIBARI", &battleActionImmobilize), //BINDING_ATTACK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_NENEKI", &battleActionImmobilize), //STICKY_MUCUS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HAEMITU", &battleActionImmobilize), //SPEW_FLY_HONEY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OSHIRI_ITO", &battleActionImmobilize), //SPIDER_SILK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KOWAI_KOTOBA", &battleActionSolidify), //SCARY_WORDS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_AYASHI_KOTO", &battleActionBrainshockAlphaCopy), //SOMETHING_MYSTERIOUS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FUUIN", &battleActionDistract), //DISRUPT_SENSES
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TACHIBA_THINK", &battleActionFeelStrange), //SIZE_UP_SITUATION
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_KOGEPPU_IKI", &battleActionCrying2), //STINKY_BREATH
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_TYPHOON", &battleActionPSIFlashGamma), //SUMMON_STORM
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_COFFEE", &battleActionPSIFireAlpha), //HOT_ESPRESSO
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_MUSIC", &battleActionHypnosisAlpha), //HAUNTING_MELODY
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_SYOUKA_EKI", &battleActionPSIFireGamma), //EXTINGUISHING_BLAST
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_KAMINARI", &battleActionPSIThunderBeta), //CRASHING_BOOM_BANG
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_FIRE", &battleActionPSIFireOmega), //FIRE_SPRAY
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_FIRE_BREATH", &battleActionPSIFireGamma), //FIRE_BREATH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_PPDOWN", &battleActionReducePP), //SPIN_SOMETHING
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_OKORU", &battleActionOffenseUpAlpha), //LOSE_TEMPER
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KITANAI_KOTOBA", &battleActionCutGuts), //SAY_SOMETHING_NASTY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SUIBUN", &battleActionReduceOffenseDefense), //VACUUM_ATTACK
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_ENERGY", &battleActionLifeupGamma), //REPLENISH_FUEL
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_DOKU_KAMITUKI", &battleActionLevel2AttackPoison), //POISONOUS_BITE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YORO_MISSILE", &battleActionSuperBomb), //FIRE_MISSILE_DIZZILY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_MULTI_ATTACK", &battleActionDoubleBash), //CONTINUOUS_ATTACK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MIGAMAE", &battleActionNull), //ON_GUARD
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FIREBALL", &battleAction350FireDamage), //SPEW_FIREBALL
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_GEKITOTU", &battleActionLevel4Attack), //INTERTWINE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KARATE", &battleActionLevel3Attack), //CRUSHING_CHOP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TOMOE", &battleActionLevel3Attack), //SUBMISSION_HOLD
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_BOUSOU", &battleActionLevel3Attack), //REV_AND_ACCELERATE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KNIFE", &battleActionLevel3Attack), //BRANDISH_KNIFE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TOSSIN", &battleActionLevel3Attack), //TEAR_INTO
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITUKI", &battleActionLevel3Attack), //BITE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_HIKKAKI", &battleActionLevel3Attack), //CLAW
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_SIPPO", &battleActionLevel3Attack), //SWING_TAIL
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_NOSHIKAKARI", &battleActionLevel3Attack), //LUNGE_FORWARD
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KAMIBUKURO", &battleActionLevel3Attack), //WIELD_SHOPPING_BAG
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KONBOU", &battleActionLevel3Attack), //SWING_CLUB
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.piercingPhysical, 0x00, "MSG_BTL_TATUMAKI", &battleActionLevel3AttackCopy), //GENERATE_TORNADO
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.piercingPhysical, 0x00, "MSG_BTL_WATER", &battleActionLevel3AttackCopy), //SPRAY_WATER_BLAST
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FUTEKI_SMILE", &battleActionNull2), //FLASH_SMILE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_LOUD_SMILE", &battleActionNull2), //LAUGH_HYSTERICALLY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NIJIRIYORU", &battleActionNull2), //EDGE_CLOSER
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI3", &battleActionNull2), //WHISPER_3
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI2", &battleActionNull2), //MURMUR_2
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI1", &battleActionNull2), //MUTTER_1
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOROBU", &battleActionNull2), //FALL_DOWN
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_BOOTTO", &battleActionNull2), //BE_ABSENTMINDED
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_JYOUKI", &battleActionNull2), //GENERATE_STEAM
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YOROYORO", &battleActionNull2), //WOBBLE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FURAFURA", &battleActionNull2), //REEL
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NITANITA", &battleActionNull2), //GRIN
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOKYUU", &battleActionNull2), //TAKE_DEEP_BREATH
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_AISATU", &battleActionNull2), //GREET
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_UNARI", &battleActionNull2), //HOWL
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KACHIKACHI", &battleActionNull2), //TICK_TOCK
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery1d4), //ACTION_135
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery50), //ACTION_136
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery200), //ACTION_137
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupAlpha), //ACTION_138
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupBeta), //ACTION_139
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionLifeupGamma), //HAND_AID
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupOmega), //ACTION_141
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionPPRecovery20), //ACTION_142
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionPPRecovery80), //ACTION_143
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery300), //ACTION_144
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionRandomStatUp1d4), //ACTION_145
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery10), //ACTION_146
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery100), //ACTION_147
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery10000), //ACTION_148
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingAlpha), //WET_TOWEL
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingBeta), //REFRESHING_HERB
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingGamma), //SECRET_HERB
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingOmega), //FULL_STATUS_HEAL
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &healPoison), //ACTION_153
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionIQUp1d4), //ACTION_154
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionGutsUp1d4), //ACTION_155
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionSpeedUp1d4), //ACTION_156
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionVitalityUp1d4), //ACTION_157
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLuckUp1d4), //ACTION_158
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ANTIPSI", &battleActionCounterPSI), //COUNTER_PSI_UNIT
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_SHIELDKILL", &battleActionShieldKiller), //SHIELD_KILLER
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HPSUCK", &battleActionHPSucker), //HP_SUCKER
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HOUTAI", &battleActionMummyWrap), //MUMMY_WRAP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET", &battleActionBottleRocket), //BOTTLE_ROCKET
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET5", &battleActionBigBottleRocket), //BIG_BOTTLE_ROCKET
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET20", &battleActionMultiBottleRocket), //MULTI_BOTTLE_ROCKET
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HOUTAI", &battleActionHandbagStrap), //HANDBAG_STRAP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionBomb), //BOMB
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSuperBomb), //SUPER_BOMB
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_NEBANEBA", &battleActionSolidify), //SLIME_GENERATOR
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_TOFU", &battleActionYogurtDispenser), //YOGURT_DISPENSER
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKEBAG", &battleActionSnake), //SNAKE_BAG
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSolidify), //DIRTY_SOCKS
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSolidify), //STAG_BEETLE
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_HABURASHI", &battleActionSolidify), //TOOTHBRUSH
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_PHARAOH", &battleActionPoison), //PHAROAHS_CURSE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_HPSUCKSP", &battleActionHungryHPSucker), //HUNGRY_HP_SUCKER
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_DRAGON", &battleActionBagOfDragonite), //BAG_OF_DRAGONITE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionInsecticideSpray), //INSECTICIDE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionXterminatorSpray), //XTERMINATOR_SPRAY
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionRustPromoter), //RUST_PROMOTER
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionRustPromoterDX), //RUST_PROMOTER_DX
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionSuddenGutsPill), //SUDDEN_GUTS_PILL
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionDefenseSpray), //DEFENSE_SPRAY
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionDefenseShower), //DEFENSE_SHOWER
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionTeleportBox), //ACTION_185
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_MONOSASHI", &battleActionNull2), //RULER
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BUNDOKI", &battleActionNull2), //PROTRACTOR
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GUM", &battleActionNull2), //BUBBLE_GUM
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionFlyHoney), //FLY_HONEY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PIGNOSE", &battleActionNull4), //PIGGY_NOSE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_KANBAN", &battleActionNull4), //FOR_SALE_SIGN
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BOOK_MUKUCHI", &battleActionNull4), //SHYNESS_BOOK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_POSTCARD", &battleActionNull4), //PICTURE_POSTCARD
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PANKUZU", &battleActionNull4), //ACTION_194
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_HIYOKO", &battleActionNull4), //CHICK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NIWATORI", &battleActionNull4), //CHICKEN
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_CASHCARD", &battleActionNull4), //ATM_CARD
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_ZOMBIE_HOIHOI", &battleActionNull4), //ZOMBIE_PAPER
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_EAGLE_EYE", &battleActionNull4), //HAWK_EYE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BICYCLE", &battleActionNull4), //BICYCLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_MABUSII_HIKARI", &battleActionPSIFlashGamma), //GLORIOUS_LIGHT
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_BIRIBIRI", &battleActionPSIThunderBeta), //ELECTRIC_SHOCK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KAFUN", &battleActionParalyze), //SCATTER_POLLEN
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_COLD_HAND", &battleActionSolidify), //REACH_WITH_ICY_HAND
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_POISON_BREATH", &battleActionPoison), //PLAY_POISON_FLUTE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HAIKI_GAS", &battleActionCrying), //SPEW_EXHAUST
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_LAUGH_HEN", &battleActionBrainshockAlphaCopy), //LAUGH_MANIACALLY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FUE", &battleActionHypnosisAlphaCopy), //BREATHE_THROUGH_FLUTE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_JUMP_TO_FACE", &battleActionSolidify), //LEAP_FORWARD_AND_SPREAD_WINGS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CHOU_ONPA", &battleActionSolidify), //BECOME_FRIENDLY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_JIHIBIKI", &battleActionSolidify), //LOUD_RUMBLE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OSAETSUKE", &battleActionImmobilize), //HUG
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CURSE_WORD", &battleActionCold), //COUGH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_JIMI", &battleActionLevel1Attack), //MISERY_ATTACK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_PENKI", &battleActionShoot), //PAINT_ATTACK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_NAGURI_KAKARI", &battleActionBash), //COME_OUT_SWINGING
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_CLAW", &battleActionBash), //SCRATCH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KUCHIBASHI", &battleActionBash), //PECK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TSUNO", &battleActionBash), //TRAMPLE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_PUNCH", &battleActionBash), //PUNCH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_PUMPKIN", &battleActionShoot), //SPIT_SEEDS
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_BEAM", &battleActionShoot), //FIRE_BEAM
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_YARI", &battleActionBash), //SPEAR_JAB
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_FUMITSUKE", &battleActionBash), //STOMP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_FURAFUUPU", &battleActionLevel3Attack), //SWING_HULA_HOOP
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TAIATARI", &battleActionLevel3Attack), //CHARGE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_SKATEBOARD", &battleActionLevel3Attack), //SHRED_ON_SKATEBOARD
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITSUKI_DIAMOND", &battleActionLevel2AttackDiamondize), //DIAMONDIZING_BITE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KUDAMAKI", &battleActionCutGuts), //GRUMBLE_ABOUT_YOUTH
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SEKKYOU", &battleActionCutGuts), //LECTURE
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SHIKARITSUKE", &battleActionCutGuts), //SCOWL
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_BAD_SMELL", &battleActionReduceOffense), //VENT_ODOR
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_LOUD_VOICE", &battleActionReduceOffenseDefense), //SHOUT
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OTAKEBI", &battleActionReduceOffenseDefense), //WAR_CRY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FAKE_DEAD", &battleActionNull2), //KNIT_BROW
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN", &battleActionNull2), //BE_CLUMSY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HOUSHI", &battleActionPoison), //SCATTER_SPORES_2
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITUKI", &battleActionBash), //BITING_ATTACK
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_NULL", &battleActionSwitchWeapons), //EQUIP_AND_ATTACK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionSwitchArmor), //EQUIP_ARMOUR
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_NEBIE_BEAM", &battleActionCold), //NIGHT_TIME_STUFFINESS_BEAM
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_MAKITSUKI", &battleActionImmobilize), //COIL_AROUND
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TONZURA_BREAK_IN", &battleActionClumsyRobotDeath), //RUNAWAY_FIVE_EVENT
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POO_BREAK_IN", &battleActionMasterBarfDeath), //MASTER_BARF_DEFEAT
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionEnemyExtend), //ENEMY_EXTENDER
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_NULL", &battleActionSwitchWeapons), //ACTION_246
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_WARP_NEAR", &unknownC290C6), //NEUTRALIZER
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_NEUTRALIZE_SPARKLE", &unknownC290C6), //EMIT_PALE_GREEN_LIGHT
-	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &eatFood), //GENERIC_FOOD
-	BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_EAT_ALL", &eatFood), //GENERIC_FOOD_PARTY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_HOME_STAT", &battleActionNull11), //ACTION_251
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SHIBIRE_STAT", &battleActionNull7), //ACTION_252
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NEMURI_STAT", &battleActionNull10), //ACTION_253
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SHIBARA_STAT", &battleActionNull6), //ACTION_254
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOORI_STAT", &battleActionNull8), //ACTION_255
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FUUIN_STAT", &battleActionNull9), //ACTION_256
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_HAEMITU_KUU", &battleActionNull2), //WOLFED_DOWN_FLY_HONEY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SOUND_STONE", &battleActionNull4), //SOUND_STONE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_ESCAPE_MOUSE", &battleActionNull4), //EXIT_MOUSE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_A", &battleActionNull2), //BE_POKEY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_B", &battleActionNull2), //ACTION_261
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_C", &battleActionNull2), //ACTION_262
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_D", &battleActionNull2), //ACTION_263
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MYDOG_HOWLING", &battleActionNull2), //BARK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_PICKEY_TALK", &battleActionNull2), //CHANT_SPELL
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TONY_TALK", &battleActionNull2), //NO_EFFECT_TONY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_BALMON_TALK", &battleActionNull2), //SCRATCH_HEAD
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKE", &battleActionSnake), //SNAKE
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKE", &battleActionPoison), //VIPER
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_HIERO", &battleActionNull4), //HIEROGLYPH_COPY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_TOWN_MAP", &battleActionNull4), //TOWN_MAP
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionNull4), //VIDEO_RELAXANT
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_BAD_SMELL_GAS", &battleActionReduceOffense), //DISCHARGE_STINKY_GAS
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIThunderBeta), //INCOMPREHENSIBLE_ATTACK_THUNDER_BETA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MECHPOKEY_1_TALK", &battleActionPokeySpeech), //POKEY_SPEECH_1
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull4), //POKEY_ATTACK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull12), //GIYGAS_ATTACK
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionPokeySpeech2), //POKEY_SPEECH_2
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_PLAYER_FLEE", &battleActionNull4), //RUN_AWAY
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_METAMORPHOSE", &battleActionMirror), //MIRROR
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GREORE_MACHINE", &battleActionNull4), //SUPORMA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NOT_SO_GOOD", &battleActionNull4), //INSIGNIFICANT_ITEM
-	BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_MONKEY_MIND", &battleActionSolidify), //MONKEYS_LOVE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GUMIDORIAN", &battleActionNull4), //TENDAKRAUT
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_DRY_MEAT_SPECIAL", &battleActionNull4), //KING_BANANA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PHONE_RECEIVER", &battleActionNull4), //RECEIVER_PHONE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_MAMA", &battleActionNull4), //LETTER_FROM_MOM
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_TONY", &battleActionNull4), //LETTER_FROM_TONY
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_CHILD", &battleActionNull4), //LETTER_FROM_KIDS
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TO_DIAMOND_DOG", &battleActionRainbowOfColours), //GIVE_OFF_RAINBOW
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_1", &battleActionGiygasPrayer1), //FINAL_PRAYER_1
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_2", &battleActionGiygasPrayer2), //FINAL_PRAYER_2
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_3", &battleActionGiygasPrayer3), //FINAL_PRAYER_3
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_4", &battleActionGiygasPrayer4), //FINAL_PRAYER_4
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_5", &battleActionGiygasPrayer5), //FINAL_PRAYER_5
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_6", &battleActionGiygasPrayer6), //FINAL_PRAYER_6
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_7", &battleActionGiygasPrayer7), //FINAL_PRAYER_7
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_8", &battleActionGiygasPrayer8), //FINAL_PRAYER_8
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_9", &battleActionGiygasPrayer9), //FINAL_PRAYER_9
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIFlashGamma), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIThunderBeta), //INCOMPREHENSIBLE_ATTACK_THUNDER_BETA_VULNERABLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_VULNERABLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIFlashGamma), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA_VULNERABLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIThunderBeta), //INCOMPREHENSIBLE_ATTACK_THUNDER_BETA_UNSTABLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_UNSTABLE
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIFlashGamma), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA_UNSTABLE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG", &battleActionNull4), //RANDOM_GIYGAS_QUOTE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG_3", &battleActionNull4), //RANDOM_GIYGAS_QUOTE_TIMES_3
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BAZOOKA", &battleActionBomb), //BAZOOKA
-	BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BAZOOKA", &battleActionSuperBomb), //HEAVY_BAZOOKA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG_TALK_A", &battleActionNull4), //SAY_PLAYER_NAME
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_LIFEUP", &battleActionNull4), //EAT_BOLOGNA_SANDWICH
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_1", &battleActionNull4), //LOSE_GEAR_AND_BOLTS
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_2", &battleActionNull4), //REAPPLY_BANDAGE
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_3", &battleActionNull4), //CLEAN_AREA
-	BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_4", &battleActionNull4), //WANT_BATTERY
+	BattleActions.noEffect: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.nothing, 0x00, "MSG_BTL_NULL", &battleActionNull4),
+	BattleActions.useNoEffect: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_NO_EFFECT", &battleActionNull4),
+	BattleActions.action002: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_NO_EFFECT_ON_BTL", &battleActionNull4),
+	BattleActions.action003: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GOODS_WRONG_USER", &battleActionNull4),
+	BattleActions.bash: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_TATAKU", &battleActionBash),
+	BattleActions.shoot: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_UTU", &battleActionShoot),
+	BattleActions.spy: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CHECK", &battleActionSpy),
+	BattleActions.pray: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU", &battleActionPray),
+	BattleActions.guard: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MAMORU", &battleActionNull),
+	BattleActions.action009: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull5),
+	BattleActions.psiRockinAlpha: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionPSIRockinAlpha),
+	BattleActions.psiRockinBeta: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x0E, "MSG_BTL_PSI", &battleActionPSIRockinBeta),
+	BattleActions.psiRockinGamma: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x28, "MSG_BTL_PSI", &battleActionPSIRockinGamma),
+	BattleActions.psiRockinOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x62, "MSG_BTL_PSI", &battleActionPSIRockinOmega),
+	BattleActions.psiFireAlpha: BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionPSIFireAlpha),
+	BattleActions.psiFireBeta: BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x0C, "MSG_BTL_PSI", &battleActionPSIFireBeta),
+	BattleActions.psiFireGamma: BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionPSIFireGamma),
+	BattleActions.psiFireOmega: BattleAction(ActionDirection.enemy, ActionTarget.row, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIFireOmega),
+	BattleActions.psiFreezeAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x04, "MSG_BTL_PSI", &battleActionPSIFreezeAlpha),
+	BattleActions.psiFreezeBeta: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x09, "MSG_BTL_PSI", &battleActionPSIFreezeBeta),
+	BattleActions.psiFreezeGamma: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionPSIFreezeGamma),
+	BattleActions.psiFreezeOmega: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x1C, "MSG_BTL_PSI", &battleActionPSIFreezeOmega),
+	BattleActions.psiThunderAlpha: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x03, "MSG_BTL_PSI", &battleActionPSIThunderAlpha),
+	BattleActions.psiThunderBeta: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x07, "MSG_BTL_PSI", &battleActionPSIThunderBeta),
+	BattleActions.psiThunderGamma: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x10, "MSG_BTL_PSI", &battleActionPSIThunderGamma),
+	BattleActions.psiThunderOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionPSIThunderOmega),
+	BattleActions.psiFlashAlpha: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionPSIFlashAlpha),
+	BattleActions.psiFlashBeta: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x10, "MSG_BTL_PSI", &battleActionPSIFlashBeta),
+	BattleActions.psiFlashGamma: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIFlashGamma),
+	BattleActions.psiFlashOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x20, "MSG_BTL_PSI", &battleActionPSIFlashOmega),
+	BattleActions.psiStarstormAlpha: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIStarstormAlpha),
+	BattleActions.psiStarstormBeta: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIStarstormOmega),
+	BattleActions.psiLifeupAlpha: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x05, "MSG_BTL_PSI", &battleActionLifeupAlpha),
+	BattleActions.psiLifeupBeta: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionLifeupBeta),
+	BattleActions.psiLifeupGamma: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0D, "MSG_BTL_PSI", &battleActionLifeupGamma),
+	BattleActions.psiLifeupOmega: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionLifeupOmega),
+	BattleActions.psiHealingAlpha: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x05, "MSG_BTL_PSI", &battleActionHealingAlpha),
+	BattleActions.psiHealingBeta: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionHealingBeta),
+	BattleActions.psiHealingGamma: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x14, "MSG_BTL_PSI", &battleActionHealingGamma),
+	BattleActions.psiHealingOmega: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x26, "MSG_BTL_PSI", &battleActionHealingOmega),
+	BattleActions.psiShieldAlpha: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionShieldAlpha),
+	BattleActions.psiShieldBeta: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionShieldBeta),
+	BattleActions.psiShieldSigma: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionShieldSigma),
+	BattleActions.psiShieldOmega: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionShieldOmega),
+	BattleActions.psiPSIShieldAlpha: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionPSIShieldAlpha),
+	BattleActions.psiPSIShieldBeta: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0E, "MSG_BTL_PSI", &battleActionPSIShieldBeta),
+	BattleActions.psiPSIShieldSigma: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIShieldSigma),
+	BattleActions.psiPSIShieldOmega: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIShieldOmega),
+	BattleActions.psiOffenseUpAlpha: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionOffenseUpAlpha),
+	BattleActions.psiOffenseUpOmega: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionOffenseUpOmega),
+	BattleActions.psiDefenseDownAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionDefenseDownAlpha),
+	BattleActions.psiDefenseDownOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionDefenseDownOmega),
+	BattleActions.psiHypnosisAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x06, "MSG_BTL_PSI", &battleActionHypnosisAlpha),
+	BattleActions.psiHypnosisOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x12, "MSG_BTL_PSI", &battleActionHypnosisAlpha),
+	BattleActions.psiMagnetAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x00, "MSG_BTL_PSI", &battleActionPSIMagnetAlpha),
+	BattleActions.psiMagnetOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x00, "MSG_BTL_PSI", &battleActionPSIMagnetOmega),
+	BattleActions.psiParalysisAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionParalysisAlpha),
+	BattleActions.psiParalysisOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionParalysisOmega),
+	BattleActions.psiBrainshockAlpha: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.psi, 0x0A, "MSG_BTL_PSI", &battleActionBrainshockAlpha),
+	BattleActions.psiBrainshockOmega: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x1E, "MSG_BTL_PSI", &battleActionBrainshockOmega),
+	BattleActions.psiTeleportAlpha: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x02, "MSG_BTL_PSI", &battleActionNull4),
+	BattleActions.psiTeleportOmega: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionNull4),
+	BattleActions.callForHelp: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NAKAMA0", &battleActionCallForHelp),
+	BattleActions.sowSeeds: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TANEMAKI0", &battleActionSowSeeds),
+	BattleActions.explode: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_EXPLOSION", &battleActionSuperBomb),
+	BattleActions.burstIntoFlames: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_BURN", &battleActionSuperBomb),
+	BattleActions.steal: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_GOODS", &battleActionSteal),
+	BattleActions.freezeInTime: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_TIMESTOP", &battleActionFreezeTime),
+	BattleActions.eerieGlare: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_MANAZASHI", &battleActionDiamondize),
+	BattleActions.electricField: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KAIDENPA", &battleActionParalyze),
+	BattleActions.clumsyBeam: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YORO_KAIDENPA", &battleActionSolidify),
+	BattleActions.nauseatingBurp: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_GEPPU_IKI", &battleActionNauseate),
+	BattleActions.poisonSting: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_DOKUBARI", &battleActionPoison),
+	BattleActions.kissOfDeath: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_DEATH_KISS", &battleActionPoison),
+	BattleActions.coldBreath: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_TUMETAI_IKI", &battleActionCold),
+	BattleActions.scatterSpores: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HOUSHI", &battleActionMushroomize),
+	BattleActions.possess: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_TORITUKI", &battleActionPossess),
+	BattleActions.wonderfulPowder: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YOI_KAORI", &battleActionHypnosisAlphaCopy),
+	BattleActions.moldSpores: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KABI_HOUSI", &battleActionCrying),
+	BattleActions.bindingAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SHIBARI", &battleActionImmobilize),
+	BattleActions.stickyMucus: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_NENEKI", &battleActionImmobilize),
+	BattleActions.spewFlyHoney: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HAEMITU", &battleActionImmobilize),
+	BattleActions.spiderSilk: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OSHIRI_ITO", &battleActionImmobilize),
+	BattleActions.scaryWords: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KOWAI_KOTOBA", &battleActionSolidify),
+	BattleActions.somethingMysterious: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_AYASHI_KOTO", &battleActionBrainshockAlphaCopy),
+	BattleActions.disruptSenses: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FUUIN", &battleActionDistract),
+	BattleActions.sizeUpSituation: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TACHIBA_THINK", &battleActionFeelStrange),
+	BattleActions.stinkyBreath: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_KOGEPPU_IKI", &battleActionCrying2),
+	BattleActions.summonStorm: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_TYPHOON", &battleActionPSIFlashGamma),
+	BattleActions.hotEspresso: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_COFFEE", &battleActionPSIFireAlpha),
+	BattleActions.hauntingMelody: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_MUSIC", &battleActionHypnosisAlpha),
+	BattleActions.extinguishingBlast: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_SYOUKA_EKI", &battleActionPSIFireGamma),
+	BattleActions.crashingBoomBang: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_KAMINARI", &battleActionPSIThunderBeta),
+	BattleActions.fireSpray: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_FIRE", &battleActionPSIFireOmega),
+	BattleActions.fireBreath: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_FIRE_BREATH", &battleActionPSIFireGamma),
+	BattleActions.spinSomething: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_PPDOWN", &battleActionReducePP),
+	BattleActions.loseTemper: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_OKORU", &battleActionOffenseUpAlpha),
+	BattleActions.saySomethingNasty: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KITANAI_KOTOBA", &battleActionCutGuts),
+	BattleActions.vacuumAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SUIBUN", &battleActionReduceOffenseDefense),
+	BattleActions.replenishFuel: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_ENERGY", &battleActionLifeupGamma),
+	BattleActions.poisonousBite: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_DOKU_KAMITUKI", &battleActionLevel2AttackPoison),
+	BattleActions.fireMissileDizzily: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_YORO_MISSILE", &battleActionSuperBomb),
+	BattleActions.continuousAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_MULTI_ATTACK", &battleActionDoubleBash),
+	BattleActions.onGuard: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MIGAMAE", &battleActionNull),
+	BattleActions.spewFireball: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FIREBALL", &battleAction350FireDamage),
+	BattleActions.intertwine: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_GEKITOTU", &battleActionLevel4Attack),
+	BattleActions.crushingChop: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KARATE", &battleActionLevel3Attack),
+	BattleActions.submissionHold: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TOMOE", &battleActionLevel3Attack),
+	BattleActions.revAndAccelerate: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_BOUSOU", &battleActionLevel3Attack),
+	BattleActions.brandishKnife: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KNIFE", &battleActionLevel3Attack),
+	BattleActions.tearInto: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TOSSIN", &battleActionLevel3Attack),
+	BattleActions.bite: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITUKI", &battleActionLevel3Attack),
+	BattleActions.claw: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_HIKKAKI", &battleActionLevel3Attack),
+	BattleActions.swingTail: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_SIPPO", &battleActionLevel3Attack),
+	BattleActions.lungeForward: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_NOSHIKAKARI", &battleActionLevel3Attack),
+	BattleActions.wieldShoppingBag: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KAMIBUKURO", &battleActionLevel3Attack),
+	BattleActions.swingClub: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_KONBOU", &battleActionLevel3Attack),
+	BattleActions.generateTornado: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.piercingPhysical, 0x00, "MSG_BTL_TATUMAKI", &battleActionLevel3AttackCopy),
+	BattleActions.sprayWaterBlast: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.piercingPhysical, 0x00, "MSG_BTL_WATER", &battleActionLevel3AttackCopy),
+	BattleActions.flashSmile: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FUTEKI_SMILE", &battleActionNull2),
+	BattleActions.laughHysterically: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_LOUD_SMILE", &battleActionNull2),
+	BattleActions.edgeCloser: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NIJIRIYORU", &battleActionNull2),
+	BattleActions.whisper3: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI3", &battleActionNull2),
+	BattleActions.murmur2: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI2", &battleActionNull2),
+	BattleActions.mutter1: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TUBUYAKI1", &battleActionNull2),
+	BattleActions.fallDown: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOROBU", &battleActionNull2),
+	BattleActions.beAbsentminded: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_BOOTTO", &battleActionNull2),
+	BattleActions.generateSteam: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_JYOUKI", &battleActionNull2),
+	BattleActions.wobble: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YOROYORO", &battleActionNull2),
+	BattleActions.reel: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FURAFURA", &battleActionNull2),
+	BattleActions.grin: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NITANITA", &battleActionNull2),
+	BattleActions.takeDeepBreath: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOKYUU", &battleActionNull2),
+	BattleActions.greet: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_AISATU", &battleActionNull2),
+	BattleActions.howl: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_UNARI", &battleActionNull2),
+	BattleActions.tickTock: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KACHIKACHI", &battleActionNull2),
+	BattleActions.action135: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery1d4),
+	BattleActions.action136: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery50),
+	BattleActions.action137: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery200),
+	BattleActions.action138: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupAlpha),
+	BattleActions.action139: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupBeta),
+	BattleActions.handAid: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionLifeupGamma),
+	BattleActions.action141: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLifeupOmega),
+	BattleActions.action142: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionPPRecovery20),
+	BattleActions.action143: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionPPRecovery80),
+	BattleActions.action144: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery300),
+	BattleActions.action145: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionRandomStatUp1d4),
+	BattleActions.action146: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery10),
+	BattleActions.action147: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery100),
+	BattleActions.action148: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionHPRecovery10000),
+	BattleActions.wetTowel: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingAlpha),
+	BattleActions.refreshingHerb: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingBeta),
+	BattleActions.secretHerb: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingGamma),
+	BattleActions.fullStatusHeal: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionHealingOmega),
+	BattleActions.action153: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &healPoison),
+	BattleActions.action154: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionIQUp1d4),
+	BattleActions.action155: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionGutsUp1d4),
+	BattleActions.action156: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionSpeedUp1d4),
+	BattleActions.action157: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionVitalityUp1d4),
+	BattleActions.action158: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &battleActionLuckUp1d4),
+	BattleActions.counterPSIUnit: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ANTIPSI", &battleActionCounterPSI),
+	BattleActions.shieldKiller: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_SHIELDKILL", &battleActionShieldKiller),
+	BattleActions.hpSucker: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HPSUCK", &battleActionHPSucker),
+	BattleActions.mummyWrap: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HOUTAI", &battleActionMummyWrap),
+	BattleActions.bottleRocket: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET", &battleActionBottleRocket),
+	BattleActions.bigBottleRocket: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET5", &battleActionBigBottleRocket),
+	BattleActions.multiBottleRocket: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_ROCKET20", &battleActionMultiBottleRocket),
+	BattleActions.handbagStrap: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_HOUTAI", &battleActionHandbagStrap),
+	BattleActions.bomb: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionBomb),
+	BattleActions.superBomb: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSuperBomb),
+	BattleActions.slimeGenerator: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_NEBANEBA", &battleActionSolidify),
+	BattleActions.yogurtDispenser: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_TOFU", &battleActionYogurtDispenser),
+	BattleActions.snakeBag: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKEBAG", &battleActionSnake),
+	BattleActions.dirtySocks: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSolidify),
+	BattleActions.stagBeetle: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_BOMB", &battleActionSolidify),
+	BattleActions.toothbrush: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_HABURASHI", &battleActionSolidify),
+	BattleActions.pharoahsCurse: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_PHARAOH", &battleActionPoison),
+	BattleActions.hungryHPSucker: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_HPSUCKSP", &battleActionHungryHPSucker),
+	BattleActions.bagOfDragonite: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_DRAGON", &battleActionBagOfDragonite),
+	BattleActions.insecticide: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionInsecticideSpray),
+	BattleActions.xterminatorSpray: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionXterminatorSpray),
+	BattleActions.rustPromoter: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionRustPromoter),
+	BattleActions.rustPromoterDX: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_SPRAY", &battleActionRustPromoterDX),
+	BattleActions.suddenGutsPill: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionSuddenGutsPill),
+	BattleActions.defenseSpray: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionDefenseSpray),
+	BattleActions.defenseShower: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionDefenseShower),
+	BattleActions.action185: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_WARP_NEAR", &battleActionTeleportBox),
+	BattleActions.ruler: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_MONOSASHI", &battleActionNull2),
+	BattleActions.protractor: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BUNDOKI", &battleActionNull2),
+	BattleActions.bubbleGum: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GUM", &battleActionNull2),
+	BattleActions.flyHoney: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionFlyHoney),
+	BattleActions.piggyNose: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PIGNOSE", &battleActionNull4),
+	BattleActions.forSaleSign: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_KANBAN", &battleActionNull4),
+	BattleActions.shynessBook: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BOOK_MUKUCHI", &battleActionNull4),
+	BattleActions.picturePostcard: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_POSTCARD", &battleActionNull4),
+	BattleActions.action194: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PANKUZU", &battleActionNull4),
+	BattleActions.chick: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_HIYOKO", &battleActionNull4),
+	BattleActions.chicken: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NIWATORI", &battleActionNull4),
+	BattleActions.atmCard: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_CASHCARD", &battleActionNull4),
+	BattleActions.zombiePaper: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_ZOMBIE_HOIHOI", &battleActionNull4),
+	BattleActions.hawkEye: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_EAGLE_EYE", &battleActionNull4),
+	BattleActions.bicycle: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_BICYCLE", &battleActionNull4),
+	BattleActions.gloriousLight: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_MABUSII_HIKARI", &battleActionPSIFlashGamma),
+	BattleActions.electricShock: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_BIRIBIRI", &battleActionPSIThunderBeta),
+	BattleActions.scatterPollen: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KAFUN", &battleActionParalyze),
+	BattleActions.reachWithIcyHand: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_COLD_HAND", &battleActionSolidify),
+	BattleActions.playPoisonFlute: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_POISON_BREATH", &battleActionPoison),
+	BattleActions.spewExhaust: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HAIKI_GAS", &battleActionCrying),
+	BattleActions.laughManiacally: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_LAUGH_HEN", &battleActionBrainshockAlphaCopy),
+	BattleActions.breatheThroughFlute: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_FUE", &battleActionHypnosisAlphaCopy),
+	BattleActions.leapForwardAndSpreadWings: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_JUMP_TO_FACE", &battleActionSolidify),
+	BattleActions.becomeFriendly: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CHOU_ONPA", &battleActionSolidify),
+	BattleActions.loudRumble: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_JIHIBIKI", &battleActionSolidify),
+	BattleActions.hug: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OSAETSUKE", &battleActionImmobilize),
+	BattleActions.cough: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_CURSE_WORD", &battleActionCold),
+	BattleActions.miseryAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_JIMI", &battleActionLevel1Attack),
+	BattleActions.paintAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_PENKI", &battleActionShoot),
+	BattleActions.comeOutSwinging: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_NAGURI_KAKARI", &battleActionBash),
+	BattleActions.scratch: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_CLAW", &battleActionBash),
+	BattleActions.peck: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KUCHIBASHI", &battleActionBash),
+	BattleActions.trample: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TSUNO", &battleActionBash),
+	BattleActions.punch: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_PUNCH", &battleActionBash),
+	BattleActions.spitSeeds: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_PUMPKIN", &battleActionShoot),
+	BattleActions.fireBeam: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_BEAM", &battleActionShoot),
+	BattleActions.spearJab: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_YARI", &battleActionBash),
+	BattleActions.stomp: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_FUMITSUKE", &battleActionBash),
+	BattleActions.swingHulaHoop: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_FURAFUUPU", &battleActionLevel3Attack),
+	BattleActions.charge: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_TAIATARI", &battleActionLevel3Attack),
+	BattleActions.shredOnSkateboard: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_SKATEBOARD", &battleActionLevel3Attack),
+	BattleActions.diamondizingBite: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITSUKI_DIAMOND", &battleActionLevel2AttackDiamondize),
+	BattleActions.grumbleAboutYouth: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_KUDAMAKI", &battleActionCutGuts),
+	BattleActions.lecture: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SEKKYOU", &battleActionCutGuts),
+	BattleActions.scowl: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_SHIKARITSUKE", &battleActionCutGuts),
+	BattleActions.ventOdor: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_BAD_SMELL", &battleActionReduceOffense),
+	BattleActions.shout: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_LOUD_VOICE", &battleActionReduceOffenseDefense),
+	BattleActions.warCry: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_OTAKEBI", &battleActionReduceOffenseDefense),
+	BattleActions.knitBrow: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FAKE_DEAD", &battleActionNull2),
+	BattleActions.beClumsy: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN", &battleActionNull2),
+	BattleActions.scatterSpores2: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_HOUSHI", &battleActionPoison),
+	BattleActions.bitingAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_KAMITUKI", &battleActionBash),
+	BattleActions.equipAndAttack: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.physical, 0x00, "MSG_BTL_NULL", &battleActionSwitchWeapons),
+	BattleActions.equipArmour: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionSwitchArmor),
+	BattleActions.nightTimeStuffinessBeam: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_NEBIE_BEAM", &battleActionCold),
+	BattleActions.coilAround: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_MAKITSUKI", &battleActionImmobilize),
+	BattleActions.runawayFiveEvent: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TONZURA_BREAK_IN", &battleActionClumsyRobotDeath),
+	BattleActions.masterBarfDefeat: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POO_BREAK_IN", &battleActionMasterBarfDeath),
+	BattleActions.enemyExtender: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionEnemyExtend),
+	BattleActions.action246: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.piercingPhysical, 0x00, "MSG_BTL_NULL", &battleActionSwitchWeapons),
+	BattleActions.neutralizer: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_WARP_NEAR", &unknownC290C6),
+	BattleActions.emitPaleGreenLight: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_NEUTRALIZE_SPARKLE", &unknownC290C6),
+	BattleActions.genericFood: BattleAction(ActionDirection.party, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_EAT_ONE", &eatFood),
+	BattleActions.genericFoodParty: BattleAction(ActionDirection.party, ActionTarget.all, ActionType.item, 0x00, "MSG_BTL_EAT_ALL", &eatFood),
+	BattleActions.action251: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_HOME_STAT", &battleActionNull11),
+	BattleActions.action252: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SHIBIRE_STAT", &battleActionNull7),
+	BattleActions.action253: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NEMURI_STAT", &battleActionNull10),
+	BattleActions.action254: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SHIBARA_STAT", &battleActionNull6),
+	BattleActions.action255: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_KOORI_STAT", &battleActionNull8),
+	BattleActions.action256: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_FUUIN_STAT", &battleActionNull9),
+	BattleActions.wolfedDownFlyHoney: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_HAEMITU_KUU", &battleActionNull2),
+	BattleActions.soundStone: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_SOUND_STONE", &battleActionNull4),
+	BattleActions.exitMouse: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_ESCAPE_MOUSE", &battleActionNull4),
+	BattleActions.bePokey: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_A", &battleActionNull2),
+	BattleActions.action261: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_B", &battleActionNull2),
+	BattleActions.action262: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_C", &battleActionNull2),
+	BattleActions.action263: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_POKEY_TALK_D", &battleActionNull2),
+	BattleActions.bark: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MYDOG_HOWLING", &battleActionNull2),
+	BattleActions.chantSpell: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_PICKEY_TALK", &battleActionNull2),
+	BattleActions.noEffectTony: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TONY_TALK", &battleActionNull2),
+	BattleActions.scratchHead: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_BALMON_TALK", &battleActionNull2),
+	BattleActions.snake: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKE", &battleActionSnake),
+	BattleActions.viper: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_SNAKE", &battleActionPoison),
+	BattleActions.hieroglyphCopy: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_HIERO", &battleActionNull4),
+	BattleActions.townMap: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_TOWN_MAP", &battleActionNull4),
+	BattleActions.videoRelaxant: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NULL", &battleActionNull4),
+	BattleActions.dischargeStinkyGas: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_BAD_SMELL_GAS", &battleActionReduceOffense),
+	BattleActions.incomprehensibleAttackThunderBeta: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIThunderBeta),
+	BattleActions.pokeySpeech1: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_MECHPOKEY_1_TALK", &battleActionPokeySpeech),
+	BattleActions.pokeyAttack: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull4),
+	BattleActions.giygasAttack: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionNull12),
+	BattleActions.pokeySpeech2: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_NULL", &battleActionPokeySpeech2),
+	BattleActions.runAway: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_PLAYER_FLEE", &battleActionNull4),
+	BattleActions.mirror: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.other, 0x00, "MSG_BTL_METAMORPHOSE", &battleActionMirror),
+	BattleActions.suporma: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GREORE_MACHINE", &battleActionNull4),
+	BattleActions.insignificantItem: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_NOT_SO_GOOD", &battleActionNull4),
+	BattleActions.monkeysLove: BattleAction(ActionDirection.enemy, ActionTarget.random, ActionType.item, 0x00, "MSG_BTL_MONKEY_MIND", &battleActionSolidify),
+	BattleActions.tendakraut: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_GUMIDORIAN", &battleActionNull4),
+	BattleActions.kingBanana: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_DRY_MEAT_SPECIAL", &battleActionNull4),
+	BattleActions.receiverPhone: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_PHONE_RECEIVER", &battleActionNull4),
+	BattleActions.letterFromMom: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_MAMA", &battleActionNull4),
+	BattleActions.letterFromTony: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_TONY", &battleActionNull4),
+	BattleActions.letterFromKids: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.item, 0x00, "MSG_BTL_LETTER_CHILD", &battleActionNull4),
+	BattleActions.giveOffRainbow: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_TO_DIAMOND_DOG", &battleActionRainbowOfColours),
+	BattleActions.finalPrayer1: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_1", &battleActionGiygasPrayer1),
+	BattleActions.finalPrayer2: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_2", &battleActionGiygasPrayer2),
+	BattleActions.finalPrayer3: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_3", &battleActionGiygasPrayer3),
+	BattleActions.finalPrayer4: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_4", &battleActionGiygasPrayer4),
+	BattleActions.finalPrayer5: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_5", &battleActionGiygasPrayer5),
+	BattleActions.finalPrayer6: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_6", &battleActionGiygasPrayer6),
+	BattleActions.finalPrayer7: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_7", &battleActionGiygasPrayer7),
+	BattleActions.finalPrayer8: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_8", &battleActionGiygasPrayer8),
+	BattleActions.finalPrayer9: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_INORU_FROM_PAULA_9", &battleActionGiygasPrayer9),
+	BattleActions.incomprehensibleAttackFreezeAlpha: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIFreezeAlpha),
+	BattleActions.incomprehensibleAttackFlashGamma: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_B", &battleActionPSIFlashGamma),
+	BattleActions.incomprehensibleAttackThunderBetaVulnerable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIThunderBeta),
+	BattleActions.incomprehensibleAttackFreezeAlphaVulnerable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIFreezeAlpha),
+	BattleActions.incomprehensibleAttackFlashGammaVulnerable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING", &battleActionPSIFlashGamma),
+	BattleActions.incomprehensibleAttackThunderBetaUnstable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIThunderBeta),
+	BattleActions.incomprehensibleAttackFreezeAlphaUnstable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIFreezeAlpha),
+	BattleActions.incomprehensibleAttackFlashGammaUnstable: BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.other, 0x00, "MSG_BTL_LIGHTNING_C", &battleActionPSIFlashGamma),
+	BattleActions.randomGiygasQuote: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG", &battleActionNull4),
+	BattleActions.randomGiygasQuoteTimes3: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG_3", &battleActionNull4),
+	BattleActions.bazooka: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BAZOOKA", &battleActionBomb),
+	BattleActions.heavyBazooka: BattleAction(ActionDirection.enemy, ActionTarget.one, ActionType.item, 0x00, "MSG_BTL_BAZOOKA", &battleActionSuperBomb),
+	BattleActions.sayPlayerName: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_GYIYYIG_TALK_A", &battleActionNull4),
+	BattleActions.eatBolognaSandwich: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_LIFEUP", &battleActionNull4),
+	BattleActions.loseGearAndBolts: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_1", &battleActionNull4),
+	BattleActions.reapplyBandage: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_2", &battleActionNull4),
+	BattleActions.cleanArea: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_3", &battleActionNull4),
+	BattleActions.wantBattery: BattleAction(ActionDirection.party, ActionTarget.none, ActionType.other, 0x00, "MSG_BTL_YUDAN_4", &battleActionNull4),
 ];
 
-/// $D58A50
+/** All PSI abilities usable through the PSI menu (both in and out of battle)
+ *
+ * The PSI menu will not display any entries beyond the first entry without a name (entry 0 is always skipped)
+ * Original_Address: $(DOLLAR)D58A50
+ */
 immutable PSIAbility[54] psiAbilityTable = [
 	PSIAbility(0x00, 0x00, 0x00, 0x00, BattleActions.noEffect, 0x00, 0x00, 0x00, 0x00, 0x00, null),
 	PSIAbility(PSIID.rockin, PSILevel.alpha, PSICategory.offense, PSIUsability.battle, BattleActions.psiRockinAlpha, 0x08, 0x00, 0x00, 0x09, 0x00, "MSG_EXPL_PSI_HISSATSU_ALFA"),
@@ -1276,7 +1292,11 @@ immutable PSIAbility[54] psiAbilityTable = [
 	PSIAbility(0x00, 0x00, 0x00, 0x00, BattleActions.noEffect, 0x00, 0x00, 0x00, 0x00, 0x00, null),
 ];
 
-/// $D58D7A
+/** Names used for the PSI abilities in psiAbilityTable
+ *
+ * The first entry is not used and will automatically be replaced with the favourite thing
+ * Original_Address: $(DOLLAR)D58D7A
+ */
 immutable ubyte[25][17] psiNameTable = [
 	ebString!25("PSI(????)"),
 	ebString!25("PSI Fire "),
@@ -1297,30 +1317,36 @@ immutable ubyte[25][17] psiNameTable = [
 	ebString!25("Teleport "),
 ];
 
-/// $D58F23
+/** AI parameters for party members. Player-controlled characters have no AI nor special targetting rules
+ *
+ * This does not actually need to be null-terminated
+ * Original_Address: $(DOLLAR)D58F23
+ */
 immutable NPCAI[19] npcAITable = [
-	NPCAI(0, 0),
-	NPCAI(0, 0),
-	NPCAI(0, 0),
-	NPCAI(0, 0),
-	NPCAI(0, 0),
-	NPCAI(NPCTargettability.untargettable, EnemyID.pokey),
-	NPCAI(NPCTargettability.untargettable, EnemyID.picky),
-	NPCAI(NPCTargettability.untargettable, EnemyID.myPet),
-	NPCAI(NPCTargettability.untargettable, EnemyID.tony),
-	NPCAI(NPCTargettability.untargettable, EnemyID.bubbleMonkey),
-	NPCAI(NPCTargettability.untargettable, EnemyID.dungeonMan),
-	NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
-	NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
-	NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
-	NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
-	NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
-	NPCAI(NPCTargettability.forced, EnemyID.teddyBear),
-	NPCAI(NPCTargettability.forced, EnemyID.superPlushBear),
+	PartyMember.none: NPCAI(0, 0),
+	PartyMember.ness: NPCAI(0, 0),
+	PartyMember.paula: NPCAI(0, 0),
+	PartyMember.jeff: NPCAI(0, 0),
+	PartyMember.poo: NPCAI(0, 0),
+	PartyMember.pokey: NPCAI(NPCTargettability.untargettable, EnemyID.pokey),
+	PartyMember.picky: NPCAI(NPCTargettability.untargettable, EnemyID.picky),
+	PartyMember.king: NPCAI(NPCTargettability.untargettable, EnemyID.myPet),
+	PartyMember.tony: NPCAI(NPCTargettability.untargettable, EnemyID.tony),
+	PartyMember.bubbleMonkey: NPCAI(NPCTargettability.untargettable, EnemyID.bubbleMonkey),
+	PartyMember.dungeonMan: NPCAI(NPCTargettability.untargettable, EnemyID.dungeonMan),
+	PartyMember.flyingMan1: NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
+	PartyMember.flyingMan2: NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
+	PartyMember.flyingMan3: NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
+	PartyMember.flyingMan4: NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
+	PartyMember.flyingMan5: NPCAI(NPCTargettability.normal, EnemyID.flyingMan),
+	PartyMember.teddyBear: NPCAI(NPCTargettability.forced, EnemyID.teddyBear),
+	PartyMember.plushTeddyBear: NPCAI(NPCTargettability.forced, EnemyID.superPlushBear),
 	NPCAI(0, 0),
 ];
 
-/// $D58F59
+/** Total EXP required for each level for each party member, ranging from 0-99
+ * Original_Address: $(DOLLAR)D58F59
+ */
 immutable uint[100][4] expTable =[
 	[
 		0,
@@ -1729,7 +1755,9 @@ immutable uint[100][4] expTable =[
 	]
 ];
 
-/// $D59589
+/** Stats for every enemy in the game
+ * Original_Address: $(DOLLAR)D59589
+ */
 immutable Enemy[231] enemyConfigurationTable = [
 	Enemy(0x00, ebString!25("null"), Gender.male, EnemyType.normal, 0x0000, OverworldSprite.none, EnemyMovementFlags.canMoveInWater | EnemyMovementFlags.canMoveInHeat | EnemyMovementFlags.canMoveOnLand, 0, 0, 0, 0, ActionScript.unknown000, "MSG_BTL_APPEAR", "MSG_BTL_NULL", 0x00, 0, Music.none, 0, 0, 0, 0, 0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, [BattleActions.noEffect, BattleActions.noEffect, BattleActions.noEffect, BattleActions.noEffect], BattleActions.noEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 0, 0x00, 0x00, ItemID.none, InitialStatus.none, 0x00, 0x00, 0x00, 0x00),
 	Enemy(0x01, ebString!25("Insane Cultist"), Gender.male, EnemyType.normal, 0x003F, OverworldSprite.insaneCultist, EnemyMovementFlags.canMoveInWater | EnemyMovementFlags.canMoveInHeat | EnemyMovementFlags.canMoveOnLand, 94, 0, 353, 33, ActionScript.unknown021, "MSG_BTL_AP_TSUKAMATTA", "MSG_BTL_KIZETU_ON_WARENI", 0x03, 13, Music.vsCaveBoy, 19, 25, 8, 20, 64, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, [BattleActions.paintAttack, BattleActions.callForHelp, BattleActions.paintAttack, BattleActions.paintAttack], BattleActions.noEffect, [0x00, EnemyID.insaneCultist1, 0x00, 0x00], 0x00, 3, 0x01, 0x00, ItemID.psiCaramel, InitialStatus.none, 0x00, 0x01, 0x03, 0x32),
@@ -1964,15 +1992,19 @@ immutable Enemy[231] enemyConfigurationTable = [
 	Enemy(0x00, ebString!25("Clumsy Robot"), Gender.neutral, EnemyType.metal, 0x0047, OverworldSprite.capsule, EnemyMovementFlags.canMoveInWater | EnemyMovementFlags.canMoveInHeat | EnemyMovementFlags.canMoveOnLand, 962, 0, 32378, 2081, ActionScript.unknown027, "MSG_BTL_AP_FUSAGARETA", "MSG_BTL_KIZETU_ON_UGOKANAKU", 0x04, 46, Music.vsStarmanJr, 88, 137, 83, 30, 49, 0x02, 0x02, 0x02, 0x01, 0x02, 0x05, 0x03, [BattleActions.reel, BattleActions.wobble, BattleActions.wantBattery, BattleActions.enemyExtender], BattleActions.runawayFiveEvent, [0x00, 0x00, 0x00, EnemyID.clumsyRobot1], 0x00, 3, 0x01, 0x00, ItemID.none, InitialStatus.none, 0x01, 0x01, 0x00, 0x00),
 ];
 
-/// $D5EBAB
+/** Growth variables for each party member. Level up logic attemtps to keep each stat at approximately `value * level / 10`
+ * Original_Address: $(DOLLAR)D5EBAB
+ */
 immutable StatsGrowth[4] statsGrowthVars = [
-	StatsGrowth(18, 5, 4, 7, 5, 5, 6),
-	StatsGrowth(12, 3, 8, 5, 2, 7, 5),
-	StatsGrowth(10, 6, 5, 5, 3, 9, 4),
-	StatsGrowth(21, 18, 7, 3, 4, 4, 3),
+	StatsGrowth(offense: 18, defense: 5, speed: 4, guts: 7, vitality: 5, iq: 5, luck: 6),
+	StatsGrowth(offense: 12, defense: 3, speed: 8, guts: 5, vitality: 2, iq: 7, luck: 5),
+	StatsGrowth(offense: 10, defense: 6, speed: 5, guts: 5, vitality: 3, iq: 9, luck: 4),
+	StatsGrowth(offense: 21, defense: 18, speed: 7, guts: 3, vitality: 4, iq: 4, luck: 3),
 ];
 
-/// $D5EBAB
+/** Warp destinations for use by various scripts
+ * Original_Address: $(DOLLAR)D5EBAB
+ */
 immutable TeleportDestination[234] teleportDestinationTable = [
 	WarpPreset.invalid: TeleportDestination(0x0000, 0x0000, CCDirection.undefined, WarpStyle.instantPlusFade, 0x0000),
 	WarpPreset.debugWarp: TeleportDestination(0x0388, 0x03E9, CCDirection.down, WarpStyle.standardDoor, 0x007F),
@@ -2210,7 +2242,11 @@ immutable TeleportDestination[234] teleportDestinationTable = [
 	WarpPreset.invalid2: TeleportDestination(0x0000, 0x0000, CCDirection.undefined, WarpStyle.instantPlusFade, 0x0000),
 ];
 
-/// $D5EA77
+/** A list of food items and the condiments they taste good with, as well as the resulting item stats
+ *
+ * Terminated by an entry with an item id of 0
+ * Original_Address: $(DOLLAR)D5EA77
+ */
 immutable CondimentTableEntry[44] condimentTable = [
 	CondimentTableEntry(ItemID.cookie, [ItemID.jarOfDelisauce, ItemID.tinOfCocoa], 0x00, 0x02, 0x02, 0x00),
 	CondimentTableEntry(ItemID.bagOfFries, [ItemID.jarOfDelisauce, ItemID.ketchupPacket], 0x00, 0x08, 0x02, 0x00),
@@ -2258,7 +2294,9 @@ immutable CondimentTableEntry[44] condimentTable = [
 	CondimentTableEntry(0, [0, 0], 0, 0, 0, 0)
 ];
 
-/// $D5F2FB
+/** Hotspot coordinates and dimensions. Rectangular areas on the map where text scripts run when the player walks inside (or outside) of them
+ * Original_Address: $(DOLLAR)D5F2FB
+ */
 immutable Hotspot[56] mapHotspots = [
 	HotspotID.unknown00: Hotspot(0, 0, 0, 0),
 	HotspotID.RAMA_MU_A: Hotspot(620, 475, 627, 477),
@@ -2318,7 +2356,11 @@ immutable Hotspot[56] mapHotspots = [
 	HotspotID.unknown55: Hotspot(0, 0, 0, 0),
 ];
 
-/// $D5F4BB
+/** Items that transform into other items over time
+ *
+ * Terminated by an entry with an item ID of 0
+ * Original_Address: $(DOLLAR)D5F4BB
+ */
 immutable TimedItemTransformation[4] timedItemTransformationTable = [
 	TimedItemTransformation(ItemID.freshEgg, Sfx.none, 0, ItemID.chick, 0x32),
 	TimedItemTransformation(ItemID.chick, Sfx.cheep, 2, ItemID.chicken, 0x2C),
@@ -2326,7 +2368,9 @@ immutable TimedItemTransformation[4] timedItemTransformationTable = [
 	TimedItemTransformation(ItemID.none, Sfx.none, 0, ItemID.none, 0),
 ];
 
-/// $D5F4CF
+/** Predefined names used for the "Don't Care" character naming option
+ * Original_Address: $(DOLLAR)D5F4CF
+ */
 immutable ubyte[6][7][7] dontCareNames = [
 	[
 		ebString!6("Ness"),
@@ -2393,15 +2437,21 @@ immutable ubyte[6][7][7] dontCareNames = [
 	]
 ];
 
-/// $D5F5F5
+/** Starting stats for each of the four characters
+ *
+ * Note that the starting coordinates are technically used, but only for ness and are immediately overridden
+ * Original_Address: $(DOLLAR)D5F5F5
+ */
 immutable CharacterInitialStats[4] initialStats = [
-	CharacterInitialStats(0x03F7, 0x008A, 20, 1, 0, [ItemID.atmCard, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
-	CharacterInitialStats(0x0000, 0x0000, 0, 1, 0, [ItemID.breadRoll, ItemID.teddyBear, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
-	CharacterInitialStats(0x0000, 0x0000, 0, 1, 0, [ItemID.bigBottleRocket, ItemID.boiledEgg, ItemID.ruler, ItemID.protractor, ItemID.brokenSprayCan, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
-	CharacterInitialStats(0x0000, 0x0000, 0, 15, 6000, [ItemID.tinyRuby, ItemID.bottleOfWater, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
+	CharacterInitialStats(1015, 138, 20, 1, 0, [ItemID.atmCard, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
+	CharacterInitialStats(0, 0, 0, 1, 0, [ItemID.breadRoll, ItemID.teddyBear, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
+	CharacterInitialStats(0, 0, 0, 1, 0, [ItemID.bigBottleRocket, ItemID.boiledEgg, ItemID.ruler, ItemID.protractor, ItemID.brokenSprayCan, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
+	CharacterInitialStats(0, 0, 0, 15, 6000, [ItemID.tinyRuby, ItemID.bottleOfWater, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none, ItemID.none]),
 ];
 
-/// $D5F645
+/** Delivery NPC configuration. Sprites, success/failure text, speeds, etc.
+ * Original_Address: $(DOLLAR)D5F645
+ */
 immutable TimedDelivery[10] timedDeliveries = [
 	TimedDelivery(OverworldSprite.machPizzaGuy, EventFlag.deliveryPizza, 6, 15, 180, "MSG_PIZZA_SEND", "MSG_PIZZA_SEND_RETRY_OVER", 512, 512),
 	TimedDelivery(OverworldSprite.escargoExpressGuy, EventFlag.deliveryUnsou, 6, 15, 10, "MSG_UNSOU_SEND", "MSG_UNSOU_SEND_RETRY_OVER", 384, 384),

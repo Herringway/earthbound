@@ -3,26 +3,38 @@ module earthbound.bank0C;
 
 import earthbound.commondefs;
 
-/// $CC2DE1
-immutable AnimationSequence[7] animationSequencePointers = [
-	AnimationSequence(0, 0x0000, 0x00, 0x00),
-	AnimationSequence(1, 0x1C10, 0x06, 0x03),
-	AnimationSequence(2, 0x05A0, 0x07, 0x10),
-	AnimationSequence(3, 0x03C0, 0x08, 0x08),
-	AnimationSequence(4, 0x0AA0, 0x02, 0x10),
-	AnimationSequence(5, 0x0040, 0x03, 0x08),
-	AnimationSequence(6, 0x0120, 0x02, 0x08),
+/** Fullscreen animation sequences that are controlled by actionscripts
+ *
+ * Tiles are always 2BPP
+ * Original_Address: $(DOLLAR)CC2DE1
+ */
+immutable AnimationSequence[7] animationSequences = [
+	AnimationSequence(),
+	AnimationSequence(id: 1, tileSize: 449 * 16, frames: 6, frameDelay: 3),
+	AnimationSequence(id: 2, tileSize: 90 * 16, frames: 7, frameDelay: 16),
+	AnimationSequence(id: 3, tileSize: 60 * 16, frames: 8, frameDelay: 8),
+	AnimationSequence(id: 4, tileSize: 170 * 16, frames: 2, frameDelay: 16),
+	AnimationSequence(id: 5, tileSize: 4 * 16, frames: 3, frameDelay: 8),
+	AnimationSequence(id: 6, tileSize: 18 * 16, frames: 2, frameDelay: 8),
 ];
 
+/** Bundles of graphics data used for actionscript animations (compressed)
+ *
+ * Contains a variable number of tile data (set via tileSize of animationSequences), a single 2BPP palette followed by a variable number (set via frames of animationSequences) of 32x28 tilemaps
+ */
 @([ROMSource(0, 0), ROMSource(0xC0000, 6091), ROMSource(0xC17CB, 1937), ROMSource(0xC1F5C, 892), ROMSource(0xC22D8, 2481), ROMSource(0xC2C89, 88), ROMSource(0xC2CE1, 256)])
 immutable(ubyte[])[] animationGraphics;
 
 
-/// $CCAC25
+/** Sets of 2BPP tile data used by PSI animation sequences (compressed)
+ * Original_Address: $(DOLLAR)CCAC25
+ */
 @([ROMSource(0xCAC25, 1290), ROMSource(0xCB613, 1204), ROMSource(0xCDB27, 722), ROMSource(0xCE31D, 592)])
-immutable(ubyte[])[] psiAnimationGraphicsSets;
+immutable(ubyte[])[] psiAnimationTilesets;
 
-/// $CCF04D
+/** Various bits of information used to play PSI animations
+ * Original_Address: $(DOLLAR)CCF04D
+ */
 immutable PSIAnimation[34] psiAnimationConfig = [
 	PSIAnimation(2, 5, 3, 1, 2, 47, PSIAnimationTarget.allEnemies, 0, 0, RGB(0, 0, 0).bgr555),
 	PSIAnimation(2, 4, 3, 1, 3, 29, PSIAnimationTarget.single, 50, 80, RGB(18, 6, 0).bgr555),
@@ -60,51 +72,55 @@ immutable PSIAnimation[34] psiAnimationConfig = [
 	PSIAnimation(0, 4, 3, 1, 3, 19, PSIAnimationTarget.random, 49, 75, RGB(31, 31, 11).bgr555),
 ];
 
-/// $CCF47F
+/** 2BPP palettes used by PSI animations
+ * Original_Address: $(DOLLAR)CCF47F
+ */
 @psiAnimationPaletteSource
 immutable(ubyte[])[] psiAnimationPalettes;
 
-/// $CCF58F
-@psiAnimationArrangementSource
-immutable(ubyte[])[] psiAnimationPointers;
+/** Tilemaps used for PSI animations (compressed)
+ * Original_Address: $(DOLLAR)CCF58F
+ */
+@psiAnimationTilemapSource
+immutable(ubyte[])[] psiAnimationTilemaps;
 
 enum psiAnimationPaletteSource = [
-	ROMSource(0xCF47F, 8),
-	ROMSource(0xCF487, 8),
-	ROMSource(0xCF48F, 8),
-	ROMSource(0xCF497, 8),
-	ROMSource(0xCF49F, 8),
-	ROMSource(0xCF4A7, 8),
-	ROMSource(0xCF4AF, 8),
-	ROMSource(0xCF4B7, 8),
-	ROMSource(0xCF4BF, 8),
-	ROMSource(0xCF4C7, 8),
-	ROMSource(0xCF4CF, 8),
-	ROMSource(0xCF4D7, 8),
-	ROMSource(0xCF4DF, 8),
-	ROMSource(0xCF4E7, 8),
-	ROMSource(0xCF4EF, 8),
-	ROMSource(0xCF4F7, 8),
-	ROMSource(0xCF4FF, 8),
-	ROMSource(0xCF507, 8),
-	ROMSource(0xCF50F, 8),
-	ROMSource(0xCF517, 8),
-	ROMSource(0xCF51F, 8),
-	ROMSource(0xCF527, 8),
-	ROMSource(0xCF52F, 8),
-	ROMSource(0xCF537, 8),
-	ROMSource(0xCF53F, 8),
-	ROMSource(0xCF547, 8),
-	ROMSource(0xCF54F, 8),
-	ROMSource(0xCF557, 8),
-	ROMSource(0xCF55F, 8),
-	ROMSource(0xCF567, 8),
-	ROMSource(0xCF56F, 8),
-	ROMSource(0xCF577, 8),
-	ROMSource(0xCF57F, 8),
-	ROMSource(0xCF587, 8),
+	ROMSource(0xCF47F, ushort[4].sizeof),
+	ROMSource(0xCF487, ushort[4].sizeof),
+	ROMSource(0xCF48F, ushort[4].sizeof),
+	ROMSource(0xCF497, ushort[4].sizeof),
+	ROMSource(0xCF49F, ushort[4].sizeof),
+	ROMSource(0xCF4A7, ushort[4].sizeof),
+	ROMSource(0xCF4AF, ushort[4].sizeof),
+	ROMSource(0xCF4B7, ushort[4].sizeof),
+	ROMSource(0xCF4BF, ushort[4].sizeof),
+	ROMSource(0xCF4C7, ushort[4].sizeof),
+	ROMSource(0xCF4CF, ushort[4].sizeof),
+	ROMSource(0xCF4D7, ushort[4].sizeof),
+	ROMSource(0xCF4DF, ushort[4].sizeof),
+	ROMSource(0xCF4E7, ushort[4].sizeof),
+	ROMSource(0xCF4EF, ushort[4].sizeof),
+	ROMSource(0xCF4F7, ushort[4].sizeof),
+	ROMSource(0xCF4FF, ushort[4].sizeof),
+	ROMSource(0xCF507, ushort[4].sizeof),
+	ROMSource(0xCF50F, ushort[4].sizeof),
+	ROMSource(0xCF517, ushort[4].sizeof),
+	ROMSource(0xCF51F, ushort[4].sizeof),
+	ROMSource(0xCF527, ushort[4].sizeof),
+	ROMSource(0xCF52F, ushort[4].sizeof),
+	ROMSource(0xCF537, ushort[4].sizeof),
+	ROMSource(0xCF53F, ushort[4].sizeof),
+	ROMSource(0xCF547, ushort[4].sizeof),
+	ROMSource(0xCF54F, ushort[4].sizeof),
+	ROMSource(0xCF557, ushort[4].sizeof),
+	ROMSource(0xCF55F, ushort[4].sizeof),
+	ROMSource(0xCF567, ushort[4].sizeof),
+	ROMSource(0xCF56F, ushort[4].sizeof),
+	ROMSource(0xCF577, ushort[4].sizeof),
+	ROMSource(0xCF57F, ushort[4].sizeof),
+	ROMSource(0xCF587, ushort[4].sizeof),
 ];
-enum psiAnimationArrangementSource = [
+enum psiAnimationTilemapSource = [
 	ROMSource(0xCC32F, 978),
 	ROMSource(0xCDDF9, 680),
 	ROMSource(0xCD820, 775),
