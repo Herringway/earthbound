@@ -6980,7 +6980,7 @@ struct LoadedAnimatedTiles {
 }
 ///
 struct MapDataPaletteAnimationPointer {
-	ubyte[] ptr; ///
+	ubyte id; ///
 	ubyte count; ///
 	ubyte[] entries; ///
 }

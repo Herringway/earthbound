@@ -99,7 +99,7 @@ void loadPaletteAnim() {
 	if (mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count == 0) {
 		return;
 	}
-	decomp(&mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].ptr[0], &animatedMapPaletteBuffer[0]);
+	decomp(&mapDataPaletteAnimations[mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].id][0], &animatedMapPaletteBuffer[0]);
 	for (short i = 0; i < overworldPaletteAnim.delays.length; i++) {
 		overworldPaletteAnim.delays[i] = 0;
 	}

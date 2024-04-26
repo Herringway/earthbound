@@ -34,8 +34,8 @@ struct SymbolDataItem(alias Sym) {
 template SymbolData() {
     import std.meta : AliasSeq;
     alias SymbolData = AliasSeq!();
-    static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
-    static foreach (mod; AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F)) {
+    static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank1F, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
+    static foreach (mod; AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank1F, earthbound.bank20, earthbound.bank21, earthbound.bank2F)) {
         static foreach (member; __traits(allMembers, mod)) { // look for loadable things in module
             static if (!is(typeof(__traits(getMember, mod, member)) == function) && isROMLoadable!(__traits(getMember, mod, member))) {
                 static if (Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // single source
