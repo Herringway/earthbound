@@ -9242,7 +9242,7 @@ immutable NPC[1584] npcConfig = [
 	NPCID.unknown1308: NPC(NPCType.object, OverworldSprite.robotBroken, Direction.left, ActionScript.animMapObjStill, EventFlag.winGiegu, NPCConfigFlagStyle.showIfOn, null, null),
 	NPCID.unknown1309: NPC(NPCType.object, OverworldSprite.lyingDownRobotNess, Direction.right, ActionScript.animMapObjStill, EventFlag.winGiegu, NPCConfigFlagStyle.showIfOn, null, null),
 	NPCID.unknown1310: NPC(NPCType.object, OverworldSprite.phaseDistorter, Direction.down, ActionScript.animMapObjStill, EventFlag.stepPast, NPCConfigFlagStyle.showIfOn, "MSG_SPACETNL", null),
-	NPCID.unknown1311: NPC(NPCType.person, OverworldSprite.none, Direction.down, ActionScript.unknown000, EventFlag.unknown0340, NPCConfigFlagStyle.showIfOn, null, null),
+	NPCID.unknown1311: NPC(NPCType.person, OverworldSprite.none, Direction.down, ActionScript.none, EventFlag.unknown0340, NPCConfigFlagStyle.showIfOn, null, null),
 	NPCID.unknown1312: NPC(NPCType.person, OverworldSprite.weirdHornedGuy, Direction.down, ActionScript.animPeopleWalk1, EventFlag.none, NPCConfigFlagStyle.showAlways, "MSG_MGKT_B", null),
 	NPCID.unknown1313: NPC(NPCType.person, OverworldSprite.flyingMan, Direction.right, ActionScript.animPeopleWalk1, EventFlag.flyingMan1, NPCConfigFlagStyle.showIfOff, "MSG_MGKT_FLYINGMAN_1", null),
 	NPCID.unknown1314: NPC(NPCType.person, OverworldSprite.flyingMan, Direction.down, ActionScript.animPeopleTBack, EventFlag.flyingMan2, NPCConfigFlagStyle.showIfOff, "MSG_MGKT_FLYINGMAN_2", null),

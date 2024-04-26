@@ -15,7 +15,7 @@ import earthbound.bank2F;
 immutable ubyte[][895] actionScriptScriptPointers;
 shared static this() {
 	actionScriptScriptPointers = [
-		actionScript0[],
+		actionScriptDebugCursor[],
 		actionScript1[],
 		actionScript2[],
 		actionScript3[],
@@ -1116,17 +1116,19 @@ shared static this() {
 		SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
 	);
 }
-/// $C2FFB7
-immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript0;
+/** Controls the debug cursor. Basically just a static image, the actual movement is handled externally
+ * Original_Address: $(DOLLAR)C2FFB7
+ */
+immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScriptDebugCursor;
 shared static this() {
-	actionScript0 = initializeScript(actionScript0.length,
+	actionScriptDebugCursor = initializeScript(actionScriptDebugCursor.length,
 		SET_ANIMATION_POINTER(&debugCursorSpritemap[0]),
 		SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 		SET_DRAW_CALLBACK(&unknownC0A0FA),
 		SET_ANIMATION(0),
 		PAUSE(5),
 		LOAD_DEBUG_CURSOR_GRAPHICS(),
-		SHORTJUMP(&actionScript0[5 + 3 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDebugCursor[5 + 3 * (const(void)*).sizeof]),
 	);
 }
 /// $C30195

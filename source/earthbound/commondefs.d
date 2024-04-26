@@ -1177,7 +1177,8 @@ enum BackgroundLayer {
 }
 ///
 enum ActionScript {
-	unknown000, //0
+	none, //0
+	debugCursor = 0, //0
 	partyMemberLeading, //1
 	partyMemberFollowing, //2
 	partyMemberFollowingBubbleMonkey, //3

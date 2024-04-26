@@ -21691,7 +21691,7 @@ void initDebugMenuScreen() {
 	loadDebugTextGraphics();
 	entityAllocationMinSlot = 0;
 	entityAllocationMaxSlot = 1;
-	debugCursorEntity = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
+	debugCursorEntity = initEntityWipe(ActionScript.debugCursor, 0x34, 0x34);
 	npcSpawnsEnabled = SpawnControl.allDisabled;
 	enemySpawnsEnabled = SpawnControl.allDisabled;
 }
