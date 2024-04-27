@@ -5383,17 +5383,22 @@ short checkIfValidTarget(short target) {
 	return 0;
 }
 
-/// $C4A228
-void targetEnemyByBattlerIndex(Battler* battler, short arg2) {
+/** Translates a battler table index into a target for a battler
+ * Params:
+ * 	battler = The battler who's targetting something
+ * 	index = A battler table index
+ * Original_Address: $(DOLLAR)C4A228
+ */
+void targetEnemyByBattlerIndex(Battler* battler, short index) {
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
-		if (frontRowBattlers[i] != arg2) {
+		if (frontRowBattlers[i] != index) {
 			continue;
 		}
 		battler.currentTarget = cast(ubyte)(i + 1);
 		return;
 	}
 	for (short i = 0; i < numBattlersInBackRow; i++) {
-		if (backRowBattlers[i] != arg2) {
+		if (backRowBattlers[i] != index) {
 			continue;
 		}
 		battler.currentTarget = cast(ubyte)(i + numBattlersInFrontRow + 1);
@@ -5401,8 +5406,12 @@ void targetEnemyByBattlerIndex(Battler* battler, short arg2) {
 	}
 }
 
-/// $C4A228
-immutable uint[32] powersOfTwo32Bit = [
+/** Bitmasks for battler targetting.
+ *
+ * Possibly just an optimization for 1 << n?
+ * Original_Address: $(DOLLAR)C4A228
+ */
+immutable uint[32] targettingFlagBitmasks = [
 	1 << 0,
 	1 << 1,
 	1 << 2,
@@ -5437,7 +5446,11 @@ immutable uint[32] powersOfTwo32Bit = [
 	1 << 31,
 ];
 
-/// $C4A331
+/** Time to wait in frames between toggling static on/off when Giygas is defeated
+ *
+ * Null-terminated!
+ * Original_Address: $(DOLLAR)C4A331
+ */
 immutable ushort[22] giygasDeathStaticTransitionDelays = [
 	8 * 60,
 	3 * 6,
@@ -5463,7 +5476,9 @@ immutable ushort[22] giygasDeathStaticTransitionDelays = [
 	0
 ];
 
-/// $C4A35D
+/** Sounds to play and the delays between them during the final prayer, immediately after the last damage is dealt
+ * Original_Address: $(DOLLAR)C4A35D
+ */
 immutable FinalGiygasPrayerNoiseEntry[13] finalGiygasPrayerNoiseTable = [
 		FinalGiygasPrayerNoiseEntry(Sfx.doorOpen, 90),
 		FinalGiygasPrayerNoiseEntry(Sfx.doorOpen, 25),
@@ -5480,8 +5495,10 @@ immutable FinalGiygasPrayerNoiseEntry[13] finalGiygasPrayerNoiseTable = [
 		FinalGiygasPrayerNoiseEntry(Sfx.doorClose, 0),
 ];
 
-/// $C4A377
-void unknownC4A377() {
+/** Sets up the Giygas overlay effect for the start of the "THE WAR AGAINST GIYGAS" portion of the intro
+ * Original_Address: $(DOLLAR)C4A377
+ */
+void setupGiygasOverlay() {
 	setBGMODE(BGMode.mode3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -5502,8 +5519,10 @@ void unknownC4A377() {
 	loadedBGDataLayer2.targetLayer = 0;
 }
 
-/// $C4A591
-immutable byte[61] unknownC4A591 = [
+/** Screen offsets for the vertical shake animation. Starts with intense shakes that gradually weaken
+ * Original_Address: $(DOLLAR)C4A591
+ */
+immutable byte[61] verticalShakeOffsets = [
 	0, 14, 23, 23, 12, -5, -18, -16, 0, 15, 12, -6, -14, 0, 13, 2, -11, 0, 10, -4, -7, 8, 0, -6, 7, -2, -3, 6, -5, 3, 0, -2, 3, -4, 4, -4, 4, -3, 3, -3, 3, -2, 2, -1, 0, 1, -2, 2, -1, -1, 2, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1
 ];
 
@@ -5531,7 +5550,12 @@ immutable OvalWindowAnimation[2] unknownC4A652 = [
 	OvalWindowAnimation(0),
 ];
 
-/// $C4A67E
+/** Starts a swirl-type HDMA effect using the given flags
+ * Params:
+ * 	swirl = The swirl id to use (see earthbound.commondefs.Swirl for values)
+ * 	flags = Bitmask of animation flags (see earthbound.commondefs.AnimationFlags for values)
+ * Original_Address: $(DOLLAR)C4A67E
+ */
 void startSwirl(short swirl, short flags) {
 	tracef("Loading swirl %s", swirl);
 	if ((flags & AnimationFlags.invert) != 0) {
@@ -5574,8 +5598,10 @@ void startSwirl(short swirl, short flags) {
 	resetWindows();
 }
 
-/// $C4A7B0
-void unknownC4A7B0() {
+/** Renders the next frame of a swirl-type HDMA effect. Update takes effect immediately.
+ * Original_Address: $(DOLLAR)C4A7B0
+ */
+void updateSwirlFrame() {
 	if (framesLeftUntilNextSwirlUpdate == 0) {
 		return;
 	}
@@ -5694,7 +5720,12 @@ void unknownC4A7B0() {
 	setLayerConfig(currentLayerConfig);
 }
 
-/// $C4AC57
+/** Distances between the centre of the sound stone icons and the little orbiting sprites over time.
+ *
+ * One set for each icon, plus one extra?
+ * Bug: These arrays are one frame shorter than they should be
+ * Original_Address: $(DOLLAR)C4AC57
+ */
 immutable ubyte[][9] soundStoneOrbitSpriteDistances = [
 	[
 		0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x28, 0x23,
@@ -5773,7 +5804,9 @@ immutable ubyte[][9] soundStoneOrbitSpriteDistances = [
 	],
 ];
 
-/// $C4AC7B
+/** X coordinates of the sanctuary location sprites for the sound stone screen
+ * Original_Address: $(DOLLAR)C4AC7B
+ */
 immutable ubyte[8] soundStoneSanctuarySpriteX = [
 	0x80,
 	0xB8,
@@ -5785,7 +5818,9 @@ immutable ubyte[8] soundStoneSanctuarySpriteX = [
 	0x48,
 ];
 
-/// $C4AC83
+/** Y coordinates of the sanctuary location sprites for the sound stone screen
+ * Original_Address: $(DOLLAR)C4AC83
+ */
 immutable ubyte[8] soundStoneSanctuarySpriteY = [
 	0x28,
 	0x38,
@@ -5797,7 +5832,9 @@ immutable ubyte[8] soundStoneSanctuarySpriteY = [
 	0x38,
 ];
 
-/// $C4AC8B
+/** First tiles of each sanctuary location sprite for the sound stone screen
+ * Original_Address: $(DOLLAR)C4AC8B
+ */
 immutable ubyte[8] soundStoneSanctuarySprites = [
 	0x00,
 	0x04,
@@ -5809,7 +5846,9 @@ immutable ubyte[8] soundStoneSanctuarySprites = [
 	0x4C,
 ];
 
-/// $C4AC93
+/** Sprite palettes to use for the sound stone screen's sanctuary location sprites
+ * Original_Address: $(DOLLAR)C4AC93
+ */
 immutable ubyte[8] soundStoneSanctuaryPalettes = [
 	0x01,
 	0x04,
@@ -5821,7 +5860,11 @@ immutable ubyte[8] soundStoneSanctuaryPalettes = [
 	0x03,
 ];
 
-/// $C4AC9B
+/** First tiles for each frame of the orbiting orb sprites for each sanctuary location on the sound stone screen
+ *
+ * Note that 0x100 is always added to this, and a second frame is expected at tile +2
+ * Original_Address: $(DOLLAR)C4AC9B
+ */
 immutable ubyte[8] soundStoneOrbitSprites = [
 	0x00,
 	0x04,
@@ -5833,7 +5876,9 @@ immutable ubyte[8] soundStoneOrbitSprites = [
 	0x2C,
 ];
 
-/// $C4ACA3
+/** Palettes used for the orbit sprites for each sanctuary location on the sound stone screen
+ * Original_Address: $(DOLLAR)C4ACA3
+ */
 immutable ubyte[8] soundStoneOrbitPalettes = [
 	0x01,
 	0x03,
@@ -5845,7 +5890,9 @@ immutable ubyte[8] soundStoneOrbitPalettes = [
 	0x03,
 ];
 
-/// $C4ACAB
+/** Music tracks used for each segment of the sound stone screen sequence
+ * Original_Address: $(DOLLAR)C4ACAB
+ */
 immutable ubyte[9] soundStoneMusic = [
 	Music.soundstoneRecordingGiantStep,
 	Music.soundstoneRecordingLilliputSteps,
@@ -5858,7 +5905,11 @@ immutable ubyte[9] soundStoneMusic = [
 	Music.soundstoneBGM,
 ];
 
-/// $C4ACB4
+/** Length in frames of each segment of the sound stone screen sequence
+ *
+ * The last entry is used at the end of the sequence when less than 8 melodies have been recorded
+ * Original_Address: $(DOLLAR)C4ACB4
+ */
 immutable short[9] soundStoneMelodyFrames = [
 	289,
 	210,
@@ -5871,7 +5922,9 @@ immutable short[9] soundStoneMelodyFrames = [
 	210,
 ];
 
-/// $C4AC83
+/** Event flags determining whether or not each segment of the sound stone sequence is present
+ * Original_Address: $(DOLLAR)C4AC83
+ */
 immutable ushort[8] soundStoneMelodyFlags = [
 	EventFlag.powrGian,
 	EventFlag.powrLlpt,
@@ -5883,12 +5936,18 @@ immutable ushort[8] soundStoneMelodyFlags = [
 	EventFlag.powrFire,
 ];
 
-/// $C4ACCE
-void useSoundStone(short arg1) {
-	//x34 = arg1
+/** Plays the sound stone sequence
+ * Params:
+ * 	cancellable = 1 if the player can interrupt the sequence by pressing buttons, 0 if not
+ * Original_Address: $(DOLLAR)C4ACCE
+ */
+void useSoundStone(short cancellable) {
+	// get ready to load
 	prepareForImmediateDMA();
 	stopMusic();
-	loadEnemyBattleSprites();
+	// switch to battle display mode, since it's already got what we need. Layer 3 is garbage, but we're not using that anyway
+	setBattleModeLayerConfig();
+	// load the data we need
 	decomp(&soundStoneSpriteTiles[0], &buffer[0]);
 	copyToVRAM(0, 0x2C00, 0x2000, &buffer[0]);
 	memcpy(&palettes[8][0], &soundStoneSpritePalettes[0], 0xC0);
@@ -5896,84 +5955,89 @@ void useSoundStone(short arg1) {
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
 	memset(&soundStoneSpriteTilemap1, 0, SpriteMap.sizeof);
 	memset(&soundStoneSpriteTilemap2, 0, SpriteMap.sizeof);
-	soundStoneSpriteTilemap1.xOffset = 0xF0;
-	soundStoneSpriteTilemap1.yOffset = 0xF0;
-	soundStoneSpriteTilemap2.xOffset = 0xF8;
-	soundStoneSpriteTilemap2.yOffset = 0xF8;
+	// keep the orbiting sprite offscreen until we actually start playing the melodies
+	soundStoneSpriteTilemap1.xOffset = 240;
+	soundStoneSpriteTilemap1.yOffset = 240;
+	soundStoneSpriteTilemap2.xOffset = 248;
+	soundStoneSpriteTilemap2.yOffset = 248;
 	soundStoneSpriteTilemap1.specialFlags = 0x81;
 	soundStoneSpriteTilemap2.specialFlags = 0x80;
-	short x32 = 0;
+	// count the number of recorded melodies, and prepare the states appropriately
+	short numMelodiesRecorded = 0;
 	for (short i = 0; i < 8; i++) {
 		if (getEventFlag(soundStoneMelodyFlags[i]) != 0) {
 			soundStonePlaybackState[i].playbackState = SoundStonePlaybackState.present;
-			x32++;
+			numMelodiesRecorded++;
 		} else {
 			soundStonePlaybackState[i].playbackState = SoundStonePlaybackState.notPresent;
 		}
 		soundStonePlaybackState[i].unknown2 = 1;
 		soundStonePlaybackState[i].soundStoneOrbitSpriteFrame = 0;
 	}
+	// loading done, start fading in
 	setForceBlank();
 	fadeIn(1, 1);
-	short x2E = 0xF;
-	short x30 = 0;
-	short x2C = 60;
-	short x2A = 0;
-	short x28 = 0;
-	//short x04 = 0;
+	// initialize vars
+	short soundStoneSpriteUpdateCountdown = 15;
+	short soundStoneSpriteFrame = 0;
+	short startDelay = 60;
+	short framesUntilExit = 0;
+	short melodiesPlayed = 0;
 	short melodyFramesLeft = 0;
-	//short x02 = 0;
-	ushort x24 = 0;
+	ushort melody = 0;
 	while (true) {
 		waitUntilNextFrame();
-		short x22 = padPress[0];
-		if ((melodyFramesLeft == 0) && (--x2C == 0)) {
-			x24 = 0xFFFF;
-			x28 = -1;
+		short buttonsPressed = padPress[0];
+		if ((melodyFramesLeft == 0) && (--startDelay == 0)) {
+			// make sure melody and melodiesPlayed both get incremented to 0
+			melody = 0xFFFF;
+			melodiesPlayed = -1;
+			// frame count is decremented after this, so this makes sure things happen this frame instead of next
 			melodyFramesLeft = 1;
 		}
-		if (x2A != 0) {
-			if (--x2A == 0) {
+		if (framesUntilExit != 0) {
+			if (--framesUntilExit == 0) {
 				break;
 			}
 		} else if (melodyFramesLeft != 0){
 			if (--melodyFramesLeft == 0) {
-				if (x24 < 8) {
-					if (soundStonePlaybackState[x24].playbackState == SoundStonePlaybackState.nowPlaying) {
-						soundStonePlaybackState[x24].playbackState = SoundStonePlaybackState.present;
+				if (melody < 8) {
+					if (soundStonePlaybackState[melody].playbackState == SoundStonePlaybackState.nowPlaying) {
+						soundStonePlaybackState[melody].playbackState = SoundStonePlaybackState.present;
 					}
-				} else if (x24 == 8) {
-					short x20;
-					for (x20 = cast(short)(x28 + 1); x20 < 8; x20++) {
-						if (soundStonePlaybackState[x20].playbackState != SoundStonePlaybackState.notPresent) {
+				} else if (melody == 8) { // just played last melody
+					// check how many melodies have actually played
+					short presentMelodiesPlayed;
+					for (presentMelodiesPlayed = cast(short)(melodiesPlayed + 1); presentMelodiesPlayed < 8; presentMelodiesPlayed++) {
+						if (soundStonePlaybackState[presentMelodiesPlayed].playbackState != SoundStonePlaybackState.notPresent) {
 							break;
 						}
 					}
-					if (x20 == 8) {
-						x2A = 150;
+					if (presentMelodiesPlayed == 8) {
+						framesUntilExit = 150;
 					}
 				}
-				if (++x28 < 8) {
-					x24 = x28;
-					if (soundStonePlaybackState[x24].playbackState != SoundStonePlaybackState.notPresent) {
-						soundStonePlaybackState[x24].playbackState = SoundStonePlaybackState.nowPlaying;
+				if (++melodiesPlayed < 8) {
+					melody = melodiesPlayed;
+					if (soundStonePlaybackState[melody].playbackState != SoundStonePlaybackState.notPresent) {
+						soundStonePlaybackState[melody].playbackState = SoundStonePlaybackState.nowPlaying;
 					} else {
-						x24 = 8;
+						melody = 8;
 					}
-					melodyFramesLeft = soundStoneMelodyFrames[x24];
-					changeMusic(soundStoneMusic[x24]);
+					melodyFramesLeft = soundStoneMelodyFrames[melody];
+					changeMusic(soundStoneMusic[melody]);
 				} else {
-					x2A = 150;
+					framesUntilExit = 150;
 				}
 			}
-			if (x24 < 8) {
-				if (melodyFramesLeft == soundStoneMelodyFrames[x24] - 9) {
-					musicEffect(cast(short)(x32 + 8));
+			if (melody < 8) {
+				if (melodyFramesLeft == soundStoneMelodyFrames[melody] - 9) {
+					musicEffect(cast(short)(numMelodiesRecorded + 8));
 				}
 			}
 		}
 		oamClear();
-		//setSpritemapBank(0x7E);
+		setSpritemapBank(0x7E);
 		for (short i = 0; i < 8; i++) {
 			switch (soundStonePlaybackState[i].playbackState) {
 				case SoundStonePlaybackState.present:
@@ -6007,17 +6071,17 @@ void useSoundStone(short arg1) {
 				default: break;
 			}
 		}
-		if (--x2E == 0) {
-			x2E = 15;
-			x30 = (x30 + 1) & 3;
+		if (--soundStoneSpriteUpdateCountdown == 0) {
+			soundStoneSpriteUpdateCountdown = 15;
+			soundStoneSpriteFrame = (soundStoneSpriteFrame + 1) & 3;
 		}
-		soundStoneSpriteTilemap2.firstTile = cast(ubyte)((x30 * 2) + 0x40);
+		soundStoneSpriteTilemap2.firstTile = cast(ubyte)((soundStoneSpriteFrame * 2) + 0x40);
 		soundStoneSpriteTilemap2.flags = 0x3B;
 		renderSpriteToOAM(&soundStoneSpriteTilemap2, 0x80, 0x70);
 		updateScreen();
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
 		generateBattleBGFrame(&loadedBGDataLayer2, 1);
-		if ((arg1 != 0) && ((x22 & (Pad.b | Pad.a | Pad.x)) != 0)) {
+		if ((cancellable != 0) && ((buttonsPressed & (Pad.b | Pad.a | Pad.x)) != 0)) {
 			break;
 		}
 	}
@@ -7567,13 +7631,13 @@ short runAttractModeScene(short arg1) {
 	overworldInitialize();
 	mirrorTM = TMTD.none;
 	openOvalWindow(0);
-	unknownC4A7B0();
+	updateSwirlFrame();
 	actionscriptState = ActionScriptState.running;
 	short x12 = 0;
 	short x14 = 0;
 	displayText(getTextBlock(attractModeText[arg1]));
 	while (actionscriptState == ActionScriptState.running) {
-		unknownC4A7B0();
+		updateSwirlFrame();
 		if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
 			x12 = 1;
 			break;
@@ -7587,7 +7651,7 @@ short runAttractModeScene(short arg1) {
 	closeOvalWindow();
 	while (unknownC2EACF() != 0) {
 		finishFrame();
-		unknownC4A7B0();
+		updateSwirlFrame();
 	}
 	fadeOut(1, 1);
 	while (fadeParameters.step != 0) {

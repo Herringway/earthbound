@@ -15782,7 +15782,7 @@ shared static this() {
 		JUMP_IF_TRUE(&actionScriptEvtPrayOvalWindow[15 + 7 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScript35[0]),
-		C4A7B0(),
+		UPDATE_SWIRL_FRAME(),
 		PAUSE(1),
 		SHORTJUMP(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
 	);
@@ -26059,7 +26059,7 @@ alias PREPARE_FADE_PALETTE = BACKUP_PALETTES;
 alias C4981F = CALL!unknownC4981F;
 alias C49841 = CALL!unknownC49841;
 alias RUN_FLYOVER = CALL!runFlyover;
-alias C4A7B0 = CALL!unknownC4A7B0;
+alias UPDATE_SWIRL_FRAME = CALL!updateSwirlFrame;
 alias CLEAR_ALL_BLINKING = CALL!actionScriptClearAllBlinking;
 alias BLINK_VISIBLE = CALL!actionScriptBlinkVisible;
 alias BLINK_INVISIBLE = CALL!actionScriptBlinkInvisible;

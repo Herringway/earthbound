@@ -3753,7 +3753,7 @@ void screenTransition(short arg1, short arg2) {
 			unknownC426C7();
 			runActionscriptFrame();
 			updateScreen();
-			unknownC4A7B0();
+			updateSwirlFrame();
 			waitUntilNextFrame();
 		}
 		if (screenTransitionConfigTable[arg1].fadeMultiplier <= 50) {
@@ -3784,7 +3784,7 @@ void screenTransition(short arg1, short arg2) {
 			}
 			oamClear();
 			runActionscriptFrame();
-			unknownC4A7B0();
+			updateSwirlFrame();
 			updateScreen();
 			waitUntilNextFrame();
 			if (i == 1) {
@@ -8911,7 +8911,7 @@ void ebMain() {
 		oamClear();
 		runActionscriptFrame();
 		updateScreen();
-		unknownC4A7B0();
+		updateSwirlFrame();
 		waitUntilNextFrame();
 		if (((currentQueuedInteraction - nextQueuedInteraction) != 0) && !battleSwirlCountdown && !enemyHasBeenTouched && (battleMode == BattleMode.noBattle)) {
 			processQueuedInteraction();
@@ -10970,7 +10970,7 @@ void gasStationLoad() {
 	decomp(&gasStationTilemap[0], &buffer[0]);
 	copyToVRAM(0, 0x800, 0x7800, &buffer[0]);
 	decomp(&gasStationPalette[0], &palettes[0][0]);
-	unknownC4A377();
+	setupGiygasOverlay();
 	prepareLoadedPalettesForFade();
 	memset(&buffer[0x40], 0, 0x20);
 	memset(&palettes[0][0], 0, 0x40);

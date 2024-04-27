@@ -1349,7 +1349,7 @@ short initBattleScripted(short arg1) {
 	battleSwirlSequence();
 	while (unknownC2E9C8() != 0) {
 		waitUntilNextFrame();
-		unknownC4A7B0();
+		updateSwirlFrame();
 	}
 	short battleResult = initBattleCommon();
 	if (psiTeleportDestination == 0) {
@@ -2343,7 +2343,7 @@ short battleRoutine() {
 		battleEXPScratch = 0;
 		prepareForImmediateDMA();
 		unknownC2E0E7();
-		loadEnemyBattleSprites();
+		setBattleModeLayerConfig();
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
 		loadBattleBG(layer1, layer2, letterboxStyle);
@@ -3536,7 +3536,7 @@ void targetAllies() {
 	battlerTargetFlags = 0;
 	for (short i = 0; i < battlersTable.length; i++) {
 		if ((battlersTable[i].consciousness != 0) && ((battlersTable[i].side == BattleSide.friends) || (battlersTable[i].npcID != 0))) {
-			battlerTargetFlags |= powersOfTwo32Bit[i];
+			battlerTargetFlags |= targettingFlagBitmasks[i];
 		}
 	}
 }
@@ -3551,7 +3551,7 @@ void targetAllEnemies() {
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
-		battlerTargetFlags |= powersOfTwo32Bit[i];
+		battlerTargetFlags |= targettingFlagBitmasks[i];
 	}
 }
 
@@ -3565,13 +3565,13 @@ void targetRow(ubyte arg1) {
 		switch (arg1) {
 			case 0:
 				if (battlersTable[i].side == BattleSide.friends) {
-					battlerTargetFlags |= powersOfTwo32Bit[i];
+					battlerTargetFlags |= targettingFlagBitmasks[i];
 				}
 				break;
 			case 1:
 			case 2:
 				if ((battlersTable[i].side == BattleSide.foes) && (battlersTable[i].row == arg1)) {
-					battlerTargetFlags |= powersOfTwo32Bit[i];
+					battlerTargetFlags |= targettingFlagBitmasks[i];
 				}
 				break;
 			default: break;
@@ -3586,7 +3586,7 @@ void targetAll() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		battlerTargetFlags |= powersOfTwo32Bit[i];
+		battlerTargetFlags |= targettingFlagBitmasks[i];
 	}
 }
 
@@ -3599,7 +3599,7 @@ void removeNPCTargetting() {
 		if (battlersTable[i].npcID == 0) {
 			continue;
 		}
-		battlerTargetFlags &= (0xFFFFFFFF ^ powersOfTwo32Bit[i]);
+		battlerTargetFlags &= (0xFFFFFFFF ^ targettingFlagBitmasks[i]);
 	}
 }
 
@@ -3615,19 +3615,19 @@ uint randomTargetting(uint arg1) {
 			if (++x10 == 32) {
 				x10 = 0;
 			}
-		} while ((powersOfTwo32Bit[x10] & arg1) == 0);
+		} while ((targettingFlagBitmasks[x10] & arg1) == 0);
 	}
-	return powersOfTwo32Bit[x10];
+	return targettingFlagBitmasks[x10];
 }
 
 /// $C26FDC
 void targetBattler(short arg1) {
-	battlerTargetFlags |= powersOfTwo32Bit[arg1];
+	battlerTargetFlags |= targettingFlagBitmasks[arg1];
 }
 
 /// $C27029
 short isCharacterTargetted(short arg1) {
-	if ((battlerTargetFlags & powersOfTwo32Bit[arg1]) != 0) {
+	if ((battlerTargetFlags & targettingFlagBitmasks[arg1]) != 0) {
 		return 1;
 	}
 	return 0;
@@ -3635,7 +3635,7 @@ short isCharacterTargetted(short arg1) {
 
 /// $C27089
 void removeTarget(short arg1) {
-	battlerTargetFlags &= (0xFFFFFFFF ^ powersOfTwo32Bit[arg1]);
+	battlerTargetFlags &= (0xFFFFFFFF ^ targettingFlagBitmasks[arg1]);
 }
 
 /// $C270E4
@@ -6744,7 +6744,7 @@ void switchToNewGiygasBattle(short group, short music) {
 	}
 	currentBattleGroup = group;
 	prepareForImmediateDMA();
-	loadEnemyBattleSprites();
+	setBattleModeLayerConfig();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadBattleBG(battleEntryBGTable[currentBattleGroup].layer1, battleEntryBGTable[currentBattleGroup].layer2, cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle);
@@ -7038,7 +7038,7 @@ void battleActionGiygasPrayer9() {
 }
 
 /// $C2C8C8
-void loadEnemyBattleSprites() {
+void setBattleModeLayerConfig() {
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
@@ -7453,7 +7453,7 @@ void drawBattleFrame() {
 	if (verticalShakeDuration == 0) {
 		screenEffectVerticalOffset = 0;
 	} else {
-		screenEffectVerticalOffset = unknownC4A591[(1 * 60) - verticalShakeDuration];
+		screenEffectVerticalOffset = verticalShakeOffsets[(1 * 60) - verticalShakeDuration];
 		if ((--verticalShakeDuration == 0) && (verticalShakeHoldDuration != 0)) {
 			verticalShakeHoldDuration--;
 			verticalShakeDuration = 10;
@@ -7521,7 +7521,7 @@ void drawBattleFrame() {
 			unknownC207B6(hpPPBoxBlinkTarget);
 		}
 	}
-	unknownC4A7B0();
+	updateSwirlFrame();
 	singleBattleSpritePaletteEffectFrame();
 	if ((letterboxEffectEnding != 0) && (letterboxTopEnd != 0)) {
 		if (letterboxEffectEndingTop < 0x3BB) { //effect is done
