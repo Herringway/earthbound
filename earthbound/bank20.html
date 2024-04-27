@@ -160,14 +160,26 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="flavouredTextGraphics" class="public" href="../earthbound/bank20/flavouredTextGraphics.html">
-								<code>flavouredTextGraphics</code>
+							<a id="flavouredTextTiles" class="public" href="../earthbound/bank20/flavouredTextTiles.html">
+								<code>flavouredTextTiles</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>$E00751
+						<td>Tile data used for flavoured windows, overwriting part of textWindowTiles when loaded (compressed)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="textWindowDeathPalette" class="public" href="../earthbound/bank20/textWindowDeathPalette.html">
+								<code>textWindowDeathPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Text palettes used when the party is in bad shape
 </td>
 					</tr>
 					<tr>
@@ -179,19 +191,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/RGB.html"><span class="pln">RGB</span></a><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$E01FC8
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="textWindowGraphics" class="public" href="../earthbound/bank20/textWindowGraphics.html">
-								<code>textWindowGraphics</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$E00000
+						<td>Text palettes, one for each window flavour
 </td>
 					</tr>
 					<tr>
@@ -203,19 +203,31 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TextWindowPropertiesEntry.html"><span class="typ">TextWindowPropertiesEntry</span></a><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$E01FB9
+						<td>Text flavour configurations
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="townMapGraphicsPointerTable" class="public" href="../earthbound/bank20/townMapGraphicsPointerTable.html">
-								<code>townMapGraphicsPointerTable</code>
+							<a id="textWindowTiles" class="public" href="../earthbound/bank20/textWindowTiles.html">
+								<code>textWindowTiles</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Tile data for the text layer (compressed)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="townMapGraphics" class="public" href="../earthbound/bank20/townMapGraphics.html">
+								<code>townMapGraphics</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>$E02190
+						<td>Town map graphics data
 </td>
 					</tr>
 				</table>

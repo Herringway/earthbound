@@ -1205,6 +1205,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="finishPaletteFade" class="public" href="../earthbound/bank04/finishPaletteFade.html">finishPaletteFade</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C49740
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="finishTextTileRender" class="public" href="../earthbound/bank04/finishTextTileRender.html">finishTextTileRender</a><span class="tableEntryAnnotation">(upperTile, lowerTile)</span>
 							</code>
 						</td>
@@ -1587,6 +1596,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C48ECE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadActionScriptAnimation" class="public" href="../earthbound/bank04/loadActionScriptAnimation.html">loadActionScriptAnimation</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Loads a fullscreen animation based on the active entity's variables
 </td>
 					</tr>
 					<tr>
@@ -2402,6 +2420,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setupGiygasOverlay" class="public" href="../earthbound/bank04/setupGiygasOverlay.html">setupGiygasOverlay</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sets up the Giygas overlay effect for the start of the "THE WAR AGAINST GIYGAS" portion of the intro
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setWindowBrightness" class="public" href="../earthbound/bank04/setWindowBrightness.html">setWindowBrightness</a><span class="tableEntryAnnotation">(cgadsub, intensity)</span>
 							</code>
 						</td>
@@ -2469,7 +2496,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="startSwirl" class="public" href="../earthbound/bank04/startSwirl.html">startSwirl</a><span class="tableEntryAnnotation">(swirl, flags)</span>
 							</code>
 						</td>
-						<td>$C4A67E
+						<td>Starts a swirl-type HDMA effect using the given flags
 </td>
 					</tr>
 					<tr>
@@ -2484,10 +2511,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="targetEnemyByBattlerIndex" class="public" href="../earthbound/bank04/targetEnemyByBattlerIndex.html">targetEnemyByBattlerIndex</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+								<a id="targetEnemyByBattlerIndex" class="public" href="../earthbound/bank04/targetEnemyByBattlerIndex.html">targetEnemyByBattlerIndex</a><span class="tableEntryAnnotation">(battler, index)</span>
 							</code>
 						</td>
-						<td>$C4A228
+						<td>Translates a battler table index into a target for a battler
 </td>
 					</tr>
 					<tr>
@@ -3159,24 +3186,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC47A9E" class="public" href="../earthbound/bank04/unknownC47A9E.html">unknownC47A9E</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47A9E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47B77" class="public" href="../earthbound/bank04/unknownC47B77.html">unknownC47B77</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47B77
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC4810E" class="public" href="../earthbound/bank04/unknownC4810E.html">unknownC4810E</a><span class="tableEntryAnnotation">(start, dest)</span>
 							</code>
 						</td>
@@ -3204,15 +3213,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC49740" class="public" href="../earthbound/bank04/unknownC49740.html">unknownC49740</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C49740
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC4981F" class="public" href="../earthbound/bank04/unknownC4981F.html">unknownC4981F</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3235,24 +3235,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4984B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4A377" class="public" href="../earthbound/bank04/unknownC4A377.html">unknownC4A377</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4A377
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4A7B0" class="public" href="../earthbound/bank04/unknownC4A7B0.html">unknownC4A7B0</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4A7B0
 </td>
 					</tr>
 					<tr>
@@ -3303,10 +3285,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="updateActionScriptAnimationFrame" class="public" href="../earthbound/bank04/updateActionScriptAnimationFrame.html">updateActionScriptAnimationFrame</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Updates an animation frame according to the active entity's variables
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="updateMapPaletteAnimation" class="public" href="../earthbound/bank04/updateMapPaletteAnimation.html">updateMapPaletteAnimation</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>$C426ED - Palette animation
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="updateSwirlFrame" class="public" href="../earthbound/bank04/updateSwirlFrame.html">updateSwirlFrame</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Renders the next frame of a swirl-type HDMA effect. Update takes effect immediately.
 </td>
 					</tr>
 					<tr>
@@ -3340,10 +3340,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="useSoundStone" class="public" href="../earthbound/bank04/useSoundStone.html">useSoundStone</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="useSoundStone" class="public" href="../earthbound/bank04/useSoundStone.html">useSoundStone</a><span class="tableEntryAnnotation">(cancellable)</span>
 							</code>
 						</td>
-						<td>$C4ACCE
+						<td>Plays the sound stone sequence
 </td>
 					</tr>
 					<tr>
@@ -3777,7 +3777,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/FinalGiygasPrayerNoiseEntry.html"><span class="typ">FinalGiygasPrayerNoiseEntry</span></a><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4A35D
+						<td>Sounds to play and the delays between them during the final prayer, immediately after the last damage is dealt
 </td>
 					</tr>
 					<tr>
@@ -3813,7 +3813,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">22</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4A331
+						<td>Time to wait in frames between toggling static on/off when Giygas is defeated
 </td>
 					</tr>
 					<tr>
@@ -4024,18 +4024,6 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 					</tr>
 					<tr>
 						<td>
-							<a id="powersOfTwo32Bit" class="public" href="../earthbound/bank04/powersOfTwo32Bit.html">
-								<code>powersOfTwo32Bit</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">uint</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C4A228
-</td>
-					</tr>
-					<tr>
-						<td>
 							<a id="powersOfTwo8Bit" class="public" href="../earthbound/bank04/powersOfTwo8Bit.html">
 								<code>powersOfTwo8Bit</code>
 							</a>
@@ -4055,7 +4043,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC83
+						<td>Event flags determining whether or not each segment of the sound stone sequence is present
 </td>
 					</tr>
 					<tr>
@@ -4067,7 +4055,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">9</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4ACB4
+						<td>Length in frames of each segment of the sound stone screen sequence
 </td>
 					</tr>
 					<tr>
@@ -4079,7 +4067,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">9</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4ACAB
+						<td>Music tracks used for each segment of the sound stone screen sequence
 </td>
 					</tr>
 					<tr>
@@ -4091,7 +4079,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4ACA3
+						<td>Palettes used for the orbit sprites for each sanctuary location on the sound stone screen
 </td>
 					</tr>
 					<tr>
@@ -4103,7 +4091,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">9</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC57
+						<td>Distances between the centre of the sound stone icons and the little orbiting sprites over time.
 </td>
 					</tr>
 					<tr>
@@ -4115,7 +4103,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC9B
+						<td>First tiles for each frame of the orbiting orb sprites for each sanctuary location on the sound stone screen
 </td>
 					</tr>
 					<tr>
@@ -4127,7 +4115,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC93
+						<td>Sprite palettes to use for the sound stone screen's sanctuary location sprites
 </td>
 					</tr>
 					<tr>
@@ -4139,7 +4127,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC8B
+						<td>First tiles of each sanctuary location sprite for the sound stone screen
 </td>
 					</tr>
 					<tr>
@@ -4151,7 +4139,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC7B
+						<td>X coordinates of the sanctuary location sprites for the sound stone screen
 </td>
 					</tr>
 					<tr>
@@ -4163,7 +4151,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4AC83
+						<td>Y coordinates of the sanctuary location sprites for the sound stone screen
 </td>
 					</tr>
 					<tr>
@@ -4176,6 +4164,18 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C45A27
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="targettingFlagBitmasks" class="public" href="../earthbound/bank04/targettingFlagBitmasks.html">
+								<code>targettingFlagBitmasks</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">uint</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Bitmasks for battler targetting.
 </td>
 					</tr>
 					<tr>
@@ -4240,18 +4240,6 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownC4A591" class="public" href="../earthbound/bank04/unknownC4A591.html">
-								<code>unknownC4A591</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">byte</span><span class="pun">[</span><span class="lit">61</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C4A591
-</td>
-					</tr>
-					<tr>
-						<td>
 							<a id="unknownC4A626" class="public" href="../earthbound/bank04/unknownC4A626.html">
 								<code>unknownC4A626</code>
 							</a>
@@ -4284,6 +4272,18 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C44AD7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="verticalShakeOffsets" class="public" href="../earthbound/bank04/verticalShakeOffsets.html">
+								<code>verticalShakeOffsets</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">byte</span><span class="pun">[</span><span class="lit">61</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Screen offsets for the vertical shake animation. Starts with intense shakes that gradually weaken
 </td>
 					</tr>
 					<tr>

@@ -160,6 +160,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="animatedBackgroundPalettes" class="public" href="../earthbound/bank0A/animatedBackgroundPalettes.html">
+								<code>animatedBackgroundPalettes</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Sets of palettes used for animated backgrounds
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="animatedBackgrounds" class="public" href="../earthbound/bank0A/animatedBackgrounds.html">
 								<code>animatedBackgrounds</code>
 							</a>
@@ -167,7 +179,31 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/AnimatedBackground.html"><span class="typ">AnimatedBackground</span></a><span class="pun">[</span><span class="lit">327</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$CADCA1
+						<td>Animated background configuration, includes graphical data, palette cycling mode, scrolling and distortion
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="animatedBackgroundTilemaps" class="public" href="../earthbound/bank0A/animatedBackgroundTilemaps.html">
+								<code>animatedBackgroundTilemaps</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Sets of tilemaps used for animated backgrounds (compressed)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="animatedBackgroundTiles" class="public" href="../earthbound/bank0A/animatedBackgroundTiles.html">
+								<code>animatedBackgroundTiles</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>Sets of tile data used for animated backgrounds (compressed)
 </td>
 					</tr>
 					<tr>
@@ -179,7 +215,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/BackgroundDistortionEntry.html"><span class="typ">BackgroundDistortionEntry</span></a><span class="pun">[</span><span class="lit">135</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$CAF708
+						<td>Animated background distortions, using HDMA tables to move the background around each scanline, producing a variety of different effects
 </td>
 					</tr>
 					<tr>
@@ -191,43 +227,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/BackgroundScrollingEntry.html"><span class="typ">BackgroundScrollingEntry</span></a><span class="pun">[</span><span class="lit">120</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$CAF258
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="battleBGArrangementPointers" class="public" href="../earthbound/bank0A/battleBGArrangementPointers.html">
-								<code>battleBGArrangementPointers</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$CAD93D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="battleBGGraphicsPointers" class="public" href="../earthbound/bank0A/battleBGGraphicsPointers.html">
-								<code>battleBGGraphicsPointers</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$CAD7A1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="battleBGPalettePointers" class="public" href="../earthbound/bank0A/battleBGPalettePointers.html">
-								<code>battleBGPalettePointers</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$CADAD9
+						<td>Scrolling configurations for animated backgrounds, setting how fast they scroll and for how long
 </td>
 					</tr>
 				</table>
