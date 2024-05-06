@@ -978,6 +978,22 @@ void updatePaletteFade() {
 	paletteUploadMode = PaletteUpload.full;
 }
 
+unittest {
+	palettes = cast(immutable(ushort[16])[])import("intropalette.bin");
+	prepareLoadedPalettesForFade();
+	buffer[0x40 .. 0x60] = 0;
+	palettes[0 .. 2] = (ushort[16]).init;
+	palettes[3 .. $] = (ushort[16]).init;
+	prepareLoadedPaletteFadeTables(480, PaletteMask.all);
+
+	updatePaletteFade(); // do at least one update for the first frame
+	foreach (_; 0 .. 15) { // first real update is 16 frames later
+		prettyCompare!"%04X"(cast(ushort[])palettes, cast(immutable(ushort)[])import("intropaletteframe1.bin"));
+		updatePaletteFade();
+	}
+	prettyCompare!"%04X"(cast(ushort[])palettes, cast(immutable(ushort)[])import("intropaletteframe2.bin"));
+}
+
 /// $C4283F
 void unknownC4283F(short arg1, ubyte* arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
@@ -4771,6 +4787,10 @@ ushort getColourFadeSlope(ushort colour1, ushort colour2, short duration) {
 	return cast(ushort)(((colour2 - colour1) << 8) / duration);
 }
 
+unittest {
+	assert(getColourFadeSlope(RGB(0, 0, 0).bgr555, RGB(18, 0, 0).bgr555, 480) == 9);
+}
+
 /// $C49208
 void initializeMapPaletteFade(short duration) {
 	ushort* endColorPtr = &paletteAnimTargetPalette()[0];
@@ -4915,10 +4935,14 @@ void prepareLoadedPaletteFadeTables(short duration, ushort affectedPalettes) {
 }
 
 unittest {
+	// test fade for gas intro
 	palettes = cast(immutable(ushort[16])[])import("intropalette.bin");
+	prepareLoadedPalettesForFade();
+	buffer[0x40 .. 0x60] = 0;
+	palettes[0 .. 2] = (ushort[16]).init;
+	palettes[3 .. $] = (ushort[16]).init;
 	prepareLoadedPaletteFadeTables(480, PaletteMask.all);
-	// TODO: fixme
-	//prettyCompare!"%04X"(cast(ushort[])(buffer[0x200 .. 0xE00]), cast(immutable(ushort)[])import("introfade.bin"));
+	prettyCompare!"%04X"(cast(ushort[])(buffer[0x200 .. 0xE00]), cast(immutable(ushort)[])import("introfade.bin"));
 }
 
 /** Prepares the currently-loaded palette for fading
