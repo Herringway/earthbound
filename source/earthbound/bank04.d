@@ -1000,7 +1000,7 @@ void unknownC4283F(short arg1, ushort* dest, short destSize) {
 	const(ushort)* src = cast(const(ushort)*)&sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
 	do {
 		dest[destSize] = src[destSize];
-	} while (--destSize > 0);
+	} while (--destSize >= 0);
 }
 
 /// $C42884
@@ -1015,7 +1015,7 @@ void unknownC42884(short arg1, ushort* dest, short destSize) {
 	const(ushort)* src = cast(const(ushort)*)&sprites[sprite.id][0];
 	do {
 		dest[destSize] = src[destSize];
-	} while (--destSize > 0);
+	} while (--destSize >= 0);
 }
 
 /// $C428D1
@@ -7166,7 +7166,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	spriteFadeParams.appearanceStyle = appearanceStyle;
 	spriteFadeParams.pixelWidth = pixelWidths[entitySizes[entityID]];
 	spriteFadeParams.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
-	spriteFadeParams.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]);
+	spriteFadeParams.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]) / 2;
 	spriteFadeParams.fadeBuffer = allocateEntityFadeBuffer(spriteFadeParams.fadeBufferSize);
 	clearEntityFadeEntry(spriteFadeParams.fadeBuffer, spriteFadeParams.fadeBufferSize);
 	spriteFadeParams.fadeBuffer2 = spriteFadeParams.fadeBuffer + spriteFadeParams.fadeBufferSize;
@@ -7208,6 +7208,26 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	}
 	entityScriptVar4Table[entityFadeEntity] = cast(short)(entityScriptVar0Table[entityFadeEntity] + entityScriptVar1Table[entityFadeEntity] + entityScriptVar2Table[entityFadeEntity] + entityScriptVar3Table[entityFadeEntity]);
 	entityFadeStatesLength++;
+}
+
+unittest {
+	entityFadeEntity = -1;
+	entityTileHeights[4] = 3;
+	entitySizes[4] = EntitySize._16x24;
+	entityGraphicsPointers[4] = &spriteGroups[OverworldSprite.pencilStatue].sprites[0];
+	initializeEntityFade(4, ObjFX.hideDots);
+	with(entityFadeStates[0]) {
+		assert(entityID == 4);
+		assert(appearanceStyle == ObjFX.hideDots);
+		assert(fadeStyle == 4);
+		assert(pixelWidth == 16);
+		assert(pixelHeight == 24);
+		assert(fadeBufferSize == 192);
+		prettyCompare!"%02X"(fadeBuffer[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade1.bin"));
+		prettyCompare!"%02X"(fadeBuffer2[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade2.bin"));
+		assert(unknown16 == 0);
+		assert(unknown18 == 0);
+	}
 }
 
 /** Clears all active blinking entities
