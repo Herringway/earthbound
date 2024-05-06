@@ -7211,22 +7211,24 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 }
 
 unittest {
-	entityFadeEntity = -1;
-	entityTileHeights[4] = 3;
-	entitySizes[4] = EntitySize._16x24;
-	entityGraphicsPointers[4] = &spriteGroups[OverworldSprite.pencilStatue].sprites[0];
-	initializeEntityFade(4, ObjFX.hideDots);
-	with(entityFadeStates[0]) {
-		assert(entityID == 4);
-		assert(appearanceStyle == ObjFX.hideDots);
-		assert(fadeStyle == 4);
-		assert(pixelWidth == 16);
-		assert(pixelHeight == 24);
-		assert(fadeBufferSize == 192);
-		prettyCompare!"%02X"(fadeBuffer[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade1.bin"));
-		prettyCompare!"%02X"(fadeBuffer2[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade2.bin"));
-		assert(unknown16 == 0);
-		assert(unknown18 == 0);
+	if (romDataLoaded) {
+		entityFadeEntity = -1;
+		entityTileHeights[4] = 3;
+		entitySizes[4] = EntitySize._16x24;
+		entityGraphicsPointers[4] = &spriteGroups[OverworldSprite.pencilStatue].sprites[0];
+		initializeEntityFade(4, ObjFX.hideDots);
+		with(entityFadeStates[0]) {
+			assert(entityID == 4);
+			assert(appearanceStyle == ObjFX.hideDots);
+			assert(fadeStyle == 4);
+			assert(pixelWidth == 16);
+			assert(pixelHeight == 24);
+			assert(fadeBufferSize == 192);
+			prettyCompare!"%02X"(fadeBuffer[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade1.bin"));
+			prettyCompare!"%02X"(fadeBuffer2[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade2.bin"));
+			assert(unknown16 == 0);
+			assert(unknown18 == 0);
+		}
 	}
 }
 
