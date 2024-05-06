@@ -995,29 +995,27 @@ unittest {
 }
 
 /// $C4283F
-void unknownC4283F(short arg1, ubyte* arg2, short arg3) {
+void unknownC4283F(short arg1, ushort* dest, short destSize) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00 = &sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
-	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
+	const(ushort)* src = cast(const(ushort)*)&sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
 	do {
-		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00)[arg3];
-	} while (--arg3 > 0);
+		dest[destSize] = src[destSize];
+	} while (--destSize > 0);
 }
 
 /// $C42884
-void unknownC42884(short arg1, ubyte* arg2, short arg3) {
-	OverworldSpriteGraphics* x00 = &entityGraphicsPointers[arg1][0];
+void unknownC42884(short arg1, ushort* dest, short destSize) {
+	OverworldSpriteGraphics* sprite = &entityGraphicsPointers[arg1][0];
 	if (spriteDirectionMappings4Direction[entityDirections[arg1]] != 0) {
 		for (short i = spriteDirectionMappings4Direction[entityDirections[arg1]]; i != 0; i--) {
-			x00++;
+			sprite++;
 		}
 	}
-	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00_2 = &sprites[x00.id][0];
+	const(ushort)* src = cast(const(ushort)*)&sprites[sprite.id][0];
 	do {
-		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00_2)[arg3];
-	} while (--arg3 > 0);
+		dest[destSize] = src[destSize];
+	} while (--destSize > 0);
 }
 
 /// $C428D1
@@ -7161,49 +7159,50 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 		newEntityVar0 = 0;
 		entityFadeEntity = initEntityWipe(ActionScript.unknown859, 0, 0);
 	}
-	SpriteFadeState* x1A = &entityFadeStates[entityFadeStatesLength];
-	x1A.entityID = entityID;
+	assert(entityFadeStates);
+	SpriteFadeState* spriteFadeParams = &entityFadeStates[entityFadeStatesLength];
+	spriteFadeParams.entityID = entityID;
 	entitySpriteMapFlags[entityID] |= SpriteMapFlags.fading;
-	x1A.appearanceStyle = appearanceStyle;
-	x1A.pixelWidth = pixelWidths[entitySizes[entityID]];
-	x1A.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
-	x1A.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]);
-	x1A.fadeBuffer = allocateEntityFadeBuffer(x1A.fadeBufferSize);
-	clearEntityFadeEntry(x1A.fadeBuffer, x1A.fadeBufferSize);
-	x1A.fadeBuffer2 = x1A.fadeBuffer + x1A.fadeBufferSize;
-	x1A.unknown18 = 0;
-	x1A.unknown16 = 0;
-	ubyte* x16;
+	spriteFadeParams.appearanceStyle = appearanceStyle;
+	spriteFadeParams.pixelWidth = pixelWidths[entitySizes[entityID]];
+	spriteFadeParams.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
+	spriteFadeParams.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]);
+	spriteFadeParams.fadeBuffer = allocateEntityFadeBuffer(spriteFadeParams.fadeBufferSize);
+	clearEntityFadeEntry(spriteFadeParams.fadeBuffer, spriteFadeParams.fadeBufferSize);
+	spriteFadeParams.fadeBuffer2 = spriteFadeParams.fadeBuffer + spriteFadeParams.fadeBufferSize;
+	spriteFadeParams.unknown18 = 0;
+	spriteFadeParams.unknown16 = 0;
+	ushort* destBuffer;
 	if ((appearanceStyle == ObjFX.showBlink) || (appearanceStyle == ObjFX.showHStripe) || (appearanceStyle == ObjFX.showVStripe) || (appearanceStyle == ObjFX.showDots)) {
-		x16 = x1A.fadeBuffer;
+		destBuffer = cast(ushort*)spriteFadeParams.fadeBuffer;
 	} else {
-		x16 = x1A.fadeBuffer2;
+		destBuffer = cast(ushort*)spriteFadeParams.fadeBuffer2;
 	}
-	if (entityID >= 0x18) {
-		unknownC4283F(entityID, x16, x1A.fadeBufferSize);
+	if (entityID >= 24) {
+		unknownC4283F(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
 	} else {
-		unknownC42884(entityID, x16, x1A.fadeBufferSize);
+		unknownC42884(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
 	}
 	switch (appearanceStyle) {
 		case ObjFX.showBlink:
 		case ObjFX.hideBlink:
 			entityScriptVar0Table[entityFadeEntity] = 1;
-			x1A.fadeStyle = FadeStyle.blink;
+			spriteFadeParams.fadeStyle = FadeStyle.blink;
 			break;
 		case ObjFX.showHStripe:
 		case ObjFX.hideHStripe:
 			entityScriptVar1Table[entityFadeEntity] = 1;
-			x1A.fadeStyle = FadeStyle.hStripe;
+			spriteFadeParams.fadeStyle = FadeStyle.hStripe;
 			break;
 		case ObjFX.showVStripe:
 		case ObjFX.hideVStripe:
 			entityScriptVar2Table[entityFadeEntity] = 1;
-			x1A.fadeStyle = FadeStyle.vStripe;
+			spriteFadeParams.fadeStyle = FadeStyle.vStripe;
 			break;
 		case ObjFX.showDots:
 		case ObjFX.hideDots:
 			entityScriptVar3Table[entityFadeEntity] = 1;
-			x1A.fadeStyle = FadeStyle.dots;
+			spriteFadeParams.fadeStyle = FadeStyle.dots;
 			break;
 		default: break;
 	}
