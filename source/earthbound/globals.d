@@ -1237,38 +1237,22 @@ __gshared short unused7E3C1E;
  * Original_Address: $(DOLLAR)3C20
  */
 __gshared short unused7E3C20;
-/** Unknown. Technically used, but is only added to an otherwise vestigial variable
+/**  Velocity (in pixels/frame) at which the background scrolls horizontally during a screen transition
  * Original_Address: $(DOLLAR)3C22
  */
-__gshared short unused7E3C22;
-/**  Velocity (in pixels/frame) at which the background scrolls horizontally during a screen transition
- * Original_Address: $(DOLLAR)3C24
- */
-__gshared short transitionBackgroundXVelocity;
-/** Unknown. Technically used, but is only added to an otherwise vestigial variable
+__gshared FixedPoint1616 transitionBackgroundXVelocity;
+/** Velocity (in pixels/frame) at which the background scrolls vertically during a screen transition
  * Original_Address: $(DOLLAR)3C26
  */
-__gshared short unused7E3C26;
-/** Velocity (in pixels/frame) at which the background scrolls vertically during a screen transition
- * Original_Address: $(DOLLAR)3C28
- */
-__gshared short transitionBackgroundYVelocity;
-/** Unknown. Set to zero, increases at the rate of unused7E3C22, but never read
+__gshared FixedPoint1616 transitionBackgroundYVelocity;
+/** X coordinate of the background during a screen transition
  * Original_Address: $(DOLLAR)3C2A
  */
-__gshared short unread7E3C2A;
-/** X coordinate of the background during a screen transition
- * Original_Address: $(DOLLAR)3C2C
- */
-__gshared short transitionBackgroundX;
-/** Unknown. Technically used, but is only added to an otherwise vestigial variable
+__gshared FixedPoint1616 transitionBackgroundX;
+/** Y coordinate of the background during a screen transition
  * Original_Address: $(DOLLAR)3C2E
  */
-__gshared short unread7E3C2E;
-/** Y coordinate of the background during a screen transition
- * Original_Address: $(DOLLAR)3C30
- */
-__gshared short transitionBackgroundY;
+__gshared FixedPoint1616 transitionBackgroundY;
 /** HDMA table generated for animated background layer 1
  * Original_Address: $(DOLLAR)3C32
  */

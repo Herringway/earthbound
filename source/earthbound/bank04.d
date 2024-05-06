@@ -67,33 +67,43 @@ void uploadTextTile(short id, ushort dest1, ushort dest2) {
 	dmaTransferFlag = (mirrorINIDISP & 0x80) ^ 0x80;
 }
 
-/// $C40085
-short unknownC40085() {
-	ushort y = 8;
-	ushort a = 0xFFFF;
-	while (a == usedBG2TileMap[y / 2]) {
-		y += 2;
-		if (y != 0x40) {
+/** Reserves space for a BG2 tile
+ *
+ * Only the first half of the BG2 map is searched. The other half technically goes unused, but misc window graphics exist in the corresponding space anyway
+ * Returns: First free bit in usedBG2TileMasks
+ * Original_Address: $(DOLLAR)C40085
+ */
+short reserveBG2Tile() {
+	ushort offset = 8;
+	// find a free space
+	while (0xFFFF == usedBG2TileMap[offset / 2]) {
+		offset += 2;
+		if (offset != usedBG2TileMap.length) {
 			continue;
 		}
+		// uh oh, overflowed. bail out
 		unknownC10000();
 		closeAllWindows();
 		unfreezeEntities();
 		//longjmp(&jmpbuf2);
+		assert(0, "No space left for new BG2 tiles");
 	}
-	ushort x = 30;
-	a = usedBG2TileMap[y / 2];
-	while (a >= 0x8000) {
-		x -= 2;
-		a <<= 1;
+	ushort bit = 30;
+	ushort reservedBits = usedBG2TileMap[offset / 2];
+	// find first free bit
+	while (reservedBits >= 0x8000) {
+		bit -= 2;
+		reservedBits <<= 1;
 	}
-	usedBG2TileMap[y / 2] |= powersOfTwo16Bit[x / 2];
-	usedBG2TileMapFirstFreeBit = x;
+	usedBG2TileMap[offset / 2] |= usedBG2TileMasks[bit / 2];
+	usedBG2TileMapFirstFreeBit = bit;
 	usedBG2TileMapFirstFreeBit >>= 1;
-	return cast(short)(usedBG2TileMapFirstFreeBit + y * 8);
+	return cast(short)(usedBG2TileMapFirstFreeBit + offset * 8);
 }
 
-/// $C40B51
+/** Prepares to enter a failure state, where a fullscreen message is shown on BG3
+ * Original_Address: $(DOLLAR)C40B51
+ */
 void prepareGameFailure() {
 	stopMusic();
 	setBGMODE(BGMode.mode1);
@@ -102,7 +112,9 @@ void prepareGameFailure() {
 	prepareForImmediateDMA();
 }
 
-/// $C40B75
+/** Displays failure message on BG3 and loops forever
+ * Original_Address: $(DOLLAR)C40B75
+ */
 noreturn gameFailureLoop() {
 	copyToVRAM(0, 0xA00, 0, &buffer[0]);
 	copyToVRAM(0, 0x800, 0x4000, &buffer[0x4000]);
@@ -243,49 +255,49 @@ immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 	EntityOverlaySprite(OverworldSprite.bigWaterRipple, 0, 0xFF),
 ];
 
-///
-immutable SpriteMap[2] entityOverlaySweatingFrame41 = [
+/// Spritemap for sweating overlay, frame 1
+immutable SpriteMap[2] entityOverlaySweatingFrame1 = [
 	SpriteMap(0xF0,0x60, 0x33 | SpritemapOrientation.horizontal, 0xEA, 0x80),
 	SpriteMap(0xF0,0x60, 0x23 | SpritemapOrientation.horizontal, 0xEA, 0x80),
 ];
 
-///
-immutable SpriteMap[2] entityOverlaySweatingFrame42 = [
+/// Spritemap for sweating overlay, frame 2
+immutable SpriteMap[2] entityOverlaySweatingFrame2 = [
 	SpriteMap(0xF0,0x62, 0x33 | SpritemapOrientation.horizontal, 0xEA, 0x80),
 	SpriteMap(0xF0,0x62, 0x23 | SpritemapOrientation.horizontal, 0xEA, 0x80),
 ];
 
-///
-immutable SpriteMap[2] entityOverlaySweatingFrame43 = [
+/// Spritemap for sweating overlay, frame 3
+immutable SpriteMap[2] entityOverlaySweatingFrame3 = [
 	SpriteMap(0xF0,0x60, 0x33, 0x04, 0x80),
 	SpriteMap(0xF0,0x60, 0x23, 0x04, 0x80),
 ];
 
-///
-immutable SpriteMap[2] entityOverlaySweatingFrame44 = [
+/// Spritemap for sweating overlay, frame 4
+immutable SpriteMap[2] entityOverlaySweatingFrame4 = [
 	SpriteMap(0xF0, 0x62, 0x33, 0x04, 0x80),
 	SpriteMap(0xF0, 0x62, 0x23, 0x04, 0x80),
 ];
 
-///
-immutable SpriteMap[2] entityOverlayMushroomizedFrame1 = [
+/// Spritemap for mushroom overlay
+immutable SpriteMap[2] entityOverlayMushroomizedFrame = [
 	SpriteMap(0xE8, 0x64, 0x33, 0xF8, 0x80),
 	SpriteMap(0xE8, 0x64, 0x23, 0xF8, 0x80),
 ];
 
-///
+/// Spritemap for ripple overlay, frame 1
 immutable SpriteMap[2] entityOverlayRippleFrame1 = [
 	SpriteMap(0xFE, 0x66, 0x33, 0xF8, 0x80),
 	SpriteMap(0xFE, 0x66, 0x23, 0xF8, 0x80),
 ];
 
-///
+/// Spritemap for ripple overlay, frame 2
 immutable SpriteMap[2] entityOverlayRippleFrame2 = [
 	SpriteMap(0xFE,0x66, 0x33 | SpritemapOrientation.horizontal, 0xF8, 0x80),
 	SpriteMap(0xFE,0x66, 0x23 | SpritemapOrientation.horizontal, 0xF8, 0x80),
 ];
 
-///
+/// Spritemap for big ripple overlay, frame 1
 immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
 	SpriteMap(0xF8, 0x68, 0x33, 0xF0, 0x00),
 	SpriteMap(0xF8, 0x6A, 0x33, 0x00, 0x80),
@@ -293,7 +305,7 @@ immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
 	SpriteMap(0xF8, 0x6A, 0x23, 0x00, 0x80),
 ];
 
-///
+/// Spritemap for big ripple overlay, frame 2
 immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
 	SpriteMap(0xF8,0x6A, 0x33 | SpritemapOrientation.horizontal, 0xF0, 0x00),
 	SpriteMap(0xF8,0x68, 0x33 | SpritemapOrientation.horizontal, 0x00, 0x80),
@@ -301,19 +313,22 @@ immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
 	SpriteMap(0xF8,0x68, 0x23 | SpritemapOrientation.horizontal, 0x00, 0x80),
 ];
 
-///
+/** Overlay script for sweating overlay
+ *
+ * Displays frame 1 for 8 frames, frame 2 for 8 frames, nothing for 16 frames, frame 3 for 8 frames, frame 4 for 8 frames, nothing for 16 frames, looping
+ */
 immutable OverlayScript[13] entityOverlaySweating;
 shared static this() {
 	entityOverlaySweating = [
-		OverlayScript.show(entityOverlaySweatingFrame41.ptr),
+		OverlayScript.show(entityOverlaySweatingFrame1.ptr),
 		OverlayScript.delay(8),
-		OverlayScript.show(entityOverlaySweatingFrame42.ptr),
+		OverlayScript.show(entityOverlaySweatingFrame2.ptr),
 		OverlayScript.delay(8),
 		OverlayScript.show(cast(const(SpriteMap)*)null),
 		OverlayScript.delay(16),
-		OverlayScript.show(entityOverlaySweatingFrame43.ptr),
+		OverlayScript.show(entityOverlaySweatingFrame3.ptr),
 		OverlayScript.delay(8),
-		OverlayScript.show(entityOverlaySweatingFrame44.ptr),
+		OverlayScript.show(entityOverlaySweatingFrame4.ptr),
 		OverlayScript.delay(8),
 		OverlayScript.show(cast(const(SpriteMap)*)null),
 		OverlayScript.delay(16),
@@ -321,17 +336,23 @@ shared static this() {
 	];
 }
 
-///
+/** Overlay script for mushroom overlay
+ *
+ * Displays frame 1, forever
+ */
 immutable OverlayScript[3] entityOverlayMushroomized;
 shared static this() {
 	entityOverlayMushroomized = [
-		OverlayScript.show(entityOverlayMushroomizedFrame1.ptr),
+		OverlayScript.show(entityOverlayMushroomizedFrame.ptr),
 		OverlayScript.delay(255),
 		OverlayScript.jump(entityOverlayMushroomized.ptr)
 	];
 }
 
-///
+/** Overlay script for ripples
+ *
+ * Displays frame 1 for 12 frames, frame 2 for 12 frames, looping
+ */
 immutable OverlayScript[5] entityOverlayRipple;
 shared static this() {
 	entityOverlayRipple = [
@@ -343,7 +364,10 @@ shared static this() {
 	];
 }
 
-///
+/** Overlay script for big ripples
+ *
+ * Displays frame 1 for 12 frames, frame 2 for 12 frames, looping
+ */
 immutable OverlayScript[5] entityOverlayBigRipple;
 shared static this() {
 	entityOverlayBigRipple = [
@@ -354,58 +378,65 @@ shared static this() {
 		OverlayScript.jump(entityOverlayBigRipple.ptr)
 	];
 }
-/// $C41A9E
+/** Decompresses data in HAL's proprietary compression format
+ * Original_Address: $(DOLLAR)C41A9E
+ */
 void decomp(const(ubyte)* data, void* buffer) {
-	//I'm not gonna redo perfectly good work that already exists
+	// Reuse an existing implementation
 	decompBlock(data, cast(ubyte*)buffer, 0x10000);
 }
 
-/// $C41EFF - Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
+/** Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
+ * Params:
+ * 	x1 = X coordinate for start point
+ * 	y1 = Y coordinate for start point
+ * 	x2 = X coordinate for end point
+ * 	y2 = Y coordinate for end point
+ * Returns: The angle, in 1/65536s of a circle
+ * Original_Address: $C41EFF
+ */
 ushort getScreenAngle(short x1, short y1, short x2, short y2) {
-	short a = cast(short)(x1 - x2);
-	short y;
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	short xDist = cast(short)(x1 - x2);
+	// ensure x distance is positive
+	if (xDist < 0) {
+		xDist = cast(short)-xDist;
 	}
-	y = a;
-	a = cast(short)(y1 - y2);
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	short yDist = cast(short)(y1 - y2);
+	// ensure y distance is positive
+	if (yDist < 0) {
+		yDist = cast(short)-yDist;
 	}
-	short x0C = a;
-	a = y;
+	// reduce x distance to a single byte, while reducing y distance proportionately
 	while (true) {
-		if (a < 0x100) {
+		if (xDist < 256) {
 			break;
 		}
-		a /= 2;
-		x0C /= 2;
+		xDist /= 2;
+		yDist /= 2;
 	}
-	short x0A = a;
-	a = cast(short)(y1 - y2);
-	if (a == 0) {
-		a = 8;
-	} else if (a > 0) {
-		a = 2;
+	// atan2?
+	short x0E;
+	if (y1 - y2 == 0) {
+		x0E = 0b1000;
+	} else if (y1 - y2 > 0) {
+		x0E = 0b0010;
 	} else {
-		a = 0;
+		x0E = 0b0000;
 	}
 	if (x1 - x2 == 0) {
-		a |= 4;
+		x0E |= 0b0100;
 	} else if (x1 - x2 > 0) {
-		a |= 1;
+		x0E |= 0b0001;
 	}
-	if ((a & 0xC) != 0) {
-		return unknownC41FC5[a];
+	if ((x0E & 0b1100) != 0) { // either x1 == x2 or y1 == y2, which means a right angle
+		return unknownC41FC5[x0E];
 	}
-	short x0E = a;
-	short x08 = cast(short)(a * 2);
-	a = x0C;
-	XBA(a);
-	if ((a & 0xFF) != 0) {
+	short x08 = cast(short)(x0E * 2);
+	short a = cast(short)(yDist << 8);
+	if (yDist >= 256) { // only possible if y distance is significantly greater than x distance
 		a = -1;
 	}
-	a = cast(ushort)a / x0A;
+	a = cast(ushort)a / xDist;
 	short x = 0;
 	while (x < 16) {
 		if (a < unknownC41FDF[x]) {
@@ -453,71 +484,76 @@ immutable ushort[13] unknownC41FC5 = [
 
 /// $C41FDF
 immutable ushort[16] unknownC41FDF = [
-	0x000D,
-	0x0026,
-	0x0040,
-	0x005C,
-	0x0079,
-	0x0099,
-	0x00BE,
-	0x00E8,
-	0x011A,
-	0x0159,
-	0x01AB,
-	0x021D,
-	0x02CB,
-	0x03FD,
-	0x06BB,
-	0x143D,
+	13,
+	38,
+	64,
+	92,
+	121,
+	153,
+	190,
+	232,
+	282,
+	345,
+	427,
+	541,
+	715,
+	1021,
+	1723,
+	5181,
 ];
 
-/// $C41FFF
-auto unknownC41FFF(ushort arg1, ushort arg2) {
+/** Converts an angle (in 1/65536ths of a circle) and magnitude to an X,Y pair
+ *
+ * Params:
+ * 	angle = The angle (in 1/65536ths of a circle, from the perspective of the player)
+ * 	magnitude = The "size" of the vector
+ * Returns: A pair of coordinates, (Y, X)
+ * Original_Address: $(DOLLAR)C41FFF
+ */
+auto angleToVector(ushort angle, ushort magnitude) {
 	static struct Result {
 		short y;
 		short x;
 	}
-	short arg1Modified = ((arg1 >> 8) & 0xFC) >> 1;
-	short a;
-	if (unknownC41FFFSineTable[arg1Modified / 2] == 0x100) {
-		a = arg2;
-	} else {
-		a = unknownC4213F(unknownC41FFFSineTable[arg1Modified / 2], arg2);
+	// use only top 6 bits of the angle. It's Good Enough™️
+	const arg1Modified = angle >> 10;
+	// original code had a shortcut for table values of 0x100, since that case was effectively == 0
+	short x = multiplyWithDivisor256(angleToVectorSineTable[arg1Modified], magnitude);
+	short y = multiplyWithDivisor256(angleToVectorSineTable[arg1Modified + 48], magnitude);
+	if ((arg1Modified < 16) || (arg1Modified >= 49)) { // negate y for angles between ~270 - 90 degrees
+		y = cast(short)-y;
 	}
-	short a2;
-	if (unknownC41FFFSineTable[arg1Modified / 2 + 48] == 0x100) {
-		a2 = arg2;
-	} else {
-		a2 = unknownC4213F(unknownC41FFFSineTable[arg1Modified / 2 + 48], arg2);
+	if ((arg1Modified >= 33) && (arg1Modified < 64)) { // negate x for angles between ~180 - 360 degrees
+		x = cast(short)-x;
 	}
-	if ((arg1Modified < 0x20) || (arg1Modified >= 0x62)) {
-		a2 = cast(short)-cast(int)a2;
-	}
-	if ((arg1Modified >= 0x42) && (arg1Modified < 0x80)) {
-		a = cast(short)-cast(int)a;
-	}
-	// a = sin(arg1) * arg2
-	// a2 = -cos(arg1) * arg2
-	return Result(a2, a);
+	// x = sin(angle) * magnitude
+	// y = cos(angle) * magnitude
+	return Result(y, x);
 }
 
 unittest {
-	with(unknownC41FFF(0x3800, 0xC0)) {
+	with(angleToVector(0x3800, 0xC0)) {
 		assert(y == -37);
 		assert(x == 188);
 	}
-	with(unknownC41FFF(0xA000, 0x80)) {
+	with(angleToVector(0xA000, 0x80)) {
 		assert(y == 90);
 		assert(x == -90);
 	}
-	with(unknownC41FFF(0xB400, 0x80)) {
+	with(angleToVector(0xB400, 0x80)) {
 		assert(y == 37);
 		assert(x == -122);
 	}
+	with(angleToVector(0xFC00, 0x180)) {
+		assert(y == -381);
+		assert(x == -37);
+	}
 }
 
-/// $C4205D and $C420BD
-immutable ushort[113] unknownC41FFFSineTable = [
+/** Look-up table used by angleToVector()
+ * Original_Address: $(DOLLAR)C4205D, $(DOLLAR)C420BD
+ */
+immutable ushort[113] angleToVectorSineTable = [
 	0x0000,
 	0x0019,
 	0x0032,
@@ -633,13 +669,28 @@ immutable ushort[113] unknownC41FFFSineTable = [
 	0x0100,
 ];
 
-/// $C4213F
-short unknownC4213F(short arg1, short arg2) {
-	return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
+/** Multiplies two numbers together and divides the result by 256
+ *
+ * Params:
+ * 	v1 = An 8-bit value
+ * 	v2 = A 16-bit value
+ * Returns: v1 * v2 / 256
+ * Original_Address: $(DOLLAR)C4213F
+ */
+short multiplyWithDivisor256(short v1, short v2) {
+	return ((v1 & 0xFF) * v2) >> 8;
 }
 
-/// $C423DC
-void unknownC423DC() {
+unittest {
+	assert(multiplyWithDivisor256(181, 512) == 362);
+	assert(multiplyWithDivisor256(181, 384) == 271);
+	assert(multiplyWithDivisor256(25, 384) == 37);
+}
+
+/** Set up the window parameters for the beam of light in the buzz buzz meteor intro scene
+ * Original_address: $(DOLLAR)C423DC
+ */
+void bunbuunBeamInitialization() {
 	// Put the left sides of the windows to the right of the right sides, ensuring the windows cover none of the screen
 	WH0 = 128;
 	WH2 = 128;
@@ -653,8 +704,10 @@ void unknownC423DC() {
 	WOBJLOG = 0;
 }
 
-/// $C4240A
-void unknownC4240A() {
+/** Set up the window parameters for the black square covering the map during the elevator cutscenes
+ * Original_Address: $(DOLLAR)C4240A
+ */
+void elevaterInitialization() {
 	// Have both windows cover full width of screen
 	WH0 = 0;
 	WH2 = 0;
@@ -668,26 +721,38 @@ void unknownC4240A() {
 	WOBJLOG = 0;
 }
 
-/// $C42439
-void unknownC42439(short arg1) {
-	CGADSUB = cast(ubyte)arg1;
+/** Sets COLDATA for all three colours using actionscript globals, as well as CGADSUB
+ * Original_Address: $(DOLLAR)C42439
+ */
+void setCOLDATACGADSUB(short cgadsub) {
+	CGADSUB = cast(ubyte)cgadsub;
 	setFixedColourData(actionscriptCOLDATABlue | 0x80);
 	setFixedColourData(actionscriptCOLDATAGreen | 0x40);
 	setFixedColourData(actionscriptCOLDATARed | 0x20);
 }
 
-/// $C4245D
-void rectangleWindowEnableHdma(ubyte* arg1) {
+/** Enables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
+ * Params:
+ * 	table = Direct HDMA table to use
+ * Original_Address: $(DOLLAR)C4245D
+ */
+void rectangleWindowEnableHDMA(const ubyte* table) {
 	dmaChannels[4].DMAP = 1;
 	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = arg1;
-	WOBJSEL = 0xA0;
+	dmaChannels[4].A1T = table;
+	// enable window math for window 1 and 2
+	WOBJSEL = 0b10100000;
+	// flip HDMA channel 5 on
 	mirrorHDMAEN |= 0x10;
 }
 
-/// $C4248A
-void unknownC4248A() {
+/** Disables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
+ * Original_Address: $(DOLLAR)C4248A
+ */
+void rectangleWindowDisableHDMA() {
+	// flip HDMA channel 5 off
 	mirrorHDMAEN &= ~0x10;
+	// disable window math
 	WOBJSEL = 0;
 }
 
@@ -736,7 +801,7 @@ void darkenScreen() {
  * 	table = Direct HDMA table
  * Original_Address: $(DOLLAR)C42542
  */
-void enableBrightnessHDMA(ubyte* table) {
+void enableBrightnessHDMA(const ubyte* table) {
 	dmaChannels[4].DMAP = 1; // word transfer
 	dmaChannels[4].BBAD = 0x26; //WH0 + WH1
 	dmaChannels[4].A1T = table;
@@ -774,7 +839,7 @@ void darkenScreen2Window() {
 /** Enables HDMA for the first spotlight effect on channel 4
  * Original_Address: $(DOLLAR)C425CC
  */
-void enableSpotlightHDMA1(ubyte* table) {
+void enableSpotlightHDMA1(const ubyte* table) {
 	dmaChannels[4].DMAP = 1; // word transfer
 	dmaChannels[4].BBAD = 0x26; // WH0 + WH1
 	dmaChannels[4].A1T = table;
@@ -791,7 +856,7 @@ void disableSpotlightHDMA1() {
 /** Enables HDMA for the second spotlight effect on channel 5
  * Original_Address: $(DOLLAR)C425FD
  */
-void enableSpotlightHDMA2(ubyte* table) {
+void enableSpotlightHDMA2(const ubyte* table) {
 	dmaChannels[5].DMAP = 1; // word transfer
 	dmaChannels[5].BBAD = 0x28; // WH2 + WH3
 	dmaChannels[5].A1T = table;
@@ -805,45 +870,50 @@ void disableSpotlightHDMA2() {
 	mirrorHDMAEN &= ~0x20;
 }
 
-/// $C42631
-void unknownC42631(short arg1, short arg2) {
-	unused7E3C22 = 0;
-	transitionBackgroundXVelocity = 0;
-	unused7E3C26 = 0;
-	transitionBackgroundYVelocity = 0;
-	short a = sineMult(arg1, cast(ubyte)(arg2 - 128));
-	unused7E3C22 = cast(short)((a & 0xFF) << 8);
-	transitionBackgroundXVelocity = (cast(ushort)a & 0xFF00) >> 8;
-	if (a < 0) {
-		transitionBackgroundXVelocity |= 0xFF00;
+/** Initializes state for BG1+BG2 background slides
+ * Params:
+ * 	factor = Multiplication factor for the velocity vectors (aka velocity)
+ * 	angle = An 8-bit angle
+ * Original_Address: $(DOLLAR)C42631
+ */
+void backgroundSlideInitialization(short factor, short angle) {
+	transitionBackgroundXVelocity = FixedPoint1616(0, 0);
+	transitionBackgroundYVelocity = FixedPoint1616(0, 0);
+	const xVelocity = sineMult(factor, cast(ubyte)(angle - 128));
+	transitionBackgroundXVelocity.fraction = cast(short)((xVelocity & 0xFF) << 8);
+	transitionBackgroundXVelocity.integer = (cast(ushort)xVelocity & 0xFF00) >> 8;
+	if (xVelocity < 0) {
+		transitionBackgroundXVelocity.integer |= 0xFF00;
 	}
-	a = cosineMult(arg1, cast(ubyte)(arg2 - 128));
-	unused7E3C26 = cast(short)((a & 0xFF) << 8);
-	transitionBackgroundYVelocity = (cast(ushort)a & 0xFF00) >> 8;
-	if (a < 0) {
-		transitionBackgroundYVelocity |= 0xFF00;
+	const yVelocity = cosineMult(factor, cast(ubyte)(angle - 128));
+	transitionBackgroundYVelocity.fraction = cast(short)((yVelocity & 0xFF) << 8);
+	transitionBackgroundYVelocity.integer = (cast(ushort)yVelocity & 0xFF00) >> 8;
+	if (yVelocity < 0) {
+		transitionBackgroundYVelocity.integer |= 0xFF00;
 	}
-	transitionBackgroundX = bg1XPosition;
-	transitionBackgroundY = bg1YPosition;
-	unread7E3C2A = 0;
-	unread7E3C2E = 0;
+	transitionBackgroundX.integer = bg1XPosition;
+	transitionBackgroundY.integer = bg1YPosition;
+	transitionBackgroundX.fraction = 0;
+	transitionBackgroundY.fraction = 0;
 }
 
-/// $C4268A
-void unknownC4268A() {
-	unread7E3C2A += unused7E3C22;
-	transitionBackgroundX += transitionBackgroundXVelocity;
-	bg1XPosition = transitionBackgroundX;
-	bg2XPosition = transitionBackgroundX;
-	unread7E3C2E += unused7E3C26;
-	transitionBackgroundY += transitionBackgroundYVelocity;
-	bg1YPosition = transitionBackgroundY;
-	bg2YPosition = transitionBackgroundY;
+/** Advances BG1+BG2 background slide by a single frame, adding X/Y velocity to the BG1+BG2 positions
+ * Original_Address: $(DOLLAR)C4268A
+ */
+void backgroundSlideFrameAdvance() {
+	transitionBackgroundX.combined += transitionBackgroundXVelocity.combined;
+	bg1XPosition = transitionBackgroundX.integer;
+	bg2XPosition = transitionBackgroundX.integer;
+	transitionBackgroundY.combined += transitionBackgroundYVelocity.combined;
+	bg1YPosition = transitionBackgroundY.integer;
+	bg2YPosition = transitionBackgroundY.integer;
 	unknownC01731(bg1XPosition, bg1YPosition);
 }
 
-/// $C426C7
-void unknownC426C7() {
+/** Advances BG1+BG2 background slide for entities, updating their screen positions relative to the background
+ * Original_Address: $(DOLLAR)C426C7
+ */
+void backgroundSlideSpriteFrameAdvance() {
 	for (short i = 0; i != maxEntities; i++) {
 		if (entityScriptTable[i] < 0) {
 			continue;
@@ -853,12 +923,14 @@ void unknownC426C7() {
 	}
 }
 
-/// $C426ED - Palette animation
-void updateMapPaletteAnimation() {
+/** Advances palette fade animations by a single frame
+ * Original_Address: $(DOLLAR)C426ED
+ */
+void updatePaletteFade() {
 	// Use ushort addition instead of byte addition since we need carrying
 	// At that point, it's easier to just use 7F0000 as ushort everywhere
 	ushort* buf = cast(ushort*)(&buffer[0]);
-	for (short i = 0; i < 0x100; i += 1) {
+	for (short i = 0; i < palettes.length * 16; i++) {
 		// Red channel
 		buf[0x400 + i] += buf[0x100 + i];
 		ushort a = buf[0x400 + i];
@@ -889,10 +961,11 @@ void updateMapPaletteAnimation() {
 		buf[0x600 + i] += buf[0x300 + i];
 		a2 = buf[0x600 + i];
 		if ((a2 & 0x8000) != 0) {
-			// Vanilla bug: we set the slope for the green channel to 0 instead of blue channel.
-			// buf[0x200 + i] = 0;
-			// Intended behaviour:
-			buf[0x300 + i] = 0;
+			version(bugfix) { // vanilla game accidentally clears the green slope instead of the blue slope here
+				buf[0x300 + i] = 0;
+			} else {
+				buf[0x200 + i] = 0;
+			}
 			a2 = 0;
 		} else {
 			a2 &= 0x1F00;
@@ -2134,8 +2207,10 @@ void renderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
 	}
 }
 
-/// $C44C6C
-immutable ushort[16] powersOfTwo16Bit = [
+/** Bitmasks used for usedBG2TileMap
+ * Original_Address: $(DOLLAR)C44C6C
+ */
+immutable ushort[16] usedBG2TileMasks = [
 	1<<0,
 	1<<1,
 	1<<2,
@@ -2220,9 +2295,9 @@ void unknownC44DCA() {
 		tileIndex--;
 	}
 	while (tileIndex != lastRenderedTileIndex) {
-		short x0E = unknownC40085();
+		short x0E = reserveBG2Tile();
 		textRenderState.upperVRAMPosition = x0E;
-		short x04 = unknownC40085();
+		short x04 = reserveBG2Tile();
 		textRenderState.lowerVRAMPosition = x04;
 		tileIndex = (tileIndex + 1 == vwfBuffer.length) ? 0 : cast(short)(tileIndex + 1);
 		uploadTextTile(tileIndex, x0E, x04);
@@ -3634,7 +3709,7 @@ short unknownC46EF8() {
 
 /// $C47044
 short setMovementFromAngle(short arg1) {
-	auto x0E = unknownC41FFF(arg1, entityMovementSpeed[currentEntitySlot]);
+	auto x0E = angleToVector(arg1, entityMovementSpeed[currentEntitySlot]);
 	short x14 = x0E.x;
 	if (x14 < 0) {
 		entityDeltaXTable[currentEntitySlot] = x14 >> 8;
@@ -4048,7 +4123,7 @@ void rectangleWindowConfigure(short xmin, short ymin, short xmax, short ymax) {
 	buffer = rectangleWindowAddHdmaEntry(cast(short)(224 - ymaxClamp - 1), 0x80, 0x7F, buffer);
 	// Terminate the table
 	buffer[0] = 0;
-	rectangleWindowEnableHdma(&buffer[bufferOffset]);
+	rectangleWindowEnableHDMA(&buffer[bufferOffset]);
 	rectangleWindowBufferIndex++;
 }
 
@@ -4878,7 +4953,7 @@ void performPaletteFade(short duration, short multiplier, ushort affectedPalette
 	prepareLoadedPaletteFadeTables(duration, affectedPalettes);
 	if (duration != 1) {
 		for (short i = 0; i < duration; i++) {
-			updateMapPaletteAnimation();
+			updatePaletteFade();
 			waitUntilNextFrame();
 		}
 	}
@@ -6915,7 +6990,7 @@ void unknownC4C58F(short duration) {
 	multiplyPalettes(100, &palettes[0][0]);
 	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
 	for (short i = 0; i < duration; i++) {
-		updateMapPaletteAnimation();
+		updatePaletteFade();
 		waitUntilNextFrame();
 	}
 	memset(&palettes[0][0], 0xFF, 0x200);
@@ -6927,7 +7002,7 @@ void unknownC4C58F(short duration) {
 void unknownC4C60E(short duration) {
 	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
 	for (short i = 0; i < duration; i++) {
-		updateMapPaletteAnimation();
+		updatePaletteFade();
 		oamClear();
 		runActionscriptFrame();
 		updateScreen();
@@ -8396,7 +8471,7 @@ short countPhotoFlags() {
  */
 void slideCreditsPhotograph(short id) {
 	enum speed = 256;
-	auto slideIncrements = unknownC41FFF(cast(short)(photographerConfigTable[id].slideDirection * 0x400), speed);
+	auto slideIncrements = angleToVector(cast(short)(photographerConfigTable[id].slideDirection * 0x400), speed);
 	short startX = bg1XPosition;
 	short startY = bg1YPosition;
 	short newXOffset = 0;
@@ -8428,7 +8503,7 @@ void playCredits() {
 		if (tryRenderingPhotograph(i) != 0) {
 			prepareLoadedPaletteFadeTables(64, PaletteMask.all);
 			for (short j = 0x40; j != 0; j--) {
-				updateMapPaletteAnimation();
+				updatePaletteFade();
 				processCreditsDMAQueue();
 				finishFrame();
 			}
@@ -8441,7 +8516,7 @@ void playCredits() {
 			memset(&buffer[32], 0, 0x1E0);
 			prepareLoadedPaletteFadeTables(64, PaletteMask.all);
 			for (short j = 0; j < 64; j++) {
-				updateMapPaletteAnimation();
+				updatePaletteFade();
 				processCreditsDMAQueue();
 				finishFrame();
 			}

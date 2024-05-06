@@ -3734,7 +3734,7 @@ void unknownC065C2(short direction) {
 /// $C06662
 void screenTransition(short arg1, short arg2) {
 	short duration = screenTransitionConfigTable[arg1].duration == 0xFF ? 900 : screenTransitionConfigTable[arg1].duration;
-	unknownC42631(screenTransitionConfigTable[arg1].unknown5, screenTransitionConfigTable[arg1].direction * 4);
+	backgroundSlideInitialization(screenTransitionConfigTable[arg1].slideSpeed, screenTransitionConfigTable[arg1].direction * 4);
 	if (arg2 == 1) {
 		freezeEntities();
 		psiTeleportWaitNFrames(2);
@@ -3747,10 +3747,10 @@ void screenTransition(short arg1, short arg2) {
 			if (paletteUploadMode != PaletteUpload.none) {
 				waitUntilNextFrame();
 			}
-			updateMapPaletteAnimation();
+			updatePaletteFade();
 			oamClear();
-			unknownC4268A();
-			unknownC426C7();
+			backgroundSlideFrameAdvance();
+			backgroundSlideSpriteFrameAdvance();
 			runActionscriptFrame();
 			updateScreen();
 			updateSwirlFrame();
@@ -3780,7 +3780,7 @@ void screenTransition(short arg1, short arg2) {
 				if (paletteUploadMode != PaletteUpload.none) {
 					waitUntilNextFrame();
 				}
-				updateMapPaletteAnimation();
+				updatePaletteFade();
 			}
 			oamClear();
 			runActionscriptFrame();
@@ -4452,7 +4452,7 @@ void updateMiniGhostPosition() {
 		entityAnimationFrames[currentEntitySlot] = -1;
 		return;
 	}
-	auto x0E = unknownC41FFF(miniGhostAngle, 0x3000);
+	auto x0E = angleToVector(miniGhostAngle, 0x3000);
 	entityAbsXTable[currentEntitySlot] = cast(short)(gameState.leaderX.integer + (x0E.x >> 8));
 	entityAbsYTable[currentEntitySlot] = cast(short)(gameState.leaderY.integer - 8 + (x0E.y >> 10));
 	miniGhostAngle += 0x300;
@@ -8143,15 +8143,17 @@ void actionScriptEnableStageHDMA(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0AA3F
-void unknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
-	short x = (--arg1 != 0) ? 0x33 : 0xB3;
+void actionScriptSetCOLDATACGADSUB(short tempvar, ref const(ubyte)* arg2) {
+	// color math on for BG1, BG2, OBJ and backdrop
+	// if tempvar is 1, use inverse
+	ushort cgadsub = (tempvar == 0) ? 0b00110011 : 0b10110011;
 	actionscriptCOLDATABlue = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
 	actionscriptCOLDATAGreen = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
 	actionscriptCOLDATARed = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	unknownC42439(x);
+	setCOLDATACGADSUB(cgadsub);
 }
 
 /// $C0AA6E
@@ -9545,7 +9547,7 @@ short unknownC0CD50() {
 		x02 = cast(short)(entityScriptVar4Table[currentEntitySlot] - entityScriptVar5Table[currentEntitySlot]);
 	}
 	entityScriptVar4Table[currentEntitySlot] = x02;
-	auto x0E = unknownC41FFF(x02, 0x1000);
+	auto x0E = angleToVector(x02, 0x1000);
 	FixedPoint1616 x1E;
 	FixedPoint1616 x1A;
 	x1A.integer = x0E.y;
@@ -10534,7 +10536,7 @@ void psiTeleportUpdateBetaSpeed() {
 void psiTeleportBetaLeaderTick() {
 	gameState.leaderHasMoved = 1;
 	adjustPSITeleportBetaDirection();
-	auto betaSpiralMovementPosition = unknownC41FFF(psiTeleportBetaAngle, psiTeleportBetaProgress);
+	auto betaSpiralMovementPosition = angleToVector(psiTeleportBetaAngle, psiTeleportBetaProgress);
 	psiTeleportNextX.integer = cast(short)((betaSpiralMovementPosition.x >> 8) + psiTeleportBetaXAdjustment);
 	psiTeleportNextY.integer = cast(short)((betaSpiralMovementPosition.y >> 8) + psiTeleportBetaYAdjustment);
 	if (psiTeleportStyle != PSITeleportStyle.psiBetter) {
@@ -11007,7 +11009,7 @@ short runGasStationSkippablePortion() {
 			return 1;
 		}
 		memcpy(&mapPaletteBackup[0], &palettes[2][0], 0x20);
-		updateMapPaletteAnimation();
+		updatePaletteFade();
 		paletteUploadMode = PaletteUpload.none;
 		replaceLoadedAnimatedLayer1Palette();
 		memcpy(&palettes[2][0], &mapPaletteBackup[0], 0x20);
@@ -11050,7 +11052,7 @@ short gasStation() {
 		if (padPress[0] != 0) {
 			return 1;
 		}
-		updateMapPaletteAnimation();
+		updatePaletteFade();
 		waitUntilNextFrame();
 	}
 	mirrorTM = TMTD.none;

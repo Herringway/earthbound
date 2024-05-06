@@ -1169,7 +1169,7 @@ short showTitleScreen(short quick) {
 		prepareLoadedPaletteFadeTables(60, PaletteMask.sprite0);
 		paletteUploadMode = PaletteUpload.full;
 		for (short i = 0; 60 > i; i++) { // fade in over one second
-			updateMapPaletteAnimation();
+			updatePaletteFade();
 			finishFrame();
 		}
 	} else {

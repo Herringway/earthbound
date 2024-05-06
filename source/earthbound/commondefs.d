@@ -6889,8 +6889,7 @@ struct ScreenTransitionConfig {
 	ubyte animationFlags; ///2
 	ubyte fadeMultiplier; ///3
 	ubyte direction; ///4
-	ubyte unknown5; ///5
-	ubyte slideSpeed; ///6
+	ushort slideSpeed; ///5
 	ubyte startSoundEffect; ///7
 	ubyte secondaryDuration; ///8
 	ubyte secondaryAnimationID; ///9

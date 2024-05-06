@@ -3188,7 +3188,7 @@ void instantWinHandler() {
 	memcpy(&buffer[0], &buffer[0x2000], 0x200);
 	prepareLoadedPaletteFadeTables(6, PaletteMask.all);
 	for (short i = 0; i < 6; i++) {
-		updateMapPaletteAnimation();
+		updatePaletteFade();
 		waitUntilNextFrame();
 	}
 	finishPaletteFade();
@@ -3291,7 +3291,7 @@ void magicButterflyRecovery() {
 		}
 		prepareLoadedPaletteFadeTables(12, PaletteMask.all);
 		for (short j = 0; j < 12; j++) {
-			updateMapPaletteAnimation();
+			updatePaletteFade();
 			waitUntilNextFrame();
 		}
 		finishPaletteFade();

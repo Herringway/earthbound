@@ -9135,9 +9135,9 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_VELOCITIES_ZERO(),
-		C4240A(),
-		WRITE_WORD_TEMPVAR(1),
-		C0AA3F(24, 24, 24),
+		ELEVATER_INITIALIZATION(),
+		WRITE_WORD_TEMPVAR(1), // invert math
+		SET_COLDATA_CGADSUB(24, 24, 24), // light gray
 		SET_TICK_CALLBACK(&elevaterConfigure),
 		START_TASK(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
 		SET_MOVEMENT_SPEED(0),
@@ -9162,9 +9162,9 @@ shared static this() {
 		LOOP_END(),
 		SET_VELOCITIES_ZERO(),
 		CLEAR_TICK_CALLBACK(),
-		C4248A(),
-		WRITE_WORD_TEMPVAR(0),
-		C0AA3F(0, 0, 0),
+		RECTANGLE_WINDOW_DISABLE_HDMA(),
+		WRITE_WORD_TEMPVAR(0), // don't invert math
+		SET_COLDATA_CGADSUB(0, 0, 0), // black
 		PAUSE(60),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScript35[0]),
@@ -19148,9 +19148,9 @@ shared static this() {
 		PAUSE(60),
 		SET_VAR(ActionScriptVars.v0, 1),
 		SET_VAR(ActionScriptVars.v1, 1),
-		C423DC(),
-		WRITE_WORD_TEMPVAR(0),
-		C0AA3F(0, 16, 24),
+		BUN_BUUN_BEAM_INITIALIZATION(),
+		WRITE_WORD_TEMPVAR(0), // don't invert
+		SET_COLDATA_CGADSUB(0, 16, 24), // yellow
 		SET_TICK_CALLBACK(&bunbuunBeamConfigure),
 		LOOP(80),
 			PAUSE(1),
@@ -19174,7 +19174,7 @@ shared static this() {
 			ADD(ActionScriptVars.v1, -2),
 		LOOP_END(),
 		CLEAR_TICK_CALLBACK(),
-		C4248A(),
+		RECTANGLE_WINDOW_DISABLE_HDMA(),
 		PAUSE(60),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -25237,7 +25237,7 @@ shared static this() {
 		// start fading in the background
 		PREPARE_TITLE_SCREEN_FADE_IN(),
 		LOOP(165),
-			UPDATE_MAP_PALETTE_ANIMATION(),
+			UPDATE_PALETTE_FADE(),
 			PAUSE(1),
 		LOOP_END(),
 		FINISH_PALETTE_FADE(),
@@ -25918,7 +25918,7 @@ alias DISPLAY_COPYRIGHT_WARNING_SCREEN = CALL!displayCopyrightWarningScreen;
 alias INFLICT_SUNSTROKE_CHECK = CALL!inflictSunstrokeCheck;
 alias LOAD_DEBUG_CURSOR_GRAPHICS = CALL!loadDebugCursorGraphics;
 alias SRAM_CHECK_ROUTINE_CHECKSUM = CALL!sramCheckRoutineChecksum;
-alias UPDATE_MAP_PALETTE_ANIMATION = CALL!updateMapPaletteAnimation;
+alias UPDATE_PALETTE_FADE = CALL!updatePaletteFade;
 alias CLEANUP_SELF = CALL!activeScriptCleanupSelf;
 alias INITIALIZE_PARTY_MEMBER = CALL!actionScriptInitializePartyMember;
 alias UPDATE_PARTY_MEMBER_POSITION = CALL!actionScriptUpdatePartyMemberPosition;
@@ -25946,7 +25946,7 @@ alias SPAWN_ENTITY_AT_SELF = CALL!(actionScriptSpawnEntityAtSelf, ushort, ushort
 alias PRINT_CAST_NAME_PARTY = CALL!(actionScriptPrintCastNameParty, ushort, ushort, ushort);
 alias PRINT_CAST_NAME_VAR0 = CALL!(actionScriptPrintCastNameEntityVar0, ushort, ushort, ushort);
 alias ENABLE_STAGE_HDMA = CALL!(actionScriptEnableStageHDMA, ushort, ushort, ushort);
-alias C0AA3F = CALL!(unknownC0AA3F, ubyte, ubyte, ubyte);
+alias SET_COLDATA_CGADSUB = CALL!(actionScriptSetCOLDATACGADSUB, ubyte, ubyte, ubyte);
 alias GET_NPC_COORDINATES = CALL!(actionScriptFindNPCLocationForActiveEntity, ushort);
 alias GET_EVENT_FLAG = CALL!(actionScriptGetEventFlag, ushort);
 alias SET_SURFACE_FLAGS = CALL!(setSurfaceFlags, ubyte);
@@ -26003,9 +26003,9 @@ alias C2EACF = CALL!unknownC2EACF;
 alias TEST_IN_BIG_AREA = CALL!actionScriptTestInBigArea;
 alias IS_ENTITY_ONSCREEN_RESET_ANIMATION = CALL!isEntityOnscreenResetAnimation;
 alias SLEEP_SLOT_FRAMES = CALL!sleepSlotFrames;
-alias C423DC = CALL!unknownC423DC;
-alias C4240A = CALL!unknownC4240A;
-alias C4248A = CALL!unknownC4248A;
+alias BUN_BUUN_BEAM_INITIALIZATION = CALL!bunbuunBeamInitialization;
+alias ELEVATER_INITIALIZATION = CALL!elevaterInitialization;
+alias RECTANGLE_WINDOW_DISABLE_HDMA = CALL!rectangleWindowDisableHDMA;
 alias DARKEN_SCREEN = CALL!darkenScreen;
 alias DARKEN_SCREEN_END = CALL!disableBrightnessHDMA;
 alias DARKEN_SCREEN_2_WINDOW = CALL!darkenScreen2Window;
