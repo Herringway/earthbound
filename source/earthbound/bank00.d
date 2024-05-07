@@ -5669,7 +5669,7 @@ short initEntityWipe(short actionScript, short x, short y) {
 	newEntityVar7 = 0;
 	newEntityPriority = 0;
 	entityAllocationMinSlot = 0;
-	entityAllocationMaxSlot = 0x1E;
+	entityAllocationMaxSlot = 30;
 	return initEntity(actionScript, x, y);
 }
 
@@ -7535,7 +7535,7 @@ void unknownC0A384Common(short arg1) {
 /// $C0A3A4
 // originally handwritten assembly, id was actually an offset
 void unknownC0A3A4(short, short id) {
-	if ((entityCurrentDisplayedSprites[id / 2] !is null) && ((entityCurrentDisplayedSprites[id / 2].lsb & 1) != 0)) {
+	if ((entityCurrentDisplayedSprites[id / 2] !is null) && ((entityCurrentDisplayedSprites[id / 2].flags & OverworldSpriteFlags.unknown0) != 0)) {
 		actionScriptSpritemap += entitySpriteMapSizes[id / 2] / 5;
 	}
 	ubyte upperBodyPriority = 3 << 4;
@@ -7627,17 +7627,17 @@ void updateEntitySpriteOffset(short arg1) {
 	dmaCopySize = entityByteWidths[arg1 / 2];
 	dmaCopyVRAMDestination = entityVramAddresses[arg1 / 2];
 	//x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
-	const(OverworldSpriteGraphics)* x02 = entityGraphicsPointers[arg1 / 2];
-	assert(x02 !is null, "No sprite to update!");
+	const(OverworldSpriteGraphics)* spriteDefinition = entityGraphicsPointers[arg1 / 2];
+	assert(spriteDefinition !is null, "No sprite to update!");
 	if (spriteDirectionMappings4Direction[entityDirections[arg1 / 2]] != 0) {
 		for (short i = spriteDirectionMappings4Direction[entityDirections[arg1 / 2]]; i > 0; i--) {
-			x02 += 2;
+			spriteDefinition += 2;
 		}
 	}
 	if (useSecondSpriteFrame != 0) {
-		x02 += 1;
+		spriteDefinition += 1;
 	}
-	if (((x02.lsb & 2) == 0) && (entitySurfaceFlags[arg1 / 2] & SurfaceFlags.shallowWater) != 0) {
+	if (((spriteDefinition.flags & OverworldSpriteFlags.unknown1) == 0) && (entitySurfaceFlags[arg1 / 2] & SurfaceFlags.shallowWater) != 0) {
 		dmaCopyMode = 3;
 		dmaCopyRAMSource = &blankTiles;
 		uploadSpriteTileRow();
@@ -7651,11 +7651,11 @@ void updateEntitySpriteOffset(short arg1) {
 			}
 		}
 	}
-	entityCurrentDisplayedSprites[arg1 / 2] = x02;
+	entityCurrentDisplayedSprites[arg1 / 2] = spriteDefinition;
 	//Original code:
-	//dmaCopyRAMSource = cast(void*)((*x02) & 0xFFF0);
+	//dmaCopyRAMSource = cast(void*)((*spriteDefinition) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
-	dmaCopyRAMSource = sprites[x02.id].ptr;
+	dmaCopyRAMSource = sprites[spriteDefinition.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
 		uploadSpriteTileRow();
@@ -7866,7 +7866,7 @@ void updateEntitySpriteFrameCurrent() {
 	dmaCopySize = entityByteWidths[spriteUpdateEntityOffset / 2];
 	dmaCopyVRAMDestination = entityVramAddresses[spriteUpdateEntityOffset / 2];
 	const(OverworldSpriteGraphics)* x02 = (entityGraphicsPointers[spriteUpdateEntityOffset / 2] + spriteDirectionMappings8Direction[entityDirections[spriteUpdateEntityOffset / 2]] * 2 + entityAnimationFrames[spriteUpdateEntityOffset / 2] / 2);
-	if (((x02.lsb & 2) == 0) && ((entitySurfaceFlags[spriteUpdateEntityOffset / 2] & SurfaceFlags.shallowWater) != 0)) {
+	if (((x02.flags & OverworldSpriteFlags.unknown1) == 0) && ((entitySurfaceFlags[spriteUpdateEntityOffset / 2] & SurfaceFlags.shallowWater) != 0)) {
 		dmaCopyMode = 3;
 		dmaCopyRAMSource = &blankTiles;
 		uploadSpriteTileRow();

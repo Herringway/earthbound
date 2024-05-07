@@ -994,20 +994,32 @@ unittest {
 	prettyCompare!"%04X"(cast(ushort[])palettes, cast(immutable(ushort)[])import("intropaletteframe2.bin"));
 }
 
-/// $C4283F
-void unknownC4283F(short arg1, ushort* dest, short destSize) {
+/** Initializes a fade buffer for an 8-direction entity
+ * Params:
+ * entity = Active entity ID
+ * 	dest = The destination buffer
+ * 	destSize = The size of the destination buffer
+ * Original_Address: $(DOLLAR)C4283F
+ */
+void initEntityFadeBuffer8(short entity, ushort* dest, short destSize) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ushort)* src = cast(const(ushort)*)&sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
+	const(ushort)* src = cast(const(ushort)*)&sprites[entityGraphicsPointers[entity][spriteDirectionMappings8Direction[entityDirections[entity]] + entityAnimationFrames[entity]].id][0];
 	do {
 		dest[destSize] = src[destSize];
 	} while (--destSize >= 0);
 }
 
-/// $C42884
-void unknownC42884(short arg1, ushort* dest, short destSize) {
+/** Initializes a fade buffer for a 4-direction entity
+ * Params:
+ * entity = Active entity ID
+ * 	dest = The destination buffer
+ * 	destSize = The size of the destination buffer
+ * Original_Address: $(DOLLAR)C42884
+ */
+void initEntityFadeBuffer4(short entity, ushort* dest, short destSize) {
 	const(OverworldSpriteGraphics)* sprite = &entityGraphicsPointers[entity][0];
-	if (spriteDirectionMappings4Direction[entityDirections[arg1]] != 0) {
-		for (short i = spriteDirectionMappings4Direction[entityDirections[arg1]]; i != 0; i--) {
+	if (spriteDirectionMappings4Direction[entityDirections[entity]] != 0) {
+		for (short i = spriteDirectionMappings4Direction[entityDirections[entity]]; i != 0; i--) {
 			sprite++;
 		}
 	}
@@ -1019,7 +1031,7 @@ void unknownC42884(short arg1, ushort* dest, short destSize) {
 }
 
 /// $C428D1
-void unknownC428D1(ushort* dest, ushort* src, short arg3, short arg4) {
+void unknownC428D1(ushort* dest, const ushort* src, short arg3, short arg4) {
 	short x = cast(short)(arg4 * 2);
 	short y = arg3;
 	do {
@@ -7179,9 +7191,9 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 		destBuffer = cast(ushort*)spriteFadeParams.fadeBuffer2;
 	}
 	if (entityID >= 24) {
-		unknownC4283F(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
+		initEntityFadeBuffer8(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
 	} else {
-		unknownC42884(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
+		initEntityFadeBuffer4(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
 	}
 	switch (appearanceStyle) {
 		case ObjFX.showBlink:

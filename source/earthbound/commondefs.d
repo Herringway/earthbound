@@ -5991,6 +5991,11 @@ enum FlavourGraphicsSet {
 	flavoured = 8,
 }
 ///
+enum OverworldSpriteFlags {
+	unknown0 = 1 << 0,
+	unknown1 = 1 << 1,
+}
+///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
@@ -6224,7 +6229,7 @@ struct SpriteGrouping {
 ///
 struct OverworldSpriteGraphics {
 	size_t id; ///
-	ubyte lsb; ///
+	ubyte flags; ///
 }
 ///
 struct Battler {
