@@ -1017,12 +1017,7 @@ void initEntityFadeBuffer8(short entity, ushort* dest, short destSize) {
  * Original_Address: $(DOLLAR)C42884
  */
 void initEntityFadeBuffer4(short entity, ushort* dest, short destSize) {
-	const(OverworldSpriteGraphics)* sprite = &entityGraphicsPointers[entity][0];
-	if (spriteDirectionMappings4Direction[entityDirections[entity]] != 0) {
-		for (short i = spriteDirectionMappings4Direction[entityDirections[entity]]; i != 0; i--) {
-			sprite++;
-		}
-	}
+	const(OverworldSpriteGraphics)* sprite = &entityGraphicsPointers[entity][spriteDirectionMappings4Direction[entityDirections[entity]] * 2];
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
 	const(ushort)* src = cast(const(ushort)*)&sprites[sprite.id][0];
 	do {
@@ -7310,6 +7305,26 @@ short actionScriptHStripe() {
 		}
 	}
 	return cast(short)(x04 - x1E);
+}
+unittest {
+	if (romDataLoaded) {
+		clearSpriteTable();
+		initializeEntitySubsystem();
+		entityFadeEntity = -1;
+		foreach (npc; [NPCID.unknown1107, NPCID.unknown1108, NPCID.unknown1109]) {
+			entityDirections[createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, 0, 0)] = npcConfig[npc].direction;
+		}
+		runActionscriptFrame();
+		foreach (short entity; [1, 0, 2]) {
+			initializeEntityFade(entity, ObjFX.hideHStripe);
+		}
+		prettyCompare!"%02X"(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade1.bin"));
+		actionScriptHStripe();
+		prettyCompare(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade2.bin"));
+		actionScriptHStripe();
+		prettyCompare(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade3.bin"));
+
+	}
 }
 
 /// $C4CD44
