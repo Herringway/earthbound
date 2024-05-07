@@ -7095,16 +7095,16 @@ struct Manpu {
 }
 ///
 struct SpriteFadeState {
-	short entityID; ///
-	short appearanceStyle; ///
+	short entityID; /// The target entity ID
+	short appearanceStyle; /// The fading style (see ObjFX)
 	short fadeStyle; ///
-	short pixelWidth; ///
-	short pixelHeight; ///
-	ubyte* fadeBuffer; ///
-	ubyte* fadeBuffer2; ///
-	short fadeBufferSize; ///
-	short unknown16; ///
-	short unknown18; ///
+	short pixelWidth; /// Width of the entity in pixels
+	short pixelHeight; /// Height of the entity in pixels
+	ubyte* fadeBuffer; /// The buffer of tile data for the end result
+	ubyte* fadeBuffer2; /// The buffer of tile data for the starting and intermediate states
+	short fadeBufferSize; /// Size of the fade buffers
+	short var0; /// First variable for use by individual fading effects
+	short var1; /// Second variable for use by individual fading effects
 }
 ///
 struct SpritePlacementEntry {

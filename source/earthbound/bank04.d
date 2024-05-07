@@ -1025,34 +1025,54 @@ void initEntityFadeBuffer4(short entity, ushort* dest, short destSize) {
 	} while (--destSize >= 0);
 }
 
-/// $C428D1
-void unknownC428D1(ushort* dest, const ushort* src, short arg3, short arg4) {
-	short x = cast(short)(arg4 * 2);
-	short y = arg3;
+/** Copies a row of pixels starting at the given offset.
+ *
+ * Tiles are expected to be stored in row-major order.
+ * Params:
+ * 	dest = Destination buffer
+ * 	src = Source buffer
+ * 	offset = The starting pixel offset, with 0 being the top-left
+ * 	tileWidth = The width of the sprite in tiles
+ * Original_Address: $(DOLLAR)C428D1
+ */
+void copyPixelRow(ushort* dest, const ushort* src, short offset, short tileWidth) {
+	// 4BPP tiles are basically just 2x2BPP tiles, which are 16 bytes.
+	// Pixels in a row are stored consecutively, so 8x2 bits, or 2 bytes.
+	// So to copy a row of pixels, we just need to copy 16 bits x 2 per tile times the number of tiles, 16 bytes apart from each other
+	short planePairsLeft = cast(short)(tileWidth * 2);
 	do {
-		dest[y / 2] = src[y / 2];
-		y += 16;
-	} while (--x != 0);
+		dest[offset / 2] = src[offset / 2];
+		offset += 16;
+	} while (--planePairsLeft != 0);
 }
 
-/// $C428FC
-void unknownC428FC(ushort* dest, ushort* src, short arg3, short arg4, short arg5)
+/** Copies a column of pixels starting at the provided offset.
+ *
+ * Tiles are expected to be stored in row-major order.
+ * Params:
+ * 	dest = Destination buffer
+ * 	src = Source buffer
+ * 	startingOffset = The starting pixel offset, with 0 being top-left
+ * 	pixelHeight = The height in pixels of the tiles
+ * 	stride = Size in bytes of a full row of tiles
+ * Original_Address: $(DOLLAR)C428FC
+ */
+void copyPixelColumn(ushort* dest, ushort* src, short startingOffset, short pixelHeight, short stride)
 	in(dest, "Missing dest")
 	in(src, "Missing src")
 {
-	ushort x08 = pixelPlaneMasks[arg3 & 7];
-	ushort x0A = 0xFFFF ^ pixelPlaneMasks[arg3 & 7];
-	short y = cast(short)((arg3 & 0xFFF8) * 4);
-	short x0E = arg4 / 8;
+	const pixelMask = pixelPlaneMasks[startingOffset & 7];
+	short offset = cast(short)((startingOffset & 0xFFF8) * 4);
+	short tilesLeft = pixelHeight / 8;
 	do {
-		short x = 16;
-		short tmp = y;
+		const oldOffset = offset;
+		short pixelsLeft = 16;
 		do {
-			dest[y / 2] = (dest[y / 2] & x0A) | (src[y / 2] & x08);
-			y += 2;
-		} while (--x != 0);
-		y = cast(short)(tmp + arg5);
-	} while (--x0E != 0);
+			dest[offset / 2] = (dest[offset / 2] & ~pixelMask) | (src[offset / 2] & pixelMask);
+			offset += 2;
+		} while (--pixelsLeft != 0);
+		offset = cast(short)(oldOffset + stride);
+	} while (--tilesLeft != 0);
 }
 
 /// $C42965 - Copies a pixel from one 4BPP tile to another
@@ -7177,8 +7197,8 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	spriteFadeParams.fadeBuffer = allocateEntityFadeBuffer(cast(short)(spriteFadeParams.fadeBufferSize * 2));
 	clearEntityFadeEntry(spriteFadeParams.fadeBuffer, spriteFadeParams.fadeBufferSize);
 	spriteFadeParams.fadeBuffer2 = spriteFadeParams.fadeBuffer + spriteFadeParams.fadeBufferSize;
-	spriteFadeParams.unknown18 = 0;
-	spriteFadeParams.unknown16 = 0;
+	spriteFadeParams.var1 = 0;
+	spriteFadeParams.var0 = 0;
 	ushort* destBuffer;
 	if ((appearanceStyle == ObjFX.showBlink) || (appearanceStyle == ObjFX.showHStripe) || (appearanceStyle == ObjFX.showVStripe) || (appearanceStyle == ObjFX.showDots)) {
 		destBuffer = cast(ushort*)spriteFadeParams.fadeBuffer;
@@ -7233,8 +7253,8 @@ unittest {
 			assert(fadeBufferSize == 192);
 			prettyCompare!"%02X"(fadeBuffer[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade1.bin"));
 			prettyCompare!"%02X"(fadeBuffer2[0 .. fadeBufferSize], cast(immutable(ubyte)[])import("dotsfade2.bin"));
-			assert(unknown16 == 0);
-			assert(unknown18 == 0);
+			assert(var0 == 0);
+			assert(var1 == 0);
 		}
 	}
 }
@@ -7282,29 +7302,32 @@ void actionScriptEndFade() {
 	// wow. nothing!
 }
 
-/// $C4CC2F
+/** Applies a single frame of horizontal stripe fade effect to actively-fading sprites
+ * Returns: Number of sprites left to fade
+ * Original_Address: $(DOLLAR)C4CC2F
+ */
 short actionScriptHStripe() {
-	short x1E = 0;
-	short x04 = 0;
-	SpriteFadeState* x1A = entityFadeStates;
-	for (short i = 0; i < entityFadeStatesLength; i++, x1A++) {
-		if (x1A.fadeStyle != FadeStyle.hStripe) {
+	short finishedFadingSprites = 0;
+	short fadingSprites = 0;
+	SpriteFadeState* activeFade = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++, activeFade++) {
+		if (activeFade.fadeStyle != FadeStyle.hStripe) {
 			continue;
 		}
-		x04++;
-		if (x1A.unknown18 == 2) {
-			x1E++;
+		fadingSprites++;
+		if (activeFade.var1 == 2) {
+			finishedFadingSprites++;
 			continue;
 		}
-		unknownC428D1(cast(ushort*)x1A.fadeBuffer2, cast(ushort*)x1A.fadeBuffer, cast(short)((x1A.pixelWidth * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.pixelWidth / 8);
-		uploadEntityFadeFrame(x1A.fadeBuffer2, x1A.entityID);
-		x1A.unknown16 += 2;
-		if (x1A.unknown16 >= x1A.pixelHeight) {
-			x1A.unknown16 = 1;
-			x1A.unknown18++;
+		copyPixelRow(cast(ushort*)activeFade.fadeBuffer2, cast(ushort*)activeFade.fadeBuffer, cast(short)((activeFade.pixelWidth * 32 *(activeFade.var0 / 8)) + (activeFade.var0 % 8) * 2), activeFade.pixelWidth / 8);
+		uploadEntityFadeFrame(activeFade.fadeBuffer2, activeFade.entityID);
+		activeFade.var0 += 2;
+		if (activeFade.var0 >= activeFade.pixelHeight) {
+			activeFade.var0 = 1;
+			activeFade.var1++;
 		}
 	}
-	return cast(short)(x04 - x1E);
+	return cast(short)(fadingSprites - finishedFadingSprites);
 }
 unittest {
 	if (romDataLoaded) {
@@ -7318,12 +7341,10 @@ unittest {
 		foreach (short entity; [1, 0, 2]) {
 			initializeEntityFade(entity, ObjFX.hideHStripe);
 		}
-		prettyCompare!"%02X"(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade1.bin"));
-		actionScriptHStripe();
-		prettyCompare(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade2.bin"));
-		actionScriptHStripe();
-		prettyCompare(buffer[0 .. 0x480], cast(immutable(ubyte)[])import("hstripefade3.bin"));
-
+		static foreach (testCase; ["hstripefade1.bin", "hstripefade2.bin", "hstripefade3.bin"]) {
+			prettyCompare!"%02X"(buffer[0 .. 0x480], cast(immutable(ubyte)[])import(testCase));
+			actionScriptHStripe();
+		}
 	}
 }
 
@@ -7337,32 +7358,50 @@ short actionScriptVStripe() {
 			continue;
 		}
 		x04++;
-		if (x0A.unknown18 == 2) {
+		if (x0A.var1 == 2) {
 			x1E++;
 			continue;
 		}
 		short x;
-		if (x0A.unknown18 != 0) {
-			if ((x0A.unknown16 & 1) == 0) {
-				x = x0A.unknown16;
+		if (x0A.var1 != 0) {
+			if ((x0A.var0 & 1) == 0) {
+				x = x0A.var0;
 			} else {
-				x = cast(short)(x0A.pixelWidth - x0A.unknown16 - 1);
+				x = cast(short)(x0A.pixelWidth - x0A.var0 - 1);
 			}
 		} else {
-			if ((x0A.unknown16 & 1) != 0) {
-				x = x0A.unknown16;
+			if ((x0A.var0 & 1) != 0) {
+				x = x0A.var0;
 			} else {
-				x = cast(short)(x0A.pixelWidth - x0A.unknown16 - 1);
+				x = cast(short)(x0A.pixelWidth - x0A.var0 - 1);
 			}
 		}
-		unknownC428FC(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x, x0A.pixelHeight, cast(short)((x0A.pixelWidth / 8) * 32));
+		copyPixelColumn(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x, x0A.pixelHeight, cast(short)((x0A.pixelWidth / 8) * 32));
 		uploadEntityFadeFrame(x0A.fadeBuffer2, x0A.entityID);
-		if (++x0A.unknown16 >= x0A.pixelWidth / 2) {
-			x0A.unknown18++;
-			x0A.unknown16 = 0;
+		if (++x0A.var0 >= x0A.pixelWidth / 2) {
+			x0A.var1++;
+			x0A.var0 = 0;
 		}
 	}
 	return cast(short)(x04 - x1E);
+}
+unittest {
+	if (romDataLoaded) {
+		clearSpriteTable();
+		initializeEntitySubsystem();
+		entityFadeEntity = -1;
+		foreach (npc; [NPCID.unknown0531, NPCID.unknown0532, NPCID.unknown0533]) {
+			entityDirections[createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, 0, 0)] = npcConfig[npc].direction;
+		}
+		runActionscriptFrame();
+		foreach (short entity; [0, 1, 2]) {
+			initializeEntityFade(entity, ObjFX.hideVStripe);
+		}
+		static foreach (testCase; ["vstripefade1.bin", "vstripefade2.bin", "vstripefade3.bin"]) {
+			prettyCompare!"%02X"(buffer[0 .. 0x800], cast(immutable(ubyte)[])import(testCase));
+			actionScriptVStripe();
+		}
+	}
 }
 
 /// $C4CEB0
