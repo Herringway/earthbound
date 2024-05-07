@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable OverworldSpriteGraphics.lsb</title>
+		<title>Function copyPixelColumn</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,29 +149,46 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable OverworldSpriteGraphics.lsb</h1><p></p>
+			<h1>Function copyPixelColumn</h1><p>Copies a column of pixels starting at the provided offset.
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <a href="../../earthbound/commondefs/OverworldSpriteGraphics.html"><span class="typ">OverworldSpriteGraphics</span></a>
+			<span class="typ">void</span> <span class="pln">copyPixelColumn</span>
+			<span class="pun">(</span>
 			<br/>
-			<span class="pun">
-				{
-				<br/>
-			</span>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span><span class="pun">*</span> <span class="pln">dest</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">lsb</span>
-			<span class="pun">;</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span><span class="pun">*</span> <span class="pln">src</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">startingOffset</span><span class="pun">,</span>
 			<br/>
-			<span class="pun">}</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">pixelHeight</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">stride</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Tiles are expected to be 4BPP and stored in row-major order.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="dest">dest</td><td> Destination buffer</td></tr>
+<tr><td id="src">src</td><td> Source buffer</td></tr>
+<tr><td id="startingOffset">startingOffset</td><td> The starting pixel offset, with 0 being top-left</td></tr>
+<tr><td id="pixelHeight">pixelHeight</td><td> The height in pixels of the tiles</td></tr>
+<tr><td id="stride">stride</td><td> Size in bytes of a full row of tiles</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C428FC
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

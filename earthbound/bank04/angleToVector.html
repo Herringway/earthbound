@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable SpriteFadeState.unknown18</title>
+		<title>Function angleToVector</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,29 +149,39 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable SpriteFadeState.unknown18</h1><p></p>
+			<h1>Function angleToVector</h1><p>Converts an angle (in 1/65536ths of a circle) and magnitude to an X,Y pair
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <a href="../../earthbound/commondefs/SpriteFadeState.html"><span class="typ">SpriteFadeState</span></a>
+			<span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">bank04<wbr/></span><span class="pun">.</span><span class="pln">angleToVector</span> <span class="pln">angleToVector</span>
+			<span class="pun">(</span>
 			<br/>
-			<span class="pun">
-				{
-				<br/>
-			</span>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">angle</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">unknown18</span>
-			<span class="pun">;</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">magnitude</span>
 			<br/>
-			&nbsp;&nbsp;<span class="com">// ...</span>
-			<br/>
-			<span class="pun">}</span>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section></section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="angle">angle</td><td> The angle (in 1/65536ths of a circle, from the perspective of the player)</td></tr>
+<tr><td id="magnitude">magnitude</td><td> The "size" of the vector</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A pair of coordinates, (Y, X)
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C41FFF
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC41FFF</title>
+		<title>Function copyPixelRow</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,24 +149,43 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC41FFF</h1><p>$C41FFF
+			<h1>Function copyPixelRow</h1><p>Copies a row of pixels starting at the given offset.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">bank04<wbr/></span><span class="pun">.</span><span class="pln">unknownC41FFF</span> <span class="pln">unknownC41FFF</span>
+			<span class="typ">void</span> <span class="pln">copyPixelRow</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span><span class="pun">*</span> <span class="pln">dest</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">*</span><span class="pun">)</span> <span class="pln">src</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">offset</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tileWidth</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Tiles are expected to be 4BPP and stored in row-major order.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="dest">dest</td><td> Destination buffer</td></tr>
+<tr><td id="src">src</td><td> Source buffer</td></tr>
+<tr><td id="offset">offset</td><td> The starting pixel offset, with 0 being the top-left</td></tr>
+<tr><td id="tileWidth">tileWidth</td><td> The width of the sprite in tiles</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C428D1
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

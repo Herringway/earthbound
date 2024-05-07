@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable SpriteFadeState.unknown16</title>
+		<title>Function backgroundSlideInitialization</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,29 +149,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable SpriteFadeState.unknown16</h1><p></p>
+			<h1>Function backgroundSlideInitialization</h1><p>Initializes state for BG1+BG2 background slides
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <a href="../../earthbound/commondefs/SpriteFadeState.html"><span class="typ">SpriteFadeState</span></a>
+			<span class="typ">void</span> <span class="pln">backgroundSlideInitialization</span>
+			<span class="pun">(</span>
 			<br/>
-			<span class="pun">
-				{
-				<br/>
-			</span>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">factor</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">unknown16</span>
-			<span class="pun">;</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">angle</span>
 			<br/>
-			&nbsp;&nbsp;<span class="com">// ...</span>
-			<br/>
-			<span class="pun">}</span>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="factor">factor</td><td> Multiplication factor for the velocity vectors (aka velocity)</td></tr>
+<tr><td id="angle">angle</td><td> An 8-bit angle</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C42631
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

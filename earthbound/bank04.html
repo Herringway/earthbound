@@ -263,7 +263,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="actionScriptHStripe" class="public" href="../earthbound/bank04/actionScriptHStripe.html">actionScriptHStripe</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4CC2F
+						<td>Applies a single frame of horizontal stripe fade effect to actively-fading sprites
 </td>
 					</tr>
 					<tr>
@@ -395,6 +395,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="angleToVector" class="public" href="../earthbound/bank04/angleToVector.html">angleToVector</a><span class="tableEntryAnnotation">(angle, magnitude)</span>
+							</code>
+						</td>
+						<td>Converts an angle (in 1/65536ths of a circle) and magnitude to an X,Y pair
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="animateTownMapIconPalette" class="public" href="../earthbound/bank04/animateTownMapIconPalette.html">animateTownMapIconPalette</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -422,6 +431,33 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="backgroundSlideFrameAdvance" class="public" href="../earthbound/bank04/backgroundSlideFrameAdvance.html">backgroundSlideFrameAdvance</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Advances BG1+BG2 background slide by a single frame, adding X/Y velocity to the BG1+BG2 positions
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="backgroundSlideInitialization" class="public" href="../earthbound/bank04/backgroundSlideInitialization.html">backgroundSlideInitialization</a><span class="tableEntryAnnotation">(factor, angle)</span>
+							</code>
+						</td>
+						<td>Initializes state for BG1+BG2 background slides
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="backgroundSlideSpriteFrameAdvance" class="public" href="../earthbound/bank04/backgroundSlideSpriteFrameAdvance.html">backgroundSlideSpriteFrameAdvance</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Advances BG1+BG2 background slide for entities, updating their screen positions relative to the background
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="backupPalettes" class="public" href="../earthbound/bank04/backupPalettes.html">backupPalettes</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -435,6 +471,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C479E9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="bunbuunBeamInitialization" class="public" href="../earthbound/bank04/bunbuunBeamInitialization.html">bunbuunBeamInitialization</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Set up the window parameters for the beam of light in the buzz buzz meteor intro scene
 </td>
 					</tr>
 					<tr>
@@ -668,7 +713,25 @@ $('#symbolSearchPane').show();</script>
 								<a id="copyPixel" class="public" href="../earthbound/bank04/copyPixel.html">copyPixel</a><span class="tableEntryAnnotation">(dest, src, pixelRow, pixelColumn)</span>
 							</code>
 						</td>
-						<td>$C42965 - Copies a pixel from one 4BPP tile to another
+						<td>Copies a pixel from one 4BPP tile to another
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="copyPixelColumn" class="public" href="../earthbound/bank04/copyPixelColumn.html">copyPixelColumn</a><span class="tableEntryAnnotation">(dest, src, startingOffset, pixelHeight, stride)</span>
+							</code>
+						</td>
+						<td>Copies a column of pixels starting at the provided offset.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="copyPixelRow" class="public" href="../earthbound/bank04/copyPixelRow.html">copyPixelRow</a><span class="tableEntryAnnotation">(dest, src, offset, tileWidth)</span>
+							</code>
+						</td>
+						<td>Copies a row of pixels starting at the given offset.
 </td>
 					</tr>
 					<tr>
@@ -785,7 +848,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="decomp" class="public" href="../earthbound/bank04/decomp.html">decomp</a><span class="tableEntryAnnotation">(data, buffer)</span>
 							</code>
 						</td>
-						<td>$C41A9E
+						<td>Decompresses data in HAL's proprietary compression format
 </td>
 					</tr>
 					<tr>
@@ -985,6 +1048,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="elevaterInitialization" class="public" href="../earthbound/bank04/elevaterInitialization.html">elevaterInitialization</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Set up the window parameters for the black square covering the map during the elevator cutscenes
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -1298,7 +1370,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="gameFailureLoop" class="public" href="../earthbound/bank04/gameFailureLoop.html">gameFailureLoop</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C40B75
+						<td>Displays failure message on BG3 and loops forever
 </td>
 					</tr>
 					<tr>
@@ -1424,7 +1496,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getScreenAngle" class="public" href="../earthbound/bank04/getScreenAngle.html">getScreenAngle</a><span class="tableEntryAnnotation">(x1, y1, x2, y2)</span>
 							</code>
 						</td>
-						<td>$C41EFF - Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
+						<td>Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
 </td>
 					</tr>
 					<tr>
@@ -1470,6 +1542,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C458FE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="initEntityFadeBuffer4" class="public" href="../earthbound/bank04/initEntityFadeBuffer4.html">initEntityFadeBuffer4</a><span class="tableEntryAnnotation">(entity, dest, destSize)</span>
+							</code>
+						</td>
+						<td>Initializes a fade buffer for a 4-direction entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="initEntityFadeBuffer8" class="public" href="../earthbound/bank04/initEntityFadeBuffer8.html">initEntityFadeBuffer8</a><span class="tableEntryAnnotation">(entity, dest, destSize)</span>
+							</code>
+						</td>
+						<td>Initializes a fade buffer for an 8-direction entity
 </td>
 					</tr>
 					<tr>
@@ -1790,6 +1880,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="multiplyWithDivisor256" class="public" href="../earthbound/bank04/multiplyWithDivisor256.html">multiplyWithDivisor256</a><span class="tableEntryAnnotation">(v1, v2)</span>
+							</code>
+						</td>
+						<td>Multiplies two numbers together and divides the result by 256
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="nextVWFTile" class="public" href="../earthbound/bank04/nextVWFTile.html">nextVWFTile</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1910,7 +2009,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="prepareGameFailure" class="public" href="../earthbound/bank04/prepareGameFailure.html">prepareGameFailure</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C40B51
+						<td>Prepares to enter a failure state, where a fullscreen message is shown on BG3
 </td>
 					</tr>
 					<tr>
@@ -2168,10 +2267,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="rectangleWindowEnableHdma" class="public" href="../earthbound/bank04/rectangleWindowEnableHdma.html">rectangleWindowEnableHdma</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="rectangleWindowDisableHDMA" class="public" href="../earthbound/bank04/rectangleWindowDisableHDMA.html">rectangleWindowDisableHDMA</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4245D
+						<td>Disables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="rectangleWindowEnableHDMA" class="public" href="../earthbound/bank04/rectangleWindowEnableHDMA.html">rectangleWindowEnableHDMA</a><span class="tableEntryAnnotation">(table)</span>
+							</code>
+						</td>
+						<td>Enables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
 </td>
 					</tr>
 					<tr>
@@ -2276,6 +2384,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="reserveBG2Tile" class="public" href="../earthbound/bank04/reserveBG2Tile.html">reserveBG2Tile</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Reserves space for a BG2 tile
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="restoreMapRendering" class="public" href="../earthbound/bank04/restoreMapRendering.html">restoreMapRendering</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2352,6 +2469,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Sets the scroll threshold in tiles, after which the actionscript will continue
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setCOLDATACGADSUB" class="public" href="../earthbound/bank04/setCOLDATACGADSUB.html">setCOLDATACGADSUB</a><span class="tableEntryAnnotation">(cgadsub)</span>
+							</code>
+						</td>
+						<td>Sets COLDATA for all three colours using actionscript globals, as well as CGADSUB
 </td>
 					</tr>
 					<tr>
@@ -2578,132 +2704,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4645A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC40085" class="public" href="../earthbound/bank04/unknownC40085.html">unknownC40085</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C40085
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC41FFF" class="public" href="../earthbound/bank04/unknownC41FFF.html">unknownC41FFF</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C41FFF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4213F" class="public" href="../earthbound/bank04/unknownC4213F.html">unknownC4213F</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C4213F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC423DC" class="public" href="../earthbound/bank04/unknownC423DC.html">unknownC423DC</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C423DC
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4240A" class="public" href="../earthbound/bank04/unknownC4240A.html">unknownC4240A</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4240A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC42439" class="public" href="../earthbound/bank04/unknownC42439.html">unknownC42439</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C42439
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4248A" class="public" href="../earthbound/bank04/unknownC4248A.html">unknownC4248A</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4248A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC42631" class="public" href="../earthbound/bank04/unknownC42631.html">unknownC42631</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C42631
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4268A" class="public" href="../earthbound/bank04/unknownC4268A.html">unknownC4268A</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4268A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC426C7" class="public" href="../earthbound/bank04/unknownC426C7.html">unknownC426C7</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C426C7
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4283F" class="public" href="../earthbound/bank04/unknownC4283F.html">unknownC4283F</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C4283F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC42884" class="public" href="../earthbound/bank04/unknownC42884.html">unknownC42884</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C42884
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC428D1" class="public" href="../earthbound/bank04/unknownC428D1.html">unknownC428D1</a><span class="tableEntryAnnotation">(dest, src, arg3, arg4)</span>
-							</code>
-						</td>
-						<td>$C428D1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC428FC" class="public" href="../earthbound/bank04/unknownC428FC.html">unknownC428FC</a><span class="tableEntryAnnotation">(dest, src, arg3, arg4, arg5)</span>
-							</code>
-						</td>
-						<td>$C428FC
 </td>
 					</tr>
 					<tr>
@@ -3294,10 +3294,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="updateMapPaletteAnimation" class="public" href="../earthbound/bank04/updateMapPaletteAnimation.html">updateMapPaletteAnimation</a><span class="tableEntryAnnotation">()</span>
+								<a id="updatePaletteFade" class="public" href="../earthbound/bank04/updatePaletteFade.html">updatePaletteFade</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C426ED - Palette animation
+						<td>Advances palette fade animations by a single frame
 </td>
 					</tr>
 					<tr>
@@ -3372,6 +3372,18 @@ $('#symbolSearchPane').show();</script>
 					<col class="caption"/>
 					<tr>
 						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="angleToVectorSineTable" class="public" href="../earthbound/bank04/angleToVectorSineTable.html">
+								<code>angleToVectorSineTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">113</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Look-up table used by angleToVector()
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3586,7 +3598,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/OverlayScript.html"><span class="typ">OverlayScript</span></a><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Overlay script for big ripples
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3597,7 +3610,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for big ripple overlay, frame 1
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3608,7 +3622,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for big ripple overlay, frame 2
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3631,18 +3646,20 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/OverlayScript.html"><span class="typ">OverlayScript</span></a><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Overlay script for mushroom overlay
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a id="entityOverlayMushroomizedFrame1" class="public" href="../earthbound/bank04/entityOverlayMushroomizedFrame1.html">
-								<code>entityOverlayMushroomizedFrame1</code>
+							<a id="entityOverlayMushroomizedFrame" class="public" href="../earthbound/bank04/entityOverlayMushroomizedFrame.html">
+								<code>entityOverlayMushroomizedFrame</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for mushroom overlay
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3653,7 +3670,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/OverlayScript.html"><span class="typ">OverlayScript</span></a><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Overlay script for ripples
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3664,7 +3682,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for ripple overlay, frame 1
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3675,7 +3694,8 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for ripple overlay, frame 2
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3698,51 +3718,56 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/OverlayScript.html"><span class="typ">OverlayScript</span></a><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Overlay script for sweating overlay
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a id="entityOverlaySweatingFrame41" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame41.html">
-								<code>entityOverlaySweatingFrame41</code>
+							<a id="entityOverlaySweatingFrame1" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame1.html">
+								<code>entityOverlaySweatingFrame1</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for sweating overlay, frame 1
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a id="entityOverlaySweatingFrame42" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame42.html">
-								<code>entityOverlaySweatingFrame42</code>
+							<a id="entityOverlaySweatingFrame2" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame2.html">
+								<code>entityOverlaySweatingFrame2</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for sweating overlay, frame 2
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a id="entityOverlaySweatingFrame43" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame43.html">
-								<code>entityOverlaySweatingFrame43</code>
+							<a id="entityOverlaySweatingFrame3" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame3.html">
+								<code>entityOverlaySweatingFrame3</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for sweating overlay, frame 3
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a id="entityOverlaySweatingFrame44" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame44.html">
-								<code>entityOverlaySweatingFrame44</code>
+							<a id="entityOverlaySweatingFrame4" class="public" href="../earthbound/bank04/entityOverlaySweatingFrame4.html">
+								<code>entityOverlaySweatingFrame4</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMap.html"><span class="typ">SpriteMap</span></a><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td></td>
+						<td>Spritemap for sweating overlay, frame 4
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -3995,7 +4020,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42955 - masks for getting individual pixels out of a 2 plane pair
+						<td>Masks for getting individual pixels out of a 2 plane pair
 </td>
 					</tr>
 					<tr>
@@ -4008,18 +4033,6 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C42A63
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="powersOfTwo16Bit" class="public" href="../earthbound/bank04/powersOfTwo16Bit.html">
-								<code>powersOfTwo16Bit</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C44C6C
 </td>
 					</tr>
 					<tr>
@@ -4204,18 +4217,6 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownC41FFFSineTable" class="public" href="../earthbound/bank04/unknownC41FFFSineTable.html">
-								<code>unknownC41FFFSineTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">113</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C4205D and $C420BD
-</td>
-					</tr>
-					<tr>
-						<td>
 							<a id="unknownC46A5E" class="public" href="../earthbound/bank04/unknownC46A5E.html">
 								<code>unknownC46A5E</code>
 							</a>
@@ -4272,6 +4273,18 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C44AD7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="usedBG2TileMasks" class="public" href="../earthbound/bank04/usedBG2TileMasks.html">
+								<code>usedBG2TileMasks</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Bitmasks used for usedBG2TileMap
 </td>
 					</tr>
 					<tr>
