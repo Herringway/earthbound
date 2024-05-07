@@ -13332,7 +13332,7 @@ immutable ubyte[10][6] commandMenuText = [
 /** Definitions for overworld sprite groups
  * Original_Address: $(DOLLAR)EF133F
  */
-__gshared SpriteGrouping[464] spriteGroups = [
+immutable SpriteGrouping[464] spriteGroups = [
 	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
 	OverworldSprite.none: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[

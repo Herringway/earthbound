@@ -1005,7 +1005,7 @@ void unknownC4283F(short arg1, ushort* dest, short destSize) {
 
 /// $C42884
 void unknownC42884(short arg1, ushort* dest, short destSize) {
-	OverworldSpriteGraphics* sprite = &entityGraphicsPointers[arg1][0];
+	const(OverworldSpriteGraphics)* sprite = &entityGraphicsPointers[entity][0];
 	if (spriteDirectionMappings4Direction[entityDirections[arg1]] != 0) {
 		for (short i = spriteDirectionMappings4Direction[entityDirections[arg1]]; i != 0; i--) {
 			sprite++;

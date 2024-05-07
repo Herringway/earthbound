@@ -1041,7 +1041,7 @@ __gshared ushort[maxEntities] entityVramAddresses;
 /** Pointers to the sprite tiles used by active entities
  * Original_Address: $(DOLLAR)29CA, $(DOLLAR)2A06
  */
-__gshared OverworldSpriteGraphics*[maxEntities] entityGraphicsPointers;
+__gshared const(OverworldSpriteGraphics)*[maxEntities] entityGraphicsPointers;
 //__gshared short[maxEntities] UNKNOWN_30X2_TABLE_31; /// Original_Address: $(DOLLAR)2A42
 /** The byte sizes of a row of sprite tiles for active entities. Sprites are uploaded to VRAM one row of tiles at a time
  * Original_Address: $(DOLLAR)2A7E
