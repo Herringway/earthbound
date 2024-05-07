@@ -7212,10 +7212,10 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 
 unittest {
 	if (romDataLoaded) {
+		clearSpriteTable();
+		initializeEntitySubsystem();
 		entityFadeEntity = -1;
-		entityTileHeights[4] = 3;
-		entitySizes[4] = EntitySize._16x24;
-		entityGraphicsPointers[4] = &spriteGroups[OverworldSprite.pencilStatue].sprites[0];
+		createOverworldEntity(OverworldSprite.pencilStatue, ActionScript.animMapObjStill, 4, 0, 0);
 		initializeEntityFade(4, ObjFX.hideDots);
 		with(entityFadeStates[0]) {
 			assert(entityID == 4);
