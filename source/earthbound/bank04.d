@@ -7179,7 +7179,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	spriteFadeParams.pixelWidth = pixelWidths[entitySizes[entityID]];
 	spriteFadeParams.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
 	spriteFadeParams.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]) / 2;
-	spriteFadeParams.fadeBuffer = allocateEntityFadeBuffer(spriteFadeParams.fadeBufferSize);
+	spriteFadeParams.fadeBuffer = allocateEntityFadeBuffer(cast(short)(spriteFadeParams.fadeBufferSize * 2));
 	clearEntityFadeEntry(spriteFadeParams.fadeBuffer, spriteFadeParams.fadeBufferSize);
 	spriteFadeParams.fadeBuffer2 = spriteFadeParams.fadeBuffer + spriteFadeParams.fadeBufferSize;
 	spriteFadeParams.unknown18 = 0;
