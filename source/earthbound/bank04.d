@@ -1027,7 +1027,7 @@ void initEntityFadeBuffer4(short entity, ushort* dest, short destSize) {
 
 /** Copies a row of pixels starting at the given offset.
  *
- * Tiles are expected to be stored in row-major order.
+ * Tiles are expected to be 4BPP and stored in row-major order.
  * Params:
  * 	dest = Destination buffer
  * 	src = Source buffer
@@ -1048,7 +1048,7 @@ void copyPixelRow(ushort* dest, const ushort* src, short offset, short tileWidth
 
 /** Copies a column of pixels starting at the provided offset.
  *
- * Tiles are expected to be stored in row-major order.
+ * Tiles are expected to be 4BPP and stored in row-major order.
  * Params:
  * 	dest = Destination buffer
  * 	src = Source buffer
@@ -1075,20 +1075,26 @@ void copyPixelColumn(ushort* dest, ushort* src, short startingOffset, short pixe
 	} while (--tilesLeft != 0);
 }
 
-/// $C42965 - Copies a pixel from one 4BPP tile to another
+/** Copies a pixel from one 4BPP tile to another
+ * Params:
+ * 	dest = Destination buffer
+ * 	src = Source buffer
+ * 	pixelRow = Y coordinate of pixel to copy
+ * 	pixelColumn = X coordinate of pixel to copy
+ * Original_Address: $(DOLLAR)C42965
+ */
 void copyPixel(ushort* dest, ushort* src, short pixelRow, short pixelColumn) {
-	ushort x08 = pixelPlaneMasks[pixelColumn];
-	ushort x0A = x08 ^ 0xFFFF;
+	const mask = pixelPlaneMasks[pixelColumn];
 	// plane 0-1
-	ushort x0C = src[pixelRow / 2] & x08;
-	dest[pixelRow / 2] = (dest[pixelRow / 2] & x0A) | x0C;
+	dest[pixelRow / 2] = (dest[pixelRow / 2] & ~mask) | (src[pixelRow / 2] & mask);
 	// plane 2-3
 	pixelRow += 16;
-	x0C = src[pixelRow / 2] & x08;
-	dest[pixelRow / 2] = (dest[pixelRow / 2] & x0A) | x0C;
+	dest[pixelRow / 2] = (dest[pixelRow / 2] & ~mask) | (src[pixelRow / 2] & mask);
 }
 
-/// $C42955 - masks for getting individual pixels out of a 2 plane pair
+/** Masks for getting individual pixels out of a 2 plane pair
+ * Original_Address: $C42955
+ */
 immutable ushort[8] pixelPlaneMasks = [
 	0b1000000010000000,
 	0b0100000001000000,
