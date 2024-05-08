@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setPartyTickCallbacks</h1><p>$C42F45
+			<h1>Function setPartyTickCallbacks</h1><p>Set tick callbacks for a party leader and the entire party all in one go.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -167,8 +167,23 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Also clears all callback flags.
+ The party leader entity is an invisible entity that the entire party follows around, and does NOT refer to the player character in the front.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="leaderEntityID">leaderEntityID</td><td> The active entity ID for the party leader</td></tr>
+<tr><td id="leaderCallback">leaderCallback</td><td> The tick callback for the leader</td></tr>
+<tr><td id="partyCallback">partyCallback</td><td> The tick callback for everyone in the party</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>$C42F45
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

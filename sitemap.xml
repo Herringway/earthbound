@@ -934,6 +934,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/showHPPPWindows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/showHPPPWindowsF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/showTownMap.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/swapRaisedHPPPWindowF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/takeItemFromCharacter.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/takeItemFromSpecificCharacter.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/talkTo.html</loc></url>
@@ -994,7 +995,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1F616.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1FF6B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1FF99.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC43573F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unlockInput.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/uploadHPPPMeterArea.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/waitForActionscript.html</loc></url>
@@ -1502,6 +1502,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptVStripe.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptYieldToText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/adjustManpuPositioning.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/alignNumber.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/allocateAndUploadOverlaySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/allocateEntityFadeBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/angleToVector.html</loc></url>
@@ -1542,6 +1543,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/clearCurrentTextLine.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearEntityFadeBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearEntityFadeEntry.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/clearPartyStatus.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearTextLine.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/coffeeTeaScene.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/coffeeTeaSingleFrameScroll.html</loc></url>
@@ -1634,6 +1636,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/findInventorySpace2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/findItemInInventory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/findItemInInventory2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/findMapObject.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/findNPCLocationForActiveEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/finishAutoMovementDemoAndStart.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/finishBattleFrame.html</loc></url>
@@ -1670,8 +1673,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/halveYSpeed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/handleCastScrolling.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/hideCharacterOrParty.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/hitboxHeights.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/hitboxWidths.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/hitboxTileHeights.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/hitboxTileWidths.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/inflictStatusNonBattle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initEntityFadeBuffer4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initEntityFadeBuffer8.html</loc></url>
@@ -1679,6 +1682,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeEntityFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeItemTransformation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeMapPaletteFade.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/initializeMovementSpeeds.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializePartyPointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializePathers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializePathMatrix.html</loc></url>
@@ -1797,6 +1801,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/setGameOverFadeTargetPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setMovementFromAngle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setMovingDirectionFromAngle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/setOverworldStatusSuppression.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setPartyTickCallbacks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setTextHighlighting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setupGiygasOverlay.html</loc></url>
@@ -1820,6 +1825,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/startSwirl.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/statusEquipWindowText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/stepMapPaletteFade.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/swapRaisedHPPPWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/targetEnemyByBattlerIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/targettingFlagBitmasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/testYourSanctuaryDisplay.html</loc></url>
@@ -1831,11 +1837,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unhideCharacterOrParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC41FC5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC41FDF.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC432B1.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC43344.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4334A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC43573.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC43D95.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC43DDB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC43E31.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC43EF8.html</loc></url>
@@ -1908,7 +1909,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/usedBG2TileMapMasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/usedBG2TileMasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/useSoundStone.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/velocityStore.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/verticalShakeOffsets.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/vwfTextMove.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/yourSanctuaryLocations.html</loc></url>
@@ -2835,7 +2835,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/PhotographerConfigEntryObject.tileY.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PhotoState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PhotoState.partyMembers.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/PhotoState.unknown.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/PhotoState.timer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/playerCharCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PlayerMovementFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PlayerPositionBufferEntry.html</loc></url>

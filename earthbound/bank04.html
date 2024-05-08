@@ -377,6 +377,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="alignNumber" class="public" href="../earthbound/bank04/alignNumber.html">alignNumber</a><span class="tableEntryAnnotation">(extraSpace)</span>
+							</code>
+						</td>
+						<td>Keeps numbers properly aligned with text
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="allocateAndUploadOverlaySprite" class="public" href="../earthbound/bank04/allocateAndUploadOverlaySprite.html">allocateAndUploadOverlaySprite</a><span class="tableEntryAnnotation">(vramBase, sprite, frame)</span>
 							</code>
 						</td>
@@ -642,6 +651,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4C8E9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="clearPartyStatus" class="public" href="../earthbound/bank04/clearPartyStatus.html">clearPartyStatus</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Clears map collision state for all entities, removes all party member afflictions and resets the party status
 </td>
 					</tr>
 					<tr>
@@ -1100,7 +1118,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="enableLetterboxHDMA" class="public" href="../earthbound/bank04/enableLetterboxHDMA.html">enableLetterboxHDMA</a><span class="tableEntryAnnotation">(channel)</span>
 							</code>
 						</td>
-						<td>$C429E8
+						<td>Enables the letterbox HDMA effect, using letterboxHDMATable
 </td>
 					</tr>
 					<tr>
@@ -1241,6 +1259,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="findMapObject" class="public" href="../earthbound/bank04/findMapObject.html">findMapObject</a><span class="tableEntryAnnotation">(direction)</span>
+							</code>
+						</td>
+						<td>Looks for interactable map objects in the given direction and prepares to run their text script if found
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="findNPCLocationForActiveEntity" class="public" href="../earthbound/bank04/findNPCLocationForActiveEntity.html">findNPCLocationForActiveEntity</a><span class="tableEntryAnnotation">(npc)</span>
 							</code>
 						</td>
@@ -1262,7 +1289,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="finishBattleFrame" class="public" href="../earthbound/bank04/finishBattleFrame.html">finishBattleFrame</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C43568
+						<td>Waits and renders a frame in battle mode
 </td>
 					</tr>
 					<tr>
@@ -1601,10 +1628,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="initializeMovementSpeeds" class="public" href="../earthbound/bank04/initializeMovementSpeeds.html">initializeMovementSpeeds</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Initializes the movement speed table for movement in each direction using the cardinal/diagonal speed tables
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="initializePartyPointers" class="public" href="../earthbound/bank04/initializePartyPointers.html">initializePartyPointers</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C43317
+						<td>Initializes the party member pointers, to avoid expensive (at the time) offset calculations
 </td>
 					</tr>
 					<tr>
@@ -1811,7 +1847,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="moveCurrentTextCursor" class="public" href="../earthbound/bank04/moveCurrentTextCursor.html">moveCurrentTextCursor</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$C438A5
+						<td>Moves the text cursor to the specified tile coordinates of the current window and prepare to print text there
 </td>
 					</tr>
 					<tr>
@@ -1847,7 +1883,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="moveTextCursor" class="public" href="../earthbound/bank04/moveTextCursor.html">moveTextCursor</a><span class="tableEntryAnnotation">(windowID, x, y)</span>
 							</code>
 						</td>
-						<td>$C43874
+						<td>Moves the text cursor to the specified tile coordinates of a specific window and prepare to print text there
 </td>
 					</tr>
 					<tr>
@@ -1892,7 +1928,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="nextVWFTile" class="public" href="../earthbound/bank04/nextVWFTile.html">nextVWFTile</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C43CAA
+						<td>Finishes rendering the current text tile and move on to a fresh one
 </td>
 					</tr>
 					<tr>
@@ -2405,16 +2441,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="rowEnemyFlashingOff" class="public" href="../earthbound/bank04/rowEnemyFlashingOff.html">rowEnemyFlashingOff</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C435E4
+						<td>Turns off the enemy target flash effect for whichever row of enemies it's enabled on
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="rowEnemyFlashingOn" class="public" href="../earthbound/bank04/rowEnemyFlashingOn.html">rowEnemyFlashingOn</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="rowEnemyFlashingOn" class="public" href="../earthbound/bank04/rowEnemyFlashingOn.html">rowEnemyFlashingOn</a><span class="tableEntryAnnotation">(row)</span>
 							</code>
 						</td>
-						<td>$C43657
+						<td>Turns on the enemy target flash effect for an entire row of enemies
 </td>
 					</tr>
 					<tr>
@@ -2438,10 +2474,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="savePhotoState" class="public" href="../earthbound/bank04/savePhotoState.html">savePhotoState</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="savePhotoState" class="public" href="../earthbound/bank04/savePhotoState.html">savePhotoState</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$C4343E
+						<td>Saves any player-controllable state on the screen for the credits photographs
 </td>
 					</tr>
 					<tr>
@@ -2528,10 +2564,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setOverworldStatusSuppression" class="public" href="../earthbound/bank04/setOverworldStatusSuppression.html">setOverworldStatusSuppression</a><span class="tableEntryAnnotation">(val)</span>
+							</code>
+						</td>
+						<td>Sets the Overworld Status Suppression flag, preventing game overs from occurring
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setPartyTickCallbacks" class="public" href="../earthbound/bank04/setPartyTickCallbacks.html">setPartyTickCallbacks</a><span class="tableEntryAnnotation">(leaderEntityID, leaderCallback, partyCallback)</span>
 							</code>
 						</td>
-						<td>$C42F45
+						<td>Set tick callbacks for a party leader and the entire party all in one go.
 </td>
 					</tr>
 					<tr>
@@ -2637,6 +2682,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="swapRaisedHPPPWindow" class="public" href="../earthbound/bank04/swapRaisedHPPPWindow.html">swapRaisedHPPPWindow</a><span class="tableEntryAnnotation">(character)</span>
+							</code>
+						</td>
+						<td>Swaps the current (if any) raised HP/PP window to the selected character
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="targetEnemyByBattlerIndex" class="public" href="../earthbound/bank04/targetEnemyByBattlerIndex.html">targetEnemyByBattlerIndex</a><span class="tableEntryAnnotation">(battler, index)</span>
 							</code>
 						</td>
@@ -2704,51 +2758,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4645A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC432B1" class="public" href="../earthbound/bank04/unknownC432B1.html">unknownC432B1</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C432B1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43344" class="public" href="../earthbound/bank04/unknownC43344.html">unknownC43344</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C43344
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4334A" class="public" href="../earthbound/bank04/unknownC4334A.html">unknownC4334A</a><span class="tableEntryAnnotation">(direction)</span>
-							</code>
-						</td>
-						<td>$C4334A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43573" class="public" href="../earthbound/bank04/unknownC43573.html">unknownC43573</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C43573
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43D95" class="public" href="../earthbound/bank04/unknownC43D95.html">unknownC43D95</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C43D95
 </td>
 					</tr>
 					<tr>
@@ -3315,7 +3324,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="uploadEntityFadeFrame" class="public" href="../earthbound/bank04/uploadEntityFadeFrame.html">uploadEntityFadeFrame</a><span class="tableEntryAnnotation">(newSprite, entity)</span>
 							</code>
 						</td>
-						<td>$C429AE
+						<td>Uploads a faded sprite frame into VRAM, overwriting an entity's current sprite
 </td>
 					</tr>
 					<tr>
@@ -3344,15 +3353,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Plays the sound stone sequence
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="velocityStore" class="public" href="../earthbound/bank04/velocityStore.html">velocityStore</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C430EC
 </td>
 					</tr>
 					<tr>
@@ -3526,7 +3526,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42A1F
+						<td>Hitbox widths for map collision and manpu attachment
 </td>
 					</tr>
 					<tr>
@@ -3843,26 +3843,26 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="hitboxHeights" class="public" href="../earthbound/bank04/hitboxHeights.html">
-								<code>hitboxHeights</code>
+							<a id="hitboxTileHeights" class="public" href="../earthbound/bank04/hitboxTileHeights.html">
+								<code>hitboxTileHeights</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42AC9
+						<td>Hitbox tile heights, used by pathfinding and map collision
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="hitboxWidths" class="public" href="../earthbound/bank04/hitboxWidths.html">
-								<code>hitboxWidths</code>
+							<a id="hitboxTileWidths" class="public" href="../earthbound/bank04/hitboxTileWidths.html">
+								<code>hitboxTileWidths</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42AA7
+						<td>Hitbox tile widths, used by pathfinding and map collision
 </td>
 					</tr>
 					<tr>
@@ -3886,7 +3886,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C43550
+						<td>Text strings used for the item menu commands
 </td>
 					</tr>
 					<tr>
@@ -3898,7 +3898,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">1024</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C43915
+						<td>Text layer tiles that are NOT freeable. Note that only the first half of this table actually gets used
 </td>
 					</tr>
 					<tr>
@@ -3934,9 +3934,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
-						<td>The block arrangements of the entire game map. Each block is a 4x4 arrangement of 8x8 tiles.
-There are 8 + 2 chunks of data, with the first 8 being 128 x 20 strips of blocks, ordered from top to bottom.
-The latter 2 chunks provide the upper 2 bits of the blocks
+						<td>The block arrangements of the entire game map.
 </td>
 					</tr>
 					<tr>
@@ -3972,7 +3970,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">88</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4303C
+						<td>Tile IDs corresponding to the overworld entity VRAM offsets in overworldSpriteVRAMOffsets.
 </td>
 					</tr>
 					<tr>
@@ -3984,7 +3982,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/SpriteMapTemplates.html"><span class="typ">SpriteMapTemplates</span></a><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42B0D
+						<td>Spritemap templates for every size of overworld sprite
 </td>
 					</tr>
 					<tr>
@@ -3996,7 +3994,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">88</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42F8C
+						<td>VRAM offsets for all 88 spritemap slots reserved for overworld entity sprites.
 </td>
 					</tr>
 					<tr>
@@ -4032,7 +4030,7 @@ The latter 2 chunks provide the upper 2 bits of the blocks
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42A63
+						<td>Visible sprite widths, used primarily for fade effects
 </td>
 					</tr>
 					<tr>

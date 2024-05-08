@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable overworldSpriteVRAMOffsets</h1><p>$C42F8C
+			<h1>Variable overworldSpriteVRAMOffsets</h1><p>VRAM offsets for all 88 spritemap slots reserved for overworld entity sprites.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -159,8 +159,17 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Because the overworld uses 16x16 spriites, each slot is a 2x2 arrangement of 8x8 tiles, for a total of 16x16 pixels each. Each offset represents the position of top-left corner tile.
+ Note that the second row of tile data is stored at +0x100 from the first row, which is why each row in this table is +0x200.
+ An entity may reserve up to 20 slots.
+</p>
+</section>
+
+			<section><h2>Original Address</h2>
+<p>C42F8C
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
