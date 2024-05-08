@@ -198,7 +198,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		if (ImGui.TreeNode("Saved Photos")) {
 			foreach (idx, ref state; gameState.savedPhotoStates) {
 				if (ImGui.TreeNode(format!"Photos %s"(idx))) {
-					InputEditable("Unknown", state.unknown);
+					InputEditable("Timer", state.timer);
 					foreach (partyIdx, label; ["Party member 0", "Party member 1", "Party member 2", "Party member 3", "Party member 4", "Party member 5"]) {
 						InputEditable(label, state.partyMembers[partyIdx]);
 					}
