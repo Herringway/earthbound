@@ -101,7 +101,7 @@ void initializeTextSystem() {
 	textPromptWaitingForInput = 0;
 	currentFocusWindow = -1;
 	characterPadding = 1;
-	unknownC43F53();
+	initializeUsedBG2TileMap();
 	unread7E9651 = 0xFF;
 	enableWordWrap = 0xFF;
 	extraTickOnWindowClose = 0;
@@ -176,13 +176,13 @@ void drawHPPPWindow(short id) {
 	ushort x1E = character.hpPPWindowOptions;
 	ushort x18;
 	ushort x1A;
-	ushort x1C;
+	ushort namePalette;
 	if (x1E == 0xC00) {
-		x1C = 3 << 10;
+		namePalette = 3 << 10;
 		x22 = 3 << 10;
 		x1A = 2 << 10;
 	} else {
-		x1C = cast(short)(unknownC22474(&character.afflictions[0]) << 10);
+		namePalette = cast(short)(getStatusNamePalette(&character.afflictions[0]) << 10);
 		x22 = 4 << 10;
 		x1A = 0 << 10;
 	}
@@ -191,105 +191,105 @@ void drawHPPPWindow(short id) {
 	} else {
 		x18 = 19;
 	}
-	ushort* x = &bg2Buffer[16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (id * 7) + x18 * 32];
-	x[0] = cast(ushort)(x1E + 0x2004);
-	x++;
+	ushort* dest = &bg2Buffer[16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (id * 7) + x18 * 32];
+	dest[0] = cast(ushort)(x1E + 0x2004);
+	dest++;
 	for (short i = 5; i != 0; i--) {
-		x[0] = cast(ushort)(x1E + 0x2005);
-		x++;
+		dest[0] = cast(ushort)(x1E + 0x2005);
+		dest++;
 	}
-	x[0] = cast(ushort)(x1E + 0x6004);
-	x++;
-	x += 25;
+	dest[0] = cast(ushort)(x1E + 0x6004);
+	dest++;
+	dest += 25;
 
-	(x++)[0] = cast(ushort)(x1E + 0x2006);
+	(dest++)[0] = cast(ushort)(x1E + 0x2006);
 	short x14 = (gameState.partyMembers[id] - 1) * 4 + 0x22A0;
 	short x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
 	for (short i = 0; i != 4; i++) {
 		if (x12 != 0) {
-			x[0] = cast(ushort)(x14 + x1C);
-			x++;
+			dest[0] = cast(ushort)(x14 + namePalette);
+			dest++;
 			x14++;
 			x12--;
 		} else {
-			x[0] = cast(ushort)(x1C + 0x2007);
-			x++;
+			dest[0] = cast(ushort)(namePalette + 0x2007);
+			dest++;
 		}
 	}
-	x[0] = cast(ushort)(x1C + x20 + 0x2000);
-	x++;
-	x[0] = cast(ushort)(x1E + 0x6006);
-	x++;
-	x += 25;
+	dest[0] = cast(ushort)(namePalette + x20 + 0x2000);
+	dest++;
+	dest[0] = cast(ushort)(x1E + 0x6006);
+	dest++;
+	dest += 25;
 
-	x[0] = cast(ushort)(x1E + 0x2006);
-	x++;
+	dest[0] = cast(ushort)(x1E + 0x2006);
+	dest++;
 	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x22B0;
 	x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
 	for (short i =0 ; i != 4; i++) {
 		if (x12 != 0) {
-			x[0] = cast(ushort)(x14 + x1C);
-			x++;
+			dest[0] = cast(ushort)(x14 + namePalette);
+			dest++;
 			x14++;
 			x12--;
 		} else {
-			x[0] = cast(ushort)(x1C + 0x2017);
-			x++;
+			dest[0] = cast(ushort)(namePalette + 0x2017);
+			dest++;
 		}
 	}
-	x[0] = cast(ushort)(x1C + x20 + 0x2010);
-	x++;
-	x[0] = cast(ushort)(x1E + 0x6006);
-	x++;
-	x+= 25;
+	dest[0] = cast(ushort)(namePalette + x20 + 0x2010);
+	dest++;
+	dest[0] = cast(ushort)(x1E + 0x6006);
+	dest++;
+	dest+= 25;
 
 	fillCharacterHPTileBuffer(id, character.hp.current.integer, character.hp.current.fraction);
 	const(ubyte)* x06 = &unknownC3E3F8[0];
 	ushort* y = &hpPPWindowBuffer[id][0];
 	for (short i = 2; i != 0; i--) {
-		x[0] = cast(ushort)(x1E + 0x2006);
-		x++;
+		dest[0] = cast(ushort)(x1E + 0x2006);
+		dest++;
 		for (short j = 2;j != 0; j--) {
-			x[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			dest[0] = cast(ushort)(x06[0] + x22 + 0x2000);
 			x06++;
-			x++;
+			dest++;
 		}
 		for (short j = 3; j != 0; j--) {
-			x[0] = cast(ushort)(y[0] + x1A);
+			dest[0] = cast(ushort)(y[0] + x1A);
 			y++;
-			x++;
+			dest++;
 		}
-		x[0] = cast(ushort)(x1E + 0x6006);
-		x++;
-		x += 25;
+		dest[0] = cast(ushort)(x1E + 0x6006);
+		dest++;
+		dest += 25;
 	}
 
 	fillCharacterPPTileBuffer(id, &character.afflictions[0], character.pp.current.integer, character.pp.current.fraction);
 	y = &hpPPWindowBuffer[id][6];
 	for (short i = 2; i != 0; i--) {
-		x[0] = cast(ushort)(x1E + 0x2006);
-		x++;
+		dest[0] = cast(ushort)(x1E + 0x2006);
+		dest++;
 		for (short j = 2; j != 0; j--) {
-			x[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			dest[0] = cast(ushort)(x06[0] + x22 + 0x2000);
 			x06++;
-			x++;
+			dest++;
 		}
 		for (short j = 3; j != 0; j--) {
-			x[0] = cast(ushort)(y[0] + x1A);
+			dest[0] = cast(ushort)(y[0] + x1A);
 			y++;
-			x++;
+			dest++;
 		}
-		x[0] = cast(ushort)(x1E + 0x6006);
-		x++;
-		x += 25;
+		dest[0] = cast(ushort)(x1E + 0x6006);
+		dest++;
+		dest += 25;
 	}
-	x[0] = cast(ushort)(x1E + 0xA004);
-	x++;
+	dest[0] = cast(ushort)(x1E + 0xA004);
+	dest++;
 	for (short i = 5; i != 0; i--) {
-		x[0] = cast(ushort)(x1E + 0xA005);
-		x++;
+		dest[0] = cast(ushort)(x1E + 0xA005);
+		dest++;
 	}
-	x[0] = cast(ushort)(x1E + 0xE004);
+	dest[0] = cast(ushort)(x1E + 0xE004);
 }
 
 /// $C2077D
@@ -983,37 +983,39 @@ short unknownC223D9(ubyte* arg1, short arg2) {
 				}
 			}
 			if (arg2 == 0) {
-				return 32;
+				return TextTile.windowBackground;
 			} else {
-				return 7;
+				return TextTile.checker;
 			}
 		}
 	}
 	lx:
 	if (arg2 != 0) {
-		return statusEquipWindowText[x0E][arg1[x0E] - 1];
+		return statusIconsCheckered[x0E][arg1[x0E] - 1];
 	} else {
-		return statusEquipWindowText2[x0E][arg1[x0E] - 1];
+		return statusIcons[x0E][arg1[x0E] - 1];
 	}
 }
 
-/// $C22474
-short unknownC22474(ubyte* arg1) {
-	short x0E;
-	if (arg1[0] != 0) {
-		x0E = 0;
-	} else if (arg1[3] != 0) {
-		x0E = 3;
+/** Gets the name palette for a given status array
+ * Original_Address: $(DOLLAR)C22474
+ */
+short getStatusNamePalette(ubyte* afflictions) {
+	short firstFoundGroup;
+	if (afflictions[0] != 0) { // status group 0 takes priority
+		firstFoundGroup = 0;
+	} else if (afflictions[3] != 0) { // status group 3 is next-highest priority
+		firstFoundGroup = 3;
 	} else {
-		for (x0E = 1; x0E < 7; x0E++) {
-			if (arg1[x0E] != 0) {
+		for (firstFoundGroup = 1; firstFoundGroup < 7; firstFoundGroup++) {
+			if (afflictions[firstFoundGroup] != 0) {
 				goto found;
 			}
 		}
-		return 4;
+		return 4; // no statuses found
 	}
 	found:
-	return statusEquipWindowText3[x0E][arg1[x0E] - 1];
+	return statusNamePalettes[firstFoundGroup][afflictions[firstFoundGroup] - 1];
 }
 
 /// $C224E1

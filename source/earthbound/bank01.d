@@ -88,7 +88,7 @@ void closeAllWindows() {
 	clearInstantPrinting();
 	windowTick();
 	extraTickOnWindowClose = 0;
-	unknownC43F53();
+	initializeUsedBG2TileMap();
 }
 
 /// $C100C7
@@ -474,16 +474,16 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 		}
 		x10 = 0;
 	}
-	if ((blinkingTriangleFlag != 0) && (x10 == 0) && ((tile == 0x20) || (tile == 0x40))) {
+	if ((blinkingTriangleFlag != 0) && (x10 == 0) && ((tile == TextTile.windowBackground) || (tile == TextTile.textBullet))) {
 		if (blinkingTriangleFlag == 1) {
 			goto Unknown9;
 		}
 		if (blinkingTriangleFlag == 2) {
-			tile = 0x20;
+			tile = TextTile.windowBackground;
 		}
 	}
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == SpecialCharacter.equipIcon) ? 0xC00 : attributes));
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10 + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == SpecialCharacter.equipIcon) ? 0xC00 : attributes) + 0x10);
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == TextTile.equipped) ? 0xC00 : attributes));
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10 + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == TextTile.equipped) ? 0xC00 : attributes) + 0x10);
 	x10++;
 	Unknown9:
 	windowStats[windowTable[window]].textX = x10;
@@ -530,8 +530,8 @@ void drawTallTextTileFocusedF(short tile) {
 }
 
 /// $C10C86
-void printLetterF(short arg1) {
-	printLetter(arg1);
+void printLetterVWFF(short arg1) {
+	printLetterVWF(arg1);
 }
 
 /// $C10C8C
@@ -545,7 +545,7 @@ void moveTextUpOneLineF(short arg1) {
 }
 
 /// $C10CB6
-void printLetter(short letter) {
+void printLetterVWF(short letter) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
@@ -620,7 +620,7 @@ void printNumber(uint arg1) {
 		alignNumber(cast(short)((a - x14) * 6));
 	}
 	while (x14 != 0) {
-		printLetter(*(x12++) + ebChar('0'));
+		printLetterVWF(*(x12++) + ebChar('0'));
 		x14--;
 	}
 }
@@ -649,11 +649,11 @@ void printSpecialGraphics(short arg1) {
 /// $C10EFC
 void printString(short length, const(ubyte)* text) {
 	if (forceCentreTextAlignment != 0) {
-		unknownC43EF8(text, length);
+		setCentreAlignment(text, length);
 	}
 	while ((text[0] != 0) && (length != 0)) {
 		length--;
-		printLetter((text++)[0]);
+		printLetterVWF((text++)[0]);
 	}
 }
 
@@ -718,10 +718,10 @@ int numSelectPrompt(short arg1) {
 		ubyte* x04 = &numberTextBuffer[7 - x02];
 		short x16;
 		for (x16 = arg1; x16 > x02; x16--) {
-			unknownC43F77((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
+			printLetter((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
 		}
 		for (; x16 != 0; x16--) {
-			unknownC43F77((x04++)[0] + ((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2));
+			printLetter((x04++)[0] + ((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2));
 		}
 		clearInstantPrinting();
 		windowTick();
@@ -932,10 +932,10 @@ void printMenuItems() {
 	setInstantPrinting();
 	while (true) {
 		if ((option.page == windowStats[windowTable[currentFocusWindow]].menuPage) || (option.page == 0)) {
-			unknownC43DDB(option);
+			printOptionStart(option);
 			if (option.page == 0) {
 				windowSetTextColor(TextPalette.normal);
-				unknownC43F77(0x14F);
+				printLetter(TextTile.rightArrowLargeBlue);
 				nextVWFTile();
 				windowSetTextColor(TextPalette.normal);
 				ubyte* src = &windowStats[windowTable[currentFocusWindow]].title[0];
@@ -952,8 +952,8 @@ void printMenuItems() {
 					setWindowTitle(currentFocusWindow, -1, &temporaryTextBuffer[0]);
 					nextVWFTile();
 					printString(cast(short)(strlen(cast(char*)&temporaryTextBuffer[0]) - 2), &temporaryTextBuffer[0]);
-					printLetter((windowStats[windowTable[currentFocusWindow]].menuPage == menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].previous].page) ? ebChar('1') : cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('1')));
-					printLetter(ebChar(')'));
+					printLetterVWF((windowStats[windowTable[currentFocusWindow]].menuPage == menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].previous].page) ? ebChar('1') : cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('1')));
+					printLetterVWF(ebChar(')'));
 				} else {
 					printString(-1, &option.label[0]);
 				}
@@ -1104,7 +1104,7 @@ short selectionMenu(short cancelable) {
 
 		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
 		windowSetTextColor(TextPalette.miscUIElements);
-		drawTallTextTileFocusedRedraw(0x21); // draw cursor
+		drawTallTextTileFocusedRedraw(TextTile.menuCursor);
 		windowSetTextColor(TextPalette.normal);
 		windowTick();
 
@@ -1164,7 +1164,7 @@ short selectionMenu(short cancelable) {
 					if (highlightedOption.page) {
 						playSfx(highlightedOption.sfx);
 						moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
-						drawTallTextTileFocusedRedraw(0x2F); // draw over cursor
+						drawTallTextTileFocusedRedraw(TextTile.nonBreakingSpace);
 						windowSetTextColor(TextPalette.highlighted);
 
 						if (enableWordWrap) {
@@ -1243,7 +1243,7 @@ short selectionMenu(short cancelable) {
 		}
 
 		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
-		drawTallTextTileFocusedRedraw(0x2F); // draw blank tile over cursor
+		drawTallTextTileFocusedRedraw(TextTile.nonBreakingSpace);
 
 		selectedOptionIndex = optionIndex;
 		highlightedOption = tmpOption;
@@ -1351,7 +1351,7 @@ void printTargetName(short row, short target) {
 		printString(0xFF, getBattleAttackerName());
 		ubyte* x12 = (row != Row.front) ? &battlersTable[backRowBattlers[target]].afflictions[0] : &battlersTable[frontRowBattlers[target]].afflictions[0];
 		moveCurrentTextCursor(0x11, 0);
-		unknownC43F77(unknownC223D9(x12, 0));
+		printLetter(unknownC223D9(x12, 0));
 	} else {
 		printString(13, (row != Row.front) ? &battleBackRowText[0] : &battleFrontRowText[0]);
 	}
@@ -2301,7 +2301,7 @@ void debugYButtonFlag() {
 		createWindowN(Window.fileSelectMenu);
 		setCurrentWindowPadding(3);
 		printNumber(x02);
-		unknownC43F77(0x20);
+		printLetter(TextTile.windowBackground);
 		nextVWFTile();
 		printString(0x100, (getEventFlag(x02) != 0) ? &debugOnText[0] : &debugOffText[0]);
 		clearInstantPrinting();
@@ -2664,7 +2664,7 @@ void* cc1928(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C1488D
 void* cc1C03(DisplayTextState* arg1, ubyte arg2) {
-	printLetter(arg2 != 0 ? arg2 : cast(short)getSubRegister());
+	printLetterVWF(arg2 != 0 ? arg2 : cast(short)getSubRegister());
 	return null;
 }
 
@@ -4537,7 +4537,7 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 				default: break;
 			}
 		} else {
-			printLetter(x14);
+			printLetterVWF(x14);
 		}
 	}
 	unknownC1869D(x12);
@@ -4865,13 +4865,13 @@ void unknownC1952F(short arg1) {
 	forcePixelAlignment(94, 3);
 	printNumber(partyCharacters[arg1].hp.current.integer);
 	forcePixelAlignment(114, 3);
-	printLetter(ebChar('/'));
+	printLetterVWF(ebChar('/'));
 	forcePixelAlignment(121, 3);
 	printNumber(partyCharacters[arg1].maxHP);
 	forcePixelAlignment(94, 4);
 	printNumber(partyCharacters[arg1].pp.current.integer);
 	forcePixelAlignment(114, 4);
-	printLetter(ebChar('/'));
+	printLetterVWF(ebChar('/'));
 	forcePixelAlignment(121, 4);
 	printNumber(partyCharacters[arg1].maxPP);
 	forcePixelAlignment(199, 0);
@@ -4917,11 +4917,11 @@ void unknownC1952F(short arg1) {
 		break;
 	}
 	moveCurrentTextCursor(11, 1);
-	unknownC43F77(unknownC223D9(&partyCharacters[arg1].afflictions[0], 0));
+	printLetter(unknownC223D9(&partyCharacters[arg1].afflictions[0], 0));
 	if (arg1 != 2) {
 		forceLeftTextAlignment = 1;
 		forcePixelAlignment(36, 7);
-		printString(0x23, &statusEquipWindowText4[0]);
+		printString(psiInfoInstruction.length, &psiInfoInstruction[0]);
 		forceLeftTextAlignment = 0;
 	}
 	clearInstantPrinting();
@@ -4938,7 +4938,7 @@ void addCharacterInventoryToWindow(short character, short window) {
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
 		short x16 = partyCharacters[character].items[i];
 		if (checkItemEquipped(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
-			temporaryTextBuffer[0] = SpecialCharacter.equipIcon;
+			temporaryTextBuffer[0] = TextTile.equipped;
 			memcpy(&temporaryTextBuffer[1], &itemData[x16].name[0], Item.name.length);
 		} else {
 			memcpy(&temporaryTextBuffer[0], &itemData[x16].name[0], Item.name.length);
@@ -5120,7 +5120,7 @@ void printEquipment(short arg1) {
 		}
 		if (x18 != 0) {
 			if (checkItemEquipped(cast(short)(arg1 + 1), x18) != 0) {
-				temporaryTextBuffer[0] = SpecialCharacter.equipIcon;
+				temporaryTextBuffer[0] = TextTile.equipped;
 				memcpy(&temporaryTextBuffer[1], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
 			} else {
 				memcpy(&temporaryTextBuffer[0], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
@@ -5131,8 +5131,8 @@ void printEquipment(short arg1) {
 			temporaryTextBuffer[statusEquipWindowText12.length] = 0;
 		}
 		moveCurrentTextCursor(6, i);
-		printLetter(ebChar(':'));
-		printLetter(ebChar(' '));
+		printLetterVWF(ebChar(':'));
+		printLetterVWF(ebChar(' '));
 		printString(49, &temporaryTextBuffer[0]);
 	}
 	printMenuItems();
@@ -5212,7 +5212,7 @@ void printEquipmentStats(short arg1) {
 	if (compareEquipmentMode != 0) {
 		forcePixelAlignment(76, 0);
 		windowSetTextColor(TextPalette.miscUIElements);
-		unknownC43F77(0x14E);
+		printLetter(TextTile.rightArrowSmallWhite);
 		windowSetTextColor(TextPalette.normal);
 		short x14_2 = partyCharacters[arg1].baseOffense;
 		if (temporaryWeapon != 0) {
@@ -5237,7 +5237,7 @@ void printEquipmentStats(short arg1) {
 		forceLeftTextAlignment = 0;
 		forcePixelAlignment(76, 1);
 		windowSetTextColor(TextPalette.miscUIElements);
-		unknownC43F77(0x14E);
+		printLetter(TextTile.rightArrowSmallWhite);
 
 		x16 = partyCharacters[arg1].baseDefense;
 		if (temporaryBodyGear != 0) {
@@ -5315,7 +5315,7 @@ void unknownC1A795(short arg1) {
 				continue;
 			}
 			if (checkItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
-				temporaryTextBuffer = SpecialCharacter.equipIcon;
+				temporaryTextBuffer = TextTile.equipped;
 				memcpy(&temporaryTextBuffer[1], &itemData[x16].name, Item.name.length);
 				x18 = x04;
 			} else {
@@ -6241,7 +6241,7 @@ void unknownC1C8BC(short arg1) {
 	enableWordWrap = 0xFF;
 	moveCurrentTextCursor(0, 1);
 	printString(ppCostText.length, &ppCostText[0]);
-	printLetter(ebChar(' '));
+	printLetterVWF(ebChar(' '));
 	setCurrentWindowPadding(0x81);
 	forcePixelAlignment(0x28, 0x1);
 	printNumber(battleActionTable[psiAbilityTable[arg1].battleAction].ppCost);
@@ -6936,9 +6936,9 @@ short enemySelectMode(short arg1) {
 		short x02 = unknownC10D7C(x24);
 		ubyte* x18 = &numberTextBuffer[7 - x02];
 			version(bugfix) {
-				alias printLetterFunc = unknownC43F77;
-			} else {
 				alias printLetterFunc = printLetter;
+			} else {
+				alias printLetterFunc = printLetterVWF;
 			}
 		for (short i = 3; i > x02; i--) {
 			printLetterFunc((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
@@ -7083,7 +7083,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 			clearInstantPrinting();
 			moveCurrentTextCursor(x, y);
 			windowSetTextColor(TextPalette.miscUIElements);
-			drawTallTextTileFocusedRedraw(33);
+			drawTallTextTileFocusedRedraw(TextTile.menuCursor);
 			windowSetTextColor(TextPalette.normal);
 			windowTick();
 			selectionCursorFrame = 1;
@@ -7171,7 +7171,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 				}
 			}
 			moveCurrentTextCursor(x, y);
-			drawTallTextTileFocusedRedraw(0x2F);
+			drawTallTextTileFocusedRedraw(TextTile.nonBreakingSpace);
 			if (cursorPosition != -1) {
 				x = cursorPosition & 0xFF;
 				y = cursorPosition >> 8;
@@ -7219,7 +7219,7 @@ short enterYourNamePlease(short arg1) {
 		unknownC441B7(24);
 		moveCurrentTextCursor(0, 1);
 		if (gameState.earthboundPlayerName[0] != 0) {
-			unknownC440B5(&gameState.earthboundPlayerName[0], 24);
+			prefillKeyboardInput(&gameState.earthboundPlayerName[0], 24);
 		}
 		moveCurrentTextCursor(0, 1);
 		result = textInputDialog(Window.unknown27, 24, &gameState.earthboundPlayerName[0], 0, -1);
@@ -7238,7 +7238,7 @@ short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, sh
 	createWindowN(Window.fileSelectNamingNameBox);
 	windowTickWithoutInstantPrinting();
 	if (arg2[0] != 0) {
-		unknownC440B5(arg2, arg1);
+		prefillKeyboardInput(arg2, arg1);
 	} else {
 		unknownC441B7(arg1);
 	}
@@ -7506,7 +7506,7 @@ short unknownC1F2A8() {
 	forcePixelAlignment(0, 1);
 	moveCurrentTextCursor(0, 1);
 	printNumber(currentSaveSlot);
-	printLetter(ebChar(':'));
+	printLetterVWF(ebChar(':'));
 	moveCurrentTextCursor(2, 1);
 	unknownC1931B(1);
 	moveCurrentTextCursor(8, 1);
@@ -7932,7 +7932,7 @@ short unknownC1FF6B() {
 
 /// $C1FF99
 void unknownC1FF99(short arg1, short arg2, ubyte* arg3) {
-	vwfX = cast(ushort)((arg2 *8 - unknownC43E31(arg3, arg1)) / 2);
+	vwfX = cast(ushort)((arg2 *8 - getStringRenderWidth(arg3, arg1)) / 2);
 	vwfTile = vwfX / 8;
 }
 

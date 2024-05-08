@@ -3976,6 +3976,7 @@ enum Status2 {
 	crying = 2,
 	immobilized = 3,
 	solidified = 4,
+	unknown = 5, // existence inferred from status icon tables
 }
 ///
 enum Status3 {
@@ -5802,10 +5803,6 @@ enum MenuOptionType {
 	standard = 1, /// Standard menu option
 	hasUserdata = 2, /// Standard menu option with extra userdata
 }
-/// Special characters
-enum SpecialCharacter {
-	equipIcon = 0x22,
-}
 
 /// Cast sequence entries
 enum CastSequenceName {
@@ -5994,6 +5991,86 @@ enum FlavourGraphicsSet {
 enum OverworldSpriteFlags {
 	unknown0 = 1 << 0,
 	unknown1 = 1 << 1,
+}
+/// Fixed text characters, two tiles high.
+/// Actual tile IDs = ((val & ~0xF) * 2) | (val & 0xF)
+enum TextTile {
+	none = 0,
+	checker = 7,
+	hp1 = 8,
+	hp2 = 9,
+	pp1 = 10,
+	strange = 11,
+	sleep = 12,
+	diamondized = 13,
+	paralyzed = 14,
+	nauseated = 15,
+	num0Underlined = 16,
+	num1Underlined = 17,
+	num2Underlined = 18,
+	num3Underlined = 19,
+	num4Underlined = 20,
+	num5Underlined = 21,
+	num6Underlined = 22,
+	num7Underlined = 23,
+	num8Underlined = 24,
+	num9Underlined = 25,
+	quotationMarks = 26,
+	degree = 27,
+	mushroomized = 28,
+	poisoned = 29,
+	sunstroke = 30,
+	cold = 31,
+	windowBackground = 32,
+	menuCursor = 33,
+	equipped = 34,
+	dollarSign = 35,
+	cents = 36,
+	nonBreakingSpace = 47,
+	num0Fixed = 48,
+	num1Fixed = 49,
+	num2Fixed = 50,
+	num3Fixed = 51,
+	num4Fixed = 52,
+	num5Fixed = 53,
+	num6Fixed = 54,
+	num7Fixed = 55,
+	num8Fixed = 56,
+	num9Fixed = 57,
+	textBullet = 64,
+	possessed = 303,
+	smaaaash1 = 304,
+	smaaaash2 = 305,
+	smaaaash3 = 306,
+	smaaaash4 = 307,
+	smaaaash5 = 308,
+	smaaaash6 = 309,
+	smaaaash7 = 310,
+	smaaaash8 = 311,
+	smaaaash9 = 312,
+	crying = 319,
+	youWon1 = 320,
+	youWon2 = 321,
+	youWon3 = 322,
+	youWon4 = 323,
+	youWon5 = 324,
+	youWon6 = 325,
+	youWon7 = 326,
+	youWon8 = 327,
+	youWon9 = 328,
+	rightArrowSmallWhite = 334,
+	rightArrowLargeBlue = 335,
+	diamondizedCheckered = 352,
+	paralyzedCheckered = 353,
+	nauseatedCheckered = 354,
+	poisonedCheckered = 355,
+	sunstrokeCheckered = 356,
+	coldCheckered = 357,
+	mushroomizedCheckered = 358,
+	possessedCheckered = 359,
+	asleepCheckered = 360,
+	cryingCheckered = 361,
+	strangeCheckered = 362,
 }
 ///
 struct GameState {

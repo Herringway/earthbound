@@ -8908,7 +8908,7 @@ void ebMain() {
 	fadeIn(1, 1);
 	updateScreen();
 	//setjmp(&jmpbuf2);
-	unknownC43F53();
+	initializeUsedBG2TileMap();
 	while (1) {
 		oamClear();
 		runActionscriptFrame();
