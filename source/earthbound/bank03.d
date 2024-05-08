@@ -532,12 +532,10 @@ void resetActivePartyMemberHPPPWindow() {
 		return;
 	}
 	waitUntilNextFrame();
-
-	// clear the top row of HP/PP window tiles, which were raised for the active party member
-	ushort* y = &bg2Buffer[18 * 32 + (16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (battleMenuCurrentCharacterID * 7))];
+	// clear the old top row of HP/PP window tiles, which are no longer raised and won't be cleared by a redraw
+	ushort* hpPPTopTilemap = &bg2Buffer[18 * 32 + (16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (battleMenuCurrentCharacterID * 7))];
 	for (short i = hpPPWindowWidth; i != 0; i--) {
-		*y = 0;
-		y++;
+		(hpPPTopTilemap++)[0] = 0;
 	}
 	battleMenuCurrentCharacterID = -1;
 	redrawAllWindows = 1;

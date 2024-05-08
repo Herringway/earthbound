@@ -1106,7 +1106,12 @@ immutable ushort[8] pixelPlaneMasks = [
 	0b0000000100000001,
 ];
 
-/// $C429AE
+/** Uploads a faded sprite frame into VRAM, overwriting an entity's current sprite
+ * Params:
+ * 	newSprite = 4BPP tile data for a sprite, stored in row-major order
+ * 	entity = The active entity ID whom this sprite data belongs to
+ * Original_Address: $(DOLLAR)C429AE
+ */
 void uploadEntityFadeFrame(const(void)* newSprite, short entity) {
 	short rows = entityTileHeights[entity];
 	dmaCopyMode = 0;
@@ -1122,7 +1127,11 @@ void uploadEntityFadeFrame(const(void)* newSprite, short entity) {
 	}
 }
 
-/// $C429E8
+/** Enables the letterbox HDMA effect, using letterboxHDMATable
+ * Params:
+ * 	channel = The DMA channel to use for the effect (0 - 7)
+ * Original_Address: $(DOLLAR)C429E8
+ */
 void enableLetterboxHDMA(short channel) {
 	//segmented addressing stuff
 	//dmaChannels[channel].A1B = 0x7E;
@@ -1133,8 +1142,10 @@ void enableLetterboxHDMA(short channel) {
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
-/// $C42A1F
-immutable short[17] collisionWidths = [
+/** Hitbox widths for map collision and manpu attachment
+ * Original_Address: $(DOLLAR)C42A1F
+ */
+immutable short[EntitySize.max + 1] collisionWidths = [
 	EntitySize._8x16: 8,
 	EntitySize._16x16: 8,
 	EntitySize._24x16: 12,
@@ -1157,7 +1168,7 @@ immutable short[17] collisionWidths = [
 /** Map collision "heights", that are subtracted from the Y coordinate of an entity and added to collisionHeights2 to obtain the top of a hitbox. The Y coordinate is assumed to be at the entity's centre
  * Original_Address: $(DOLLAR)C42A41
  */
-immutable short[17] collisionHeights1 = [
+immutable short[EntitySize.max + 1] collisionHeights1 = [
 	EntitySize._8x16: 8,
 	EntitySize._16x16: 8,
 	EntitySize._24x16: 8,
@@ -1177,8 +1188,10 @@ immutable short[17] collisionHeights1 = [
 	EntitySize._64x80: 72,
 ];
 
-/// $C42A63
-immutable short[17] pixelWidths = [
+/** Visible sprite widths, used primarily for fade effects
+ * Original_Address: $(DOLLAR)C42A63
+ */
+immutable short[EntitySize.max + 1] pixelWidths = [
 	EntitySize._8x16: 16, // off by 8?
 	EntitySize._16x16: 16,
 	EntitySize._24x16: 32, // off by 8?
@@ -1198,8 +1211,10 @@ immutable short[17] pixelWidths = [
 	EntitySize._64x80: 64,
 ];
 
-/// $C42AA7
-immutable short[17] hitboxWidths = [
+/** Hitbox tile widths, used by pathfinding and map collision
+ * Original_Address: $(DOLLAR)C42AA7
+ */
+immutable short[EntitySize.max + 1] hitboxTileWidths = [
 	EntitySize._8x16: 2,
 	EntitySize._16x16: 0,
 	EntitySize._24x16: 2,
@@ -1222,7 +1237,7 @@ immutable short[17] hitboxWidths = [
 /** Map collision "heights", that are added to the Y coordinate of an entity after collisionHeights1 is subtracted to obtain the top of a hitbox. The Y coordinate is assumed to be at the entity's centre
  * Original_Address: $(DOLLAR)C42AEB
  */
-immutable short[17] collisionHeights2 = [
+immutable short[EntitySize.max + 1] collisionHeights2 = [
 	EntitySize._8x16: 10,
 	EntitySize._16x16: 0,
 	EntitySize._24x16: 10,
@@ -1242,8 +1257,10 @@ immutable short[17] collisionHeights2 = [
 	EntitySize._64x80: 65,
 ];
 
-/// $C42AC9
-immutable short[17] hitboxHeights = [
+/** Hitbox tile heights, used by pathfinding and map collision
+ * Original_Address: $(DOLLAR)C42AC9
+ */
+immutable short[EntitySize.max + 1] hitboxTileHeights = [
 	EntitySize._8x16: 1,
 	EntitySize._16x16: 0,
 	EntitySize._24x16: 1,
@@ -1263,8 +1280,10 @@ immutable short[17] hitboxHeights = [
 	EntitySize._64x80: 2,
 ];
 
-/// $C42B0D
-immutable SpriteMapTemplates[17] overworldSpriteTemplates = [
+/** Spritemap templates for every size of overworld sprite
+ * Original_Address: $(DOLLAR)C42B0D
+ */
+immutable SpriteMapTemplates[EntitySize.max + 1] overworldSpriteTemplates = [
 	EntitySize._8x16: SpriteMapTemplates(1, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xF8, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0xF8, 0x80)],
 		]
@@ -1417,7 +1436,16 @@ immutable SpriteMapTemplates[17] overworldSpriteTemplates = [
 	)
 ];
 
-/// $C42F45
+/** Set tick callbacks for a party leader and the entire party all in one go.
+ *
+ * Also clears all callback flags.
+ * The party leader entity is an invisible entity that the entire party follows around, and does NOT refer to the player character in the front.
+ * Params:
+ * 	leaderEntityID = The active entity ID for the party leader
+ * 	leaderCallback = The tick callback for the leader
+ * 	partyCallback = The tick callback for everyone in the party
+ * Original_Address: $C42F45
+ */
 void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
 	entityTickCallbacks[leaderEntityID] = leaderCallback;
 	entityCallbackFlags[leaderEntityID] = 0;
@@ -1427,14 +1455,23 @@ void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
 	}
 }
 
-/// The block arrangements of the entire game map. Each block is a 4x4 arrangement of 8x8 tiles.
-/// There are 8 + 2 chunks of data, with the first 8 being 128 x 20 strips of blocks, ordered from top to bottom.
-/// The latter 2 chunks provide the upper 2 bits of the blocks
-/// Original_Address: $(DOLLAR)C42F64
+/**
+ * The block arrangements of the entire game map.
+ *
+ * Each block is a 4x4 arrangement of 8x8 tiles. There are 8 + 2 chunks of data, with the first 8 being 128 x 20 strips of blocks, ordered from top to bottom.
+ * The latter 2 chunks provide the upper 2 bits of the blocks
+ * Original_Address: $(DOLLAR)C42F64
+ */
 @([ROMSource(0x160000, 10240), ROMSource(0x162800, 10240), ROMSource(0x165000, 12288), ROMSource(0x168000, 10240), ROMSource(0x16A800, 10240), ROMSource(0x16D000, 12288), ROMSource(0x170000, 10240), ROMSource(0x172800, 10240), ROMSource(0x175000, 12288), ROMSource(0x178000, 10240)])
 immutable(ubyte[])[] mapBlockArrangements;
 
-/// $C42F8C
+/** VRAM offsets for all 88 spritemap slots reserved for overworld entity sprites.
+ *
+ * Because the overworld uses 16x16 spriites, each slot is a 2x2 arrangement of 8x8 tiles, for a total of 16x16 pixels each. Each offset represents the position of top-left corner tile.
+ * Note that the second row of tile data is stored at +0x100 from the first row, which is why each row in this table is +0x200.
+ * An entity may reserve up to 20 slots.
+ * Original_Address: $(DOLLAR)C42F8C
+ */
 immutable ushort[88] overworldSpriteVRAMOffsets = [
 	0x0000, 0x0020, 0x0040, 0x0060, 0x0080, 0x00A0, 0x00C0, 0x00E0,
 	0x0200, 0x0220, 0x0240, 0x0260, 0x0280, 0x02A0, 0x02C0, 0x02E0,
@@ -1449,7 +1486,9 @@ immutable ushort[88] overworldSpriteVRAMOffsets = [
 	0x1400, 0x1420, 0x1440, 0x1460, 0x1480, 0x14A0, 0x14C0, 0x14E0,
 ];
 
-/// $C4303C
+/** Tile IDs corresponding to the overworld entity VRAM offsets in overworldSpriteVRAMOffsets.
+ * Original_Address: $(DOLLAR)C4303C
+ */
 immutable ushort[88] overworldSpriteOAMTileNumbers = [
 	0x0000, 0x0002, 0x0004, 0x0006, 0x0008, 0x000A, 0x000C, 0x000E,
 	0x0020, 0x0022, 0x0024, 0x0026, 0x0028, 0x002A, 0x002C, 0x002E,
@@ -1464,8 +1503,10 @@ immutable ushort[88] overworldSpriteOAMTileNumbers = [
 	0x0140, 0x0142, 0x0144, 0x0146, 0x0148, 0x014A, 0x014C, 0x014E,
 ];
 
-/// $C430EC
-void velocityStore() {
+/** Initializes the movement speed table for movement in each direction using the cardinal/diagonal speed tables
+ * Original_Address: $(DOLLAR)C430EC
+ */
+void initializeMovementSpeeds() {
 	for (short i = 0; i < 14; i++) {
 		horizontalMovementSpeeds[i].down.combined = 0;
 		horizontalMovementSpeeds[i].up.combined = 0;
@@ -1490,9 +1531,11 @@ void velocityStore() {
 	}
 }
 
-/// $C432B1
-void unknownC432B1() {
-	for (short i = 0; i < 0x1E; i++) {
+/** Clears map collision state for all entities, removes all party member afflictions and resets the party status
+ * Original_Address: $(DOLLAR)C432B1
+ */
+void clearPartyStatus() {
+	for (short i = 0; i < 30; i++) {
 		entitySurfaceFlags[i] = 0;
 	}
 	for (short i = 0; i < 6; i++) {
@@ -1503,20 +1546,30 @@ void unknownC432B1() {
 	gameState.partyStatus = PartyStatus.normal;
 }
 
-/// $C43317
+/** Initializes the party member pointers, to avoid expensive (at the time) offset calculations
+ * Original_Address: $(DOLLAR)C43317
+ */
 void initializePartyPointers() {
 	for (short i = 0; i < 6; i++) {
 		chosenFourPtrs[i] = &partyCharacters[i];
 	}
 }
 
-/// $C43344
-void unknownC43344(short arg1) {
-	overworldStatusSuppression = arg1;
+/** Sets the Overworld Status Suppression flag, preventing game overs from occurring
+ * Original_Address: $(DOLLAR)C43344
+ */
+void setOverworldStatusSuppression(short val) {
+	overworldStatusSuppression = val;
 }
 
-/// $C4334A
-void unknownC4334A(short direction) {
+/** Looks for interactable map objects in the given direction and prepares to run their text script if found
+ *
+ * Makes three attempts: one directly ahead, one a pixel to the right, and one a pixel to the left. Countertop collision is respected, extending the interaction distance.
+ * Params:
+ * 	direction = The direction from the player to search in
+ * Original_Address: $(DOLLAR)C4334A
+ */
+void findMapObject(short direction) {
 	short x = cast(short)(interactXOffsets[direction] + gameState.leaderX.integer / 8);
 	short y = cast(short)((direction == Direction.down) ? (interactYOffsets[direction] + (gameState.leaderY.integer + 1) / 8) :(interactYOffsets[direction] + gameState.leaderY.integer / 8));
 	if ((getMovingCollisionFlags(cast(short)(x * 8), cast(short)(y * 8), gameState.firstPartyMemberEntity, direction) & SurfaceFlags.counterTop) == SurfaceFlags.counterTop) {
@@ -1539,37 +1592,43 @@ void unknownC4334A(short direction) {
 	}
 }
 
-/// $C4343E
-void savePhotoState(short arg1) {
-	arg1--;
-	ushort x12;
+/** Saves any player-controllable state on the screen for the credits photographs
+ * Params:
+ * 	id = The index of the photo to record state for
+ * Original_Address: $(DOLLAR)C4343E
+ */
+void savePhotoState(short id) {
+	id--;
+	ushort tmpTimer;
 	if (60000 > timer / 3600) {
-		x12 = cast(ushort)(timer / 3600);
+		tmpTimer = cast(ushort)(timer / 3600);
 	} else {
-		x12 = 59999;
+		tmpTimer = 59999;
 	}
-	gameState.savedPhotoStates[arg1].unknown = x12;
+	gameState.savedPhotoStates[id].timer = tmpTimer;
 	for (short i = 0; i < 6; i++) {
 		if (gameState.partyMemberIndex[i] == 0xFF) {
-			gameState.savedPhotoStates[arg1].partyMembers[i] = 0;
+			gameState.savedPhotoStates[id].partyMembers[i] = 0;
 		} else {
 			currentPartyMemberTick = &partyCharacters[gameState.playerControlledPartyMembers[i]];
-			short x0E = gameState.partyMemberIndex[i];
+			short partyFlags = gameState.partyMemberIndex[i];
 			if ((partyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.unconscious)) {
-				x0E |= 0x20;
+				partyFlags |= 0x20;
 			}
 			if ((partyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.diamondized)) {
-				x0E |= 0x40;
+				partyFlags |= 0x40;
 			}
 			if ((partyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[1] == Status1.mushroomized)) {
-				x0E |= 0x80;
+				partyFlags |= 0x80;
 			}
-			gameState.savedPhotoStates[arg1].partyMembers[i] = cast(ubyte)x0E;
+			gameState.savedPhotoStates[id].partyMembers[i] = cast(ubyte)partyFlags;
 		}
 	}
 }
 
-/// $C43550
+/** Text strings used for the item menu commands
+ * Original_Address: $(DOLLAR)C43550
+ */
 immutable ubyte[6][4] itemUseMenuStrings = [
 	ebString!6("Use"),
 	ebString!6("Give"),
@@ -1577,27 +1636,36 @@ immutable ubyte[6][4] itemUseMenuStrings = [
 	ebString!6("Help!"),
 ];
 
-/// $C43568
+/** Waits and renders a frame in battle mode
+ * Original_Address: $(DOLLAR)C43568
+ */
 void finishBattleFrame() {
 	waitUntilNextFrame();
 	drawBattleFrame();
 }
 
-/// $C43573
-void unknownC43573(short arg1) {
+/** Swaps the current (if any) raised HP/PP window to the selected character
+ * Params:
+ * 	character = The character index whose HP/PP window should be raised
+ * Original_Address: $(DOLLAR)C43573
+ */
+void swapRaisedHPPPWindow(short character) {
 	if (battleMenuCurrentCharacterID != -1) {
 		resetActivePartyMemberHPPPWindow();
 	}
-	battleMenuCurrentCharacterID = arg1;
+	battleMenuCurrentCharacterID = character;
 	waitUntilNextFrame();
-	ushort* x = &bg2Buffer[0x340 + 16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)];
+	// clear the old bottom row of HP/PP window tiles, which will be moved up and won't be cleared by a redraw
+	ushort* hpPPBottomTilemap = &bg2Buffer[26 * 32 + 16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (character * 7)];
 	for (short i = hpPPWindowWidth; i != 0; i--) {
-		*(x++) = 0;
+		(hpPPBottomTilemap++)[0] = 0;
 	}
 	redrawAllWindows = 1;
 }
 
-/// $C435E4
+/** Turns off the enemy target flash effect for whichever row of enemies it's enabled on
+ * Original_Address: $(DOLLAR)C435E4
+ */
 void rowEnemyFlashingOff() {
 	if (currentFlashingRow == -1) {
 		return;
@@ -1614,12 +1682,16 @@ void rowEnemyFlashingOff() {
 	redrawAllWindows = 1;
 }
 
-/// $C43657
-void rowEnemyFlashingOn(short arg1) {
+/** Turns on the enemy target flash effect for an entire row of enemies
+ * Params:
+ * 	row = The row to enable the effect on (see Row)
+ * Original_Address: $(DOLLAR)C43657
+ */
+void rowEnemyFlashingOn(short row) {
 	if (currentFlashingRow != -1) {
 		rowEnemyFlashingOff();
 	}
-	currentFlashingRow = arg1;
+	currentFlashingRow = row;
 	for (short i = 0; i < (currentFlashingRow != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
 		if (currentFlashingRow != Row.front) {
 			battlersTable[backRowBattlers[i]].isFlashing = 1;
@@ -1632,6 +1704,9 @@ void rowEnemyFlashingOn(short arg1) {
 }
 
 /** Clears a line in the specified open window. This assumes that the current font is 2 tiles high
+ * Params:
+ * 	window = The window ID to clear text in (see Window)
+ * 	height = The row of text to clear
  * Original_Address: $(DOLLAR)C436D7
  */
 void clearTextLine(short window, short height) {
@@ -1642,6 +1717,8 @@ void clearTextLine(short window, short height) {
 }
 
 /** Clears the line in the specified window where text will next be rendered. This assumes that the current font is 2 tiles high
+ * Params:
+ * 	window = The target window ID (see Window)
  * Original_Address: $(DOLLAR)C43739
  */
 void clearCurrentTextLine(short window) {
@@ -1654,6 +1731,8 @@ void clearCurrentTextLine(short window) {
 }
 
 /** Moves text in the window up a single line. This assumes that the current font is 2 tiles high
+ * Params:
+ * 	window = The target window ID (see Window)
  * Original_Address: $(DOLLAR)C437B8
  */
 void moveTextUpOneLine(short window) {
@@ -1717,52 +1796,65 @@ void fillRestOfWindowLine() {
 	}
 }
 
-/// $C43874
+/** Moves the text cursor to the specified tile coordinates of a specific window and prepare to print text there
+ * Params:
+ * 	windowID = The target window (see Window)
+ * 	x = Tile X coordinate
+ * 	y = Tile Y coordinate
+ * Original_Address: $(DOLLAR)C43874
+ */
 void moveTextCursor(short windowID, short x, short y) {
 	nextVWFTile();
 	windowStats[windowTable[windowID]].textX = x;
 	windowStats[windowTable[windowID]].textY = y;
 }
 
-/// $C438A5
+/** Moves the text cursor to the specified tile coordinates of the current window and prepare to print text there
+ * Params:
+ * 	x = Tile X coordinate
+ * 	y = Tile Y coordinate
+ * Original_Address: $(DOLLAR)C438A5
+ */
 void moveCurrentTextCursor(short x, short y) {
 	moveTextCursor(currentFocusWindow, x, y);
 }
 
-/// $C43915
+/** Text layer tiles that are NOT freeable. Note that only the first half of this table actually gets used
+ * Original_Address: $(DOLLAR)C43915
+ */
 immutable ubyte[0x400] lockedTiles = [
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+	1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
 
 /** Sets or clears highlighting for some rendered text in the active window
@@ -1786,7 +1878,7 @@ void setTextHighlighting(ushort maxLength, short highlighted, ubyte* text) {
 	short x = windowStats[windowTable[currentFocusWindow]].textX;
 	ushort* buffer = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2 + x];
 	while ((*text != 0) && (maxLength != 0)) {
-		if (*buffer == 0x40) {
+		if (*buffer == 0x40) { // break on first window BG tile, there's no text after this
 			break;
 		}
 		if (highlighted != 0) {
@@ -1803,9 +1895,12 @@ void setTextHighlighting(ushort maxLength, short highlighted, ubyte* text) {
 	instantPrinting = 0;
 }
 
-/// $C43CAA
+/** Finishes rendering the current text tile and move on to a fresh one
+ * Original_Address: $(DOLLAR)C43CAA
+ */
 void nextVWFTile() {
-	if (++vwfTile > 0x33) {
+	// vwf buffer is a ring buffer, so wrap around if we're at the end
+	if (++vwfTile >= vwfBuffer.length) {
 		vwfTile = 0;
 		vwfX = 0;
 	} else {
@@ -1827,10 +1922,14 @@ void moveCurrentTextCursorOption(MenuOption* option, short x, short y) {
 	restoreMenuBackup = 0;
 }
 
-/// $C43D95
-void unknownC43D95(short arg1) {
-	arg1 += (windowStats[windowTable[currentFocusWindow]].textX * 8);
-	forcePixelAlignment(cast(short)(arg1 + lastTextPixelOffsetSet), windowStats[windowTable[currentFocusWindow]].textY);
+/** Keeps numbers properly aligned with text
+ * Params:
+ * 	extraSpace = Number of pixels of extra space to add
+ * Original_Address: $(DOLLAR)C43D95
+ */
+void alignNumber(short extraSpace) {
+	extraSpace += (windowStats[windowTable[currentFocusWindow]].textX * 8);
+	forcePixelAlignment(cast(short)(extraSpace + lastTextPixelOffsetSet), windowStats[windowTable[currentFocusWindow]].textY);
 }
 
 /// $C43DDB
@@ -7862,7 +7961,7 @@ void initIntro() {
 	musicEffect(MusicEffect.quickFade);
 	initializeEntitySubsystem();
 	initializeTextSystem();
-	unknownC432B1();
+	clearPartyStatus();
 	disableMusicChanges = 1;
 	bg3XPosition = 0;
 	bg3YPosition = 0;

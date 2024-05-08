@@ -6105,10 +6105,10 @@ struct RollingStat {
 	FixedPoint1616 current; ///
 	ushort target; ///
 }
-///
+/// Player-controllable state for photographs taken throughout the game
 struct PhotoState {
-	ushort unknown; ///
-	ubyte[6] partyMembers; ///
+	ushort timer; /// The game timer (in minutes) at the time the photograph was taken
+	ubyte[6] partyMembers; /// The characters that were in the party at the time
 }
 ///
 struct WinStat {

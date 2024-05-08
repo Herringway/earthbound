@@ -1559,7 +1559,7 @@ void clearParty() {
 	}
 	gameState.playerControlledPartyMemberCount = 0;
 	gameState.partyCount = 0;
-	velocityStore();
+	initializeMovementSpeeds();
 	pajamaFlag = getEventFlag(nessPajamaFlag);
 }
 
@@ -2162,8 +2162,8 @@ short unknownC04116(short direction) {
 		}
 	}
 	playerIntangibilityFrames = intangibilityBackup;
-	if ((interactingNPCID == -1) || (interactingNPCID == 0)) {
-		unknownC4334A(direction);
+	if ((interactingNPCID == -1) || (interactingNPCID == 0)) { // didn't find anything? look for map objects
+		findMapObject(direction);
 	}
 	return interactingNPCID;
 }
@@ -2944,7 +2944,7 @@ short getCollisionAtLoadedTile(short x, short y) {
 void checkVerticalUpTileCollision(short arg1, short arg2) {
 	ushort x10 = cast(ushort)(loadedCollisionTiles[(checkedCollisionTopY / 8) & 0x3F][(arg1 / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x14 = (arg1 + 7) / 8;
-	for (short i = 0; i < hitboxWidths[arg2]; i++) {
+	for (short i = 0; i < hitboxTileWidths[arg2]; i++) {
 		x10 |= loadedCollisionTiles[(checkedCollisionTopY / 8) & 0x3F][x14 & 0x3F];
 		x14++;
 	}
@@ -2953,10 +2953,10 @@ void checkVerticalUpTileCollision(short arg1, short arg2) {
 
 /// $C0559C
 void checkVerticalDownTileCollision(short arg1, short arg2) {
-	ushort y = cast(ushort)(loadedCollisionTiles[((((hitboxHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | tempEntitySurfaceFlags);
+	ushort y = cast(ushort)(loadedCollisionTiles[((((hitboxTileHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < hitboxWidths[arg2]; i++) {
-		y |= loadedCollisionTiles[(((hitboxHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F][x12 & 0x3F];
+	for (short i = 0; i < hitboxTileWidths[arg2]; i++) {
+		y |= loadedCollisionTiles[(((hitboxTileHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F][x12 & 0x3F];
 		x12++;
 	}
 	tempEntitySurfaceFlags = y;
@@ -2966,7 +2966,7 @@ void checkVerticalDownTileCollision(short arg1, short arg2) {
 void checkHorizontalLeftTileCollision(short arg1, short arg2) {
 	ushort x10 = cast(ushort)(loadedCollisionTiles[(arg1 / 8) & 0x3F][(checkedCollisionLeftX / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < hitboxHeights[arg2]; i++) {
+	for (short i = 0; i < hitboxTileHeights[arg2]; i++) {
 		x10 |= loadedCollisionTiles[x12 & 0x3F][(checkedCollisionLeftX / 8) & 0x3F];
 		x12++;
 	}
@@ -2975,10 +2975,10 @@ void checkHorizontalLeftTileCollision(short arg1, short arg2) {
 
 /// $C056D0
 void checkHorizontalRightTileCollision(short arg1, short arg2) {
-	ushort y = cast(ushort)(loadedCollisionTiles[(arg1 / 8) & 0x3F][(((hitboxWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F] | tempEntitySurfaceFlags);
+	ushort y = cast(ushort)(loadedCollisionTiles[(arg1 / 8) & 0x3F][(((hitboxTileWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < hitboxHeights[arg2]; i++) {
-		y |= loadedCollisionTiles[x12 & 0x3F][(((hitboxWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F];
+	for (short i = 0; i < hitboxTileHeights[arg2]; i++) {
+		y |= loadedCollisionTiles[x12 & 0x3F][(((hitboxTileWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F];
 		x12++;
 	}
 	tempEntitySurfaceFlags = y;
@@ -8774,7 +8774,7 @@ void fileSelectInit() {
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	overworldSetupVRAM();
-	unknownC432B1();
+	clearPartyStatus();
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	initializeTextSystem();
@@ -9077,8 +9077,8 @@ short unknownC0BA35(PathCtx* pathState, short targets, short baseX, short baseY,
 		}
 		pathState.pathers[pathfinders].objIndex = i;
 		pathState.pathers[pathfinders].fromOffscreen = offscreen;
-		pathState.pathers[pathfinders].hitbox.x = hitboxWidths[entitySizes[i]];
-		pathState.pathers[pathfinders].hitbox.y = hitboxHeights[entitySizes[i]];
+		pathState.pathers[pathfinders].hitbox.x = hitboxTileWidths[entitySizes[i]];
+		pathState.pathers[pathfinders].hitbox.y = hitboxTileHeights[entitySizes[i]];
 		pathState.pathers[pathfinders].origin.x = (((entityAbsXTable[i] - collisionWidths[entitySizes[i]]) / 8) - baseX) & 0x3F;
 		pathState.pathers[pathfinders].origin.y = (((entityAbsYTable[i] - collisionHeights1[entitySizes[i]] + collisionHeights2[entitySizes[i]]) / 8) - baseY) & 0x3F;
 		pathfinders++;

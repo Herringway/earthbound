@@ -2590,7 +2590,7 @@ short battleRoutine() {
 						chosenAction = BattleActions.noEffect;
 						battleItemUsed = 0;
 					} else {
-						unknownC43573F(i);
+						swapRaisedHPPPWindowF(i);
 						chosenAction = battleSelectionMenu(gameState.partyMembers[i], partyMemberBattleSelectionOrder);
 						resetActivePartyMemberHPPPWindowF();
 						closeFocusWindow();
@@ -2946,7 +2946,7 @@ short battleRoutine() {
 					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= 4)) {
 						for (short i = 0; i < 6; i++) {
 							if (gameState.partyMembers[i] == currentAttacker.id) {
-								unknownC43573F(i);
+								swapRaisedHPPPWindowF(i);
 								break;
 							}
 						}
@@ -4931,7 +4931,7 @@ void battleActionMasterBarfDeath() {
 			if (gameState.partyMembers[j] != 4) {
 				continue;
 			}
-			unknownC43573F(j);
+			swapRaisedHPPPWindowF(j);
 			break outer;
 		}
 	}

@@ -611,13 +611,13 @@ void printNumber(uint arg1) {
 	}
 	short x14 = unknownC10D7C(arg1);
 	ubyte* x12 = &numberTextBuffer[7 - x14];
-	byte x16 = windowStats[windowTable[currentFocusWindow]].numPadding;
-	if (x16 >= 0) {
-		short a = (x16 & 0xF) + 1;
+	byte numberPadding = windowStats[windowTable[currentFocusWindow]].numPadding;
+	if (numberPadding >= 0) {
+		short a = (numberPadding & 0xF) + 1;
 		if (a < x14) {
 			a = x14;
 		}
-		unknownC43D95(cast(short)((a - x14) * 6));
+		alignNumber(cast(short)((a - x14) * 6));
 	}
 	while (x14 != 0) {
 		printLetter(*(x12++) + ebChar('0'));
@@ -1520,7 +1520,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 		short x1C = 10;
 		while (true) {
 			if (arg2 == 0) {
-				unknownC43573(x04);
+				swapRaisedHPPPWindow(x04);
 			}
 			clearInstantPrinting();
 			windowTick();
@@ -1608,7 +1608,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		short x20 = 10;
 		while (true) {
 			if (arg1 == 0) {
-				unknownC43573(x04);
+				swapRaisedHPPPWindow(x04);
 			}
 			clearInstantPrinting();
 			windowTick();
@@ -2018,7 +2018,7 @@ void openMenuButton() {
 						}
 						addCharacterInventoryToWindow(gameState.partyMembers[0], Window.inventory);
 						x1F = gameState.partyMembers[0];
-						unknownC43573(0);
+						swapRaisedHPPPWindow(0);
 					} else {
 						openEquipSelectWindow(0);
 						x1F = charSelectPrompt(0, 1, &unknownC1339E, null);
@@ -2198,7 +2198,7 @@ void openMenuButton() {
 				openHpAndWallet();
 				uint x06_2 = getFirstPartyMemberWithPSI();
 				if (x06_2 != 0) {
-					unknownC43573(cast(short)(cast(short)(x06_2) - 1));
+					swapRaisedHPPPWindow(cast(short)(cast(short)(x06_2) - 1));
 				}
 				if (overworldPSIMenu() != 0) {
 					break mainLoop;
@@ -5400,7 +5400,7 @@ short unknownC1AA5D() {
 			closeEquipSelectWindow();
 		} else {
 			x16 = gameState.partyMembers[0];
-			unknownC43573(0);
+			swapRaisedHPPPWindow(0);
 		}
 		if (x16 == 0) {
 			break;
@@ -5960,10 +5960,10 @@ short triggerSpecialEvent(short arg1) {
 			enterYourNamePlease(1);
 			break;
 		case 5:
-			unknownC43344(1);
+			setOverworldStatusSuppression(1);
 			break;
 		case 6:
-			unknownC43344(getEventFlag(EventFlag.winGiegu));
+			setOverworldStatusSuppression(getEventFlag(EventFlag.winGiegu));
 			break;
 		case 7:
 			return displayTownMap();
@@ -6818,8 +6818,8 @@ void unknownC1DD9F(const(ubyte)* arg1) {
 }
 
 /// $C1DDCC
-void unknownC43573F(short arg1) {
-	unknownC43573(arg1);
+void swapRaisedHPPPWindowF(short arg1) {
+	swapRaisedHPPPWindow(arg1);
 }
 
 /// $C1DDC6
