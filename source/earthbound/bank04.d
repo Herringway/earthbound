@@ -2087,17 +2087,17 @@ void prefillKeyboardInput(ubyte* text, short length) {
 	if (endPosition >= length) {
 		return;
 	}
-	keyboardInputCharacterOffsets[endPosition] = 0x20;
-	keyboardInputCharacterWidths[endPosition] = 0x06;
+	keyboardInputCharacterOffsets[endPosition] = 32;
+	keyboardInputCharacterWidths[endPosition] = 6;
 	unknownC44E61(0, ebChar('@'));
 	keyboardInputCharacters[endPosition++] = 0;
-	if (length - endPosition <= 0) {
+	if (length < endPosition) {
 		return;
 	}
 	for (short i = cast(short)(length - endPosition); i != 0; i--, endPosition++) {
-		keyboardInputCharacterOffsets[endPosition] = 0x03;
+		keyboardInputCharacterOffsets[endPosition] = 3;
 		unknownC44E61(0, ebChar('{'));
-		keyboardInputCharacterWidths[endPosition] = 0x03;
+		keyboardInputCharacterWidths[endPosition] = 3;
 	}
 }
 
