@@ -2077,7 +2077,7 @@ short getCharacterAtCursorPosition(short x, short y, short keyboard) {
 void prefillKeyboardInput(ubyte* text, short length) {
 	memset(&keyboardInputCharacterWidths[0], 0, keyboardInputCharacterWidths.length);
 	short endPosition;
-	for (endPosition = 0; (text[endPosition] != 0) && (endPosition < length); endPosition++, text++) {
+	for (endPosition = 0; text[0] != 0; endPosition++, text++) {
 		keyboardInputCharacters[endPosition] = text[0];
 		keyboardInputCharacterOffsets[endPosition] = (text[0] - ebChar(' ')) & 0x7F;
 		keyboardInputCharacterWidths[endPosition] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(text[0] - ebChar(' ')) & 0x7F] + characterPadding);
@@ -2099,6 +2099,14 @@ void prefillKeyboardInput(ubyte* text, short length) {
 		unknownC44E61(0, ebChar('{'));
 		keyboardInputCharacterWidths[endPosition] = 3;
 	}
+}
+unittest {
+	initializeTextSystem();
+	createWindow(Window.fileSelectNamingNameBox);
+	prefillKeyboardInput(ebStringz("Hi").ptr, 5);
+	assert(keyboardInputCharacterOffsets == [40, 73, 32, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+	assert(keyboardInputCharacterWidths == [6, 2, 6, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+	assert(keyboardInputCharacters == [120, 153, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 }
 
 /// $C441B7
