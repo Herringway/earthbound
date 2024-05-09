@@ -7015,32 +7015,32 @@ short enemySelectMode(short arg1) {
 }
 
 /// $C1E48D
-short unknownC1E48D(short arg1, short arg2, short arg3) {
+short unknownC1E48D(short window, short length, short character) {
 	setInstantPrinting();
-	setWindowFocus(arg1);
-	short x0E = unknownC442AC(arg1, arg2, arg3);
+	setWindowFocus(window);
+	short x0E = keyboardInputSingleCharacter(window, length, character);
 	setWindowFocus(Window.fileSelectNamingKeyboard);
 	return x0E;
 }
 
 /// $C1E4BE
-short unknownC1E4BE(short arg1, short arg2, short arg3) {
+short unknownC1E4BE(short window, short namingItem, short arg3) {
 	setInstantPrinting();
-	createWindowN(arg1);
-	short x10 = (4 > arg2) ? 5 : 6;
-	unknownC441B7(x10);
+	createWindowN(window);
+	short length = (4 > namingItem) ? 5 : 6;
+	emptyKeyboardInput(length);
 	moveCurrentTextCursor(0, windowStats[windowTable[currentFocusWindow]].textY);
 	short x12 = (arg3 == 6) ? 0 : cast(short)(arg3 + 1);
 	// Huh. The vanilla game happily just indexes out of bounds here.
-	for (short i = 0; i < dontCareNames[arg2][x12].length && dontCareNames[arg2][x12][i] != 0; i++) {
-		unknownC442AC(arg1, x10, dontCareNames[arg2][x12][i]);
+	for (short i = 0; i < dontCareNames[namingItem][x12].length && dontCareNames[namingItem][x12][i] != 0; i++) {
+		keyboardInputSingleCharacter(window, length, dontCareNames[namingItem][x12][i]);
 	}
 	setWindowFocus(Window.fileSelectNamingKeyboard);
 	return x12;
 }
 
 /// $C1E57F
-short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg5) {
+short textInputDialog(short inputWindow, short arg2, ubyte* arg3, short arg4, short namingItem) {
 	short x24 = -1;
 	short y = 0;
 	short x = 0;
@@ -7049,13 +7049,13 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 	short cursorPosition;
 	setInstantPrinting();
 	createWindowN(Window.fileSelectNamingKeyboard);
-	if (arg5 == -1) {
+	if (namingItem == -1) {
 		displayText(getTextBlock(keyboardText[5]));
 	} else {
 		displayText(getTextBlock(keyboardText[4]));
 	}
 	characterPadding = 0;
-	if (arg5 == -1) {
+	if (namingItem == -1) {
 		displayText(getTextBlock(keyboardText[2 + arg4]));
 	} else {
 		displayText(getTextBlock(keyboardText[arg4]));
@@ -7066,13 +7066,13 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 		if (x1E != arg4) {
 			createWindowN(Window.fileSelectNamingKeyboard);
 			windowTickWithoutInstantPrinting();
-			if (arg5 == -1) {
+			if (namingItem == -1) {
 				displayText(getTextBlock(keyboardText[5]));
 			} else {
 				displayText(getTextBlock(keyboardText[4]));
 			}
 			characterPadding = 0;
-			if (arg5 == -1) {
+			if (namingItem == -1) {
 				displayText(getTextBlock(keyboardText[2 + arg4]));
 			} else {
 				displayText(getTextBlock(keyboardText[arg4]));
@@ -7130,11 +7130,11 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 							switch (x) {
 								case 0: //don't care
 									playSfx(Sfx.textInput);
-									x24 = unknownC1E4BE(arg1, arg5, x24);
+									x24 = unknownC1E4BE(inputWindow, namingItem, x24);
 									continue l1;
 								case 17: //backspace
 									playSfx(Sfx.textInput);
-									if ((unknownC1E48D(arg1, arg2, -1) != 0) && (arg5 != -1)) {
+									if ((unknownC1E48D(inputWindow, arg2, -1) != 0) && (namingItem != -1)) {
 										return 1;
 									}
 									continue l1;
@@ -7156,12 +7156,12 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 									default: break;
 								}
 							}
-							unknownC1E48D(arg1, arg2, getCharacterAtCursorPosition(x / 2, y, arg4));
+							unknownC1E48D(inputWindow, arg2, getCharacterAtCursorPosition(x / 2, y, arg4));
 							continue l1;
 						}
 					} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
 						playSfx(Sfx.unknown7D);
-						if ((unknownC1E48D(arg1, arg2, -1) != 0) && (arg5 != -1)) {
+						if ((unknownC1E48D(inputWindow, arg2, -1) != 0) && (namingItem != -1)) {
 							return 1;
 						}
 					} else if ((padPress[0] & Pad.start) != 0) {
@@ -7179,7 +7179,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 			continue;
 			Unknown42:
 			if (strlen(cast(char*)&keyboardInputCharacters[0]) != 0) {
-				setWindowFocus(arg1);
+				setWindowFocus(inputWindow);
 				short i;
 				for(i = 0; (keyboardInputCharacters[i] != 0) && (i < arg2); i++) {
 					(arg3++)[0] = keyboardInputCharacters[i];
@@ -7203,26 +7203,26 @@ short enterYourNamePlease(short arg1) {
 	createWindowN(Window.unknown27);
 	if (arg1 != 0) {
 		moveCurrentTextCursor(0, 0);
-		printString(24, &gameState.earthboundPlayerName[0]);
+		printString(gameState.earthboundPlayerName.length, &gameState.earthboundPlayerName[0]);
 		moveCurrentTextCursor(0, 1);
-		unknownC441B7(12);
+		emptyKeyboardInput(gameState.mother2PlayerName.length);
 		if (gameState.mother2PlayerName[0] != 0) {
-			printString(12, &gameState.mother2PlayerName[0]);
+			printString(gameState.mother2PlayerName.length, &gameState.mother2PlayerName[0]);
 		}
 		moveCurrentTextCursor(0, 1);
-		result = textInputDialog(Window.unknown27, 12, &gameState.mother2PlayerName[0], 0, -1);
+		result = textInputDialog(Window.unknown27, gameState.mother2PlayerName.length, &gameState.mother2PlayerName[0], 0, -1);
 	} else {
 		moveCurrentTextCursor(0, 0);
-		printString(26, &nameRegistryRequestString[0]);
+		printString(nameRegistryRequestString.length, &nameRegistryRequestString[0]);
 		waitDMAFinished();
 		moveCurrentTextCursor(0, 1);
-		unknownC441B7(24);
+		emptyKeyboardInput(gameState.earthboundPlayerName.length);
 		moveCurrentTextCursor(0, 1);
 		if (gameState.earthboundPlayerName[0] != 0) {
-			prefillKeyboardInput(&gameState.earthboundPlayerName[0], 24);
+			prefillKeyboardInput(&gameState.earthboundPlayerName[0], gameState.earthboundPlayerName.length);
 		}
 		moveCurrentTextCursor(0, 1);
-		result = textInputDialog(Window.unknown27, 24, &gameState.earthboundPlayerName[0], 0, -1);
+		result = textInputDialog(Window.unknown27, gameState.earthboundPlayerName.length, &gameState.earthboundPlayerName[0], 0, -1);
 		transliterateString(&temporaryTextBuffer[0], &gameState.earthboundPlayerName[0]);
 		memcpy(&gameState.mother2PlayerName[0], &temporaryTextBuffer[0], 12);
 	}
@@ -7240,7 +7240,7 @@ short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, sh
 	if (arg2[0] != 0) {
 		prefillKeyboardInput(arg2, arg1);
 	} else {
-		unknownC441B7(arg1);
+		emptyKeyboardInput(arg1);
 	}
 	moveCurrentTextCursor(0, 0);
 	createWindowN(Window.fileSelectNamingMessage);

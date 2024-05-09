@@ -2118,24 +2118,32 @@ unittest {
 	assert(keyboardInputCharacters == [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 }
 
-/// $C441B7
-void unknownC441B7(short arg1) {
-	memset(&vwfBuffer[0][0], 0xFF, 0x680);
-	short x02 = 3;
+/** Clears the input field for text entry screens
+ * Params:
+ * 	length = Length of input field
+ * Original_Address: $(DOLLAR)C441B7
+ */
+void emptyKeyboardInput(short length) {
+	memset(&vwfBuffer[0][0], 0xFF, vwfBuffer.sizeof);
+	const short emptyCharacterOffset = 3;
 	nextKeyboardInputIndex = 0;
-	memset(&keyboardInputCharacters[0], 0, 0x18);
+	memset(&keyboardInputCharacters[0], 0, keyboardInputCharacters.length);
 	unknownC44E61(0, ebChar('@'));
-	keyboardInputCharacterOffsets[0] = 0x20;
-	for (short i = 1; i < arg1; i++) {
-		keyboardInputCharacterOffsets[i] = cast(ubyte)x02;
-		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + characterPadding);
+	keyboardInputCharacterOffsets[0] = 32;
+	for (short i = 1; i < length; i++) {
+		keyboardInputCharacterOffsets[i] = cast(ubyte)emptyCharacterOffset;
+		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][emptyCharacterOffset] + characterPadding);
 		unknownC44E61(0, ebChar('{'));
 	}
 }
 
-/// $C4424A
-void unknownC4424A(short chr) {
-	if (chr == 0x70) {
+/** Writes a character to the various text entry buffers
+ * Params:
+ * 	chr = Character to write
+ * Original_Address: $(DOLLAR)C4424A
+ */
+void writeCharacterToKeyboardInputBuffers(short chr) {
+	if (chr == ebChar('@')) {
 		keyboardInputCharacters[nextKeyboardInputIndex] = 0;
 	} else {
 		keyboardInputCharacters[nextKeyboardInputIndex] = cast(ubyte)chr;
@@ -2144,53 +2152,63 @@ void unknownC4424A(short chr) {
 	keyboardInputCharacterWidths[nextKeyboardInputIndex] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding);
 }
 
-/// $C442AC
-short unknownC442AC(short arg1, short arg2, short arg3) {
+/** Handles the input of a single character on text entry screens
+ * Params:
+ * 	window = Window that displays inputted text (not used, current focused window is used instead)
+ * 	length = Maximum length of the text entry field
+ * 	character = The character input (-1 is backspace)
+ * Returns: 0 on success, 1 on backspace input with no input
+ * Original_Address: $(DOLLAR)C442AC
+ */
+short keyboardInputSingleCharacter(short window, short length, short character) {
 	waitUntilNextFrame();
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
 	textRenderState.upperVRAMPosition = 0;
 	textRenderState.pixelsRendered = 0;
-	if (arg3 == -1) {
+	if (character == -1) { //backspace
 		if (nextKeyboardInputIndex == 0) {
 			return 1;
 		}
-		if (nextKeyboardInputIndex < arg2) {
-			unknownC4424A(ebChar('{'));
+		if (nextKeyboardInputIndex < length) {
+			writeCharacterToKeyboardInputBuffers(ebChar('{'));
 		}
 		nextKeyboardInputIndex--;
-		unknownC4424A(ebChar('@'));
-	} else {
-		if (arg2 - 1 < nextKeyboardInputIndex) {
+		writeCharacterToKeyboardInputBuffers(ebChar('@'));
+	} else { // any other character
+		if (length - 1 < nextKeyboardInputIndex) {
 			return 0;
 		}
-		unknownC4424A(arg3);
-		if (++nextKeyboardInputIndex < arg2) {
-			unknownC4424A(ebChar('@'));
+		writeCharacterToKeyboardInputBuffers(character);
+		if (++nextKeyboardInputIndex < length) {
+			writeCharacterToKeyboardInputBuffers(ebChar('@'));
 		}
 	}
+	// rerender text
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
-	for (short i = 0; i < arg2; i++) {
-		const(ubyte)* x06 = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * keyboardInputCharacterOffsets[i]];
+	for (short i = 0; i < length; i++) {
+		const(ubyte)* charGraphics = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * keyboardInputCharacterOffsets[i]];
 		short j;
 		for (j = keyboardInputCharacterWidths[i]; j >= 8; j -= 8) {
-			renderText(8, fontConfigTable[0].width, x06);
-			x06 += fontConfigTable[0].width;
+			renderText(8, fontConfigTable[0].width, charGraphics);
+			charGraphics += fontConfigTable[0].width;
 		}
-		renderText(j, fontConfigTable[0].width, x06);
+		renderText(j, fontConfigTable[0].width, charGraphics);
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
-	ushort x04 = 0x7700;
+	// upload text tiles
+	ushort destinationVRAM = 0x7700;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
-		copyToVRAM(0, 0x10, x04, &vwfBuffer[i][0]);
-		copyToVRAM(0, 0x10, cast(ushort)(x04 + 8), &vwfBuffer[i][16]);
-		x04 += 16;
+		copyToVRAM(0, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		copyToVRAM(0, 0x10, cast(ushort)(destinationVRAM + 8), &vwfBuffer[i][16]);
+		destinationVRAM += 16;
 	}
 	dmaTransferFlag = 1;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
 		finishTextTileRender(cast(short)(i * 2 + 0x2E0), cast(short)(i * 2 + 0x2E0 + 1));
 	}
+	// redraw everything
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
@@ -2206,7 +2224,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 			playSound = 1;
 		}
 	}
-	if ((playSound != 0) && (instantPrinting == 0) && (arg3 != 0x20)) {
+	if ((playSound != 0) && (instantPrinting == 0) && (character != TextTile.windowBackground)) {
 		playSfx(Sfx.textPrint);
 	}
 	// wait according to player's chosen text speed
@@ -2216,17 +2234,22 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	return 0;
 }
 
-/// $C444FB
-void renderSmallTextToVRAM(ubyte* arg1, ushort arg2) {
+/** Renders text in small font directly to VRAM
+ * Params:
+ * 	str = The text to render
+ * destinationVRAM = VRAM address for the graphics tiles
+ * Original_Address: $(DOLLAR)C444FB
+ */
+void renderSmallTextToVRAM(ubyte* str, ushort destinationVRAM) {
 	nextVWFTile();
-	ushort x18 = vwfTile;
-	ubyte* x0A = arg1;
-	for (short i = 0; arg1[0] != 0; i++) {
-		renderText(6, fontConfigTable[Font.tiny].width, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
+	ushort currentVWFTile = vwfTile;
+	ubyte* strTemp = str;
+	for (short i = 0; str[0] != 0; i++) {
+		renderText(6, fontConfigTable[Font.tiny].width, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((str++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
 	}
-	for (short i = x18; (x0A++)[0] != 0; i++) {
-		copyToVRAM(0, 0x10, arg2, &vwfBuffer[i][0]);
-		arg2 += 8;
+	for (short i = currentVWFTile; (strTemp++)[0] != 0; i++) {
+		copyToVRAM(0, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		destinationVRAM += 8;
 		if (i == 0x33) {
 			i = -1;
 		}
