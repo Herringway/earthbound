@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC442AC</title>
+		<title>Function printLetter</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,26 +149,35 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC442AC</h1><p>$C442AC
+			<h1>Function printLetter</h1><p>Prints a letter into the BG2 buffer.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC442AC</span>
+			<span class="typ">void</span> <span class="pln">printLetter</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tile</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>This is Mother 2's normal letter printing function, but Earthbound still uses it for non-VWF text.
+ Each character is 2 tiles high, with the second tile assumed to be offset by +16 BPP2 tiles (256 bytes) in VRAM.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tile">tile</td><td> Tile to render (see TextTile for values, these are NOT VRAM tile IDs!)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C43F77
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

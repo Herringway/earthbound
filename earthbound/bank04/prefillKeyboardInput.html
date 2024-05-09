@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Enum SpecialCharacter</title>
+		<title>Function prefillKeyboardInput</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,26 +149,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Enum SpecialCharacter</h1><p>Special characters
+			<h1>Function prefillKeyboardInput</h1><p>Prefills the input field for text entry screens
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">enum</span> <span class="typ">SpecialCharacter</span>
-			 <span class="pun">:</span> <span class="typ">int</span> <span class="pun">{ ... }</span>
+			<span class="typ">void</span> <span class="pln">prefillKeyboardInput</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">text</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">length</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Enum members</h2>
-				<table>
-					<col class="caption"/>
-					<tr>
-						<th>Name</th><th>Description</th>
-					</tr>
-				</table>
-			</section>
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="text">text</td><td> The string to prefill with. Must be null-terminated if less than length bytes long</td></tr>
+<tr><td id="length">length</td><td> Length of the string</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C440B5
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

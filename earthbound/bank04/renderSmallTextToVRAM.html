@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function renderSmallTextToVRAM</h1><p>$C444FB
+			<h1>Function renderSmallTextToVRAM</h1><p>Renders text in small font directly to VRAM
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,26 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">renderSmallTextToVRAM</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">str</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">destinationVRAM</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="str">str</td><td> The text to render</td></tr>
+<tr><td id="destinationVRAM">destinationVRAM</td><td> VRAM address for the graphics tiles</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C444FB
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

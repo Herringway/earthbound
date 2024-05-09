@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function vwfTextMove</h1><p>$C43D24
+			<h1>Function vwfTextMove</h1><p>Moves the text cursor to the specified tile coordinates and updates VWF state to match
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,26 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">vwfTextMove</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">tileX</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tileY</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tileX">tileX</td><td> X coordinate to start rendering the next text at</td></tr>
+<tr><td id="tileY">tileY</td><td> Y coordinate to start rendering the next text at</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C43D24
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC43F53</title>
+		<title>Function keyboardInputSingleCharacter</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,17 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC43F53</h1><p>$C43F53
+			<h1>Function keyboardInputSingleCharacter</h1><p>Handles the input of a single character on text entry screens
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC43F53</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">short</span> <span class="pln">keyboardInputSingleCharacter</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">window</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">length</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="window">window</td><td> Window that displays inputted text (not used, current focused window is used instead)</td></tr>
+<tr><td id="length">length</td><td> Maximum length of the text entry field</td></tr>
+<tr><td id="character">character</td><td> The character input (-1 is backspace)</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 on success, 1 on backspace input with no input
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C442AC
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function printLetter</title>
+		<title>Function writeCharacterToKeyboardInputBuffers</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -30,7 +30,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank01.html">bank01</a>
 					</div>
 				</li>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -149,22 +149,31 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function printLetter</h1><p>$C10CB6
+			<h1>Function writeCharacterToKeyboardInputBuffers</h1><p>Writes a character to the various text entry buffers
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">printLetter</span>
+			<span class="typ">void</span> <span class="pln">writeCharacterToKeyboardInputBuffers</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">letter</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">chr</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="chr">chr</td><td> Character to write</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C4424A
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

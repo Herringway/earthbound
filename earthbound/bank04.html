@@ -1079,6 +1079,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="emptyKeyboardInput" class="public" href="../earthbound/bank04/emptyKeyboardInput.html">emptyKeyboardInput</a><span class="tableEntryAnnotation">(length)</span>
+							</code>
+						</td>
+						<td>Clears the input field for text entry screens
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="enableBrightnessHDMA" class="public" href="../earthbound/bank04/enableBrightnessHDMA.html">enableBrightnessHDMA</a><span class="tableEntryAnnotation">(table)</span>
 							</code>
 						</td>
@@ -1439,10 +1448,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getCharacterAtCursorPosition" class="public" href="../earthbound/bank04/getCharacterAtCursorPosition.html">getCharacterAtCursorPosition</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="getCharacterAtCursorPosition" class="public" href="../earthbound/bank04/getCharacterAtCursorPosition.html">getCharacterAtCursorPosition</a><span class="tableEntryAnnotation">(x, y, keyboard)</span>
 							</code>
 						</td>
-						<td>$C4406A
+						<td>Gets the keyboard character at a given cursor position
 </td>
 					</tr>
 					<tr>
@@ -1524,6 +1533,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getStringRenderWidth" class="public" href="../earthbound/bank04/getStringRenderWidth.html">getStringRenderWidth</a><span class="tableEntryAnnotation">(str, maxLength)</span>
+							</code>
+						</td>
+						<td>Gets the render width, of pixels, of a given string using the focused window's font
 </td>
 					</tr>
 					<tr>
@@ -1673,6 +1691,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="initializeUsedBG2TileMap" class="public" href="../earthbound/bank04/initializeUsedBG2TileMap.html">initializeUsedBG2TileMap</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Resets the used BG2 tile map to default state
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="initializeYourSanctuaryDisplay" class="public" href="../earthbound/bank04/initializeYourSanctuaryDisplay.html">initializeYourSanctuaryDisplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1722,6 +1749,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C48ECE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="keyboardInputSingleCharacter" class="public" href="../earthbound/bank04/keyboardInputSingleCharacter.html">keyboardInputSingleCharacter</a><span class="tableEntryAnnotation">(window, length, character)</span>
+							</code>
+						</td>
+						<td>Handles the input of a single character on text entry screens
 </td>
 					</tr>
 					<tr>
@@ -2024,6 +2060,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="prefillKeyboardInput" class="public" href="../earthbound/bank04/prefillKeyboardInput.html">prefillKeyboardInput</a><span class="tableEntryAnnotation">(text, length)</span>
+							</code>
+						</td>
+						<td>Prefills the input field for text entry screens
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="prepareCastNameTilemap" class="public" href="../earthbound/bank04/prepareCastNameTilemap.html">prepareCastNameTilemap</a><span class="tableEntryAnnotation">(offset, tileWidth, x)</span>
 							</code>
 						</td>
@@ -2195,10 +2240,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="printLetter" class="public" href="../earthbound/bank04/printLetter.html">printLetter</a><span class="tableEntryAnnotation">(tile)</span>
+							</code>
+						</td>
+						<td>Prints a letter into the BG2 buffer.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="printNewLine" class="public" href="../earthbound/bank04/printNewLine.html">printNewLine</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>Starts a new line of text in the active window
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="printOptionStart" class="public" href="../earthbound/bank04/printOptionStart.html">printOptionStart</a><span class="tableEntryAnnotation">(menuEntry)</span>
+							</code>
+						</td>
+						<td>Starts printing a new menu option.
 </td>
 					</tr>
 					<tr>
@@ -2393,10 +2456,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="renderSmallTextToVRAM" class="public" href="../earthbound/bank04/renderSmallTextToVRAM.html">renderSmallTextToVRAM</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="renderSmallTextToVRAM" class="public" href="../earthbound/bank04/renderSmallTextToVRAM.html">renderSmallTextToVRAM</a><span class="tableEntryAnnotation">(str, destinationVRAM)</span>
 							</code>
 						</td>
-						<td>$C444FB
+						<td>Renders text in small font directly to VRAM
 </td>
 					</tr>
 					<tr>
@@ -2505,6 +2568,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Sets the scroll threshold in tiles, after which the actionscript will continue
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setCentreAlignment" class="public" href="../earthbound/bank04/setCentreAlignment.html">setCentreAlignment</a><span class="tableEntryAnnotation">(str, maxLength)</span>
+							</code>
+						</td>
+						<td>Sets the focused window's alignment in preparation for centre-aligned text
 </td>
 					</tr>
 					<tr>
@@ -2758,87 +2830,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4645A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43DDB" class="public" href="../earthbound/bank04/unknownC43DDB.html">unknownC43DDB</a><span class="tableEntryAnnotation">(menuEntry)</span>
-							</code>
-						</td>
-						<td>$C43DDB
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43E31" class="public" href="../earthbound/bank04/unknownC43E31.html">unknownC43E31</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C43E31
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43EF8" class="public" href="../earthbound/bank04/unknownC43EF8.html">unknownC43EF8</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C43EF8
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43F53" class="public" href="../earthbound/bank04/unknownC43F53.html">unknownC43F53</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C43F53
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC43F77" class="public" href="../earthbound/bank04/unknownC43F77.html">unknownC43F77</a><span class="tableEntryAnnotation">(tile)</span>
-							</code>
-						</td>
-						<td>$C43F77
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC440B5" class="public" href="../earthbound/bank04/unknownC440B5.html">unknownC440B5</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C440B5
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC441B7" class="public" href="../earthbound/bank04/unknownC441B7.html">unknownC441B7</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C441B7
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4424A" class="public" href="../earthbound/bank04/unknownC4424A.html">unknownC4424A</a><span class="tableEntryAnnotation">(chr)</span>
-							</code>
-						</td>
-						<td>$C4424A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC442AC" class="public" href="../earthbound/bank04/unknownC442AC.html">unknownC442AC</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C442AC
 </td>
 					</tr>
 					<tr>
@@ -3358,10 +3349,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="vwfTextMove" class="public" href="../earthbound/bank04/vwfTextMove.html">vwfTextMove</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="vwfTextMove" class="public" href="../earthbound/bank04/vwfTextMove.html">vwfTextMove</a><span class="tableEntryAnnotation">(tileX, tileY)</span>
 							</code>
 						</td>
-						<td>$C43D24
+						<td>Moves the text cursor to the specified tile coordinates and updates VWF state to match
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="writeCharacterToKeyboardInputBuffers" class="public" href="../earthbound/bank04/writeCharacterToKeyboardInputBuffers.html">writeCharacterToKeyboardInputBuffers</a><span class="tableEntryAnnotation">(chr)</span>
+							</code>
+						</td>
+						<td>Writes a character to the various text entry buffers
 </td>
 					</tr>
 				</table>
@@ -4167,14 +4167,38 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="statusEquipWindowText" class="public" href="../earthbound/bank04/statusEquipWindowText.html">
-								<code>statusEquipWindowText</code>
+							<a id="statusIcons" class="public" href="../earthbound/bank04/statusIcons.html">
+								<code>statusIcons</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C45A27
+						<td>Tile IDs used for status icons (normal background)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusIconsCheckered" class="public" href="../earthbound/bank04/statusIconsCheckered.html">
+								<code>statusIconsCheckered</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Tile IDs used for status icons (checkered background)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusNamePalettes" class="public" href="../earthbound/bank04/statusNamePalettes.html">
+								<code>statusNamePalettes</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Palette IDs used for the name-highlighting effect in the HP/PP windows, defined per-status
 </td>
 					</tr>
 					<tr>
