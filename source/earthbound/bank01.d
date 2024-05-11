@@ -133,8 +133,16 @@ void unknownC100FE(short arg1) {
 	}
 }
 
-/// $C10166 - CC [03], [13], [14] common code - halt parsing
-void cc1314(short arg1, short arg2) {
+/** Prompt for user input during text scripts
+ *
+ * Will add extra waits for user input if textPromptWaitingForInput is set (through [1F 50], for example)
+ * CC [03], [13], [14] common code.
+ * Params:
+ * 	displayPrompt = Set to 1 to display a little blinking triangle in the corner of the window
+ * 	dontUseSpeedBasedWait = If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if blinkingTriangleFlag is non-zero
+ * Original_Address: $(DOLLAR)C10166
+ */
+void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
 	while (textPromptWaitingForInput) {
 		if (debugging == 0) {
 			continue;
@@ -146,14 +154,14 @@ void cc1314(short arg1, short arg2) {
 	}
 	clearInstantPrinting();
 	windowTick();
-	if ((arg2 == 0) && (blinkingTriangleFlag != 0) && (textSpeedBasedWait != 0)) {
+	if ((dontUseSpeedBasedWait == 0) && (blinkingTriangleFlag != 0) && (textSpeedBasedWait != 0)) {
 		unknownC100FE(0);
 		return;
 	}
 	if (blinkingTriangleFlag != 0) {
 		stopHPPPRolling();
 	}
-	if (arg1 == 0) {
+	if (displayPrompt == 0) {
 		while ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0) {
 			windowTickMinimal();
 		}
@@ -2414,8 +2422,10 @@ void debugYButtonGoods() {
 	closeWindow(Window.fileSelectMenu);
 }
 
-/// $C14012
-DisplayTextState* unknownC14012() {
+/** Pushes a new text state onto the stack and returns it
+ * Original_Address: $(DOLLAR)C14012
+ */
+DisplayTextState* pushPeekTextStack() {
 	nextTextStackFrame++;
 	if (nextTextStackFrame > 10) {
 		nextTextStackFrame = 0;
@@ -2423,24 +2433,31 @@ DisplayTextState* unknownC14012() {
 	return &displayTextStates[nextTextStackFrame];
 }
 
-/// $C14049
-void unknownC14049() {
+/** Deallocates a text state from the stack
+ * Original_Address: $(DOLLAR)C14049
+ */
+void popTextStack() {
 	nextTextStackFrame--;
 	if (nextTextStackFrame > 10) {
 		nextTextStackFrame = 9;
 	}
 }
 
-/// $C14070
-short unknownC14070(ubyte* arg1, ubyte* arg2) {
-	while (arg1[0] != 0) {
-		if (arg1[0] != arg2[0]) {
+/** Similar to strcmp(), but the result is negated
+ * Params:
+ * 	ptr1 = First null-terminated string to compare
+ * 	ptr2 = Second null-terminated string to compare
+ * Original_Address: $(DOLLAR)C14070
+ */
+short ebStrcmp(ubyte* ptr1, ubyte* ptr2) {
+	while (ptr1[0] != 0) {
+		if (ptr1[0] != ptr2[0]) {
 			break;
 		}
-		arg1++;
-		arg2++;
+		ptr1++;
+		ptr2++;
 	}
-	return arg2[0] - arg1[0];
+	return ptr2[0] - ptr1[0];
 }
 
 /// $C140B0
@@ -2470,18 +2487,18 @@ void* cc1C00(DisplayTextState* arg1, ubyte palette) {
 /// $C14103
 void* cc0A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	arg1.textptr = getTextBlock(getCCParameters!ArgType(arg2));
+	arg1.script = getTextBlock(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C141D0
 void* cc09(DisplayTextState* arg1, ubyte arg2) {
 	if ((getMainRegister().integer != 0) && (getMainRegister().integer <= arg2)) {
-		arg1.textptr += string.sizeof * (getMainRegister().integer - 1);
+		arg1.script += string.sizeof * (getMainRegister().integer - 1);
 		ccArgumentGatheringLoopCounter = 0;
 		return &cc0A;
 	} else {
-		arg1.textptr += string.sizeof * arg2;
+		arg1.script += string.sizeof * arg2;
 		return null;
 	}
 }
@@ -2509,7 +2526,7 @@ void* cc06(DisplayTextState* arg1, ubyte arg2) {
 		ccArgumentGatheringLoopCounter = 0;
 		return &cc0A;
 	} else {
-		arg1.textptr += string.sizeof;
+		arg1.script += string.sizeof;
 		return null;
 	}
 }
@@ -2621,7 +2638,7 @@ void* cc1C05(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C146DE
 void* cc1C06(DisplayTextState* arg1, ubyte arg2) {
-	printWrappableString(PSITeleportDestination.name.length, &psiTeleportDestinationTable[arg2 == 0 ? cast(short)getSubRegister() : arg2].name[0]);
+	printStringAutoNewline(PSITeleportDestination.name.length, &psiTeleportDestinationTable[arg2 == 0 ? cast(short)getSubRegister() : arg2].name[0]);
 	return null;
 }
 
@@ -3291,7 +3308,7 @@ void* cc1D21(DisplayTextState* arg1, ubyte arg2) {
 void* unknownC1621F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
 	displayText(getTextBlock(getCCParameters!ArgType(arg2)));
-	arg1.textptr += onGoSubOffset * string.sizeof;
+	arg1.script += onGoSubOffset * string.sizeof;
 	return null;
 }
 
@@ -3299,11 +3316,11 @@ void* unknownC1621F(DisplayTextState* arg1, ubyte arg2) {
 void* cc1FC0(DisplayTextState* arg1, ubyte arg2) {
 	if ((getMainRegister().integer != 0) && (getMainRegister().integer < arg2)) {
 		onGoSubOffset = cast(short)(arg2 - cast(short)getMainRegister().integer);
-		arg1.textptr += (cast(short)getMainRegister().integer - 1) * string.sizeof;
+		arg1.script += (cast(short)getMainRegister().integer - 1) * string.sizeof;
 		ccArgumentGatheringLoopCounter = 0;
 		return &unknownC1621F;
 	} else {
-		arg1.textptr += arg2 * string.sizeof;
+		arg1.script += arg2 * string.sizeof;
 		return null;
 	}
 }
@@ -3822,37 +3839,37 @@ void* unknownC17889(DisplayTextState* arg1, ubyte arg2) {
 /// $C1790B
 void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 	switch (arg2) {
-		case 0x00:
+		case 0x00: // close the focused window
 			closeFocusWindow();
 			break;
-		case 0x01:
+		case 0x01: // open a window
 			return &cc1801;
-		case 0x02:
+		case 0x02: // backup text attributes
 			backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
-			arg1.unknown4 = 1;
+			arg1.restoreWindowAttributes = 1;
 			break;
-		case 0x03:
+		case 0x03: // set window focus
 			return &cc1803;
-		case 0x04:
+		case 0x04: // close all windows
 			closeAllWindows();
 			hideHPPPWindows();
 			windowTick();
 			break;
-		case 0x05:
+		case 0x05: // set cursor position
 			return &cc1805;
-		case 0x06:
+		case 0x06: // clear window
 			clearFocusWindow();
 			break;
-		case 0x07:
+		case 0x07: // compare register
 			return &cc1807;
-		case 0x08:
+		case 0x08: // create menu in window, uncancellable
 			return &cc1808;
-		case 0x09:
+		case 0x09: // create menu in window, cancellable
 			return &cc1809;
-		case 0x0A:
+		case 0x0A: // open wallet window
 			openWalletWindow();
 			break;
-		case 0x0D:
+		case 0x0D: // print character stats?
 			return &cc180D;
 		default: break;
 	}
@@ -3868,9 +3885,9 @@ void* cc1902(DisplayTextState* arg1, ubyte arg2) {
 /// $C179AA
 void* cc19Tree(DisplayTextState* arg1, ubyte arg2) {
 	switch (arg2) {
-		case 0x02:
+		case 0x02: // prepare menu option
 			return &cc1902;
-		case 0x04:
+		case 0x04: // wipe menu options
 			resetCurrentWindowMenu();
 			break;
 		case 0x05:
@@ -3975,14 +3992,14 @@ void* cc1BTree(DisplayTextState* arg1, ubyte arg2) {
 			if (getMainRegister().integer == 0) {
 				return &cc0A;
 			} else {
-				arg1.textptr += string.sizeof;
+				arg1.script += string.sizeof;
 			}
 			break;
 		case 0x03:
 			if (getMainRegister().integer != 0) {
 				return &cc0A;
 			} else {
-				arg1.textptr += string.sizeof;
+				arg1.script += string.sizeof;
 			}
 			break;
 		case 0x04:
@@ -4041,11 +4058,11 @@ void* cc1CTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1C15;
 		case 0x0D:
 			printBattlerArticle(0);
-			printWrappableString(0x50, getBattleAttackerName());
+			printStringAutoNewline(0x50, getBattleAttackerName());
 			break;
 		case 0x0E:
 			printBattlerArticle(1);
-			printWrappableString(0x50, getBattleTargetName());
+			printStringAutoNewline(0x50, getBattleTargetName());
 			break;
 		case 0x0F:
 			printNumber(getCNum());
@@ -4116,7 +4133,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1D19;
 		case 0x20:
 			short x14 = 0;
-			if (unknownC14070(getBattleTargetName(), getBattleAttackerName()) == 0) {
+			if (ebStrcmp(getBattleTargetName(), getBattleAttackerName()) == 0) {
 				x14 = 1;
 			}
 			setMainRegister(WorkingMemory(x14));
@@ -4361,188 +4378,201 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 	return null;
 }
 
-/// $C1866D
-DisplayTextState* unknownC1866D(DisplayTextState* arg1, const(ubyte)* arg2) {
-	if (arg1 is null) {
+/** Initializes a DisplayTextState
+ * Params:
+ * 	state = State being initialized
+ * 	script = Start of a text script
+ * Original_Address: $(DOLLAR)C1866D
+ */
+DisplayTextState* initializeDisplayTextState(DisplayTextState* state, const(ubyte)* script) {
+	if (state is null) {
 		return null;
 	}
-	arg1.unknown4 = 0;
-	arg1.textptr = arg2;
-	return arg1;
+	state.restoreWindowAttributes = 0;
+	state.script = script;
+	return state;
 }
 
-/// $C1869D
-void unknownC1869D(DisplayTextState* arg1) {
+/** Handles cleanup at the end of a text script
+ * Original_Address: $(DOLLAR)C1869D
+ */
+void cleanupTextScript(DisplayTextState* arg1) {
 	if (arg1 is null) {
 		return;
 	}
-	if (arg1.unknown4 == 0) {
+	if (arg1.restoreWindowAttributes == 0) {
 		return;
 	}
 	restoreCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 }
 
-/// $C186B1 - Call a text script (script_ptr)
-const(ubyte)* displayText(const(ubyte)* script_ptr) {
-	void* function(DisplayTextState*, ubyte) x1E = null;
-	ubyte x14;
-	const(ubyte)* x1A = &battleBackRowText[12];
-	if (script_ptr is null) {
-		return script_ptr;
+/// $C186B1 - Call a text script
+const(ubyte)* displayText(const(ubyte)* script) {
+	void* function(DisplayTextState*, ubyte) ccFunction = null;
+	ubyte nextChar;
+	const(ubyte)* compressedTextPointer = &battleBackRowText[12]; // this seems weird, until you realize that it's pointing directly at a null
+	if (script is null) {
+		return script;
 	}
-	DisplayTextState* x12 = unknownC1866D(unknownC14012(), script_ptr);
-	if (x12 is null) {
+	DisplayTextState* state = initializeDisplayTextState(pushPeekTextStack(), script);
+	if (state is null) {
 		return null;
 	}
 	size_t waitBytes = 0;
 	loop: while (true) {
-		debug(printTextTrace) if (x1E is null) {
-			auto str = getFullCC(x1A[0] ? x1A : x12.textptr);
+		// just some debugging, not in vanilla
+		debug(printTextTrace) if (ccFunction is null) {
+			auto str = getFullCC(compressedTextPointer[0] ? compressedTextPointer : state.script);
 			tracef("Next text: [%(%02X %)]", str);
 		}
-		if ((enableWordWrap != 0) && (x1E is null)) {
+		// handle word wrapping
+		if ((enableWordWrap != 0) && (ccFunction is null)) {
 			if (upcomingWordLength == 0) {
-				unknownC445E1(x12, x1A);
+				printAutoNewline(state, compressedTextPointer);
 			} else {
 				upcomingWordLength--;
 			}
 		}
-		if (x1A[0] != 0) {
-			x14 = x1A[0];
-			x1A++;
+		// advance text pointers
+		if (compressedTextPointer[0] != 0) {
+			nextChar = compressedTextPointer[0];
+			compressedTextPointer++;
 		} else {
-			x14 = x12.textptr[0];
-			x12.textptr++;
+			nextChar = state.script[0];
+			state.script++;
 		}
-		if (x1E !is null) {
-			x1E = cast(typeof(x1E))x1E(x12, x14);
+		// an earlier character started a CC, so keep calling it until it's done
+		if (ccFunction !is null) {
+			ccFunction = cast(typeof(ccFunction))ccFunction(state, nextChar);
 			continue;
 		}
-		switch (x14) {
+		// handle compressed CCs early, so the normal CC logic can handle the first character
+		switch (nextChar) {
 			case 0x15:
-				const(ubyte)* tmp = &compressedText[0][x12.textptr[0]][0];
-				x12.textptr++;
-				x14 = tmp[0];
+				const(ubyte)* tmp = &compressedText[0][state.script[0]][0];
+				state.script++;
+				nextChar = tmp[0];
 				tmp++;
-				x1A = tmp;
+				compressedTextPointer = tmp;
 				break;
 			case 0x16:
-				const(ubyte)* tmp = &compressedText[1][x12.textptr[0]][0];
-				x12.textptr++;
-				x14 = tmp[0];
+				const(ubyte)* tmp = &compressedText[1][state.script[0]][0];
+				state.script++;
+				nextChar = tmp[0];
 				tmp++;
-				x1A = tmp;
+				compressedTextPointer = tmp;
 				break;
 			case 0x17:
-				const(ubyte)* tmp = &compressedText[2][x12.textptr[0]][0];
-				x12.textptr++;
-				x14 = tmp[0];
+				const(ubyte)* tmp = &compressedText[2][state.script[0]][0];
+				state.script++;
+				nextChar = tmp[0];
 				tmp++;
-				x1A = tmp;
+				compressedTextPointer = tmp;
 				break;
 			default: break;
 		}
-		if (x14 < 0x20) {
+		// handle CCs
+		if (nextChar < 0x20) {
 			ccArgumentGatheringLoopCounter = 0;
-			switch (x14) {
-				case 0x00:
+			switch (nextChar) {
+				case 0x00: // force new line
 					printNewLine();
 					break;
-				case 0x01:
+				case 0x01: // start new line
 					if (getTextX() != 0) {
 						printNewLine();
 					}
 					break;
-				case 0x02:
+				case 0x02: // end of script
 					break loop;
-				case 0x03:
+				case 0x03: // halt, with visible prompt, use speed-based wait if blinkingTriangleFlag is set
 					cc1314(1, 0);
 					break;
-				case 0x04:
-					x1E = &cc04;
+				case 0x04: // set flag
+					ccFunction = &cc04;
 					break;
-				case 0x05:
-					x1E = &cc05;
+				case 0x05: // clear flag
+					ccFunction = &cc05;
 					break;
-				case 0x06:
-					x1E = &cc06;
+				case 0x06: // jump if flag set
+					ccFunction = &cc06;
 					break;
-				case 0x07:
-					x1E = &cc07;
+				case 0x07: // get event flag
+					ccFunction = &cc07;
 					break;
-				case 0x08:
-					x1E = &cc08;
+				case 0x08: // call
+					ccFunction = &cc08;
 					break;
-				case 0x09:
-					x1E = &cc09;
+				case 0x09: // switch
+					ccFunction = &cc09;
 					break;
-				case 0x0A:
-					x1E = &cc0A;
+				case 0x0A: // goto
+					ccFunction = &cc0A;
 					break;
-				case 0x0B:
-					x1E = &cc0B;
+				case 0x0B: // eq
+					ccFunction = &cc0B;
 					break;
-				case 0x0C:
-					x1E = &cc0C;
+				case 0x0C: // not eq
+					ccFunction = &cc0C;
 					break;
-				case 0x0D:
-					x1E = &cc0D;
+				case 0x0D: // copy to sub register
+					ccFunction = &cc0D;
 					break;
-				case 0x0E:
-					x1E = &cc0E;
+				case 0x0E: // copy to loop register
+					ccFunction = &cc0E;
 					break;
-				case 0x0F:
+				case 0x0F: // increment loop register
 					incrementLoopRegister();
 					break;
-				case 0x10:
-					x1E = &cc10;
+				case 0x10: // pause
+					ccFunction = &cc10;
 					break;
-				case 0x11:
+				case 0x11: // creates a cancellable menu
 					setMainRegister(WorkingMemory(selectionMenu(1)));
 					resetCurrentWindowMenu();
 					break;
-				case 0x12:
+				case 0x12: // clear current line
 					cc12();
 					break;
-				case 0x13:
+				case 0x13: // halt, without visible prompt, use speed-based wait if blinkingTriangleFlag is set
 					cc1314(0, 0);
 					break;
-				case 0x14:
+				case 0x14: // halt, with visible prompt, don't use speed-based wait
 					cc1314(1, 1);
 					break;
 				case 0x18:
-					x1E = &cc18Tree;
+					ccFunction = &cc18Tree;
 					break;
 				case 0x19:
-					x1E = &cc19Tree;
+					ccFunction = &cc19Tree;
 					break;
 				case 0x1A:
-					x1E = &cc1ATree;
+					ccFunction = &cc1ATree;
 					break;
 				case 0x1B:
-					x1E = &cc1BTree;
+					ccFunction = &cc1BTree;
 					break;
 				case 0x1C:
-					x1E = &cc1CTree;
+					ccFunction = &cc1CTree;
 					break;
 				case 0x1D:
-					x1E = &cc1DTree;
+					ccFunction = &cc1DTree;
 					break;
 				case 0x1E:
-					x1E = &cc1ETree;
+					ccFunction = &cc1ETree;
 					break;
 				case 0x1F:
-					x1E = &cc1FTree;
+					ccFunction = &cc1FTree;
 					break;
 				default: break;
 			}
 		} else {
-			printLetterVWF(x14);
+			printLetterVWF(nextChar);
 		}
 	}
-	unknownC1869D(x12);
-	unknownC14049();
-	return x12.textptr;
+	cleanupTextScript(state);
+	popTextStack();
+	return state.script;
 }
 
 /// $C18B2C
@@ -4763,7 +4793,7 @@ short giveStoredItemToCharacter(short character, short itemSlot) {
 
 /// $C19216
 void printItemName(short arg1) {
-	unknownC4487C(Item.name.length, &itemData[arg1].name[0]);
+	printWordsAutoNewline(Item.name.length, &itemData[arg1].name[0]);
 }
 
 /// $C19249
@@ -4781,7 +4811,7 @@ void unknownC19249(short arg1) {
 				break;
 		}
 	} else {
-		printWrappableString(cc1C01Table[arg1].size, cast(ubyte*)cc1C01Table[arg1].address);
+		printStringAutoNewline(cc1C01Table[arg1].size, cast(ubyte*)cc1C01Table[arg1].address);
 	}
 }
 
@@ -4792,16 +4822,16 @@ void unknownC1931B(short arg1) {
 			if (allowTextOverflow != 0) {
 				printString(gameState.petName.length, &gameState.petName[0]);
 			} else {
-				printWrappableString(gameState.petName.length, &gameState.petName[0]);
+				printStringAutoNewline(gameState.petName.length, &gameState.petName[0]);
 			}
 		} else {
-			printWrappableString(Enemy.name.length, &enemyConfigurationTable[npcAITable[arg1].enemyID].name[0]);
+			printStringAutoNewline(Enemy.name.length, &enemyConfigurationTable[npcAITable[arg1].enemyID].name[0]);
 		}
 	} else {
 		if (allowTextOverflow != 0) {
 			printString(PartyCharacter.name.length, &partyCharacters[arg1 -1].name[0]);
 		} else {
-			printWrappableString(PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
+			printStringAutoNewline(PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
 		}
 	}
 }
@@ -6138,7 +6168,7 @@ void getPSIName(short id) {
 	} else {
 		text = &psiNameTable[id - 1][0];
 	}
-	printWrappableString(-1, text);
+	printStringAutoNewline(-1, text);
 }
 
 /** Prepares a selectable menu of PSI for the specified category
@@ -6251,7 +6281,7 @@ void unknownC1C8BC(short arg1) {
 /// $C1CA06
 void printPSIName(short id) {
 	getPSIName(psiAbilityTable[id].name);
-	printWrappableString(-1, &psiSuffixes[psiAbilityTable[id].level - 1][0]);
+	printStringAutoNewline(-1, &psiSuffixes[psiAbilityTable[id].level - 1][0]);
 }
 
 /// $C1CA72

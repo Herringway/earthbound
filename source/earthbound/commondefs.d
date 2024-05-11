@@ -6569,8 +6569,8 @@ struct SaveDataReplay {
 struct FontConfig {
 	ubyte dataID; ///
 	ubyte graphicsID; ///
+	ushort bytesPerCharacter; ///
 	ushort height; ///
-	ushort width; ///
 }
 struct Money {
 	uint val;
@@ -6890,8 +6890,8 @@ struct WindowConfig {
 }
 ///
 struct DisplayTextState {
-	@skip const(ubyte)* textptr; ///0
-	ushort unknown4; ///4
+	@skip const(ubyte)* script; /// Current position in text script
+	ushort restoreWindowAttributes; /// Whether or not to restore window text attributes after the script ends
 	WindowTextAttributesCopy savedTextAttributes; ///6
 }
 /// Data for door objects on the overworld map

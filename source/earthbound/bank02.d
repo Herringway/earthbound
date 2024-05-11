@@ -192,18 +192,18 @@ void drawHPPPWindow(short id) {
 		x18 = 19;
 	}
 	ushort* dest = &bg2Buffer[16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (id * 7) + x18 * 32];
-	dest[0] = cast(ushort)(x1E + 0x2004);
+	dest[0] = cast(ushort)(x1E + 4 + TilemapFlag.priority);
 	dest++;
 	for (short i = 5; i != 0; i--) {
-		dest[0] = cast(ushort)(x1E + 0x2005);
+		dest[0] = cast(ushort)(x1E + 5 + TilemapFlag.priority);
 		dest++;
 	}
 	dest[0] = cast(ushort)(x1E + 0x6004);
 	dest++;
 	dest += 25;
 
-	(dest++)[0] = cast(ushort)(x1E + 0x2006);
-	short x14 = (gameState.partyMembers[id] - 1) * 4 + 0x22A0;
+	(dest++)[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
+	short x14 = (gameState.partyMembers[id] - 1) * 4 + 0x2A0 + TilemapFlag.priority;
 	short x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
 	for (short i = 0; i != 4; i++) {
 		if (x12 != 0) {
@@ -212,19 +212,19 @@ void drawHPPPWindow(short id) {
 			x14++;
 			x12--;
 		} else {
-			dest[0] = cast(ushort)(namePalette + 0x2007);
+			dest[0] = cast(ushort)(namePalette + 7 + TilemapFlag.priority);
 			dest++;
 		}
 	}
-	dest[0] = cast(ushort)(namePalette + x20 + 0x2000);
+	dest[0] = cast(ushort)(namePalette + x20 + TilemapFlag.priority);
 	dest++;
-	dest[0] = cast(ushort)(x1E + 0x6006);
+	dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
 	dest++;
 	dest += 25;
 
-	dest[0] = cast(ushort)(x1E + 0x2006);
+	dest[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
 	dest++;
-	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x22B0;
+	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x2B0 + TilemapFlag.priority;
 	x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
 	for (short i =0 ; i != 4; i++) {
 		if (x12 != 0) {
@@ -233,13 +233,13 @@ void drawHPPPWindow(short id) {
 			x14++;
 			x12--;
 		} else {
-			dest[0] = cast(ushort)(namePalette + 0x2017);
+			dest[0] = cast(ushort)(namePalette + 23 + TilemapFlag.priority);
 			dest++;
 		}
 	}
-	dest[0] = cast(ushort)(namePalette + x20 + 0x2010);
+	dest[0] = cast(ushort)(namePalette + x20 + 16 + TilemapFlag.priority);
 	dest++;
-	dest[0] = cast(ushort)(x1E + 0x6006);
+	dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
 	dest++;
 	dest+= 25;
 
@@ -247,10 +247,10 @@ void drawHPPPWindow(short id) {
 	const(ubyte)* x06 = &unknownC3E3F8[0];
 	ushort* y = &hpPPWindowBuffer[id][0];
 	for (short i = 2; i != 0; i--) {
-		dest[0] = cast(ushort)(x1E + 0x2006);
+		dest[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
 		dest++;
 		for (short j = 2;j != 0; j--) {
-			dest[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			dest[0] = cast(ushort)(x06[0] + x22 + TilemapFlag.priority);
 			x06++;
 			dest++;
 		}
@@ -259,7 +259,7 @@ void drawHPPPWindow(short id) {
 			y++;
 			dest++;
 		}
-		dest[0] = cast(ushort)(x1E + 0x6006);
+		dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
 		dest++;
 		dest += 25;
 	}
@@ -267,10 +267,10 @@ void drawHPPPWindow(short id) {
 	fillCharacterPPTileBuffer(id, &character.afflictions[0], character.pp.current.integer, character.pp.current.fraction);
 	y = &hpPPWindowBuffer[id][6];
 	for (short i = 2; i != 0; i--) {
-		dest[0] = cast(ushort)(x1E + 0x2006);
+		dest[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
 		dest++;
 		for (short j = 2; j != 0; j--) {
-			dest[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			dest[0] = cast(ushort)(x06[0] + x22 + TilemapFlag.priority);
 			x06++;
 			dest++;
 		}
@@ -279,17 +279,17 @@ void drawHPPPWindow(short id) {
 			y++;
 			dest++;
 		}
-		dest[0] = cast(ushort)(x1E + 0x6006);
+		dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
 		dest++;
 		dest += 25;
 	}
-	dest[0] = cast(ushort)(x1E + 0xA004);
+	dest[0] = cast(ushort)(x1E + 0x8004 + TilemapFlag.priority);
 	dest++;
 	for (short i = 5; i != 0; i--) {
-		dest[0] = cast(ushort)(x1E + 0xA005);
+		dest[0] = cast(ushort)(x1E + 0x8005 + TilemapFlag.priority);
 		dest++;
 	}
-	dest[0] = cast(ushort)(x1E + 0xE004);
+	dest[0] = cast(ushort)(x1E + 0xC004 + TilemapFlag.priority);
 }
 
 /// $C2077D

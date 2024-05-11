@@ -2188,13 +2188,13 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 	// rerender text
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	for (short i = 0; i < length; i++) {
-		const(ubyte)* charGraphics = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * keyboardInputCharacterOffsets[i]];
+		const(ubyte)* charGraphics = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].bytesPerCharacter * keyboardInputCharacterOffsets[i]];
 		short j;
 		for (j = keyboardInputCharacterWidths[i]; j >= 8; j -= 8) {
-			renderText(8, fontConfigTable[0].width, charGraphics);
-			charGraphics += fontConfigTable[0].width;
+			renderText(8, fontConfigTable[0].height, charGraphics);
+			charGraphics += fontConfigTable[0].height;
 		}
-		renderText(j, fontConfigTable[0].width, charGraphics);
+		renderText(j, fontConfigTable[0].height, charGraphics);
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	// upload text tiles
@@ -2245,7 +2245,7 @@ void renderSmallTextToVRAM(ubyte* str, ushort destinationVRAM) {
 	ushort currentVWFTile = vwfTile;
 	ubyte* strTemp = str;
 	for (short i = 0; str[0] != 0; i++) {
-		renderText(6, fontConfigTable[Font.tiny].width, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((str++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
+		renderText(6, fontConfigTable[Font.tiny].height, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((str++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].bytesPerCharacter]);
 	}
 	for (short i = currentVWFTile; (strTemp++)[0] != 0; i++) {
 		copyToVRAM(0, 0x10, destinationVRAM, &vwfBuffer[i][0]);
@@ -2258,37 +2258,48 @@ void renderSmallTextToVRAM(ubyte* str, ushort destinationVRAM) {
 	waitUntilNextFrame();
 }
 
-/// $C445E1
-void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
+/** Looks ahead at text script and handles automatic newlines if the word is too long
+ * Params:
+ * 	state = The current text state
+ * 	currentCompressedText = Any compressed text currently being printed (must POINT to a null if no text)
+ * Original_Address: $(DOLLAR)C445E1
+ */
+void printAutoNewline(DisplayTextState* state, const(ubyte)* currentCompressedText) {
 	short nextWordLength = 0;
-	const(ubyte)* x14 = arg1.textptr;
+	const(ubyte)* currentScript = state.script;
+	// no point in newlines without a window
 	if (currentFocusWindow == -1) {
 		return;
 	}
+	// get length of next word
 	while (true) {
-		short a = (arg2[0] != 0) ? *(arg2++) : *(x14++);
-		switch (a) {
+		// deal with compressed text first, replace with new compressed text if encountered
+		short chr = (currentCompressedText[0] != 0) ? *(currentCompressedText++) : *(currentScript++);
+		switch (chr) {
 			case 0x15:
-				arg2 = &compressedText[0][*(x14++)][0];
-				a = *(arg2++);
+				currentCompressedText = &compressedText[0][*(currentScript++)][0];
+				chr = *(currentCompressedText++);
 				break;
 			case 0x16:
-				arg2 = &compressedText[1][*(x14++)][0];
-				a = *(arg2++);
+				currentCompressedText = &compressedText[1][*(currentScript++)][0];
+				chr = *(currentCompressedText++);
 				break;
 			case 0x17:
-				arg2 = &compressedText[2][*(x14++)][0];
-				a = *(arg2++);
+				currentCompressedText = &compressedText[2][*(currentScript++)][0];
+				chr = *(currentCompressedText++);
 				break;
 			default: break;
 		}
-		if (a == ebChar(' ') || (a < 0x20)) {
+		// found a space, end it
+		if (chr == ebChar(' ') || (chr < TextTile.windowBackground)) {
 			break;
 		}
+		// add to letter and pixel counts
 		upcomingWordLength++;
-		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + characterPadding);
+		nextWordLength += (chr == TextTile.nonBreakingSpace) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding);
 	}
 	short newLineLength;
+	// does the next word overflow the window? print new line if so
 	if (windowStats[windowTable[currentFocusWindow]].textX != 0) {
 		newLineLength = cast(short)((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + nextWordLength);
 	} else {
@@ -2300,43 +2311,58 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 	}
 }
 
-/// $C447FB
-void printWrappableString(short length, const(ubyte)* text) {
-	short x12 = getStringRenderWidth(text, length);
-	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x12 >= (windowStats[windowTable[currentFocusWindow]].width * 8)) {
+/** Prints a string, with automatic newline if the ENTIRE string is wider than the window width - cursor position
+ * Params:
+ * 	length = Maximum length (in characters) of the string (-1 to automatically choose length, text MUST be null-terminated)
+ * 	text = The text string to print
+ * Original_AddresS: $(DOLLAR)C447FB
+ */
+void printStringAutoNewline(short length, const(ubyte)* text) {
+	short stringLength = getStringRenderWidth(text, length);
+	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + stringLength >= (windowStats[windowTable[currentFocusWindow]].width * 8)) {
 		printNewLineF();
 		vwfIndentNewLine = 1;
 	}
 	printStringF(length, text);
 }
 
-/// $C4487C
-void unknownC4487C(short arg1, const(ubyte)* arg2) {
-	ubyte x00 = 0;
-	ubyte* x15 = &wordSplittingBuffer[0];
-	short x12;
+/** Prints a string with automatic newlines for every word
+ * Params:
+ * 	length = The length of the full string. Not used
+ * 	text = The string to print
+ * Original_Address: $(DOLLAR)C4487C
+ */
+void printWordsAutoNewline(short length, const(ubyte)* text) {
+	ubyte index = 0;
+	ubyte* buffer = &wordSplittingBuffer[0];
+	short destChar;
 	do {
-		ubyte x14 = arg2[0];
-		x12 = x14;
-		x15[x00] = x14;
-		arg2++;
-		if ((x12 == ebChar(' ')) || (x12 == 0)) {
-			if (x12 == ebChar(' ')) {
-				x15[x00++] = ebChar(' ');
+		ubyte srcChar = text[0];
+		destChar = srcChar;
+		buffer[index] = srcChar;
+		text++;
+		// split and print on spaces and nulls
+		if ((destChar == ebChar(' ')) || (destChar == 0)) {
+			if (destChar == ebChar(' ')) {
+				buffer[index++] = ebChar(' ');
 			}
-			x15[x00] = 0;
-			printWrappableString(-1, x15);
-			x00 = 0;
-			x15 = &wordSplittingBuffer[0];
+			buffer[index] = 0;
+			printStringAutoNewline(-1, buffer);
+			index = 0;
+			buffer = &wordSplittingBuffer[0];
 		} else {
-			x00++;
+			index++;
 		}
-	} while (x12 != 0);
+	} while (destChar != 0);
 }
 
-/// $C44963
-void loadWindowGraphics(short arg1) {
-	switch (arg1) {
+/** Loads text layer graphics
+ * Params:
+ * 	what = How much of the text graphics to load - Can choose between all graphics, and all graphics minus HP/PP window and special text graphics
+ * Original_Address: $(DOLLAR)C44963
+ */
+void loadWindowGraphics(short what) {
+	switch (what) {
 		case WindowGraphicsToLoad.all: // reload all window graphics in VRAM
 			copyToVRAM(0, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			goto case;
@@ -2361,79 +2387,100 @@ void loadWindowGraphics(short arg1) {
 	}
 }
 
-/// $C44AD7
+/** Bitmasks used for the used BG2 tile bitmap
+ * Original_Address: $(DOLLAR)C44AD7
+ */
 immutable ushort[16] usedBG2TileMapMasks = [
-	0xFFFE,
-	0xFFFD,
-	0xFFFB,
-	0xFFF7,
-	0xFFEF,
-	0xFFDF,
-	0xFFBF,
-	0xFF7F,
-	0xFEFF,
-	0xFDFF,
-	0xFBFF,
-	0xF7FF,
-	0xEFFF,
-	0xDFFF,
-	0xBFFF,
-	0x7FFF,
+	0b1111111111111110,
+	0b1111111111111101,
+	0b1111111111111011,
+	0b1111111111110111,
+	0b1111111111101111,
+	0b1111111111011111,
+	0b1111111110111111,
+	0b1111111101111111,
+	0b1111111011111111,
+	0b1111110111111111,
+	0b1111101111111111,
+	0b1111011111111111,
+	0b1110111111111111,
+	0b1101111111111111,
+	0b1011111111111111,
+	0b0111111111111111,
 ];
 
-/// $C44AF7
-void freeTile(short arg1) {
-	short x10 = arg1 & 0x3FF;
-	if (lockedTiles[x10] != 0) {
+/** Frees up a tile allocated in the used BG2 tile bitmap
+ * Params:
+ * 	tileID = The tile to free up (0 - 1023)
+ * Original_Address: $(DOLLAR)C44AF7
+ */
+void freeTile(short tileID) {
+	short tile = tileID & 0x3FF;
+	if (lockedTiles[tile] != 0) {
 		return;
 	}
-	usedBG2TileMap[x10 >> 4] &= usedBG2TileMapMasks[x10 & 0xF];
+	usedBG2TileMap[tile >> 4] &= usedBG2TileMapMasks[tile & 0xF];
 }
 
-/// $C44B3A
-void renderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
-	short i;
-	short new_vwftile;
-	short pixel_x = vwfX & 7;
-	ubyte* bufptr = &vwfBuffer[vwfTile][0];
-	const(ubyte)* gfxptr = gfx_data;
+/** Blits widthx8 pixels of a single 1BPP text character into the 2BPP VWF tile buffer
+ * Params:
+ * 	width = Pixels to render
+ * 	fontHeight = Width of each character's tiles, in pixels
+ * 	fontGraphics = The character tile data, in column-major order
+ * Original_Address: $(DOLLAR)C44B3A
+ */
+void renderText(short width, short fontHeight, const(ubyte)* fontGraphics) {
+	short pixelX = vwfX & 7;
+	ubyte* dest = &vwfBuffer[vwfTile][0];
+	const(ubyte)* src = fontGraphics;
 
-	if (pixel_x == 0) { /* Is this the first time we're writing to this tile? */
-		memset(bufptr, 0xFF, sizeof_tile*2);
+	// new tile? clear it before use
+	// we set all the bits, because the background colour is assumed to be the last colour in the palette
+	// then conversion to 2BPP is as easy as just clearing single bits in the second bitplane
+	if (pixelX == 0) {
+		memset(dest, 0xFF, fontHeight * 2);
 	}
+	// the second bitplane is in the odd bytes
+	dest++;
+	for (short i = 0; i < fontHeight; i++) {
+		*dest &= (((*src) ^ 255) >> pixelX) ^ 255;
 
-	bufptr++; /* Move to high byte */
-	for (i = 0; i < sizeof_tile; i++) {
-		*bufptr &= (((*gfxptr) ^ 255) >> pixel_x) ^ 255; /* Is this right? Don't know! */
-		/* *bufptr &= arrEFC51B[pixel_x][*gfxptr]; */
-
-		++gfxptr;
-		bufptr += 2;
+		++src;
+		dest += 2;
 	}
-
+	// increase VWF X, wrap around if necessary
 	vwfX += width;
-	if (vwfX >= vwfBuffer.length*8) vwfX -= vwfBuffer.length*8;
+	if (vwfX >= vwfBuffer.length * 8) {
+		vwfX -= vwfBuffer.length * 8;
+	}
 
-	new_vwftile = vwfX >> 3;
-	if (new_vwftile == vwfTile) return; /* Bail out if going to write on the same tile */
+	// did adding the width mean moving to a new tile? if not, we're done
+	short newVWFTile = vwfX >> 3;
+	if (newVWFTile == vwfTile) {
+		return;
+	}
 
-	/* Well, we're in a new tile now */
-	vwfTile = new_vwftile;
+	// otherwise, we have a second tile to render
 
-	pixel_x = cast(short)(8 - pixel_x);
-	bufptr = &vwfBuffer[vwfTile][0];
-	gfxptr = gfx_data;
+	vwfTile = newVWFTile;
 
-	memset(bufptr, 0xFF, sizeof_tile*2); /* We need to clear what was previously in this, now new, tile */
-	if (pixel_x == 8) return;
+	pixelX = cast(short)(8 - pixelX);
+	dest = &vwfBuffer[vwfTile][0];
+	src = fontGraphics;
 
-	bufptr++; /* Move to high byte */
-	for (i = 0; i < sizeof_tile; i++) {
-		*bufptr = cast(ubyte)((((*gfxptr) ^ 255) << pixel_x) ^ 255); /* Is this right? Don't know! */
-		/* *bufptr = arrEFCD1B[pixel_x][*gfxptr]; */
+	// clear new tile before use
+	memset(dest, 0xFF, fontHeight * 2);
+	if (pixelX == 8) {
+		return;
+	}
 
-		++gfxptr;
-		bufptr += 2;
+	// second bitplane again
+	dest++;
+	for (short i = 0; i < fontHeight; i++) {
+		*dest = cast(ubyte)((((*src) ^ 255) << pixelX) ^ 255);
+
+		++src;
+		dest += 2;
 	}
 }
 
@@ -2459,12 +2506,17 @@ immutable ushort[16] usedBG2TileMasks = [
 	1<<15,
 ];
 
-/// $C44C8C
+/**
+ * Params:
+ * 	upperTile = Tile ID of the upper text tile
+ * 	lowerTile = Tile ID of the lower text file
+ * Original_Address: $(DOLLAR)C44C8C
+ */
 void finishTextTileRender(short upperTile, short lowerTile) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == -1) { // no window, exit
 		return;
 	}
-	if (windowTable[currentFocusWindow] == -1) {
+	if (windowTable[currentFocusWindow] == -1) { // window closed, exit
 		return;
 	}
 	short x = windowStats[windowTable[currentFocusWindow]].textX;
@@ -2478,7 +2530,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 			y++;
 		} else {
 			if (allowTextOverflow != 0) {
-				goto Unknown15;
+				goto SetNewCursorCoordinates; // skip scrolling, indentation
 			}
 			moveTextUpOneLineF(currentFocusWindow);
 		}
@@ -2488,7 +2540,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	}
 	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == 0x20) || (upperTile == 0x70))) {
 		if (blinkingTriangleFlag == 1) {
-			goto Unknown15;
+			goto SetNewCursorCoordinates;
 		}
 		if (blinkingTriangleFlag == 1) {
 			upperTile = 0x20;
@@ -2510,7 +2562,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	bufferLower[0] = cast(ushort)(((lowerTile == TextTile.equipped) ? (3 << 10) : attributes) + lowerTile);
 	x++;
 
-	Unknown15:
+	SetNewCursorCoordinates:
 	windowStats[windowTable[currentFocusWindow]].textX = x;
 	windowStats[windowTable[currentFocusWindow]].textY = y;
 }
@@ -2575,16 +2627,16 @@ void unknownC44E61(short arg1, short tile) {
 			vwfIndentNewLine = 0;
 		}
 		lastPrintedCharacter = cast(ubyte)tile;
-		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].height];
+		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].bytesPerCharacter];
 		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + characterPadding;
 		if (x12 > 8) {
 			while (x12 > 8) {
-				renderText(8, fontConfigTable[arg1].width, x14);
+				renderText(8, fontConfigTable[arg1].height, x14);
 				x12 -= 8;
-				x14 +=fontConfigTable[arg1].width;
+				x14 += fontConfigTable[arg1].height;
 			}
 		}
-		renderText(x12, fontConfigTable[arg1].width, x14);
+		renderText(x12, fontConfigTable[arg1].height, x14);
 		unknownC44DCA();
 	}
 }
@@ -4535,7 +4587,7 @@ void prepareWindowGraphics() {
 		ubyte* x0A = &partyCharacters[i].name[0];
 		vwfX = 2;
 		for (short j = 0; x0A[0] != 0; j++) {
-			renderText(6, fontConfigTable[Font.battle].width, &fontGraphics[fontConfigTable[Font.battle].graphicsID][fontConfigTable[Font.battle].height * ((*x0A - 0x50) & 0x7F)]);
+			renderText(6, fontConfigTable[Font.battle].height, &fontGraphics[fontConfigTable[Font.battle].graphicsID][fontConfigTable[Font.battle].bytesPerCharacter * ((*x0A - 0x50) & 0x7F)]);
 			x0A++;
 		}
 		for (short j = 0; j < 4; j++) {
@@ -4662,9 +4714,9 @@ ushort* unknownC4810E(short start, ushort* dest) {
 /// $C4827B
 void renderWholeCharacter(short font, short character) {
 	short characterOffset = (character - ebChar(' ')) & 0x7F;
-	short fontHeight = fontConfigTable[font].height;
-	const(ubyte)* charTiles = &fontGraphics[fontConfigTable[font].graphicsID][characterOffset * fontHeight];
-	short fontWidth = fontConfigTable[font].width;
+	short bytesPerCharacter = fontConfigTable[font].bytesPerCharacter;
+	const(ubyte)* charTiles = &fontGraphics[fontConfigTable[font].graphicsID][characterOffset * bytesPerCharacter];
+	short fontWidth = fontConfigTable[font].height;
 	short charWidth = fontData[fontConfigTable[font].dataID][characterOffset];
 	charWidth += characterPadding;
 	while (charWidth > 8) {
@@ -5363,14 +5415,14 @@ void renderLargeCharacterInternalCommon(ubyte renderWidth, ushort characterWidth
  */
 void renderLargeCharacterInternal(ubyte character) {
 	character = (character - 0x50) & 0x7F;
-	const(ubyte)* graphicsData = &fontGraphics[fontConfigTable[Font.large].graphicsID][character * fontConfigTable[Font.large].height];
+	const(ubyte)* graphicsData = &fontGraphics[fontConfigTable[Font.large].graphicsID][character * fontConfigTable[Font.large].bytesPerCharacter];
 	ubyte pixelWidth = cast(ubyte)(fontData[fontConfigTable[Font.large].dataID][character] + 1);
 	while (pixelWidth > 8) { // render 8 pixels at a time
-		renderLargeCharacterInternalCommon(8, fontConfigTable[Font.large].width, &vwfBuffer[0][0], graphicsData);
+		renderLargeCharacterInternalCommon(8, fontConfigTable[Font.large].height, &vwfBuffer[0][0], graphicsData);
 		pixelWidth -= 8;
-		graphicsData += fontConfigTable[Font.large].width;
+		graphicsData += fontConfigTable[Font.large].height;
 	}
-	renderLargeCharacterInternalCommon(pixelWidth, fontConfigTable[Font.large].width, &vwfBuffer[0][0], graphicsData);
+	renderLargeCharacterInternalCommon(pixelWidth, fontConfigTable[Font.large].height, &vwfBuffer[0][0], graphicsData);
 }
 
 /** Waits for a single frame while ensuring the animated background keeps rendering
@@ -8507,14 +8559,14 @@ void renderCastNameText(ubyte* text, short width, short tileID) {
 	textRenderState.pixelsRendered = 0;
 	unknownC1FF99(-1, width, text);
 	for (short i = 0; text[0] != 0; text++, i++) {
-		const(ubyte)* charTile = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (text[0] - ebChar(' ') & 0x7F)];
+		const(ubyte)* charTile = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * (text[0] - ebChar(' ') & 0x7F)];
 		short pixelWidth = fontData[fontConfigTable[0].dataID][text[0] - ebChar(' ') & 0x7F] + characterPadding;
 		while (pixelWidth > 8) {
-			renderText(pixelWidth, fontConfigTable[0].width, charTile);
+			renderText(pixelWidth, fontConfigTable[0].height, charTile);
 			pixelWidth -= 8;
-			charTile += fontConfigTable[0].width;
+			charTile += fontConfigTable[0].height;
 		}
-		renderText(pixelWidth, fontConfigTable[0].width, charTile);
+		renderText(pixelWidth, fontConfigTable[0].height, charTile);
 	}
 	changeVWF2BPPto3Colour(width);
 	short x04 = cast(short)(tileID * 8);

@@ -565,9 +565,9 @@ void printBattlerArticle(short target) {
 	}
 	if (enemyConfigurationTable[enemyID].theFlag != 0) {
 		if (lastPrintedCharacter == ebChar('@')) { //starting a new sentence, capitalize it
-			printWrappableString(thethe[0].length, &thethe[0][0]);
+			printStringAutoNewline(thethe[0].length, &thethe[0][0]);
 		} else {
-			printWrappableString(thethe[1].length, &thethe[1][0]);
+			printStringAutoNewline(thethe[1].length, &thethe[1][0]);
 		}
 	}
 }
@@ -874,11 +874,11 @@ void nullC3EF23(short) {
 
 /// $C3F054
 immutable FontConfig[5] fontConfigTable = [
-	FontConfig(0, 0, 32, 16), //main font
-	FontConfig(1, 1, 32, 16), //mr saturn font
-	FontConfig(2, 2, 16, 16), //battle font
-	FontConfig(3, 3, 8, 8), //tiny font
-	FontConfig(4, 4, 32, 16), //large font
+	Font.main: FontConfig(dataID: 0, graphicsID: 0, bytesPerCharacter: 32, height: 16),
+	Font.mrSaturn: FontConfig(dataID: 1, graphicsID: 1, bytesPerCharacter: 32, height: 16),
+	Font.battle: FontConfig(dataID: 2, graphicsID: 2, bytesPerCharacter: 16, height: 16),
+	Font.tiny: FontConfig(dataID: 3, graphicsID: 3, bytesPerCharacter: 8, height: 8),
+	Font.large: FontConfig(dataID: 4, graphicsID: 4, bytesPerCharacter: 32, height: 16),
 ];
 
 @([ROMSource(0x210C7A, 96), ROMSource(0x201359, 96), ROMSource(0x2118DA, 96), ROMSource(0x211F3A, 96), ROMSource(0x21229A, 96)])
