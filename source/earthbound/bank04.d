@@ -2542,7 +2542,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 		if (blinkingTriangleFlag == 1) {
 			goto SetNewCursorCoordinates;
 		}
-		if (blinkingTriangleFlag == 1) {
+		if (blinkingTriangleFlag == 2) {
 			upperTile = 0x20;
 		}
 	}
