@@ -575,8 +575,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		if (ImGui.TreeNode("Script States")) {
 			foreach (i; 0 .. nextTextStackFrame) {
 				if (ImGui.TreeNode(format!"State %s"(i))) {
-					ImGui.Text(format!"Current CC [%02X]"(displayTextStates[(i + 1) % displayTextStates.length].textptr[0]));
-					InputEditable("Unknown4", displayTextStates[(i + 1) % displayTextStates.length].unknown4);
+					ImGui.Text(format!"Current CC [%02X]"(displayTextStates[(i + 1) % displayTextStates.length].script[0]));
+					InputEditable("Restore window attributes", displayTextStates[(i + 1) % displayTextStates.length].restoreWindowAttributes);
 					if (ImGui.TreeNode("Attribute Backup")) {
 						InputEditable("ID", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.id);
 						InputEditable("Text Coords", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textX, displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textY);
