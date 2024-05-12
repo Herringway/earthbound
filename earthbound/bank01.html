@@ -243,6 +243,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="calculateStatGain" class="public" href="../earthbound/bank01/calculateStatGain.html">calculateStatGain</a><span class="tableEntryAnnotation">(currentLevel, growthRate, currentStat)</span>
+							</code>
+						</td>
+						<td>Calculates stat gain for a player character using its growth rate and current stats
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="cc04" class="public" href="../earthbound/bank01/cc04.html">cc04</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
@@ -1917,7 +1926,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="createNewMenuOptionAtPositionWithUserdataF" class="public" href="../earthbound/bank01/createNewMenuOptionAtPositionWithUserdataF.html">createNewMenuOptionAtPositionWithUserdataF</a><span class="tableEntryAnnotation">(arg1, x, y, label, selectedText)</span>
+								<a id="createNewMenuOptionAtPositionWithUserdataF" class="public" href="../earthbound/bank01/createNewMenuOptionAtPositionWithUserdataF.html">createNewMenuOptionAtPositionWithUserdataF</a><span class="tableEntryAnnotation">(userdata, x, y, label, selectedText)</span>
 							</code>
 						</td>
 						<td>$C10BFE
@@ -2064,7 +2073,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="drawTallTextTile" class="public" href="../earthbound/bank01/drawTallTextTile.html">drawTallTextTile</a><span class="tableEntryAnnotation">(window, tile, attributes)</span>
 							</code>
 						</td>
-						<td>$C10A85
+						<td>Draws a tall text tile into a window at the current cursor position.
 </td>
 					</tr>
 					<tr>
@@ -2232,7 +2241,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="gainEXP" class="public" href="../earthbound/bank01/gainEXP.html">gainEXP</a><span class="tableEntryAnnotation">(character, arg2, exp)</span>
+								<a id="gainEXP" class="public" href="../earthbound/bank01/gainEXP.html">gainEXP</a><span class="tableEntryAnnotation">(character, printMessages, exp)</span>
 							</code>
 						</td>
 						<td>$C1D9E9
@@ -2308,6 +2317,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Get the ID of the first party member capable of using PSI
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getFixedVersionOfItem" class="public" href="../earthbound/bank01/getFixedVersionOfItem.html">getFixedVersionOfItem</a><span class="tableEntryAnnotation">(item)</span>
+							</code>
+						</td>
+						<td>Gets the fixed version of an item, if one exists
 </td>
 					</tr>
 					<tr>
@@ -2475,6 +2493,33 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="handleEquipMenu" class="public" href="../earthbound/bank01/handleEquipMenu.html">handleEquipMenu</a><span class="tableEntryAnnotation">(character)</span>
+							</code>
+						</td>
+						<td>$C1A795
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="handleFileCopyMenu" class="public" href="../earthbound/bank01/handleFileCopyMenu.html">handleFileCopyMenu</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C1F14F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="handleFileDeleteMenu" class="public" href="../earthbound/bank01/handleFileDeleteMenu.html">handleFileDeleteMenu</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C1F2A8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="hideHPPPWindows" class="public" href="../earthbound/bank01/hideHPPPWindows.html">hideHPPPWindows</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2511,6 +2556,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="inputDontCareName" class="public" href="../earthbound/bank01/inputDontCareName.html">inputDontCareName</a><span class="tableEntryAnnotation">(window, namingItem, oldDontCareSelected)</span>
+							</code>
+						</td>
+						<td>$C1E4BE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="itemStoreSelection" class="public" href="../earthbound/bank01/itemStoreSelection.html">itemStoreSelection</a><span class="tableEntryAnnotation">(store)</span>
 							</code>
 						</td>
@@ -2520,7 +2574,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="levelUpChar" class="public" href="../earthbound/bank01/levelUpChar.html">levelUpChar</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="levelUpChar" class="public" href="../earthbound/bank01/levelUpChar.html">levelUpChar</a><span class="tableEntryAnnotation">(character, printMessages)</span>
 							</code>
 						</td>
 						<td>$C1D109
@@ -2583,7 +2637,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="numSelectPrompt" class="public" href="../earthbound/bank01/numSelectPrompt.html">numSelectPrompt</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="numSelectPrompt" class="public" href="../earthbound/bank01/numSelectPrompt.html">numSelectPrompt</a><span class="tableEntryAnnotation">(digits)</span>
 							</code>
 						</td>
 						<td>$C1101C
@@ -2871,7 +2925,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="printNumber" class="public" href="../earthbound/bank01/printNumber.html">printNumber</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="printNumber" class="public" href="../earthbound/bank01/printNumber.html">printNumber</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
 						<td>$C10DF6
@@ -3033,7 +3087,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="resetCharLevelOne" class="public" href="../earthbound/bank01/resetCharLevelOne.html">resetCharLevelOne</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="resetCharLevelOne" class="public" href="../earthbound/bank01/resetCharLevelOne.html">resetCharLevelOne</a><span class="tableEntryAnnotation">(character, level, setEXP)</span>
 							</code>
 						</td>
 						<td>$C1D8D0
@@ -3258,6 +3312,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="splitDecimalByDigits" class="public" href="../earthbound/bank01/splitDecimalByDigits.html">splitDecimalByDigits</a><span class="tableEntryAnnotation">(value)</span>
+							</code>
+						</td>
+						<td>$C10D7C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="swapRaisedHPPPWindowF" class="public" href="../earthbound/bank01/swapRaisedHPPPWindowF.html">swapRaisedHPPPWindowF</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -3375,15 +3438,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC10D7C" class="public" href="../earthbound/bank01/unknownC10D7C.html">unknownC10D7C</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C10D7C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC10F40" class="public" href="../earthbound/bank01/unknownC10F40.html">unknownC10F40</a><span class="tableEntryAnnotation">(window)</span>
 							</code>
 						</td>
@@ -3411,7 +3465,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1244C" class="public" href="../earthbound/bank01/unknownC1244C.html">unknownC1244C</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="unknownC1244C" class="public" href="../earthbound/bank01/unknownC1244C.html">unknownC1244C</a><span class="tableEntryAnnotation">(scripts, mode, cancellable)</span>
 							</code>
 						</td>
 						<td>$C1244C
@@ -3573,15 +3627,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1A795" class="public" href="../earthbound/bank01/unknownC1A795.html">unknownC1A795</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C1A795
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC1AA5D" class="public" href="../earthbound/bank01/unknownC1AA5D.html">unknownC1AA5D</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3591,7 +3636,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1BB06" class="public" href="../earthbound/bank01/unknownC1BB06.html">unknownC1BB06</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC1BB06" class="public" href="../earthbound/bank01/unknownC1BB06.html">unknownC1BB06</a><span class="tableEntryAnnotation">(psi)</span>
 							</code>
 						</td>
 						<td>$C1BB06
@@ -3609,7 +3654,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1C8BC" class="public" href="../earthbound/bank01/unknownC1C8BC.html">unknownC1C8BC</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC1C8BC" class="public" href="../earthbound/bank01/unknownC1C8BC.html">unknownC1C8BC</a><span class="tableEntryAnnotation">(psi)</span>
 							</code>
 						</td>
 						<td>$C1C8BC
@@ -3618,7 +3663,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1CA72" class="public" href="../earthbound/bank01/unknownC1CA72.html">unknownC1CA72</a><span class="tableEntryAnnotation">(arg1, palette)</span>
+								<a id="unknownC1CA72" class="public" href="../earthbound/bank01/unknownC1CA72.html">unknownC1CA72</a><span class="tableEntryAnnotation">(psi, palette)</span>
 							</code>
 						</td>
 						<td>$C1CA72
@@ -3627,25 +3672,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC1D038" class="public" href="../earthbound/bank01/unknownC1D038.html">unknownC1D038</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C1D038 - Get fixed version of an item
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1D08B" class="public" href="../earthbound/bank01/unknownC1D08B.html">unknownC1D08B</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C1D08B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1DCCB" class="public" href="../earthbound/bank01/unknownC1DCCB.html">unknownC1DCCB</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC1DCCB" class="public" href="../earthbound/bank01/unknownC1DCCB.html">unknownC1DCCB</a><span class="tableEntryAnnotation">(level)</span>
 							</code>
 						</td>
 						<td>$C1DCCB
@@ -3667,15 +3694,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C1E48D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1E4BE" class="public" href="../earthbound/bank01/unknownC1E4BE.html">unknownC1E4BE</a><span class="tableEntryAnnotation">(window, namingItem, arg3)</span>
-							</code>
-						</td>
-						<td>$C1E4BE
 </td>
 					</tr>
 					<tr>
@@ -3703,24 +3721,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C1F07E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1F14F" class="public" href="../earthbound/bank01/unknownC1F14F.html">unknownC1F14F</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C1F14F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1F2A8" class="public" href="../earthbound/bank01/unknownC1F2A8.html">unknownC1F2A8</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C1F2A8
 </td>
 					</tr>
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC10D7C</title>
+		<title>Function calculateStatGain</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,22 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC10D7C</h1><p>$C10D7C
+			<h1>Function calculateStatGain</h1><p>Calculates stat gain for a player character using its growth rate and current stats
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC10D7C</span>
+			<span class="typ">short</span> <span class="pln">calculateStatGain</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">uint</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">currentLevel</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">growthRate</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">currentStat</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="currentLevel">currentLevel</td><td> The character's current level, not the new level</td></tr>
+<tr><td id="growthRate">growthRate</td><td> The stat's growth rate, in units of level/10</td></tr>
+<tr><td id="currentStat">currentStat</td><td> The character's current stat value</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Amount to add to stat (may be negative)
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C1D08B
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

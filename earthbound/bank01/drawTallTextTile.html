@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function drawTallTextTile</h1><p>$C10A85
+			<h1>Function drawTallTextTile</h1><p>Draws a tall text tile into a window at the current cursor position.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -167,8 +167,22 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>If tile == TallTextTile.equipped, attributes will be overridden to always use palette 3. This does NOT handle VWF text at all!
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="window">window</td><td> Window ID to draw to</td></tr>
+<tr><td id="tile">tile</td><td> The TallTextTile to draw</td></tr>
+<tr><td id="attributes">attributes</td><td> Attributes to apply to the text (See TileMapFlag for values)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C10A85
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

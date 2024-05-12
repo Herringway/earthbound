@@ -149,7 +149,8 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Struct TextRenderState</h1><p></p>
+			<h1>Struct TextRenderState</h1><p>Rendering state for VWF text.
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
@@ -158,7 +159,10 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
+			<section><p>Used primarily for uploading VWF text tiles to VRAM as they're rendered.
+</p>
+</section>
+
 			<section><h2>Fields</h2>
 				<table>
 					<col class="caption"/>
@@ -167,21 +171,24 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a href="../../earthbound/commondefs/TextRenderState.lowerVRAMPosition.html" class="public"><code>lowerVRAMPosition</code></a>
+							<a href="../../earthbound/commondefs/TextRenderState.lowerTileID.html" class="public"><code>lowerTileID</code></a>
 						</td>
-						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>Tile ID for lower tile
+</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="../../earthbound/commondefs/TextRenderState.pixelsRendered.html" class="public"><code>pixelsRendered</code></a>
 						</td>
-						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>Number of pixels rendered so far
+</td>
 					</tr>
 					<tr>
 						<td>
-							<a href="../../earthbound/commondefs/TextRenderState.upperVRAMPosition.html" class="public"><code>upperVRAMPosition</code></a>
+							<a href="../../earthbound/commondefs/TextRenderState.upperTileID.html" class="public"><code>upperTileID</code></a>
 						</td>
-						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>Tile ID for upper tile
+</td>
 					</tr>
 				</table>
 			</section>
