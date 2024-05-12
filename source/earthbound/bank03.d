@@ -939,7 +939,7 @@ short unknownC3F1EC(short arg1) {
 }
 
 /// $C3F2B1
-immutable ubyte[4] unknownC3F2B1 = [8, 4, 4, 4];
+immutable ubyte[4] statGrowthDifferenceFactor = [8, 4, 4, 4];
 
 /// $C3F2B5
 immutable ushort[8][17] partyCharacterGraphicsTable = [

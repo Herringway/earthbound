@@ -1906,7 +1906,7 @@ void nextVWFTile() {
 	} else {
 		vwfX = cast(ushort)(vwfTile * 8);
 	}
-	textRenderState.upperVRAMPosition = 0;
+	textRenderState.upperTileID = 0;
 	textRenderState.pixelsRendered = vwfX;
 }
 
@@ -1941,7 +1941,7 @@ void alignNumber(short extraSpace) {
  */
 void printOptionStart(MenuOption* menuEntry) {
 	moveCurrentTextCursor(menuEntry.textX, menuEntry.textY);
-	printLetter(TextTile.nonBreakingSpace);
+	printLetter(TallTextTile.nonBreakingSpace);
 	nextVWFTile();
 	if (menuEntry.pixelAlign != 0) {
 		moveCurrentTextCursorOption(menuEntry, menuEntry.textX, menuEntry.textY);
@@ -2028,7 +2028,7 @@ void printLetter(short tile) {
 	ushort* buffer = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[tilemapOffset];
 	freeTileSafe(buffer[0]);
 	freeTileSafe(buffer[windowStats[windowTable[currentFocusWindow]].width]);
-	if (tile == TextTile.nonBreakingSpace) {
+	if (tile == TallTextTile.nonBreakingSpace) {
 		vwfIndentNewLine = 0;
 	}
 	drawTallTextTileFocusedF(tile);
@@ -2046,7 +2046,7 @@ void printLetter(short tile) {
 			playSound = 1;
 		}
 	}
-	if ((playSound != 0) && (instantPrinting == 0) && (tile != TextTile.windowBackground)) {
+	if ((playSound != 0) && (instantPrinting == 0) && (tile != TallTextTile.windowBackground)) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
@@ -2081,7 +2081,7 @@ void prefillKeyboardInput(ubyte* text, short length) {
 		keyboardInputCharacters[endPosition] = text[0];
 		keyboardInputCharacterOffsets[endPosition] = (text[0] - ebChar(' ')) & 0x7F;
 		keyboardInputCharacterWidths[endPosition] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(text[0] - ebChar(' ')) & 0x7F] + characterPadding);
-		unknownC44E61(0, text[0]);
+		unknownC44E61(Font.main, text[0]);
 	}
 	nextKeyboardInputIndex = endPosition;
 	if (endPosition >= length) {
@@ -2089,14 +2089,14 @@ void prefillKeyboardInput(ubyte* text, short length) {
 	}
 	keyboardInputCharacterOffsets[endPosition] = 32;
 	keyboardInputCharacterWidths[endPosition] = 6;
-	unknownC44E61(0, ebChar('@'));
+	unknownC44E61(Font.main, ebChar('@'));
 	keyboardInputCharacters[endPosition++] = 0;
 	if (length < endPosition) {
 		return;
 	}
 	for (short i = cast(short)(length - endPosition); i != 0; i--, endPosition++) {
 		keyboardInputCharacterOffsets[endPosition] = 3;
-		unknownC44E61(0, ebChar('{'));
+		unknownC44E61(Font.main, ebChar('{'));
 		keyboardInputCharacterWidths[endPosition] = 3;
 	}
 }
@@ -2128,12 +2128,12 @@ void emptyKeyboardInput(short length) {
 	const short emptyCharacterOffset = 3;
 	nextKeyboardInputIndex = 0;
 	memset(&keyboardInputCharacters[0], 0, keyboardInputCharacters.length);
-	unknownC44E61(0, ebChar('@'));
+	unknownC44E61(Font.main, ebChar('@'));
 	keyboardInputCharacterOffsets[0] = 32;
 	for (short i = 1; i < length; i++) {
 		keyboardInputCharacterOffsets[i] = cast(ubyte)emptyCharacterOffset;
 		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][emptyCharacterOffset] + characterPadding);
-		unknownC44E61(0, ebChar('{'));
+		unknownC44E61(Font.main, ebChar('{'));
 	}
 }
 
@@ -2165,7 +2165,7 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
-	textRenderState.upperVRAMPosition = 0;
+	textRenderState.upperTileID = 0;
 	textRenderState.pixelsRendered = 0;
 	if (character == -1) { //backspace
 		if (nextKeyboardInputIndex == 0) {
@@ -2224,7 +2224,7 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 			playSound = 1;
 		}
 	}
-	if ((playSound != 0) && (instantPrinting == 0) && (character != TextTile.windowBackground)) {
+	if ((playSound != 0) && (instantPrinting == 0) && (character != TallTextTile.windowBackground)) {
 		playSfx(Sfx.textPrint);
 	}
 	// wait according to player's chosen text speed
@@ -2291,12 +2291,12 @@ void printAutoNewline(DisplayTextState* state, const(ubyte)* currentCompressedTe
 			default: break;
 		}
 		// found a space, end it
-		if (chr == ebChar(' ') || (chr < TextTile.windowBackground)) {
+		if (chr == ebChar(' ') || (chr < TallTextTile.windowBackground)) {
 			break;
 		}
 		// add to letter and pixel counts
 		upcomingWordLength++;
-		nextWordLength += (chr == TextTile.nonBreakingSpace) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding);
+		nextWordLength += (chr == TallTextTile.nonBreakingSpace) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding);
 	}
 	short newLineLength;
 	// does the next word overflow the window? print new line if so
@@ -2545,12 +2545,12 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 		}
 	}
 	// are we at the start of a new line after a space or bullet? (vestigial...? these tiles don't normally get printed in Earthbound, but they do in Mother 2)
-	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == TextTile.windowBackground) || (upperTile == ebChar('@')))) {
+	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == TallTextTile.windowBackground) || (upperTile == ebChar('@')))) {
 		if (blinkingTriangleFlag == 1) {
 			goto SetNewCursorCoordinates;
 		}
 		if (blinkingTriangleFlag == 2) {
-			upperTile = TextTile.windowBackground;
+			upperTile = TallTextTile.windowBackground;
 		}
 	}
 	// now that we're done rendering the tiles and have uploaded them to VRAM, free 'em
@@ -2561,14 +2561,14 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	if (bufferUpper[0] != 0) {
 		freeTileSafe(bufferUpper[0]);
 	}
-	bufferUpper[0] = cast(ushort)(((upperTile == TextTile.equipped) ? (3 << 10) : attributes) | upperTile);
+	bufferUpper[0] = cast(ushort)(((upperTile == TallTextTile.equipped) ? (3 << 10) : attributes) | upperTile);
 
 	// free the lower tile
 	bufferLower = bufferUpper + windowStats[windowTable[currentFocusWindow]].width;
 	if (bufferLower[0] != 0) {
 		freeTileSafe(bufferLower[0]);
 	}
-	bufferLower[0] = cast(ushort)(((lowerTile == TextTile.equipped) ? (3 << 10) : attributes) + lowerTile);
+	bufferLower[0] = cast(ushort)(((lowerTile == TallTextTile.equipped) ? (3 << 10) : attributes) + lowerTile);
 	x++;
 
 	SetNewCursorCoordinates:
@@ -2582,17 +2582,17 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 void uploadTextTileBatch() {
 	short lastRenderedTileIndex = vwfX / 8;
 	short tileIndex = textRenderState.pixelsRendered / 8;
-	short upperVRAMPosition = textRenderState.upperVRAMPosition;
-	if (upperVRAMPosition != 0) {
-		uploadTextTile(tileIndex, upperVRAMPosition, textRenderState.lowerVRAMPosition);
+	short upperTileID = textRenderState.upperTileID;
+	if (upperTileID != 0) {
+		uploadTextTile(tileIndex, upperTileID, textRenderState.lowerTileID);
 	} else {
 		tileIndex--;
 	}
 	while (tileIndex != lastRenderedTileIndex) {
 		short newUpperTile = reserveBG2Tile();
-		textRenderState.upperVRAMPosition = newUpperTile;
+		textRenderState.upperTileID = newUpperTile;
 		short newLowerTile = reserveBG2Tile();
-		textRenderState.lowerVRAMPosition = newLowerTile;
+		textRenderState.lowerTileID = newLowerTile;
 		tileIndex = (tileIndex + 1 == vwfBuffer.length) ? 0 : cast(short)(tileIndex + 1);
 		uploadTextTile(tileIndex, newUpperTile, newLowerTile);
 		finishTextTileRender(newUpperTile, newLowerTile);
@@ -2600,9 +2600,11 @@ void uploadTextTileBatch() {
 	textRenderState.pixelsRendered = vwfX;
 }
 
-/// $C44E44
+/** Resets text rendering state for new sets of tiles
+ * Original_Address: $(DOLLAR)C44E44
+ */
 void resetTextRenderState() {
-	textRenderState.upperVRAMPosition = 0;
+	textRenderState.upperTileID = 0;
 	textRenderState.pixelsRendered = 0;
 }
 
@@ -2614,21 +2616,21 @@ void resetTextRenderState() {
 void freeTileSafe(short tile) {
 	// text tiles -> VRAM tiles
 	// don't free spaces and transparency! ...even though they're locked and wouldn't be freed anyway....
-	if ((tile & 0x3FF) == ((TextTile.windowBackground & 0xF0) * 2) + (TextTile.windowBackground & 0x0F)) {
+	if ((tile & 0x3FF) == VRAMTextTile.windowBackground) {
 		return;
 	}
-	if ((tile & 0x3FF) == ((TextTile.none & 0xF0) * 2) + (TextTile.none & 0x0F)) {
+	if ((tile & 0x3FF) == VRAMTextTile.none) {
 		return;
 	}
 	freeTile(tile);
 }
 
 /// $C44E61
-void unknownC44E61(short arg1, short tile) {
+void unknownC44E61(short font, short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	if ((tile == TextTile.nonBreakingSpace) || (tile == TextTile.equipped) || (tile == TextTile.windowBackground)) {
+	if ((tile == TallTextTile.nonBreakingSpace) || (tile == TallTextTile.equipped) || (tile == TallTextTile.windowBackground)) { // don't use VWF text for these special characters
 		printLetter(tile);
 		nextVWFTile();
 	} else {
@@ -2644,16 +2646,16 @@ void unknownC44E61(short arg1, short tile) {
 			vwfIndentNewLine = 0;
 		}
 		lastPrintedCharacter = cast(ubyte)tile;
-		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].bytesPerCharacter];
-		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + characterPadding;
-		if (x12 > 8) {
-			while (x12 > 8) {
-				renderText(8, fontConfigTable[arg1].height, x14);
-				x12 -= 8;
-				x14 += fontConfigTable[arg1].height;
+		const(ubyte)* charGFX = &fontGraphics[fontConfigTable[font].graphicsID][(tile - ebChar(' ')) * fontConfigTable[font].bytesPerCharacter];
+		short charWidth = fontData[fontConfigTable[font].dataID][tile - ebChar(' ')] + characterPadding;
+		if (charWidth > 8) {
+			while (charWidth > 8) {
+				renderText(8, fontConfigTable[font].height, charGFX);
+				charWidth -= 8;
+				charGFX += fontConfigTable[font].height;
 			}
 		}
-		renderText(x12, fontConfigTable[arg1].height, x14);
+		renderText(charWidth, fontConfigTable[font].height, charGFX);
 		uploadTextTileBatch();
 	}
 }
@@ -2683,7 +2685,7 @@ void printPrice(uint arg1) {
 	short x04 = characterPadding + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
 	for (short i = 0; i < x24; i++) {
-		x12[i] = cast(ubyte)(*x22 + TextTile.num0Fixed * 2);
+		x12[i] = cast(ubyte)(*x22 + TallTextTile.num0Fixed * 2);
 		x22++;
 	}
 	short x18 = cast(short)(x04 + unknownC44FF3(x24, windowStats[windowTable[currentFocusWindow]].font, &x12[0]));
@@ -2692,12 +2694,12 @@ void printPrice(uint arg1) {
 	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - x18), windowStats[windowTable[currentFocusWindow]].textY);
 	printLetterVWFF(ebChar('$'));
 	while (x24 != 0) {
-		printLetterVWFF(*(x20++) + TextTile.num0Fixed * 2);
+		printLetterVWFF(*(x20++) + TallTextTile.num0Fixed * 2);
 		x24--;
 	}
 	forceLeftTextAlignment = 0;
 	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
-	printLetter(TextTile.cents);
+	printLetter(TallTextTile.cents);
 	moveCurrentTextCursor(textXBackup, textYBackup);
 	vwfIndentNewLine = vwfIndentNewLineCopy;
 }
@@ -3058,33 +3060,33 @@ uint getRequiredEXP(short character) {
  */
 immutable ushort[7][7] statusIconsCheckered = [
 	[
-		Status0.unconscious - 1: TextTile.checker,
-		Status0.diamondized - 1: TextTile.diamondizedCheckered,
-		Status0.paralyzed - 1: TextTile.paralyzedCheckered,
-		Status0.nauseous - 1: TextTile.nauseatedCheckered,
-		Status0.poisoned - 1: TextTile.poisonedCheckered,
-		Status0.sunstroke - 1: TextTile.sunstrokeCheckered,
-		Status0.cold - 1: TextTile.coldCheckered
+		Status0.unconscious - 1: TallTextTile.checker,
+		Status0.diamondized - 1: TallTextTile.diamondizedCheckered,
+		Status0.paralyzed - 1: TallTextTile.paralyzedCheckered,
+		Status0.nauseous - 1: TallTextTile.nauseatedCheckered,
+		Status0.poisoned - 1: TallTextTile.poisonedCheckered,
+		Status0.sunstroke - 1: TallTextTile.sunstrokeCheckered,
+		Status0.cold - 1: TallTextTile.coldCheckered
 	], [
-		Status1.mushroomized - 1: TextTile.mushroomizedCheckered,
-		Status1.possessed - 1: TextTile.possessedCheckered,
+		Status1.mushroomized - 1: TallTextTile.mushroomizedCheckered,
+		Status1.possessed - 1: TallTextTile.possessedCheckered,
 	], [
-		Status2.asleep - 1: TextTile.asleepCheckered,
-		Status2.crying - 1: TextTile.cryingCheckered,
-		Status2.immobilized - 1: TextTile.checker,
-		Status2.solidified - 1: TextTile.checker,
-		Status2.unknown - 1: TextTile.checker,
+		Status2.asleep - 1: TallTextTile.asleepCheckered,
+		Status2.crying - 1: TallTextTile.cryingCheckered,
+		Status2.immobilized - 1: TallTextTile.checker,
+		Status2.solidified - 1: TallTextTile.checker,
+		Status2.unknown - 1: TallTextTile.checker,
 	], [
-		Status3.strange - 1: TextTile.strangeCheckered,
+		Status3.strange - 1: TallTextTile.strangeCheckered,
 	], [
-		Status4.cantConcentrate - 1: TextTile.checker,
+		Status4.cantConcentrate - 1: TallTextTile.checker,
 	], [
-		Status5.homesick - 1: TextTile.checker,
+		Status5.homesick - 1: TallTextTile.checker,
 	], [
-		Status6.psiShieldPower - 1: TextTile.checker,
-		Status6.psiShield - 1: TextTile.checker,
-		Status6.shieldPower - 1: TextTile.checker,
-		Status6.shield - 1: TextTile.checker,
+		Status6.psiShieldPower - 1: TallTextTile.checker,
+		Status6.psiShield - 1: TallTextTile.checker,
+		Status6.shieldPower - 1: TallTextTile.checker,
+		Status6.shield - 1: TallTextTile.checker,
 	]
 ];
 /** Tile IDs used for status icons (normal background)
@@ -3092,60 +3094,60 @@ immutable ushort[7][7] statusIconsCheckered = [
  */
 immutable ushort[7][7] statusIcons = [
 	[
-		TextTile.windowBackground,
-		TextTile.diamondized,
-		TextTile.paralyzed,
-		TextTile.nauseated,
-		TextTile.poisoned,
-		TextTile.sunstroke,
-		TextTile.cold
+		TallTextTile.windowBackground,
+		TallTextTile.diamondized,
+		TallTextTile.paralyzed,
+		TallTextTile.nauseated,
+		TallTextTile.poisoned,
+		TallTextTile.sunstroke,
+		TallTextTile.cold
 	], [
-		TextTile.mushroomized,
-		TextTile.possessed,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground
+		TallTextTile.mushroomized,
+		TallTextTile.possessed,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground
 	], [
-		TextTile.sleep,
-		TextTile.crying,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground
+		TallTextTile.sleep,
+		TallTextTile.crying,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground
 	], [
-		TextTile.strange,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground
+		TallTextTile.strange,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground
 	], [
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground
 	], [
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground
 	], [
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
-		TextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
+		TallTextTile.windowBackground,
 	]
 ];
 /** Palette IDs used for the name-highlighting effect in the HP/PP windows, defined per-status
@@ -3184,7 +3186,7 @@ immutable ushort[7][7] statusNamePalettes = [
 ];
 
 immutable ubyte[35] psiInfoInstruction = ebString!35("@Press the -A- Button for PSI info.");
-immutable ubyte[16][9] statusEquipWindowText5 = [
+immutable ubyte[16][7] statusNamesGroup0 = [
 	ebString!16("Unconscious"),
 	ebString!16("Diamondized"),
 	ebString!16("Paralyzed"),
@@ -3192,10 +3194,14 @@ immutable ubyte[16][9] statusEquipWindowText5 = [
 	ebString!16("Poisoned"),
 	ebString!16("Sunstroke"),
 	ebString!16("Sniffling"),
+];
+immutable ubyte[16][2] statusNamesGroup1 = [
 	ebString!16("Mashroomized"),
 	ebString!16("Possessed"),
 ];
-immutable ubyte[16] statusEquipWindowText6 = ebString!16("Homesick");
+immutable ubyte[16][1] statusNamesGroup5 = [
+	ebString!16("Homesick"),
+];
 immutable ubyte[12] statusEquipWindowText7 = ebString!12("Stored Goods");
 immutable ubyte[8] statusEquipWindowText8 = ebString!8("Offense:");
 immutable ubyte[8] statusEquipWindowText9 = ebString!8("Defense:");
@@ -4617,7 +4623,7 @@ void prepareWindowGraphics() {
 		vwfTile = 0;
 		vwfX = 0;
 		memset(&vwfBuffer[0][0], 0xFF, 0x340);
-		textRenderState.upperVRAMPosition = 0;
+		textRenderState.upperTileID = 0;
 		textRenderState.pixelsRendered = 0;
 		ubyte* x0A = &partyCharacters[i].name[0];
 		vwfX = 2;
@@ -5492,7 +5498,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 		bg2Buffer[i * 32 + 1] = 0;
 		bg2Buffer[i * 32 + 2] = 0;
 		for (short j = 3; j < 0x1D; j++) {
-			bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y); // priority bit on
+			bg2Buffer[i * 32 + j] = cast(ushort)(TilemapFlag.priority + y); // priority bit on
 			y++;
 		}
 		bg2Buffer[i * 32 + 29] = 0;
@@ -8590,7 +8596,7 @@ void renderCastNameText(ubyte* text, short width, short tileID) {
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
-	textRenderState.upperVRAMPosition = 0;
+	textRenderState.upperTileID = 0;
 	textRenderState.pixelsRendered = 0;
 	unknownC1FF99(-1, width, text);
 	for (short i = 0; text[0] != 0; text++, i++) {

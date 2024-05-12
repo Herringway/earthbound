@@ -5994,7 +5994,7 @@ enum OverworldSpriteFlags {
 }
 /// Fixed text characters, two tiles high.
 /// Actual tile IDs = ((val & ~0xF) * 2) | (val & 0xF)
-enum TextTile {
+enum TallTextTile {
 	none = 0,
 	checker = 7,
 	hp1 = 8,
@@ -6071,6 +6071,27 @@ enum TextTile {
 	asleepCheckered = 360,
 	cryingCheckered = 361,
 	strangeCheckered = 362,
+}
+///
+enum VRAMTextTile {
+	none = 0,
+	solid1 = 1,
+	solid2 = 2,
+	solid3 = 3,
+	thickWindowCorner = 4,
+	thickWindowHBorder = 5,
+	thickWindowVBorder = 6,
+	hp1Upper = 8,
+	hp2Upper = 9,
+	ppUpper = 10,
+	thinWindowCorner = 16,
+	thinWindowHBorder = 17,
+	thinWindowVBorder = 18,
+	thinWindowCornerNoTransparency = 19,
+	thinWindowPrompt1 = 20,
+	thinWindowPrompt2 = 21,
+	thinWindowVBorderTruncated = 22,
+	windowBackground = 64,
 }
 ///
 enum PSI {
@@ -7383,11 +7404,14 @@ struct YourSanctuaryLocation {
 	short x; ///
 	short y; ///
 }
-///
+/** Rendering state for VWF text.
+ *
+ * Used primarily for uploading VWF text tiles to VRAM as they're rendered.
+ */
 struct TextRenderState {
-	ushort pixelsRendered; ///
-	ushort upperVRAMPosition; ///
-	ushort lowerVRAMPosition; ///
+	ushort pixelsRendered; /// Number of pixels rendered so far
+	ushort upperTileID; /// Tile ID for upper tile
+	ushort lowerTileID; /// Tile ID for lower tile
 }
 ///
 struct BattleSwirlConfig {

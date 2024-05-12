@@ -953,9 +953,9 @@ const(ubyte)* getPartyCharacterName(short arg1) {
 /// $C22351
 short getInventoryCount(short character) {
 	character--;
-	short x0E;
-	for (x0E = 0; (14 > x0E) && (partyCharacters[character].items[x0E] != 0); x0E++) {}
-	return x0E;
+	short count;
+	for (count = 0; (partyCharacters[character].items.length > count) && (partyCharacters[character].items[count] != 0); count++) {}
+	return count;
 }
 
 /// $C2239D
@@ -983,9 +983,9 @@ short unknownC223D9(ubyte* arg1, short arg2) {
 				}
 			}
 			if (arg2 == 0) {
-				return TextTile.windowBackground;
+				return TallTextTile.windowBackground;
 			} else {
-				return TextTile.checker;
+				return TallTextTile.checker;
 			}
 		}
 	}

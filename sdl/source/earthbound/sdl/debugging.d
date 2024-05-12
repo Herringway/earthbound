@@ -623,8 +623,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		}
 		if (ImGui.TreeNode("Renderer State")) {
 			InputEditable("Pixel position", textRenderState.pixelsRendered);
-			InputEditable("VRAM index (Upper half)", textRenderState.upperVRAMPosition);
-			InputEditable("VRAM index (Lower half)", textRenderState.lowerVRAMPosition);
+			InputEditable("VRAM tile (Upper half)", textRenderState.upperTileID);
+			InputEditable("VRAM tile (Lower half)", textRenderState.lowerTileID);
 			ImGui.TreePop();
 		}
 		ImGui.TreePop();
