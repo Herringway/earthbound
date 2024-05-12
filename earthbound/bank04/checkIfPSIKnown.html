@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function checkIfPSIKnown</h1><p>$C45ECE
+			<h1>Function checkIfPSIKnown</h1><p>Determines whether or not a character knows a PSI ability
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,30 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">short</span> <span class="pln">checkIfPSIKnown</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">psi</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> Character to check (0 - 3)</td></tr>
+<tr><td id="psi">psi</td><td> A PSI ID</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>1 if known, 0 otherwise
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C45ECE
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

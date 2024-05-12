@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function cc1314</h1><p>$C10166 - CC [03], [13], [14] common code - halt parsing
+			<h1>Function cc1314</h1><p>Prompt for user input during text scripts
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,30 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">cc1314</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">displayPrompt</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">dontUseSpeedBasedWait</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Will add extra waits for user input if textPromptWaitingForInput is set (through [1F 50], for example)
+ CC [03], [13], [14] common code.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="displayPrompt">displayPrompt</td><td> Set to 1 to display a little blinking triangle in the corner of the window</td></tr>
+<tr><td id="dontUseSpeedBasedWait">dontUseSpeedBasedWait</td><td> If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if blinkingTriangleFlag is non-zero</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C10166
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -360,10 +360,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="cc1314" class="public" href="../earthbound/bank01/cc1314.html">cc1314</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="cc1314" class="public" href="../earthbound/bank01/cc1314.html">cc1314</a><span class="tableEntryAnnotation">(displayPrompt, dontUseSpeedBasedWait)</span>
 							</code>
 						</td>
-						<td>$C10166 - CC [03], [13], [14] common code - halt parsing
+						<td>Prompt for user input during text scripts
 </td>
 					</tr>
 					<tr>
@@ -1809,6 +1809,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="cleanupTextScript" class="public" href="../earthbound/bank01/cleanupTextScript.html">cleanupTextScript</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>Handles cleanup at the end of a text script
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="clearBlinkingPrompt" class="public" href="../earthbound/bank01/clearBlinkingPrompt.html">clearBlinkingPrompt</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2034,10 +2043,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="displayText" class="public" href="../earthbound/bank01/displayText.html">displayText</a><span class="tableEntryAnnotation">(script_ptr)</span>
+								<a id="displayText" class="public" href="../earthbound/bank01/displayText.html">displayText</a><span class="tableEntryAnnotation">(script)</span>
 							</code>
 						</td>
-						<td>$C186B1 - Call a text script (script_ptr)
+						<td>$C186B1 - Call a text script
 </td>
 					</tr>
 					<tr>
@@ -2092,6 +2101,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C107AF - Draws a window
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ebStrcmp" class="public" href="../earthbound/bank01/ebStrcmp.html">ebStrcmp</a><span class="tableEntryAnnotation">(ptr1, ptr2)</span>
+							</code>
+						</td>
+						<td>Similar to strcmp(), but the result is negated
 </td>
 					</tr>
 					<tr>
@@ -2484,6 +2502,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="initializeDisplayTextState" class="public" href="../earthbound/bank01/initializeDisplayTextState.html">initializeDisplayTextState</a><span class="tableEntryAnnotation">(state, script)</span>
+							</code>
+						</td>
+						<td>Initializes a DisplayTextState
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="itemStoreSelection" class="public" href="../earthbound/bank01/itemStoreSelection.html">itemStoreSelection</a><span class="tableEntryAnnotation">(store)</span>
 							</code>
 						</td>
@@ -2709,6 +2736,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="popTextStack" class="public" href="../earthbound/bank01/popTextStack.html">popTextStack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Deallocates a text state from the stack
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="populateCommandMenu" class="public" href="../earthbound/bank01/populateCommandMenu.html">populateCommandMenu</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2911,6 +2947,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Determine whether or not the specified character can use PSI
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="pushPeekTextStack" class="public" href="../earthbound/bank01/pushPeekTextStack.html">pushPeekTextStack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Pushes a new text state onto the stack and returns it
 </td>
 					</tr>
 					<tr>
@@ -3411,33 +3456,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC14012" class="public" href="../earthbound/bank01/unknownC14012.html">unknownC14012</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C14012
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC14049" class="public" href="../earthbound/bank01/unknownC14049.html">unknownC14049</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C14049
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC14070" class="public" href="../earthbound/bank01/unknownC14070.html">unknownC14070</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C14070
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC1621F" class="public" href="../earthbound/bank01/unknownC1621F.html">unknownC1621F</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
@@ -3460,24 +3478,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C17889
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1866D" class="public" href="../earthbound/bank01/unknownC1866D.html">unknownC1866D</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C1866D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC1869D" class="public" href="../earthbound/bank01/unknownC1869D.html">unknownC1869D</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C1869D
 </td>
 					</tr>
 					<tr>

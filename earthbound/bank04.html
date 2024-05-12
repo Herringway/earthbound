@@ -584,10 +584,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="checkIfPSIKnown" class="public" href="../earthbound/bank04/checkIfPSIKnown.html">checkIfPSIKnown</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="checkIfPSIKnown" class="public" href="../earthbound/bank04/checkIfPSIKnown.html">checkIfPSIKnown</a><span class="tableEntryAnnotation">(character, psi)</span>
 							</code>
 						</td>
-						<td>$C45ECE
+						<td>Determines whether or not a character knows a PSI ability
 </td>
 					</tr>
 					<tr>
@@ -1325,7 +1325,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="finishTextTileRender" class="public" href="../earthbound/bank04/finishTextTileRender.html">finishTextTileRender</a><span class="tableEntryAnnotation">(upperTile, lowerTile)</span>
 							</code>
 						</td>
-						<td>$C44C8C
+						<td>Finishes rendering a tile, handling automatic newlines, scrolling and cleaning up.
 </td>
 					</tr>
 					<tr>
@@ -1385,19 +1385,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="freeTile" class="public" href="../earthbound/bank04/freeTile.html">freeTile</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="freeTile" class="public" href="../earthbound/bank04/freeTile.html">freeTile</a><span class="tableEntryAnnotation">(tileID)</span>
 							</code>
 						</td>
-						<td>$C44AF7
+						<td>Frees up a tile allocated in the used BG2 tile bitmap
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="freeTileSafe" class="public" href="../earthbound/bank04/freeTileSafe.html">freeTileSafe</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="freeTileSafe" class="public" href="../earthbound/bank04/freeTileSafe.html">freeTileSafe</a><span class="tableEntryAnnotation">(tile)</span>
 							</code>
 						</td>
-						<td>$C44E4D
+						<td>Frees a tile, avoiding freeing tile 0 (transparency) and tile 64 (window background)
 </td>
 					</tr>
 					<tr>
@@ -1817,10 +1817,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="loadWindowGraphics" class="public" href="../earthbound/bank04/loadWindowGraphics.html">loadWindowGraphics</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="loadWindowGraphics" class="public" href="../earthbound/bank04/loadWindowGraphics.html">loadWindowGraphics</a><span class="tableEntryAnnotation">(what)</span>
 							</code>
 						</td>
-						<td>$C44963
+						<td>Loads text layer graphics
 </td>
 					</tr>
 					<tr>
@@ -2213,6 +2213,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="printAutoNewline" class="public" href="../earthbound/bank04/printAutoNewline.html">printAutoNewline</a><span class="tableEntryAnnotation">(state, currentCompressedText)</span>
+							</code>
+						</td>
+						<td>Looks ahead at text script and handles automatic newlines if the word is too long
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="printCastName" class="public" href="../earthbound/bank04/printCastName.html">printCastName</a><span class="tableEntryAnnotation">(name, x, y)</span>
 							</code>
 						</td>
@@ -2276,10 +2285,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="printWrappableString" class="public" href="../earthbound/bank04/printWrappableString.html">printWrappableString</a><span class="tableEntryAnnotation">(length, text)</span>
+								<a id="printStringAutoNewline" class="public" href="../earthbound/bank04/printStringAutoNewline.html">printStringAutoNewline</a><span class="tableEntryAnnotation">(length, text)</span>
 							</code>
 						</td>
-						<td>$C447FB
+						<td>Prints a string, with automatic newline if the ENTIRE string is wider than the window width - cursor position
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="printWordsAutoNewline" class="public" href="../earthbound/bank04/printWordsAutoNewline.html">printWordsAutoNewline</a><span class="tableEntryAnnotation">(length, text)</span>
+							</code>
+						</td>
+						<td>Prints a string with automatic newlines for every word
 </td>
 					</tr>
 					<tr>
@@ -2465,10 +2483,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="renderText" class="public" href="../earthbound/bank04/renderText.html">renderText</a><span class="tableEntryAnnotation">(width, sizeof_tile, gfx_data)</span>
+								<a id="renderText" class="public" href="../earthbound/bank04/renderText.html">renderText</a><span class="tableEntryAnnotation">(width, fontHeight, fontGraphics)</span>
 							</code>
 						</td>
-						<td>$C44B3A
+						<td>Blits widthx8 pixels of a single 1BPP text character into the 2BPP VWF tile buffer
 </td>
 					</tr>
 					<tr>
@@ -2487,6 +2505,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Reserves space for a BG2 tile
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="resetTextRenderState" class="public" href="../earthbound/bank04/resetTextRenderState.html">resetTextRenderState</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C44E44
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="resetVWFState" class="public" href="../earthbound/bank04/resetVWFState.html">resetVWFState</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Cleans up VWF state?
 </td>
 					</tr>
 					<tr>
@@ -2835,42 +2871,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC445E1" class="public" href="../earthbound/bank04/unknownC445E1.html">unknownC445E1</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C445E1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4487C" class="public" href="../earthbound/bank04/unknownC4487C.html">unknownC4487C</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C4487C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC44DCA" class="public" href="../earthbound/bank04/unknownC44DCA.html">unknownC44DCA</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C44DCA
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC44E44" class="public" href="../earthbound/bank04/unknownC44E44.html">unknownC44E44</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C44E44
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC44E61" class="public" href="../earthbound/bank04/unknownC44E61.html">unknownC44E61</a><span class="tableEntryAnnotation">(arg1, tile)</span>
 							</code>
 						</td>
@@ -2884,15 +2884,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C44FF3
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC45E96" class="public" href="../earthbound/bank04/unknownC45E96.html">unknownC45E96</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C45E96
 </td>
 					</tr>
 					<tr>
@@ -3331,10 +3322,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="uploadTextTile" class="public" href="../earthbound/bank04/uploadTextTile.html">uploadTextTile</a><span class="tableEntryAnnotation">(id, dest1, dest2)</span>
+								<a id="uploadTextTile" class="public" href="../earthbound/bank04/uploadTextTile.html">uploadTextTile</a><span class="tableEntryAnnotation">(id, destUpper, destLower)</span>
 							</code>
 						</td>
 						<td>Uploads a single 8x16 text tile into VRAM
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="uploadTextTileBatch" class="public" href="../earthbound/bank04/uploadTextTileBatch.html">uploadTextTileBatch</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Uploads a prepared batch of text tiles to VRAM
 </td>
 					</tr>
 					<tr>
@@ -4294,7 +4294,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C44AD7
+						<td>Bitmasks used for the used BG2 tile bitmap
 </td>
 					</tr>
 					<tr>

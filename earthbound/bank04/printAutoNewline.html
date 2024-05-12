@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC445E1</title>
+		<title>Function printAutoNewline</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,24 +149,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC445E1</h1><p>$C445E1
+			<h1>Function printAutoNewline</h1><p>Looks ahead at text script and handles automatic newlines if the word is too long
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC445E1</span>
+			<span class="typ">void</span> <span class="pln">printAutoNewline</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<a href="../../earthbound/commondefs/DisplayTextState.html"><span class="typ">DisplayTextState</span></a><span class="pun">*</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<a href="../../earthbound/commondefs/DisplayTextState.html"><span class="typ">DisplayTextState</span></a><span class="pun">*</span> <span class="pln">state</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">currentCompressedText</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="state">state</td><td> The current text state</td></tr>
+<tr><td id="currentCompressedText">currentCompressedText</td><td> Any compressed text currently being printed (must POINT to a null if no text)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C445E1
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

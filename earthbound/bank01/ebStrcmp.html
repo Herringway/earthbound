@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function printWrappableString</title>
+		<title>Function ebStrcmp</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -30,7 +30,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank01.html">bank01</a>
 					</div>
 				</li>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -149,24 +149,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function printWrappableString</h1><p>$C447FB
+			<h1>Function ebStrcmp</h1><p>Similar to strcmp(), but the result is negated
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">printWrappableString</span>
+			<span class="typ">short</span> <span class="pln">ebStrcmp</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">length</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">ptr1</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">text</span>
+			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">ptr2</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="ptr1">ptr1</td><td> First null-terminated string to compare</td></tr>
+<tr><td id="ptr2">ptr2</td><td> Second null-terminated string to compare</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C14070
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

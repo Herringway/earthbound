@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function finishTextTileRender</h1><p>$C44C8C
+			<h1>Function finishTextTileRender</h1><p>Finishes rendering a tile, handling automatic newlines, scrolling and cleaning up.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -165,8 +165,21 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Be aware that the tiles will only exist in VRAM after this function completes.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="upperTile">upperTile</td><td> Tile ID of the upper text tile</td></tr>
+<tr><td id="lowerTile">lowerTile</td><td> Tile ID of the lower text file</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C44C8C
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function uploadTextTile</title>
+		<title>Function printStringAutoNewline</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,19 +149,17 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function uploadTextTile</h1><p>Uploads a single 8x16 text tile into VRAM
+			<h1>Function printStringAutoNewline</h1><p>Prints a string, with automatic newline if the ENTIRE string is wider than the window width - cursor position
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">uploadTextTile</span>
+			<span class="typ">void</span> <span class="pln">printStringAutoNewline</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">id</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">length</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">destUpper</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">destLower</span>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">text</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
@@ -170,13 +168,12 @@ $('#symbolSearchPane').show();</script>
 			
 			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="id">id</td><td> VWF tile index</td></tr>
-<tr><td id="destUpper">destUpper</td><td> Tile offset for the upper half</td></tr>
-<tr><td id="destLower">destLower</td><td> Tile offset for the lower half</td></tr>
+<tr><td id="length">length</td><td> Maximum length (in characters) of the string (-1 to automatically choose length, text MUST be null-terminated)</td></tr>
+<tr><td id="text">text</td><td> The text string to print</td></tr>
 </table>
 </section>
-<section><h2>Original Address</h2>
-<p>C4002F
+<section><h2>Original AddresS</h2>
+<p>C447FB
 </p>
 </section>
 

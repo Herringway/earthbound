@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function renderText</h1><p>$C44B3A
+			<h1>Function renderText</h1><p>Blits widthx8 pixels of a single 1BPP text character into the 2BPP VWF tile buffer
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -159,16 +159,27 @@ $('#symbolSearchPane').show();</script>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">width</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">sizeof_tile</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">fontHeight</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">gfx_data</span>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">fontGraphics</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="width">width</td><td> Pixels to render</td></tr>
+<tr><td id="fontHeight">fontHeight</td><td> Width of each character's tiles, in pixels</td></tr>
+<tr><td id="fontGraphics">fontGraphics</td><td> The character tile data, in column-major order</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C44B3A
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

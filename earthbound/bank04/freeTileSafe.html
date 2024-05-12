@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function freeTileSafe</h1><p>$C44E4D
+			<h1>Function freeTileSafe</h1><p>Frees a tile, avoiding freeing tile 0 (transparency) and tile 64 (window background)
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +157,23 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">void</span> <span class="pln">freeTileSafe</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tile</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="tile">tile</td><td> The tile ID to free up (0 - 1023)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C44E4D
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
