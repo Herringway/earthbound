@@ -49,20 +49,20 @@ void sleepSlotFrames() {
 /** Uploads a single 8x16 text tile into VRAM
  * Params:
  * 	id = VWF tile index
- * 	dest1 = Tile offset for the upper half
- * 	dest2 = Tile offset for the lower half
+ * 	destUpper = Tile offset for the upper half
+ * 	destLower = Tile offset for the lower half
  * Original_Address: $(DOLLAR)C4002F
  */
-void uploadTextTile(short id, ushort dest1, ushort dest2) {
+void uploadTextTile(short id, ushort destUpper, ushort destLower) {
 	dmaCopyRAMSource = &vwfBuffer[id][0];
 	dmaCopyMode = 0;
 	dmaCopySize = 16;
 	//lol segmented addressing
 	//dmaCopyRAMSource = 0x7E
-	dmaCopyVRAMDestination = cast(ushort)((dest1 * 8) + 0x6000);
+	dmaCopyVRAMDestination = cast(ushort)((destUpper * 8) + 0x6000);
 	copyToVRAMCommon();
 	dmaCopyRAMSource += 0x10;
-	dmaCopyVRAMDestination = cast(ushort)((dest2 * 8) + 0x6000);
+	dmaCopyVRAMDestination = cast(ushort)((destLower * 8) + 0x6000);
 	copyToVRAMCommon();
 	dmaTransferFlag = (mirrorINIDISP & 0x80) ^ 0x80;
 }
@@ -1763,9 +1763,9 @@ void printNewLine() {
 			windowTick();
 		}
 	}
-	unknownC45E96();
+	resetVWFState(); // this line was added for the final Earthbound build, but why?
 	if (windowStats[windowTable[currentFocusWindow]].font != 0) {
-		unknownC45E96();
+		resetVWFState();
 	}
 	if (windowStats[windowTable[currentFocusWindow]].textY != (windowStats[windowTable[currentFocusWindow]].height / 2) - 1) {
 		windowStats[windowTable[currentFocusWindow]].textY++;
@@ -2506,7 +2506,9 @@ immutable ushort[16] usedBG2TileMasks = [
 	1<<15,
 ];
 
-/**
+/** Finishes rendering a tile, handling automatic newlines, scrolling and cleaning up.
+ *
+ * Be aware that the tiles will only exist in VRAM after this function completes.
  * Params:
  * 	upperTile = Tile ID of the upper text tile
  * 	lowerTile = Tile ID of the lower text file
@@ -2524,11 +2526,15 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	short attributes = windowStats[windowTable[currentFocusWindow]].tileAttributes;
 	ushort* bufferUpper;
 	ushort* bufferLower;
+	// at the end of the line?
 	if (x == windowStats[windowTable[currentFocusWindow]].width) {
+		// move to the next line, figure out if we need to scroll and/or indent
 		x = 0;
+		// last line in the window?
 		if ((windowStats[windowTable[currentFocusWindow]].height / 2) - 1 != y) {
 			y++;
 		} else {
+			// we're on the last line, so push the existing text upward if overflow disabled
 			if (allowTextOverflow != 0) {
 				goto SetNewCursorCoordinates; // skip scrolling, indentation
 			}
@@ -2538,15 +2544,18 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 			vwfIndentNewLine = 1;
 		}
 	}
-	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == 0x20) || (upperTile == 0x70))) {
+	// are we at the start of a new line after a space or bullet? (vestigial...? these tiles don't normally get printed in Earthbound, but they do in Mother 2)
+	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == TextTile.windowBackground) || (upperTile == ebChar('@')))) {
 		if (blinkingTriangleFlag == 1) {
 			goto SetNewCursorCoordinates;
 		}
 		if (blinkingTriangleFlag == 2) {
-			upperTile = 0x20;
+			upperTile = TextTile.windowBackground;
 		}
 	}
-	// upper half of tile
+	// now that we're done rendering the tiles and have uploaded them to VRAM, free 'em
+
+	// free the upper tile
 	assert(windowStats[windowTable[currentFocusWindow]].tilemapBuffer, "No tilemap buffer for window");
 	bufferUpper = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].width * y * 2 + x];
 	if (bufferUpper[0] != 0) {
@@ -2554,7 +2563,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	}
 	bufferUpper[0] = cast(ushort)(((upperTile == TextTile.equipped) ? (3 << 10) : attributes) | upperTile);
 
-	// lower half of tile
+	// free the lower tile
 	bufferLower = bufferUpper + windowStats[windowTable[currentFocusWindow]].width;
 	if (bufferLower[0] != 0) {
 		freeTileSafe(bufferLower[0]);
@@ -2567,43 +2576,51 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 	windowStats[windowTable[currentFocusWindow]].textY = y;
 }
 
-/// $C44DCA
-void unknownC44DCA() {
+/** Uploads a prepared batch of text tiles to VRAM
+ * Original_Address: $(DOLLAR)C44DCA
+ */
+void uploadTextTileBatch() {
 	short lastRenderedTileIndex = vwfX / 8;
 	short tileIndex = textRenderState.pixelsRendered / 8;
-	short x10 = textRenderState.upperVRAMPosition;
-	if (x10 != 0) {
-		uploadTextTile(tileIndex, x10, textRenderState.lowerVRAMPosition);
+	short upperVRAMPosition = textRenderState.upperVRAMPosition;
+	if (upperVRAMPosition != 0) {
+		uploadTextTile(tileIndex, upperVRAMPosition, textRenderState.lowerVRAMPosition);
 	} else {
 		tileIndex--;
 	}
 	while (tileIndex != lastRenderedTileIndex) {
-		short x0E = reserveBG2Tile();
-		textRenderState.upperVRAMPosition = x0E;
-		short x04 = reserveBG2Tile();
-		textRenderState.lowerVRAMPosition = x04;
+		short newUpperTile = reserveBG2Tile();
+		textRenderState.upperVRAMPosition = newUpperTile;
+		short newLowerTile = reserveBG2Tile();
+		textRenderState.lowerVRAMPosition = newLowerTile;
 		tileIndex = (tileIndex + 1 == vwfBuffer.length) ? 0 : cast(short)(tileIndex + 1);
-		uploadTextTile(tileIndex, x0E, x04);
-		finishTextTileRender(x0E, x04);
+		uploadTextTile(tileIndex, newUpperTile, newLowerTile);
+		finishTextTileRender(newUpperTile, newLowerTile);
 	}
 	textRenderState.pixelsRendered = vwfX;
 }
 
 /// $C44E44
-void unknownC44E44() {
+void resetTextRenderState() {
 	textRenderState.upperVRAMPosition = 0;
 	textRenderState.pixelsRendered = 0;
 }
 
-/// $C44E4D
-void freeTileSafe(short arg1) {
-	if ((arg1 & 0x3FF) == 0x40) {
+/** Frees a tile, avoiding freeing tile 0 (transparency) and tile 64 (window background)
+ * Params:
+ * 	tile = The tile ID to free up (0 - 1023)
+ * Original_Address: $(DOLLAR)C44E4D
+ */
+void freeTileSafe(short tile) {
+	// text tiles -> VRAM tiles
+	// don't free spaces and transparency! ...even though they're locked and wouldn't be freed anyway....
+	if ((tile & 0x3FF) == ((TextTile.windowBackground & 0xF0) * 2) + (TextTile.windowBackground & 0x0F)) {
 		return;
 	}
-	if ((arg1 & 0x3FF) == 0x00) {
+	if ((tile & 0x3FF) == ((TextTile.none & 0xF0) * 2) + (TextTile.none & 0x0F)) {
 		return;
 	}
-	freeTile(arg1);
+	freeTile(tile);
 }
 
 /// $C44E61
@@ -2637,7 +2654,7 @@ void unknownC44E61(short arg1, short tile) {
 			}
 		}
 		renderText(x12, fontConfigTable[arg1].height, x14);
-		unknownC44DCA();
+		uploadTextTileBatch();
 	}
 }
 
@@ -3207,42 +3224,60 @@ immutable ubyte[6] homesicknessProbabilities = [
 	0,
 ];
 
-/// $C45E96
-void unknownC45E96() {
+/** Cleans up VWF state?
+ *
+ * Half of this function is vestigial in Earthbound. Will need to look into Mother 2 to figure out what this is really for.
+ * Original_Address: $(DOLLAR)C45E96
+ */
+void resetVWFState() {
+	// wait for DMA to finish
 	while (dmaTransferFlag != 0) { waitForInterrupt(); }
+
+	// there are a lot of vestigial vars here...
+
 	for (short i = 0; i < 0x20; i++) {
 		unread7E9D23[i][0] = 0xFF;
 	}
+	// reset VWF rendering position
 	vwfTile = 0;
 	vwfX = 0;
+
 	if (++unused7E9E27 >= 0x30) {
 		unused7E9E27 = 0;
 	}
 	unread7E9E29 = 0;
-	unknownC44E44();
+	resetTextRenderState();
 }
 
-/// $C45ECE
-short checkIfPSIKnown(short arg1, short arg2) {
-	ubyte x10;
-	switch (arg1) {
+/** Determines whether or not a character knows a PSI ability
+ * Params:
+ * 	character = Character to check (0 - 3)
+ * 	psi = A PSI ID
+ * Returns: 1 if known, 0 otherwise
+ * Original_Address: $(DOLLAR)C45ECE
+ */
+short checkIfPSIKnown(short character, short psi) {
+	ubyte level;
+	// level for which character?
+	switch (character) {
 		case PartyMember.ness:
-			x10 = psiAbilityTable[arg2].nessLevel;
+			level = psiAbilityTable[psi].nessLevel;
 			break;
 		case PartyMember.paula:
-			x10 = psiAbilityTable[arg2].paulaLevel;
+			level = psiAbilityTable[psi].paulaLevel;
 			break;
 		case PartyMember.poo:
-			x10 = psiAbilityTable[arg2].pooLevel;
+			level = psiAbilityTable[psi].pooLevel;
 			break;
 		default: break;
 	}
-	if (x10 != 0) {
-		short x0E = 0;
-		if (x10 <= partyCharacters[arg1 - 1].level) {
-			x0E = 1;
+	// is character's level high enough?
+	if (level != 0) {
+		short isKnown = 0;
+		if (level <= partyCharacters[character - 1].level) {
+			isKnown = 1;
 		}
-		return x0E;
+		return isKnown;
 	}
 	return 0;
 }

@@ -510,7 +510,7 @@ void closeWindow(short arg1) {
 		}
 		x0E += 32 - windowStats[x10].width - 2;
 	}
-	unknownC45E96();
+	resetVWFState();
 	if (windowStats[x10].titleID != 0) {
 		titledWindows[windowStats[x10].titleID - 1] = -1;
 	}

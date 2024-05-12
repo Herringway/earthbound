@@ -368,7 +368,7 @@ void createWindowN(short id) {
 	}
 	x10.title[0] = 0;
 	x10.titleID = 0;
-	unknownC45E96();
+	resetVWFState();
 	redrawAllWindows = 1;
 	playerIntangibilityFlash();
 }
@@ -678,7 +678,7 @@ void unknownC10F40(short window) {
 		x0E[0] = 0x40;
 		x0E++;
 	}
-	unknownC45E96();
+	resetVWFState();
 	windowStats[windowTable[window]].textY = 0;
 	windowStats[windowTable[window]].textX = 0;
 }
@@ -6072,7 +6072,7 @@ short characterKnowsPSITypes(short character, ushort usability, ushort categorie
 	}
 	short adjustedCharacter = cast(short)(character - 1);
 	// normal learned PSI
-	for (short i = 1; psiAbilityTable[i].name != 0; i++) {
+	for (short i = PSI.rockinAlpha; psiAbilityTable[i].name != 0; i++) {
 		ubyte targetLevel = 0;
 		switch (adjustedCharacter) {
 			case PartyMember.ness - 1:
