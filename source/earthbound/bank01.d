@@ -566,8 +566,8 @@ void printLetterVWFF(short arg1) {
 }
 
 /// $C10C8C
-void printStringF(short arg1, const(ubyte)* arg2) {
-	printString(arg1, arg2);
+void printStringF(short length, const(ubyte)* text) {
+	printString(length, text);
 }
 
 /// $C10CAF
@@ -2054,24 +2054,30 @@ void openMenuButton() {
 			case CommandMenuOption.goods:
 				openHpAndWallet();
 				L2: while (true) {
-					uint x1F;
+					uint character;
+					// if there's only one character, pop up the window immediately. otherwise prompt the player to select a character
 					if (gameState.playerControlledPartyMemberCount == 1) {
+						// character has no items?
 						if (getCharacterItem(gameState.partyMembers[0], 1) == 0) {
+							// go back to main menu
 							continue mainLoop;
 						}
 						addCharacterInventoryToWindow(gameState.partyMembers[0], Window.inventory);
-						x1F = gameState.partyMembers[0];
+						character = gameState.partyMembers[0];
 						swapRaisedHPPPWindow(0);
 					} else {
 						openEquipSelectWindow(0);
-						x1F = charSelectPrompt(0, 1, &unknownC1339E, null);
+						character = charSelectPrompt(0, 1, &unknownC1339E, null);
 					}
-					if (x1F == 0) {
+					// no character chosen, go back to main menu
+					if (character == 0) {
 						closeWindow(Window.inventory);
 						closeEquipSelectWindow();
 						continue mainLoop;
 					}
-					if (getCharacterItem(cast(short)x1F, 1) == 0) {
+					// selected character has no items?
+					if (getCharacterItem(cast(short)character, 1) == 0) {
+						// pick another character
 						continue;
 					}
 					while (true) {
@@ -2092,7 +2098,7 @@ void openMenuButton() {
 							continue mainLoop;
 						}
 						createWindowN(Window.inventoryMenu);
-						short x23 = ((partyCharacters[x1F].afflictions[0] != 0) && (Status0.nauseous > partyCharacters[x1F].afflictions[0])) ? 1 : 0;
+						short x23 = ((partyCharacters[character].afflictions[0] != 0) && (Status0.nauseous > partyCharacters[character].afflictions[0])) ? 1 : 0;
 						moveCurrentTextCursor(0, x23);
 						while (x23 < 4) {
 							short x1B = cast(short)(x23 + 1);
@@ -2100,10 +2106,10 @@ void openMenuButton() {
 							x23 = x1B;
 						}
 						createMenuOptionTable(1, 0, 0);
-						short x02 = 0;
+						short restoreFocusToInventory = 0;
 						short x1A;
 						L4: while (true) {
-							if (x02 != 0) {
+							if (restoreFocusToInventory != 0) {
 								setWindowFocus(Window.inventory);
 								if (cast(ubyte)x1A != 0) {
 									printMenuItems();
@@ -2119,8 +2125,8 @@ void openMenuButton() {
 									setWindowFocus(Window.inventory);
 									break L4;
 								case 1: //use
-									x02 = 1;
-									if (overworldUseItem(cast(short)x1F, x1D, 0) != 0) {
+									restoreFocusToInventory = 1;
+									if (overworldUseItem(cast(short)character, x1D, 0) != 0) {
 										break mainLoop;
 									}
 									x1A = 0;
@@ -2130,19 +2136,19 @@ void openMenuButton() {
 									unknownC10F40(2);
 									restoreMenuBackup = 0xFF;
 									createWindowN(Window.textStandard);
-									displayText(getTextBlock(itemData[getCharacterItem(cast(short)x1F, x1D)].helpText));
+									displayText(getTextBlock(itemData[getCharacterItem(cast(short)character, x1D)].helpText));
 									closeWindow(Window.textStandard);
 									setWindowFocus(0);
 									skipAddingCommandText = 1;
 									populateCommandMenu();
-									addCharacterInventoryToWindow(cast(short)x1F, Window.inventory);
+									addCharacterInventoryToWindow(cast(short)character, Window.inventory);
 									closeWindow(Window.inventoryMenu);
 									setWindowFocus(Window.inventory);
 									break L4;
 								case 2: //give
 									setWindowFocus(Window.inventory);
 									clearFocusWindow();
-									x02 = 1;
+									restoreFocusToInventory = 1;
 									openEquipSelectWindow(3);
 									short x18 = charSelectPrompt(2, 1, &unknownC133A7, null);
 									closeEquipSelectWindow();
@@ -2151,9 +2157,9 @@ void openMenuButton() {
 										x1A = 1;
 										continue;
 									}
-									if ((x1F != x18) && ((itemData[getCharacterItem(cast(short)x1F, x1D)].flags & ItemFlags.cannotGive) != 0)) {
+									if ((character != x18) && ((itemData[getCharacterItem(cast(short)character, x1D)].flags & ItemFlags.cannotGive) != 0)) {
 										createWindowN(Window.textStandard);
-										setMainRegister(WorkingMemory(x1F));
+										setMainRegister(WorkingMemory(character));
 										setSubRegister(x1D);
 										displayText(getTextBlock("MSG_SYS_GOODS_NOCARRY"));
 										closeWindow(Window.textStandard);
@@ -2161,10 +2167,10 @@ void openMenuButton() {
 										continue;
 									}
 									short x16 = 0;
-									if ((partyCharacters[x1F - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[x1F - 1].afflictions[0] == Status0.diamondized)) {
+									if ((partyCharacters[character - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[character - 1].afflictions[0] == Status0.diamondized)) {
 										x16 = 5;
 									}
-									if (x18 != x1F) {
+									if (x18 != character) {
 										x16++;
 										if (findInventorySpace2(x18) != 0) {
 											x16 += 2;
@@ -2174,13 +2180,13 @@ void openMenuButton() {
 										}
 									}
 									createWindowN(Window.textStandard);
-									getActiveWindowAddress().mainRegister.integer = x1F;
+									getActiveWindowAddress().mainRegister.integer = character;
 									getActiveWindowAddress().mainRegisterBackup.integer = x18;
 									getActiveWindowAddress().subRegister = x1D;
 									switch (x16) {
 										case 0: //give to self, alive
 											displayText(getTextBlock("MSG_SYS_CARRY_SELF_ALIVE"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										case 1: //give to other, alive, inventory full
 											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_ALIVE_ALIVE"));
@@ -2190,15 +2196,15 @@ void openMenuButton() {
 											break;
 										case 3: //give to other, alive
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_ALIVE"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										case 4: //give to other, dead
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_DEAD"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										case 5: //give to self, dead
 											displayText(getTextBlock("MSG_SYS_CARRY_SELF_DEAD"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										case 6: //give to other, self dead, other alive, inventory full
 											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_DEAD_ALIVE"));
@@ -2208,11 +2214,11 @@ void openMenuButton() {
 											break;
 										case 8: //give to other, self dead, other alive
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_ALIVE"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										case 9: //give to other, self dead, other dead
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_DEAD"));
-											unknownC22A3A(x18, cast(short)x1F, x1D);
+											unknownC22A3A(x18, cast(short)character, x1D);
 											break;
 										default: //invalid
 											assert(0);
@@ -2223,7 +2229,7 @@ void openMenuButton() {
 									continue mainLoop;
 								case 3: //drop
 									createWindowN(Window.textStandard);
-									setMainRegister(WorkingMemory(x1F));
+									setMainRegister(WorkingMemory(character));
 									setSubRegister(x1D);
 									displayText(getTextBlock("MSG_SYS_GOODS_DROP"));
 									closeWindow(Window.textStandard);
@@ -5649,61 +5655,61 @@ short determineTargetting(short arg1, short arg2) {
 }
 
 /// $C1AF74
-short overworldUseItem(short arg1, short arg2, short) {
-	const(ubyte)* x26 = null;
-	short x24 = 0;
-	ubyte x01 = cast(ubyte)getCharacterItem(arg1, arg2);
-	switch (itemData[x01].type & (ItemType.equippable | ItemType.edible)) {
+short overworldUseItem(short character, short slot, short) {
+	const(ubyte)* textToPrint = null;
+	short itemIsUsable = 0;
+	ubyte item = cast(ubyte)getCharacterItem(character, slot);
+	switch (itemData[item].type & (ItemType.equippable | ItemType.edible)) {
 		case 0:
-			x24 = 1;
-			x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+			itemIsUsable = 1;
+			textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 			break;
 		case ItemType.equippable:
-			x26 = getTextBlock("MSG_SYS_GOODS_EQUIP");
+			textToPrint = getTextBlock("MSG_SYS_GOODS_EQUIP");
 			break;
 		case ItemType.edible:
-			x24 = 1;
-			x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+			itemIsUsable = 1;
+			textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 			break;
 		case ItemType.healingItem:
-			if ((itemData[x01].flags & itemUsableFlags[arg1 - 1]) == 0) {
-				x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_USER");
+			if ((itemData[item].flags & itemUsableFlags[character - 1]) == 0) {
+				textToPrint = getTextBlock("MSG_SYS_GOODS_USE_NG_USER");
 			} else {
-				switch (itemData[x01].type & 0xC) {
+				switch (itemData[item].type & 0xC) {
 					case 0:
-						x24 = 1;
-						x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+						itemIsUsable = 1;
+						textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 						break;
 					case 4:
-						x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
+						textToPrint = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
 						break;
 					case 8:
-						switch(itemData[x01].type & 3) {
+						switch(itemData[item].type & 3) {
 							case 0:
 							case 1:
-								x24 = 1;
-								x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+								itemIsUsable = 1;
+								textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 								break;
 							case 2:
-								if (getSectorUsableItem() == x01) {
-									if ((x01 == ItemID.bicycle) && (checkBicycleCollisionFlags() != 0)) {
-										x26 = getTextBlock("MSG_SYS_BICYCLE_ATARI_HERE");
+								if (getSectorUsableItem() == item) {
+									if ((item == ItemID.bicycle) && (checkBicycleCollisionFlags() != 0)) {
+										textToPrint = getTextBlock("MSG_SYS_BICYCLE_ATARI_HERE");
 									} else {
-										x24 = 1;
-										x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+										itemIsUsable = 1;
+										textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 									}
 								} else {
-									x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
+									textToPrint = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
 								}
 								break;
 							case 3:
-								x24 = 1;
+								itemIsUsable = 1;
 								short tmp = findReceiveItemNPC();
 								if ((tmp == 1) || (tmp == 3)) {
-									x26 = getTextBlock(npcConfig[interactingNPCID].checkText);
+									textToPrint = getTextBlock(npcConfig[interactingNPCID].checkText);
 								}
-								if (x26 == null) {
-									x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
+								if (textToPrint == null) {
+									textToPrint = getTextBlock(battleActionTable[itemData[item].battleAction].text);
 								}
 								break;
 							default: break;
@@ -5715,56 +5721,56 @@ short overworldUseItem(short arg1, short arg2, short) {
 			break;
 		default: break;
 	}
-	ubyte x00 = cast(ubyte)arg1;
-	if (x24 != 0) {
-		x00 = cast(ubyte)determineTargetting(itemData[x01].battleAction, arg1);
-		if (x00 == 0) {
+	ubyte target = cast(ubyte)character;
+	if (itemIsUsable) {
+		target = cast(ubyte)determineTargetting(itemData[item].battleAction, character);
+		if (target == 0) {
 			return 0;
 		}
-		if ((itemData[x01].flags & ItemFlags.consumedOnUse) != 0) {
-			removeItemFromInventory(arg1, arg2);
+		if ((itemData[item].flags & ItemFlags.consumedOnUse) != 0) {
+			removeItemFromInventory(character, slot);
 		}
 	}
 	closeWindow(Window.inventoryMenu);
 	closeWindow(Window.inventory);
-	setBattleAttackerName(&partyCharacters[arg1 - 1].name[0], PartyCharacter.name.sizeof);
-	setCItem(x01);
+	setBattleAttackerName(&partyCharacters[character - 1].name[0], PartyCharacter.name.sizeof);
+	setCItem(item);
 	createWindowN(Window.textStandard);
-	setMainRegister(WorkingMemory(arg1));
-	setSubRegister(arg2);
-	if (x00 != 0xFF) {
-		setBattleTargetName(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
+	setMainRegister(WorkingMemory(character));
+	setSubRegister(slot);
+	if (target != 0xFF) {
+		setBattleTargetName(&partyCharacters[target - 1].name[0], PartyCharacter.name.sizeof);
 	}
-	if (x26 == null) {
-		x26 = getTextBlock("MSG_SYS_GOODS_USE_NG");
+	if (textToPrint == null) {
+		textToPrint = getTextBlock("MSG_SYS_GOODS_USE_NG");
 	}
-	if ((x24 != 0) && (battleActionTable[itemData[x01].battleAction].func != null)) {
+	if (itemIsUsable && (battleActionTable[itemData[item].battleAction].func != null)) {
 		currentAttacker = &battlersTable[0];
-		battleInitPlayerStats(arg1, currentAttacker);
-		currentAttacker.currentActionArgument = x01;
-		currentAttacker.actionItemSlot = cast(ubyte)arg2;
-		displayText(x26);
-		setCItem(x01);
+		battleInitPlayerStats(character, currentAttacker);
+		currentAttacker.currentActionArgument = item;
+		currentAttacker.actionItemSlot = cast(ubyte)slot;
+		displayText(textToPrint);
+		setCItem(item);
 		currentTarget = &battlersTable[1];
-		if (x00 == 0) {
+		if (target == 0) {
 			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 				setBattleTargetName(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.sizeof);
 				battleInitPlayerStats(gameState.partyMembers[i], currentTarget);
-				battleActionTable[itemData[x01].battleAction].func();
+				battleActionTable[itemData[item].battleAction].func();
 				for (short j = 0; 7 > j; j++) {
 					partyCharacters[i].afflictions[j] = currentTarget.afflictions[j];
 				}
 			}
 		} else {
-			battleInitPlayerStats(x00, currentTarget);
-			battleActionTable[itemData[x01].battleAction].func();
+			battleInitPlayerStats(target, currentTarget);
+			battleActionTable[itemData[item].battleAction].func();
 			for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
-				partyCharacters[x00 - 1].afflictions[j] = currentTarget.afflictions[j];
+				partyCharacters[target - 1].afflictions[j] = currentTarget.afflictions[j];
 			}
 		}
 		unknownC3EE4D();
 	} else {
-		displayText(x26);
+		displayText(textToPrint);
 	}
 	closeWindow(Window.textStandard);
 	return 1;
@@ -5992,10 +5998,13 @@ void teleport(short arg1) {
 /// $C1BE4D
 short attemptHomesickness() {
 	if (partyCharacters[0].afflictions[0] != Status0.unconscious) {
-		short x0E = 15;
-		for (short x = 0; 6 > x; x++, x0E += 15) {
-			if (partyCharacters[0].level <= x0E) {
-				if ((homesicknessProbabilities[x] != 0) && (randMod(homesicknessProbabilities[x]) == 0)) {
+		// there are different homesickness probabilities for every 15 levels
+		// at least in theory. in practice, the probabilities are almost all identical due to an oversight
+		// actual probabilities are close to [ 0, 3/256, 2/256, 2/256, 2/256, 0 ]
+		short targetLevel = 15;
+		for (short tier = 0; 6 > tier; tier++, targetLevel += 15) {
+			if (partyCharacters[0].level <= targetLevel) {
+				if ((homesicknessProbabilities[tier] != 0) && (randMod(homesicknessProbabilities[tier]) == 0)) {
 					return inflictStatusNonBattle(1, 5 + 1, Status5.homesick + 1);
 				}
 				return 0;
@@ -6769,7 +6778,7 @@ short findCondiment(short item) {
 /// $C1DBBB
 void showHPAlert(short arg1) {
 	Battler battler;
-	Battler* x02 = currentAttacker;
+	Battler* attackerTemp = currentAttacker;
 	battler.side = BattleSide.friends;
 	battler.id = cast(ubyte)arg1;
 	currentAttacker = &battler;
@@ -6780,7 +6789,7 @@ void showHPAlert(short arg1) {
 	closeFocusWindowN();
 	windowTick();
 	unfreezeEntities();
-	currentAttacker = x02;
+	currentAttacker = attackerTemp;
 }
 
 /// $C1D8D0
@@ -6992,17 +7001,17 @@ void battleActionSwitchWeapons() {
 void battleActionSwitchArmor() {
 	enableBlinkingTriangle(1);
 	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
-		short x16 = cast(short)(currentAttacker.defense - currentAttacker.baseDefense);
+		short defense = cast(short)(currentAttacker.defense - currentAttacker.baseDefense);
 		short speed = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
-		short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
+		short luck = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
 		equipItem(currentAttacker.id, currentAttacker.actionItemSlot);
 		displayText(getTextBlock("MSG_BTL_EQUIP_OK"));
 		currentAttacker.baseDefense = partyCharacters[currentAttacker.id - 1].defense;
-		currentAttacker.defense = cast(short)(currentAttacker.baseDefense + x16);
+		currentAttacker.defense = cast(short)(currentAttacker.baseDefense + defense);
 		currentAttacker.baseSpeed = partyCharacters[currentAttacker.id - 1].speed;
 		currentAttacker.speed = cast(short)(currentAttacker.baseSpeed + speed);
 		currentAttacker.baseLuck = partyCharacters[currentAttacker.id - 1].luck;
-		currentAttacker.luck = cast(short)(currentAttacker.baseLuck + x02);
+		currentAttacker.luck = cast(short)(currentAttacker.baseLuck + luck);
 		currentAttacker.fireResist = calcPSIDamageModifiers(partyCharacters[currentAttacker.id - 1].fireResist);
 		currentAttacker.freezeResist = calcPSIDamageModifiers(partyCharacters[currentAttacker.id - 1].freezeResist);
 		currentAttacker.flashResist = calcPSIResistanceModifiers(partyCharacters[currentAttacker.id - 1].flashResist);
@@ -7023,71 +7032,73 @@ void nullC1E1A2(Battler* arg1) {
 /// $C1E1A5
 short enemySelectMode(short arg1) {
 	short x16;
-	short x24 = arg1;
+	short enemyGroup = arg1;
 	setInstantPrinting();
 	createWindowN(Window.textBattle);
-	short x1C = 1;
-	short x1A = 1;
+	short cursorPosition = 1;
+	short valueAdd = 1;
 	short savedX = windowStats[windowTable[Window.textBattle]].textX;
 	short savedY = windowStats[windowTable[Window.textBattle]].textY;
 	outer: while (true) {
 		setInstantPrinting();
 		moveCurrentTextCursor(savedX, savedY);
-		short x02 = splitDecimalByDigits(x24);
-		ubyte* x18 = &numberTextBuffer[7 - x02];
-			version(bugfix) {
-				alias printLetterFunc = printLetter;
-			} else {
-				alias printLetterFunc = printLetterVWF;
-			}
-		for (short i = 3; i > x02; i--) {
-			printLetterFunc((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
+		short numberOfDigits = splitDecimalByDigits(enemyGroup);
+		ubyte* numberBuffer = &numberTextBuffer[7 - numberOfDigits];
+		version(bugfix) {
+			alias printLetterFunc = printLetter;
+		} else {
+			alias printLetterFunc = printLetterVWF;
 		}
-		for (short i = x02; i != 0; i--) {
-			printLetterFunc(((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2) + (x18++)[0]);
+		// handle leading 0s
+		for (short i = 3; i > numberOfDigits; i--) {
+			printLetterFunc((i == cursorPosition) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
+		}
+		// print actual number
+		for (short i = numberOfDigits; i != 0; i--) {
+			printLetterFunc(((i == cursorPosition) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2) + (numberBuffer++)[0]);
 		}
 		clearInstantPrinting();
 		windowTick();
 		while (true) {
 			windowTick();
-			if (((padPress[0] & Pad.left) != 0) && (x1C < 3)) {
-				x1C++;
-				x1A *= 10;
+			if (((padPress[0] & Pad.left) != 0) && (cursorPosition < 3)) {
+				cursorPosition++;
+				valueAdd *= 10;
 				continue outer;
-			} else if (((padPress[0] & Pad.right) != 0) && (x1C > 1)) {
-				x1C--;
-				x1A /= 10;
+			} else if (((padPress[0] & Pad.right) != 0) && (cursorPosition > 1)) {
+				cursorPosition--;
+				valueAdd /= 10;
 				continue outer;
 			} else if ((padHeld[0] & Pad.up) != 0) {
-				if ((x24 / x1A) % 10 != 9) {
-					x24 += x1A;
+				if ((enemyGroup / valueAdd) % 10 != 9) {
+					enemyGroup += valueAdd;
 				} else {
-					x24 -= x1A * 9;
+					enemyGroup -= valueAdd * 9;
 				}
 				break;
 			} else if ((padHeld[0] & Pad.down) != 0) {
-				if ((x24 / x1A) % 10 != 0) {
-					x24 -= x1A;
+				if ((enemyGroup / valueAdd) % 10 != 0) {
+					enemyGroup -= valueAdd;
 				} else {
-					x24 += x1A * 9;
+					enemyGroup += valueAdd * 9;
 				}
 				break;
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
-				x16 = x24;
+				x16 = enemyGroup;
 				break outer;
 			} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
 				x16 = arg1;
 				break outer;
 			}
 		}
-		if (x24 == 0) {
+		if (enemyGroup == 0) {
 			continue outer;
 		}
-		if (x24 > 482) {
-			x24 = 482;
+		if (enemyGroup > 482) {
+			enemyGroup = 482;
 		}
-		currentBattleGroup = x24;
-		const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[x24].enemies[0];
+		currentBattleGroup = enemyGroup;
+		const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[enemyGroup].enemies[0];
 		enemiesInBattle = 0;
 		while (x06[0].count != 0xFF) {
 			short x14 = x06[0].count;
@@ -7334,20 +7345,20 @@ short enterYourNamePlease(short arg1) {
 }
 
 /// $C1EC04
-short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, short arg5) {
+short nameACharacter(short length, ubyte* destination, short namingItem, const(ubyte)* caption, short captionLength) {
 	createWindowN(Window.fileSelectNamingNameBox);
 	windowTickWithoutInstantPrinting();
-	if (arg2[0] != 0) {
-		prefillKeyboardInput(arg2, arg1);
+	if (destination[0] != 0) {
+		prefillKeyboardInput(destination, length);
 	} else {
-		emptyKeyboardInput(arg1);
+		emptyKeyboardInput(length);
 	}
 	moveCurrentTextCursor(0, 0);
 	createWindowN(Window.fileSelectNamingMessage);
 	windowTickWithoutInstantPrinting();
-	printString(arg5, arg4);
+	printString(captionLength, caption);
 	cc1314(1, 0);
-	short x14 = textInputDialog(Window.fileSelectNamingNameBox, arg1, arg2, 0, arg3);
+	short x14 = textInputDialog(Window.fileSelectNamingNameBox, length, destination, 0, namingItem);
 	closeWindow(Window.fileSelectNamingKeyboard);
 	return x14;
 }
@@ -7857,8 +7868,8 @@ void fileMenuLoop() {
 							changeMusic(Music.namingScreen);
 							nameLoop: while (true) {
 								closeAllWindows();
-								short x20;
-								for (short i = 0; 7 > i; unknownC4D830(i), i += x20) {
+								short progressDirection;
+								for (short i = 0; 7 > i; unknownC4D830(i), i += progressDirection) {
 									if (i == -1) {
 										closeAllWindows();
 										fileSelectMenu(1);
@@ -7870,34 +7881,34 @@ void fileMenuLoop() {
 									displayAnimatedNamingSprite(i);
 									if (i < ThingsToName.dog) {
 										if (nameACharacter(PartyCharacter.name.length, &partyCharacters[i].name[0], i, &fileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-											x20 = -1;
+											progressDirection = -1;
 											continue;
 										}
-										x20 = 1;
+										progressDirection = 1;
 										continue;
 									}
 									if (i == ThingsToName.dog) {
 										if (nameACharacter(gameState.petName.length, &gameState.petName[0], i, &fileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-											x20 = -1;
+											progressDirection = -1;
 											continue;
 										}
-										x20 = 1;
+										progressDirection = 1;
 										continue;
 									}
 									if (i == ThingsToName.favoriteFood) {
 										if (nameACharacter(gameState.favouriteFood.length, &gameState.favouriteFood[0], i, &fileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-											x20 = -1;
+											progressDirection = -1;
 											continue;
 										}
-										x20 = 1;
+										progressDirection = 1;
 										continue;
 									}
 									if (i == ThingsToName.favoriteThing) {
 										if (nameACharacter(gameState.favouriteThing.length, &gameState.favouriteThing[4], i, &fileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-											x20 = -1;
+											progressDirection = -1;
 											continue;
 										}
-										x20 = 1;
+										progressDirection = 1;
 										continue;
 									}
 								}
