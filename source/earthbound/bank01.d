@@ -1390,18 +1390,18 @@ void printTargetName(short row, short target) {
 	if (target != -1) {
 		unknownC23E8A(cast(short)(row * numBattlersInFrontRow + target + 1));
 		printBattlerArticle(0);
-		printString(0xFF, getBattleAttackerName());
+		printString(255, getBattleAttackerName());
 		ubyte* afflictions = (row != Row.front) ? &battlersTable[backRowBattlers[target]].afflictions[0] : &battlersTable[frontRowBattlers[target]].afflictions[0];
-		moveCurrentTextCursor(0x11, 0);
+		moveCurrentTextCursor(17, 0);
 		printLetter(unknownC223D9(afflictions, 0));
 	} else {
-		printString(13, (row != Row.front) ? &battleBackRowText[0] : &battleFrontRowText[0]);
+		printString(battleBackRowText.length, (row != Row.front) ? &battleBackRowText[0] : &battleFrontRowText[0]);
 	}
 	clearInstantPrinting();
 }
 
 /// $C121B8
-short pickTargetSingle(short arg1, short action) {
+short pickTargetSingle(short cancellable, short action) {
 	short result;
 	short dontUpdateTargetName = 0;
 	short targetSelected = 0;
@@ -1449,7 +1449,7 @@ short pickTargetSingle(short arg1, short action) {
 				result = cast(short)(row * numBattlersInFrontRow + targetSelected + 1);
 				playSfx(Sfx.cursor1);
 				break;
-			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg1 == 1)) {
+			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (cancellable == 1)) {
 				singleEnemyFlashingOff();
 				result = 0;
 				playSfx(Sfx.cursor2);
@@ -1482,9 +1482,9 @@ short pickTargetSingle(short arg1, short action) {
 }
 
 /// $C12362
-short pickTargetRow(short arg1) {
+short pickTargetRow(short cancellable) {
 	short row = (numBattlersInFrontRow != 0) ? Row.front : Row.back;
-	short result; // is likely actually two separate variables overlapping
+	short result;
 	short cursorSFX;
 	outer: while (true) {
 		rowEnemyFlashingOn(row);
@@ -1504,7 +1504,7 @@ short pickTargetRow(short arg1) {
 				result = cast(short)(row + 1);
 				playSfx(Sfx.cursor1);
 				break outer;
-			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg1 == 1)) {
+			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (cancellable == 1)) {
 				rowEnemyFlashingOff();
 				result = 0;
 				playSfx(Sfx.cursor2);
@@ -1523,11 +1523,11 @@ short pickTargetRow(short arg1) {
 }
 
 /// $C1242E
-short pickTarget(short arg1, short arg2, short action) {
-	if (arg1 != 0) {
-		return pickTargetRow(arg2);
+short pickTarget(short rowTargetting, short cancellable, short action) {
+	if (rowTargetting != 0) {
+		return pickTargetRow(cancellable);
 	} else {
-		return pickTargetSingle(arg2, action);
+		return pickTargetSingle(cancellable, action);
 	}
 }
 
@@ -5161,52 +5161,52 @@ short getItemType(short arg1) {
 }
 
 /// $C19F29
-void printEquipment(short arg1) {
-	arg1--;
+void printEquipment(short character) {
+	character--;
 	createWindowN(Window.equipMenu);
 	windowTickWithoutInstantPrinting();
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.equipMenu;
 	}
-	setWindowTitle(6, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
+	setWindowTitle(6, PartyCharacter.name.length, &partyCharacters[character].name[0]);
 	for (short i = 0; 4 > i; i++) {
 		forceLeftTextAlignment = 1;
-		short x18;
+		short itemSlot;
 		switch (i) {
 			case 0:
-				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[arg1].equipment[EquipmentSlot.weapon];
+				createNewMenuOptionAtPosition(0, i, &equipmentSlotNamesRightAligned[i][0], null);
+				itemSlot = partyCharacters[character].equipment[EquipmentSlot.weapon];
 				break;
 			case 1:
-				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[arg1].equipment[EquipmentSlot.body];
+				createNewMenuOptionAtPosition(0, i, &equipmentSlotNamesRightAligned[i][0], null);
+				itemSlot = partyCharacters[character].equipment[EquipmentSlot.body];
 				break;
 			case 2:
-				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[arg1].equipment[EquipmentSlot.arms];
+				createNewMenuOptionAtPosition(0, i, &equipmentSlotNamesRightAligned[i][0], null);
+				itemSlot = partyCharacters[character].equipment[EquipmentSlot.arms];
 				break;
 			case 3:
-				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[arg1].equipment[EquipmentSlot.other];
+				createNewMenuOptionAtPosition(0, i, &equipmentSlotNamesRightAligned[i][0], null);
+				itemSlot = partyCharacters[character].equipment[EquipmentSlot.other];
 				break;
 			default: break;
 		}
-		if (x18 != 0) {
-			if (checkItemEquipped(cast(short)(arg1 + 1), x18) != 0) {
+		if (itemSlot != 0) {
+			if (checkItemEquipped(cast(short)(character + 1), itemSlot) != 0) {
 				temporaryTextBuffer[0] = TallTextTile.equipped;
-				memcpy(&temporaryTextBuffer[1], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
+				memcpy(&temporaryTextBuffer[1], &itemData[partyCharacters[character].items[itemSlot - 1]].name[0], Item.name.length);
 			} else {
-				memcpy(&temporaryTextBuffer[0], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
+				memcpy(&temporaryTextBuffer[0], &itemData[partyCharacters[character].items[itemSlot - 1]].name[0], Item.name.length);
 			}
 			temporaryTextBuffer[Item.name.length] = 0;
 		} else {
-			memcpy(&temporaryTextBuffer[0], &statusEquipWindowText12[0], statusEquipWindowText12.length);
-			temporaryTextBuffer[statusEquipWindowText12.length] = 0;
+			memcpy(&temporaryTextBuffer[0], &nothingEquipped[0], nothingEquipped.length);
+			temporaryTextBuffer[nothingEquipped.length] = 0;
 		}
 		moveCurrentTextCursor(6, i);
 		printLetterVWF(ebChar(':'));
 		printLetterVWF(ebChar(' '));
-		printString(49, &temporaryTextBuffer[0]);
+		printString(temporaryTextBuffer.length, &temporaryTextBuffer[0]);
 	}
 	printMenuItems();
 	forceLeftTextAlignment = 0;
@@ -5214,138 +5214,97 @@ void printEquipment(short arg1) {
 }
 
 /// $C1A1D8
-void printEquipmentStats(short arg1) {
-	arg1--;
+void printEquipmentStats(short character) {
+	character--;
 	createWindowN(Window.equipMenuStats);
 	windowTickWithoutInstantPrinting();
 	setCurrentWindowPadding(2);
 	moveCurrentTextCursor(0, 0);
-	printString(statusEquipWindowText8.length, &statusEquipWindowText8[0]);
-	short x16 = partyCharacters[arg1].baseOffense;
-	if (partyCharacters[arg1].equipment[EquipmentSlot.weapon] != 0) {
-		short x14 = 0;
-		if (arg1 == 3) {
-			x14 = 1;
+	printString(offenseEquip.length, &offenseEquip[0]);
+	short offense = partyCharacters[character].baseOffense;
+	if (partyCharacters[character].equipment[EquipmentSlot.weapon] != 0) {
+		short parameter = 0;
+		if (character == PartyMember.poo - 1) {
+			parameter = 1;
 		}
-		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.weapon] - 1]].parameters.raw[x14];
+		offense += itemData[partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.weapon] - 1]].parameters.raw[parameter];
 	}
 	forceLeftTextAlignment = 1;
 	forcePixelAlignment(55, 0);
-	short a;
-	//probably a clamp macro
-	if (0 > x16) {
-		a = 0;
-	} else {
-		if (x16 > 255) {
-			a = 255;
-		} else {
-			a = cast(ubyte)x16;
-		}
-	}
-	printNumber(a);
+	printNumber((0 > offense) ? 0 : ((offense > 255) ? 255 : offense));
 	forceLeftTextAlignment = 0;
 	moveCurrentTextCursor(0, 1);
-	printString(statusEquipWindowText9.length, &statusEquipWindowText9[0]);
-	x16 = partyCharacters[arg1].baseDefense;
-	if (partyCharacters[arg1].equipment[EquipmentSlot.body] != 0) {
-		short x14 = 0;
-		if (arg1 == 3) {
-			x14 = 1;
+	printString(defenseEquip.length, &defenseEquip[0]);
+	short defense = partyCharacters[character].baseDefense;
+	if (partyCharacters[character].equipment[EquipmentSlot.body] != 0) {
+		short parameter = 0;
+		if (character == PartyMember.poo - 1) {
+			parameter = 1;
 		}
-		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.body] - 1]].parameters.raw[x14];
+		defense += itemData[partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.body] - 1]].parameters.raw[parameter];
 	}
-	if (partyCharacters[arg1].equipment[EquipmentSlot.arms] != 0) {
-		short x14 = 0;
-		if (arg1 == 3) {
-			x14 = 1;
+	if (partyCharacters[character].equipment[EquipmentSlot.arms] != 0) {
+		short parameter = 0;
+		if (character == PartyMember.poo - 1) {
+			parameter = 1;
 		}
-		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.arms] - 1]].parameters.raw[x14];
+		defense += itemData[partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.arms] - 1]].parameters.raw[parameter];
 	}
-	if (partyCharacters[arg1].equipment[EquipmentSlot.other] != 0) {
-		short x14 = 0;
-		if (arg1 == 3) {
-			x14 = 1;
+	if (partyCharacters[character].equipment[EquipmentSlot.other] != 0) {
+		short parameter = 0;
+		if (character == PartyMember.poo - 1) {
+			parameter = 1;
 		}
-		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.other] - 1]].parameters.raw[x14];
+		defense += itemData[partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.other] - 1]].parameters.raw[parameter];
 	}
 	forceLeftTextAlignment = 1;
 	forcePixelAlignment(55, 1);
-	//same as above
-	if (0 > x16) {
-		a = 0;
-	} else {
-		if (x16 > 255) {
-			a = 255;
-		} else {
-			a = cast(ubyte)x16;
-		}
-	}
-	printNumber(a);
+	printNumber((0 > defense) ? 0 : ((defense > 255) ? 255 : defense));
 	forceLeftTextAlignment = 0;
 	if (compareEquipmentMode != 0) {
 		forcePixelAlignment(76, 0);
 		windowSetTextColor(TextPalette.miscUIElements);
 		printLetter(TallTextTile.rightArrowSmallWhite);
 		windowSetTextColor(TextPalette.normal);
-		short x14_2 = partyCharacters[arg1].baseOffense;
+		short newOffense = partyCharacters[character].baseOffense;
 		if (temporaryWeapon != 0) {
-			short x16_2 = 0;
-			if (arg1 == 3) {
-				x16_2 = 1;
+			short parameter = 0;
+			if (character == PartyMember.poo - 1) {
+				parameter = 1;
 			}
-			x14_2 += itemData[partyCharacters[arg1].items[temporaryWeapon - 1]].parameters.raw[x16_2];
+			newOffense += itemData[partyCharacters[character].items[temporaryWeapon - 1]].parameters.raw[parameter];
 		}
 		forceLeftTextAlignment = 1;
-		//yes, again
-		if (0 > x14_2) {
-			a = 0;
-		} else {
-			if (x14_2 > 255) {
-				a = 255;
-			} else {
-				a = cast(ubyte)x14_2;
-			}
-		}
-		printNumber(a);
+		printNumber((0 > newOffense) ? 0 : ((newOffense > 255) ? 255 : newOffense));
 		forceLeftTextAlignment = 0;
 		forcePixelAlignment(76, 1);
 		windowSetTextColor(TextPalette.miscUIElements);
 		printLetter(TallTextTile.rightArrowSmallWhite);
 
-		x16 = partyCharacters[arg1].baseDefense;
+		short newDefense = partyCharacters[character].baseDefense;
 		if (temporaryBodyGear != 0) {
-			short x14 = 0;
-			if (arg1 == 3) {
-				x14 = 1;
+			short parameter = 0;
+			if (character == PartyMember.poo - 1) {
+				parameter = 1;
 			}
-			x16 += itemData[partyCharacters[arg1].items[temporaryBodyGear - 1]].parameters.raw[x14];
+			newDefense += itemData[partyCharacters[character].items[temporaryBodyGear - 1]].parameters.raw[parameter];
 		}
 		if (temporaryArmsGear != 0) {
-			short x14 = 0;
-			if (arg1 == 3) {
-				x14 = 1;
+			short parameter = 0;
+			if (character == PartyMember.poo - 1) {
+				parameter = 1;
 			}
-			x16 += itemData[partyCharacters[arg1].items[temporaryArmsGear - 1]].parameters.raw[x14];
+			newDefense += itemData[partyCharacters[character].items[temporaryArmsGear - 1]].parameters.raw[parameter];
 		}
 		if (temporaryOtherGear != 0) {
-			short x14 = 0;
-			if (arg1 == 3) {
-				x14 = 1;
+			short parameter = 0;
+			if (character == PartyMember.poo - 1) {
+				parameter = 1;
 			}
-			x16 += itemData[partyCharacters[arg1].items[temporaryOtherGear - 1]].parameters.raw[x14];
+			newDefense += itemData[partyCharacters[character].items[temporaryOtherGear - 1]].parameters.raw[parameter];
 		}
 		forceLeftTextAlignment = 1;
-		//see the pattern yet?
-		if (0 > x16) {
-			a = 0;
-		} else {
-			if (x16 > 255) {
-				a = 255;
-			} else {
-				a = cast(ubyte)x16;
-			}
-		}
-		printNumber(a);
+		printNumber((0 > newDefense) ? 0 : ((newDefense > 255) ? 255 : newDefense));
 		forceLeftTextAlignment = 0;
 	}
 	clearInstantPrinting();
@@ -5370,7 +5329,7 @@ void handleEquipMenu(short character) {
 			break;
 		}
 		createWindowN(Window.equipMenuItemlist);
-		setWindowTitle(Window.equipMenuItemlist, cast(short)strlen(cast(const(char)*)&statusEquipWindowText11[x1C - 1][0]), &statusEquipWindowText11[x1C - 1][0]);
+		setWindowTitle(Window.equipMenuItemlist, cast(short)strlen(cast(const(char)*)&equipmentSlotNames[x1C - 1][0]), &equipmentSlotNames[x1C - 1][0]);
 		// assume we have nothing equippable or equipped until proven otherwise
 		short menuOptionsCreated = 0;
 		short selectedOption = -1;
@@ -5592,66 +5551,66 @@ short getSectorUsableItem() {
 }
 
 /// $C1ADB4
-short determineTargetting(short arg1, short arg2) {
-	ubyte x16;
-	ubyte x01 = 0xFF;
-	switch (battleActionTable[arg1].direction) {
+short determineTargetting(short action, short user) {
+	ubyte targetFlags;
+	ubyte extraParam = 0xFF;
+	switch (battleActionTable[action].direction) {
 		case ActionDirection.enemy:
-			x16 = Targetted.enemies;
-			switch (battleActionTable[arg1].target) {
+			targetFlags = Targetted.enemies;
+			switch (battleActionTable[action].target) {
 				case ActionTarget.none:
-					x16 = Targetted.enemies | Targetted.single;
-					x01 = cast(ubyte)arg2;
+					targetFlags = Targetted.enemies | Targetted.single;
+					extraParam = cast(ubyte)user;
 					break;
 				case ActionTarget.one:
-					x16 = Targetted.enemies | Targetted.single;
-					x01 = cast(ubyte)pickTarget(0, 1, arg1);
+					targetFlags = Targetted.enemies | Targetted.single;
+					extraParam = cast(ubyte)pickTarget(0, 1, action);
 					break;
 				case ActionTarget.random:
-					x16 = Targetted.enemies | Targetted.single;
-					x01 = cast(ubyte)(randMod(cast(short)(countChars(BattleSide.foes) - 1)) + 1);
+					targetFlags = Targetted.enemies | Targetted.single;
+					extraParam = cast(ubyte)(randMod(cast(short)(countChars(BattleSide.foes) - 1)) + 1);
 					break;
 				case ActionTarget.row:
-					x16 = Targetted.enemies | Targetted.row;
-					x01 = cast(ubyte)pickTarget(1, 1, arg1);
+					targetFlags = Targetted.enemies | Targetted.row;
+					extraParam = cast(ubyte)pickTarget(1, 1, action);
 					break;
 				case ActionTarget.all:
 				default:
-					x16 |= Targetted.all;
+					targetFlags |= Targetted.all;
 					break;
 			}
 			break;
 		case ActionDirection.party:
-			x16 = Targetted.allies;
-			switch (battleActionTable[arg1].target) {
+			targetFlags = Targetted.allies;
+			switch (battleActionTable[action].target) {
 				case ActionTarget.none:
-					x16 = Targetted.allies | Targetted.single;
-					x01 = cast(ubyte)arg2;
+					targetFlags = Targetted.allies | Targetted.single;
+					extraParam = cast(ubyte)user;
 					break;
 				case ActionTarget.one:
-					x16 = Targetted.allies | Targetted.single;
+					targetFlags = Targetted.allies | Targetted.single;
 					if (gameState.playerControlledPartyMemberCount != 1) {
 						openEquipSelectWindow(3);
-						x01 = cast(ubyte)charSelectPrompt(1, 1, null, null);
+						extraParam = cast(ubyte)charSelectPrompt(1, 1, null, null);
 						closeEquipSelectWindow();
 					} else {
-						x01 = cast(ubyte)arg2;
+						extraParam = cast(ubyte)user;
 					}
 					break;
 				case ActionTarget.random:
-					x16 = Targetted.allies | Targetted.single;
-					x01 = cast(ubyte)gameState.partyMemberIndex[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
+					targetFlags = Targetted.allies | Targetted.single;
+					extraParam = cast(ubyte)gameState.partyMemberIndex[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
 					break;
 				case ActionTarget.row:
 				case ActionTarget.all:
 				default:
-					x16 |= Targetted.all;
+					targetFlags |= Targetted.all;
 					break;
 			}
 			break;
 		default: break;
 	}
-	return cast(short)((cast(short)x16 << 8) | x01);
+	return cast(short)((cast(short)targetFlags << 8) | extraParam);
 }
 
 /// $C1AF74
@@ -7433,13 +7392,13 @@ short fileSelectMenu(short arg1) {
 			memcpy(&temporaryTextBuffer[0], &fileSelectTextLevel[0], fileSelectTextLevel.length);
 			temporaryTextBuffer[6] = 0;
 			moveCurrentTextCursor(9, i);
-			printString(0x20, &temporaryTextBuffer[0]);
+			printString(32, &temporaryTextBuffer[0]);
 			const levelCharsPrinted = splitDecimalByDigits(partyCharacters[0].level);
 			temporaryTextBuffer[0] = (levelCharsPrinted == 1) ? ebChar(' ') : (cast(ubyte)(numberTextBuffer[7 - levelCharsPrinted] + ebChar('0')));
 			temporaryTextBuffer[1] = cast(ubyte)(numberTextBuffer[6] + ebChar('0'));
 			temporaryTextBuffer[2] = 0;
 			moveCurrentTextCursor(13, i);
-			printString(0x20, &temporaryTextBuffer[0]);
+			printString(32, &temporaryTextBuffer[0]);
 			memcpy(&temporaryTextBuffer[0], &fileSelectTextTextSpeed[0], fileSelectTextTextSpeed.length);
 			temporaryTextBuffer[11] = ebChar(' ');
 			version(configurable) {
@@ -7449,7 +7408,7 @@ short fileSelectMenu(short arg1) {
 			}
 			memcpy(&temporaryTextBuffer[12], &fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1][0], fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1].length);
 			moveCurrentTextCursor(16, i);
-			printString(0x20, &temporaryTextBuffer[0]);
+			printString(32, &temporaryTextBuffer[0]);
 		}
 	}
 	if (arg1 != 0) {

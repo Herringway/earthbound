@@ -3203,21 +3203,21 @@ immutable ubyte[16][1] statusNamesGroup5 = [
 	ebString!16("Homesick"),
 ];
 immutable ubyte[12] statusEquipWindowText7 = ebString!12("Stored Goods");
-immutable ubyte[8] statusEquipWindowText8 = ebString!8("Offense:");
-immutable ubyte[8] statusEquipWindowText9 = ebString!8("Defense:");
-immutable ubyte[11][4] statusEquipWindowText10 = [
+immutable ubyte[8] offenseEquip = ebString!8("Offense:");
+immutable ubyte[8] defenseEquip = ebString!8("Defense:");
+immutable ubyte[11][4] equipmentSlotNamesRightAligned = [
 	ebString!11("  Weapon"),
 	ebString!11("      Body"),
 	ebString!11("     Arms"),
 	ebString!11("     Other"),
 ];
-immutable ubyte[8][4] statusEquipWindowText11 = [
+immutable ubyte[8][4] equipmentSlotNames = [
 	ebString!8("Weapons"),
 	ebString!8("Body"),
 	ebString!8("Arms"),
 	ebString!8("Others"),
 ];
-immutable ubyte[10] statusEquipWindowText12 = ebString!10("(Nothing) ");
+immutable ubyte[10] nothingEquipped = ebString!10("(Nothing) ");
 immutable ubyte[5] statusEquipWindowText13 = ebString!5("None");
 immutable ubyte[3] statusEquipWindowText14 = ebString!3("To:");
 
