@@ -2101,21 +2101,23 @@ void prefillKeyboardInput(ubyte* text, short length) {
 	}
 }
 unittest {
-	initializeTextSystem();
-	createWindow(Window.fileSelectNamingNameBox);
-	prefillKeyboardInput(ebStringz("Hi").ptr, 5);
-	assert(keyboardInputCharacterOffsets == [40, 73, 32, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacterWidths == [6, 2, 6, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacters == [120, 153, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	prefillKeyboardInput(ebStringz("Hello").ptr, 5);
-	assert(keyboardInputCharacterOffsets == [40, 69, 76, 76, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacterWidths == [6, 5, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacters == [120, 149, 156, 156, 159, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	prefillKeyboardInput(ebStringz("").ptr, 5); // not normally possible, but here for completeness
-	keyboardInputCharacters[] = 0; // buffer doesn't get cleared automatically
-	assert(keyboardInputCharacterOffsets == [32, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacterWidths == [6, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	assert(keyboardInputCharacters == [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+	if (romDataLoaded) {
+		initializeTextSystem();
+		createWindow(Window.fileSelectNamingNameBox);
+		prefillKeyboardInput(ebStringz("Hi").ptr, 5);
+		assert(keyboardInputCharacterOffsets == [40, 73, 32, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacterWidths == [6, 2, 6, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacters == [120, 153, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		prefillKeyboardInput(ebStringz("Hello").ptr, 5);
+		assert(keyboardInputCharacterOffsets == [40, 69, 76, 76, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacterWidths == [6, 5, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacters == [120, 149, 156, 156, 159, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		prefillKeyboardInput(ebStringz("").ptr, 5); // not normally possible, but here for completeness
+		keyboardInputCharacters[] = 0; // buffer doesn't get cleared automatically
+		assert(keyboardInputCharacterOffsets == [32, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacterWidths == [6, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		assert(keyboardInputCharacters == [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+	}
 }
 
 /** Clears the input field for text entry screens
