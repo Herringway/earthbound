@@ -3455,7 +3455,7 @@ short unknownC4621C(short arg1, short arg2) {
 short unknownC46257(short arg1, short arg2, short arg3, short arg4) {
 	short source = unknownC4621C(arg1, arg2);
 	short dest = unknownC4621C(arg3, arg4);
-	return (getScreenAngle(entityAbsYTable[source], entityAbsXTable[source], entityAbsYTable[dest], entityAbsXTable[dest]) + 0x1000) / 0x2000;
+	return (getScreenAngle(entityAbsXTable[source], entityAbsYTable[source], entityAbsXTable[dest], entityAbsYTable[dest]) + 0x1000) / 0x2000;
 }
 
 /// $C462AE
@@ -3471,6 +3471,16 @@ short unknownC462C9(short arg1, short arg2, short arg3) {
 /// $C462E4
 short unknownC462E4(short arg1, short arg2, short arg3) {
 	return unknownC46257(0, arg1, arg2, arg3);
+}
+
+unittest {
+	clearSpriteTable();
+	initializeEntitySubsystem();
+	gameState.partyMemberIndex[0] = 1;
+	gameState.partyMemberIndex[1] = 5;
+	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600);
+	gameState.partyEntities[1] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
+	assert(unknownC462E4(1, 0, 5) == 0);
 }
 
 /// $C462FF
