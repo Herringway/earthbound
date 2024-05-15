@@ -2102,7 +2102,7 @@ void prefillKeyboardInput(ubyte* text, short length) {
 }
 unittest {
 	if (romDataLoaded) {
-		initializeTextSystem();
+		initializeForTesting();
 		createWindow(Window.fileSelectNamingNameBox);
 		prefillKeyboardInput(ebStringz("Hi").ptr, 5);
 		assert(keyboardInputCharacterOffsets == [40, 73, 32, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -3487,8 +3487,7 @@ short getDirectionFromNPCTo(short npc, short targetType, short target) {
 }
 
 unittest {
-	clearSpriteTable();
-	initializeEntitySubsystem();
+	initializeForTesting();
 	gameState.partyMemberIndex[0] = PartyMember.pokey;
 	entityNPCIDs[cast(ubyte)createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600)] = 42;
 	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
@@ -3508,8 +3507,7 @@ short getDirectionFromSpriteTo(short sprite, short targetType, short target) {
 }
 
 unittest {
-	clearSpriteTable();
-	initializeEntitySubsystem();
+	initializeForTesting();
 	gameState.partyMemberIndex[0] = PartyMember.pokey;
 	createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600);
 	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
@@ -3529,8 +3527,7 @@ short getDirectionFromPartyMemberTo(short partyMember, short targetType, short t
 }
 
 unittest {
-	clearSpriteTable();
-	initializeEntitySubsystem();
+	initializeForTesting();
 	gameState.partyMemberIndex[0] = PartyMember.ness;
 	gameState.partyMemberIndex[1] = PartyMember.pokey;
 	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600);
@@ -4327,6 +4324,7 @@ void entitySpiralMovement(short flip) {
 	}
 }
 unittest {
+	initializeForTesting();
 	enum testData = [
 		[0x0000, Direction.right, Direction.right],
 		[0x1000, Direction.right, Direction.downRight],
@@ -7712,8 +7710,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 
 unittest {
 	if (romDataLoaded) {
-		clearSpriteTable();
-		initializeEntitySubsystem();
+		initializeForTesting();
 		entityFadeEntity = -1;
 		createOverworldEntity(OverworldSprite.pencilStatue, ActionScript.animMapObjStill, 4, 0, 0);
 		initializeEntityFade(4, ObjFX.hideDots);
@@ -7804,8 +7801,7 @@ short actionScriptHStripe() {
 }
 unittest {
 	if (romDataLoaded) {
-		clearSpriteTable();
-		initializeEntitySubsystem();
+		initializeForTesting();
 		entityFadeEntity = -1;
 		foreach (npc; [NPCID.unknown1107, NPCID.unknown1108, NPCID.unknown1109]) {
 			entityDirections[createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, 0, 0)] = npcConfig[npc].direction;
@@ -7860,8 +7856,7 @@ short actionScriptVStripe() {
 }
 unittest {
 	if (romDataLoaded) {
-		clearSpriteTable();
-		initializeEntitySubsystem();
+		initializeForTesting();
 		entityFadeEntity = -1;
 		foreach (npc; [NPCID.unknown0531, NPCID.unknown0532, NPCID.unknown0533]) {
 			entityDirections[createOverworldEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, 0, 0)] = npcConfig[npc].direction;

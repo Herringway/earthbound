@@ -1,6 +1,7 @@
 module earthbound.testing;
 
 import earthbound.bank00;
+import earthbound.bank02;
 import earthbound.commondefs;
 import earthbound.globals;
 import earthbound.hardware;
@@ -30,6 +31,9 @@ void initializeForTesting() {
 	nextFrameBufferID = 1;
 	irqCallback = &defaultIRQCallback;
 	renderFirstFrame();
+	clearSpriteTable();
+	initializeEntitySubsystem();
+	initializeTextSystem();
 }
 void runGameTest(alias fun)(FrameTestFunction perFrameTests, string demo) {
 	runGameTest!fun(perFrameTests, generateDemoFromString(demo));
