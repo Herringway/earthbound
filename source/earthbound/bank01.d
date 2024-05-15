@@ -3510,7 +3510,7 @@ void* cc1F1F(DisplayTextState* arg1, ubyte arg2) {
 void* cc1922(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1922Arguments);
 	setSubRegister(
-		unknownC462E4(
+		getDirectionFromPartyMemberTo(
 			getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 			getCCParameters!ArgType(arg2).type - 1,
 			getCCParameters!ArgType(arg2).target.useVariableIfZero(getSubRegister())
@@ -3523,7 +3523,7 @@ void* cc1922(DisplayTextState* arg1, ubyte arg2) {
 void* cc1923(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1923Arguments);
 	setSubRegister(
-		unknownC462AE(
+		getDirectionFromNPCTo(
 			getCCParameters!ArgType(arg2).npc.useVariableIfZero(getMainRegister().integer),
 			getCCParameters!ArgType(arg2).type - 1,
 			getCCParameters!ArgType(arg2).target.useVariableIfZero(getSubRegister())
@@ -3553,7 +3553,7 @@ void* cc1E08(DisplayTextState* arg1, ubyte arg2) {
 void* cc1924(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1924Arguments);
 	setSubRegister(
-		unknownC462C9(
+		getDirectionFromSpriteTo(
 			getCCParameters!ArgType(arg2).entity.useVariableIfZero(getMainRegister().integer),
 			getCCParameters!ArgType(arg2).type - 1,
 			getCCParameters!ArgType(arg2).target.useVariableIfZero(getSubRegister())

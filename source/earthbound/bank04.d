@@ -3435,54 +3435,107 @@ void changeScriptForEntityBySprite(short arg1, short arg2) {
 	setEntityActionScript(&actionScriptScriptPointers[arg2][0], x);
 }
 
-/// $C4621C
-short unknownC4621C(short arg1, short arg2) {
-	short x0E;
-	switch (arg1) {
+/** Finds an active entity matching a specific ID type
+ * Params:
+ * 	type = 0 for party member ID, 1 for NPC ID, 2 for sprite ID
+ * 	id = The party member/NPC/sprite ID to search for
+ * Returns: An active entity index
+ * Original_Address: $(DOLLAR)C4621C
+ */
+short findEntity(short type, short id) {
+	short entity;
+	switch (type) {
 		case 0:
-			x0E = findEntityByPartyMemberID(arg2);
+			entity = findEntityByPartyMemberID(id);
 			break;
 		case 1:
-			x0E = findEntityByNPCID(arg2);
+			entity = findEntityByNPCID(id);
 			break;
 		case 2:
-			x0E = findEntityBySprite(arg2);
+			entity = findEntityBySprite(id);
 			break;
 		default: break;
 	}
-	return x0E;
+	return entity;
 }
 
-/// $C46257
-short unknownC46257(short arg1, short arg2, short arg3, short arg4) {
-	short source = unknownC4621C(arg1, arg2);
-	short dest = unknownC4621C(arg3, arg4);
-	return (getScreenAngle(entityAbsXTable[source], entityAbsYTable[source], entityAbsXTable[dest], entityAbsYTable[dest]) + 0x1000) / 0x2000;
+/** Gets direction from some source entity to some target entity
+ * Params:
+ * 	sourceType = Type of source entity ID (0 for party members, 1 for NPCs, 2 for sprites)
+ * 	source = The source entity ID matching sourceType
+ * 	targetType = Type of target entity ID (0 for party members, 1 for NPCs, 2 for sprites)
+ * 	target = The target entity ID matching targetType
+ * Returns: The 8-way direction from source to target
+ * Original_Address: $(DOLLAR)C46257
+ */
+short getDirectionFromEntityToEntity(short sourceType, short source, short targetType, short target) {
+	short sourceEntity = findEntity(sourceType, source);
+	short targetEntity = findEntity(targetType, target);
+	return (getScreenAngle(entityAbsXTable[sourceEntity], entityAbsYTable[sourceEntity], entityAbsXTable[targetEntity], entityAbsYTable[targetEntity]) + 0x1000) / 0x2000;
 }
 
-/// $C462AE
-short unknownC462AE(short arg1, short arg2, short arg3) {
-	return unknownC46257(1, arg1, arg2, arg3);
-}
-
-/// $C462C9
-short unknownC462C9(short arg1, short arg2, short arg3) {
-	return unknownC46257(2, arg1, arg2, arg3);
-}
-
-/// $C462E4
-short unknownC462E4(short arg1, short arg2, short arg3) {
-	return unknownC46257(0, arg1, arg2, arg3);
+/** Gets direction from an NPC to some target entity
+ * Params:
+ * 	npc = NPC ID for the source entity
+ * 	targetType = Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)
+ * 	target = The target entity ID matching targetType
+ * Returns: The 8-way direction from source to target
+ * Original_Address: $(DOLLAR)C462AE
+ */
+short getDirectionFromNPCTo(short npc, short targetType, short target) {
+	return getDirectionFromEntityToEntity(1, npc, targetType, target);
 }
 
 unittest {
 	clearSpriteTable();
 	initializeEntitySubsystem();
-	gameState.partyMemberIndex[0] = 1;
-	gameState.partyMemberIndex[1] = 5;
+	gameState.partyMemberIndex[0] = PartyMember.pokey;
+	entityNPCIDs[cast(ubyte)createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600)] = 42;
+	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
+	assert(getDirectionFromNPCTo(42, 0, PartyMember.pokey) == 0);
+}
+
+/** Gets direction from a sprite to some target entity
+ * Params:
+ * 	sprite = Sprite ID for the source entity
+ * 	targetType = Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)
+ * 	target = The target entity ID matching targetType
+ * Returns: The 8-way direction from source to target
+ * Original_Address: $(DOLLAR)C462C9
+ */
+short getDirectionFromSpriteTo(short sprite, short targetType, short target) {
+	return getDirectionFromEntityToEntity(2, sprite, targetType, target);
+}
+
+unittest {
+	clearSpriteTable();
+	initializeEntitySubsystem();
+	gameState.partyMemberIndex[0] = PartyMember.pokey;
+	createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600);
+	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
+	assert(getDirectionFromSpriteTo(OverworldSprite.ness, 0, PartyMember.pokey) == 0);
+}
+
+/** Gets direction from a party member to some target entity
+ * Params:
+ * 	partyMember = Party member ID for the source entity
+ * 	targetType = Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)
+ * 	target = The target entity ID matching targetType
+ * Returns: The 8-way direction from source to target
+ * Original_Address: $(DOLLAR)C462E4
+ */
+short getDirectionFromPartyMemberTo(short partyMember, short targetType, short target) {
+	return getDirectionFromEntityToEntity(0, partyMember, targetType, target);
+}
+
+unittest {
+	clearSpriteTable();
+	initializeEntitySubsystem();
+	gameState.partyMemberIndex[0] = PartyMember.ness;
+	gameState.partyMemberIndex[1] = PartyMember.pokey;
 	gameState.partyEntities[0] = cast(ubyte)createOverworldEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, -1, 2792, 600);
 	gameState.partyEntities[1] = cast(ubyte)createOverworldEntity(OverworldSprite.pokey, ActionScript.partyMemberFollowing, -1, 2792, 585);
-	assert(unknownC462E4(1, 0, 5) == 0);
+	assert(getDirectionFromPartyMemberTo(PartyMember.ness, 0, PartyMember.pokey) == 0);
 }
 
 /// $C462FF
