@@ -21,25 +21,33 @@ import earthbound.globals;
 import core.stdc.string;
 import std.logger;
 
-/// $C20000
+/** Attempt to inflict sunstroke on all relevant party members
+ * Original_Address: $(DOLLAR)C20000
+ */
 void inflictSunstrokeCheck() {
+	// status suppression flag disables this entirely
 	if (overworldStatusSuppression) {
 		return;
 	}
-	if ((gameState.troddenTileType & 0xC) != 4) {
+	// make sure we're on sunstroke-y tiles, not deep water
+	if ((gameState.troddenTileType & SurfaceFlags.deepWater) != SurfaceFlags.causesSunstroke) {
 		return;
 	}
 	for (short i = 0 ; i < 6; i++) {
+		// skip absent party members
 		if (gameState.partyMemberIndex[i] == 0) {
 			return;
 		}
+		// skip NPCs
 		if (gameState.partyMemberIndex[i] > 4) {
 			return;
 		}
 		currentPartyMemberTick = chosenFourPtrs[gameState.playerControlledPartyMembers[i]];
-		if (currentPartyMemberTick.afflictions[0] != 0 && currentPartyMemberTick.afflictions[0] == Status0.cold) {
+		// skip party members with colds
+		if ((currentPartyMemberTick.afflictions[0] != 0) && (currentPartyMemberTick.afflictions[0] == Status0.cold)) {
 			continue;
 		}
+		// chance of sunstroke: 1/256 to 19/64, depending on guts
 		if (((30 - currentPartyMemberTick.guts > 0) ? (30 - currentPartyMemberTick.guts) : 1) * 256 / 100 < rand()) {
 			currentPartyMemberTick.afflictions[0] = Status0.sunstroke;
 		}
@@ -1423,7 +1431,7 @@ immutable ConsolationPrize[2] consolationItemTable = [
 short battleSelectionMenu(short partyMemberID, short partyMemberOrder) {
 	short x24 = 0;
 	short x20;
-	unknownC2FEF9(0);
+	setEnemyPaletteFlash(0);
 	PartyCharacter* character = &partyCharacters[partyMemberID - 1];
 	if ((character.afflictions[0] == Status0.paralyzed) || (character.afflictions[2] == Status2.immobilized)) {
 		x20 = 2;
@@ -2003,7 +2011,7 @@ void feelingStrangeRetargetting() {
 
 /// $C240A4
 void unknownC240A4(void function() action) {
-	while (unknownC2EACF() != 0) {
+	while (isBattleAnimationPlaying()) {
 		windowTick();
 	}
 	for (short i = 8; i < battlersTable.length; i++) {
@@ -2349,7 +2357,7 @@ short battleRoutine() {
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
 		loadBattleBG(layer1, layer2, letterboxStyle);
-		unknownC2EEE7();
+		uploadBattleSprites();
 		for (short i = 0; i < battlersTable.length; i++) {
 			memset(&battlersTable[i], 0, Battler.sizeof);
 		}
@@ -2370,11 +2378,11 @@ short battleRoutine() {
 				row++;
 			}
 		}
-		unknownC2F0D1();
+		capEnemiesByWidth();
 		for (short i = 0; i < enemiesInBattle; i++) {
 			battleInitEnemyStats(enemiesInBattleIDs[i], &battlersTable[i + 8]);
 		}
-		unknownC2F121();
+		setInitialBattleSpritePositioning();
 		drawBattleSprites();
 		loadTextPalette();
 		preparePaletteUpload(PaletteUpload.full);
@@ -2965,17 +2973,17 @@ short battleRoutine() {
 						switch (battleActionTable[currentAttacker.currentAction].type) {
 							case ActionType.physical:
 							case ActionType.piercingPhysical:
-								unknownC2FEF9(1);
+								setEnemyPaletteFlash(1);
 								break;
 							case ActionType.psi:
-								unknownC2FEF9(2);
+								setEnemyPaletteFlash(2);
 								break;
 							case ActionType.other:
-								unknownC2FEF9(3);
+								setEnemyPaletteFlash(3);
 								break;
 							default: break;
 						}
-						currentAttacker.unknown73 = 12;
+						currentAttacker.enemyAttackFlashFrames = 12;
 						for (short i = 0; i < 12; i++) {
 							windowTick();
 						}
@@ -2990,7 +2998,7 @@ short battleRoutine() {
 					}
 					unknownC1DD9F(getTextBlock(battleActionTable[currentAttacker.currentAction].text));
 					if (currentAttacker.currentAction != 0) {
-						while (unknownC2EACF() != 0) {
+						while (isBattleAnimationPlaying()) {
 							windowTick();
 						}
 						for (short i = 0; i < battlersTable.length; i++) {
@@ -5132,7 +5140,7 @@ void psiThunderCommon(short baseDamage, short strikes) {
 			} else {
 				displayInBattleText(getTextBlock("MSG_BTL_THUNDER_LARGE"));
 			}
-			while (unknownC2EACF() != 0) {
+			while (isBattleAnimationPlaying()) {
 				windowTick();
 			}
 			currentTarget.useAltSpritemap = 0;
@@ -6682,7 +6690,7 @@ void callForHelpCommon(short sowingSeeds) {
 	} else {
 		currentTarget.spriteY = 0x90;
 	}
-	currentTarget.vramSpriteIndex = unknownC2F09F(currentAttacker.currentActionArgument);
+	currentTarget.vramSpriteIndex = getBattleSpriteIndex(currentAttacker.currentActionArgument);
 	currentTarget.hasTakenTurn = 1;
 	fixTargetName();
 	if (sowingSeeds != 0) {
@@ -6709,7 +6717,7 @@ void battleActionRainbowOfColours() {
 	battleInitEnemyStats(currentAttacker.currentActionArgument, currentAttacker);
 	currentAttacker.spriteX = x02;
 	currentAttacker.spriteY = x10;
-	currentAttacker.vramSpriteIndex = unknownC2F09F(currentAttacker.id);
+	currentAttacker.vramSpriteIndex = getBattleSpriteIndex(currentAttacker.id);
 	currentAttacker.hasTakenTurn = 1;
 	skipDeathTextAndCleanup = 1;
 }
@@ -6750,7 +6758,7 @@ void switchToNewGiygasBattle(short group, short music) {
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadBattleBG(battleEntryBGTable[currentBattleGroup].layer1, battleEntryBGTable[currentBattleGroup].layer2, cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle);
-	unknownC2EEE7();
+	uploadBattleSprites();
 	preparePaletteUpload(PaletteUpload.full);
 	drawBattleSprites();
 	battleModeFlag = 1;
@@ -7909,7 +7917,9 @@ void closeOvalWindow() {
 	}
 }
 
-/// $C2EAAA
+/** Ends an oval window type effect
+ * Original_Address: $(DOLLAR)C2EAAA
+ */
 void disableOvalWindow() {
 	framesLeftUntilNextSwirlUpdate = 0;
 	loadedOvalWindow = null;
@@ -7917,8 +7927,11 @@ void disableOvalWindow() {
 	setWindowMask(0, 0);
 }
 
-/// $C2EACF
-short unknownC2EACF() {
+/** Returns whether or not a PSI/swirl animation is playing
+ * Returns: 1 if effect in progress, 0 if not
+ * Original_Address: $(DOLLAR)C2EACF
+ */
+short isBattleAnimationPlaying() {
 	if (psiAnimationTimeUntilNextFrame != 0) {
 		return 1;
 	}
@@ -8056,21 +8069,28 @@ void loadBattleSprite(short id) {
 	}
 }
 
-/// $C2EEE7
-void unknownC2EEE7() {
+/** Uploads battle sprites & spritemaps for the battle's enemies into VRAM
+ * Original_Address: $(DOLLAR)C2EEE7
+ */
+void uploadBattleSprites() {
 	currentBattleSpritesAllocated = 0;
 	currentBattleSpritemapsAllocated = 0;
-	const(BattleGroupEnemy)* x1A = &battleEntryPointerTable[currentBattleGroup].enemies[0];
-	while (x1A.count != 0xFF) {
-		memcpy(&palettes[8 + currentBattleSpritesAllocated][0], &battleSpritePalettes[enemyConfigurationTable[x1A.enemyID].battleSpritePalette][0], 32);
-		currentBattleSpriteEnemyIDs[currentBattleSpritesAllocated] = x1A.enemyID;
-		loadBattleSprite(enemyConfigurationTable[x1A.enemyID].battleSprite);
-		x1A++;
+	const(BattleGroupEnemy)* battleEnemies = &battleEntryPointerTable[currentBattleGroup].enemies[0];
+	while (battleEnemies.count != 0xFF) {
+		memcpy(&palettes[8 + currentBattleSpritesAllocated][0], &battleSpritePalettes[enemyConfigurationTable[battleEnemies.enemyID].battleSpritePalette][0], 32);
+		currentBattleSpriteEnemyIDs[currentBattleSpritesAllocated] = battleEnemies.enemyID;
+		loadBattleSprite(enemyConfigurationTable[battleEnemies.enemyID].battleSprite);
+		battleEnemies++;
 	}
 	copyToVRAM(0, (currentBattleSpritemapsAllocated > 16) ? 0x3000 : 0x2000, 0x2000, &buffer[0]);
 }
 
-/// $C2EFFD
+/** Gets the width of a battle sprite
+ * Params:
+ * 	sprite = The sprite index
+ * Returns: The width of the sprite in 8 pixel units
+ * Original_Address: $(DOLLAR)C2EFFD
+ */
 short getBattleSpriteWidth(short sprite) {
 	version(noUndefinedBehaviour) {
 		if ((sprite <= 0) || (sprite > battleSprites.length)) {
@@ -8092,7 +8112,12 @@ short getBattleSpriteWidth(short sprite) {
 	}
 }
 
-/// $C2F04E
+/** Gets the height of a battle sprite
+ * Params:
+ * 	sprite = The sprite index
+ * Returns: The height of the sprite in 8 pixel units
+ * Original_Address: $(DOLLAR)C2F04E
+ */
 short getBattleSpriteHeight(short sprite) {
 	version(noUndefinedBehaviour) {
 		if ((sprite <= 0) || (sprite > battleSprites.length)) {
@@ -8114,18 +8139,27 @@ short getBattleSpriteHeight(short sprite) {
 	}
 }
 
-/// $C2F09F
-ubyte unknownC2F09F(short arg1) {
+/** Gets the index of a battle sprite in the loaded sprite list
+ * Params:
+ * 	id = Battle sprite ID
+ * Returns: 0 if sprite not loaded, or the index of the sprite in the loaded sprite array
+ * Original_Address: $(DOLLAR)C2F09F
+ */
+ubyte getBattleSpriteIndex(short id) {
 	for (ubyte i = 0; i < 4; i++) {
-		if (currentBattleSpriteEnemyIDs[i] == arg1) {
+		if (currentBattleSpriteEnemyIDs[i] == id) {
 			return i;
 		}
 	}
 	return 0;
 }
 
-/// $C2F0D1
-void unknownC2F0D1() {
+/** Caps the number of enemies based on how wide they are, to keep it from overflowing the screen.
+ *
+ * Note that it doesn't account for rows at all; the sum total of ALL sprites must not be greater than the screen width.
+ * Original_Address: $(DOLLAR)C2F0D1
+ */
+void capEnemiesByWidth() {
 	short y = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
 		y += getBattleSpriteWidth(enemyConfigurationTable[enemiesInBattleIDs[i]].battleSprite);
@@ -8136,138 +8170,173 @@ void unknownC2F0D1() {
 	}
 }
 
-/// $C2F121
-short unknownC2F121() {
+/** Sets initial battle sprite positions, and ensures the battler array order matches
+ * Returns: 0
+ * Original_Address: $(DOLLAR)C2F121
+ */
+short setInitialBattleSpritePositioning() {
+	// start with zero sprites in both rows
 	battleSpriteRowWidth[1] = 0;
 	battleSpriteRowWidth[0] = 0;
 	for (short i = 8; i < battlersTable.length; i++) {
+		// skip fighters not present
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
+		// skip non-enemies
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
-		battlersTable[i].vramSpriteIndex = unknownC2F09F(battlersTable[i].id);
-		short x02 = getBattleSpriteWidth(battlersTable[i].sprite);
+		battlersTable[i].vramSpriteIndex = getBattleSpriteIndex(battlersTable[i].id);
+		short startTileX = getBattleSpriteWidth(battlersTable[i].sprite);
+		// offset X by 1 for the second row
 		if (battleSpriteRowWidth[battlersTable[i].row] != 0) {
-			x02++;
+			startTileX++;
 		}
-		if (battleSpriteRowWidth[battlersTable[i].row] + x02 <= 30) {
-			battleSpriteRowWidth[battlersTable[i].row] += x02;
+		// check if row has enough room, move to other row if not
+		if (battleSpriteRowWidth[battlersTable[i].row] + startTileX <= 30) {
+			battleSpriteRowWidth[battlersTable[i].row] += startTileX;
 		} else {
-			x02 = getBattleSpriteWidth(battlersTable[i].sprite);
+			startTileX = getBattleSpriteWidth(battlersTable[i].sprite);
 			if (battleSpriteRowWidth[1 - battlersTable[i].row] != 0) {
-				x02++;
+				startTileX++;
 			}
-			if (battleSpriteRowWidth[1 - battlersTable[i].row] + x02 <= 30) {
+			// check if row has room
+			if (battleSpriteRowWidth[1 - battlersTable[i].row] + startTileX <= 30) {
 				battlersTable[i].row = cast(ubyte)(1 - battlersTable[i].row);
-				battleSpriteRowWidth[1 - battlersTable[i].row] += x02;
+				battleSpriteRowWidth[1 - battlersTable[i].row] += startTileX;
 			} else {
+				// nowhere to go...
 				return 0;
 			}
 		}
 	}
-	short x1D = 32;
-	short x1B = 32;
-	short x17;
+	// start placing enemies, using enemy 0 as the reference point
+	short firstRowRightX = 32;
+	short firstRowLeftX = 32;
+	short otherRowStartX;
 	for (short i = 8; i < battlersTable.length; i++) {
+		// skip battlers not present
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
+		// skip non-enemies
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
+		// skip enemies not in the same row as enemy 0
 		if (battlersTable[i].row != battlersTable[8].row) {
 			continue;
 		}
-		short x19 = getBattleSpriteWidth(battlersTable[i].sprite) / 2;
-		if (x1B == x1D) {
-			battlersTable[i].spriteX = cast(ubyte)x1B;
-			x1B -= x19;
-			x1D += x19;
+		// use center of the sprite
+		short spriteCenterX = getBattleSpriteWidth(battlersTable[i].sprite) / 2;
+		if (firstRowLeftX == firstRowRightX) { // no enemies placed in row yet
+			battlersTable[i].spriteX = cast(ubyte)firstRowLeftX;
+			firstRowLeftX -= spriteCenterX;
+			firstRowRightX += spriteCenterX;
+			// decide where second row starts
 			if ((randLong() & 1) != 0) {
-				x17 = x1B;
+				otherRowStartX = firstRowLeftX;
 			} else {
-				x17 = x1D;
+				otherRowStartX = firstRowRightX;
 			}
 		} else {
-			if ((32 - x1B < x1D - 32) || (((32 - x1B == x1D - 32) && ((randLong() & 1) != 0)))) {
-				battlersTable[i].spriteX = cast(ubyte)(x1B - x19 - 1);
-				x1B = cast(short)(cast(ubyte)(x1B - x19 - 1) - x19);
+			// decide to put enemies either left or right of the first enemy, falling back to a random factor if both are acceptable
+			if ((32 - firstRowLeftX < firstRowRightX - 32) || (((32 - firstRowLeftX == firstRowRightX - 32) && ((randLong() & 1) != 0)))) {
+				battlersTable[i].spriteX = cast(ubyte)(firstRowLeftX - spriteCenterX - 1);
+				firstRowLeftX = cast(short)(cast(ubyte)(firstRowLeftX - spriteCenterX - 1) - spriteCenterX);
 			} else {
-				battlersTable[i].spriteX = cast(ubyte)(x1D + x19 + 1);
-				x1D = cast(short)(cast(ubyte)(x1D + x19 + 1) + x19);
+				battlersTable[i].spriteX = cast(ubyte)(firstRowRightX + spriteCenterX + 1);
+				firstRowRightX = cast(short)(cast(ubyte)(firstRowRightX + spriteCenterX + 1) + spriteCenterX);
 			}
 		}
 	}
-	short x25 = x17;
-	short x14 = x17;
+	// start second row either to the left or the right of the first enemy in the first row, decided randomly
+	short otherRowRightX = otherRowStartX;
+	short otherRowLeftX = otherRowStartX;
 	for (short i = 8; i < battlersTable.length; i++) {
+		// skip battlers not present
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
+		// skip non-enemies
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
+		// skip enemies in the same row as enemy 0
 		if (battlersTable[i].row == battlersTable[8].row) {
 			continue;
 		}
-		short x12 = getBattleSpriteWidth(battlersTable[i].sprite) / 2;
-		if (x14 == x25) {
-			battlersTable[i].spriteX = cast(ubyte)x14;
-			x14 -= x12;
-			x25 += x12;
+		// use center of the sprite
+		short spriteCenterX = getBattleSpriteWidth(battlersTable[i].sprite) / 2;
+		if (otherRowLeftX == otherRowRightX) { // no enemies placed in row yet
+			battlersTable[i].spriteX = cast(ubyte)otherRowLeftX;
+			otherRowLeftX -= spriteCenterX;
+			otherRowRightX += spriteCenterX;
 		} else {
-			if ((x25 > 32) && ((x14 > 32)) || (32 - x14 < x25 - 32) || ((32 - x14 == x25 - 32) && ((randLong() & 1) != 0))) {
-				battlersTable[i].spriteX = cast(ubyte)(x14 - x12 - 1);
-				x14 = cast(short)(cast(ubyte)(x14 - x12 - 1) - x12);
+			// decide to put enemies either left or right of the first enemy in this row, falling back to a random factor if both are acceptable
+			if ((otherRowRightX > 32) && ((otherRowLeftX > 32)) || (32 - otherRowLeftX < otherRowRightX - 32) || ((32 - otherRowLeftX == otherRowRightX - 32) && ((randLong() & 1) != 0))) {
+				battlersTable[i].spriteX = cast(ubyte)(otherRowLeftX - spriteCenterX - 1);
+				otherRowLeftX = cast(short)(cast(ubyte)(otherRowLeftX - spriteCenterX - 1) - spriteCenterX);
 			} else {
-				battlersTable[i].spriteX = cast(ubyte)(x25 + x12 + 1);
-				x25 = cast(short)(cast(ubyte)(x25 + x12 + 1) + x12);
+				battlersTable[i].spriteX = cast(ubyte)(otherRowRightX + spriteCenterX + 1);
+				otherRowRightX = cast(short)(cast(ubyte)(otherRowRightX + spriteCenterX + 1) + spriteCenterX);
 			}
 		}
 	}
-	if ((battlersTable[8].row == 1) && (x14 == x25)) {
+	// if no enemies in other row, bump second row up to first row
+	if ((battlersTable[8].row == 1) && (otherRowLeftX == otherRowRightX)) {
 		for (short i = 8; i < battlersTable.length; i++) {
+			// skip battlers not present
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}
+			// skip non-enemies
 			if (battlersTable[i].side != BattleSide.foes) {
 				continue;
 			}
 			battlersTable[i].row = 0;
 		}
 	}
-	if (x14 < x1B) {
-		x1B = x14;
+	// recenter and set Y coordinates, to keep enemy positioning from getting too lopsided
+
+	// use most extreme left X and right X
+	if (otherRowLeftX < firstRowLeftX) {
+		firstRowLeftX = otherRowLeftX;
 	}
-	if (x25 > x1D) {
-		x1D = x25;
+	if (otherRowRightX > firstRowRightX) {
+		firstRowRightX = otherRowRightX;
 	}
-	x1B = cast(short)(32 - ((x1B + x1D) / 2) - 16);
+	// find new center
+	firstRowLeftX = cast(short)(32 - ((firstRowLeftX + firstRowRightX) / 2) - 16);
 	for (short i = 8; i < battlersTable.length; i++) {
+		// skip battlers not present
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
+		// skip non-enemies
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
-		battlersTable[i].spriteX = cast(ubyte)((battlersTable[i].spriteX + x1B) * 8);
+		// adjust X coord to new center
+		battlersTable[i].spriteX = cast(ubyte)((battlersTable[i].spriteX + firstRowLeftX) * 8);
+		// set Y coord based on row
 		if (battlersTable[i].row != 0) {
-			battlersTable[i].spriteY = 0x80;
+			battlersTable[i].spriteY = 128;
 		} else {
-			battlersTable[i].spriteY = 0x90;
+			battlersTable[i].spriteY = 144;
 		}
 	}
-	//TODO: don't hardcode this
-	if (currentBattleGroup == 0x1DB) {
-		battlersTable[8].spriteX = 0x80;
-		battlersTable[8].spriteY = 0x80;
-		battlersTable[9].spriteX = 0xC8;
-		battlersTable[9].spriteY = 0x90;
+	// Giygas battle with hardcoded coords
+	if (currentBattleGroup == EnemyGroup.unknown475) {
+		battlersTable[8].spriteX = 128;
+		battlersTable[8].spriteY = 128;
+		battlersTable[9].spriteX = 200;
+		battlersTable[9].spriteY = 144;
 	}
+	// sort battlers by suffix letters and position, so A will always be to the left of B, B to the left of C, and so on
 	while (true) {
-		short x21 = 0;
+		short battlersHaveMoved = 0;
 		for (short i = 0; i < enemiesInBattle - 1; i++) {
 			for (short j = cast(short)(i + 1); j < enemiesInBattle; j++) {
 				if (battlersTable[8 + i].id != battlersTable[8 + j].id) {
@@ -8275,10 +8344,11 @@ short unknownC2F121() {
 				}
 				if (((battlersTable[8 + i].suffixLetter >= battlersTable[8 + j].suffixLetter) || ((battlersTable[8 + i].spriteY >= battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteY != battlersTable[8 + j].spriteY)) || (battlersTable[8 + i].spriteX <= battlersTable[8 + j].spriteX)) &&
 				(battlersTable[8 + i].suffixLetter > battlersTable[8 + j].suffixLetter) && ((battlersTable[8 + i].spriteY > battlersTable[8 + j].spriteY) || ((battlersTable[8 + i].spriteY == battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteX < battlersTable[8 + j].spriteX)))) {
-					x21 = 1;
-					short x12 = battlersTable[8 + i].suffixLetter;
+					// note: battler entry 31 is used as a temp spot for swapping battlers
+					battlersHaveMoved = 1;
+					short temp = battlersTable[8 + i].suffixLetter;
 					battlersTable[8 + i].suffixLetter = battlersTable[8 + j].suffixLetter;
-					battlersTable[8 + j].suffixLetter = cast(ubyte)x12;
+					battlersTable[8 + j].suffixLetter = cast(ubyte)temp;
 					if (battlersTable[8 + i].suffixLetter > battlersTable[8 + j].suffixLetter) {
 						memcpy(&battlersTable[battlersTable.length - 1], &battlersTable[8 + i], Battler.sizeof);
 						memcpy(&battlersTable[8 + i], &battlersTable[8 + j], Battler.sizeof);
@@ -8287,16 +8357,20 @@ short unknownC2F121() {
 				}
 			}
 		}
-		if (x21 == 0) {
+		// break if everything is in order
+		if (battlersHaveMoved == 0) {
 			break;
 		}
 	}
+	// clear temp battler
 	memset(&battlersTable[battlersTable.length - 1], 0, Battler.sizeof);
 	return 0;
 }
 
-/// $C2F724
-void renderBattleSpriteRow(short arg1) {
+/** Renders an entire row of battle sprites
+ * Original_Address: $(DOLLAR)C2F724
+ */
+void renderBattleSpriteRow(short row) {
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -8307,7 +8381,7 @@ void renderBattleSpriteRow(short arg1) {
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
-		if (battlersTable[i].row != arg1) {
+		if (battlersTable[i].row != row) {
 			continue;
 		}
 		if (battlersTable[i].sprite == 0) {
@@ -8316,16 +8390,19 @@ void renderBattleSpriteRow(short arg1) {
 		if ((battlersTable[i].unknown72 != 0) && (((--battlersTable[i].unknown72 / 3) & 1) != 0)) {
 			continue;
 		}
-		if ((battlersTable[i].unknown73 != 0) && ((--battlersTable[i].unknown73 & 4) == 0)) {
-			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - screenEffectHorizontalOffset), cast(short)(battlersTable[i].spriteY - screenEffectVerticalOffset));
+		const x = cast(short)(battlersTable[i].spriteX - screenEffectHorizontalOffset);
+		const y = cast(short)(battlersTable[i].spriteY - screenEffectVerticalOffset);
+		if ((battlersTable[i].enemyAttackFlashFrames != 0) && ((--battlersTable[i].enemyAttackFlashFrames & 4) == 0)) {
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], x, y);
 		} else if (battlersTable[i].useAltSpritemap != 0) {
-			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - screenEffectHorizontalOffset), cast(short)(battlersTable[i].spriteY - screenEffectVerticalOffset));
+			// affected by some sprite effect
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], x, y);
 		} else if ((enemyTargettingFlashing != 0) && ((battlersTable[i].isFlashing == 0) || ((frameCounter & 8) != 0))) {
-			//targetted enemies
-			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - screenEffectHorizontalOffset), cast(short)(battlersTable[i].spriteY - screenEffectVerticalOffset));
+			// targetted enemies
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], x, y);
 		} else {
-			//normal enemies
-			renderSpriteToOAM(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - screenEffectHorizontalOffset), cast(short)(battlersTable[i].spriteY - screenEffectVerticalOffset));
+			// normal enemies
+			renderSpriteToOAM(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], x, y);
 		}
 	}
 }
@@ -8473,7 +8550,9 @@ void initializeBattleSpritePaletteEffect(short spriteColour, short targetRed, sh
 	battleSpritePaletteEffectCounters[spriteColour * 3 + 0] = 0;
 }
 
-/// $C2FD99
+/** Handles a single frame of the enemy fading palette effects
+ * Original_Address: $(DOLLAR)C2FD99
+ */
 void singleBattleSpritePaletteEffectFrame() {
 	for (short i = 0; i < 4; i++) {
 		if (battleSpritePaletteEffectFramesLeft[i] == 0) {
@@ -8515,13 +8594,17 @@ void singleBattleSpritePaletteEffectFrame() {
 	}
 }
 
-/// $C2FEF9
-void unknownC2FEF9(short type) {
+/** Set colours used for enemy palette flash
+ * Params:
+ * 	type = 0 for darkened sprites, 1 for physical attacks, 2 for PSI attacks, 3 for other attacks
+ * Original_Address: $(DOLLAR)C2FEF9
+ */
+void setEnemyPaletteFlash(short type) {
 	if (type != 0) {
-		memcpy(&palettes[12][0], &unknownC3F8F1[type - 1][0], 32);
-		memcpy(&palettes[13][0], &unknownC3F8F1[type - 1][0], 32);
-		memcpy(&palettes[14][0], &unknownC3F8F1[type - 1][0], 32);
-		memcpy(&palettes[15][0], &unknownC3F8F1[type - 1][0], 32);
+		memcpy(&palettes[12][0], &enemyUsingAttackPalettes[type - 1][0], 32);
+		memcpy(&palettes[13][0], &enemyUsingAttackPalettes[type - 1][0], 32);
+		memcpy(&palettes[14][0], &enemyUsingAttackPalettes[type - 1][0], 32);
+		memcpy(&palettes[15][0], &enemyUsingAttackPalettes[type - 1][0], 32);
 		preparePaletteUpload(PaletteUpload.objOnly);
 		return;
 	}

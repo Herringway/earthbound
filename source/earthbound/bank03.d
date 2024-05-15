@@ -1358,9 +1358,11 @@ immutable ushort[32] unknownC3F8B1 = [
 	0x01CC,
 ];
 
-/// $C3F8F1
-immutable RGB[16][3] unknownC3F8F1 = [
-	[
+/** Palettes used for the brief sprite flash when an enemy is attacking
+ * Original_Address: $(DOLLAR)C3F8F1
+ */
+immutable RGB[16][3] enemyUsingAttackPalettes = [
+	[ // physical attack (light gray with dark gray borders)
 		RGB(0, 0, 0),
 		RGB(27, 28, 29),
 		RGB(27, 28, 29),
@@ -1377,7 +1379,7 @@ immutable RGB[16][3] unknownC3F8F1 = [
 		RGB(27, 28, 29),
 		RGB(27, 28, 29),
 		RGB(15, 13, 13),
-	], [
+	], [ // psi attack (yellow with red borders)
 		RGB(0, 0, 0),
 		RGB(31, 29, 2),
 		RGB(31, 29, 2),
@@ -1394,7 +1396,7 @@ immutable RGB[16][3] unknownC3F8F1 = [
 		RGB(31, 29, 2),
 		RGB(31, 29, 2),
 		RGB(31, 3, 11),
-	], [
+	], [ // other attack (black with gray borders)
 		RGB(0, 0, 0),
 		RGB(0, 0, 0),
 		RGB(0, 0, 0),

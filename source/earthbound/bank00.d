@@ -2620,11 +2620,13 @@ void movePartyLeader() {
 	positionEntry.walkingStyle = gameState.walkingStyle;
 	positionEntry.direction = gameState.leaderDirection;
 	footstepSoundIDOverride = 0;
-	if ((gameState.troddenTileType & 8) != 0) {
-		if ((gameState.troddenTileType & 4) != 0) {
-			footstepSoundIDOverride = 0x10;
+	if ((gameState.troddenTileType & SurfaceFlags.shallowWater) != 0) {
+		if ((gameState.troddenTileType & SurfaceFlags.causesSunstroke) != 0) {
+			// deep water
+			footstepSoundIDOverride = 16;
 		} else {
-			footstepSoundIDOverride = 0x12;
+			// shallow water
+			footstepSoundIDOverride = 18;
 		}
 	}
 }

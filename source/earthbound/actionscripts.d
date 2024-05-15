@@ -15778,7 +15778,7 @@ shared static this() {
 		JUMP_IF_FALSE(&actionScriptEvtPrayOvalWindow[8 + 4 * (const(void)*).sizeof]),
 		CLOSE_OVAL_WINDOW(),
 		PAUSE(1),
-		C2EACF(),
+		IS_BATTLE_ANIMATION_PLAYING(),
 		JUMP_IF_TRUE(&actionScriptEvtPrayOvalWindow[15 + 7 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScript35[0]),
@@ -16946,7 +16946,7 @@ shared static this() {
 		WRITE_WORD_TEMPVAR(2),
 		OPEN_OVAL_WINDOW(),
 		PAUSE(1),
-		C2EACF(),
+		IS_BATTLE_ANIMATION_PLAYING(),
 		JUMP_IF_TRUE(&actionScriptToBeContOvalClose[12 + 5 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScript35[0]),
@@ -25999,7 +25999,7 @@ alias MAGIC_BUTTERFLY_RECOVERY = CALL!magicButterflyRecovery;
 alias DRAW_BATTLE_FRAME = CALL!drawBattleFrame;
 alias OPEN_OVAL_WINDOW = CALL!openOvalWindow;
 alias CLOSE_OVAL_WINDOW = CALL!closeOvalWindow;
-alias C2EACF = CALL!unknownC2EACF;
+alias IS_BATTLE_ANIMATION_PLAYING = CALL!isBattleAnimationPlaying;
 alias TEST_IN_BIG_AREA = CALL!actionScriptTestInBigArea;
 alias IS_ENTITY_ONSCREEN_RESET_ANIMATION = CALL!isEntityOnscreenResetAnimation;
 alias SLEEP_SLOT_FRAMES = CALL!sleepSlotFrames;

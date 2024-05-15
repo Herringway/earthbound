@@ -727,7 +727,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Initiative", battler.initiative);
 					InputEditable("Unknown71", battler.unknown71);
 					InputEditable("Unknown72", battler.unknown72);
-					InputEditable("Unknown73", battler.unknown73);
+					InputEditable("Enemy attack flash frames", battler.enemyAttackFlashFrames);
 					InputEditable("Flashing", battler.isFlashing);
 					InputEditable("Alt spritemap", battler.useAltSpritemap);
 					InputEditable("Original ID", battler.originalID);

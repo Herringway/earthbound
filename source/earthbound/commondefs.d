@@ -6439,7 +6439,7 @@ struct Battler {
 	ubyte initiative; ///
 	ubyte unknown71; ///
 	ubyte unknown72; ///
-	ubyte unknown73; ///
+	ubyte enemyAttackFlashFrames; /// Frames left for the enemy attacking flash effect
 	ubyte isFlashing; ///
 	ubyte useAltSpritemap; ///
 	short originalID; ///

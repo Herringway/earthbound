@@ -2486,7 +2486,13 @@ __gshared short enemiesInBattle;
  * Original_Address: $(DOLLAR)9F8C
  */
 __gshared short[16] enemiesInBattleIDs;
-/** Stats for all participants in an active battle. Slots 0, 1, 2 and 3 are reserved for permanent party members, 4 and 5 are reserved for NPC guests, 6 is reserved for buzz buzz and tiny lil ghosts, and enemies start at slot 8
+/** Stats for all participants in an active battle
+ *
+ * Slots 0, 1, 2 and 3 are reserved for permanent party members.
+ * Slots 4 and 5 are reserved for NPC guests.
+ * Slot 6 is reserved for buzz buzz and tiny lil ghosts.
+ * Enemies start at slot 8.
+ * Slot 31 is used for swapping battlers around.
  * Original_Address: $(DOLLAR)9FAC
  */
 __gshared Battler[32] battlersTable;

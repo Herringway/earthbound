@@ -2081,7 +2081,7 @@ void prefillKeyboardInput(ubyte* text, short length) {
 		keyboardInputCharacters[endPosition] = text[0];
 		keyboardInputCharacterOffsets[endPosition] = (text[0] - ebChar(' ')) & 0x7F;
 		keyboardInputCharacterWidths[endPosition] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(text[0] - ebChar(' ')) & 0x7F] + characterPadding);
-		unknownC44E61(Font.main, text[0]);
+		renderVWFCharacterToWindow(Font.main, text[0]);
 	}
 	nextKeyboardInputIndex = endPosition;
 	if (endPosition >= length) {
@@ -2089,14 +2089,14 @@ void prefillKeyboardInput(ubyte* text, short length) {
 	}
 	keyboardInputCharacterOffsets[endPosition] = 32;
 	keyboardInputCharacterWidths[endPosition] = 6;
-	unknownC44E61(Font.main, ebChar('@'));
+	renderVWFCharacterToWindow(Font.main, ebChar('@'));
 	keyboardInputCharacters[endPosition++] = 0;
 	if (length < endPosition) {
 		return;
 	}
 	for (short i = cast(short)(length - endPosition); i != 0; i--, endPosition++) {
 		keyboardInputCharacterOffsets[endPosition] = 3;
-		unknownC44E61(Font.main, ebChar('{'));
+		renderVWFCharacterToWindow(Font.main, ebChar('{'));
 		keyboardInputCharacterWidths[endPosition] = 3;
 	}
 }
@@ -2128,12 +2128,12 @@ void emptyKeyboardInput(short length) {
 	const short emptyCharacterOffset = 3;
 	nextKeyboardInputIndex = 0;
 	memset(&keyboardInputCharacters[0], 0, keyboardInputCharacters.length);
-	unknownC44E61(Font.main, ebChar('@'));
+	renderVWFCharacterToWindow(Font.main, ebChar('@'));
 	keyboardInputCharacterOffsets[0] = 32;
 	for (short i = 1; i < length; i++) {
 		keyboardInputCharacterOffsets[i] = cast(ubyte)emptyCharacterOffset;
 		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][emptyCharacterOffset] + characterPadding);
-		unknownC44E61(Font.main, ebChar('{'));
+		renderVWFCharacterToWindow(Font.main, ebChar('{'));
 	}
 }
 
@@ -2625,8 +2625,15 @@ void freeTileSafe(short tile) {
 	freeTile(tile);
 }
 
-/// $C44E61
-void unknownC44E61(short font, short tile) {
+/** Prints a VWF character with the specified font to the focused window at the current cursor coordinates.
+ *
+ * Handles auto-newlines and cursor movement as well.
+ * Params:
+ * 	font = Font to use for rendering
+ * 	tile = The character to render (non-breaking space, equipped symbol and window background are handled specially)
+ * Original_Address: $(DOLLAR)C44E61
+ */
+void renderVWFCharacterToWindow(short font, short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
@@ -2660,46 +2667,66 @@ void unknownC44E61(short font, short tile) {
 	}
 }
 
-/// $C44FF3
-short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
+/** Gets the width, in pixels, of a character string with padding included
+ * Params:
+ * 	length = Length of string
+ * 	fontID = Font to simulate rendering with
+ * 	text = A string at least length characters long
+ * Returns: Pixel width of string
+ * Original_Address: $(DOLLAR)C44FF3
+ */
+short getTextWidth(short length, short fontID, const(ubyte)* text) {
 	short result;
-	for (short i = 0; i < arg1; i++) {
-		result += cast(short)(characterPadding + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F]);
+	for (short i = 0; i < length; i++) {
+		result += cast(short)(characterPadding + fontData[fontConfigTable[fontID].dataID][((text++)[0] - ebChar(' ')) & 0x7F]);
 	}
 	return result;
 }
 
-/// $C4507A
-void printPrice(uint arg1) {
-	ubyte[8] x12;
+/** Prints a price, with dollars and cents, mostly aligned to the right side of the window
+ * Params:
+ * 	value = The price to print (in dollars)
+ * Original_Address: $(DOLLAR)C4507A
+ */
+void printPrice(uint value) {
+	ubyte[8] textBuffer;
+	// no window to print in
 	if (currentFocusWindow == -1) {
 		return;
 	}
+	// do not create new lines
 	ubyte vwfIndentNewLineCopy = vwfIndentNewLine;
 	vwfIndentNewLine = 0;
-	short x24 = unknownC10C55(arg1);
-	ubyte* x22 = &numberTextBuffer[7 - x24];
-	ubyte* x20 = x22;
+	// separate the digits
+	short digits = unknownC10C55(value);
+	const(ubyte)* numberString = &numberTextBuffer[7 - digits];
+	// make copies for later printing and restoring
+	const(ubyte)* numberStringCopy = numberString;
 	short textXBackup = windowStats[windowTable[currentFocusWindow]].textX;
 	short textYBackup = windowStats[windowTable[currentFocusWindow]].textY;
-	short x04 = characterPadding + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
-	for (short i = 0; i < x24; i++) {
-		x12[i] = cast(ubyte)(*x22 + TallTextTile.num0Fixed * 2);
-		x22++;
+	// transform numbers into fixed digit characters and get string width
+	short dollarSignWidth = characterPadding + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][ebChar('$') - ebChar(' ')];
+	for (short i = 0; i < digits; i++) {
+		textBuffer[i] = cast(ubyte)((numberString++)[0] + TallTextTile.num0Fixed * 2);
 	}
-	short x18 = cast(short)(x04 + unknownC44FF3(x24, windowStats[windowTable[currentFocusWindow]].font, &x12[0]));
-	x18 += characterPadding;
+	short fullWidth = cast(short)(dollarSignWidth + getTextWidth(digits, windowStats[windowTable[currentFocusWindow]].font, &textBuffer[0]));
+	// add padding for $
+	fullWidth += characterPadding;
+
+	// keep all prices left aligned so they at least mostly align with each other
 	forceLeftTextAlignment = 1;
-	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - x18), windowStats[windowTable[currentFocusWindow]].textY);
+	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - fullWidth), windowStats[windowTable[currentFocusWindow]].textY);
 	printLetterVWFF(ebChar('$'));
-	while (x24 != 0) {
-		printLetterVWFF(*(x20++) + TallTextTile.num0Fixed * 2);
-		x24--;
+	while (digits != 0) {
+		printLetterVWFF((numberStringCopy++)[0] + TallTextTile.num0Fixed * 2);
+		digits--;
 	}
 	forceLeftTextAlignment = 0;
+	// move to end, write cents symbol
 	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
 	printLetter(TallTextTile.cents);
+	// return to where we started
 	moveCurrentTextCursor(textXBackup, textYBackup);
 	vwfIndentNewLine = vwfIndentNewLineCopy;
 }
@@ -8216,7 +8243,7 @@ short runAttractModeScene(short arg1) {
 		x14++;
 	}
 	closeOvalWindow();
-	while (unknownC2EACF() != 0) {
+	while (isBattleAnimationPlaying()) {
 		finishFrame();
 		updateSwirlFrame();
 	}

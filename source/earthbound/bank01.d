@@ -580,7 +580,7 @@ void printLetterVWF(short letter) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	unknownC44E61(windowStats[windowTable[currentFocusWindow]].font, letter);
+	renderVWFCharacterToWindow(windowStats[windowTable[currentFocusWindow]].font, letter);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
@@ -7067,14 +7067,14 @@ short enemySelectMode(short arg1) {
 			x06++;
 		}
 		prepareForImmediateDMA();
-		unknownC2EEE7();
+		uploadBattleSprites();
 		for (short i = 8; i < battlersTable.length; i++) {
 			memset(&battlersTable[i], 0, Battler.sizeof);
 		}
 		for (short i = 0; i < enemiesInBattle; i++) {
 			battleInitEnemyStats(enemiesInBattleIDs[i], &battlersTable[8 + i]);
 		}
-		unknownC2F121();
+		setInitialBattleSpritePositioning();
 		preparePaletteUpload(PaletteUpload.full);
 		setForceBlank();
 		fadeIn(1, 1);
@@ -7880,13 +7880,13 @@ void fileMenuLoop() {
 								unknownC1931B(7);
 								createWindowN(Window.fileSelectNamingConfirmationFood);
 								printString(fileSelectTextFavoriteFood.length, &fileSelectTextFavoriteFood[0]);
-								short x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
+								short x = getTextWidth(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
 								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
 
 								createWindowN(Window.fileSelectNamingConfirmationThing);
 								printString(fileSelectTextCoolestThing.length, &fileSelectTextCoolestThing[0]);
-								x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
+								x = getTextWidth(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
 								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
 
