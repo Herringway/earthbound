@@ -3453,9 +3453,9 @@ short unknownC4621C(short arg1, short arg2) {
 
 /// $C46257
 short unknownC46257(short arg1, short arg2, short arg3, short arg4) {
-	short x14 = unknownC4621C(arg1, arg2);
-	short x = unknownC4621C(arg3, arg4);
-	return (getScreenAngle(entityAbsYTable[x14], entityAbsXTable[x14], entityAbsYTable[x], entityAbsXTable[x]) + 0x1000) / 0x2000;
+	short source = unknownC4621C(arg1, arg2);
+	short dest = unknownC4621C(arg3, arg4);
+	return (getScreenAngle(entityAbsYTable[source], entityAbsXTable[source], entityAbsYTable[dest], entityAbsXTable[dest]) + 0x1000) / 0x2000;
 }
 
 /// $C462AE
