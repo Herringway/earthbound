@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC2F121</title>
+		<title>Function findEntity</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -35,7 +35,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank02.html">bank02</a>
 					</div>
 				</li>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -149,17 +149,38 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC2F121</h1><p>$C2F121
+			<h1>Function findEntity</h1><p>Finds an active entity matching a specific ID type
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC2F121</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">short</span> <span class="pln">findEntity</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">type</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">id</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="type">type</td><td> 0 for party member ID, 1 for NPC ID, 2 for sprite ID</td></tr>
+<tr><td id="id">id</td><td> The party member/NPC/sprite ID to search for</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>An active entity index
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4621C
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

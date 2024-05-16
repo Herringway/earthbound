@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC44E61</title>
+		<title>Function getDirectionFromSpriteTo</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,24 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC44E61</h1><p>$C44E61
+			<h1>Function getDirectionFromSpriteTo</h1><p>Gets direction from a sprite to some target entity
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC44E61</span>
+			<span class="typ">short</span> <span class="pln">getDirectionFromSpriteTo</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">font</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">sprite</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">tile</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">targetType</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">target</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="sprite">sprite</td><td> Sprite ID for the source entity</td></tr>
+<tr><td id="targetType">targetType</td><td> Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)</td></tr>
+<tr><td id="target">target</td><td> The target entity ID matching targetType</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The 8-way direction from source to target
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C462C9
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

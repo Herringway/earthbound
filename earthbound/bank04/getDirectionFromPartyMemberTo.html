@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable Battler.unknown73</title>
+		<title>Function getDirectionFromPartyMemberTo</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -130,7 +130,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -149,29 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable Battler.unknown73</h1><p></p>
+			<h1>Function getDirectionFromPartyMemberTo</h1><p>Gets direction from a party member to some target entity
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <a href="../../earthbound/commondefs/Battler.html"><span class="typ">Battler</span></a>
+			<span class="typ">short</span> <span class="pln">getDirectionFromPartyMemberTo</span>
+			<span class="pun">(</span>
 			<br/>
-			<span class="pun">
-				{
-				<br/>
-			</span>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">partyMember</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">unknown73</span>
-			<span class="pun">;</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">targetType</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">target</span>
 			<br/>
-			<span class="pun">}</span>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="partyMember">partyMember</td><td> Party member ID for the source entity</td></tr>
+<tr><td id="targetType">targetType</td><td> Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)</td></tr>
+<tr><td id="target">target</td><td> The target entity ID matching targetType</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The 8-way direction from source to target
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C462E4
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC462E4</title>
+		<title>Function getTextWidth</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,26 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC462E4</h1><p>$C462E4
+			<h1>Function getTextWidth</h1><p>Gets the width, in pixels, of a character string with padding included
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC462E4</span>
+			<span class="typ">short</span> <span class="pln">getTextWidth</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">length</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">fontID</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">text</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="length">length</td><td> Length of string</td></tr>
+<tr><td id="fontID">fontID</td><td> Font to simulate rendering with</td></tr>
+<tr><td id="text">text</td><td> A string at least length characters long</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Pixel width of string
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C44FF3
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

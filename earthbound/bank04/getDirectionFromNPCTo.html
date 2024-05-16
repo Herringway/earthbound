@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC46257</title>
+		<title>Function getDirectionFromNPCTo</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,28 +149,41 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC46257</h1><p>$C46257
+			<h1>Function getDirectionFromNPCTo</h1><p>Gets direction from an NPC to some target entity
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC46257</span>
+			<span class="typ">short</span> <span class="pln">getDirectionFromNPCTo</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">npc</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">targetType</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg4</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">target</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="npc">npc</td><td> NPC ID for the source entity</td></tr>
+<tr><td id="targetType">targetType</td><td> Type of target entity (0 for party members, 1 for NPCs, 2 for sprites)</td></tr>
+<tr><td id="target">target</td><td> The target entity ID matching targetType</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The 8-way direction from source to target
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C462AE
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -1773,6 +1773,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="capEnemiesByWidth" class="public" href="../earthbound/bank02/capEnemiesByWidth.html">capEnemiesByWidth</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Caps the number of enemies based on how wide they are, to keep it from overflowing the screen.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="checkDeadPlayers" class="public" href="../earthbound/bank02/checkDeadPlayers.html">checkDeadPlayers</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1875,7 +1884,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="disableOvalWindow" class="public" href="../earthbound/bank02/disableOvalWindow.html">disableOvalWindow</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C2EAAA
+						<td>Ends an oval window type effect
 </td>
 					</tr>
 					<tr>
@@ -2118,7 +2127,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="getBattleSpriteHeight" class="public" href="../earthbound/bank02/getBattleSpriteHeight.html">getBattleSpriteHeight</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C2F04E
+						<td>Gets the height of a battle sprite
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getBattleSpriteIndex" class="public" href="../earthbound/bank02/getBattleSpriteIndex.html">getBattleSpriteIndex</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Gets the index of a battle sprite in the loaded sprite list
 </td>
 					</tr>
 					<tr>
@@ -2127,7 +2145,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getBattleSpriteWidth" class="public" href="../earthbound/bank02/getBattleSpriteWidth.html">getBattleSpriteWidth</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C2EFFD
+						<td>Gets the width of a battle sprite
 </td>
 					</tr>
 					<tr>
@@ -2361,7 +2379,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="inflictSunstrokeCheck" class="public" href="../earthbound/bank02/inflictSunstrokeCheck.html">inflictSunstrokeCheck</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C20000
+						<td>Attempt to inflict sunstroke on all relevant party members
 </td>
 					</tr>
 					<tr>
@@ -2416,6 +2434,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C261BD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="isBattleAnimationPlaying" class="public" href="../earthbound/bank02/isBattleAnimationPlaying.html">isBattleAnimationPlaying</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Returns whether or not a PSI/swirl animation is playing
 </td>
 					</tr>
 					<tr>
@@ -2781,10 +2808,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="renderBattleSpriteRow" class="public" href="../earthbound/bank02/renderBattleSpriteRow.html">renderBattleSpriteRow</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="renderBattleSpriteRow" class="public" href="../earthbound/bank02/renderBattleSpriteRow.html">renderBattleSpriteRow</a><span class="tableEntryAnnotation">(row)</span>
 							</code>
 						</td>
-						<td>$C2F724
+						<td>Renders an entire row of battle sprites
 </td>
 					</tr>
 					<tr>
@@ -2916,6 +2943,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setEnemyPaletteFlash" class="public" href="../earthbound/bank02/setEnemyPaletteFlash.html">setEnemyPaletteFlash</a><span class="tableEntryAnnotation">(type)</span>
+							</code>
+						</td>
+						<td>Set colours used for enemy palette flash
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setEventFlag" class="public" href="../earthbound/bank02/setEventFlag.html">setEventFlag</a><span class="tableEntryAnnotation">(flag, value)</span>
 							</code>
 						</td>
@@ -2938,6 +2974,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C27126
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setInitialBattleSpritePositioning" class="public" href="../earthbound/bank02/setInitialBattleSpritePositioning.html">setInitialBattleSpritePositioning</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sets initial battle sprite positions, and ensures the battler array order matches
 </td>
 					</tr>
 					<tr>
@@ -2991,7 +3036,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="singleBattleSpritePaletteEffectFrame" class="public" href="../earthbound/bank02/singleBattleSpritePaletteEffectFrame.html">singleBattleSpritePaletteEffectFrame</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C2FD99
+						<td>Handles a single frame of the enemy fading palette effects
 </td>
 					</tr>
 					<tr>
@@ -3447,51 +3492,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC2EACF" class="public" href="../earthbound/bank02/unknownC2EACF.html">unknownC2EACF</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2EACF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2EEE7" class="public" href="../earthbound/bank02/unknownC2EEE7.html">unknownC2EEE7</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2EEE7
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2F09F" class="public" href="../earthbound/bank02/unknownC2F09F.html">unknownC2F09F</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C2F09F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2F0D1" class="public" href="../earthbound/bank02/unknownC2F0D1.html">unknownC2F0D1</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2F0D1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2F121" class="public" href="../earthbound/bank02/unknownC2F121.html">unknownC2F121</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2F121
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC2F917" class="public" href="../earthbound/bank02/unknownC2F917.html">unknownC2F917</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3510,15 +3510,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC2FEF9" class="public" href="../earthbound/bank02/unknownC2FEF9.html">unknownC2FEF9</a><span class="tableEntryAnnotation">(type)</span>
-							</code>
-						</td>
-						<td>$C2FEF9
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="updateHPPPMeterTiles" class="public" href="../earthbound/bank02/updateHPPPMeterTiles.html">updateHPPPMeterTiles</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3532,6 +3523,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C2D0AC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="uploadBattleSprites" class="public" href="../earthbound/bank02/uploadBattleSprites.html">uploadBattleSprites</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Uploads battle sprites &amp; spritemaps for the battle's enemies into VRAM
 </td>
 					</tr>
 					<tr>

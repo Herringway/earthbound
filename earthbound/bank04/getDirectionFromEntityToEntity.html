@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC2FEF9</title>
+		<title>Function getDirectionFromEntityToEntity</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -35,7 +35,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank02.html">bank02</a>
 					</div>
 				</li>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -149,22 +149,44 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC2FEF9</h1><p>$C2FEF9
+			<h1>Function getDirectionFromEntityToEntity</h1><p>Gets direction from some source entity to some target entity
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC2FEF9</span>
+			<span class="typ">short</span> <span class="pln">getDirectionFromEntityToEntity</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">type</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">sourceType</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">source</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">targetType</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">target</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="sourceType">sourceType</td><td> Type of source entity ID (0 for party members, 1 for NPCs, 2 for sprites)</td></tr>
+<tr><td id="source">source</td><td> The source entity ID matching sourceType</td></tr>
+<tr><td id="targetType">targetType</td><td> Type of target entity ID (0 for party members, 1 for NPCs, 2 for sprites)</td></tr>
+<tr><td id="target">target</td><td> The target entity ID matching targetType</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The 8-way direction from source to target
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C46257
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

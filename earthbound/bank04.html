@@ -1205,6 +1205,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="findEntity" class="public" href="../earthbound/bank04/findEntity.html">findEntity</a><span class="tableEntryAnnotation">(type, id)</span>
+							</code>
+						</td>
+						<td>Finds an active entity matching a specific ID type
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="findEntityByNPCID" class="public" href="../earthbound/bank04/findEntityByNPCID.html">findEntityByNPCID</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
@@ -1466,6 +1475,42 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="getDirectionFromEntityToEntity" class="public" href="../earthbound/bank04/getDirectionFromEntityToEntity.html">getDirectionFromEntityToEntity</a><span class="tableEntryAnnotation">(sourceType, source, targetType, target)</span>
+							</code>
+						</td>
+						<td>Gets direction from some source entity to some target entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getDirectionFromNPCTo" class="public" href="../earthbound/bank04/getDirectionFromNPCTo.html">getDirectionFromNPCTo</a><span class="tableEntryAnnotation">(npc, targetType, target)</span>
+							</code>
+						</td>
+						<td>Gets direction from an NPC to some target entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getDirectionFromPartyMemberTo" class="public" href="../earthbound/bank04/getDirectionFromPartyMemberTo.html">getDirectionFromPartyMemberTo</a><span class="tableEntryAnnotation">(partyMember, targetType, target)</span>
+							</code>
+						</td>
+						<td>Gets direction from a party member to some target entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getDirectionFromSpriteTo" class="public" href="../earthbound/bank04/getDirectionFromSpriteTo.html">getDirectionFromSpriteTo</a><span class="tableEntryAnnotation">(sprite, targetType, target)</span>
+							</code>
+						</td>
+						<td>Gets direction from a sprite to some target entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="getDirectionRotatedAngle90" class="public" href="../earthbound/bank04/getDirectionRotatedAngle90.html">getDirectionRotatedAngle90</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -1542,6 +1587,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Gets the render width, of pixels, of a given string using the focused window's font
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getTextWidth" class="public" href="../earthbound/bank04/getTextWidth.html">getTextWidth</a><span class="tableEntryAnnotation">(length, fontID, text)</span>
+							</code>
+						</td>
+						<td>Gets the width, in pixels, of a character string with padding included
 </td>
 					</tr>
 					<tr>
@@ -2276,10 +2330,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="printPrice" class="public" href="../earthbound/bank04/printPrice.html">printPrice</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="printPrice" class="public" href="../earthbound/bank04/printPrice.html">printPrice</a><span class="tableEntryAnnotation">(value)</span>
 							</code>
 						</td>
-						<td>$C4507A
+						<td>Prints a price, with dollars and cents, mostly aligned to the right side of the window
 </td>
 					</tr>
 					<tr>
@@ -2487,6 +2541,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Blits widthx8 pixels of a single 1BPP text character into the 2BPP VWF tile buffer
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="renderVWFCharacterToWindow" class="public" href="../earthbound/bank04/renderVWFCharacterToWindow.html">renderVWFCharacterToWindow</a><span class="tableEntryAnnotation">(font, tile)</span>
+							</code>
+						</td>
+						<td>Prints a VWF character with the specified font to the focused window at the current cursor coordinates.
 </td>
 					</tr>
 					<tr>
@@ -2871,24 +2934,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC44E61" class="public" href="../earthbound/bank04/unknownC44E61.html">unknownC44E61</a><span class="tableEntryAnnotation">(font, tile)</span>
-							</code>
-						</td>
-						<td>$C44E61
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC44FF3" class="public" href="../earthbound/bank04/unknownC44FF3.html">unknownC44FF3</a><span class="tableEntryAnnotation">(arg1, fontID, arg3)</span>
-							</code>
-						</td>
-						<td>$C44FF3
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC460CE" class="public" href="../earthbound/bank04/unknownC460CE.html">unknownC460CE</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
 							</code>
 						</td>
@@ -2902,51 +2947,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C46125
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4621C" class="public" href="../earthbound/bank04/unknownC4621C.html">unknownC4621C</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C4621C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46257" class="public" href="../earthbound/bank04/unknownC46257.html">unknownC46257</a><span class="tableEntryAnnotation">(arg1, arg2, arg3, arg4)</span>
-							</code>
-						</td>
-						<td>$C46257
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC462AE" class="public" href="../earthbound/bank04/unknownC462AE.html">unknownC462AE</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C462AE
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC462C9" class="public" href="../earthbound/bank04/unknownC462C9.html">unknownC462C9</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C462C9
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC462E4" class="public" href="../earthbound/bank04/unknownC462E4.html">unknownC462E4</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C462E4
 </td>
 					</tr>
 					<tr>
