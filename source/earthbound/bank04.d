@@ -517,9 +517,8 @@ auto angleToVector(ushort angle, ushort magnitude) {
 	}
 	// use only top 6 bits of the angle. It's Good Enough™️
 	const arg1Modified = angle >> 10;
-	// original code had a shortcut for table values of 0x100, since that case was effectively == 0
-	short x = multiplyWithDivisor256(angleToVectorSineTable[arg1Modified], magnitude);
-	short y = multiplyWithDivisor256(angleToVectorSineTable[arg1Modified + 48], magnitude);
+	short x = cast(short)((angleToVectorSineTable[arg1Modified] * magnitude) / 256);
+	short y = cast(short)((angleToVectorSineTable[arg1Modified + 48] * magnitude) / 256);
 	if ((arg1Modified < 16) || (arg1Modified >= 49)) { // negate y for angles between ~270 - 90 degrees
 		y = cast(short)-y;
 	}
@@ -547,6 +546,10 @@ unittest {
 	with(angleToVector(0xFC00, 0x180)) {
 		assert(y == -381);
 		assert(x == -37);
+	}
+	with(angleToVector(0, 256)) {
+		assert(y == -256);
+		assert(x == 0);
 	}
 }
 
