@@ -758,7 +758,7 @@ void unknownC3EB1C(short arg1) {
 /// $C3EBCA
 void unknownC3EBCA() {
 	for (short i = 0; timedItemTransformationTable[i].item != 0; i++) {
-		if (findItemInInventory2(0xFF, timedItemTransformationTable[i].item) != 0) {
+		if (testPartyHasItem(PartyMember.any, timedItemTransformationTable[i].item) != 0) {
 			unknownC3EAD0(timedItemTransformationTable[i].item);
 		} else {
 			unknownC3EB1C(timedItemTransformationTable[i].item);
@@ -847,8 +847,8 @@ void unknownC3EE4D() {
 }
 
 /// $C3EE7A
-WorkingMemory unknownC3EE7A(short arg1) {
-	WorkingMemory result;
+MainRegister unknownC3EE7A(short arg1) {
+	MainRegister result;
 	if ((cc1C01Table[arg1].size & 0x80) != 0) {
 		switch (cc1C01Table[arg1].size & 0x7F) {
 			case 1:
@@ -918,7 +918,7 @@ immutable ubyte[20][5][2] psiTargetText = [
 
 /// $C3F1EC
 short unknownC3F1EC(short arg1) {
-	if (unknownC2239D(3) == 0) {
+	if (testIfPartyMemberPresent(PartyMember.jeff) == 0) {
 		return 0;
 	}
 	for (short i = 0; (i < 14) && (partyCharacters[3].items[i] != 0); i++) {

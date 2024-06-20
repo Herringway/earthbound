@@ -245,7 +245,7 @@ ushort getLoopRegister() {
  * See_Also: setMainRegister
  * Original_Address: $(DOLLAR)C1040A
  */
-WorkingMemory getMainRegister() {
+MainRegister getMainRegister() {
 	return getActiveWindowAddress().mainRegister;
 }
 
@@ -269,7 +269,7 @@ ushort setLoopRegister(ushort arg1) {
  * See_Also: getMainRegister
  * Original_Address: $(DOLLAR)C1045D
  */
-WorkingMemory setMainRegister(WorkingMemory arg1) {
+MainRegister setMainRegister(MainRegister arg1) {
 	getActiveWindowAddress().mainRegister = arg1;
 	return arg1;
 }
@@ -1990,9 +1990,9 @@ const(ubyte)* check() {
 			return null;
 		case NPCType.itemBox:
 			if (npcConfig[interactingNPCID].item < 0x100) {
-				setMainRegister(WorkingMemory(npcConfig[interactingNPCID].item));
+				setMainRegister(MainRegister(npcConfig[interactingNPCID].item));
 			} else {
-				setMainRegister(WorkingMemory(0));
+				setMainRegister(MainRegister(0));
 				setSubRegister(npcConfig[interactingNPCID].item - 0x100);
 			}
 			currentInteractingEventFlag = npcConfig[interactingNPCID].eventFlag;
@@ -2159,7 +2159,7 @@ void openMenuButton() {
 									}
 									if ((character != x18) && ((itemData[getCharacterItem(cast(short)character, x1D)].flags & ItemFlags.cannotGive) != 0)) {
 										createWindowN(Window.textStandard);
-										setMainRegister(WorkingMemory(character));
+										setMainRegister(MainRegister(character));
 										setSubRegister(x1D);
 										displayText(getTextBlock("MSG_SYS_GOODS_NOCARRY"));
 										closeWindow(Window.textStandard);
@@ -2172,7 +2172,7 @@ void openMenuButton() {
 									}
 									if (x18 != character) {
 										x16++;
-										if (findInventorySpace2(x18) != 0) {
+										if (testPartyHasInventorySpace(x18) != 0) {
 											x16 += 2;
 										}
 										if ((partyCharacters[x18 - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[x18 - 1].afflictions[0] == Status0.diamondized)) {
@@ -2229,7 +2229,7 @@ void openMenuButton() {
 									continue mainLoop;
 								case 3: //drop
 									createWindowN(Window.textStandard);
-									setMainRegister(WorkingMemory(character));
+									setMainRegister(MainRegister(character));
 									setSubRegister(x1D);
 									displayText(getTextBlock("MSG_SYS_GOODS_DROP"));
 									closeWindow(Window.textStandard);
@@ -2334,7 +2334,7 @@ void openHPPPDisplay() {
 
 /// $C13CE5
 void showTownMap() {
-	if (findItemInInventory2(0xFF, ItemID.townMap) == 0) {
+	if (testPartyHasItem(PartyMember.any, ItemID.townMap) == 0) {
 		return;
 	}
 	freezeEntities();
@@ -2441,7 +2441,7 @@ void debugYButtonGoods() {
 				itemInput -= 10;
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 				short character = charSelectPrompt(1, 1, null, null);
-				if ((character != 0) && (findInventorySpace2(character) != 0)) {
+				if ((character != 0) && (testPartyHasInventorySpace(character) != 0)) {
 					giveItemToCharacter(character, cast(ubyte)item);
 					if (canCharacterEquip(character, item) == 0) {
 						break outer;
@@ -2577,7 +2577,7 @@ void* cc06(DisplayTextState* arg1, ubyte arg2) {
 /// $C1435F - [07 XX XX] get event flag
 void* cc07(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setMainRegister(WorkingMemory(getEventFlag(getCCParameters!ArgType(arg2))));
+	setMainRegister(MainRegister(getEventFlag(getCCParameters!ArgType(arg2))));
 	return null;
 }
 
@@ -2610,10 +2610,10 @@ void* cc08(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F52(DisplayTextState* arg1, ubyte arg2) {
 	int x06 = numSelectPrompt(arg2);
 	if (x06 == -1) {
-		setMainRegister(WorkingMemory(0));
+		setMainRegister(MainRegister(0));
 		setSubRegister(0);
 	} else {
-		setMainRegister(WorkingMemory(x06));
+		setMainRegister(MainRegister(x06));
 	}
 	return null;
 }
@@ -2631,13 +2631,13 @@ void* cc1805(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C14558
 void* cc0B(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(getMainRegister().integer == arg2 ? 1 : 0));
+	setMainRegister(MainRegister(getMainRegister().integer == arg2 ? 1 : 0));
 	return null;
 }
 
 /// $C14591
 void* cc0C(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(getMainRegister().integer != arg2 ? 1 : 0));
+	setMainRegister(MainRegister(getMainRegister().integer != arg2 ? 1 : 0));
 	return null;
 }
 
@@ -2662,14 +2662,14 @@ void* cc0E(DisplayTextState* arg1, ubyte arg2) {
 /// $C1463B
 void* cc1A00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1A00Arguments);
-	setMainRegister(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 0)));
+	setMainRegister(MainRegister(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 0)));
 	return null;
 }
 
 /// $C1467D
 void* cc1A01(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1A00Arguments);
-	setMainRegister(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 1)));
+	setMainRegister(MainRegister(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 1)));
 	return null;
 }
 
@@ -2687,7 +2687,7 @@ void* cc1C06(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C14723
 void* cc1910(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(unknownC190E6(arg2 == 0 ? cast(short)getSubRegister() : arg2)));
+	setMainRegister(MainRegister(unknownC190E6(arg2 == 0 ? cast(short)getSubRegister() : arg2)));
 	return null;
 }
 
@@ -2712,13 +2712,13 @@ void* cc1F02(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C147CC
 void* cc1911(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(getPartyCharacterName(arg2 != 0 ? arg2 : cast(short)getSubRegister())[cast(short)-cast(int)(1 - getLoopRegister())]));
+	setMainRegister(MainRegister(getPartyCharacterName(arg2 != 0 ? arg2 : cast(short)getSubRegister())[cast(short)-cast(int)(1 - getLoopRegister())]));
 	return null;
 }
 
 /// $C14819
 void* cc1928(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory((cc1C01Table[arg2].size < getLoopRegister()) ? 0 : (cast(ubyte*)cc1C01Table[arg2].address)[getLoopRegister() - 1]));
+	setMainRegister(MainRegister((cc1C01Table[arg2].size < getLoopRegister()) ? 0 : (cast(ubyte*)cc1C01Table[arg2].address)[getLoopRegister() - 1]));
 	return null;
 }
 
@@ -2730,21 +2730,21 @@ void* cc1C03(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C148AC
 void* cc1D02(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory((getItemType(cast(short)getSubRegister()) == arg2) ? 1 : 0));
+	setMainRegister(MainRegister((getItemType(cast(short)getSubRegister()) == arg2) ? 1 : 0));
 	return null;
 }
 
 /// $C148E9
 void* cc1D08(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setMainRegister(WorkingMemory(increaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
+	setMainRegister(MainRegister(increaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
 	return null;
 }
 
 /// $C1494A
 void* cc1D09(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setMainRegister(WorkingMemory(decreaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
+	setMainRegister(MainRegister(decreaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
 	return null;
 }
 
@@ -2838,7 +2838,7 @@ void* cc1E07(DisplayTextState* arg1, ubyte arg2) {
 /// $C14C1E
 void* cc1D00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(giveItemToCharacter(
+	setMainRegister(MainRegister(giveItemToCharacter(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -2848,7 +2848,7 @@ void* cc1D00(DisplayTextState* arg1, ubyte arg2) {
 /// $C14C86
 void* cc1D01(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(takeItemFromCharacter(
+	setMainRegister(MainRegister(takeItemFromCharacter(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -2857,14 +2857,14 @@ void* cc1D01(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C14CEE
 void* cc1D03(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(findInventorySpace2(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
+	setMainRegister(MainRegister(testPartyHasInventorySpace(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
 	return null;
 }
 
 /// $C14D24
 void* cc1D04(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(unknownC3E9F7(
+	setMainRegister(MainRegister(unknownC3E9F7(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -2874,7 +2874,7 @@ void* cc1D04(DisplayTextState* arg1, ubyte arg2) {
 /// $C14D93
 void* cc1D05(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(findItemInInventory2(
+	setMainRegister(MainRegister(testPartyHasItem(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -2908,27 +2908,27 @@ void* cc1A06(DisplayTextState* arg1, ubyte arg2) {
 	clearInstantPrinting();
 	createWindowN(currentFocusWindow);
 	windowTick();
-	setMainRegister(WorkingMemory(itemStoreSelection(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
+	setMainRegister(MainRegister(itemStoreSelection(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
 	setWindowFocus(currentFocusWindow);
 	return null;
 }
 
 /// $C14EF8
 void* cc1D0A(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(itemData[arg2 != 0 ? arg2 : cast(short)getSubRegister()].cost));
+	setMainRegister(MainRegister(itemData[arg2 != 0 ? arg2 : cast(short)getSubRegister()].cost));
 	return null;
 }
 
 /// $C14F33
 void* cc1D0B(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(itemData[arg2 != 0 ? arg2 : cast(short)getSubRegister()].cost / 2));
+	setMainRegister(MainRegister(itemData[arg2 != 0 ? arg2 : cast(short)getSubRegister()].cost / 2));
 	return null;
 }
 
 /// $C14F6F
 void* cc1F81(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(canCharacterEquip(
+	setMainRegister(MainRegister(canCharacterEquip(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -2948,7 +2948,7 @@ void* cc1C02(DisplayTextState* arg1, ubyte arg2) {
 /// $C15007
 void* cc1916(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1916Arguments);
-	setMainRegister(WorkingMemory(checkStatusGroup(
+	setMainRegister(MainRegister(checkStatusGroup(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getSubRegister())
 	)));
@@ -2958,7 +2958,7 @@ void* cc1916(DisplayTextState* arg1, ubyte arg2) {
 /// $C1506F
 void* cc1905(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1905Arguments);
-	setMainRegister(WorkingMemory(inflictStatusNonBattle(
+	setMainRegister(MainRegister(inflictStatusNonBattle(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getSubRegister()),
 		getCCParameters!ArgType(arg2).status
@@ -2969,7 +2969,7 @@ void* cc1905(DisplayTextState* arg1, ubyte arg2) {
 /// $C150E4
 void* cc1D0D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1905Arguments);
-	setMainRegister(WorkingMemory(checkStatusGroup(
+	setMainRegister(MainRegister(checkStatusGroup(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getSubRegister())) == getCCParameters!ArgType(arg2).status ? 1 : 0));
 	return null;
@@ -3000,7 +3000,7 @@ void* cc1C14(DisplayTextState* arg1, ubyte arg2) {
 			a = (currentAttacker.id == 2) ? 2 : 1;
 		}
 	}
-	setMainRegister(WorkingMemory(a));
+	setMainRegister(MainRegister(a));
 	return null;
 }
 
@@ -3029,7 +3029,7 @@ void* cc1C15(DisplayTextState* arg1, ubyte arg2) {
 			a = (currentTarget.id == 2) ? 2 : 1;
 		}
 	}
-	setMainRegister(WorkingMemory(a));
+	setMainRegister(MainRegister(a));
 	return null;
 }
 
@@ -3046,7 +3046,7 @@ void* cc1807(DisplayTextState* arg1, ubyte arg2) {
 	} else {
 		tmp = 2;
 	}
-	setMainRegister(WorkingMemory(tmp));
+	setMainRegister(MainRegister(tmp));
 	return null;
 }
 
@@ -3059,7 +3059,7 @@ void* cc1C0A(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C15384
 void* cc1918(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(getRequiredEXP(arg2.useVariableIfZero(getSubRegister()))));
+	setMainRegister(MainRegister(getRequiredEXP(arg2.useVariableIfZero(getSubRegister()))));
 	return null;
 }
 
@@ -3085,13 +3085,13 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C15529 - [18 08 XX] selection menu, no cancelling
 void* cc1808(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(unknownC19A11(arg2, 0)));
+	setMainRegister(MainRegister(unknownC19A11(arg2, 0)));
 	return null;
 }
 
 /// $C1554E - [18 09 XX] selection menu
 void* cc1809(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(unknownC19A11(arg2, 1)));
+	setMainRegister(MainRegister(unknownC19A11(arg2, 1)));
 	return null;
 }
 
@@ -3110,7 +3110,7 @@ void* cc1D0E(DisplayTextState* arg1, ubyte arg2) {
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	);
 	setSubRegister(getInventoryCount(character));
-	setMainRegister(WorkingMemory(character));
+	setMainRegister(MainRegister(character));
 	return null;
 }
 
@@ -3120,14 +3120,14 @@ void* cc1D0F(DisplayTextState* arg1, ubyte arg2) {
 	short character = getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer);
 	short slot = getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister());
 	setSubRegister(getCharacterItem(character, slot));
-	setMainRegister(WorkingMemory(removeItemFromInventory(character, slot)));
+	setMainRegister(MainRegister(removeItemFromInventory(character, slot)));
 	return null;
 }
 
 /// $C1575D
 void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(WorkingMemory(checkItemEquipped(
+	setMainRegister(MainRegister(checkItemEquipped(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -3138,7 +3138,7 @@ void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D11(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	short character = getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer);
-	setMainRegister(WorkingMemory(canCharacterEquip(character, getCharacterItem(character, getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())))));
+	setMainRegister(MainRegister(canCharacterEquip(character, getCharacterItem(character, getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())))));
 	return null;
 }
 
@@ -3170,7 +3170,7 @@ void* cc1D13(DisplayTextState* arg1, ubyte arg2) {
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	);
 	setSubRegister(getInventoryCount(character));
-	setMainRegister(WorkingMemory(character));
+	setMainRegister(MainRegister(character));
 	return null;
 }
 
@@ -3179,7 +3179,7 @@ void* cc1919(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	short character = getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer);
 	setSubRegister(getCharacterItem(character, getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())));
-	setMainRegister(WorkingMemory(character));
+	setMainRegister(MainRegister(character));
 	return null;
 }
 
@@ -3187,13 +3187,13 @@ void* cc1919(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D14(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
 	uint x06 = getCCParameters!ArgType(arg2);
-	setMainRegister(WorkingMemory((x06.useVariableIfZero(getSubRegister()) <= gameState.moneyCarried) ? 0 : 1));
+	setMainRegister(MainRegister((x06.useVariableIfZero(getSubRegister()) <= gameState.moneyCarried) ? 0 : 1));
 	return null;
 }
 
 /// $C15B0E
 void* cc191A(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(gameState.escargoExpressItems[(arg2 != 0 ? arg2 : getSubRegister()) - 1]));
+	setMainRegister(MainRegister(gameState.escargoExpressItems[(arg2 != 0 ? arg2 : getSubRegister()) - 1]));
 	return null;
 }
 
@@ -3222,13 +3222,13 @@ void* cc1C0C(DisplayTextState* arg1, ubyte arg2) {
 /// $C15BCA
 void* cc1D15(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	setMainRegister(WorkingMemory(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()) * getActivePartyCharacterCount()));
+	setMainRegister(MainRegister(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()) * getActivePartyCharacterCount()));
 	return null;
 }
 
 /// $C15C36
 void* cc191B(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(unknownC12BD5(arg2)));
+	setMainRegister(MainRegister(unknownC12BD5(arg2)));
 	return null;
 }
 
@@ -3253,7 +3253,7 @@ void* cc1D07(DisplayTextState* arg1, ubyte arg2) {
 	uint x06 = getCCParameters!ArgType(arg2);
 	uint amount = (x06 == 0) ? getSubRegister() : x06;
 	withdrawFromATM(amount);
-	setMainRegister(WorkingMemory(amount));
+	setMainRegister(MainRegister(amount));
 	return null;
 }
 
@@ -3261,7 +3261,7 @@ void* cc1D07(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D17(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
 	uint x06 = getCCParameters!ArgType(arg2);
-	setMainRegister(WorkingMemory(gameState.bankBalance > x06 ? 0 : 1));
+	setMainRegister(MainRegister(gameState.bankBalance > x06 ? 0 : 1));
 	return null;
 }
 
@@ -3308,7 +3308,7 @@ void* cc191C(DisplayTextState* arg1, ubyte arg2) {
 void* cc191D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC191DArguments);
 	short tmp = getCCParameters!ArgType(arg2).queuedItem.useVariableIfZero(getMainRegister().integer) - 1;
-	setMainRegister(WorkingMemory(gameState.deliveryQueueCharacter[tmp]));
+	setMainRegister(MainRegister(gameState.deliveryQueueCharacter[tmp]));
 	setSubRegister(gameState.deliveryQueueItem[tmp]);
 	if (getCCParameters!ArgType(arg2).remove != 0) {
 		gameState.deliveryQueueItem[tmp] = 0;
@@ -3325,13 +3325,13 @@ void* cc1D18(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C16143
 void* cc1921(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(getItemSubtype2(arg2.useVariableIfZero(getSubRegister()))));
+	setMainRegister(MainRegister(getItemSubtype2(arg2.useVariableIfZero(getSubRegister()))));
 	return null;
 }
 
 /// $C16172
 void* cc1D19(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory((gameState.playerControlledPartyMemberCount < (arg2.useVariableIfZero(getSubRegister()))) ? 1 : 0));
+	setMainRegister(MainRegister((gameState.playerControlledPartyMemberCount < (arg2.useVariableIfZero(getSubRegister()))) ? 1 : 0));
 	return null;
 }
 
@@ -3343,7 +3343,7 @@ void* cc1C12(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C161F0
 void* cc1D21(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(randMod(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
+	setMainRegister(MainRegister(randMod(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
 	return null;
 }
 
@@ -3371,7 +3371,7 @@ void* cc1FC0(DisplayTextState* arg1, ubyte arg2) {
 /// $C163A7
 void* cc1FD0(DisplayTextState* arg1, ubyte arg2) {
 	short item = unknownC3F1EC(arg2.useVariableIfZero(getSubRegister()));
-	setMainRegister(WorkingMemory(item != 0 ? getFixedVersionOfItem(item) : 0));
+	setMainRegister(MainRegister(item != 0 ? getFixedVersionOfItem(item) : 0));
 	setSubRegister(item);
 	return null;
 }
@@ -3666,14 +3666,14 @@ void* cc1FF2(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C16F9F
 void* cc1925(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(findCondiment(cast(short)(arg2 != 0 ? arg2 : getSubRegister()))));
+	setMainRegister(MainRegister(findCondiment(cast(short)(arg2 != 0 ? arg2 : getSubRegister()))));
 	return null;
 }
 
 /// $C16FD1
 void* cc1F23(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	setMainRegister(WorkingMemory(initBattleScripted(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
+	setMainRegister(MainRegister(initBattleScripted(getCCParameters!ArgType(arg2).useVariableIfZero(getSubRegister()))));
 	return null;
 }
 
@@ -3686,7 +3686,7 @@ void* cc1926(DisplayTextState* arg1, ubyte arg2) {
 /// $C17058
 void* cc1D0C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D0CArguments);
-	setMainRegister(WorkingMemory((unknownC190F1() != 0 ? 2 : 0) | ((itemData[partyCharacters[getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister()) - 1].items[getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer)]].flags & ItemFlags.unknown) != 0 ? 1 : 0)));
+	setMainRegister(MainRegister((unknownC190F1() != 0 ? 2 : 0) | ((itemData[partyCharacters[getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister()) - 1].items[getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer)]].flags & ItemFlags.unknown) != 0 ? 1 : 0)));
 	return null;
 }
 
@@ -3715,7 +3715,7 @@ void* cc1F04(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C17274 - [1D 24 XX] Display money earned since last call, resetting if XX is 2
 void* cc1D24(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(gameState.moneyEarnedSinceLastCall));
+	setMainRegister(MainRegister(gameState.moneyEarnedSinceLastCall));
 	if (arg2 == 2) {
 		gameState.moneyEarnedSinceLastCall = 0;
 	}
@@ -3730,7 +3730,7 @@ void* cc1F40(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C172DA - [1F 41 XX] Trigger special event
 void* cc1F41(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(WorkingMemory(triggerSpecialEvent(arg2)));
+	setMainRegister(MainRegister(triggerSpecialEvent(arg2)));
 	return null;
 }
 
@@ -3759,7 +3759,7 @@ void* cc1C13(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1C13Arguments);
 	if (getBlinkingPrompt() != 0) {
 		setMainRegister(
-			WorkingMemory(
+			MainRegister(
 				startEnemyOrAllyBattleAnimation(
 					cast(short)(getCCParameters!ArgType(arg2).allyAnimation - 1),
 					cast(short)(getCCParameters!ArgType(arg2).enemyAnimation - 1)
@@ -3845,7 +3845,7 @@ void* cc1D23(DisplayTextState* arg1, ubyte arg2) {
 			x06 = 0;
 			break;
 	}
-	setMainRegister(WorkingMemory(x06));
+	setMainRegister(MainRegister(x06));
 	return null;
 }
 
@@ -3940,7 +3940,7 @@ void* cc19Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x11:
 			return &cc1911;
 		case 0x14:
-			setMainRegister(WorkingMemory(gameState.escargoExpressItems[getLoopRegister() - 1]));
+			setMainRegister(MainRegister(gameState.escargoExpressItems[getLoopRegister() - 1]));
 			incrementLoopRegister();
 			break;
 		case 0x16:
@@ -3958,13 +3958,13 @@ void* cc19Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x1D:
 			return &cc191D;
 		case 0x1E:
-			setMainRegister(WorkingMemory(getCNum()));
+			setMainRegister(MainRegister(getCNum()));
 			break;
 		case 0x1F:
-			setMainRegister(WorkingMemory(getCItem()));
+			setMainRegister(MainRegister(getCItem()));
 			break;
 		case 0x20:
-			setMainRegister(WorkingMemory(gameState.playerControlledPartyMemberCount));
+			setMainRegister(MainRegister(gameState.playerControlledPartyMemberCount));
 			break;
 		case 0x21:
 			return &cc1921;
@@ -3995,7 +3995,7 @@ void* cc1ATree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x01:
 			return &cc1A01;
 		case 0x04:
-			setMainRegister(WorkingMemory(selectionMenu(0)));
+			setMainRegister(MainRegister(selectionMenu(0)));
 			resetCurrentWindowMenu();
 			break;
 		case 0x05:
@@ -4003,19 +4003,19 @@ void* cc1ATree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x06:
 			return &cc1A06;
 		case 0x07:
-			setMainRegister(WorkingMemory(unknownC19A43()));
+			setMainRegister(MainRegister(unknownC19A43()));
 			break;
 		case 0x08:
-			setMainRegister(WorkingMemory(selectionMenu(0)));
+			setMainRegister(MainRegister(selectionMenu(0)));
 			break;
 		case 0x09:
-			setMainRegister(WorkingMemory(selectionMenu(1)));
+			setMainRegister(MainRegister(selectionMenu(1)));
 			break;
 		case 0x0A:
-			setMainRegister(WorkingMemory(makePhoneCall()));
+			setMainRegister(MainRegister(makePhoneCall()));
 			break;
 		case 0x0B:
-			setMainRegister(WorkingMemory(selectPSITeleportDestination()));
+			setMainRegister(MainRegister(selectPSITeleportDestination()));
 			break;
 		default: break;
 	}
@@ -4047,7 +4047,7 @@ void* cc1BTree(DisplayTextState* arg1, ubyte arg2) {
 			break;
 		case 0x04:
 			uint value = getMainRegister().integer;
-			setMainRegister(WorkingMemory(getSubRegister()));
+			setMainRegister(MainRegister(getSubRegister()));
 			setSubRegister(value);
 			break;
 		case 0x05:
@@ -4179,7 +4179,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			if (ebStrcmp(getBattleTargetName(), getBattleAttackerName()) == 0) {
 				x14 = 1;
 			}
-			setMainRegister(WorkingMemory(x14));
+			setMainRegister(MainRegister(x14));
 			break;
 		case 0x21:
 			return &cc1D21;
@@ -4188,7 +4188,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) == SpecialGameState.exitMouseUsable) {
 				x14 = 1;
 			}
-			setMainRegister(WorkingMemory(x14));
+			setMainRegister(MainRegister(x14));
 			break;
 		case 0x23:
 			return &cc1D23;
@@ -4353,7 +4353,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x83:
 			return &cc1F83;
 		case 0x90:
-			setMainRegister(WorkingMemory(openPhoneMenu()));
+			setMainRegister(MainRegister(openPhoneMenu()));
 			break;
 		case 0xA0:
 			setGiftBoxState(1);
@@ -4362,7 +4362,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 			setGiftBoxState(0);
 			break;
 		case 0xA2:
-			setMainRegister(WorkingMemory(getActiveNPCFlagState()));
+			setMainRegister(MainRegister(getActiveNPCFlagState()));
 			break;
 		case 0xB0:
 			saveCurrentGame();
@@ -4372,7 +4372,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0xD0:
 			return &cc1FD0;
 		case 0xD1:
-			setMainRegister(WorkingMemory(getDistanceToMagicTruffle()));
+			setMainRegister(MainRegister(getDistanceToMagicTruffle()));
 			break;
 		case 0xD2:
 			return &cc1FD2;
@@ -4571,7 +4571,7 @@ const(ubyte)* displayText(const(ubyte)* script) {
 					ccFunction = &cc10;
 					break;
 				case 0x11: // creates a cancellable menu
-					setMainRegister(WorkingMemory(selectionMenu(1)));
+					setMainRegister(MainRegister(selectionMenu(1)));
 					resetCurrentWindowMenu();
 					break;
 				case 0x12: // clear current line
@@ -4884,7 +4884,7 @@ void openEquipSelectWindow(short arg1) {
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	setInstantPrinting();
 	createWindowN(Window.equipSelectItem);
-	printString(10, &miscTargetText[arg1][0]);
+	printString(miscTargetText[arg1].length, &miscTargetText[arg1][0]);
 	clearInstantPrinting();
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
@@ -5695,7 +5695,7 @@ short overworldUseItem(short character, short slot, short) {
 	setBattleAttackerName(&partyCharacters[character - 1].name[0], PartyCharacter.name.sizeof);
 	setCItem(item);
 	createWindowN(Window.textStandard);
-	setMainRegister(WorkingMemory(character));
+	setMainRegister(MainRegister(character));
 	setSubRegister(slot);
 	if (target != 0xFF) {
 		setBattleTargetName(&partyCharacters[target - 1].name[0], PartyCharacter.name.sizeof);
@@ -5976,7 +5976,7 @@ short attemptHomesickness() {
 /// $C1BEC6
 void getOffBicycleWithText() {
 	createWindowN(Window.textStandard);
-	setMainRegister(WorkingMemory(1));
+	setMainRegister(MainRegister(1));
 	displayText(getTextBlock("MSG_SYS_BICYCLE_OFF"));
 	closeFocusWindowN();
 	windowTick();

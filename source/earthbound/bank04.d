@@ -2826,13 +2826,19 @@ void createMenuOptionTable(short columns, short reservedColumns, short altSpacin
 	}
 }
 
-/// $C454F2
+/** The "To " string used for targetting in battles
+ * Original_Address: $(DOLLAR)C454F2
+ */
 immutable ubyte[3] battleToText = ebString!3("To ");
 
-/// $C454F5
+/** Text string used when trying to target the front row in battle
+ * Original_Address: $(DOLLAR)C454F5
+ */
 immutable ubyte[13] battleFrontRowText = ebString!13("the Front Row");
 
-/// $C45502
+/** Text string used when trying to target the back row in battle
+ * Original_Address: $(DOLLAR)C45502
+ */
 immutable ubyte[13] battleBackRowText = ebString!13("the Back Row");
 
 /** Pointers to data used in text CC [1C 01 XX] along with types and sizes
@@ -2942,58 +2948,99 @@ shared static this() {
 	];
 }
 
-/// $C4562F
-immutable ubyte[8] powersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];
+/** Bitmasks used to pack 8 event flags into bytes.
+ *
+ * Was this an actual table, or was it compiler-generated as an optimization?
+ * Original_Address: $(DOLLAR)C4562F
+ */
+immutable ubyte[8] eventFlagMasks = [
+	1 << 0,
+	1 << 1,
+	1 << 2,
+	1 << 3,
+	1 << 4,
+	1 << 5,
+	1 << 6,
+	1 << 7,
+];
 
-/// $C45637
-ubyte findItemInInventory(short arg1, short arg2) {
-	for (int i = 0; i < 14; i++) {
-		if (partyCharacters[arg1 - 1].items[i] == arg2) {
-			return cast(ubyte)arg1;
+/** Determines if a character is holding a specific item
+ * Params:
+ * 	character = The character whose inventory is being searched (PartyMember.ness, PartyMember.paula, PartyMember.jeff and PartyMember.poo are valid)
+ * 	item = The item to search for
+ * Returns: 0 if not found, character id if found
+ * Original_Address: $(DOLLAR)C45637
+ */
+ubyte testCharacterHasItem(short character, short item) {
+	for (short i = 0; i < PartyCharacter.items.length; i++) {
+		if (partyCharacters[character - 1].items[i] == item) {
+			return cast(ubyte)character;
 		}
 	}
 	return 0;
 }
 
-/// $C45683
-ubyte findItemInInventory2(short arg1, short arg2) {
-	if (arg1 == 0xFF) {
+/** Determines if the party or a specific character is holding a certain item
+ * Params:
+ * 	character = Character(s) whose inventory should be searched (Accepted values: PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo, PartyMember.all)
+ * 	item = Item to search for
+ * Returns: 0 if not found, character ID of party member with item otherwise
+ * Original_Address: $(DOLLAR)C45683
+ */
+ubyte testPartyHasItem(short character, short item) {
+	if (character == PartyMember.any) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			if (findItemInInventory(gameState.partyMembers[i], arg2) != 0) {
+			if (testCharacterHasItem(gameState.partyMembers[i], item) != 0) {
 				return gameState.partyMembers[i];
 			}
 		}
 		return 0;
 	} else {
-		return findItemInInventory(arg1, arg2);
+		return testCharacterHasItem(character, item);
 	}
 }
 
-/// $C456E4
-short findInventorySpace(short arg1) {
-	for (short i = 0; i < 14; i++) {
-		if (partyCharacters[arg1 - 1].items[i] == 0) {
-			return arg1;
+/** Determines if a character has inventory space
+ * Params:
+ * 	character = The character whose inventory is being tested (PartyMember.ness, PartyMember.paula, PartyMember.jeff and PartyMember.poo are valid)
+ * Returns: 0 if full, character ID otherwise
+ * Original_Address: $(DOLLAR)C456E4
+ */
+short testCharacterHasInventorySpace(short character) {
+	for (short i = 0; i < PartyCharacter.items.length; i++) {
+		if (partyCharacters[character - 1].items[i] == 0) {
+			return character;
 		}
 	}
 	return 0;
 }
 
-/// $C4577D
-short findInventorySpace2(short arg1) {
-	if (arg1 == 0xFF) {
+/** Determines if the party or a specific character has inventory space
+ * Params:
+ * 	character = Character(s) whose inventory is being tested (Accepted values: PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo, PartyMember.all)
+ * Returns: 0 if all full, character ID of first found party member with room otherwise
+ * Original_Address: $(DOLLAR)C4577D
+ */
+short testPartyHasInventorySpace(short character) {
+	if (character == PartyMember.any) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			if (findInventorySpace(gameState.partyMembers[i] != 0)) {
+			if (testCharacterHasInventorySpace(gameState.partyMembers[i] != 0)) {
 				return gameState.partyMembers[i];
 			}
 		}
 		return 0;
 	} else {
-		return findInventorySpace(arg1);
+		return testCharacterHasInventorySpace(character);
 	}
 }
 
-/// $C4577D
+/** Changes equipped weapon for character and recalculates stats
+ * Params:
+ * 	character = The character who is equipping the item (PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo are valid)
+ * 	slot = The item slot of the item being equipped
+ * Returns: The item previously equipped in this slot, if any
+ * Original_Address: $(DOLLAR)C4577D
+ */
 ubyte changeEquippedWeapon(ushort character, short slot) {
 	const oldWeapon = partyCharacters[character - 1].equipment[EquipmentSlot.weapon];
 	partyCharacters[character - 1].equipment[EquipmentSlot.weapon] = cast(ubyte)slot;
@@ -3003,7 +3050,13 @@ ubyte changeEquippedWeapon(ushort character, short slot) {
 	return oldWeapon;
 }
 
-/// $C457CA
+/** Changes equipped body gear for character and recalculates stats
+ * Params:
+ * 	character = The character who is equipping the item (PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo are valid)
+ * 	slot = The item slot of the item being equipped
+ * Returns: The item previously equipped in this slot, if any
+ * Original_Address: $(DOLLAR)C457CA
+ */
 ubyte changeEquippedBody(ushort character, short slot) {
 	const oldBody = partyCharacters[character - 1].equipment[EquipmentSlot.body];
 	partyCharacters[character - 1].equipment[EquipmentSlot.body] = cast(ubyte)slot;
@@ -3013,7 +3066,13 @@ ubyte changeEquippedBody(ushort character, short slot) {
 	return oldBody;
 }
 
-/// $C45815
+/** Changes equipped arm gear for character and recalculates stats
+ * Params:
+ * 	character = The character who is equipping the item (PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo are valid)
+ * 	slot = The item slot of the item being equipped
+ * Returns: The item previously equipped in this slot, if any
+ * Original_Address: $(DOLLAR)C45815
+ */
 ubyte changeEquippedArms(ushort character, short slot) {
 	const oldArms = partyCharacters[character - 1].equipment[EquipmentSlot.arms];
 	partyCharacters[character - 1].equipment[EquipmentSlot.arms] = cast(ubyte)slot;
@@ -3023,7 +3082,13 @@ ubyte changeEquippedArms(ushort character, short slot) {
 	return oldArms;
 }
 
-/// $C45860
+/** Changes equipped other gear for character and recalculates stats
+ * Params:
+ * 	character = The character who is equipping the item (PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo are valid)
+ * 	slot = The item slot of the item being equipped
+ * Returns: The item previously equipped in this slot, if any
+ * Original_Address: $(DOLLAR)C45860
+ */
 ubyte changeEquippedOther(ushort character, short slot) {
 	const oldOther = partyCharacters[character - 1].equipment[EquipmentSlot.other];
 	partyCharacters[character - 1].equipment[EquipmentSlot.other] = cast(ubyte)slot;
@@ -3033,7 +3098,9 @@ ubyte changeEquippedOther(ushort character, short slot) {
 	return oldOther;
 }
 
-/// $C458AB
+/** Bitmask of flags controlling usability of items by each character
+ * Original_Address: $(DOLLAR)C458AB
+ */
 immutable ubyte[4] itemUsableFlags = [
 	ItemFlags.nessCanUse,
 	ItemFlags.paulaCanUse,
@@ -3041,32 +3108,47 @@ immutable ubyte[4] itemUsableFlags = [
 	ItemFlags.pooCanUse,
 ];
 
-/// $C45860
-short checkStatusGroup(short arg1, short arg2) {
-	if (arg2 == 8) {
+/** Gets the status effect that the party or specific character are afflicted with in the given group
+ * Params:
+ * 	character = The character to check for afflictions (ignored for StatusGroups.party)
+ * 	group = The status group to check
+ * Returns: 0 if party member is absent, 1 if no affliction, 2+ if any afflictions
+ * Original_Address: $(DOLLAR)C45860
+ */
+short checkStatusGroup(short character, short group) {
+	if (group - 1 == StatusGroups.party) {
 		return gameState.partyStatus + 1;
 	}
-	if (unknownC2239D(arg1) != 0) {
-		return partyCharacters[arg1 - 1].afflictions[arg2 - 1] + 1;
+	if (testIfPartyMemberPresent(character) != 0) {
+		return partyCharacters[character - 1].afflictions[group - 1] + 1;
 	}
 	return 0;
 }
 
-/// $C458FE
-short inflictStatusNonBattle(short arg1, short arg2, short arg3) {
-	if (arg2 == 8) {
-		gameState.partyStatus = cast(ubyte)(arg3 - 1);
-		return arg1;
+/** Inflicts a status to the party or a single character outside of battle
+ * Params:
+ * 	character = The character to inflict (mostly ignored for StatusGroups.party)
+ * 	group = The status group to inflict
+ * 	effect = The status effect to inflict
+ * Returns: 0 if party member is absent, character ID otherwise
+ * Original_Address: $(DOLLAR)C458FE
+ */
+short inflictStatusNonBattle(short character, short group, short effect) {
+	if (group - 1 == StatusGroups.party) {
+		gameState.partyStatus = cast(ubyte)(effect - 1);
+		return character;
 	}
-	if (unknownC2239D(arg1) != 0) {
-		partyCharacters[arg1 - 1].afflictions[arg2 - 1] = cast(ubyte)(arg3 - 1);
+	if (testIfPartyMemberPresent(character) != 0) {
+		partyCharacters[character - 1].afflictions[group - 1] = cast(ubyte)(effect - 1);
 		unknownC3EE4D();
-		return arg1;
+		return character;
 	}
 	return 0;
 }
 
-/// $C45963
+/** Miscellaneous help text for targetting
+ * Original_Address: $(DOLLAR)C45963
+ */
 immutable ubyte[10][5] miscTargetText = [
 	ebString!10("Who?"),
 	ebString!10("Which?"),
@@ -3075,10 +3157,17 @@ immutable ubyte[10][5] miscTargetText = [
 	ebString!10("Where?"),
 ];
 
-/// $C4
+/** Caption text for the phone call menu
+ * Original_Address: $(DOLLAR)C45995
+ */
 immutable ubyte[5] phoneCallText = ebString!5("Call:");
 
-/// $C4599A
+/** Get EXP needed for the given character to level up
+ * Params:
+ * 	character = The character ID to check
+ * Returns: Difference between next level's needed EXP and current EXP, 0 if at max level
+ * Original_Address: $(DOLLAR)C4599A
+ */
 uint getRequiredEXP(short character) {
 	character--;
 	if (partyCharacters[character].level == maxLevel) {
@@ -3217,7 +3306,9 @@ immutable ushort[7][7] statusNamePalettes = [
 	]
 ];
 
+///
 immutable ubyte[35] psiInfoInstruction = ebString!35("@Press the -A- Button for PSI info.");
+///
 immutable ubyte[16][7] statusNamesGroup0 = [
 	ebString!16("Unconscious"),
 	ebString!16("Diamondized"),
@@ -3227,32 +3318,45 @@ immutable ubyte[16][7] statusNamesGroup0 = [
 	ebString!16("Sunstroke"),
 	ebString!16("Sniffling"),
 ];
+///
 immutable ubyte[16][2] statusNamesGroup1 = [
 	ebString!16("Mashroomized"),
 	ebString!16("Possessed"),
 ];
+///
 immutable ubyte[16][1] statusNamesGroup5 = [
 	ebString!16("Homesick"),
 ];
+///
 immutable ubyte[12] statusEquipWindowText7 = ebString!12("Stored Goods");
+///
 immutable ubyte[8] offenseEquip = ebString!8("Offense:");
+///
 immutable ubyte[8] defenseEquip = ebString!8("Defense:");
+///
 immutable ubyte[11][4] equipmentSlotNamesRightAligned = [
 	ebString!11("  Weapon"),
 	ebString!11("      Body"),
 	ebString!11("     Arms"),
 	ebString!11("     Other"),
 ];
+///
 immutable ubyte[8][4] equipmentSlotNames = [
 	ebString!8("Weapons"),
 	ebString!8("Body"),
 	ebString!8("Arms"),
 	ebString!8("Others"),
 ];
+///
 immutable ubyte[10] nothingEquipped = ebString!10("(Nothing) ");
+///
 immutable ubyte[5] statusEquipWindowText13 = ebString!5("None");
+///
 immutable ubyte[3] statusEquipWindowText14 = ebString!3("To:");
 
+/** Probabilities for homesickness, divided into 15 level segments. Expressed as fractions out of 256.
+ * Original_Address: $(DOLLAR)C45C8A
+ */
 immutable ubyte[6] homesicknessProbabilities = [
 	0,
 	100,
@@ -3320,38 +3424,56 @@ short checkIfPSIKnown(short character, short psi) {
 	return 0;
 }
 
-/// $C45F7B
-ushort randMod(ushort arg1) {
-	return cast(ubyte)(rand() % (arg1 + 1));
+/** Generates a random number from [0 to X]
+ *
+ * Note that this doesn't produce a discrete uniform distribution in most cases.
+ * All values below 256 % (X + 1) will be twice as likely as values above, so results will be unexpected for values of X that aren't powers of 2.
+ * Params:
+ * 	val = Upper limit for random numbers
+ * Returns: A random number between 0 and X
+ * Original_Address: $(DOLLAR)C45F7B
+ */
+ushort randMod(ushort val) {
+	return cast(ubyte)(rand() % (val + 1));
 }
-
+/** A matrix of directions, arranged top to bottom, left to right
+ * Original_Address: $(DOLLAR)C45F96
+ */
 immutable ushort[3][3] directionMatrix = [
 	[ Direction.upLeft, Direction.up, Direction.upRight ],
 	[ Direction.left, Direction.up, Direction.right ],
 	[ Direction.downLeft, Direction.down, Direction.downRight ],
 ];
 
-/// $C45FA8
-short getDirectionTo(short targetX, short targetY, short fromX, short fromY) {
-	short x02 = cast(short)(fromX - targetX);
-	short x0E = cast(short)(fromY - targetY);
-	short x;
-	if (x02 > 0) {
-		x = 0;
-	} else if (x02 == 0) {
-		x = 1;
-	} else {
-		x = 2;
+/** Gets the Direction that faces from point A to point B
+ * Params:
+ * 	targetX = Target X coordinate
+ * 	targetY = Target Y coordinate
+ * 	originX = Origin X coordinate
+ * 	originY = Origin Y coordinate
+ * Returns: A Direction to face
+ * Original_Address: $(DOLLAR)C45FA8
+ */
+short getDirectionTo(short targetX, short targetY, short originX, short originY) {
+	short xDiff = cast(short)(originX - targetX);
+	short yDiff = cast(short)(originY - targetY);
+	short dirColumn;
+	if (xDiff > 0) { // left
+		dirColumn = 0;
+	} else if (xDiff == 0) { // same column
+		dirColumn = 1;
+	} else { // right
+		dirColumn = 2;
 	}
-	short x10;
-	if (x0E > 0) {
-		x10 = 0;
-	} else if (x0E == 0) {
-		x10 = 1;
-	} else {
-		x10 = 2;
+	short dirRow;
+	if (yDiff > 0) { // above
+		dirRow = 0;
+	} else if (yDiff == 0) { // same row
+		dirRow = 1;
+	} else { // below
+		dirRow = 2;
 	}
-	return directionMatrix[x10][x];
+	return directionMatrix[dirRow][dirColumn];
 }
 
 /// $C46028

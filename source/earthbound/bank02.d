@@ -730,7 +730,7 @@ void updateHPPPMeterTiles() {
 /// $C21628
 short getEventFlag(short flag) {
 	flag--;
-	if ((powersOfTwo8Bit[flag % 8] & eventFlags[flag / 8]) != 0) {
+	if ((eventFlagMasks[flag % 8] & eventFlags[flag / 8]) != 0) {
 		return 1;
 	}
 	return 0;
@@ -741,9 +741,9 @@ short setEventFlag(short flag, short value) {
 	debug(printTextTrace) tracef("Setting event flag %s: %s", cast(EventFlag)flag, value);
 	flag--;
 	if (value == 1) {
-		eventFlags[flag / 8] |= powersOfTwo8Bit[flag % 8];
+		eventFlags[flag / 8] |= eventFlagMasks[flag % 8];
 	} else {
-		eventFlags[flag / 8] &= (powersOfTwo8Bit[flag % 8] ^ 0xFF);
+		eventFlags[flag / 8] &= (eventFlagMasks[flag % 8] ^ 0xFF);
 	}
 	return eventFlags[flag / 8];
 }
@@ -781,7 +781,7 @@ void unknownC216DB() {
 		}
 	}
 	if (x18 != 0) {
-		if (unknownC2239D(itemData[x18].parameters.strength) != 0) {
+		if (testIfPartyMemberPresent(itemData[x18].parameters.strength) != 0) {
 			return;
 		}
 		removeCharFromParty(PartyMember.teddyBear);
@@ -967,7 +967,7 @@ short getInventoryCount(short character) {
 }
 
 /// $C2239D
-short unknownC2239D(short id) {
+short testIfPartyMemberPresent(short id) {
 	for (short i = 0; i < gameState.partyCount; i++) {
 		if (gameState.partyMembers[i] == id) {
 			return id;
@@ -4460,7 +4460,7 @@ void battleActionSpy() {
 	if (currentTarget.brainshockResist == 0xFF) {
 		displayInBattleText(getTextBlock("MSG_BTL_CHECK_BRAIN_LEVEL_3"));
 	}
-	if ((currentTarget.side == BattleSide.foes) && (findInventorySpace2(3) != 0) && (itemDropped != 0)) {
+	if ((currentTarget.side == BattleSide.foes) && (testPartyHasInventorySpace(PartyMember.jeff) != 0) && (itemDropped != 0)) {
 		setCItemF(itemDropped);
 		displayInBattleText(getTextBlock("MSG_BTL_CHECK_PRESENT_GET"));
 		itemDropped = 0;
@@ -5144,7 +5144,7 @@ void psiThunderCommon(short baseDamage, short strikes) {
 				windowTick();
 			}
 			currentTarget.useAltSpritemap = 0;
-			if ((currentTarget.side == BattleSide.friends) && (findItemInInventory2(currentTarget.row, ItemID.franklinBadge) != 0)) {
+			if ((currentTarget.side == BattleSide.friends) && (testPartyHasItem(currentTarget.row, ItemID.franklinBadge) != 0)) {
 				displayInBattleText(getTextBlock("MSG_BTL_FRANKLIN_TURN"));
 				damageIsReflected = 1;
 				swapAttackerWithTarget();

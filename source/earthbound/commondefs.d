@@ -3919,6 +3919,7 @@ enum PartyMember {
 	teddyBear = 16,
 	plushTeddyBear = 17,
 	leader = 0xFF,
+	any = 0xFF,
 }
 ///
 enum NPCType {
@@ -5112,6 +5113,7 @@ enum StatusGroups {
 	Concentration = 4,
 	Homesickness = 5,
 	Shield = 6,
+	party = 7,
 }
 ///
 enum AnimationFlags : ubyte {
@@ -6279,10 +6281,10 @@ struct WinStat {
 	ubyte numPadding; /// [12]
 	ushort tileAttributes; /// [13]
 	short font; /// [15]
-	@skip WorkingMemory mainRegister; /// [17]
+	@skip MainRegister mainRegister; /// [17]
 	uint subRegister; /// [1B]
 	ushort loopRegister; /// [1F]
-	@skip WorkingMemory mainRegisterBackup; /// [21]
+	@skip MainRegister mainRegisterBackup; /// [21]
 	uint subRegisterBackup; /// [25]
 	ushort loopRegisterBackup; /// [29]
 	short currentOption; /// [2B]
@@ -7179,7 +7181,7 @@ union CCArgStorage {
 	ubyte[10] raw; ///
 }
 ///
-union WorkingMemory {
+union MainRegister {
 	uint integer; ///
 	void* pointer; ///
 }

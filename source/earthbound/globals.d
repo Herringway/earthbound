@@ -2118,7 +2118,7 @@ __gshared ushort ccArgumentGatheringLoopCounter;
 /** Backup of a script's main register
  * Original_Address: $(DOLLAR)97CC
  */
-__gshared WorkingMemory textMainRegisterBackup;
+__gshared MainRegister textMainRegisterBackup;
 /** Backup of a script's sub register
  * Original_Address: $(DOLLAR)97D0
  */
