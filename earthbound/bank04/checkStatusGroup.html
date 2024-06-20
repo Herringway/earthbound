@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function checkStatusGroup</h1><p>$C45860
+			<h1>Function checkStatusGroup</h1><p>Gets the status effect that the party or specific character are afflicted with in the given group
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,30 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">short</span> <span class="pln">checkStatusGroup</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">group</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> The character to check for afflictions (ignored for StatusGroups.party)</td></tr>
+<tr><td id="group">group</td><td> The status group to check</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 if party member is absent, 1 if no affliction, 2+ if any afflictions
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C45860
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

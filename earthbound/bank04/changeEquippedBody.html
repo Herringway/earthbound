@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function changeEquippedBody</h1><p>$C457CA
+			<h1>Function changeEquippedBody</h1><p>Changes equipped body gear for character and recalculates stats
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,7 +166,21 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> The character who is equipping the item (PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo are valid)</td></tr>
+<tr><td id="slot">slot</td><td> The item slot of the item being equipped</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The item previously equipped in this slot, if any
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C457CA
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -497,7 +497,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="changeEquippedArms" class="public" href="../earthbound/bank04/changeEquippedArms.html">changeEquippedArms</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
-						<td>$C45815
+						<td>Changes equipped arm gear for character and recalculates stats
 </td>
 					</tr>
 					<tr>
@@ -506,7 +506,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="changeEquippedBody" class="public" href="../earthbound/bank04/changeEquippedBody.html">changeEquippedBody</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
-						<td>$C457CA
+						<td>Changes equipped body gear for character and recalculates stats
 </td>
 					</tr>
 					<tr>
@@ -515,7 +515,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="changeEquippedOther" class="public" href="../earthbound/bank04/changeEquippedOther.html">changeEquippedOther</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
-						<td>$C45860
+						<td>Changes equipped other gear for character and recalculates stats
 </td>
 					</tr>
 					<tr>
@@ -524,7 +524,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="changeEquippedWeapon" class="public" href="../earthbound/bank04/changeEquippedWeapon.html">changeEquippedWeapon</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
-						<td>$C4577D
+						<td>Changes equipped weapon for character and recalculates stats
 </td>
 					</tr>
 					<tr>
@@ -602,10 +602,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="checkStatusGroup" class="public" href="../earthbound/bank04/checkStatusGroup.html">checkStatusGroup</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="checkStatusGroup" class="public" href="../earthbound/bank04/checkStatusGroup.html">checkStatusGroup</a><span class="tableEntryAnnotation">(character, group)</span>
 							</code>
 						</td>
-						<td>$C45860
+						<td>Gets the status effect that the party or specific character are afflicted with in the given group
 </td>
 					</tr>
 					<tr>
@@ -1241,42 +1241,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="findInventorySpace" class="public" href="../earthbound/bank04/findInventorySpace.html">findInventorySpace</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C456E4
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="findInventorySpace2" class="public" href="../earthbound/bank04/findInventorySpace2.html">findInventorySpace2</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C4577D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="findItemInInventory" class="public" href="../earthbound/bank04/findItemInInventory.html">findItemInInventory</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C45637
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="findItemInInventory2" class="public" href="../earthbound/bank04/findItemInInventory2.html">findItemInInventory2</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C45683
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="findMapObject" class="public" href="../earthbound/bank04/findMapObject.html">findMapObject</a><span class="tableEntryAnnotation">(direction)</span>
 							</code>
 						</td>
@@ -1520,10 +1484,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getDirectionTo" class="public" href="../earthbound/bank04/getDirectionTo.html">getDirectionTo</a><span class="tableEntryAnnotation">(targetX, targetY, fromX, fromY)</span>
+								<a id="getDirectionTo" class="public" href="../earthbound/bank04/getDirectionTo.html">getDirectionTo</a><span class="tableEntryAnnotation">(targetX, targetY, originX, originY)</span>
 							</code>
 						</td>
-						<td>$C45FA8
+						<td>Gets the Direction that faces from point A to point B
 </td>
 					</tr>
 					<tr>
@@ -1568,7 +1532,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getRequiredEXP" class="public" href="../earthbound/bank04/getRequiredEXP.html">getRequiredEXP</a><span class="tableEntryAnnotation">(character)</span>
 							</code>
 						</td>
-						<td>$C4599A
+						<td>Get EXP needed for the given character to level up
 </td>
 					</tr>
 					<tr>
@@ -1637,10 +1601,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="inflictStatusNonBattle" class="public" href="../earthbound/bank04/inflictStatusNonBattle.html">inflictStatusNonBattle</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="inflictStatusNonBattle" class="public" href="../earthbound/bank04/inflictStatusNonBattle.html">inflictStatusNonBattle</a><span class="tableEntryAnnotation">(character, group, effect)</span>
 							</code>
 						</td>
-						<td>$C458FE
+						<td>Inflicts a status to the party or a single character outside of battle
 </td>
 					</tr>
 					<tr>
@@ -2384,10 +2348,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="randMod" class="public" href="../earthbound/bank04/randMod.html">randMod</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="randMod" class="public" href="../earthbound/bank04/randMod.html">randMod</a><span class="tableEntryAnnotation">(val)</span>
 							</code>
 						</td>
-						<td>$C45F7B
+						<td>Generates a random number from [0 to X]
 </td>
 					</tr>
 					<tr>
@@ -2866,6 +2830,42 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Translates a battler table index into a target for a battler
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testCharacterHasInventorySpace" class="public" href="../earthbound/bank04/testCharacterHasInventorySpace.html">testCharacterHasInventorySpace</a><span class="tableEntryAnnotation">(character)</span>
+							</code>
+						</td>
+						<td>Determines if a character has inventory space
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testCharacterHasItem" class="public" href="../earthbound/bank04/testCharacterHasItem.html">testCharacterHasItem</a><span class="tableEntryAnnotation">(character, item)</span>
+							</code>
+						</td>
+						<td>Determines if a character is holding a specific item
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testPartyHasInventorySpace" class="public" href="../earthbound/bank04/testPartyHasInventorySpace.html">testPartyHasInventorySpace</a><span class="tableEntryAnnotation">(character)</span>
+							</code>
+						</td>
+						<td>Determines if the party or a specific character has inventory space
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testPartyHasItem" class="public" href="../earthbound/bank04/testPartyHasItem.html">testPartyHasItem</a><span class="tableEntryAnnotation">(character, item)</span>
+							</code>
+						</td>
+						<td>Determines if the party or a specific character is holding a certain item
 </td>
 					</tr>
 					<tr>
@@ -3394,7 +3394,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C45502
+						<td>Text string used when trying to target the back row in battle
 </td>
 					</tr>
 					<tr>
@@ -3406,7 +3406,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C454F5
+						<td>Text string used when trying to target the front row in battle
 </td>
 					</tr>
 					<tr>
@@ -3442,7 +3442,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C454F2
+						<td>The "To " string used for targetting in battles
 </td>
 					</tr>
 					<tr>
@@ -3539,6 +3539,29 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/BattleActions.html"><span class="typ">BattleActions</span></a><span class="pun">[</span><span class="lit">33</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>A list of battle actions that don't ignore or force retargetting when targetted at the dead
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="defenseEquip" class="public" href="../earthbound/bank04/defenseEquip.html">
+								<code>defenseEquip</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="directionMatrix" class="public" href="../earthbound/bank04/directionMatrix.html">
+								<code>directionMatrix</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>A matrix of directions, arranged top to bottom, left to right
 </td>
 					</tr>
 					<tr>
@@ -3771,6 +3794,40 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="equipmentSlotNames" class="public" href="../earthbound/bank04/equipmentSlotNames.html">
+								<code>equipmentSlotNames</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="equipmentSlotNamesRightAligned" class="public" href="../earthbound/bank04/equipmentSlotNamesRightAligned.html">
+								<code>equipmentSlotNamesRightAligned</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="eventFlagMasks" class="public" href="../earthbound/bank04/eventFlagMasks.html">
+								<code>eventFlagMasks</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Bitmasks used to pack 8 event flags into bytes.
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="evtPrayOvalWindow" class="public" href="../earthbound/bank04/evtPrayOvalWindow.html">
 								<code>evtPrayOvalWindow</code>
 							</a>
@@ -3867,6 +3924,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="homesicknessProbabilities" class="public" href="../earthbound/bank04/homesicknessProbabilities.html">
+								<code>homesicknessProbabilities</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Probabilities for homesickness, divided into 15 level segments. Expressed as fractions out of 256.
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="itemUsableFlags" class="public" href="../earthbound/bank04/itemUsableFlags.html">
 								<code>itemUsableFlags</code>
 							</a>
@@ -3874,7 +3943,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C458AB
+						<td>Bitmask of flags controlling usability of items by each character
 </td>
 					</tr>
 					<tr>
@@ -3946,8 +4015,30 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C45963
+						<td>Miscellaneous help text for targetting
 </td>
+					</tr>
+					<tr>
+						<td>
+							<a id="nothingEquipped" class="public" href="../earthbound/bank04/nothingEquipped.html">
+								<code>nothingEquipped</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="offenseEquip" class="public" href="../earthbound/bank04/offenseEquip.html">
+								<code>offenseEquip</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>
@@ -4006,7 +4097,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4
+						<td>Caption text for the phone call menu
 </td>
 					</tr>
 					<tr>
@@ -4035,15 +4126,14 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="powersOfTwo8Bit" class="public" href="../earthbound/bank04/powersOfTwo8Bit.html">
-								<code>powersOfTwo8Bit</code>
+							<a id="psiInfoInstruction" class="public" href="../earthbound/bank04/psiInfoInstruction.html">
+								<code>psiInfoInstruction</code>
 							</a>
 						</td>
 						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">35</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4562F
-</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>
@@ -4167,6 +4257,39 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="statusEquipWindowText13" class="public" href="../earthbound/bank04/statusEquipWindowText13.html">
+								<code>statusEquipWindowText13</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusEquipWindowText14" class="public" href="../earthbound/bank04/statusEquipWindowText14.html">
+								<code>statusEquipWindowText14</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusEquipWindowText7" class="public" href="../earthbound/bank04/statusEquipWindowText7.html">
+								<code>statusEquipWindowText7</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">12</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
 							<a id="statusIcons" class="public" href="../earthbound/bank04/statusIcons.html">
 								<code>statusIcons</code>
 							</a>
@@ -4200,6 +4323,39 @@ $('#symbolSearchPane').show();</script>
 						</td>
 						<td>Palette IDs used for the name-highlighting effect in the HP/PP windows, defined per-status
 </td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusNamesGroup0" class="public" href="../earthbound/bank04/statusNamesGroup0.html">
+								<code>statusNamesGroup0</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusNamesGroup1" class="public" href="../earthbound/bank04/statusNamesGroup1.html">
+								<code>statusNamesGroup1</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a id="statusNamesGroup5" class="public" href="../earthbound/bank04/statusNamesGroup5.html">
+								<code>statusNamesGroup5</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>

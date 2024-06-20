@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function randMod</h1><p>$C45F7B
+			<h1>Function randMod</h1><p>Generates a random number from [0 to X]
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +157,31 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ushort</span> <span class="pln">randMod</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">val</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Note that this doesn't produce a discrete uniform distribution in most cases.
+ All values below 256 % (X + 1) will be twice as likely as values above, so results will be unexpected for values of X that aren't powers of 2.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="val">val</td><td> Upper limit for random numbers</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A random number between 0 and X
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C45F7B
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

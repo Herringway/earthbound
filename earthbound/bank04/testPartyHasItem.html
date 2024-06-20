@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function findItemInInventory</title>
+		<title>Function testPartyHasItem</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,24 +149,38 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function findItemInInventory</h1><p>$C45637
+			<h1>Function testPartyHasItem</h1><p>Determines if the party or a specific character is holding a certain item
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">ubyte</span> <span class="pln">findItemInInventory</span>
+			<span class="typ">ubyte</span> <span class="pln">testPartyHasItem</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">item</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> Character(s) whose inventory should be searched (Accepted values: PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo, PartyMember.all)</td></tr>
+<tr><td id="item">item</td><td> Item to search for</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 if not found, character ID of party member with item otherwise
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C45683
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

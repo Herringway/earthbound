@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable itemUsableFlags</title>
+		<title>Function testCharacterHasItem</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,19 +149,35 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable itemUsableFlags</h1><p>Bitmask of flags controlling usability of items by each character
+			<h1>Function testCharacterHasItem</h1><p>Determines if a character is holding a specific item
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span> <span class="pln">itemUsableFlags</span>
-			 <span class="pun">=</span> <span class="pun">[</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">1u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">2u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">4u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">8u</span><span class="pun">]</span><span class="pun">;</span>
+			<span class="typ">ubyte</span> <span class="pln">testCharacterHasItem</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">item</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Original Address</h2>
-<p>C458AB
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> The character whose inventory is being searched (PartyMember.ness, PartyMember.paula, PartyMember.jeff and PartyMember.poo are valid)</td></tr>
+<tr><td id="item">item</td><td> The item to search for</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 if not found, character id if found
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C45637
 </p>
 </section>
 

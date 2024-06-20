@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function findInventorySpace</title>
+		<title>Function testPartyHasInventorySpace</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,22 +149,35 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function findInventorySpace</h1><p>$C456E4
+			<h1>Function testPartyHasInventorySpace</h1><p>Determines if the party or a specific character has inventory space
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">findInventorySpace</span>
+			<span class="typ">short</span> <span class="pln">testPartyHasInventorySpace</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">character</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="character">character</td><td> Character(s) whose inventory is being tested (Accepted values: PartyMember.ness, PartyMember.paula, PartyMember.jeff, PartyMember.poo, PartyMember.all)</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>0 if all full, character ID of first found party member with room otherwise
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4577D
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
