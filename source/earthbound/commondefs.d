@@ -5710,10 +5710,16 @@ enum ActionScriptState {
 }
 ///
 enum TextSoundMode {
-	unknown0 = 0, ///
-	unknown1 = 1, /// Default
-	unknown2 = 2, ///
-	unknown3 = 3, ///
+	normal = 0, /// Only play text sounds with the normal text prompt mode
+	default_ = 1, /// Same as normal?
+	always = 2, /// Always play text sounds
+	never = 3, /// Never play text sounds
+}
+///
+enum TextPromptMode {
+	normal = 0, /// Enables all prompts
+	fast1 = 1, /// Disables prompts except for @FKEY, skips drawing start-of-line characters
+	fast2 = 2, /// Disables prompts except for @FKEY
 }
 /// The various states of bubble monkey movement
 enum BubbleMonkeyMode {
@@ -6152,6 +6158,7 @@ enum PSI {
 	teleportBeta = 52,
 	none2 = 53,
 }
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -6234,12 +6241,12 @@ struct PartyCharacter {
 	ubyte[14] items; ///
 	ubyte[4] equipment; ///
 	ushort characterID; ///
-	ushort unknown55; ///
-	ushort unknown57; ///
-	ushort unknown59; ///
+	ushort lastWalkingStyle; /// Previous walking style, used to detect transitions from one style to another
+	ushort unused57; /// Not used, always 0
+	ushort entitySlot; /// Active entity slot for party character
 	ushort positionIndex; ///
-	ushort unknown63; ///
-	ushort unknown65; ///
+	ushort unused63; /// Not used, always 0
+	ushort walkingStyle; /// Current walking style. Not really used for anything, though
 	RollingStat hp; ///
 	RollingStat pp; ///
 	ushort hpPPWindowOptions; ///
@@ -6254,7 +6261,7 @@ struct PartyCharacter {
 	ubyte boostedVitality; ///
 	ubyte boostedIQ; ///
 	ubyte boostedLuck; ///
-	short unknown92; /// unused? always -1
+	short unused92; /// unused? always -1
 	ubyte isAutoHealed; ///
 }
 ///
@@ -6342,7 +6349,7 @@ struct PlayerPositionBufferEntry {
 	short tileFlags; ///
 	short walkingStyle; ///
 	short direction; ///
-	short unknown10; ///
+	short unused10; /// Not used, always 0
 }
 ///
 struct MovementSpeeds {
@@ -6391,8 +6398,7 @@ struct OverworldSpriteGraphics {
 ///
 struct Battler {
 	short id; ///0
-	ubyte sprite; ///2
-	ubyte unknown3; ///3
+	ushort sprite; ///2
 	ushort currentAction; ///4
 	ubyte actionOrderVar; ///6
 	ubyte actionItemSlot; ///7
@@ -6438,9 +6444,8 @@ struct Battler {
 	ubyte vramSpriteIndex; ///
 	ubyte spriteX; ///
 	ubyte spriteY; ///
-	ubyte initiative; ///
-	ubyte unknown71; ///
-	ubyte unknown72; ///
+	ushort initiative; ///
+	ubyte spriteBlinkFrames; /// While non-zero, the sprite will not be drawn every other 3 frames (ie drawn, drawn, drawn, not drawn, not drawn, not drawn, repeating)
 	ubyte enemyAttackFlashFrames; /// Frames left for the enemy attacking flash effect
 	ubyte isFlashing; ///
 	ubyte useAltSpritemap; ///
@@ -6601,7 +6606,7 @@ struct WindowTextAttributesCopy {
 	ubyte numberPadding; ///
 	short currTileAttributes; ///
 	short font; ///
-	ubyte[10] unknown11; ///
+	ubyte[10] unused11; /// Not used?
 }
 ///
 struct DMAQueueEntry {
@@ -6709,20 +6714,11 @@ struct SpriteMapTemplates {
 	SpriteMap[2][] spriteMapTemplates; ///
 }
 ///
-struct UnknownC42B0DSubEntry {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ubyte unknown2; ///
-	ubyte unknown3; ///
-	ubyte unknown4; ///
-}
-
-///
 struct CharacterInitialEntityDataEntry {
 	ushort overworldSprite; ///
 	ushort lostUnderworldSprite; ///
 	ushort actionScript; ///
-	ushort unknown6; ///
+	ushort initialEntitySlot; /// The expected entity slot that the character is expected to occupy. WARNING: the game makes no attempt to verify this!
 }
 ///
 struct AnimatedBackground {
@@ -6978,8 +6974,8 @@ struct DisplayTextState {
 struct DoorObject {
 	string textPtr; /// 0
 	ushort eventFlag; /// 4
-	ushort unknown6; /// 6
-	ushort unknown8; /// 8
+	ushort destY; /// Y pixel destination - Upper 2 bits are a direction, see earthbound.bank03.transitionDirections for values
+	ushort destX; /// X pixel destination
 	ubyte transitionStyle; /// 10
 }
 /// Data for switch objects on the overworld map
@@ -7005,42 +7001,42 @@ union MapObjectPtr {
 }
 ///
 struct MapObject {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
+	ubyte y; /// Y coordinate in pixels, relative to the sector's upper left corner
+	ubyte x; /// X coordinate in pixels, relative to the sector's upper left corner
 	ubyte type; ///
 	MapObjectPtr doorPtr; ///
 	///
 	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorObject)* a) {
-		unknown0 = u0;
-		unknown1 = u1;
+		y = u0;
+		x = u1;
 		type = t;
 		doorPtr.door = a;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, immutable(SwitchObject)* b) {
-		unknown0 = u0;
-		unknown1 = u1;
+		y = u0;
+		x = u1;
 		type = t;
 		doorPtr.mapSwitch = b;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, immutable(MapObjectObject)* c) {
-		unknown0 = u0;
-		unknown1 = u1;
+		y = u0;
+		x = u1;
 		type = t;
 		doorPtr.object = c;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, ushort u3) {
-		unknown0 = u0;
-		unknown1 = u1;
+		y = u0;
+		x = u1;
 		type = t;
 		doorPtr.direction = u3;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, typeof(null)) {
-		unknown0 = u0;
-		unknown1 = u1;
+		y = u0;
+		x = u1;
 		type = t;
 	}
 }
@@ -7071,12 +7067,13 @@ struct TeleportDestination {
 	ubyte screenTransition; ///5
 	ushort unknown6; ///6
 }
-///
-struct UnknownC08F98Entry {
-	ushort unknown0; ///0
-	ushort unknown2; ///2
-	ushort unknown4; ///4
-	ushort unknown6; ///6
+
+/// DMA parameters for partial/full palette updating. Not really used in this port
+struct PaletteDMAParameters {
+	short unused; /// Unknown, not used
+	ushort length; /// Length of data to copy
+	ushort source; /// Source address
+	ushort dest; /// Destination CGRAM address
 }
 ///
 struct OverlayScript {
@@ -7209,12 +7206,6 @@ struct CreditsDMAQueueEntry {
 	ushort address; ///
 }
 ///
-struct Unknown7EAEFCEntry {
-	short unknown0; ///
-	short unknown2; ///
-	short unknown4; ///
-}
-///
 struct TelephoneContact {
 	ubyte[25] title; ///
 	ushort eventFlag; ///
@@ -7313,12 +7304,12 @@ struct ActionLoopCallState {
 ///
 struct SoundStoneMelodyState {
 	short playbackState; /// Not present, present but not playing, or present and playing
-	short unknown2; ///
-	short unknown4; ///
+	short orbitAdjustmentFramesLeft; /// Frames left before updating the position of the orbiting sprites
+	short orbitSpriteFrame; /// Which frame of the orbit sprite to use (multiplied by 2)
 	short soundStoneOrbitSpriteFrame; /// An index for soundStoneFlyingSpriteDistances
 	short soundStoneOrbitSpritePosition1; ///
 	short soundStoneOrbitSpritePosition2; ///
-	short unknown12; ///
+	short unused12; ///
 }
 ///
 struct Hotspot {

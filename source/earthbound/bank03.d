@@ -245,7 +245,12 @@ immutable short[16][3] mushroomizationDirectionRemapTables = [
 ];
 
 /// $C3E1D8
-immutable short[4] unknownC3E1D8 = [4, 0, 2, 6];
+immutable short[4] transitionDirections = [
+	Direction.down,
+	Direction.up,
+	Direction.right,
+	Direction.left
+];
 
 /// $C3E1E0
 //wonder what this is...?
@@ -299,7 +304,11 @@ immutable short[4] staircaseEndOffsetY = [
 	StairDirection.downRight >> 8: 0
 ];
 
-/// $C3E230
+/** Number of pixels to adjust the X position by for each direction when attempting to interact with something
+ *
+ * Note: Left is hardcoded to adjust the position by an additional -1 for people, for...some reason?
+ * Original_Address: $(DOLLAR)C3E230
+ */
 immutable short[8] interactXOffsets = [
 	Direction.up: 0,
 	Direction.upRight: 1,
@@ -311,7 +320,9 @@ immutable short[8] interactXOffsets = [
 	Direction.upLeft: -1
 ];
 
-/// $C3E240
+/** Number of pixels to adjust the Y position by for each direction when attempting to interact with something
+ * Original_Address: $(DOLLAR)C3E240
+ */
 immutable short[8] interactYOffsets = [
 	Direction.up: -1,
 	Direction.upRight: -1,
@@ -323,14 +334,16 @@ immutable short[8] interactYOffsets = [
 	Direction.upLeft: -1
 ];
 
+// make room for another text speed in configurable builds
 version(configurable) {
 	enum textSpeedWindow = WindowConfig(0x0003, 0x000E, 0x0010, 0x000C);
 } else {
 	enum textSpeedWindow = WindowConfig(0x0003, 0x000E, 0x0010, 0x000A);
-
 }
 
-/// $C3E250
+/** Predefined dimensions for each text window
+ * Original_Address: $(DOLLAR)C3E250
+ */
 immutable WindowConfig[53] windowConfigurationTable = [
 	Window.unknown00: WindowConfig(0x0001, 0x0001, 0x000D, 0x0008),
 	Window.textStandard: WindowConfig(0x000C, 0x0001, 0x0013, 0x0008),
@@ -439,12 +452,16 @@ void unknownC3E450() {
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C3E4CA - Clear the instant text print flag
+/** Clear the instant text print flag
+ * Original_Address: $(DOLLAR)C3E4CA
+ */
 void clearInstantPrinting() {
 	instantPrinting = 0;
 }
 
-/// $C3E4D4 - Set the instant text print flag
+/** Set the instant text print flag
+ * Original_Address: $(DOLLAR)C3E4D4
+ */
 void setInstantPrinting() {
 	instantPrinting = 1;
 }
@@ -575,7 +592,7 @@ void printBattlerArticle(short target) {
 /** Resets a window's menu state and frees up its menu options
  * Params:
  * 	window = A currently-open window ID
- * $(DOLLAR)C3E7E3
+ * Original_Address: $(DOLLAR)C3E7E3
  */
 void resetWindowMenu(short window) {
 	if (window == Window.invalid) {

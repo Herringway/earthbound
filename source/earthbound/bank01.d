@@ -19,39 +19,53 @@ import earthbound.text;
 import core.stdc.string;
 import std.logger;
 
-/// $C10000
-void unknownC10000() {
-	hideHPPPWindows();
-}
-
-/// $C10004
-void displayInteractionText(const(ubyte)* arg1) {
+/** Displays text for interactions.
+ *
+ * In addition to displaying the text, this also freezes entities until the script is done and waits for any fading entities to disappear.
+ * Params:
+ * 	script = Text script to display
+ * Original_Address: $(DOLLAR)C10004
+ */
+void displayInteractionText(const(ubyte)* script) {
 	freezeEntities();
-	displayText(arg1);
+	displayText(script);
 	do {
 		windowTick();
 	} while (entityFadeEntity != -1);
 	unfreezeEntities();
 }
 
-/// $C10036
-void enableBlinkingTriangle(ushort arg1) {
-	blinkingTriangleFlag = arg1;
+/** Sets the text prompt mode. See TextPromptMode for useful values
+ * Params:
+ * 	mode = TextPromptMode to switch to
+ * Original_Address: $(DOLLAR)C10036
+ */
+void setTextPromptMode(ushort mode) {
+	textPromptMode = mode;
 }
 
-/// $C1003C
-void clearBlinkingPrompt() {
-	blinkingTriangleFlag = 0;
+/** Resets the text prompt mode to default (TextPromptMode.normal)
+ * Original_Address: $(DOLLAR)C1003C
+ */
+void setTextPromptModeDefault() {
+	textPromptMode = TextPromptMode.normal;
 }
 
-/// $C10042
-short getBlinkingPrompt() {
-	return blinkingTriangleFlag;
+/** Gets the active text prompt mode
+ * Returns: Active TextPromptMode
+ * Original_Address: $(DOLLAR)C10042
+ */
+short getTextPromptMode() {
+	return textPromptMode;
 }
 
-/// $C10048
-void setTextSoundMode(ushort arg1) {
-	textSoundMode = arg1;
+/** Sets the text sound mode. See TextSoundMode for useful values
+ * Params:
+ * 	mode = TextSoundMode to switch to
+ * Original_Address: $(DOLLAR)C10048
+ */
+void setTextSoundMode(ushort mode) {
+	textSoundMode = mode;
 }
 
 /// $C1004E
@@ -75,7 +89,7 @@ void setWindowFocus(short id) {
 }
 
 /// $C10084
-void closeFocusWindowN() {
+void closeFocusWindow() {
 	closeWindow(currentFocusWindow);
 }
 
@@ -91,34 +105,49 @@ void closeAllWindows() {
 	initializeUsedBG2TileMap();
 }
 
-/// $C100C7
+/** Locks player input for text scripts, preventing any waits for player input from proceeding.
+ *
+ * Any input prompts occurring after this WILL softlock the game with no chance of recovery! Be careful!
+ * Original_Address: $(DOLLAR)C100C7
+ */
 void lockInput() {
 	textPromptWaitingForInput = 1;
 }
 
-/// $C100D0
+/** Unlocks player input for text scripts.
+ * Original_Address: $(DOLLAR)C100D0
+ */
 void unlockInput() {
 	textPromptWaitingForInput = 0;
 }
 
-/// $C100D6
-void unknownC100D6(ushort arg1) {
+/** Waits the specified number of frames while running the window tick function.
+ * Params:
+ * 	frames = Number of frames to wait
+ * Original_Address: $(DOLLAR)C100D6
+ */
+void textWait(ushort frames) {
 	clearInstantPrinting();
 	windowTick();
-	while (--arg1 != 0) {
+	while (--frames != 0) {
 		windowTickMinimal();
 	}
 }
 
-/// $C100FE
-void unknownC100FE(short arg1) {
+/** Waits the specified number of frames while running the window tick function. Can be cancelled by user input.
+ * Params:
+ * 	frames = Number of frames to wait, or 0 for a number of frames appropriate for the current text speed
+ * Original_Address: $(DOLLAR)C100FE
+ */
+void textWaitCancellable(short frames) {
 	if ((debugging != 0) && (battleMode == BattleMode.noBattle)) {
 		while ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0) {
 			windowTickMinimal();
 		}
 		return;
 	}
-	while (textPromptWaitingForInput != 0) {
+	// this loop will never exit if entered outside of debug mode. make sure the condition is never true!
+	while (textPromptWaitingForInput) {
 		if (debugging == 0) {
 			continue;
 		}
@@ -127,22 +156,23 @@ void unknownC100FE(short arg1) {
 		}
 		textPromptWaitingForInput = 0;
 	}
-	short x0E = (arg1 != 0) ? arg1 : textSpeedBasedWait;
-	while ((x0E-- != 0) && ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0)) {
+	short framesLeft = (frames != 0) ? frames : textSpeedBasedWait;
+	while ((framesLeft-- != 0) && ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0)) {
 		windowTickMinimal();
 	}
 }
 
 /** Prompt for user input during text scripts
  *
- * Will add extra waits for user input if textPromptWaitingForInput is set (through [1F 50], for example)
+ * Will softlock if textPromptWaitingForInput is set (through [1F 50], for example) outside of debug mode
  * CC [03], [13], [14] common code.
  * Params:
  * 	displayPrompt = Set to 1 to display a little blinking triangle in the corner of the window
- * 	dontUseSpeedBasedWait = If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if blinkingTriangleFlag is non-zero
+ * 	dontUseSpeedBasedWait = If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if textPromptMode is non-zero
  * Original_Address: $(DOLLAR)C10166
  */
 void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
+	// this loop will never exit if the condition is true outside of debug mode
 	while (textPromptWaitingForInput) {
 		if (debugging == 0) {
 			continue;
@@ -154,11 +184,11 @@ void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
 	}
 	clearInstantPrinting();
 	windowTick();
-	if ((dontUseSpeedBasedWait == 0) && (blinkingTriangleFlag != 0) && (textSpeedBasedWait != 0)) {
-		unknownC100FE(0);
+	if ((dontUseSpeedBasedWait == 0) && (textPromptMode != TextPromptMode.normal) && (textSpeedBasedWait != 0)) {
+		textWaitCancellable(0);
 		return;
 	}
-	if (blinkingTriangleFlag != 0) {
+	if (textPromptMode != TextPromptMode.normal) {
 		stopHPPPRolling();
 	}
 	if (displayPrompt == 0) {
@@ -297,7 +327,7 @@ short getTextY() {
 }
 
 /// $C104EE
-void createWindowN(short id) {
+void createWindow(short id) {
 	WinStat* newWindow;
 	if (windowTable[id] != -1) {
 		currentFocusWindow = id;
@@ -503,19 +533,23 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 		}
 		x = 0;
 	}
-	// drawing a start-of-line tile at the start of the line with blinkingTriangleFlag set?
-	if ((blinkingTriangleFlag != 0) && (x == 0) && ((tile == TallTextTile.windowBackground) || (tile == TallTextTile.textBullet))) {
-		if (blinkingTriangleFlag == 1) {
-			// don't actually draw anything, just skip ahead to moving the cursor
-			goto skipDrawing;
+	{
+		// drawing a start-of-line tile at the start of the line with textPromptMode set?
+		if ((textPromptMode != TextPromptMode.normal) && (x == 0) && ((tile == TallTextTile.windowBackground) || (tile == TallTextTile.textBullet))) {
+			if (textPromptMode == TextPromptMode.fast1) {
+				// don't actually draw anything, just skip ahead to moving the cursor
+				goto skipDrawing;
+			}
+			if (textPromptMode == TextPromptMode.fast2) {
+				tile = TallTextTile.windowBackground;
+			}
 		}
-		if (blinkingTriangleFlag == 2) {
-			tile = TallTextTile.windowBackground;
-		}
+		const baseTileID = ((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == TallTextTile.equipped) ? TilemapFlag.palette3 : attributes);
+		const tilemapBase = (windowStats[windowTable[window]].width * y * 2) + x;
+		windowStats[windowTable[window]].tilemapBuffer[tilemapBase] = cast(ushort)baseTileID;
+		windowStats[windowTable[window]].tilemapBuffer[tilemapBase + windowStats[windowTable[window]].width] = cast(ushort)(baseTileID + 0x10);
+		x++;
 	}
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * y * 2) + x] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == TallTextTile.equipped) ? TilemapFlag.palette3 : attributes));
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * y * 2) + x + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == TallTextTile.equipped) ? TilemapFlag.palette3 : attributes) + 0x10);
-	x++;
 	skipDrawing:
 	windowStats[windowTable[window]].textX = x;
 	windowStats[windowTable[window]].textY = y;
@@ -584,18 +618,19 @@ void printLetterVWF(short letter) {
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
-	short x;
-	if (textSoundMode == TextSoundMode.unknown2) {
-		x = 1;
-	} else if (textSoundMode == TextSoundMode.unknown3) {
-		x = 0;
+	bool playSound;
+	if (textSoundMode == TextSoundMode.always) {
+		playSound = true;
+	} else if (textSoundMode == TextSoundMode.never) {
+		playSound = false;
 	} else {
-		x = 0;
-		if (blinkingTriangleFlag == 0) {
-			x = 1;
+		playSound = false;
+		if (textPromptMode == TextPromptMode.normal) {
+			playSound = true;
 		}
 	}
-	if ((x != 0) && (instantPrinting == 0) && (letter != 0x20) && (letter != ebChar(' '))) {
+	// play a sound for each letter printed
+	if (playSound && (instantPrinting == 0) && (letter != 0x20) && (letter != ebChar(' '))) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
@@ -1385,7 +1420,7 @@ short getNextTargetLeft(short row, short position, short action) {
 /// $C120D6
 void printTargetName(short row, short target) {
 	setInstantPrinting();
-	createWindowN(Window.unknown31);
+	createWindow(Window.unknown31);
 	printString(battleToText.length, &battleToText[0]);
 	if (target != -1) {
 		unknownC23E8A(cast(short)(row * numBattlersInFrontRow + target + 1));
@@ -1470,14 +1505,14 @@ short pickTargetSingle(short cancellable, short action) {
 		}
 		dontUpdateTargetName = 0;
 		clearInstantPrinting();
-		createWindowN(Window.unknown31);
+		createWindow(Window.unknown31);
 		windowTick();
 		setInstantPrinting();
 		targetSelected = newTarget;
 		row = tmpRow;
 		playSfx(cursorSFX);
 	}
-	closeFocusWindowN();
+	closeFocusWindow();
 	return result;
 }
 
@@ -1518,7 +1553,7 @@ short pickTargetRow(short cancellable) {
 			}
 		}
 	}
-	closeFocusWindowN();
+	closeFocusWindow();
 	return result;
 }
 
@@ -1540,7 +1575,7 @@ short unknownC1244C(string* scripts, short mode, short cancellable) {
 	if (mode == 1) {
 		backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 		short windowID = gameState.playerControlledPartyMemberCount == 1 ? Window.singleCharacterSelect : cast(short)(gameState.playerControlledPartyMemberCount + Window.characterSelectBase - 1);
-		createWindowN(windowID);
+		createWindow(windowID);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&temporaryTextBuffer[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
 			temporaryTextBuffer[PartyCharacter.name.length] = 0;
@@ -1632,7 +1667,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 	if (arg1 == 1) {
 		backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.singleCharacterSelect : cast(short)(Window.characterSelectBase + gameState.playerControlledPartyMemberCount - 1);
-		createWindowN(x20);
+		createWindow(x20);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&temporaryTextBuffer[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
 			temporaryTextBuffer[PartyCharacter.name.length] = 0;
@@ -1834,7 +1869,7 @@ void debugYButtonMenu() {
 	showHPPPWindows();
 	const(ubyte)* x1A = null;
 	loop: while (x1A is null) {
-		createWindowN(Window.phoneMenu);
+		createWindow(Window.phoneMenu);
 		for (short i = 0; debugMenuText[i][0] != 0; i++) {
 			createNewMenuOptionActive(&debugMenuText[i][0], null);
 		}
@@ -1874,7 +1909,7 @@ void debugYButtonMenu() {
 				}
 				fadeOut(1, 1);
 				loadMapAtPosition(7696, 2280);
-				unknownC03FA9(7696, 2280, 0);
+				setLeaderPosition(7696, 2280, 0);
 				fadeIn(1, 1);
 				break;
 			case 9:
@@ -1934,7 +1969,7 @@ void debugYButtonMenu() {
 		}
 	}
 	closeFocusWindow();
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	displayText(x1A);
 	Unknown56:
 	closeAllWindows();
@@ -1948,7 +1983,7 @@ void debugYButtonMenu() {
 /// $C13187
 const(ubyte)* talkTo() {
 	const(ubyte)* x0A = null;
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	findNearbyTalkableNPC();
 	if (interactingNPCID == 0) {
 		return null;
@@ -1974,7 +2009,7 @@ const(ubyte)* talkTo() {
 
 /// $C1323B
 const(ubyte)* check() {
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	findNearbyCheckableNPC();
 	if (interactingNPCID == 0) {
 		return null;
@@ -2036,7 +2071,7 @@ void populateCommandMenu() {
 void openMenuButton() {
 	freezeEntities();
 	playSfx(Sfx.cursor1);
-	createWindowN(Window.unknown00);
+	createWindow(Window.unknown00);
 	skipAddingCommandText = 0;
 	populateCommandMenu();
 	restoreMenuBackup = 0;
@@ -2097,7 +2132,7 @@ void openMenuButton() {
 							closeWindow(Window.inventory);
 							continue mainLoop;
 						}
-						createWindowN(Window.inventoryMenu);
+						createWindow(Window.inventoryMenu);
 						short x23 = ((partyCharacters[character].afflictions[0] != 0) && (Status0.nauseous > partyCharacters[character].afflictions[0])) ? 1 : 0;
 						moveCurrentTextCursor(0, x23);
 						while (x23 < 4) {
@@ -2135,7 +2170,7 @@ void openMenuButton() {
 									unknownC10F40(0);
 									unknownC10F40(2);
 									restoreMenuBackup = 0xFF;
-									createWindowN(Window.textStandard);
+									createWindow(Window.textStandard);
 									displayText(getTextBlock(itemData[getCharacterItem(cast(short)character, x1D)].helpText));
 									closeWindow(Window.textStandard);
 									setWindowFocus(0);
@@ -2158,7 +2193,7 @@ void openMenuButton() {
 										continue;
 									}
 									if ((character != x18) && ((itemData[getCharacterItem(cast(short)character, x1D)].flags & ItemFlags.cannotGive) != 0)) {
-										createWindowN(Window.textStandard);
+										createWindow(Window.textStandard);
 										setMainRegister(MainRegister(character));
 										setSubRegister(x1D);
 										displayText(getTextBlock("MSG_SYS_GOODS_NOCARRY"));
@@ -2179,7 +2214,7 @@ void openMenuButton() {
 											x16++;
 										}
 									}
-									createWindowN(Window.textStandard);
+									createWindow(Window.textStandard);
 									getActiveWindowAddress().mainRegister.integer = character;
 									getActiveWindowAddress().mainRegisterBackup.integer = x18;
 									getActiveWindowAddress().subRegister = x1D;
@@ -2228,7 +2263,7 @@ void openMenuButton() {
 									closeWindow(Window.inventory);
 									continue mainLoop;
 								case 3: //drop
-									createWindowN(Window.textStandard);
+									createWindow(Window.textStandard);
 									setMainRegister(MainRegister(character));
 									setSubRegister(x1D);
 									displayText(getTextBlock("MSG_SYS_GOODS_DROP"));
@@ -2347,7 +2382,7 @@ void debugYButtonFlag() {
 	short flag = EventFlag.temp0;
 	while (true) {
 		setInstantPrinting();
-		createWindowN(Window.fileSelectMenu);
+		createWindow(Window.fileSelectMenu);
 		setCurrentWindowPadding(3);
 		printNumber(flag);
 		printLetter(TallTextTile.windowBackground);
@@ -2389,7 +2424,7 @@ void debugYButtonGuide() {
 		}
 	}
 	setInstantPrinting();
-	createWindowN(Window.fileSelectMenu);
+	createWindow(Window.fileSelectMenu);
 	setCurrentWindowPadding(3);
 	printNumber(x14);
 	clearInstantPrinting();
@@ -2403,7 +2438,7 @@ void debugYButtonGuide() {
 /// $C13E7A
 void debugSetCharacterLevel() {
 	setInstantPrinting();
-	createWindowN(Window.fileSelectMenu);
+	createWindow(Window.fileSelectMenu);
 	short level = cast(short)numSelectPrompt(2);
 	short character = charSelectPrompt(1, 1, null, null);
 	if (character != 0) {
@@ -2419,7 +2454,7 @@ void debugYButtonGoods() {
 	short item = 0;
 	outer: while (true) {
 		setInstantPrinting();
-		createWindowN(Window.fileSelectMenu);
+		createWindow(Window.fileSelectMenu);
 		setCurrentWindowPadding(0x02);
 		setCurrentWindowPadding(0x82);
 		moveCurrentTextCursor(0, 0);
@@ -2589,7 +2624,7 @@ void* cc1C08(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C143C2 - [18 01 XX] open window
 void* cc1801(DisplayTextState* arg1, ubyte arg2) {
-	createWindowN(arg2);
+	createWindow(arg2);
 	return null;
 }
 
@@ -2899,14 +2934,14 @@ void* cc1F21(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C14EAB
 void* cc10(DisplayTextState* arg1, ubyte arg2) {
-	unknownC100D6(arg2);
+	textWait(arg2);
 	return null;
 }
 
 /// $C14EB5
 void* cc1A06(DisplayTextState* arg1, ubyte arg2) {
 	clearInstantPrinting();
-	createWindowN(currentFocusWindow);
+	createWindow(currentFocusWindow);
 	windowTick();
 	setMainRegister(MainRegister(itemStoreSelection(arg2 != 0 ? arg2 : cast(short)getSubRegister())));
 	setWindowFocus(currentFocusWindow);
@@ -3065,7 +3100,7 @@ void* cc1918(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C15494
 void* cc1F60(DisplayTextState* arg1, ubyte arg2) {
-	unknownC100FE(arg2);
+	textWaitCancellable(arg2);
 	return null;
 }
 
@@ -3534,7 +3569,7 @@ void* cc1923(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C169F7
 void* cc1F62(DisplayTextState* arg1, ubyte arg2) {
-	enableBlinkingTriangle(arg2);
+	setTextPromptMode(arg2);
 	return null;
 }
 
@@ -3757,7 +3792,7 @@ void* cc1FF4(DisplayTextState* arg1, ubyte arg2) {
 /// $C173C0
 void* cc1C13(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1C13Arguments);
-	if (getBlinkingPrompt() != 0) {
+	if (getTextPromptMode() != TextPromptMode.normal) {
 		setMainRegister(
 			MainRegister(
 				startEnemyOrAllyBattleAnimation(
@@ -4342,7 +4377,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 			playSfx(Sfx.equippedItem);
 			loadMapAtPosition(gameState.exitMouseYCoordinate, gameState.exitMouseYCoordinate);
 			playerHasMovedSinceMapLoad = 0;
-			unknownC03FA9(gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate, 4);
+			setLeaderPosition(gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate, 4);
 			fadeIn(1, 1);
 			stairsDirection = -1;
 			break;
@@ -4528,7 +4563,7 @@ const(ubyte)* displayText(const(ubyte)* script) {
 					break;
 				case 0x02: // end of script
 					break loop;
-				case 0x03: // halt, with visible prompt, use speed-based wait if blinkingTriangleFlag is set
+				case 0x03: // halt, with visible prompt, use speed-based wait if textPromptMode is set
 					cc1314(1, 0);
 					break;
 				case 0x04: // set flag
@@ -4577,7 +4612,7 @@ const(ubyte)* displayText(const(ubyte)* script) {
 				case 0x12: // clear current line
 					cc12();
 					break;
-				case 0x13: // halt, without visible prompt, use speed-based wait if blinkingTriangleFlag is set
+				case 0x13: // halt, without visible prompt, use speed-based wait if textPromptMode is set
 					cc1314(0, 0);
 					break;
 				case 0x14: // halt, with visible prompt, don't use speed-based wait
@@ -4883,7 +4918,7 @@ void unknownC1931B(short arg1) {
 void openEquipSelectWindow(short arg1) {
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	setInstantPrinting();
-	createWindowN(Window.equipSelectItem);
+	createWindow(Window.equipSelectItem);
 	printString(miscTargetText[arg1].length, &miscTargetText[arg1][0]);
 	clearInstantPrinting();
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
@@ -4898,7 +4933,7 @@ void closeEquipSelectWindow() {
 ushort openPhoneMenu() {
 	ushort selected = 0;
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.equipMenuItemlist);
+	createWindow(Window.equipMenuItemlist);
 	setWindowTitle(7, 5, &phoneCallText[0]);
 	for (short i = 1; telephoneContacts[i].title[0] != 0; i++) {
 		if (getEventFlag(telephoneContacts[i].eventFlag) == 0) {
@@ -4912,7 +4947,7 @@ ushort openPhoneMenu() {
 		printMenuOptionTable(1, 0, 1);
 		selected = selectionMenu(1);
 	}
-	closeFocusWindowN();
+	closeFocusWindow();
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return selected;
 }
@@ -4921,7 +4956,7 @@ ushort openPhoneMenu() {
 void unknownC1952F(short arg1) {
 	arg1--;
 	setInstantPrinting();
-	createWindowN(Window.statusMenu);
+	createWindow(Window.statusMenu);
 	windowTickWithoutInstantPrinting();
 	forceLeftTextAlignment = 1;
 	displayText(getTextBlock("STATUS_WINDOW"));
@@ -5003,7 +5038,7 @@ void unknownC1952F(short arg1) {
 /// $C198DE
 void addCharacterInventoryToWindow(short character, short window) {
 	character--;
-	createWindowN(window);
+	createWindow(window);
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = window;
 	}
@@ -5038,7 +5073,7 @@ short unknownC19A11(short arg1, short arg2) {
 ushort unknownC19A43() {
 	ubyte* x18 = &temporaryTextBuffer[statusEquipWindowText7.length];
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.unknown0d);
+	createWindow(Window.unknown0d);
 	memcpy(&temporaryTextBuffer[0], &statusEquipWindowText7[0], 12);
 	(x18++)[0] = ebChar('(');
 	(x18++)[0] = ebChar('1');
@@ -5119,7 +5154,7 @@ ushort itemStoreSelection(short store) {
 	openWalletWindow();
 	setInstantPrinting();
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.unknown0c);
+	createWindow(Window.unknown0c);
 	setCurrentWindowPadding(5);
 	for (short i = 0; i < 7; i++) {
 		short item = storeTable[store][i];
@@ -5163,7 +5198,7 @@ short getItemType(short arg1) {
 /// $C19F29
 void printEquipment(short character) {
 	character--;
-	createWindowN(Window.equipMenu);
+	createWindow(Window.equipMenu);
 	windowTickWithoutInstantPrinting();
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.equipMenu;
@@ -5216,7 +5251,7 @@ void printEquipment(short character) {
 /// $C1A1D8
 void printEquipmentStats(short character) {
 	character--;
-	createWindowN(Window.equipMenuStats);
+	createWindow(Window.equipMenuStats);
 	windowTickWithoutInstantPrinting();
 	setCurrentWindowPadding(2);
 	moveCurrentTextCursor(0, 0);
@@ -5328,7 +5363,7 @@ void handleEquipMenu(short character) {
 		if (x1C == 0) {
 			break;
 		}
-		createWindowN(Window.equipMenuItemlist);
+		createWindow(Window.equipMenuItemlist);
 		setWindowTitle(Window.equipMenuItemlist, cast(short)strlen(cast(const(char)*)&equipmentSlotNames[x1C - 1][0]), &equipmentSlotNames[x1C - 1][0]);
 		// assume we have nothing equippable or equipped until proven otherwise
 		short menuOptionsCreated = 0;
@@ -5410,7 +5445,7 @@ void handleEquipMenu(short character) {
 */
 void openWalletWindow() {
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.carriedMoney);
+	createWindow(Window.carriedMoney);
 	setCurrentWindowPadding(5);
 	setInstantPrinting();
 	clearFocusWindow();
@@ -5454,7 +5489,7 @@ ushort selectPSITeleportDestination() {
 	short selected = 0;
 	openEquipSelectWindow(2);
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.phoneMenu);
+	createWindow(Window.phoneMenu);
 	setWindowTitle(5, 3, &statusEquipWindowText14[0]);
 	for (short i = 1; psiTeleportDestinationTable[i].name[0] != 0; i++) {
 		if (psiTeleportDestinationTable[i].name[0] == 0) {
@@ -5471,7 +5506,7 @@ ushort selectPSITeleportDestination() {
 		printMenuOptionTable(1, 0, 1);
 		selected = cast(short)selectionMenu(1);
 	}
-	closeFocusWindowN();
+	closeFocusWindow();
 	closeEquipSelectWindow();
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return selected;
@@ -5694,7 +5729,7 @@ short overworldUseItem(short character, short slot, short) {
 	closeWindow(Window.inventory);
 	setBattleAttackerName(&partyCharacters[character - 1].name[0], PartyCharacter.name.sizeof);
 	setCItem(item);
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	setMainRegister(MainRegister(character));
 	setSubRegister(slot);
 	if (target != 0xFF) {
@@ -5774,18 +5809,18 @@ short overworldPSIMenu() {
 					unknownC1CA72(psiSelected, TextPalette.highlighted);
 				}
 				if (battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
-					createWindowN(Window.textBattle);
+					createWindow(Window.textBattle);
 					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
-					closeFocusWindowN();
+					closeFocusWindow();
 					psiTarget = 0;
 				} else {
 					if (psiAbilityTable[psiSelected].category == PSICategory.other) {
 						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.sysDistlpt) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
 							psiTarget = cast(ubyte)selectPSITeleportDestination();
 						} else {
-							createWindowN(Window.textBattle);
+							createWindow(Window.textBattle);
 							displayText(getTextBlock("MSG_SYS_TLPT_NG"));
-							closeFocusWindowN();
+							closeFocusWindow();
 							psiTarget = 0;
 						}
 					} else {
@@ -5809,7 +5844,7 @@ short overworldPSIMenu() {
 			setBattleTargetName(&partyCharacters[psiTarget - 1].name[0], PartyCharacter.name.length);
 		}
 		setCItem(psiSelected);
-		createWindowN(Window.textStandard);
+		createWindow(Window.textStandard);
 		displayText(getTextBlock(battleActionTable[psiAbilityTable[psiSelected].battleAction].text));
 	}
 	if (battleActionTable[psiAbilityTable[psiSelected].battleAction].func !is null) {
@@ -5846,7 +5881,7 @@ short overworldPSIMenu() {
 void unknownC1BB06(short psi) {
 	if ((lastSelectedPSIDescription == 0xFF) || (psi != lastSelectedPSIDescription)) {
 		unknownC1C8BC(psi);
-		createWindowN(Window.unknown2f);
+		createWindow(Window.unknown2f);
 		windowTickWithoutInstantPrinting();
 		lastSelectedPSIDescription = psi;
 		displayText(getTextBlock(psiAbilityTable[psi].text));
@@ -5870,7 +5905,7 @@ void unknownC1BB71() {
 			continue;
 		}
 		bool menuItemsPrinted = false;
-		createWindowN(Window.unknown2e);
+		createWindow(Window.unknown2e);
 		// print PSI categories
 		for (short i = 0; i < psiCategories.length; i++) {
 			createNewMenuOptionWithUserdata(cast(short)(i + 1), &psiCategories[i][0], null);
@@ -5884,7 +5919,7 @@ void unknownC1BB71() {
 				windowTickWithoutInstantPrinting();
 				menuItemsPrinted = true;
 			}
-			createWindowN(Window.statusMenu);
+			createWindow(Window.statusMenu);
 			currentFocusWindow = Window.unknown2e;
 			forceLeftTextAlignment = 0;
 			unknownC11F5A(&prepareBattlePSIMenuOptions);
@@ -5933,7 +5968,7 @@ void teleport(short arg1) {
 	}
 	loadMapAtPosition(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
 	playerHasMovedSinceMapLoad = 0;
-	unknownC03FA9(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8), cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
+	setLeaderPosition(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8), cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
 	if ((teleportDestinationTable[arg1].direction & 0x80) != 0) {
 		unknownC052D4(cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
 	}
@@ -5975,10 +6010,10 @@ short attemptHomesickness() {
 
 /// $C1BEC6
 void getOffBicycleWithText() {
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	setMainRegister(MainRegister(1));
 	displayText(getTextBlock("MSG_SYS_BICYCLE_OFF"));
-	closeFocusWindowN();
+	closeFocusWindow();
 	windowTick();
 	getOffBicycle();
 }
@@ -6256,7 +6291,7 @@ void preparePSIMenuOptions(short character, ubyte usability, ubyte categories) {
 
 /// $C1C853
 void createOverworldPSIMenuWindow(short character) {
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	windowTickWithoutInstantPrinting();
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.textStandard;
@@ -6268,7 +6303,7 @@ void createOverworldPSIMenuWindow(short character) {
 /// $C1C8BC
 void unknownC1C8BC(short psi) {
 	const(ubyte)* x06;
-	createWindowN(Window.targettingDescription);
+	createWindow(Window.targettingDescription);
 	windowTickWithoutInstantPrinting();
 	enableWordWrap = 0;
 	if (psiAbilityTable[psi].name == 4) {
@@ -6314,7 +6349,7 @@ void unknownC1CA72(short psi, short palette) {
  */
 void prepareBattlePSIMenuOptions(short category) {
 	short character = gameState.partyMembers[battleMenuCurrentCharacterID];
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	windowTickWithoutInstantPrinting();
 	switch (category) {
 		case 1:
@@ -6360,7 +6395,7 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 	short selectedPSICategory;
 	short psiTargetting;
 	outer: while (true) {
-		createWindowN(Window.psiCategories);
+		createWindow(Window.psiCategories);
 		for (short i = 0; i < 3; i++) {
 			createNewMenuOptionWithUserdata(cast(short)(i + 1), &psiCategories[i][0], null);
 		}
@@ -6382,7 +6417,7 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 			}
 			short selectedPSI;
 			while (true) { // pick a PSI ability
-				createWindowN(Window.textStandard);
+				createWindow(Window.textStandard);
 				prepareBattlePSIMenuOptions(selectedPSICategory);
 				unknownC11F5A(&unknownC1C8BC);
 				selectedPSI = selectionMenu(1);
@@ -6392,11 +6427,11 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 				}
 				// does user have enough PP?
 				if (battleActionTable[psiAbilityTable[selectedPSI].battleAction].ppCost > partyCharacters[arg1.user - 1].pp.target) {
-					createWindowN(Window.textBattle);
-					enableBlinkingTriangle(2);
+					createWindow(Window.textBattle);
+					setTextPromptMode(TextPromptMode.fast2);
 					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
-					clearBlinkingPrompt();
-					closeFocusWindowN();
+					setTextPromptModeDefault();
+					closeFocusWindow();
 					psiTargetting = 0;
 					goto Unknown15;
 				}
@@ -6407,7 +6442,7 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 						closeWindow(Window.targettingDescription);
 						closeWindow(Window.textStandard);
 						// create a window with the PSI name highlighted
-						createWindowN(Window.itemPSINameWhileTargetting);
+						createWindow(Window.itemPSINameWhileTargetting);
 						setInstantPrinting();
 						windowSetTextColor(TextPalette.highlighted);
 						printPSIName(selectedPSI);
@@ -6492,7 +6527,7 @@ short battleSelectItem(BattleMenuSelection* arg1) {
 	short targetting = 0;
 	if (partyCharacters[arg1.user - 1].items[0] != 0) {
 		while (true) {
-			createWindowN(Window.inventory);
+			createWindow(Window.inventory);
 			addCharacterInventoryToWindow(arg1.user, Window.inventory);
 			short selectedItem = selectionMenu(1);
 			setInstantPrinting();
@@ -6546,11 +6581,11 @@ void levelUpChar(short character, short printMessages) {
 	partyCharacters[character].level++;
 	// print gained a level message
 	if (printMessages != 0) {
-		enableBlinkingTriangle(1);
+		setTextPromptMode(TextPromptMode.fast1);
 		setBattleTargetName(&partyCharacters[character].name[0], 5);
 		setCNum(partyCharacters[character].level);
 		displayText(getTextBlock("MSG_BTL_LEVEL_UP"));
-		enableBlinkingTriangle(2);
+		setTextPromptMode(TextPromptMode.fast2);
 	}
 	// gain offense
 	short offenseGained = calculateStatGain(oldLevel, statsGrowthVars[printMessages].offense, partyCharacters[character].baseOffense);
@@ -6692,7 +6727,7 @@ void levelUpChar(short character, short printMessages) {
 		}
 	}
 	if (printMessages != 0) {
-		clearBlinkingPrompt();
+		setTextPromptModeDefault();
 	}
 }
 
@@ -6742,10 +6777,10 @@ void showHPAlert(short arg1) {
 	battler.id = cast(ubyte)arg1;
 	currentAttacker = &battler;
 	freezeEntities();
-	createWindowN(Window.textStandard);
+	createWindow(Window.textStandard);
 	setBattleAttackerName(&partyCharacters[arg1 - 1].name[0], 5);
 	displayText(getTextBlock("MSG_SYS_MAP_CRITICAL_SITUATION"));
-	closeFocusWindowN();
+	closeFocusWindow();
 	windowTick();
 	unfreezeEntities();
 	currentAttacker = attackerTemp;
@@ -6789,35 +6824,49 @@ void resetCharLevelOne(short character, short level, short setEXP) {
 	}
 }
 
-/// $C1DC66
-void displayTextWithValue(const(ubyte)* arg1, int arg2) {
+/** Displays in-battle text with a CNUM value set.
+ * See_Also: displayInBattleText
+ * Params:
+ * 	script = Text script to display
+ * 	cNum = Value that script will be able to access with GET_CNUM
+ * Original_Address: $(DOLLAR)C1DC66
+ */
+void displayInBattleTextWithValue(const(ubyte)* script, int cNum) {
 	if ((gameState.autoFightEnable != 0) && ((padState[0] & Pad.b) != 0)) {
 		gameState.autoFightEnable = 0;
 		clearAutoFightIcon();
 	}
-	setCNum(arg2);
+	setCNum(cNum);
 	if (battleModeFlag != 0) {
-		enableBlinkingTriangle(2);
+		setTextPromptMode(TextPromptMode.fast2);
 	}
-	displayText(arg1);
-	clearBlinkingPrompt();
+	displayText(script);
+	setTextPromptModeDefault();
 }
 
-/// $C1DCCB
-void displayInBattleText(const(ubyte)* ptr) {
+/** Displays in-battle text. Also handles cancelling auto-fight on player input and forces an input prompt while in-battle.
+ * Params:
+ * 	script = Text script to display
+ * Original_Address: $(DOLLAR)C1DCCB
+ */
+void displayInBattleText(const(ubyte)* script) {
 	if ((gameState.autoFightEnable != 0) && ((padState[0] & Pad.b) != 0)) {
 		gameState.autoFightEnable = 0;
 		clearAutoFightIcon();
 	}
 	if (battleModeFlag != 0) {
-		enableBlinkingTriangle(2);
+		setTextPromptMode(TextPromptMode.fast2);
 	}
-	displayText(ptr);
-	clearBlinkingPrompt();
+	displayText(script);
+	setTextPromptModeDefault();
 }
 
-/// $C1DCCB
-void unknownC1DCCB(short level) {
+/** Sets the entire party's levels
+ *
+ * For use in battle only! This does NOT level characters up normally. This will reset characters to level one, and add levels from there. Current stats are NOT preserved!
+ * Original_Address: $(DOLLAR)C1DCCB
+ */
+void setPartyLevelInBattle(short level) {
 	initializeTextSystem();
 	battleModeFlag = 1;
 	for (short i = 1; i <= 4; i++) {
@@ -6830,32 +6879,9 @@ void unknownC1DCCB(short level) {
 	}
 }
 
-/// $C1DD3B
-void showHPPPWindowsF() {
-	showHPPPWindows();
-}
-
-/// $C1DD41
-void hideHPPPWindowsF() {
-	hideHPPPWindows();
-}
-
-/// $C1DD47
-void createWindow(short id) {
-	createWindowN(id);
-}
-
-/// $C1DD4D
-void setWindowFocusF(short id) {
-	setWindowFocus(id);
-}
-
-/// $C1DD59
-void closeFocusWindow() {
-	closeFocusWindowN();
-}
-
-/// $C1DD5F
+/** Closes all windows, including the HP/PP meters
+ * Original_Address: $(DOLLAR)C1DD5F
+ */
 void closeAllWindowsAndHPPP() {
 	closeAllWindows();
 	windowTick();
@@ -6863,76 +6889,16 @@ void closeAllWindowsAndHPPP() {
 	windowTick();
 }
 
-/// $C1DD70
-void setBattleAttackerNameF(ubyte* arg1, short arg2) {
-	setBattleAttackerName(arg1, arg2);
-}
-
-/// $C1DD76
-void setBattleTargetNameF(ubyte* arg1, short arg2) {
-	setBattleTargetName(arg1, arg2);
-}
-
-/// $C1DD7C
-void setCItemF(short arg1) {
-	setCItem(arg1);
-}
-
 /// $C1DD9F
 void unknownC1DD9F(const(ubyte)* arg1) {
-	enableBlinkingTriangle(1);
+	setTextPromptMode(TextPromptMode.fast1);
 	displayText(arg1);
-	clearBlinkingPrompt();
-}
-
-/// $C1DDCC
-void swapRaisedHPPPWindowF(short arg1) {
-	swapRaisedHPPPWindow(arg1);
-}
-
-/// $C1DDC6
-ushort removeItemFromInventoryF(ushort character, ushort id) {
-	return removeItemFromInventory(character, id);
-}
-
-/// $C1DDD3
-void resetActivePartyMemberHPPPWindowF() {
-	resetActivePartyMemberHPPPWindow();
-}
-
-/// $C1DDD3
-void selectionMenuItemSetup(short arg1, short arg2, short arg3, const(ubyte)* arg4, string arg5) {
-	createNewMenuOptionAtPositionWithUserdata(arg1, arg2, arg3, arg4, arg5);
-}
-
-/// $C1DE25
-void printMenuItemsF() {
-	printMenuItems();
-}
-
-/// $C1DE25
-short selectionMenuF(short id) {
-	return selectionMenu(id);
-}
-
-/// $C1DE31
-short battleSelectItemF(BattleMenuSelection* arg1) {
-	return battleSelectItem(arg1);
-}
-
-/// $C1DE37
-short pickTargetF(short arg1, short arg2, short arg3) {
-	return pickTarget(arg1, arg2, arg3);
-}
-
-/// $C1DE3D
-short battlePSIMenuF(BattleMenuSelection* arg1) {
-	return battlePSIMenu(arg1);
+	setTextPromptModeDefault();
 }
 
 /// $C1DE43
 void battleActionSwitchWeapons() {
-	enableBlinkingTriangle(1);
+	setTextPromptMode(TextPromptMode.fast1);
 	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
 		short x18 = cast(short)(currentAttacker.offense - currentAttacker.baseOffense);
 		short guts = cast(short)(currentAttacker.guts - currentAttacker.baseGuts);
@@ -6953,12 +6919,12 @@ void battleActionSwitchWeapons() {
 		displayText(getTextBlock(battleActionTable[4].text));
 		battleActionTable[4].func();
 	}
-	clearBlinkingPrompt();
+	setTextPromptModeDefault();
 }
 
 /// $C1E00F
 void battleActionSwitchArmor() {
-	enableBlinkingTriangle(1);
+	setTextPromptMode(TextPromptMode.fast1);
 	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
 		short defense = cast(short)(currentAttacker.defense - currentAttacker.baseDefense);
 		short speed = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
@@ -6980,7 +6946,7 @@ void battleActionSwitchArmor() {
 	} else {
 		displayText(getTextBlock("MSG_BTL_EQUIP_NG_WEAPON"));
 	}
-	clearBlinkingPrompt();
+	setTextPromptModeDefault();
 }
 
 /// $C1E1A2
@@ -6993,7 +6959,7 @@ short enemySelectMode(short arg1) {
 	short x16;
 	short enemyGroup = arg1;
 	setInstantPrinting();
-	createWindowN(Window.textBattle);
+	createWindow(Window.textBattle);
 	short cursorPosition = 1;
 	short valueAdd = 1;
 	short savedX = windowStats[windowTable[Window.textBattle]].textX;
@@ -7096,7 +7062,7 @@ short unknownC1E48D(short window, short length, short character) {
 /// $C1E4BE
 short inputDontCareName(short window, short namingItem, short oldDontCareSelected) {
 	setInstantPrinting();
-	createWindowN(window);
+	createWindow(window);
 	short length = (4 > namingItem) ? 5 : 6;
 	emptyKeyboardInput(length);
 	moveCurrentTextCursor(0, windowStats[windowTable[currentFocusWindow]].textY);
@@ -7118,7 +7084,7 @@ short textInputDialog(short inputWindow, short arg2, ubyte* arg3, short arg4, sh
 	short selectionCursorFrame;
 	short cursorPosition;
 	setInstantPrinting();
-	createWindowN(Window.fileSelectNamingKeyboard);
+	createWindow(Window.fileSelectNamingKeyboard);
 	if (namingItem == -1) {
 		displayText(getTextBlock(keyboardText[5]));
 	} else {
@@ -7134,7 +7100,7 @@ short textInputDialog(short inputWindow, short arg2, ubyte* arg3, short arg4, sh
 	l0: while (true) {
 		setInstantPrinting();
 		if (x1E != arg4) {
-			createWindowN(Window.fileSelectNamingKeyboard);
+			createWindow(Window.fileSelectNamingKeyboard);
 			windowTickWithoutInstantPrinting();
 			if (namingItem == -1) {
 				displayText(getTextBlock(keyboardText[5]));
@@ -7270,7 +7236,7 @@ short enterYourNamePlease(short arg1) {
 	enableWordWrap = 0;
 	allowTextOverflow = 1;
 	setInstantPrinting();
-	createWindowN(Window.unknown27);
+	createWindow(Window.unknown27);
 	if (arg1 != 0) {
 		moveCurrentTextCursor(0, 0);
 		printString(gameState.earthboundPlayerName.length, &gameState.earthboundPlayerName[0]);
@@ -7305,7 +7271,7 @@ short enterYourNamePlease(short arg1) {
 
 /// $C1EC04
 short nameACharacter(short length, ubyte* destination, short namingItem, const(ubyte)* caption, short captionLength) {
-	createWindowN(Window.fileSelectNamingNameBox);
+	createWindow(Window.fileSelectNamingNameBox);
 	windowTickWithoutInstantPrinting();
 	if (destination[0] != 0) {
 		prefillKeyboardInput(destination, length);
@@ -7313,7 +7279,7 @@ short nameACharacter(short length, ubyte* destination, short namingItem, const(u
 		emptyKeyboardInput(length);
 	}
 	moveCurrentTextCursor(0, 0);
-	createWindowN(Window.fileSelectNamingMessage);
+	createWindow(Window.fileSelectNamingMessage);
 	windowTickWithoutInstantPrinting();
 	printString(captionLength, caption);
 	cc1314(1, 0);
@@ -7344,7 +7310,7 @@ void corruptionCheck() {
 		return;
 	}
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-	createWindowN(Window.unknown2f);
+	createWindow(Window.unknown2f);
 	for (short i = 0; 3 > i; i++) {
 		if ((sramSlotBitmasks[i] & corruptionCheckResults) == 0) {
 			continue;
@@ -7352,7 +7318,7 @@ void corruptionCheck() {
 		setCNum(i + 1);
 		displayText(getTextBlock("MSG_SYS_SRAM_CRASH"));
 	}
-	closeFocusWindowN();
+	closeFocusWindow();
 	corruptionCheckResults = 0;
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
@@ -7360,7 +7326,7 @@ void corruptionCheck() {
 /// $C1ED5B
 short fileSelectMenu(short arg1) {
 	short x1C;
-	createWindowN(Window.fileSelectMain);
+	createWindow(Window.fileSelectMain);
 	for (short i = 0; i < 3; i++, createNewMenuOptionWithUserdata(x1C | i, &temporaryTextBuffer[0], null)) {
 		loadGameSlot(i);
 		if (gameState.favouriteThing[1] != 0) {
@@ -7435,7 +7401,7 @@ short fileSelectMenu(short arg1) {
 
 /// $C1F07E
 short unknownC1F07E() {
-	createWindowN(Window.fileSelectMenu);
+	createWindow(Window.fileSelectMenu);
 	createNewMenuOptionAtPositionWithUserdata(1, 0, 0, &fileSelectTextContinue[0], null);
 	for (short i = 0; 3 > i; i++) {
 		if (currentSaveSlot -1 == i) {
@@ -7531,7 +7497,7 @@ short handleFileCopyMenu() {
 		}
 	}
 	if (fileCount == 1) {
-		createWindowN(Window.fileSelectCopyMenuOneFile);
+		createWindow(Window.fileSelectCopyMenuOneFile);
 		setInstantPrinting();
 		printString(fileSelectTextCopyToWhere.length, &fileSelectTextCopyToWhere[0]);
 		for (short i = 0; 3 > i; i++) {
@@ -7543,7 +7509,7 @@ short handleFileCopyMenu() {
 			}
 		}
 	} else {
-		createWindowN(Window.fileSelectCopyMenuTwoFiles);
+		createWindow(Window.fileSelectCopyMenuTwoFiles);
 		setInstantPrinting();
 		printString(fileSelectTextCopyToWhere.length, &fileSelectTextCopyToWhere[0]);
 		short y = 1;
@@ -7562,13 +7528,13 @@ short handleFileCopyMenu() {
 		copySaveSlot(cast(short)(destinationSlot - 1), cast(short)(currentSaveSlot - 1));
 	}
 	enableWordWrap = 0;
-	closeFocusWindowN();
+	closeFocusWindow();
 	return destinationSlot;
 }
 
 /// $C1F2A8
 short handleFileDeleteMenu() {
-	createWindowN(Window.fileSelectDeleteConfirmation);
+	createWindow(Window.fileSelectDeleteConfirmation);
 	setInstantPrinting();
 	setCurrentWindowPadding(0);
 	moveCurrentTextCursor(0, 0);
@@ -7591,13 +7557,13 @@ short handleFileDeleteMenu() {
 		eraseSaveSlot(currentSaveSlot - 1);
 	}
 	enableWordWrap = 0;
-	closeFocusWindowN();
+	closeFocusWindow();
 	return targetSlot;
 }
 
 /// $C1F3C2
 void openTextSpeedMenu() {
-	createWindowN(Window.fileSelectTextSpeed);
+	createWindow(Window.fileSelectTextSpeed);
 	setInstantPrinting();
 	printString(fileSelectTextSelectTextSpeed.length, &fileSelectTextSelectTextSpeed[0]);
 	version(configurable) {
@@ -7645,7 +7611,7 @@ short unknownC1F497(short openWindow) {
 
 /// $C1F568
 void openSoundMenu() {
-	createWindowN(Window.fileSelectMusicMode);
+	createWindow(Window.fileSelectMusicMode);
 	setInstantPrinting();
 	printString(fileSelectTextSelectSoundSetting.length, &fileSelectTextSelectSoundSetting[0]);
 	createNewMenuOptionAtPosition(0, 1, &fileSelectTextSoundSettingStrings[0][0], null);
@@ -7681,7 +7647,7 @@ short unknownC1F616(short openWindow) {
 
 /// $C1F6E3
 short openFlavourMenu() {
-	createWindowN(Window.fileSelectFlavourChoice);
+	createWindow(Window.fileSelectFlavourChoice);
 	setInstantPrinting();
 	printString(fileSelectTextWhichStyle.length, &fileSelectTextWhichStyle[0]);
 	createNewMenuOptionAtPosition(0, 2, &fileSelectTextFlavorPlain[0], null);
@@ -7874,23 +7840,23 @@ void fileMenuLoop() {
 								closeAllWindows();
 								setInstantPrinting();
 								for (short i = 0; 4 > i; i++, unknownC1931B(i)) {
-									createWindowN(cast(short)(Window.fileSelectNamingConfirmationNess + i));
+									createWindow(cast(short)(Window.fileSelectNamingConfirmationNess + i));
 								}
-								createWindowN(Window.fileSelectNamingConfirmationKing);
+								createWindow(Window.fileSelectNamingConfirmationKing);
 								unknownC1931B(7);
-								createWindowN(Window.fileSelectNamingConfirmationFood);
+								createWindow(Window.fileSelectNamingConfirmationFood);
 								printString(fileSelectTextFavoriteFood.length, &fileSelectTextFavoriteFood[0]);
 								short x = getTextWidth(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
 								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
 
-								createWindowN(Window.fileSelectNamingConfirmationThing);
+								createWindow(Window.fileSelectNamingConfirmationThing);
 								printString(fileSelectTextCoolestThing.length, &fileSelectTextCoolestThing[0]);
 								x = getTextWidth(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
 								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
 
-								createWindowN(Window.fileSelectNamingConfirmationMessage);
+								createWindow(Window.fileSelectNamingConfirmationMessage);
 								printString(fileSelectTextAreYouSure.length, &fileSelectTextAreYouSure[0]);
 
 								createNewMenuOptionAtPositionWithUserdata(1, 14, 0, &fileSelectTextAreYouSureYep[0], null);

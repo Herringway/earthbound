@@ -2014,7 +2014,7 @@ __gshared short textSpeedBasedWait;
 /** When set, causes the halt text control codes to display a small triangle on the window
  * Original_Address: $(DOLLAR)964D
  */
-__gshared ushort blinkingTriangleFlag;
+__gshared ushort textPromptMode;
 /** The currently active text sound mode that determines how to play the text printing sound effect
  * Original_Address: $(DOLLAR)964F
  */

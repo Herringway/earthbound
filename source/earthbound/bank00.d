@@ -805,7 +805,7 @@ void reloadMap() {
 void initializeMap(short x, short y, short direction) {
 	loadSectorMusic(x, y);
 	loadMapAtPosition(x, y);
-	unknownC03FA9(x, y, direction);
+	setLeaderPosition(x, y, direction);
 	changeMapMusic();
 }
 
@@ -1744,7 +1744,7 @@ short unknownC0369B(short id) {
 	gameState.partyMemberIndex[x18] = cast(ubyte)id;
 	gameState.partyCount++;
 	newEntityVar0 = cast(short)(id - 1);
-	short x1A_2 = characterInitialEntityData[id - 1].unknown6;
+	short x1A_2 = characterInitialEntityData[id - 1].initialEntitySlot;
 	if (entityScriptTable[x1A_2] != -1) {
 		x1A_2++;
 	}
@@ -1762,7 +1762,7 @@ short unknownC0369B(short id) {
 	createOverworldEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].xCoord, playerPositionBuffer[x].yCoord);
 	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].xCoord - bg1XPosition);
 	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
-	gameState.firstPartyMemberEntity = characterInitialEntityData[gameState.partyMemberIndex[0] - 1].unknown6;
+	gameState.firstPartyMemberEntity = characterInitialEntityData[gameState.partyMemberIndex[0] - 1].initialEntitySlot;
 	unknownC09CD7();
 	updatePartyNPCs();
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
@@ -2015,10 +2015,10 @@ void actionScriptInitializePartyMember() {
 	entityScriptVar3Table[currentEntitySlot] = 8;
 	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
 	updateEntitySpriteFrame(currentEntitySlot);
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown59 = currentEntitySlot;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].entitySlot = currentEntitySlot;
 	partyCharacters[entityScriptVar1Table[currentEntitySlot]].characterID = entityScriptVar0Table[currentEntitySlot];
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown57 = 0;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown92 = -1;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused57 = 0;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused92 = -1;
 	if (partyCharacters[entityScriptVar1Table[currentEntitySlot]].afflictions[0] == Status0.unconscious) {
 		entityScriptVar3Table[currentEntitySlot] = 16;
 	}
@@ -2037,7 +2037,7 @@ void movePartyToLeaderPosition() {
 		x.walkingStyle = gameState.walkingStyle;
 		x.tileFlags = gameState.troddenTileType;
 		playerMovementFlags = 0;
-		x.unknown10 = 0;
+		x.unused10 = 0;
 		x += 255;
 	}
 	for (short i = 0; i < gameState.partyCount; i++) {
@@ -2047,8 +2047,8 @@ void movePartyToLeaderPosition() {
 			}
 		}
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].positionIndex = 0;
-		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
-		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
+		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].walkingStyle = 0xFFFF;
+		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].lastWalkingStyle = 0xFFFF;
 		entityAbsXTable[gameState.partyEntities[i]] = gameState.leaderX.integer;
 		entityAbsYTable[gameState.partyEntities[i]] = gameState.leaderY.integer;
 		entityDirections[gameState.partyEntities[i]] = gameState.leaderDirection;
@@ -2057,7 +2057,7 @@ void movePartyToLeaderPosition() {
 }
 
 /// $C03FA9
-void unknownC03FA9(short x, short y, short direction) {
+void setLeaderPosition(short x, short y, short direction) {
 	gameState.leaderX.integer = x;
 	gameState.leaderY.integer = y;
 	gameState.leaderDirection = direction;
@@ -2685,7 +2685,7 @@ void partyMemberTick() {
 				break;
 		}
 	}
-	currentPartyMemberTick.unknown65 = playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle;
+	currentPartyMemberTick.walkingStyle = playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle;
 	short newPositionIndex;
 	if ((entityScriptVar0Table[currentEntitySlot] + 1 != gameState.partyMemberIndex[0]) && !skipPositionIndexRecalc) {
 		newPositionIndex = getNewPositionIndex(entityScriptVar0Table[currentEntitySlot], cast(short)(characterSizes[entityScriptVar0Table[currentEntitySlot]] + newPositionIndexOffset), currentPartyMemberTick.positionIndex, 2);
@@ -2807,7 +2807,7 @@ ushort unknownC04FFE() {
 				currentPartyMemberTick.afflictions[0] = Status0.unconscious;
 				currentPartyMemberTick.hp.target = 0;
 				currentPartyMemberTick.hp.current.integer = 0;
-				entityScriptVar3Table[currentPartyMemberTick.unknown59] = 0x10;
+				entityScriptVar3Table[currentPartyMemberTick.entitySlot] = 0x10;
 				numberCollapsed++;
 			}
 		} else {
@@ -2898,14 +2898,14 @@ void unknownC052D4(short arg1) {
 		playerPositionBuffer[x1C].tileFlags = x20;
 		playerPositionBuffer[x1C].walkingStyle = x1E;
 		playerPositionBuffer[x1C].direction = arg1;
-		playerPositionBuffer[x1C].unknown10 = 0;
+		playerPositionBuffer[x1C].unused10 = 0;
 		x24 += x12.integer;
 		x22 += x16.integer;
 	}
 	for (short i = 0; i < gameState.partyCount; i++) {
 		partyCharacters[gameState.playerControlledPartyMembers[i]].positionIndex = x26;
-		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
-		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
+		partyCharacters[gameState.playerControlledPartyMembers[i]].walkingStyle = 0xFFFF;
+		partyCharacters[gameState.playerControlledPartyMembers[i]].lastWalkingStyle = 0xFFFF;
 		entityAbsXTable[gameState.partyEntities[i]] = playerPositionBuffer[x26].xCoord;
 		entityAbsYTable[gameState.partyEntities[i]] = playerPositionBuffer[x26].yCoord;
 		entityDirections[gameState.partyEntities[i]] = playerPositionBuffer[x26].direction;
@@ -3973,25 +3973,25 @@ void doorTransition(const(DoorObject)* arg1) {
 	} else {
 		screenTransition(arg1.transitionStyle, 1);
 	}
-	short x02 = cast(short)(arg1.unknown8 * 8);
-	short x04 = cast(short)((arg1.unknown6 & 0x3FFF) * 8);
-	if (unknownC3E1D8[arg1.unknown6 >> 14] != 2) {
-		x02 += 8;
+	short xPixel = cast(short)(arg1.destX * 8);
+	short yPixel = cast(short)((arg1.destY & 0x3FFF) * 8);
+	if (transitionDirections[arg1.destY >> 14] != Direction.right) {
+		xPixel += 8;
 	}
 	if (debugging != 0) {
 		if (debugModeNumber != DebugMode.soundMode) {
-			loadSectorMusic(x02, x04);
+			loadSectorMusic(xPixel, yPixel);
 		}
 		if (replayModeActive == 0) {
 			storePersistentReplayState(arg1.transitionStyle);
 		}
 	} else {
-		loadSectorMusic(x02, x04);
+		loadSectorMusic(xPixel, yPixel);
 	}
-	loadMapAtPosition(x02, x04);
+	loadMapAtPosition(xPixel, yPixel);
 	playerHasMovedSinceMapLoad = 0;
 	gameState.walkingStyle = 0;
-	unknownC03FA9(x02, x04, unknownC3E1D8[arg1.unknown6 >> 14]);
+	setLeaderPosition(xPixel, yPixel, transitionDirections[arg1.destY >> 14]);
 	if ((debugging != 0) && (replayModeActive == 0)) {
 		saveReplaySaveSlot();
 	}
@@ -4305,10 +4305,10 @@ byte getMapObjectAt(short x, short y) {
 	}
 	const(MapObject)* sectorObject = &x0A.objects[0];
 	for (short i = x0A.length; i != 0; sectorObject++, i--) {
-		if (sectorObject.unknown1 != (x % 32)) {
+		if (sectorObject.x != (x % 32)) {
 			continue;
 		}
-		if (sectorObject.unknown0 != (y % 32)) {
+		if (sectorObject.y != (y % 32)) {
 			continue;
 		}
 		mapObjectFound = sectorObject.doorPtr;
@@ -4588,8 +4588,8 @@ void doPartyMovementFrame(short characterID, short walkingStyle, short entityID)
 		entityGraphicsPointers[x04] = &x0E.sprites[0];
 		//UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
 		entityWalkingStyles[x04] = x02;
-		if (walkingStyle != currentPartyMemberTick.unknown55) {
-			currentPartyMemberTick.unknown55 = x16;
+		if (walkingStyle != currentPartyMemberTick.lastWalkingStyle) {
+			currentPartyMemberTick.lastWalkingStyle = x16;
 			entityScriptVar7Table[x04] |= PartyMemberMovementFlags.unknown15;
 		}
 		if ((gameState.leaderHasMoved != 0) && (x16 != 0xC)) {
@@ -5568,11 +5568,15 @@ void waitDMAFinished() {
 	while (lastCompletedDMAIndex != a) { waitForInterrupt(); }
 }
 
-/// $C08F98
-immutable UnknownC08F98Entry[4] unknownC08F98 = [
-	UnknownC08F98Entry(0xFE80, 0x0100, 0x0200, 0x0000),
-	UnknownC08F98Entry(0x0000, 0x0100, 0x0300, 0x0080),
-	UnknownC08F98Entry(0x0000, 0x0200, 0x0200, 0x0000)
+/** DMA parameters for partial or full palette updates
+ *
+ * Has strange indices due to the hand-optimized assembly written to access it
+ * Original_Address: $(DOLLAR)C08F98
+ */
+immutable PaletteDMAParameters[4] paletteDMAParameters = [
+	PaletteUpload.bgOnly / 8 - 1: PaletteDMAParameters(-384, 0x0100, 0x0200, 0x0000),
+	PaletteUpload.objOnly / 8 - 1: PaletteDMAParameters(0, 0x0100, 0x0300, 0x0080),
+	PaletteUpload.full / 8 - 1: PaletteDMAParameters(0, 0x0200, 0x0200, 0x0000)
 ];
 
 /// $C08FB0
@@ -8962,7 +8966,7 @@ void ebMain() {
 				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra1) != 0)) {
 					freezeEntities();
 					playSfx(Sfx.cursor1);
-					createWindowN(Window.textStandard);
+					createWindow(Window.textStandard);
 					displayText(getTextBlock("MSG_DEBUG_00"));
 					clearInstantPrinting();
 					hideHPPPWindows();
@@ -8971,7 +8975,7 @@ void ebMain() {
 				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra2) != 0)) {
 					freezeEntities();
 					playSfx(Sfx.cursor1);
-					createWindowN(Window.textStandard);
+					createWindow(Window.textStandard);
 					displayText(getTextBlock("MSG_DEBUG_01"));
 					clearInstantPrinting();
 					hideHPPPWindows();
@@ -10364,7 +10368,7 @@ void psiTeleportRestoreControl() {
 		entityScriptVar3Table[i] = 8;
 		entityScriptVar7Table[i] &= ~PartyMemberMovementFlags.unknown11;
 		entityCollidedObjects[i] &= 0x7FFF;
-		currentPartyMemberTick.unknown55 = 0xFFFF;
+		currentPartyMemberTick.lastWalkingStyle = 0xFFFF;
 		currentPartyMemberTick++;
 	}
 	changeMapMusicImmediately();
@@ -10644,7 +10648,7 @@ void psiTeleportArrive() {
 		return;
 	}
 	for (short i = 0; i < 6; i++) {
-		partyCharacters[i].unknown55 = 0xFFFF;
+		partyCharacters[i].lastWalkingStyle = 0xFFFF;
 		version(noUndefinedBehaviour) {
 			if (gameState.partyMemberIndex[i] == 0) {
 				continue;

@@ -562,7 +562,7 @@ void unusedEF0C3D() {
 	fadeOut(1, 1);
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
+	setLeaderPosition(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 	changeMapMusic();
 	fadeIn(1, 1);
 }
@@ -21974,7 +21974,7 @@ void debugMain() {
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
 	loadMapAtPosition(debugStartPositionX, debugStartPositionY);
-	unknownC03FA9(debugStartPositionX, debugStartPositionY, 4);
+	setLeaderPosition(debugStartPositionX, debugStartPositionY, Direction.down);
 	loadDebugTextGraphics();
 	if (debugModeNumber == DebugMode.viewAttribute) {
 		mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
@@ -22006,7 +22006,7 @@ void debugMain() {
 			screenXPixels &= 0xFFF8;
 			prepareForImmediateDMA();
 			loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-			unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
+			setLeaderPosition(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 			loadDebugTextGraphics();
 			debugEnemiesEnabledFlag = 0;
 			if (debugModeNumber == DebugMode.checkPosition) {
@@ -22314,7 +22314,7 @@ void startReplay() {
 	loadReplaySaveSlot();
 	fadeOut(1, 1);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
+	setLeaderPosition(gameState.leaderX.integer, gameState.leaderY.integer, Direction.up);
 	unfreezeEntities();
 	screenTransition(replayTransitionStyle, 0);
 	freezeEntities();

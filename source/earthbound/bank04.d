@@ -82,7 +82,7 @@ short reserveBG2Tile() {
 			continue;
 		}
 		// uh oh, overflowed. bail out
-		unknownC10000();
+		hideHPPPWindows();
 		closeAllWindows();
 		unfreezeEntities();
 		//longjmp(&jmpbuf2);
@@ -2038,18 +2038,18 @@ void printLetter(short tile) {
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
-	short playSound;
-	if (textSoundMode == TextSoundMode.unknown2) {
-		playSound = 1;
-	} else if (textSoundMode == TextSoundMode.unknown3) {
-		playSound = 0;
+	bool playSound;
+	if (textSoundMode == TextSoundMode.always) {
+		playSound = true;
+	} else if (textSoundMode == TextSoundMode.never) {
+		playSound = false;
 	} else {
-		playSound = 0;
-		if (blinkingTriangleFlag == 0) {
-			playSound = 1;
+		playSound = false;
+		if (textPromptMode == TextPromptMode.normal) {
+			playSound = true;
 		}
 	}
-	if ((playSound != 0) && (instantPrinting == 0) && (tile != TallTextTile.windowBackground)) {
+	if (playSound && (instantPrinting == 0) && (tile != TallTextTile.windowBackground)) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
@@ -2218,18 +2218,18 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 		redrawAllWindows = 1;
 	}
 	// should we play a sound?
-	short playSound;
-	if (textSoundMode == TextSoundMode.unknown2) {
-		playSound = 1;
-	} else if (textSoundMode == TextSoundMode.unknown3) {
-		playSound = 0;
+	bool playSound;
+	if (textSoundMode == TextSoundMode.always) {
+		playSound = true;
+	} else if (textSoundMode == TextSoundMode.never) {
+		playSound = false;
 	} else {
-		playSound = 0;
-		if (blinkingTriangleFlag == 0) {
-			playSound = 1;
+		playSound = false;
+		if (textPromptMode == TextPromptMode.normal) {
+			playSound = true;
 		}
 	}
-	if ((playSound != 0) && (instantPrinting == 0) && (character != TallTextTile.windowBackground)) {
+	if (playSound && (instantPrinting == 0) && (character != TallTextTile.windowBackground)) {
 		playSfx(Sfx.textPrint);
 	}
 	// wait according to player's chosen text speed
@@ -2550,11 +2550,11 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 		}
 	}
 	// are we at the start of a new line after a space or bullet? (vestigial...? these tiles don't normally get printed in Earthbound, but they do in Mother 2)
-	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == TallTextTile.windowBackground) || (upperTile == ebChar('@')))) {
-		if (blinkingTriangleFlag == 1) {
+	if ((textPromptMode != TextPromptMode.normal) && (x == 0) && ((upperTile == TallTextTile.windowBackground) || (upperTile == ebChar('@')))) {
+		if (textPromptMode == TextPromptMode.fast1) {
 			goto SetNewCursorCoordinates;
 		}
-		if (blinkingTriangleFlag == 2) {
+		if (textPromptMode == TextPromptMode.fast2) {
 			upperTile = TallTextTile.windowBackground;
 		}
 	}
@@ -6691,7 +6691,7 @@ void useSoundStone(short cancellable) {
 		} else {
 			soundStonePlaybackState[i].playbackState = SoundStonePlaybackState.notPresent;
 		}
-		soundStonePlaybackState[i].unknown2 = 1;
+		soundStonePlaybackState[i].orbitAdjustmentFramesLeft = 1;
 		soundStonePlaybackState[i].soundStoneOrbitSpriteFrame = 0;
 	}
 	// loading done, start fading in
@@ -6767,17 +6767,17 @@ void useSoundStone(short cancellable) {
 					break;
 				case SoundStonePlaybackState.nowPlaying:
 					soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 += 0xCCD;
-					if (--soundStonePlaybackState[i].unknown2 == 0) {
-						soundStonePlaybackState[i].unknown2 = 2;
+					if (--soundStonePlaybackState[i].orbitAdjustmentFramesLeft == 0) {
+						soundStonePlaybackState[i].orbitAdjustmentFramesLeft = 2;
 						version(noUndefinedBehaviour) { // the last frame indexes out of bounds. we fix it by repeating the last frame instead
 							if (soundStonePlaybackState[i].soundStoneOrbitSpriteFrame == soundStoneOrbitSpriteDistances[i].length) {
 								soundStonePlaybackState[i].soundStoneOrbitSpriteFrame--;
 							}
 						}
 						soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 = soundStoneOrbitSpriteDistances[i][soundStonePlaybackState[i].soundStoneOrbitSpriteFrame++];
-						soundStonePlaybackState[i].unknown4 = cast(short)(2 - soundStonePlaybackState[i].unknown4);
+						soundStonePlaybackState[i].orbitSpriteFrame = cast(short)(2 - soundStonePlaybackState[i].orbitSpriteFrame);
 					}
-					soundStoneSpriteTilemap2.firstTile = cast(ubyte)(soundStoneOrbitSprites[i] + soundStonePlaybackState[i].unknown4);
+					soundStoneSpriteTilemap2.firstTile = cast(ubyte)(soundStoneOrbitSprites[i] + soundStonePlaybackState[i].orbitSpriteFrame);
 					soundStoneSpriteTilemap2.flags = cast(ubyte)((soundStoneOrbitPalettes[i] << 1) + 0x31);
 					if (soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 != 0) {
 						// draw the little sprites flying around the current sanctuary location
