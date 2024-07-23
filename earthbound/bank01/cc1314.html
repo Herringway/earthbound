@@ -165,7 +165,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			<section><p>Will add extra waits for user input if textPromptWaitingForInput is set (through [1F 50], for example)
+			<section><p>Will softlock if textPromptWaitingForInput is set (through [1F 50], for example) outside of debug mode
  CC [03], [13], [14] common code.
 </p>
 </section>
@@ -173,7 +173,7 @@ $('#symbolSearchPane').show();</script>
 			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
 <tr><td id="displayPrompt">displayPrompt</td><td> Set to 1 to display a little blinking triangle in the corner of the window</td></tr>
-<tr><td id="dontUseSpeedBasedWait">dontUseSpeedBasedWait</td><td> If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if blinkingTriangleFlag is non-zero</td></tr>
+<tr><td id="dontUseSpeedBasedWait">dontUseSpeedBasedWait</td><td> If 0, also wait at least a number of frames equal to textSpeedBasedWait. Ignores displayPrompt = 1. Only has an effect if textPromptMode is non-zero</td></tr>
 </table>
 </section>
 <section><h2>Original Address</h2>
