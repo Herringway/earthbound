@@ -219,7 +219,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="actionScriptEndFade" class="public" href="../earthbound/bank04/actionScriptEndFade.html">actionScriptEndFade</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4CC2C
+						<td>Ends a sprite fade.
 </td>
 					</tr>
 					<tr>
@@ -260,6 +260,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="actionScriptGetURDLDirection" class="public" href="../earthbound/bank04/actionScriptGetURDLDirection.html">actionScriptGetURDLDirection</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Converts a full cardinal+ordinal direction to either up-right or down-left, maintaining up/down direction above left/right
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="actionScriptHStripe" class="public" href="../earthbound/bank04/actionScriptHStripe.html">actionScriptHStripe</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -291,6 +300,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Actionscript helper: Rerenders a row of tiles on the screen
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="actionScriptSetDestinationPartyLeader" class="public" href="../earthbound/bank04/actionScriptSetDestinationPartyLeader.html">actionScriptSetDestinationPartyLeader</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sets the entity's destination to the party leader's current position
 </td>
 					</tr>
 					<tr>
@@ -350,6 +368,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="actionScriptTriggerTalkText" class="public" href="../earthbound/bank04/actionScriptTriggerTalkText.html">actionScriptTriggerTalkText</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Triggers the talk text of the NPC associated with the currently active entity
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="actionScriptVStripe" class="public" href="../earthbound/bank04/actionScriptVStripe.html">actionScriptVStripe</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -395,10 +422,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="allocateEntityFadeBuffer" class="public" href="../earthbound/bank04/allocateEntityFadeBuffer.html">allocateEntityFadeBuffer</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="allocateEntityFadeBuffer" class="public" href="../earthbound/bank04/allocateEntityFadeBuffer.html">allocateEntityFadeBuffer</a><span class="tableEntryAnnotation">(size)</span>
 							</code>
 						</td>
-						<td>$C4C8DB
+						<td>Allocates an entity fade buffer
 </td>
 					</tr>
 					<tr>
@@ -548,19 +575,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="changeScriptForEntityBySprite" class="public" href="../earthbound/bank04/changeScriptForEntityBySprite.html">changeScriptForEntityBySprite</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="changeScriptForEntityByNPCID" class="public" href="../earthbound/bank04/changeScriptForEntityByNPCID.html">changeScriptForEntityByNPCID</a><span class="tableEntryAnnotation">(npc, script)</span>
 							</code>
 						</td>
-						<td>$C461CC
+						<td>Changes an entity with matching NPC ID's actionscript
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="changeScriptForEntityByTPT" class="public" href="../earthbound/bank04/changeScriptForEntityByTPT.html">changeScriptForEntityByTPT</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="changeScriptForEntityBySprite" class="public" href="../earthbound/bank04/changeScriptForEntityBySprite.html">changeScriptForEntityBySprite</a><span class="tableEntryAnnotation">(sprite, script)</span>
 							</code>
 						</td>
-						<td>$C4617C
+						<td>Changes an entity with matching sprite's actionscript
 </td>
 					</tr>
 					<tr>
@@ -623,7 +650,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="clearCameraFocus" class="public" href="../earthbound/bank04/clearCameraFocus.html">clearCameraFocus</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C466B8
+						<td>Restores camera focus to the default mode of following the party leader
 </td>
 					</tr>
 					<tr>
@@ -647,10 +674,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="clearEntityFadeEntry" class="public" href="../earthbound/bank04/clearEntityFadeEntry.html">clearEntityFadeEntry</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="clearEntityFadeEntry" class="public" href="../earthbound/bank04/clearEntityFadeEntry.html">clearEntityFadeEntry</a><span class="tableEntryAnnotation">(dest, length)</span>
 							</code>
 						</td>
-						<td>$C4C8E9
+						<td>Clears an entity fade entry by wiping the buffer
 </td>
 					</tr>
 					<tr>
@@ -692,19 +719,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="convert8DirectionTo4PreferLeftRight" class="public" href="../earthbound/bank04/convert8DirectionTo4PreferLeftRight.html">convert8DirectionTo4PreferLeftRight</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="convert8DirectionTo4PreferLeftRight" class="public" href="../earthbound/bank04/convert8DirectionTo4PreferLeftRight.html">convert8DirectionTo4PreferLeftRight</a><span class="tableEntryAnnotation">(direction)</span>
 							</code>
 						</td>
-						<td>$C46A9A - Converts a full cardinal+ordinal direction to a cardinal, rounding towards left/right
+						<td>Converts a full cardinal+ordinal direction to a cardinal, rounding towards left/right
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="convert8DirectionTo4PreferUpDown" class="public" href="../earthbound/bank04/convert8DirectionTo4PreferUpDown.html">convert8DirectionTo4PreferUpDown</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="convert8DirectionTo4PreferUpDown" class="public" href="../earthbound/bank04/convert8DirectionTo4PreferUpDown.html">convert8DirectionTo4PreferUpDown</a><span class="tableEntryAnnotation">(direction)</span>
 							</code>
 						</td>
-						<td>$C46AA3 - Converts a full cardinal+ordinal direction to a cardinal, rounding towards up/down
+						<td>Converts a full cardinal+ordinal direction to a cardinal, rounding towards up/down
 </td>
 					</tr>
 					<tr>
@@ -830,7 +857,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="createPreparedEntityNPC" class="public" href="../earthbound/bank04/createPreparedEntityNPC.html">createPreparedEntityNPC</a><span class="tableEntryAnnotation">(npcID, actionScript)</span>
 							</code>
 						</td>
-						<td>$C464B5
+						<td>Creates an entity with the given NPC ID and ActionScript. Uses prepared coordinates and direction
 </td>
 					</tr>
 					<tr>
@@ -839,7 +866,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="createPreparedEntitySprite" class="public" href="../earthbound/bank04/createPreparedEntitySprite.html">createPreparedEntitySprite</a><span class="tableEntryAnnotation">(sprite, actionScript)</span>
 							</code>
 						</td>
-						<td>$C46507
+						<td>Creates an entity with the given sprite and ActionScript. Uses prepared coordinates and direction
 </td>
 					</tr>
 					<tr>
@@ -944,28 +971,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="disableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/disableEntityByCharacterOrParty.html">disableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="disableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/disableEntityByCharacterOrParty.html">disableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(character)</span>
 							</code>
 						</td>
-						<td>$C46594
+						<td>Disables the movement and script of a party member or entire party
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="disableEntityBySprite" class="public" href="../earthbound/bank04/disableEntityBySprite.html">disableEntityBySprite</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="disableEntityByNPCID" class="public" href="../earthbound/bank04/disableEntityByNPCID.html">disableEntityByNPCID</a><span class="tableEntryAnnotation">(npc)</span>
 							</code>
 						</td>
-						<td>$C46579
+						<td>Disable the movement and script of an entity with matching NPC ID
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="disableEntityByTPT" class="public" href="../earthbound/bank04/disableEntityByTPT.html">disableEntityByTPT</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="disableEntityBySprite" class="public" href="../earthbound/bank04/disableEntityBySprite.html">disableEntityBySprite</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C4655E
+						<td>Disable the movement and script of an entity with matching sprite
 </td>
 					</tr>
 					<tr>
@@ -998,10 +1025,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="displayTextForActionScript" class="public" href="../earthbound/bank04/displayTextForActionScript.html">displayTextForActionScript</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="displayTextForActionScript" class="public" href="../earthbound/bank04/displayTextForActionScript.html">displayTextForActionScript</a><span class="tableEntryAnnotation">(script)</span>
 							</code>
 						</td>
-						<td>$C466F0
+						<td>Displays text (ActionScript edition)
 </td>
 					</tr>
 					<tr>
@@ -1065,7 +1092,8 @@ $('#symbolSearchPane').show();</script>
 								<a id="elevaterConfigure" class="public" href="../earthbound/bank04/elevaterConfigure.html">elevaterConfigure</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td></td>
+						<td>Configures HDMA parameters for elevators
+</td>
 					</tr>
 					<tr>
 						<td>
@@ -1097,28 +1125,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="enableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/enableEntityByCharacterOrParty.html">enableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="enableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/enableEntityByCharacterOrParty.html">enableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(character)</span>
 							</code>
 						</td>
-						<td>$C46631
+						<td>Enables the movement and script of a party member or the entire party
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="enableEntityBySprite" class="public" href="../earthbound/bank04/enableEntityBySprite.html">enableEntityBySprite</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="enableEntityByNPCID" class="public" href="../earthbound/bank04/enableEntityByNPCID.html">enableEntityByNPCID</a><span class="tableEntryAnnotation">(npc)</span>
 							</code>
 						</td>
-						<td>$C46616
+						<td>Enables the movement and script of an entity with a specific NPC ID
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="enableEntityByTPT" class="public" href="../earthbound/bank04/enableEntityByTPT.html">enableEntityByTPT</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="enableEntityBySprite" class="public" href="../earthbound/bank04/enableEntityBySprite.html">enableEntityBySprite</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C465FB
+						<td>Enables the movement and script of an entity with a specific sprite
 </td>
 					</tr>
 					<tr>
@@ -1181,7 +1209,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="entityAngleToDestination" class="public" href="../earthbound/bank04/entityAngleToDestination.html">entityAngleToDestination</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C46ADB
+						<td>Gets the angle with respect to the screen from the current entity to its intended destination
 </td>
 					</tr>
 					<tr>
@@ -1191,6 +1219,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C472A8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="fadeNPC" class="public" href="../earthbound/bank04/fadeNPC.html">fadeNPC</a><span class="tableEntryAnnotation">(npc, fadeStyle)</span>
+							</code>
+						</td>
+						<td>Delete an entity with a matching NPC ID with fade animation
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="fadeSprite" class="public" href="../earthbound/bank04/fadeSprite.html">fadeSprite</a><span class="tableEntryAnnotation">(sprite, fadeStyle)</span>
+							</code>
+						</td>
+						<td>Delete an entity with a matching sprite with fade animation
 </td>
 					</tr>
 					<tr>
@@ -1223,19 +1269,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="findEntityByPartyMemberID" class="public" href="../earthbound/bank04/findEntityByPartyMemberID.html">findEntityByPartyMemberID</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="findEntityByPartyMemberID" class="public" href="../earthbound/bank04/findEntityByPartyMemberID.html">findEntityByPartyMemberID</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$C4608C
+						<td>Gets the ID of the first entity with a matching party member ID
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="findEntityBySprite" class="public" href="../earthbound/bank04/findEntityBySprite.html">findEntityBySprite</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="findEntityBySprite" class="public" href="../earthbound/bank04/findEntityBySprite.html">findEntityBySprite</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C46028
+						<td>Gets the ID of the first entity with the requested sprite
 </td>
 					</tr>
 					<tr>
@@ -1331,19 +1377,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="focusCameraOnSprite" class="public" href="../earthbound/bank04/focusCameraOnSprite.html">focusCameraOnSprite</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="focusCameraOnNPCID" class="public" href="../earthbound/bank04/focusCameraOnNPCID.html">focusCameraOnNPCID</a><span class="tableEntryAnnotation">(npc)</span>
 							</code>
 						</td>
-						<td>$C466A8
+						<td>Causes the game camera to follow an entity with the given NPC ID
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="focusCameraOnTPT" class="public" href="../earthbound/bank04/focusCameraOnTPT.html">focusCameraOnTPT</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="focusCameraOnSprite" class="public" href="../earthbound/bank04/focusCameraOnSprite.html">focusCameraOnSprite</a><span class="tableEntryAnnotation">(sprite)</span>
 							</code>
 						</td>
-						<td>$C46698
+						<td>Causes the game camera to follow an entity with the given sprite
 </td>
 					</tr>
 					<tr>
@@ -1592,10 +1638,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="hideCharacterOrParty" class="public" href="../earthbound/bank04/hideCharacterOrParty.html">hideCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="hideCharacterOrParty" class="public" href="../earthbound/bank04/hideCharacterOrParty.html">hideCharacterOrParty</a><span class="tableEntryAnnotation">(partyMember)</span>
 							</code>
 						</td>
-						<td>$C463F4
+						<td>Stops drawing a single party member or the entire party
 </td>
 					</tr>
 					<tr>
@@ -1736,6 +1782,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="invertRenderedText" class="public" href="../earthbound/bank04/invertRenderedText.html">invertRenderedText</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C4984B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="isEntityOnscreenResetAnimation" class="public" href="../earthbound/bank04/isEntityOnscreenResetAnimation.html">isEntityOnscreenResetAnimation</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1749,6 +1804,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Tests if the entity is still visible on the cast screen
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="isLeaderClose" class="public" href="../earthbound/bank04/isLeaderClose.html">isLeaderClose</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C46EF8
 </td>
 					</tr>
 					<tr>
@@ -2681,7 +2745,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="setMovementFromAngle" class="public" href="../earthbound/bank04/setMovementFromAngle.html">setMovementFromAngle</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="setMovementFromAngle" class="public" href="../earthbound/bank04/setMovementFromAngle.html">setMovementFromAngle</a><span class="tableEntryAnnotation">(angle)</span>
 							</code>
 						</td>
 						<td>$C47044
@@ -2699,6 +2763,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setNPCDirection" class="public" href="../earthbound/bank04/setNPCDirection.html">setNPCDirection</a><span class="tableEntryAnnotation">(npc, direction)</span>
+							</code>
+						</td>
+						<td>Sets the direction of an entity with matching NPC ID and updates displayed sprite as appropriate
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setOverworldStatusSuppression" class="public" href="../earthbound/bank04/setOverworldStatusSuppression.html">setOverworldStatusSuppression</a><span class="tableEntryAnnotation">(val)</span>
 							</code>
 						</td>
@@ -2708,10 +2781,37 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setPartyDirection" class="public" href="../earthbound/bank04/setPartyDirection.html">setPartyDirection</a><span class="tableEntryAnnotation">(direction)</span>
+							</code>
+						</td>
+						<td>Sets the direction for the entire party and updates sprite as appropriate
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setPartyMemberDirection" class="public" href="../earthbound/bank04/setPartyMemberDirection.html">setPartyMemberDirection</a><span class="tableEntryAnnotation">(partyMember, direction)</span>
+							</code>
+						</td>
+						<td>Sets the direction of an entity with matching party member ID and updates displayed sprite as appropriate
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setPartyTickCallbacks" class="public" href="../earthbound/bank04/setPartyTickCallbacks.html">setPartyTickCallbacks</a><span class="tableEntryAnnotation">(leaderEntityID, leaderCallback, partyCallback)</span>
 							</code>
 						</td>
 						<td>Set tick callbacks for a party leader and the entire party all in one go.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setSpriteDirection" class="public" href="../earthbound/bank04/setSpriteDirection.html">setSpriteDirection</a><span class="tableEntryAnnotation">(sprite, direction)</span>
+							</code>
+						</td>
+						<td>Sets the direction of an entity with matching sprite and updates displayed sprite as appropriate
 </td>
 					</tr>
 					<tr>
@@ -2781,19 +2881,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="spawnEntityAtSelf" class="public" href="../earthbound/bank04/spawnEntityAtSelf.html">spawnEntityAtSelf</a><span class="tableEntryAnnotation">(sprite, actionScriptID)</span>
+								<a id="spawnEntityAtSelf" class="public" href="../earthbound/bank04/spawnEntityAtSelf.html">spawnEntityAtSelf</a><span class="tableEntryAnnotation">(sprite, actionScript)</span>
 							</code>
 						</td>
-						<td>$C46534
+						<td>Spawns a new entity at the current active entity's coordinates
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="spawnTravellingPhotographer" class="public" href="../earthbound/bank04/spawnTravellingPhotographer.html">spawnTravellingPhotographer</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="spawnTravellingPhotographer" class="public" href="../earthbound/bank04/spawnTravellingPhotographer.html">spawnTravellingPhotographer</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$C466C1
+						<td>Spawns a travelling photographer entity and automatically save photo state
 </td>
 					</tr>
 					<tr>
@@ -2925,82 +3025,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unhideCharacterOrParty" class="public" href="../earthbound/bank04/unhideCharacterOrParty.html">unhideCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unhideCharacterOrParty" class="public" href="../earthbound/bank04/unhideCharacterOrParty.html">unhideCharacterOrParty</a><span class="tableEntryAnnotation">(partyMember)</span>
 							</code>
 						</td>
-						<td>$C4645A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC460CE" class="public" href="../earthbound/bank04/unknownC460CE.html">unknownC460CE</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C460CE
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46125" class="public" href="../earthbound/bank04/unknownC46125.html">unknownC46125</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C46125
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC462FF" class="public" href="../earthbound/bank04/unknownC462FF.html">unknownC462FF</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C462FF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46331" class="public" href="../earthbound/bank04/unknownC46331.html">unknownC46331</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C46331
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46363" class="public" href="../earthbound/bank04/unknownC46363.html">unknownC46363</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C46363
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46397" class="public" href="../earthbound/bank04/unknownC46397.html">unknownC46397</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C46397
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4681A" class="public" href="../earthbound/bank04/unknownC4681A.html">unknownC4681A</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4681A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46A6E" class="public" href="../earthbound/bank04/unknownC46A6E.html">unknownC46A6E</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C46A6E
+						<td>Resumes drawing a single party member or the entire party
 </td>
 					</tr>
 					<tr>
@@ -3010,15 +3038,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C46B2D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46B65" class="public" href="../earthbound/bank04/unknownC46B65.html">unknownC46B65</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C46B65
 </td>
 					</tr>
 					<tr>
@@ -3064,15 +3083,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C46D4B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC46EF8" class="public" href="../earthbound/bank04/unknownC46EF8.html">unknownC46EF8</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C46EF8
 </td>
 					</tr>
 					<tr>
@@ -3217,15 +3227,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C49841
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4984B" class="public" href="../earthbound/bank04/unknownC4984B.html">unknownC4984B</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4984B
 </td>
 					</tr>
 					<tr>
@@ -3573,7 +3574,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C46A7A
+						<td>Table mapping the eight directions to the four cardinals, biased towards keeping left/right direction
 </td>
 					</tr>
 					<tr>
@@ -3585,7 +3586,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C46A8A
+						<td>Table mapping the eight directions to the four cardinals, biased towards keeping up/down direction
 </td>
 					</tr>
 					<tr>
@@ -3598,6 +3599,18 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C46B41
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="directionTableURDL" class="public" href="../earthbound/bank04/directionTableURDL.html">
+								<code>directionTableURDL</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Table mapping the eight directions to their closest of up+right or down+left, biased towards keeping up/down direction
 </td>
 					</tr>
 					<tr>
@@ -4391,18 +4404,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C41FDF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC46A5E" class="public" href="../earthbound/bank04/unknownC46A5E.html">
-								<code>unknownC46A5E</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C46A5E
 </td>
 					</tr>
 					<tr>

@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function allocateEntityFadeBuffer</h1><p>$C4C8DB
+			<h1>Function allocateEntityFadeBuffer</h1><p>Allocates an entity fade buffer
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,14 +157,27 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">allocateEntityFadeBuffer</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">size</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="size">size</td><td> Number of bytes to allocate</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A buffer, at least as large as the requested size
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4C8DB
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
