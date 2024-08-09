@@ -91,6 +91,14 @@ enum firstEnemyIndex = totalPartyCount + 2; ///the +2 might be space for bad "pa
 enum hpPPWindowWidth = 7;
 enum hpPPWindowHeight = 8;
 
+/// Special entity collision values
+enum EntityCollision : ushort {
+	/// This entity has no collision
+	disabled = 0x8000,
+	/// This entity is not colliding with anything
+	nothing = 0xFFFF,
+}
+
 enum EntityCallbackFlags : ushort {
 	/// If set, the entity's move callback is disabled
 	moveDisabled = 0x4000,

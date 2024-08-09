@@ -836,7 +836,7 @@ void unknownC01A63(short x, short y) {
 void initializeMiscObjectData() {
 	for (short i = 0; i < 0x1E; i++) {
 		entityMovementSpeed[i] = 0;
-		entityCollidedObjects[i] = 0xFFFF;
+		entityCollidedObjects[i] = EntityCollision.nothing;
 		entityNPCIDs[i] = 0xFFFF;
 	}
 }
@@ -1038,7 +1038,7 @@ short createOverworldEntity(short sprite, short actionScript, short index, short
 	entityEnemySpawnTiles[result] = 0xFFFF;
 	entityEnemyIDs[result] = -1;
 	entityNPCIDs[result] = 0xFFFF;
-	entityCollidedObjects[result] = 0xFFFF;
+	entityCollidedObjects[result] = EntityCollision.nothing;
 	entitySurfaceFlags[result] = 0;
 	entityUnknown2DC6[result] = 0;
 	entityUnknown2D8A[result] = 0;
@@ -1095,7 +1095,7 @@ void unknownC02194() {
 		}
 	}
 	for (short i = 0; i < maxEntities; i++) {
-		entityCollidedObjects[i] = 0xFFFF;
+		entityCollidedObjects[i] = EntityCollision.nothing;
 	}
 }
 
@@ -1379,7 +1379,7 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 				newEntityX = cast(short)((tileX * 8 + (rand() % enemySpawnRangeWidth)) * 8);
 				newEntityY = cast(short)((tileY * 8 + (rand() % enemySpawnRangeHeight)) * 8);
 				debug(enemySpawnTracing) tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, newEntityX, newEntityY);
-				short positionFlags = getSurfaceFlags(newEntityX, newEntityY, newEntity);
+				short positionFlags = getSurfaceFlagsHorizontal(newEntityX, newEntityY, newEntity);
 				if ((positionFlags & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
 					// can't spawn here, try again
 					continue;
@@ -2061,7 +2061,7 @@ void setLeaderPosition(short x, short y, short direction) {
 	gameState.leaderX.integer = x;
 	gameState.leaderY.integer = y;
 	gameState.leaderDirection = direction;
-	gameState.troddenTileType = getSurfaceFlags(x, y, gameState.firstPartyMemberEntity);
+	gameState.troddenTileType = getSurfaceFlagsHorizontal(x, y, gameState.firstPartyMemberEntity);
 	unknownC03A94(direction);
 	movePartyToLeaderPosition();
 	for (short i = 0; i < 6; i++) {
@@ -2144,7 +2144,7 @@ short unknownC04116(short direction) {
 	short intangibilityBackup = playerIntangibilityFrames;
 	playerIntangibilityFrames = 1; //force intangibility on during search to avoid collision flags being set
 	while (true) {
-		short foundNPC = npcCollisionCheck(x, y, gameState.firstPartyMemberEntity);
+		short foundNPC = playerEntityCollisionCheck(x, y, gameState.firstPartyMemberEntity);
 		if (foundNPC > 0) {
 			interactingNPCID = entityNPCIDs[foundNPC];
 			interactingNPCEntity = foundNPC;
@@ -2230,7 +2230,7 @@ short unknownC042EF(short direction) {
 	short x12 = playerIntangibilityFrames;
 	playerIntangibilityFrames = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x, y, gameState.firstPartyMemberEntity);
+		short x10 = playerEntityCollisionCheck(x, y, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
 			interactingNPCID = entityNPCIDs[x10];
 			interactingNPCEntity = x10;
@@ -2307,14 +2307,14 @@ void handleNormalMovement() {
 	short chosenDirection = mapInputToDirection(gameState.walkingStyle);
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+			playerEntityCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		} else {
 			battleMode = BattleMode.inBattle;
 		}
 		return;
 	}
 	if (chosenDirection == -1) {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+		playerEntityCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if (gameState.walkingStyle == WalkingStyle.stairs) {
@@ -2359,8 +2359,8 @@ void handleNormalMovement() {
 	}
 	gameState.troddenTileType = newCollision;
 	bool movementOK = true;
-	npcCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
-	if (entityCollidedObjects[partyLeaderEntity] != 0xFFFF) {
+	playerEntityCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
+	if (entityCollidedObjects[partyLeaderEntity] != EntityCollision.nothing) {
 		movementOK = false;
 	}
 	if ((newCollision & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
@@ -2458,7 +2458,7 @@ void handleBicycleMovement(short hasMoved) {
 	short originalDirection = direction;
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+			playerEntityCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		} else {
 			battleMode = BattleMode.inBattle;
@@ -2473,7 +2473,7 @@ void handleBicycleMovement(short hasMoved) {
 		if (hasMoved != 0) {
 			direction = gameState.leaderDirection;
 		} else {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+			playerEntityCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		}
 	}
@@ -2491,8 +2491,8 @@ void handleBicycleMovement(short hasMoved) {
 	y.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[direction].combined;
 	ladderStairsTileX = 0xFFFF;
 	short collision = getMovingCollisionFlags(x.integer, y.integer, 24, direction);
-	npcCollisionCheck(x.integer, y.integer, gameState.firstPartyMemberEntity);
-	if (entityCollidedObjects[partyLeaderEntity] == -1) {
+	playerEntityCollisionCheck(x.integer, y.integer, gameState.firstPartyMemberEntity);
+	if (entityCollidedObjects[partyLeaderEntity] == EntityCollision.nothing) {
 		gameState.leaderHasMoved++;
 		playerHasMovedSinceMapLoad++;
 		if ((collision & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
@@ -2606,7 +2606,7 @@ void movePartyLeader() {
 	}
 	short positionIndex = gameState.leaderPositionIndex;
 	PlayerPositionBufferEntry* positionEntry = &playerPositionBuffer[gameState.leaderPositionIndex];
-	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+	gameState.troddenTileType = getSurfaceFlagsVertical(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	if (gameState.leaderHasMoved != 0) {
 		positionEntry.xCoord = gameState.leaderX.integer;
 		positionEntry.yCoord = gameState.leaderY.integer;
@@ -3347,12 +3347,12 @@ short checkEnemyCanMove(short collisionFlags, short entity, short enemyID) {
 }
 
 /// $C05E3B
-short unknownC05E3B(short arg1) {
+short updateEntityCollision(short entity) {
 	if (testEntityMovementActive() == 0) {
 		return -256;
 	}
-	entityObstacleFlags[arg1] = getMovingCollisionFlags(entityMovementProspectX, entityMovementProspectY, arg1, entityDirections[arg1]) & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs);
-	return entityObstacleFlags[arg1];
+	entityObstacleFlags[entity] = getMovingCollisionFlags(entityMovementProspectX, entityMovementProspectY, entity, entityDirections[entity]) & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs);
+	return entityObstacleFlags[entity];
 }
 
 /** Gets the map collision for where the active entity intends to move and sets its collision flags
@@ -3360,40 +3360,51 @@ short unknownC05E3B(short arg1) {
  * Original_Address: $(DOLLAR)C05E76
  */
 short actionScriptGetActiveEntityMapCollisionProspective() {
-	return cast(ubyte)unknownC05E3B(currentEntitySlot);
+	return cast(ubyte)updateEntityCollision(currentEntitySlot);
 }
 
-/// $C05E82
-short unknownC05E82() {
-	short x0E = unknownC05E3B(currentEntitySlot);
-	if (x0E == -256) {
+/** Updates enemy collision flags for the new location
+ * Returns: 0 if not moving, 0 if moving is ok, SurfaceFlags.solid if enemy can't move there?
+ * Original_Address: $(DOLLAR)C05E82
+ */
+short updateEnemyEntityCollision() {
+	short collision = updateEntityCollision(currentEntitySlot);
+	// didn't move
+	if (collision == -256) {
 		return 0;
 	}
-	if (x0E != 0) {
+	// can't move
+	if (collision != 0) {
 		return 0;
 	}
-	short x04 = checkEnemyCanMove(x0E, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
-	entityObstacleFlags[currentEntitySlot] |= x04;
-	return x04;
+	// add solid flag if enemy can't move here
+	short enemySpecialFlags = checkEnemyCanMove(collision, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
+	entityObstacleFlags[currentEntitySlot] |= enemySpecialFlags;
+	return enemySpecialFlags;
 }
 
-/// $C05ECE
-short unknownC05ECE() {
+/** Alternate enemy entity collision function, used by flying enemies (magic butterflies included)
+ * Original_Address: $(DOLLAR)C05ECE
+ */
+short updateFlyingEnemyEntityCollision() {
+	// didn't move
 	if (testEntityMovementActive() == 0) {
 		return 0;
 	}
-	short x02 = unknownC05F82(entityMovementProspectX, entityMovementProspectY, currentEntitySlot) & 0xD0;
-	entityObstacleFlags[currentEntitySlot] = x02;
-	if (x02 != 0) {
+	short collision = getSurfaceFlagsVertical(entityMovementProspectX, entityMovementProspectY, currentEntitySlot) & 0xD0;
+	entityObstacleFlags[currentEntitySlot] = collision;
+	// can't move
+	if (collision != 0) {
 		return 0;
 	}
-	ushort tmp = x02 | checkEnemyCanMove(x02, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
-	entityObstacleFlags[currentEntitySlot] = tmp;
-	return tmp;
+	// add solid flag if enemy can't move here
+	ushort enemySpecialFlags = collision | checkEnemyCanMove(collision, currentEntitySlot, entityEnemyIDs[currentEntitySlot]);
+	entityObstacleFlags[currentEntitySlot] = enemySpecialFlags;
+	return enemySpecialFlags;
 }
 
 /// $C05F33
-short getSurfaceFlags(short x, short y, short entityID) {
+short getSurfaceFlagsHorizontal(short x, short y, short entityID) {
 	const size = entitySizes[entityID];
 	tempEntitySurfaceFlags = 0;
 	checkedCollisionLeftX = cast(short)(x - collisionWidths[size]);
@@ -3404,7 +3415,7 @@ short getSurfaceFlags(short x, short y, short entityID) {
 }
 
 /// $C05F82
-short unknownC05F82(short x, short y, short entityID) {
+short getSurfaceFlagsVertical(short x, short y, short entityID) {
 	tempEntitySurfaceFlags = 0;
 	const size = entitySizes[entityID];
 	checkedCollisionTopY = cast(short)(y - collisionHeights1[size] + collisionHeights2[size]);
@@ -3423,7 +3434,7 @@ short unknownC05FD1(short x, short y, short entity) {
 	return tempEntitySurfaceFlags;
 }
 
-/** Find any NPCs colliding with entity, respecting intangibility
+/** Find any NPCs colliding with player entity, respecting intangibility
  * Params:
  * 	x = The X coordinate the entity is assumed to be at
  * 	y = The Y coordinate the entity is assumed to be at
@@ -3431,7 +3442,7 @@ short unknownC05FD1(short x, short y, short entity) {
  * Returns: Entity index of the first colliding NPC
  * Original_Address: $(DOLLAR)C05FF6
  */
-short npcCollisionCheck(short x, short y, short entity) {
+short playerEntityCollisionCheck(short x, short y, short entity) {
 	short result = -1;
 	if ((entityHitboxEnabled[entity] != 0) && ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
 		short subjectWidth;
@@ -3451,7 +3462,7 @@ short npcCollisionCheck(short x, short y, short entity) {
 				continue;
 			}
 			// skip entities with disabled collision
-			if (entityCollidedObjects[i] == 0x8000) {
+			if (entityCollidedObjects[i] == EntityCollision.disabled) {
 				continue;
 			}
 			// skip enemies when intangible
@@ -3493,7 +3504,7 @@ short npcCollisionCheck(short x, short y, short entity) {
 }
 
 /// $C0613C
-void unknownC0613C(short arg1, short arg2, short arg3) {
+void npcEntityCollisionCheck(short arg1, short arg2, short arg3) {
 	ushort result = 0xFFFF;
 	if (entityHitboxEnabled[arg3] != 0) {
 		short x18;
@@ -3518,7 +3529,7 @@ void unknownC0613C(short arg1, short arg2, short arg3) {
 			if (entityScriptTable[i] == -1) {
 				continue;
 			}
-			if (entityCollidedObjects[i] == 0x8000) {
+			if (entityCollidedObjects[i] == EntityCollision.disabled) {
 				continue;
 			}
 			if (entityHitboxEnabled[i] == 0) {
@@ -3553,7 +3564,7 @@ void unknownC0613C(short arg1, short arg2, short arg3) {
 }
 
 /// $C06267
-short unknownC06267(short x, short y, short subjectEntity) {
+short enemyEntityCollisionCheck(short x, short y, short subjectEntity) {
 	short collidedEntity = -1;
 	if (entityHitboxEnabled[subjectEntity] != 0) {
 		short subjectHitboxWidth;
@@ -3572,7 +3583,7 @@ short unknownC06267(short x, short y, short subjectEntity) {
 				if (entityScriptTable[i] == -1) {
 					continue;
 				}
-				if (entityCollidedObjects[i] == 0x8000) {
+				if (entityCollidedObjects[i] == EntityCollision.disabled) {
 					continue;
 				}
 				if (entityHitboxEnabled[i] == 0) {
@@ -3613,7 +3624,7 @@ short unknownC06267(short x, short y, short subjectEntity) {
 			if (entityNPCIDs[i] >= 0x1000) {
 				continue;
 			}
-			if (entityCollidedObjects[i] == 0x8000) {
+			if (entityCollidedObjects[i] == EntityCollision.disabled) {
 				continue;
 			}
 			if (entityHitboxEnabled[i] == 0) {
@@ -3649,24 +3660,26 @@ short unknownC06267(short x, short y, short subjectEntity) {
 	return collidedEntity;
 }
 
-/// $C06478
-void unknownC06478() {
-	if (entityCollidedObjects[currentEntitySlot] == 0x8000) {
+/** Tests for colliding entities where the active enemy entity wants to move and sets the collision field as needed
+ * Original_Address: $(DOLLAR)C06478
+ */
+void actionScriptSetEntityToEntityCollisionProspectiveEnemy() {
+	if (entityCollidedObjects[currentEntitySlot] == EntityCollision.disabled) {
 		return;
 	}
 	testEntityMovementSlot(currentEntitySlot);
-	unknownC06267(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
+	enemyEntityCollisionCheck(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
 }
 
-/** Tests for colliding entities where the active entity wants to move and sets the collision field as needed
+/** Tests for colliding entities where the active NPC entity wants to move and sets the collision field as needed
  * Original_Address: $(DOLLAR)C064A6
  */
-void actionScriptSetEntityToEntityCollisionProspective() {
-	if (entityCollidedObjects[currentEntitySlot] == 0x8000) {
+void actionScriptSetEntityToEntityCollisionProspectiveNPC() {
+	if (entityCollidedObjects[currentEntitySlot] == EntityCollision.disabled) {
 		return;
 	}
 	testEntityMovementSlot(currentEntitySlot);
-	unknownC0613C(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
+	npcEntityCollisionCheck(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
 }
 
 /// $C064D4
@@ -7496,33 +7509,33 @@ immutable short function(short)[8] unknownC0A350 = [
 /// $C0A360
 void unknownC0A360() {
 	if (entityPathfindingState[currentActiveEntityOffset / 2] >= 0) {
-		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & 0xD0) != 0) {
+		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & (SurfaceFlags.ladderOrStairs | SurfaceFlags.unknown2 | SurfaceFlags.solid)) != 0) {
 			actionScriptCommand39(null);
 			return;
-		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
+		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & EntityCollision.disabled) == 0) {
 			return;
 		}
 	}
-	unknownC0A37ACommon(currentActiveEntityOffset);
+	actionScriptUpdatePositionAndCollisionCommon(currentActiveEntityOffset);
 }
 
 /// $C0A37A
-void unknownC0A37A() {
-	unknownC0A37ACommon(currentActiveEntityOffset);
+void actionScriptUpdatePositionAndCollision() {
+	actionScriptUpdatePositionAndCollisionCommon(currentActiveEntityOffset);
 }
 
-void unknownC0A37ACommon(short arg1) {
-	updateEntityPosition2D(arg1);
+void actionScriptUpdatePositionAndCollisionCommon(short entity) {
+	updateEntityPosition2D(entity);
 	updateEntitySurfaceFlags();
 }
 
 /// $C0A384
 void unknownC0A384() {
 	if (entityPathfindingState[currentActiveEntityOffset / 2] >= 0) {
-		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & 0xD0) != 0) {
+		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & (SurfaceFlags.ladderOrStairs | SurfaceFlags.unknown2 | SurfaceFlags.solid)) != 0) {
 			actionScriptCommand39(null);
 			return;
-		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
+		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & EntityCollision.disabled) == 0) {
 			return;
 		}
 	}
@@ -7731,12 +7744,12 @@ short setDirection(short arg1, ref const(ubyte)*) {
 }
 
 /// $C0A66D
-void unknownC0A66D(short arg1) {
+void actionScriptSetSelfDirection(short arg1) {
 	entityDirections[currentActiveEntityOffset / 2] = arg1;
 }
 
 /// $C0A673
-short unknownC0A673() {
+short actionScriptGetSelfDirection() {
 	return entityDirections[currentActiveEntityOffset / 2];
 }
 
@@ -7766,37 +7779,42 @@ short getMovementSpeed() {
 }
 
 /// $C0A6A2
-void unknownC0A6A2(short, ref const(ubyte)* arg2) {
+void actionScriptSleepUntilCardinalPixelsMoved(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC0CA4E(tmp);
+	sleepUntilCardinalPixelsMoved(tmp);
 }
 
-/// $C0A6AD
-void unknownC0A6AD(short, ref const(ubyte)* arg2) {
+/** ActionScript: Sleep until the entity has moved a certain number of pixels
+ * Original_Address: $(DOLLAR)C0A6AD
+ */
+void actionScriptSleepUntilPixelsMoved(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC0CBD3(tmp);
+	sleepUntilPixelsMoved(tmp);
 }
 
-/// $C0A6B8
-short unknownC0A6B8() {
-	short tmp = 0;
-	if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
-		tmp--;
+/** ActionScript: Test if current active entity has collision enabled
+ *
+ * Returns: -1 if collision, enabled, 0 otherwise
+ * Original_Address: $(DOLLAR)C0A6B8
+ */
+short actionScriptTestCollisionEnabled() {
+	if ((entityCollidedObjects[currentActiveEntityOffset / 2] & EntityCollision.disabled) == 0) {
+		return -1;
 	}
-	return tmp;
+	return 0;
 }
 
 /// $C0A6DA
 short clearCurrentEntityCollision(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[currentActiveEntityOffset / 2] = 0xFFFF;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.nothing;
 	return 0;
 }
 
 /// $C0A6D1
 short disableCurrentEntityCollision(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[currentActiveEntityOffset / 2] = 0x8000;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.disabled;
 	return 0;
 }
 
@@ -7902,13 +7920,13 @@ void updateEntitySpriteFrameCurrent() {
 
 /// $C0A82F
 short disableCurrentEntityCollision2(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[currentActiveEntityOffset / 2] = 0x8000;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.disabled;
 	return 0;
 }
 
 /// $C0A838
 short clearCurrentEntityCollision2(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[currentActiveEntityOffset / 2] = 0xFFFF;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.nothing;
 	return 0;
 }
 
@@ -8890,7 +8908,7 @@ void initBattleOverworld() {
 		}
 	}
 	for (short i = 0; i != partyLeaderEntity; i++) {
-		entityCollidedObjects[i] = 0xFFFF;
+		entityCollidedObjects[i] = EntityCollision.nothing;
 		entityPathfindingState[i] = 0;
 		entitySpriteMapFlags[i] &= ~SpriteMapFlags.drawDisabled;
 	}
@@ -9261,64 +9279,74 @@ short unknownC0C35D() {
 	return gameState.leaderHasMoved;
 }
 
-/// $C0C363
-short unknownC0C363() {
-	short x02 = cast(short)(gameState.leaderX.integer - entityAbsXTable[currentEntitySlot]);
-	short x04 = cast(short)(gameState.leaderY.integer - entityAbsYTable[currentEntitySlot]);
-	if (0 > x04) {
-		x04 = cast(short)-cast(int)x04;
-	} else {
-		x04 = x04;
-	}
-	if (x04 + ((0 > x02) ? (cast(short)-cast(int)x02) : x02) > 0x100) {
+/** Transforms the distance between the party leader and current active entity into a value more suitable for switching on
+ * Returns: 0 if within 128 pixels, 1 if within 160 pixels, 2 if within 256 pixels, 3 otherwise
+ * Original_Address: $(DOLLAR)C0C363
+ */
+short testPartyLeaderDistanceFar() {
+	short xDistance = cast(short)(gameState.leaderX.integer - entityAbsXTable[currentEntitySlot]);
+	short yDistance = cast(short)(gameState.leaderY.integer - entityAbsYTable[currentEntitySlot]);
+	yDistance = (0 > yDistance) ? (cast(short)-cast(int)yDistance) : yDistance;
+	xDistance = (0 > xDistance) ? (cast(short)-cast(int)xDistance) : xDistance;
+	short distance = cast(short)(xDistance + yDistance);
+	if (distance > 256) {
 		return 3;
 	}
-	if (x04 + ((0 > x02) ? (cast(short)-cast(int)x02) : x02) > 0xA0) {
+	if (distance > 160) {
 		return 2;
 	}
-	if (x04 + ((0 > x02) ? (cast(short)-cast(int)x02) : x02) > 0x80) {
+	if (distance > 128) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C0C3F9
-short unknownC0C3F9() {
-	short x02 = cast(short)(gameState.leaderX.integer - entityAbsXTable[currentEntitySlot]);
-	short x0E = cast(short)(gameState.leaderY.integer - entityAbsYTable[currentEntitySlot]);
-	short x04 = (0 > x0E) ? (cast(short)-cast(int)x0E) : x0E;
-	x02 = (0 > x02) ? (cast(short)-cast(int)x02) : x02;
-	x0E = cast(short)(x02 + x04);
-	if (x0E > 0x80) {
+/** Transforms the distance between the party leader and current active entity into a value more suitable for switching on
+ * Returns: 0 if within 64 pixels, 1 if within 80 pixels, 2 if within 128 pixels, 3 otherwise
+ * Original_Address: $(DOLLAR)C0C3F9
+ */
+short testPartyLeaderDistanceClose() {
+	short xDistance = cast(short)(gameState.leaderX.integer - entityAbsXTable[currentEntitySlot]);
+	short yDistance = cast(short)(gameState.leaderY.integer - entityAbsYTable[currentEntitySlot]);
+	yDistance = (0 > yDistance) ? (cast(short)-cast(int)yDistance) : yDistance;
+	xDistance = (0 > xDistance) ? (cast(short)-cast(int)xDistance) : xDistance;
+	short distance = cast(short)(xDistance + yDistance);
+	if (distance > 128) {
 		return 3;
 	}
-	if (x0E > 0x50) {
+	if (distance > 80) {
 		return 2;
 	}
-	if (x0E > 0x40) {
+	if (distance > 64) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C0C48F
-short unknownC0C48F() {
+/** Gets a switchable distance between the active entity and party leader, unless pathfinding is happening or the player is still intangible
+ * Returns: 0 if entity is currently pathfinding, -1 if player is intangible, otherwise same as testPartyLeaderDistanceFar()
+ * Original_Address: $(DOLLAR)C0C48F
+ */
+short testPartyLeaderDistanceFarIntangibility() {
 	if (entityPathfindingState[currentEntitySlot] != 0) {
 		return 0;
 	}
 	if (playerIntangibilityFrames == 0) {
-		return unknownC0C363();
+		return testPartyLeaderDistanceFar();
 	}
 	return -1;
 }
 
-/// $C0C4AF
-short unknownC0C4AF() {
+/** Gets a switchable distance between the active entity and party leader, unless pathfinding is happening or the player is still intangible
+ * Returns: 0 if entity is currently pathfinding, -1 if player is intangible, otherwise same as testPartyLeaderDistanceClose()
+ * Original_Address: $(DOLLAR)C0C4AF
+ */
+short testPartyLeaderDistanceCloseIntangibility() {
 	if (entityPathfindingState[currentEntitySlot] != 0) {
 		return 0;
 	}
 	if (playerIntangibilityFrames == 0) {
-		return unknownC0C3F9();
+		return testPartyLeaderDistanceClose();
 	}
 	return -1;
 }
@@ -9347,7 +9375,7 @@ short isEntityWeak() {
 }
 
 /// $C0C62B
-short getAngleTowardsPlayerUnlessWeak() {
+short getAngleTowardsDestinationUnlessWeak() {
 	short x02 = 0;
 	if ((entityNPCIDs[currentEntitySlot] < 0) && (isEntityWeak() != 0)) {
 		x02 = short.min;
@@ -9405,101 +9433,118 @@ unittest {
 
 /// $C0C7DB
 void updateEntitySurfaceFlags() {
-	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
+	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlagsHorizontal(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
 }
 
-/// $C0C83B
-void unknownC0C83B(short direction) {
+/** Moves en entity according to their current speed
+ * Params:
+ * 	direction = The direction to move in
+ * Original_Address: $(DOLLAR)C0C83B
+ */
+void actionScriptMoveDirection(short direction) {
 	entityMovingDirection[currentEntitySlot] = direction;
-	FixedPoint1616 x0E;
+	FixedPoint1616 movementSpeed;
 	if ((direction & 1) != 0) {
-		x0E.combined = (cast(int)entityMovementSpeed[currentEntitySlot] * 0xB505) >> 8;
+		movementSpeed.combined = (cast(int)entityMovementSpeed[currentEntitySlot] * 0xB505) >> 8; // multiply diagonals by sqrt(2.0) / 2.0
 	} else {
-		x0E.combined = (cast(int)entityMovementSpeed[currentEntitySlot] * 0x10000) >> 8;
+		movementSpeed.combined = (cast(int)entityMovementSpeed[currentEntitySlot] * 0x10000) >> 8; // multiply cardinals by 1.0
 	}
-	FixedPoint1616 x12;
-	FixedPoint1616 x16;
+	FixedPoint1616 xDelta;
+	FixedPoint1616 yDelta;
 	switch (direction) {
 		case Direction.up:
-			x12.combined = 0;
-			x16.combined = -x0E.combined;
+			xDelta.combined = 0;
+			yDelta.combined = -movementSpeed.combined;
 			break;
 		case Direction.upRight:
-			x12.combined = x0E.combined;
-			x16.combined = -x0E.combined;
+			xDelta.combined = movementSpeed.combined;
+			yDelta.combined = -movementSpeed.combined;
 			break;
 		case Direction.right:
-			x12.combined = x0E.combined;
-			x16.combined = 0;
+			xDelta.combined = movementSpeed.combined;
+			yDelta.combined = 0;
 			break;
 		case Direction.downRight:
-			x12.combined = x0E.combined;
-			x16.combined = x0E.combined;
+			xDelta.combined = movementSpeed.combined;
+			yDelta.combined = movementSpeed.combined;
 			break;
 		case Direction.down:
-			x12.combined = 0;
-			x16.combined = x0E.combined;
+			xDelta.combined = 0;
+			yDelta.combined = movementSpeed.combined;
 			break;
 		case Direction.downLeft:
-			x12.combined = -x0E.combined;
-			x16.combined = x0E.combined;
+			xDelta.combined = -movementSpeed.combined;
+			yDelta.combined = movementSpeed.combined;
 			break;
 		case Direction.left:
-			x12.combined = -x0E.combined;
-			x16.combined = 0;
+			xDelta.combined = -movementSpeed.combined;
+			yDelta.combined = 0;
 			break;
 		case Direction.upLeft:
-			x12.combined = -x0E.combined;
-			x16.combined = -x0E.combined;
+			xDelta.combined = -movementSpeed.combined;
+			yDelta.combined = -movementSpeed.combined;
 			break;
 		default: break;
 	}
-	entityDeltaXTable[currentEntitySlot] = x12.integer;
-	entityDeltaXFractionTable[currentEntitySlot] = x12.fraction;
-	entityDeltaYTable[currentEntitySlot] = x16.integer;
-	entityDeltaYFractionTable[currentEntitySlot] = x16.fraction;
+	entityDeltaXTable[currentEntitySlot] = xDelta.integer;
+	entityDeltaXFractionTable[currentEntitySlot] = xDelta.fraction;
+	entityDeltaYTable[currentEntitySlot] = yDelta.integer;
+	entityDeltaYFractionTable[currentEntitySlot] = yDelta.fraction;
 }
 
-/// $C0CBD3
-void unknownC0CBD3(short arg1) {
-	entityScriptSleepFrames[currentScriptSlot] = cast(short)((cast(int)arg1 << 8) / entityMovementSpeed[currentEntitySlot]);
+/** Causes a script to sleep until the entity has moved a certain number of pixels
+ *
+ * Warning: Undefined behaviour if the entity has no movement speed set
+ * Params:
+ * 	pixels = The number of pixels to move
+ * Original_Address: $(DOLLAR)C0CBD3
+ */
+void sleepUntilPixelsMoved(short pixels) {
+	assert(entityMovementSpeed[currentEntitySlot] != 0, "No movement speed set");
+	entityScriptSleepFrames[currentScriptSlot] = cast(short)((cast(int)pixels << 8) / entityMovementSpeed[currentEntitySlot]);
 }
 
-/// $C0CA4E
-void unknownC0CA4E(short arg1) {
-	FixedPoint1616 x0E;
-	x0E.integer = entityDeltaXTable[currentEntitySlot];
-	x0E.fraction = entityDeltaXFractionTable[currentEntitySlot];
-	FixedPoint1616 x12;
-	x12.integer = entityDeltaYTable[currentEntitySlot];
-	x12.fraction = entityDeltaYFractionTable[currentEntitySlot];
-	FixedPoint1616 x16;
-	FixedPoint1616 x0A;
-	if (0 > x12.combined) {
-		x16.combined = -x12.combined;
+/** Causes a script to sleep until the entity has moved a certain number of pixels in the cardinal directions
+ *
+ * Similar to sleepUntilPixelsMoved, but uses only the greater of X and Y movement instead of a straight line.
+ * Params:
+ * 	pixels = The number of pixels to move
+ * Original_Address: $(DOLLAR)C0CA4E
+ */
+void sleepUntilCardinalPixelsMoved(short pixels) {
+	FixedPoint1616 deltaX;
+	deltaX.integer = entityDeltaXTable[currentEntitySlot];
+	deltaX.fraction = entityDeltaXFractionTable[currentEntitySlot];
+	FixedPoint1616 deltaY;
+	deltaY.integer = entityDeltaYTable[currentEntitySlot];
+	deltaY.fraction = entityDeltaYFractionTable[currentEntitySlot];
+	FixedPoint1616 yPixelsMoved;
+	FixedPoint1616 pixelsMoved;
+	if (0 > deltaY.combined) {
+		yPixelsMoved.combined = -deltaY.combined;
 	} else {
-		x16 = x12;
+		yPixelsMoved = deltaY;
 	}
-	if (0 > x0E.combined) {
-		x0A.combined = -x0E.combined;
+	if (0 > deltaX.combined) {
+		pixelsMoved.combined = -deltaX.combined;
 	} else {
-		x0A = x0E;
+		pixelsMoved = deltaX;
 	}
-	if (x0A.combined > x16.combined) {
-		if (0 > x0E.combined) {
-			x0A.combined = -x0E.combined;
+	if (pixelsMoved.combined > yPixelsMoved.combined) {
+		if (0 > deltaX.combined) {
+			pixelsMoved.combined = -deltaX.combined;
 		} else {
-			x0A = x0E;
+			pixelsMoved = deltaX;
 		}
 	} else {
-		if (0 > x12.combined) {
-			x0A.combined = -x12.combined;
+		if (0 > deltaY.combined) {
+			pixelsMoved.combined = -deltaY.combined;
 		} else {
-			x0A = x12;
+			pixelsMoved = deltaY;
 		}
 	}
-	assert(x0A.combined != 0);
-	entityScriptSleepFrames[currentScriptSlot] = cast(short)((arg1 << 16) / x0A.combined);
+	assert(pixelsMoved.combined != 0, "No movement prepared");
+	entityScriptSleepFrames[currentScriptSlot] = cast(short)((pixels << 16) / pixelsMoved.combined);
 }
 
 /// $C0CC11
@@ -9529,7 +9574,7 @@ void unknownC0CC11() {
 void unknownC0CCCC() {
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[currentEntitySlot];
 	entityScriptVar7Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] + 16);
-	entityScriptVar5Table[currentEntitySlot] = cast(short)((cast(int)entityMovementSpeed[currentEntitySlot] * 16) / 64800) << 8;
+	entityScriptVar5Table[currentEntitySlot] = cast(short)((cast(int)entityMovementSpeed[currentEntitySlot] * 16) / 64800) << 8; // * 128 / 2025?
 	if ((rand() & 1) != 0) {
 		entityDirections[currentEntitySlot] = Direction.up;
 	} else {
@@ -9670,7 +9715,7 @@ short unknownC0D0D9() {
 
 /// $C0D0E6
 short unknownC0D0E6() {
-	if ((unknownC0C363() == 0) && (entityPathfindingState[currentEntitySlot] != 0)) {
+	if ((testPartyLeaderDistanceFar() == 0) && (entityPathfindingState[currentEntitySlot] != 0)) {
 		entityAbsXTable[currentEntitySlot] = gameState.leaderX.integer;
 		entityAbsYTable[currentEntitySlot] = gameState.leaderY.integer;
 		return -1;
@@ -9686,14 +9731,14 @@ short unknownC0D0E6() {
 }
 
 /// $C0D15C
-short unknownC0D15C() {
+short actionScriptTestPartyCollision() {
 	if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) != 0) {
 		return 0;
 	}
 	if (entityCollidedObjects[partyLeaderEntity] == currentEntitySlot) {
 		return -1;
 	}
-	if (((entityCollidedObjects[currentEntitySlot] & 0x8000) != 0) || (entityCollidedObjects[currentEntitySlot] < partyLeaderEntity)) {
+	if (((entityCollidedObjects[currentEntitySlot] & EntityCollision.disabled) != 0) || (entityCollidedObjects[currentEntitySlot] < partyLeaderEntity)) {
 		return 0;
 	}
 	return -1;
@@ -9843,16 +9888,27 @@ void unknownC0D4DE() {
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C0D59B
-short unknownC0D59B() {
+/** Tests if a battle is about to start
+ * Returns: 1 if battle is starting, 0 otherwise
+ * Original_Address: $(DOLLAR)C0D59B
+ */
+short testBattleStarting() {
 	if ((battleSwirlCountdown != 0) || (enemyHasBeenTouched != 0)) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C0D5B0
-short unknownC0D5B0() {
+/** Tries starting a battle with any enemies touching the party members
+ *
+ * Enemy entities are expected to run this on EVERY frame.
+ * If any valid enemy entities are in contact with the party, this function will switch to battle swirl mode on the first frame.
+ * Every frame afterward will set up battle groups with other enemies that have pathfound their way to the party.
+ * There may be several frames of lag between the first frame and the second, as pathfinding can be quite expensive
+ * Returns: 0 if no battle, 1 if battle starting
+ * Original_Address: $(DOLLAR)C0D5B0
+ */
+short tryBattleStart() {
 	if (battleMode != BattleMode.noBattle) {
 		return 0;
 	}
@@ -9873,7 +9929,7 @@ short unknownC0D5B0() {
 			return 0;
 		}
 		if ((battleSwirlCountdown == 0) || (entityPathPointsCount[currentEntitySlot] != 0)) {
-			if (unknownC0D15C() == 0) {
+			if (actionScriptTestPartyCollision() == 0) {
 				return 0;
 			}
 		}
@@ -9899,21 +9955,21 @@ short unknownC0D5B0() {
 		switchToCameraMode3();
 		return 1;
 	}
-	entityCollidedObjects[currentEntitySlot] = 0x8000;
-	short x12 = 0;
+	entityCollidedObjects[currentEntitySlot] = EntityCollision.disabled;
+	short result = 0;
 	if (battleSwirlCountdown != 0) {
 		if (currentEntitySlot == touchedEnemy) {
 			entityCallbackFlags[currentEntitySlot] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
-			x12 = 1;
+			result = 1;
 		} else {
-			x12 = 0;
+			result = 0;
 			short y = 0;
 			for (short i = 0; i != 4; i++) {
 				if (entityEnemyIDs[currentEntitySlot] == pathfindingEnemyIDs[i]) {
 					short x0E = pathfindingEnemyCounts[i];
 					if (x0E != 0) {
 						pathfindingEnemyCounts[i] = cast(short)(x0E - 1);
-						x12 = 1;
+						result = 1;
 						entityCallbackFlags[currentEntitySlot] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
 						enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[currentEntitySlot];
 					}
@@ -9931,7 +9987,7 @@ short unknownC0D5B0() {
 			}
 		}
 	}
-	return x12;
+	return result;
 }
 
 /// $C0D7E0
@@ -10367,7 +10423,7 @@ void psiTeleportRestoreControl() {
 	for (short i = partyMemberEntityStart; i < partyMemberEntityStart + partyCharacters.length; i++) {
 		entityScriptVar3Table[i] = 8;
 		entityScriptVar7Table[i] &= ~PartyMemberMovementFlags.unknown11;
-		entityCollidedObjects[i] &= 0x7FFF;
+		entityCollidedObjects[i] &= ~EntityCollision.disabled;
 		currentPartyMemberTick.lastWalkingStyle = 0xFFFF;
 		currentPartyMemberTick++;
 	}
@@ -10381,14 +10437,14 @@ short psiTeleportCheckCollision(short curX, short curY, short nextX, short nextY
 	if (teleportState != TeleportState.inProgress) {
 		return 1;
 	}
-	return getSurfaceFlags(curX, curY, gameState.firstPartyMemberEntity) | getSurfaceFlags(nextX, nextY, gameState.firstPartyMemberEntity);
+	return getSurfaceFlagsHorizontal(curX, curY, gameState.firstPartyMemberEntity) | getSurfaceFlagsHorizontal(nextX, nextY, gameState.firstPartyMemberEntity);
 }
 
 /// $C0E196
 void writePartyLeaderStateToPositionBuffer() {
 	playerPositionBuffer[gameState.leaderPositionIndex].xCoord = gameState.leaderX.integer;
 	playerPositionBuffer[gameState.leaderPositionIndex].yCoord = gameState.leaderY.integer;
-	playerPositionBuffer[gameState.leaderPositionIndex].tileFlags =getSurfaceFlags(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+	playerPositionBuffer[gameState.leaderPositionIndex].tileFlags =getSurfaceFlagsHorizontal(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	playerPositionBuffer[gameState.leaderPositionIndex].walkingStyle = 0;
 	playerPositionBuffer[gameState.leaderPositionIndex].direction = gameState.leaderDirection;
 	gameState.leaderPositionIndex++;
@@ -10445,7 +10501,7 @@ void psiTeleportAlphaLeaderTick() {
 	psiTeleportUpdateSpeed(newDirection);
 	psiTeleportNextX.combined = psiTeleportSpeedX.combined + gameState.leaderX.combined;
 	psiTeleportNextY.combined = psiTeleportSpeedY.combined + gameState.leaderY.combined;
-	if (npcCollisionCheck(psiTeleportNextX.integer, psiTeleportNextY.integer, gameState.firstPartyMemberEntity) != -1) {
+	if (playerEntityCollisionCheck(psiTeleportNextX.integer, psiTeleportNextY.integer, gameState.firstPartyMemberEntity) != -1) {
 		teleportState = TeleportState.failed;
 	}
 	if ((psiTeleportCheckCollision(gameState.leaderX.integer, gameState.leaderY.integer, psiTeleportNextX.integer, psiTeleportNextY.integer, newDirection) & 0xC0) != 0) {
@@ -10553,7 +10609,7 @@ void psiTeleportBetaLeaderTick() {
 			teleportState = TeleportState.failed;
 			battleMode = BattleMode.teleportFailed;
 		}
-		if (npcCollisionCheck(psiTeleportNextX.integer, psiTeleportNextY.integer, gameState.firstPartyMemberEntity) != -1) {
+		if (playerEntityCollisionCheck(psiTeleportNextX.integer, psiTeleportNextY.integer, gameState.firstPartyMemberEntity) != -1) {
 			teleportState = TeleportState.failed;
 		}
 	}
@@ -10624,7 +10680,7 @@ void psiTeleportDepart() {
 		return;
 	}
 	for (short i = 0x18; i < 0x1E; i++) {
-		entityCollidedObjects[i] = 0x8000;
+		entityCollidedObjects[i] = EntityCollision.disabled;
 	}
 	psiTeleportSpeedY.integer = 0;
 	psiTeleportSpeedX.integer = 0;
@@ -10687,7 +10743,7 @@ void psiTeleportFailLeaderTick() {
  * $(DOLLAR)C0E97C
  */
 void psiTeleportFailFollowerTick() {
-	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
+	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlagsHorizontal(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
 	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], -1, currentEntitySlot);
 }
 

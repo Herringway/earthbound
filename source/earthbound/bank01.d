@@ -3414,7 +3414,7 @@ void* cc1FD0(DisplayTextState* arg1, ubyte arg2) {
 /// $C163FD
 void* cc1F13(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F13Arguments);
-	unknownC46363(
+	setPartyMemberDirection(
 		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getSubRegister()) - 1
 	);
@@ -3423,14 +3423,14 @@ void* cc1F13(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C1646E
 void* cc1F14(DisplayTextState* arg1, ubyte arg2) {
-	unknownC46397(cast(short)((arg2 != 0 ? arg2 : getSubRegister()) - 1));
+	setPartyDirection(cast(short)((arg2 != 0 ? arg2 : getSubRegister()) - 1));
 	return null;
 }
 
 /// $C16490
 void* cc1F16(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F16Arguments);
-	unknownC462FF(
+	setNPCDirection(
 		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getMainRegister().integer),
 		cast(short)(getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getSubRegister()) - 1)
 	);
@@ -3529,7 +3529,7 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
 	initializeEntityFade(findEntityByNPCID(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
-	unknownC460CE(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
+	fadeNPC(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
 
@@ -3537,7 +3537,7 @@ void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F1F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
 	initializeEntityFade(findEntityBySprite(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
-	unknownC46125(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
+	fadeSprite(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
 
@@ -3600,7 +3600,7 @@ void* cc1924(DisplayTextState* arg1, ubyte arg2) {
 /// $C16B2B
 void* cc1FE4(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FE4Arguments);
-	unknownC46331(
+	setSpriteDirection(
 		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getSubRegister())
 	);
@@ -3616,7 +3616,7 @@ void* cc1FE5(DisplayTextState* arg1, ubyte arg2) {
 /// $C16BAF
 void* cc1FE6(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	disableEntityByTPT(getCCParameters!ArgType(arg2));
+	disableEntityByNPCID(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3636,7 +3636,7 @@ void* cc1FE8(DisplayTextState* arg1, ubyte arg2) {
 /// $C16C40
 void* cc1FE9(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	enableEntityByTPT(getCCParameters!ArgType(arg2));
+	enableEntityByNPCID(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3666,7 +3666,7 @@ void* cc1FEC(DisplayTextState* arg1, ubyte arg2) {
 /// $C16D62
 void* cc1FEE(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	focusCameraOnTPT(getCCParameters!ArgType(arg2));
+	focusCameraOnNPCID(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3688,7 +3688,7 @@ void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 /// $C16EBF
 void* cc1FF1(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF1Arguments);
-	changeScriptForEntityByTPT(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
+	changeScriptForEntityByNPCID(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
