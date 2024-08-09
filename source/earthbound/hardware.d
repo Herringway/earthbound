@@ -160,7 +160,26 @@ enum TilemapFlag {
 	hFlip = 0x4000,
 	vFlip = 0x8000,
 }
+enum OAMAttributes {
+	flipVertical = 1 << 7,
+	flipHorizontal = 1 << 6,
 
+	priority3 = 3 << 4,
+	priority2 = 2 << 4,
+	priority1 = 1 << 4,
+	priority0 = 0 << 4,
+
+	palette7 = 7 << 1,
+	palette6 = 6 << 1,
+	palette5 = 5 << 1,
+	palette4 = 4 << 1,
+	palette3 = 3 << 1,
+	palette2 = 2 << 1,
+	palette1 = 1 << 1,
+	palette0 = 0 << 1,
+
+	upperNameTable = 1 << 0,
+}
 ///
 enum BGR555Mask {
 	Red = 0x1F,

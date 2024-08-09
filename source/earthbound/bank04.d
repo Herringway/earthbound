@@ -116,8 +116,8 @@ void prepareGameFailure() {
  * Original_Address: $(DOLLAR)C40B75
  */
 noreturn gameFailureLoop() {
-	copyToVRAM(0, 0xA00, 0, &buffer[0]);
-	copyToVRAM(0, 0x800, 0x4000, &buffer[0x4000]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0xA00, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x4000, &buffer[0x4000]);
 	memcpy(&palettes[0][0], &warningPalette[0], 0x10);
 	preparePaletteUpload(PaletteUpload.full);
 	fadeInWithMosaic(1, 1, 0);
@@ -257,60 +257,60 @@ immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 
 /// Spritemap for sweating overlay, frame 1
 immutable SpriteMap[2] entityOverlaySweatingFrame1 = [
-	SpriteMap(0xF0,0x60, 0x33 | SpritemapOrientation.horizontal, 0xEA, 0x80),
-	SpriteMap(0xF0,0x60, 0x23 | SpritemapOrientation.horizontal, 0xEA, 0x80),
+	SpriteMap(240, 96, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 2
 immutable SpriteMap[2] entityOverlaySweatingFrame2 = [
-	SpriteMap(0xF0,0x62, 0x33 | SpritemapOrientation.horizontal, 0xEA, 0x80),
-	SpriteMap(0xF0,0x62, 0x23 | SpritemapOrientation.horizontal, 0xEA, 0x80),
+	SpriteMap(240, 98, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 3
 immutable SpriteMap[2] entityOverlaySweatingFrame3 = [
-	SpriteMap(0xF0,0x60, 0x33, 0x04, 0x80),
-	SpriteMap(0xF0,0x60, 0x23, 0x04, 0x80),
+	SpriteMap(240, 96, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 4
 immutable SpriteMap[2] entityOverlaySweatingFrame4 = [
-	SpriteMap(0xF0, 0x62, 0x33, 0x04, 0x80),
-	SpriteMap(0xF0, 0x62, 0x23, 0x04, 0x80),
+	SpriteMap(240, 98, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for mushroom overlay
 immutable SpriteMap[2] entityOverlayMushroomizedFrame = [
-	SpriteMap(0xE8, 0x64, 0x33, 0xF8, 0x80),
-	SpriteMap(0xE8, 0x64, 0x23, 0xF8, 0x80),
+	SpriteMap(232, 100, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(232, 100, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for ripple overlay, frame 1
 immutable SpriteMap[2] entityOverlayRippleFrame1 = [
-	SpriteMap(0xFE, 0x66, 0x33, 0xF8, 0x80),
-	SpriteMap(0xFE, 0x66, 0x23, 0xF8, 0x80),
+	SpriteMap(254, 102, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for ripple overlay, frame 2
 immutable SpriteMap[2] entityOverlayRippleFrame2 = [
-	SpriteMap(0xFE,0x66, 0x33 | SpritemapOrientation.horizontal, 0xF8, 0x80),
-	SpriteMap(0xFE,0x66, 0x23 | SpritemapOrientation.horizontal, 0xF8, 0x80),
+	SpriteMap(254, 102, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for big ripple overlay, frame 1
 immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
-	SpriteMap(0xF8, 0x68, 0x33, 0xF0, 0x00),
-	SpriteMap(0xF8, 0x6A, 0x33, 0x00, 0x80),
-	SpriteMap(0xF8, 0x68, 0x23, 0xF0, 0x00),
-	SpriteMap(0xF8, 0x6A, 0x23, 0x00, 0x80),
+	SpriteMap(248, 104, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 106, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 104, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 106, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 0, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for big ripple overlay, frame 2
 immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
-	SpriteMap(0xF8,0x6A, 0x33 | SpritemapOrientation.horizontal, 0xF0, 0x00),
-	SpriteMap(0xF8,0x68, 0x33 | SpritemapOrientation.horizontal, 0x00, 0x80),
-	SpriteMap(0xF8,0x6A, 0x23 | SpritemapOrientation.horizontal, 0xF0, 0x00),
-	SpriteMap(0xF8,0x68, 0x23 | SpritemapOrientation.horizontal, 0x00, 0x80),
+	SpriteMap(248, 106, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 104, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 106, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 104, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 0, SpriteMapSpecialFlags.terminator),
 ];
 
 /** Overlay script for sweating overlay
@@ -1288,153 +1288,303 @@ immutable short[EntitySize.max + 1] hitboxTileHeights = [
  */
 immutable SpriteMapTemplates[EntitySize.max + 1] overworldSpriteTemplates = [
 	EntitySize._8x16: SpriteMapTemplates(1, 0, [
-			[SpriteMap(0xF8, 0x00, 0x00, 0xF8, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0xF8, 0x80)],
+			[
+				SpriteMap(0xF8, 0x00, 0x00, 0xF8, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xF8, 0x00, 0x40, 0xF8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._16x16: SpriteMapTemplates(1, 0, [
-			[SpriteMap(0xF8, 0x00, 0x00, 0xF8, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0xF8, 0x80)],
+			[
+				SpriteMap(0xF8, 0x00, 0x00, 0xF8, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xF8, 0x00, 0x40, 0xF8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._24x16: SpriteMapTemplates(2, 0, [
-			[SpriteMap(0xF8, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0x04, 0x80)],
-			[SpriteMap(0xF8, 0x00, 0x40, 0xFC, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xEC, 0x80)],
+			[
+				SpriteMap(0xF8, 0x00, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x00, 0x04, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xF8, 0x00, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x40, 0xEC, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._32x16: SpriteMapTemplates(2, 0, [
-			[SpriteMap(0xF8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0x00, 0x80)],
-			[SpriteMap(0xF8, 0x00, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF0, 0x80)],
+			[
+				SpriteMap(0xF8, 0x00, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x00, 0x00, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xF8, 0x00, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x40, 0xF0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._48x16: SpriteMapTemplates(3, 0, [
-			[SpriteMap(0xF8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x00, 0x08, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0x08, 0x00)],
-			[SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x04, 0x40, 0xE8, 0x80)],
+			[
+				SpriteMap(0xF8, 0x00, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x00, 0x08, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xF8, 0x00, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x40, 0xE8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._16x24: SpriteMapTemplates(2, 1, [
-			[SpriteMap(0xE8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x80)],
-			[SpriteMap(0xE8, 0x00, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x80)],
+			[
+				SpriteMap(0xE8, 0x00, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE8, 0x00, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._24x24: SpriteMapTemplates(4, 2, [
-			[SpriteMap(0xE8, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0x04, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x00, 0xF4, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0x04, 0x80)],
-			[SpriteMap(0xE8, 0x00, 0x40, 0xFC, 0x00), SpriteMap(0xE8, 0x02, 0x40, 0xEC, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x40, 0xFC, 0x00), SpriteMap(0xF8, 0x06, 0x40, 0xEC, 0x80)],
+			[
+				SpriteMap(0xE8, 0x00, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x00, 0x04, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x00, 0x04, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE8, 0x00, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x40, 0xEC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x40, 0xEC, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._16x32: SpriteMapTemplates(2, 1, [
-			[SpriteMap(0xE8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x80)],
-			[SpriteMap(0xE8, 0x00, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x80)],
+			[
+				SpriteMap(0xE8, 0x00, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE8, 0x00, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._32x24: SpriteMapTemplates(4, 2, [
-			[SpriteMap(0xE8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0x00, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0x00, 0x80)],
-			[SpriteMap(0xE8, 0x00, 0x40, 0x00, 0x00), SpriteMap(0xE8, 0x02, 0x40, 0xF0, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x06, 0x40, 0xF0, 0x80)],
+			[
+				SpriteMap(0xE8, 0x00, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x00, 0x00, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE8, 0x00, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x40, 0xF0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._48x32: SpriteMapTemplates(6, 3, [
-			[SpriteMap(0xE8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0xF8, 0x00)],
-			[SpriteMap(0xE8, 0x04, 0x00, 0x08, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0xE8, 0x00)],
-			[SpriteMap(0xF8, 0x08, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x0A, 0x00, 0x08, 0x80)],
-			[SpriteMap(0xE8, 0x00, 0x40, 0x08, 0x00), SpriteMap(0xE8, 0x02, 0x40, 0xF8, 0x00)],
-			[SpriteMap(0xE8, 0x04, 0x40, 0xE8, 0x00), SpriteMap(0xF8, 0x06, 0x40, 0x08, 0x00)],
-			[SpriteMap(0xF8, 0x08, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x0A, 0x40, 0xE8, 0x80)],
+			[
+				SpriteMap(0xE8, 0x00, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x04, 0x00, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x08, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0A, 0x00, 0x08, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE8, 0x00, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x04, 0x40, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x06, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x08, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0A, 0x40, 0xE8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._24x48: SpriteMapTemplates(6, 4, [
-			[SpriteMap(0xE0, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xE0, 0x02, 0x00, 0x04, 0x00)],
-			[SpriteMap(0xF0, 0x04, 0x00, 0xF4, 0x00), SpriteMap(0xF0, 0x06, 0x00, 0x04, 0x00)],
-			[SpriteMap(0x00, 0x08, 0x00, 0xF4, 0x00), SpriteMap(0x00, 0x0A, 0x00, 0x04, 0x80)],
-			[SpriteMap(0xE0, 0x00, 0x40, 0xFC, 0x00), SpriteMap(0xE0, 0x02, 0x40, 0xEC, 0x00)],
-			[SpriteMap(0xF0, 0x04, 0x40, 0xFC, 0x00), SpriteMap(0xF0, 0x06, 0x40, 0xEC, 0x00)],
-			[SpriteMap(0x00, 0x08, 0x40, 0xFC, 0x00), SpriteMap(0x00, 0x0A, 0x40, 0xEC, 0x80)],
+			[
+				SpriteMap(0xE0, 0x00, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE0, 0x02, 0x00, 0x04, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF0, 0x04, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF0, 0x06, 0x00, 0x04, SpriteMapSpecialFlags.none),
+				SpriteMap(0x00, 0x08, 0x00, 0xF4, SpriteMapSpecialFlags.none),
+				SpriteMap(0x00, 0x0A, 0x00, 0x04, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xE0, 0x00, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE0, 0x02, 0x40, 0xEC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF0, 0x04, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF0, 0x06, 0x40, 0xEC, SpriteMapSpecialFlags.none),
+				SpriteMap(0x00, 0x08, 0x40, 0xFC, SpriteMapSpecialFlags.none),
+				SpriteMap(0x00, 0x0A, 0x40, 0xEC, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._16x48: SpriteMapTemplates(3, 2, [
-			[SpriteMap(0xD8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0xF8, 0x00)],
-			[SpriteMap(0xF8, 0x04, 0x00, 0xF8, 0x80), SpriteMap(0xD8, 0x00, 0x40, 0xF8, 0x00)],
-			[SpriteMap(0xE8, 0x02, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x04, 0x40, 0xF8, 0x80)],
+			[
+				SpriteMap(0xD8, 0x00, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x00, 0xF8, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xD8, 0x00, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x04, 0x40, 0xF8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._32x48: SpriteMapTemplates(6, 4, [
-			[SpriteMap(0xD8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0x00, 0x00)],
-			[SpriteMap(0xE8, 0x04, 0x00, 0xF0, 0x00), SpriteMap(0xE8, 0x06, 0x00, 0x00, 0x00)],
-			[SpriteMap(0xF8, 0x08, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x0A, 0x00, 0x00, 0x80)],
-			[SpriteMap(0xD8, 0x00, 0x40, 0x00, 0x00), SpriteMap(0xD8, 0x02, 0x40, 0xF0, 0x00)],
-			[SpriteMap(0xE8, 0x04, 0x40, 0x00, 0x00), SpriteMap(0xE8, 0x06, 0x40, 0xF0, 0x00)],
-			[SpriteMap(0xF8, 0x08, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x0A, 0x40, 0xF0, 0x80)],
+			[
+				SpriteMap(0xD8, 0x00, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x04, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x06, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x08, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0A, 0x00, 0x00, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xD8, 0x00, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x04, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x06, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x08, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0A, 0x40, 0xF0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._48x48: SpriteMapTemplates(9, 6, [
-			[SpriteMap(0xD8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0xF8, 0x00)],
-			[SpriteMap(0xD8, 0x04, 0x00, 0x08, 0x00), SpriteMap(0xE8, 0x06, 0x00, 0xE8, 0x00)],
-			[SpriteMap(0xE8, 0x08, 0x00, 0xF8, 0x00), SpriteMap(0xE8, 0x0A, 0x00, 0x08, 0x00)],
-			[SpriteMap(0xF8, 0x0C, 0x00, 0xE8, 0x00), SpriteMap(0xF8, 0x0E, 0x00, 0xF8, 0x00)],
-			[SpriteMap(0xF8, 0x10, 0x00, 0x08, 0x80), SpriteMap(0xD8, 0x00, 0x40, 0x08, 0x00)],
-			[SpriteMap(0xD8, 0x02, 0x40, 0xF8, 0x00), SpriteMap(0xD8, 0x04, 0x40, 0xE8, 0x00)],
-			[SpriteMap(0xE8, 0x06, 0x40, 0x08, 0x00), SpriteMap(0xE8, 0x08, 0x40, 0xF8, 0x00)],
-			[SpriteMap(0xE8, 0x0A, 0x40, 0xE8, 0x00), SpriteMap(0xF8, 0x0C, 0x40, 0x08, 0x00)],
-			[SpriteMap(0xF8, 0x0E, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x10, 0x40, 0xE8, 0x80)],
+			[
+				SpriteMap(0xD8, 0x00, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x04, 0x00, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x06, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x08, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0A, 0x00, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0C, 0x00, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0E, 0x00, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x10, 0x00, 0x08, SpriteMapSpecialFlags.terminator),
+			], [
+				SpriteMap(0xD8, 0x00, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x04, 0x40, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x06, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x08, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0A, 0x40, 0xE8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0C, 0x40, 0x08, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x0E, 0x40, 0xF8, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x10, 0x40, 0xE8, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._64x48: SpriteMapTemplates(12, 8, [
-			[SpriteMap(0xD8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xD8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xD8, 0x06, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xE8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xE8, 0x0A, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xE8, 0x0C, 0x00, 0x00, 0x00), SpriteMap(0xE8, 0x0E, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xF8, 0x10, 0x00, 0xE0, 0x00), SpriteMap(0xF8, 0x12, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xF8, 0x14, 0x00, 0x00, 0x00), SpriteMap(0xF8, 0x16, 0x00, 0x10, 0x80)],
-			[SpriteMap(0xD8, 0x00, 0x40, 0x10, 0x00), SpriteMap(0xD8, 0x02, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xD8, 0x04, 0x40, 0xF0, 0x00), SpriteMap(0xD8, 0x06, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xE8, 0x08, 0x40, 0x10, 0x00), SpriteMap(0xE8, 0x0A, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xE8, 0x0C, 0x40, 0xF0, 0x00), SpriteMap(0xE8, 0x0E, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xF8, 0x10, 0x40, 0x10, 0x00), SpriteMap(0xF8, 0x12, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xF8, 0x14, 0x40, 0xF0, 0x00), SpriteMap(0xF8, 0x16, 0x40, 0xE0, 0x80)],
+			[
+				SpriteMap(0xD8, 0x00, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x04, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x06, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x08, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0A, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0C, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0E, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x10, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x12, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x14, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x16, 0x00, 0x10, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xD8, 0x00, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x02, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x04, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x06, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x08, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0A, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0C, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x0E, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x10, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x12, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x14, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x16, 0x40, 0xE0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._64x64: SpriteMapTemplates(16, 8, [
-			[SpriteMap(0xC8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xC8, 0x02, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xC8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xC8, 0x06, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xD8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xD8, 0x0A, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xD8, 0x0C, 0x00, 0x00, 0x00), SpriteMap(0xD8, 0x0E, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xE8, 0x10, 0x00, 0xE0, 0x00), SpriteMap(0xE8, 0x12, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xE8, 0x14, 0x00, 0x00, 0x00), SpriteMap(0xE8, 0x16, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xF8, 0x18, 0x00, 0xE0, 0x00), SpriteMap(0xF8, 0x1A, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xF8, 0x1C, 0x00, 0x00, 0x00), SpriteMap(0xF8, 0x1E, 0x00, 0x10, 0x80)],
-			[SpriteMap(0xC8, 0x00, 0x40, 0x10, 0x00), SpriteMap(0xC8, 0x02, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xC8, 0x04, 0x40, 0xF0, 0x00), SpriteMap(0xC8, 0x06, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xD8, 0x08, 0x40, 0x10, 0x00), SpriteMap(0xD8, 0x0A, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xD8, 0x0C, 0x40, 0xF0, 0x00), SpriteMap(0xD8, 0x0E, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xE8, 0x10, 0x40, 0x10, 0x00), SpriteMap(0xE8, 0x12, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xE8, 0x14, 0x40, 0xF0, 0x00), SpriteMap(0xE8, 0x16, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xF8, 0x18, 0x40, 0x10, 0x00), SpriteMap(0xF8, 0x1A, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xF8, 0x1C, 0x40, 0xF0, 0x00), SpriteMap(0xF8, 0x1E, 0x40, 0xE0, 0x80)],
+			[
+				SpriteMap(0xC8, 0x00, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x02, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x04, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x06, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x08, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0A, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0C, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0E, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x10, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x12, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x14, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x16, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x18, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1A, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1C, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1E, 0x00, 0x10, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xC8, 0x00, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x02, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x04, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x06, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x08, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0A, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0C, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x0E, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x10, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x12, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x14, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x16, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x18, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1A, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1C, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x1E, 0x40, 0xE0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	),
 	EntitySize._64x80: SpriteMapTemplates(20, 8, [
-			[SpriteMap(0xB8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xB8, 0x02, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xB8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xB8, 0x06, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xC8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xC8, 0x0A, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xC8, 0x0C, 0x00, 0x00, 0x00), SpriteMap(0xC8, 0x0E, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xD8, 0x10, 0x00, 0xE0, 0x00), SpriteMap(0xD8, 0x12, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xD8, 0x14, 0x00, 0x00, 0x00), SpriteMap(0xD8, 0x16, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xE8, 0x18, 0x00, 0xE0, 0x00), SpriteMap(0xE8, 0x1A, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xE8, 0x1C, 0x00, 0x00, 0x00), SpriteMap(0xE8, 0x1E, 0x00, 0x10, 0x00)],
-			[SpriteMap(0xF8, 0x20, 0x00, 0xE0, 0x00), SpriteMap(0xF8, 0x22, 0x00, 0xF0, 0x00)],
-			[SpriteMap(0xF8, 0x24, 0x00, 0x00, 0x00), SpriteMap(0xF8, 0x26, 0x00, 0x10, 0x80)],
-			[SpriteMap(0xB8, 0x00, 0x40, 0x10, 0x00), SpriteMap(0xB8, 0x02, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xB8, 0x04, 0x40, 0xF0, 0x00), SpriteMap(0xB8, 0x06, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xC8, 0x08, 0x40, 0x10, 0x00), SpriteMap(0xC8, 0x0A, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xC8, 0x0C, 0x40, 0xF0, 0x00), SpriteMap(0xC8, 0x0E, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xD8, 0x10, 0x40, 0x10, 0x00), SpriteMap(0xD8, 0x12, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xD8, 0x14, 0x40, 0xF0, 0x00), SpriteMap(0xD8, 0x16, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xE8, 0x18, 0x40, 0x10, 0x00), SpriteMap(0xE8, 0x1A, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xE8, 0x1C, 0x40, 0xF0, 0x00), SpriteMap(0xE8, 0x1E, 0x40, 0xE0, 0x00)],
-			[SpriteMap(0xF8, 0x20, 0x40, 0x10, 0x00), SpriteMap(0xF8, 0x22, 0x40, 0x00, 0x00)],
-			[SpriteMap(0xF8, 0x24, 0x40, 0xF0, 0x00), SpriteMap(0xF8, 0x26, 0x40, 0xE0, 0x80)],
+			[
+				SpriteMap(0xB8, 0x00, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x02, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x04, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x06, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x08, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0A, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0C, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0E, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x10, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x12, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x14, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x16, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x18, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1A, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1C, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1E, 0x00, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x20, 0x00, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x22, 0x00, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x24, 0x00, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x26, 0x00, 0x10, SpriteMapSpecialFlags.terminator)
+			], [
+				SpriteMap(0xB8, 0x00, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x02, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x04, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xB8, 0x06, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x08, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0A, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0C, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xC8, 0x0E, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x10, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x12, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x14, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xD8, 0x16, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x18, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1A, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1C, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xE8, 0x1E, 0x40, 0xE0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x20, 0x40, 0x10, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x22, 0x40, 0x00, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x24, 0x40, 0xF0, SpriteMapSpecialFlags.none),
+				SpriteMap(0xF8, 0x26, 0x40, 0xE0, SpriteMapSpecialFlags.terminator)
+			],
 		]
 	)
 ];
@@ -2205,8 +2355,8 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 	// upload text tiles
 	ushort destinationVRAM = 0x7700;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
-		copyToVRAM(0, 0x10, destinationVRAM, &vwfBuffer[i][0]);
-		copyToVRAM(0, 0x10, cast(ushort)(destinationVRAM + 8), &vwfBuffer[i][16]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x10, cast(ushort)(destinationVRAM + 8), &vwfBuffer[i][16]);
 		destinationVRAM += 16;
 	}
 	dmaTransferFlag = 1;
@@ -2253,7 +2403,7 @@ void renderSmallTextToVRAM(ubyte* str, ushort destinationVRAM) {
 		renderText(6, fontConfigTable[Font.tiny].height, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((str++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].bytesPerCharacter]);
 	}
 	for (short i = currentVWFTile; (strTemp++)[0] != 0; i++) {
-		copyToVRAM(0, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x10, destinationVRAM, &vwfBuffer[i][0]);
 		destinationVRAM += 8;
 		if (i == 0x33) {
 			i = -1;
@@ -2369,24 +2519,24 @@ void printWordsAutoNewline(short length, const(ubyte)* text) {
 void loadWindowGraphics(short what) {
 	switch (what) {
 		case WindowGraphicsToLoad.all: // reload all window graphics in VRAM
-			copyToVRAM(0, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(VRAMCopyMode.unknown00, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			goto case;
 		case WindowGraphicsToLoad.allButMeter: // same as 1, but no meter or special text
-			copyToVRAM(0, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(0, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(0, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
-			copyToVRAM(0, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
-			copyToVRAM(0, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
-			copyToVRAM(0, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
+			copyToVRAM(VRAMCopyMode.unknown00, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(VRAMCopyMode.unknown00, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(VRAMCopyMode.unknown00, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(VRAMCopyMode.unknown00, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
 			break;
 		case WindowGraphicsToLoad.all2: // this seems to be a copy of 1, for some reason
-			copyToVRAM(0, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(0, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(0, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
-			copyToVRAM(0, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
-			copyToVRAM(0, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
-			copyToVRAM(0, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
-			copyToVRAM(0, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(VRAMCopyMode.unknown00, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(VRAMCopyMode.unknown00, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(VRAMCopyMode.unknown00, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(VRAMCopyMode.unknown00, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
+			copyToVRAM(VRAMCopyMode.unknown00, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			break;
 		default: break;
 	}
@@ -4941,7 +5091,7 @@ void unknownC47A6B() {
  */
 void loadActionScriptAnimation() {
 	decomp(&animationGraphics[animationSequences[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
-	copyToVRAMChunked(0, animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize, 0x6000, &buffer[0]);
+	copyToVRAMChunked(VRAMCopyMode.unknown00, animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize, 0x6000, &buffer[0]);
 	memcpy(&palettes[0][0], &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize], ushort[4].sizeof);
 	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
@@ -4958,7 +5108,7 @@ short updateActionScriptAnimationFrame() {
 	// set BG3 Y position to -1. A minor adjustment to account for overscan, perhaps?
 	bg3YPosition = 0xFFFF;
 	// The animation is assumed to have been decompressed into the buffer already, in the order of tiles + 2bpp palette + N 32x28 tilemaps
-	copyToVRAM(0, 0x700, 0x7C00, &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize + ushort[4].sizeof + entityScriptVar1Table[currentEntitySlot] * 0x700]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x700, 0x7C00, &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize + ushort[4].sizeof + entityScriptVar1Table[currentEntitySlot] * 0x700]);
 	// last frame played? return 0 if so
 	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequences[entityScriptVar0Table[currentEntitySlot]].frames) {
 		return 0;
@@ -5753,7 +5903,7 @@ void performPaletteFade(short duration, short multiplier, ushort affectedPalette
 
 /// $C4981F
 void unknownC4981F() {
-	copyToVRAM(3, 0x800, 0x7C00, &blankTiles[0]);
+	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &blankTiles[0]);
 }
 
 /// $C49841
@@ -5846,7 +5996,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 	prepareForImmediateDMA();
 	setBG3VRAMLocation(BGTileMapSize.normal, bg3TileMapAddress, bg3TileAddress);
 	*cast(ushort*)(&buffer[0]) = 0;
-	copyToVRAM(3, 0x3800, bg3TileAddress, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown01, 0x3800, bg3TileAddress, &buffer[0]);
 	memcpy(&palettes[0][0], &flyoverTextPalette[0], 8);
 	paletteUploadMode = PaletteUpload.full;
 	memset(&vwfBuffer[0][0], 0xFF, vwfBuffer.sizeof);
@@ -5865,7 +6015,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 		bg2Buffer[i * 32 + 30] = 0;
 		bg2Buffer[i * 32 + 31] = 0;
 	}
-	copyToVRAM(0, 0x800, bg3TileMapAddress, cast(ubyte*)&bg2Buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, bg3TileMapAddress, cast(ubyte*)&bg2Buffer[0]);
 	// old mother 2 stuff
 	unused7E3C18 = 0x1A;
 	unread7E3C1C = 0;
@@ -5894,15 +6044,15 @@ void flyoverCopyRenderedText(short) {
 	// this branch is only taken if flyoverScreenOffset is 30, which is offscreen
 	if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 > maximumSize) {
 		if (maximumSize - flyoverScreenOffset * sizeIncrements != 0) {
-			copyToVRAM(0, cast(short)(maximumSize - flyoverScreenOffset * sizeIncrements), cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
+			copyToVRAM(VRAMCopyMode.unknown00, cast(short)(maximumSize - flyoverScreenOffset * sizeIncrements), cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 		}
 		// this can never be true, fortunately
 		if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize != 0) {
 			assert(0, "Not implemented");
-			//copyToVRAM(0, flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize, baseDestination, 0x6892 - flyoverScreenOffset * sizeIncrements);
+			//copyToVRAM(VRAMCopyMode.unknown00, flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize, baseDestination, 0x6892 - flyoverScreenOffset * sizeIncrements);
 		}
 	} else {
-		copyToVRAM(0, sizeIncrements * 3, cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
+		copyToVRAM(VRAMCopyMode.unknown00, sizeIncrements * 3, cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 	}
 	unused7E3C1E = -1;
 	unused7E3C20 = 0;
@@ -6368,12 +6518,12 @@ void setupGiygasOverlay() {
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&animatedBackgroundTiles[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
-	copyToVRAM(0, 0x2000, 0x6000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0x6000, &buffer[0]);
 	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
 	for (short i = 0; i < 0x800; i += 2) {
 		buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 	}
-	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
 	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BackgroundLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
 	memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[BackgroundLayer.introGiygas].palette][0], 0x20);
@@ -6814,7 +6964,7 @@ void useSoundStone(short cancellable) {
 	setBattleModeLayerConfig();
 	// load the data we need
 	decomp(&soundStoneSpriteTiles[0], &buffer[0]);
-	copyToVRAM(0, 0x2C00, 0x2000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x2C00, 0x2000, &buffer[0]);
 	memcpy(&palettes[8][0], &soundStoneSpritePalettes[0], 0xC0);
 	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
@@ -6972,8 +7122,8 @@ ushort allocateAndUploadOverlaySprite(ushort vramBase, ushort sprite, ushort fra
 	if (frame == 0xFF) {
 		return vramBase;
 	}
-	copyToVRAM(0, spriteGroups[sprite].width * 2, vramBase, &sprites[spriteGroups[sprite].sprites[frame].id][0]);
-	copyToVRAM(0, spriteGroups[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroups[sprite].sprites[frame].id][spriteGroups[sprite].width]);
+	copyToVRAM(VRAMCopyMode.unknown00, spriteGroups[sprite].width * 2, vramBase, &sprites[spriteGroups[sprite].sprites[frame].id][0]);
+	copyToVRAM(VRAMCopyMode.unknown00, spriteGroups[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroups[sprite].sprites[frame].id][spriteGroups[sprite].width]);
 	return cast(ushort)(vramBase + spriteGroups[sprite].width);
 }
 
@@ -7711,12 +7861,12 @@ void unknownC4C2DE() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&gameOverTiles[0], &buffer[0]);
 	if (gameState.partyMembers[0] == 3) {
-		copyToVRAM(0, 0x8000, 0, &buffer[0x8000]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0x8000]);
 	} else {
-		copyToVRAM(0, 0x8000, 0, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
 	}
 	decomp(&gameOverTilemap[0], &buffer[0]);
-	copyToVRAM(0, 0x800, 0x5800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x5800, &buffer[0]);
 	decomp(&gameOverPalette[0], cast(ubyte*)&palettes[0][0]);
 	memcpy(&palettes[7][0], &palettes[0][0], 0x20);
 	memset(&palettes[1][0], 0, 0xC0);
@@ -8403,10 +8553,10 @@ void loadTownMapData(short arg1) {
 	CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
-	copyToVRAM(0, 0x800, 0x3000, &buffer[0x40]);
-	copyToVRAMChunked(0, 0x4000, 0, &buffer[0x840]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x3000, &buffer[0x40]);
+	copyToVRAMChunked(VRAMCopyMode.unknown00, 0x4000, 0, &buffer[0x840]);
 	decomp(&townMapIconGraphics[0], &buffer[0]);
-	copyToVRAM(0, 0x2400, 0x6000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	bg1YPosition = 0;
@@ -8723,9 +8873,9 @@ void setDecompressedArrangementPriorityBit() {
 void decompItoiProduction() {
 	decomp(&attractModeOverlay1Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
 	decomp(&attractModeOverlay1Tiles[0], &buffer[0x800]);
-	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -8735,9 +8885,9 @@ void decompItoiProduction() {
 void decompNintendoPresentation() {
 	decomp(&attractModeOverlay2Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
 	decomp(&attractModeOverlay2Tiles[0], &buffer[0x800]);
-	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -8810,7 +8960,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		if (yourSanctuaryLocationTileOffsets[i] == 0) {
 			continue;
 		}
-		copyToVRAM(0, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tilemapBuffer[i * 16]);
+		copyToVRAM(VRAMCopyMode.unknown00, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tilemapBuffer[i * 16]);
 		yourSanctuaryLocationTileOffsets[i] = nextYourSanctuaryLocationTileIndex;
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
@@ -8852,7 +9002,7 @@ void displayYourSanctuaryLocation(short arg1) {
 		waitUntilNextFrame();
 	}
 	waitDMAFinished();
-	copyToVRAM(0, 0x780, 0x3800, &buffer[x02 * 0x800]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x780, 0x3800, &buffer[x02 * 0x800]);
 	memcpy(&palettes[0][0], &buffer[0x4000 + x02 * 0x200], 0x100);
 	paletteUploadMode = PaletteUpload.bgOnly;
 	screenTopY = 0;
@@ -8909,13 +9059,13 @@ void loadCastScene() {
 	bg1XPosition = 0;
 	updateScreen();
 	*cast(ushort*)&buffer[0] = 0;
-	copyToVRAM(3, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0xFF;
 	memset(&buffer[0], 0, 0x1000);
 	decomp(&specialCastNamesGraphics[0], &buffer[0x200]);
 	decomp(&castNamesGraphics[0], &buffer[0x600]);
 	prepareDynamicCastNameText();
-	copyToVRAM(0, 0x8000, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0;
 	loadTextPalette();
 	memcpy(&palettes[0][0], &castTextPalette[0], 0x20);
@@ -8958,7 +9108,7 @@ void handleCastScrolling() {
 	if (entityScriptVar7Table[currentEntitySlot] < entityAbsYTable[currentEntitySlot]) {
 		entityScriptVar7Table[currentEntitySlot] += 8;
 		x06[0] = 0;
-		copyToVRAM(3, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
+		copyToVRAM(VRAMCopyMode.unknown01, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
 	}
 }
 
@@ -9056,7 +9206,7 @@ void prepareCastNameTilemap(short offset, short tileWidth, short x) {
 void copyCastNameTilemap(short centreX, short centreY, short tileWidth) {
 	short row1TileOffset = (bg3YPosition / 8 + centreY) & 0x1F;
 	short row1Address = cast(short)((row1TileOffset * 32) + centreX + 0x7C00 - (tileWidth + 1) / 2);
-	copyToVRAM(0, cast(ushort)(tileWidth * 2), row1Address, &buffer[0x4000 + centreX * 2]);
+	copyToVRAM(VRAMCopyMode.unknown00, cast(ushort)(tileWidth * 2), row1Address, &buffer[0x4000 + centreX * 2]);
 	short row2Address;
 	// if last row, wrap around to first row
 	if (row1TileOffset != 31) {
@@ -9064,7 +9214,7 @@ void copyCastNameTilemap(short centreX, short centreY, short tileWidth) {
 	} else {
 		row2Address = cast(short)(row1Address - 0x3E0);
 	}
-	copyToVRAM(0, cast(short)(tileWidth * 2), row2Address, &buffer[0x4000 + centreX * 2 + 64]);
+	copyToVRAM(VRAMCopyMode.unknown00, cast(short)(tileWidth * 2), row2Address, &buffer[0x4000 + centreX * 2 + 64]);
 }
 
 /** Prints the given cast name to the given relative tilemap coordinates
@@ -9247,18 +9397,18 @@ void initializeCreditsScene() {
 	bg1XPosition = 0;
 	updateScreen();
 	*(cast(ushort*)&buffer[0]) = 0;
-	copyToVRAM(3, 0x1000, 0x3800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown01, 0x1000, 0x3800, &buffer[0]);
 	*(cast(ushort*)&buffer[0]) = 0x240C;
-	copyToVRAM(9, 0x1000, 0x7000, &buffer[0]);
-	copyToVRAM(15, 0x1000, 0x7000, &buffer[1]);
+	copyToVRAM(VRAMCopyMode.unknown03, 0x1000, 0x7000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown05, 0x1000, 0x7000, &buffer[1]);
 	decomp(&creditsPhotographBorderTilemap[0], &buffer[0]);
 	memcpy(&palettes[1][0], &creditsPhotographBorderPalette[0], 0x20);
-	copyToVRAM(0, 0x700, 0x7000, &buffer[0]);
-	copyToVRAM(0, 0x2000, 0x2000, &buffer[0x700]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x700, 0x7000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0x2000, &buffer[0x700]);
 	*(cast(ushort*)&buffer[0]) = 0;
-	copyToVRAM(3, 0x800, 0x6C00, &buffer[0x700]);
+	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x6C00, &buffer[0x700]);
 	decomp(&staffCreditsFontGraphics[0], &buffer[0]);
-	copyToVRAM(0, 0xC00, 0x6200, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.unknown00, 0xC00, 0x6200, &buffer[0]);
 	memcpy(&palettes[0][0], &staffCreditsFontPalette[0], 0x10);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	memset(&palettes[1][0], 0, 0x1E0);

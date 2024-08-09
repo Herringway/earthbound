@@ -4508,11 +4508,6 @@ enum CC1C01Type {
 	integer = 0x80,
 }
 ///
-enum SpritemapOrientation {
-	vertical = 0x80,
-	horizontal = 0x40,
-}
-///
 enum PSILevel {
 	alpha = 1,
 	beta = 2,
@@ -6168,6 +6163,35 @@ enum PSI {
 }
 
 ///
+enum VRAMCopyMode {
+	unknown00 = 0,
+	unknown01 = 3,
+	unknown02 = 6,
+	unknown03 = 9,
+	unknown04 = 12,
+	unknown05 = 15,
+	unknown06 = 18,
+	unknown07 = 21,
+	unknown08 = 24,
+	unknown09 = 27,
+	unknown10 = 30,
+	unknown11 = 33,
+	unknown12 = 36,
+	unknown13 = 39,
+	unknown14 = 42,
+	unknown15 = 45,
+	unknown16 = 48,
+	unknown17 = 51,
+}
+
+///
+enum SpriteMapSpecialFlags {
+	none = 0,
+	largeSprite = 1 << 0,
+	terminator = 1 << 7,
+}
+
+///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
@@ -6719,7 +6743,7 @@ struct NPC {
 struct SpriteMapTemplates {
 	ubyte count; ///
 	ubyte lowerBodyCount; /// Number of spritemap pairs in the sprite's lower body
-	SpriteMap[2][] spriteMapTemplates; ///
+	SpriteMap[][2] spriteMapTemplates; /// Two sets of spritemaps, one for normal orientation and the other for horizontally flipped sprites
 }
 ///
 struct CharacterInitialEntityDataEntry {

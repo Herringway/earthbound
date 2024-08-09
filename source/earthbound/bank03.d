@@ -1236,7 +1236,7 @@ void tilemapUpdateUploadRows() {
 	short size = cast(short)(tilemapUpdateTileCount * 2);
 	for (short i = 0; i < tilemapUpdateTileHeight; i++) {
 		short destination = cast(short)(tilemapUpdateTileY * 32 + tilemapUpdateBaseAddress + (tilemapUpdateTileX & 0x1F));
-		copyToVRAM(0, size, destination, cast(ubyte*)&tilemapUpdateRemainingTiles[x04]);
+		copyToVRAM(VRAMCopyMode.unknown00, size, destination, cast(ubyte*)&tilemapUpdateRemainingTiles[x04]);
 		x04 += tilemapUpdateTileWidth;
 		if (++tilemapUpdateTileY == 0x20) {
 			tilemapUpdateTileY = 0;
