@@ -9414,7 +9414,7 @@ shared static this() {
 		HALT(),
 	);
 }
-/// $C3500E
+/// $C3
 immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScriptMdDungTask;
 shared static this() {
 	actionScriptMdDungTask = initializeScript(actionScriptMdDungTask.length,
