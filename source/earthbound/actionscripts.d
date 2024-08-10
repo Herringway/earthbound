@@ -1,3 +1,4 @@
+/// Game logic (ActionScript)
 module earthbound.actionscripts;
 
 import earthbound.commondefs;

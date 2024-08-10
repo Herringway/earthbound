@@ -1,4 +1,4 @@
-/// actionscripts, misc things
+/// ActionScript, misc things
 module earthbound.bank03;
 
 import earthbound.commondefs;

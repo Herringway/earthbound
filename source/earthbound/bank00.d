@@ -1,4 +1,4 @@
-/// low level stuff, actionscript, overworld code
+/// low level stuff, ActionScript, overworld code
 module earthbound.bank00;
 
 import earthbound.commondefs;
