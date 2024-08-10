@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Enum ActionScript</title>
+		<title>Function writeInlineArray</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -149,178 +149,21 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Enum ActionScript</h1><p></p>
+			<h1>Function writeInlineArray</h1><p>writes an inline array to a byte stream. uses uint length instead of size_t, because 4 bytes is already overkill for this game
+</p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">enum</span> <span class="typ">ActionScript</span>
-			 <span class="pun">:</span> <span class="typ">int</span> <span class="pun">{ ... }</span>
+			<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span> <span class="pln">writeInlineArray</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="pln">T</span><span class="pun">)</span><span class="pun">[]</span> <span class="pln">str</span>
+			<br/>
+			<span class="pun">)</span><span class="pln"> </span><span class="kwd">pure @safe</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Enum members</h2>
-				<table>
-					<col class="caption"/>
-					<tr>
-						<th>Name</th><th>Description</th>
-					</tr>
-					<tr>
-						<td id="ambushEnemy">
-							<code>ambushEnemy</code>
-						</td>
-						<td>Ambush enemies that don't move until you're neat
-</td>
-					</tr>
-					<tr>
-						<td id="animEvtFluctuateMagicant">
-							<code>animEvtFluctuateMagicant</code>
-						</td>
-						<td>Magicant power up scene intro effect
-</td>
-					</tr>
-					<tr>
-						<td id="animPeopleWalk1LargeSquare">
-							<code>animPeopleWalk1LargeSquare</code>
-						</td>
-						<td>Wanders around a 32x32 tile area
-</td>
-					</tr>
-					<tr>
-						<td id="animPeopleWalk1MediumSquare">
-							<code>animPeopleWalk1MediumSquare</code>
-						</td>
-						<td>Wanders around a 16x16 tile area
-</td>
-					</tr>
-					<tr>
-						<td id="animPeopleWalk1Narrow">
-							<code>animPeopleWalk1Narrow</code>
-						</td>
-						<td>Wanders around an 8x8 tile area
-</td>
-					</tr>
-					<tr>
-						<td id="animPeopleWalk1Wide">
-							<code>animPeopleWalk1Wide</code>
-						</td>
-						<td>Wanders around a 24x8 tile area
-</td>
-					</tr>
-					<tr>
-						<td id="animPeopleWalk1Wide2">
-							<code>animPeopleWalk1Wide2</code>
-						</td>
-						<td>Wanders around a 24x8 tile area (duplicate)
-</td>
-					</tr>
-					<tr>
-						<td id="animTopolloHallA">
-							<code>animTopolloHallA</code>
-						</td>
-						<td>Apollo Theatre backstage guard moving out of your way
-</td>
-					</tr>
-					<tr>
-						<td id="characterViewer">
-							<code>characterViewer</code>
-						</td>
-						<td>Places static sprite on screen for sprite testing
-</td>
-					</tr>
-					<tr>
-						<td id="debugCursor">
-							<code>debugCursor</code>
-						</td>
-						<td>Cursor for boot debug menu
-</td>
-					</tr>
-					<tr>
-						<td id="flyingEnemy">
-							<code>flyingEnemy</code>
-						</td>
-						<td>Flying, living enemies
-</td>
-					</tr>
-					<tr>
-						<td id="flyingInanimateEnemy">
-							<code>flyingInanimateEnemy</code>
-						</td>
-						<td>Flying, metallic/robotic enemies
-</td>
-					</tr>
-					<tr>
-						<td id="freshDelivery">
-							<code>freshDelivery</code>
-						</td>
-						<td>Start making delivery attempts
-</td>
-					</tr>
-					<tr>
-						<td id="miniGhost">
-							<code>miniGhost</code>
-						</td>
-						<td>Mini ghost's oval orbit
-</td>
-					</tr>
-					<tr>
-						<td id="none">
-							<code>none</code>
-						</td>
-						<td>No script
-</td>
-					</tr>
-					<tr>
-						<td id="partyMemberFollowing">
-							<code>partyMemberFollowing</code>
-						</td>
-						<td>Party member movement
-</td>
-					</tr>
-					<tr>
-						<td id="partyMemberFollowingBubbleMonkey">
-							<code>partyMemberFollowingBubbleMonkey</code>
-						</td>
-						<td>Erratic party member movement
-</td>
-					</tr>
-					<tr>
-						<td id="partyMemberLeading">
-							<code>partyMemberLeading</code>
-						</td>
-						<td>Invisible party leader
-</td>
-					</tr>
-					<tr>
-						<td id="paulaDadIndoors">
-							<code>paulaDadIndoors</code>
-						</td>
-						<td>Paula's dad, indoors
-</td>
-					</tr>
-					<tr>
-						<td id="respawnedDelivery">
-							<code>respawnedDelivery</code>
-						</td>
-						<td>Resume making delivery attempts
-</td>
-					</tr>
-					<tr>
-						<td id="staticEnemy">
-							<code>staticEnemy</code>
-						</td>
-						<td>Unused
-</td>
-					</tr>
-					<tr>
-						<td id="unknown894">
-							<code>unknown894</code>
-						</td>
-						<td>Unused, Earthbound exclusive
-</td>
-					</tr>
-				</table>
-			</section>
 			
 			<footer>
 				<table class="license-info">

@@ -2894,6 +2894,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/QueuedInteractionPtr.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/QueuedInteractionPtr.doorPtr.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/QueuedInteractionPtr.textPtr.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/readInlineArray.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/readSaveFile.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/RGB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/RGB.bgr555.html</loc></url>
@@ -3137,6 +3138,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/WinStat.windowID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/WinStat.x.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/WinStat.y.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/writeInlineArray.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/writeSaveFile.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/XBA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/YourSanctuaryLocation.html</loc></url>
