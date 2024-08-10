@@ -16,8 +16,7 @@ private struct CacheEntry {
 }
 
 void loadTextCache(const(ubyte)[] data) {
-	const entryCount = (cast(const(uint)[])(data[0 .. uint.sizeof]))[0];
-	const entries = cast(const(CacheEntry)[])(data[uint.sizeof .. entryCount * CacheEntry.sizeof + uint.sizeof]);
+	const entries = readInlineArray!CacheEntry(data);
 	textData = null;
 	foreach (entry; entries) {
 		const key = cast(const(char)[])data[entry.keyOffset .. entry.keyOffset + entry.keyLength];
@@ -57,8 +56,7 @@ const(ubyte)[] asBytes(const(void)[] textChunk) {
 	import std.algorithm.searching : countUntil;
 	const(ubyte)[] readLabel(const(ubyte)[] label) {
 		auto str = (cast(const(char[])[])(label[0 .. (const(char)[]).sizeof]))[0];
-		uint[1] strLength = cast(uint)str.length;
-		return cast(ubyte[])strLength[] ~ cast(const(ubyte)[])str;
+		return writeInlineArray(str);
 	}
 	const(ubyte)[] data;
 	while(textChunk.length > 0) {
@@ -159,8 +157,8 @@ const(ubyte)[] asBytes(const(void)[] textChunk) {
 const(void)[] fromBytes(const(ubyte)[] textChunk) {
 	import std.algorithm.searching : countUntil;
 	static const(ubyte)[] readLabelLength(const(ubyte)[] label, out uint length) {
-		length = (cast(const(uint)[])(label[0 .. uint.sizeof]))[0];
-		const str = cast(string)(cast(const(char)[])label[uint.sizeof .. uint.sizeof + length]);
+		const str = cast(string)readInlineArray!char(label);
+		length = cast(uint)str.length;
 		// make sure an aligned pointer to this label exists so it doesn't get eaten by the garbage collector
 		return allBytes(nameRefs.require(str, str.idup));
 	}

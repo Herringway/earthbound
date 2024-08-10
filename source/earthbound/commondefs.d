@@ -8702,3 +8702,15 @@ ubyte bankbyte(const void*) {
 ushort tilemapCoords(ubyte x, ubyte y) {
 	return cast(ushort)(y * 32 + x);
 }
+
+/// reads an inline array from a byte stream. uses uint length instead of size_t, because 4 bytes is already overkill for this game
+const(T)[] readInlineArray(T)(const(ubyte)[] bytes) @safe pure {
+	const length = (cast(const(uint)[])(bytes[0 .. uint.sizeof]))[0];
+	return (cast(const(T)[])bytes[uint.sizeof .. uint.sizeof + length * T.sizeof]);
+}
+
+/// writes an inline array to a byte stream. uses uint length instead of size_t, because 4 bytes is already overkill for this game
+const(ubyte)[] writeInlineArray(T)(const(T)[] str) @safe pure {
+	uint[1] strLength = cast(uint)str.length;
+	return cast(ubyte[])strLength[] ~ cast(const(ubyte)[])str;
+}
