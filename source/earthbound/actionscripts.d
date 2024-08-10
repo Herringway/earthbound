@@ -16,11 +16,11 @@ immutable ubyte[][895] actionScriptScriptPointers;
 shared static this() {
 	actionScriptScriptPointers = [
 		actionScriptDebugCursor[],
-		actionScript1[],
-		actionScript2[],
-		actionScript3[],
-		actionScript4[],
-		actionScript5[],
+		actionScriptPartyLeader[],
+		actionScriptPartyMember[],
+		actionScriptPartyMemberBMonkey[],
+		actionScriptCharacterViewer[],
+		actionScriptStaticEnemy[],
 		actionScriptPeopleWalk1[],
 		actionScriptBillboard[],
 		actionScriptMapObjStill[],
@@ -29,18 +29,18 @@ shared static this() {
 		actionScriptPeopleWalk0[],
 		actionScriptPeopleWalk1[],
 		actionScriptPeopleWalk1Narrow[],
-		actionScript14[],
-		actionScript15[],
-		actionScript16[],
-		actionScript17[],
-		actionScript18[],
-		actionScript19[],
+		actionScriptPeopleWalk1MediumSquare[],
+		actionScriptPeopleWalk1LargeSquare[],
+		actionScriptPeopleWalk1Wide[],
+		actionScriptPeopleWalk1Wide2[],
+		actionScriptKing1[],
+		actionScriptDefaultEnemy[],
 		actionScript20[],
 		actionScript21[],
 		actionScript22[],
-		actionScript23[],
+		actionScriptFlyingInanimateEnemy[],
 		actionScript24[],
-		actionScript25[],
+		actionScriptFlyingEnemy[],
 		actionScript26[],
 		actionScript27[],
 		actionScript28[],
@@ -801,7 +801,7 @@ shared static this() {
 		actionScript783[],
 		actionScript784[],
 		actionScript785[],
-		actionScript786[],
+		actionScriptMiniGhost[],
 		actionScript787[],
 		actionScriptTitleScreen1[],
 		actionScriptTitleScreen2[],
@@ -909,7 +909,7 @@ shared static this() {
 		actionScript891[],
 		actionScript892[],
 		actionScript893[],
-		actionScript894[],
+		actionScriptUnused894[],
 	];
 }
 // does not exist in vanilla game
@@ -976,7 +976,7 @@ shared static this() {
 		"unknownC39ABB": unknownC39ABB[],
 		"unknownC39AC7": unknownC39AC7[],
 		"actionScriptWaitBattleFinished": actionScriptWaitBattleFinished[],
-		"unknownC3A07F": unknownC3A07F[],
+		"actionScriptUnusedC3A07F": actionScriptUnusedC3A07F[],
 		"animateD8F2": animateD8F2[],
 		"animateD24F2": animateD24F2[],
 		"animateD12F2": animateD12F2[],
@@ -1106,16 +1106,16 @@ shared static this() {
 /** ActionScript 786 - Flies around the party leader in an oval
  * Original_Address: $(DOLLAR)C0AD8A
  */
-immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript786;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScriptMiniGhost;
 shared static this() {
-	actionScript786 = initializeScript(actionScript786.length,
+	actionScriptMiniGhost = initializeScript(actionScriptMiniGhost.length,
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		PAUSE(8),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		UPDATE_MINI_GHOST_POSITION_WAIT(1),
-		SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMiniGhost[7 + 3 * (const(void)*).sizeof]),
 	);
 }
 /** ActionScript 0 - Controls the debug cursor. Basically just a static image, the actual movement is handled externally
@@ -1493,7 +1493,7 @@ shared static this() {
 		HALT(),
 	);
 }
-/** Script for the NPC guarding the Topolla Theater's backstage moving out of your way
+/** ActionScript 242 - The NPC guarding the Topolla Theater's backstage moving out of your way
  * Original_Address: $(DOLLAR)C304FA
  */
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScriptTopolloHallA;
@@ -3787,7 +3787,7 @@ shared static this() {
 	);
 }
 /// $C31B4B
-immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScriptKaitenNess;
+immutable ubyte[99 + 16 * (const(void)*).sizeof] actionScriptKaitenNess;
 shared static this() {
 	actionScriptKaitenNess = initializeScript(actionScriptKaitenNess.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
@@ -3822,7 +3822,7 @@ shared static this() {
 			ADD(ActionScriptVars.v1, -1),
 			PAUSE(1),
 		LOOP_END(),
-		START_TASK(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptKaitenNessTask[0]),
 		LOOP(7),
 			PAUSE(70),
 			ADD(ActionScriptVars.v0, -1),
@@ -3838,12 +3838,18 @@ shared static this() {
 		JUMP_IF_TRUE(&actionScriptKaitenNess[89 + 14 * (const(void)*).sizeof]),
 		END_LAST_TASK(),
 		HALT(),
+	);
+}
+/// $C3
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptKaitenNessTask;
+shared static this() {
+	actionScriptKaitenNessTask = initializeScript(actionScriptKaitenNessTask.length,
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 		WRITE_WORD_TEMPVAR(1),
 		GET_DIRECTION_ROTATED_CLOCKWISE(),
 		SET_DIRECTION(),
 		C0AAAC(),
-		SHORTJUMP(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptKaitenNessTask[0]),
 	);
 }
 /// $C31BED
@@ -3897,7 +3903,7 @@ shared static this() {
 	);
 }
 /// $C31C49
-immutable ubyte[57 + 9 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptBGChange;
+immutable ubyte[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptBGChange;
 shared static this() {
 	actionScriptBGChange = initializeScript(actionScriptBGChange.length,
 		SET_ANIMATION(255),
@@ -3905,7 +3911,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 16),
 		WRITE_WORD_TEMPVAR(Direction.up),
 		SET_DIRECTION(),
-		START_TASK(&actionScriptBGChange[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
+		START_TASK(&actionScriptBGChangeTask[0]),
 		LOOP(15),
 			PAUSE(32),
 			ADD(ActionScriptVars.v0, -1),
@@ -3924,12 +3930,18 @@ shared static this() {
 		WRITE_DWORD_WRAM(&postTeleportCallback, &restoreMapRendering),
 		YIELD_TO_TEXT(),
 		HALT(),
+	);
+}
+/// $C31C90
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptBGChangeTask;
+shared static this() {
+	actionScriptBGChangeTask = initializeScript(actionScriptBGChangeTask.length,
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 		WRITE_WORD_TEMPVAR(-1),
 		GET_DIRECTION_ROTATED_CLOCKWISE(),
 		SET_DIRECTION(),
 		DISPLAY_YOUR_SANCTUARY_LOCATION(),
-		SHORTJUMP(&actionScriptBGChange[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
+		SHORTJUMP(&actionScriptBGChangeTask[0]),
 	);
 }
 /// $C31CA4
@@ -4082,7 +4094,7 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
 		SET_VAR(ActionScriptVars.v2, 0),
-		START_TASK(&unknownC31E2D[18 + 6 * (const(void)*).sizeof]),
+		START_TASK(&unknownC31E2DTask[0]),
 		C0A938(1),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PAUSE(1),
@@ -4125,20 +4137,26 @@ shared static this() {
 	);
 }
 /// $C31E2D
-immutable ubyte[40 + 7 * (const(void)*).sizeof] unknownC31E2D;
+immutable ubyte[18 + 6 * (const(void)*).sizeof] unknownC31E2D;
 shared static this() {
 	unknownC31E2D = initializeScript(unknownC31E2D.length,
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
 		SET_VAR(ActionScriptVars.v2, 0),
-		START_TASK(&unknownC31E2D[18 + 6 * (const(void)*).sizeof]),
+		START_TASK(&unknownC31E2DTask[0]),
 		GET_POSITION_OF_PARTY_MEMBER(255),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PAUSE(1),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 		JUMP_IF_FALSE(&unknownC31E2D[12 + 5 * (const(void)*).sizeof]),
 		SHORT_RETURN(),
+	);
+}
+/// $C31E4D
+immutable ubyte[22 + 1 * (const(void)*).sizeof] unknownC31E2DTask;
+shared static this() {
+	unknownC31E2DTask = initializeScript(unknownC31E2DTask.length,
 		SET_VAR(ActionScriptVars.v0, 65521),
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP(15),
@@ -7137,7 +7155,7 @@ shared static this() {
 	);
 }
 /// $C33B0F
-immutable ubyte[64 + 22 * (const(void)*).sizeof] actionScriptPhotographer;
+immutable ubyte[55 + 18 * (const(void)*).sizeof] actionScriptPhotographer;
 shared static this() {
 	actionScriptPhotographer = initializeScript(actionScriptPhotographer.length,
 		SET_PRIORITY(0),
@@ -7147,7 +7165,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
-		START_TASK(&actionScriptPhotographer[55 + 18 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptPhotographerTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_Z(168),
 		SET_Z_VELOCITY(-384),
@@ -7168,19 +7186,25 @@ shared static this() {
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(30),
-		START_TASK(&actionScriptPhotographer[55 + 18 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptPhotographerTask[0]),
 		SET_Z_VELOCITY(512),
 		PAUSE(64),
 		YIELD_TO_TEXT(),
 		PAUSE(20),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
+	);
+}
+/// $C33B77
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptPhotographerTask;
+shared static this() {
+	actionScriptPhotographerTask = initializeScript(actionScriptPhotographerTask.length,
 		WRITE_WORD_TEMPVAR(2),
 		GET_DIRECTION_ROTATED_CLOCKWISE(),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(3),
-		SHORTJUMP(&actionScriptPhotographer[55 + 18 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptPhotographerTask[0]),
 	);
 }
 /// $C33B8B
@@ -7478,13 +7502,13 @@ shared static this() {
 	);
 }
 /// $C33E42
-immutable ubyte[69 + 23 * (const(void)*).sizeof] actionScriptBMonkeyTassi1B;
+immutable ubyte[60 + 21 * (const(void)*).sizeof] actionScriptBMonkeyTassi1B;
 shared static this() {
 	actionScriptBMonkeyTassi1B = initializeScript(actionScriptBMonkeyTassi1B.length,
 		SHORTCALL(&unknownC3AB26[0]),
 		SET_VAR(ActionScriptVars.v4, 1),
 		SET_Z(28),
-		START_TASK(&actionScriptBMonkeyTassi1B[60 + 21 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptBMonkeyTassi1BTask[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -7515,10 +7539,16 @@ shared static this() {
 		FACE_DIRECTION(),
 		PAUSE(3),
 		SHORTJUMP(&actionScriptBMonkeyTassi1B[54 + 17 * (const(void)*).sizeof]),
+	);
+}
+/// $C33EB6
+immutable ubyte[9 + 2 * (const(void)*).sizeof] actionScriptBMonkeyTassi1BTask;
+shared static this() {
+	actionScriptBMonkeyTassi1BTask = initializeScript(actionScriptBMonkeyTassi1BTask.length,
 		MOVE_TO_SPRITE(OverworldSprite.tessie),
 		SET_Y_RELATIVE(-2),
 		PAUSE(1),
-		SHORTJUMP(&actionScriptBMonkeyTassi1B[60 + 21 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptBMonkeyTassi1BTask[0]),
 	);
 }
 /// $C33EC4
@@ -7844,7 +7874,7 @@ shared static this() {
 	);
 }
 /// $C341CC
-immutable ubyte[88 + 14 * (const(void)*).sizeof] actionScriptLeaf1;
+immutable ubyte[74 + 11 * (const(void)*).sizeof] actionScriptLeaf1;
 shared static this() {
 	actionScriptLeaf1 = initializeScript(actionScriptLeaf1.length,
 		SET_PRIORITY(0),
@@ -7854,7 +7884,7 @@ shared static this() {
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		START_TASK(&actionScriptLeaf1[74 + 11 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptLeaf1Task[0]),
 		SHORTCALL(&actionScriptLeaf1[14 + 6 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScriptTerminate[0]),
 		C46D23(),
@@ -7884,10 +7914,16 @@ shared static this() {
 		GET_EVENT_FLAG(EventFlag.winsTassiEnter),
 		JUMP_IF_TRUE(&actionScriptLeaf1[14 + 6 * (const(void)*).sizeof]),
 		SHORT_RETURN(),
+	);
+}
+/// $C3
+immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScriptLeaf1Task;
+shared static this() {
+	actionScriptLeaf1Task = initializeScript(actionScriptLeaf1Task.length,
 		PAUSE(8),
 		WRITE_WORD_TEMPVAR(3120),
 		TEST_Y_COORD_BELOW_LEADER(),
-		JUMP_IF_FALSE(&actionScriptLeaf1[74 + 11 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptLeaf1Task[0]),
 		WRITE_WORD_TEMPVAR(0),
 		SET_EVENT_FLAG(EventFlag.winsTassiEnter),
 		HALT(),
@@ -7981,12 +8017,12 @@ shared static this() {
 	);
 }
 /// $C3430E
-immutable ubyte[70 + 13 * (const(void)*).sizeof] actionScript501_531_Common;
+immutable ubyte[61 + 12 * (const(void)*).sizeof] actionScript501_531_Common;
 shared static this() {
 	actionScript501_531_Common = initializeScript(actionScript501_531_Common.length,
 		SET_X(-8),
 		SET_Y(40),
-		START_TASK(&actionScript501_531_Common[61 + 12 * (const(void)*).sizeof]),
+		START_TASK(&actionScript501_531_CommonTask[0]),
 		LOOP(4),
 			UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 			PAUSE(8),
@@ -8010,11 +8046,17 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.downRight, 0),
 		PAUSE(8),
 		SHORTJUMP(&actionScript501_531_Common[20 + 3 * (const(void)*).sizeof]),
+	);
+}
+/// $C3436D
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript501_531_CommonTask;
+shared static this() {
+	actionScript501_531_CommonTask = initializeScript(actionScript501_531_CommonTask.length,
 		SET_X_VELOCITY(128),
 		PAUSE(64),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(240),
-		SHORTJUMP(&actionScript501_531_Common[67 + 12 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScript501_531_CommonTask[0]),
 	);
 }
 /// $C34378
@@ -8091,7 +8133,7 @@ shared static this() {
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
-/** Tries to make a delivery like actionScriptFreshDelivery, but an attempt is made immediately if any attempts have been made before
+/** ActionScript 500 - Tries to make a delivery like actionScriptFreshDelivery, but an attempt is made immediately if any attempts have been made before
  *
  * Expects VAR0 to be set to an active delivery index.
  * Original_Address: $(DOLLAR)C34402
@@ -8108,7 +8150,7 @@ shared static this() {
 		SHORTJUMP(&actionScriptDeliveryCommon[0]),
 	);
 }
-/** Repeatedly tries to make a delivery at a predefined interval until it either succeeds or runs out of attempts.
+/** ActionScript 499 - Repeatedly tries to make a delivery at a predefined interval until it either succeeds or runs out of attempts
  *
  * Expects VAR0 to be set to an active delivery index.
  * Original_Address: $(DOLLAR)C3441A
@@ -9136,7 +9178,7 @@ shared static this() {
 	);
 }
 /// $C34DEA
-immutable ubyte[76 + 22 * (const(void)*).sizeof] actionScriptElevaterDown;
+immutable ubyte[71 + 19 * (const(void)*).sizeof] actionScriptElevaterDown;
 shared static this() {
 	actionScriptElevaterDown = initializeScript(actionScriptElevaterDown.length,
 		WRITE_WORD_TEMPVAR(Direction.up),
@@ -9150,7 +9192,7 @@ shared static this() {
 		WRITE_WORD_TEMPVAR(1), // invert math
 		SET_COLDATA_CGADSUB(24, 24, 24), // light gray
 		SET_TICK_CALLBACK(&elevaterConfigure),
-		START_TASK(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptElevaterDownTask[0]),
 		SET_MOVEMENT_SPEED(0),
 		LOOP(64),
 			PAUSE(1),
@@ -9163,7 +9205,7 @@ shared static this() {
 		END_LAST_TASK(),
 		PAUSE(60),
 		C47A6B(),
-		START_TASK(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptElevaterDownTask[0]),
 		PAUSE(150),
 		LOOP(64),
 			PAUSE(1),
@@ -9179,10 +9221,16 @@ shared static this() {
 		PAUSE(60),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
+	);
+}
+/// $C3
+immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptElevaterDownTask;
+shared static this() {
+	actionScriptElevaterDownTask = initializeScript(actionScriptElevaterDownTask.length,
 		GET_SELF_DIRECTION(),
 		MOVE_IN_DIRECTION(),
 		PAUSE(1),
-		SHORTJUMP(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptElevaterDownTask[0]),
 	);
 }
 /// $C34E73
@@ -9343,11 +9391,11 @@ shared static this() {
 	);
 }
 /// $C3500E
-immutable ubyte[49 + 10 * (const(void)*).sizeof] actionScriptMdDung;
+immutable ubyte[42 + 8 * (const(void)*).sizeof] actionScriptMdDung;
 shared static this() {
 	actionScriptMdDung = initializeScript(actionScriptMdDung.length,
 		SHORTCALL(&unknownC34E73[0]),
-		START_TASK(&actionScriptMdDung[42 + 8 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptMdDungTask[0]),
 		SET_MOVEMENT_SPEED(320),
 		SET_VAR(ActionScriptVars.v5, 2),
 		SET_VAR(ActionScriptVars.v6, 3216),
@@ -9363,10 +9411,16 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveInDirection[0]),
 		YIELD_TO_TEXT(),
 		HALT(),
+	);
+}
+/// $C3500E
+immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScriptMdDungTask;
+shared static this() {
+	actionScriptMdDungTask = initializeScript(actionScriptMdDungTask.length,
 		WRITE_WORD_TEMPVAR(Direction.left),
 		SET_DIRECTION(),
 		PAUSE(1),
-		SHORTJUMP(&actionScriptMdDung[42 + 8 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMdDungTask[0]),
 	);
 }
 /// $C35056
@@ -12065,7 +12119,7 @@ immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript609;
 shared static this() {
 	actionScript609 = initializeScript(actionScript609.length,
 		GET_EVENT_FLAG(EventFlag.onetDoorClose),
-		JUMP_IF_FALSE(&actionScript16[0]),
+		JUMP_IF_FALSE(&actionScriptPeopleWalk1Wide[0]),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -13532,7 +13586,7 @@ shared static this() {
 	);
 }
 /// $C37BFE
-immutable ubyte[165 + 35 * (const(void)*).sizeof] actionScriptTeleportSarusensei;
+immutable ubyte[142 + 30 * (const(void)*).sizeof] actionScriptTeleportSarusensei;
 shared static this() {
 	actionScriptTeleportSarusensei = initializeScript(actionScriptTeleportSarusensei.length,
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
@@ -13561,13 +13615,13 @@ shared static this() {
 		START_TASK(&animateD8F2[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 5),
-		START_TASK(&actionScriptTeleportSarusensei[142 + 30 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptTeleportSarusenseiTask1[0]),
 		SET_VAR(ActionScriptVars.v6, 1488),
 		SET_VAR(ActionScriptVars.v7, 10032),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(240),
-		START_TASK(&actionScriptTeleportSarusensei[154 + 32 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptTeleportSarusenseiTask2[0]),
 		SET_MOVEMENT_SPEED(768),
 		SET_VAR(ActionScriptVars.v0, 4),
 		SET_VAR(ActionScriptVars.v5, 3),
@@ -13596,6 +13650,12 @@ shared static this() {
 		WRITE_WORD_WRAM(&psiTeleportDestination, 14), // teleport to dusty dunes
 		START_PSI_TELEPORT_TUTORIAL(),
 		HALT(),
+	);
+}
+/// $C3
+immutable ubyte[12 + 2 * (const(void)*).sizeof] actionScriptTeleportSarusenseiTask1;
+shared static this() {
+	actionScriptTeleportSarusenseiTask1 = initializeScript(actionScriptTeleportSarusenseiTask1.length,
 		LOOP(15),
 			PAUSE(8),
 			GET_MOVEMENT_SPEED(),
@@ -13603,13 +13663,19 @@ shared static this() {
 			SET_MOVEMENT_SPEED(),
 		LOOP_END(),
 		END_TASK(),
+	);
+}
+/// $C3
+immutable ubyte[11 + 3 * (const(void)*).sizeof] actionScriptTeleportSarusenseiTask2;
+shared static this() {
+	actionScriptTeleportSarusenseiTask2 = initializeScript(actionScriptTeleportSarusenseiTask2.length,
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		JUMP_IF_TRUE(&actionScriptTeleportSarusensei[154 + 32 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptTeleportSarusenseiTask2[0]),
 	);
 }
 /// $C37CFD
@@ -13692,7 +13758,7 @@ shared static this() {
 	);
 }
 /// $C37DF1
-immutable ubyte[115 + 34 * (const(void)*).sizeof + 1 * string.sizeof] actionScript674;
+immutable ubyte[104 + 31 * (const(void)*).sizeof + 1 * string.sizeof] actionScript674;
 shared static this() {
 	actionScript674 = initializeScript(actionScript674.length,
 		SHORTCALL(&actionScript674[52 + 16 * (const(void)*).sizeof + string.sizeof]),
@@ -13728,7 +13794,7 @@ shared static this() {
 		SHORT_RETURN(),
 		PAUSE(1),
 		CLEAR_CURRENT_ENTITY_COLLISION2(),
-		START_TASK(&actionScript674[104 + 31 * (const(void)*).sizeof + string.sizeof]),
+		START_TASK(&actionScript674Task[0]),
 		PLAY_SFX(Sfx.spray),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -13750,13 +13816,19 @@ shared static this() {
 		SET_ANIMATION(255),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SHORT_RETURN(),
+	);
+}
+/// $C37EAE
+immutable ubyte[11 + 3 * (const(void)*).sizeof] actionScript674Task;
+shared static this() {
+	actionScript674Task = initializeScript(actionScript674Task.length,
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		PAUSE(4),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(4),
-		JUMP_IF_TRUE(&actionScript674[104 + 31 * (const(void)*).sizeof + string.sizeof]),
+		JUMP_IF_TRUE(&actionScript674Task[0]),
 	);
 }
 /// $C37EC1
@@ -14452,12 +14524,12 @@ shared static this() {
 	);
 }
 /// $C38544
-immutable ubyte[113 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScript700;
+immutable ubyte[107 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript700;
 shared static this() {
 	actionScript700 = initializeScript(actionScript700.length,
 		SHORTCALL(&unknownC3AAAA[0]),
 		SET_VAR(ActionScriptVars.v4, 0),
-		START_TASK(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
+		START_TASK(&actionScript700Task[0]),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_VAR(ActionScriptVars.v0, 5656),
 		SET_VAR(ActionScriptVars.v1, 5984),
@@ -14493,9 +14565,15 @@ shared static this() {
 		PAUSE(4),
 		SET_X_RELATIVE(-1),
 		SHORTJUMP(&actionScript700[96 + 14 * (const(void)*).sizeof + string.sizeof]),
+	);
+}
+/// $C3
+immutable ubyte[6 + 2 * (const(void)*).sizeof] actionScript700Task;
+shared static this() {
+	actionScript700Task = initializeScript(actionScript700Task.length,
 		MAKE_NPC_LOOK_AT_SELF(NPCID.unknown0873),
 		PAUSE(3),
-		SHORTJUMP(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
+		SHORTJUMP(&actionScript700[0]),
 	);
 }
 /// $C385E2
@@ -15011,13 +15089,13 @@ shared static this() {
 	);
 }
 /// $C38ADC
-immutable ubyte[60 + 13 * (const(void)*).sizeof] actionScriptEvtPray1Dog;
+immutable ubyte[51 + 10 * (const(void)*).sizeof] actionScriptEvtPray1Dog;
 shared static this() {
 	actionScriptEvtPray1Dog = initializeScript(actionScriptEvtPray1Dog.length,
 		SET_X(1912),
 		SET_Y(8808),
 		SHORTCALL(&unknownC3AAAA[0]),
-		START_TASK(&actionScriptEvtPray1Dog[51 + 10 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPray1DogTask[0]),
 		SET_VAR(ActionScriptVars.v4, 8),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PLAY_SFX(Sfx.doorClose),
@@ -15036,10 +15114,16 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		YIELD_TO_TEXT(),
 		HALT(),
+	);
+}
+/// $C3
+immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptEvtPray1DogTask;
+shared static this() {
+	actionScriptEvtPray1DogTask = initializeScript(actionScriptEvtPray1DogTask.length,
 		MAKE_SPRITE_LOOK_AT_SELF(OverworldSprite.mom),
 		MAKE_SPRITE_LOOK_AT_SELF(OverworldSprite.tracy),
 		PAUSE(3),
-		SHORTJUMP(&actionScriptEvtPray1Dog[51 + 10 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptEvtPray1DogTask[0]),
 	);
 }
 /// $C38B3A
@@ -15473,7 +15557,7 @@ shared static this() {
 	);
 }
 /// $C38F39
-immutable ubyte[59 + 12 * (const(void)*).sizeof] actionScriptEvtPray5GirlB;
+immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScriptEvtPray5GirlB;
 shared static this() {
 	actionScriptEvtPray5GirlB = initializeScript(actionScriptEvtPray5GirlB.length,
 		SET_X(4560),
@@ -15488,7 +15572,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PAUSE(10),
 		SHORTCALL(&unknownC37545[0]),
-		START_TASK(&actionScriptEvtPray5GirlB[53 + 10 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPray5GirlBTask[0]),
 		PAUSE(30),
 		SET_VAR(ActionScriptVars.v6, 4408),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -15500,13 +15584,19 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		YIELD_TO_TEXT(),
 		HALT(),
+	);
+}
+/// $C3
+immutable ubyte[6 + 2 * (const(void)*).sizeof] actionScriptEvtPray5GirlBTask;
+shared static this() {
+	actionScriptEvtPray5GirlBTask = initializeScript(actionScriptEvtPray5GirlBTask.length,
 		MAKE_NPC_LOOK_AT_SELF(NPCID.unknown1110),
 		PAUSE(3),
-		SHORTJUMP(&actionScriptEvtPray5GirlB[53 + 10 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptEvtPray5GirlBTask[0]),
 	);
 }
 /// $C38F91
-immutable ubyte[50 + 11 * (const(void)*).sizeof] actionScriptEvtPray5GirlC;
+immutable ubyte[41 + 8 * (const(void)*).sizeof] actionScriptEvtPray5GirlC;
 shared static this() {
 	actionScriptEvtPray5GirlC = initializeScript(actionScriptEvtPray5GirlC.length,
 		SHORTCALL(&unknownC3AAAA[0]),
@@ -15517,7 +15607,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4440),
 		SET_VAR(ActionScriptVars.v7, 3568),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		START_TASK(&actionScriptEvtPray5GirlC[41 + 8 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPray5GirlCTask[0]),
 		SET_VAR(ActionScriptVars.v6, 4400),
 		SET_VAR(ActionScriptVars.v7, 3488),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -15527,10 +15617,16 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		YIELD_TO_TEXT(),
 		HALT(),
+	);
+}
+/// $C3
+immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptEvtPray5GirlCTask;
+shared static this() {
+	actionScriptEvtPray5GirlCTask = initializeScript(actionScriptEvtPray5GirlCTask.length,
 		MAKE_NPC_LOOK_AT_SELF(NPCID.unknown1110),
 		MAKE_SPRITE_LOOK_AT_SELF(OverworldSprite.chineseGirl),
 		PAUSE(3),
-		SHORTJUMP(&actionScriptEvtPray5GirlC[41 + 8 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptEvtPray5GirlCTask[0]),
 	);
 }
 /// $C38FDF
@@ -15775,12 +15871,12 @@ shared static this() {
 	);
 }
 /// $C39213
-immutable ubyte[25 + 13 * (const(void)*).sizeof] actionScriptEvtPrayOvalWindow;
+immutable ubyte[21 + 11 * (const(void)*).sizeof] actionScriptEvtPrayOvalWindow;
 shared static this() {
 	actionScriptEvtPrayOvalWindow = initializeScript(actionScriptEvtPrayOvalWindow.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
-		START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPrayOvalWindowTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_ANIMATION(255),
 		C49841(),
@@ -15793,9 +15889,15 @@ shared static this() {
 		JUMP_IF_TRUE(&actionScriptEvtPrayOvalWindow[15 + 7 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
+	);
+}
+/// $C3
+immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScriptEvtPrayOvalWindowTask;
+shared static this() {
+	actionScriptEvtPrayOvalWindowTask = initializeScript(actionScriptEvtPrayOvalWindowTask.length,
 		UPDATE_SWIRL_FRAME(),
 		PAUSE(1),
-		SHORTJUMP(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptEvtPrayOvalWindowTask[0]),
 	);
 }
 /// $C3924D
@@ -15977,7 +16079,7 @@ shared static this() {
 	);
 }
 /// $C39440
-immutable ubyte[59 + 13 * (const(void)*).sizeof] actionScriptEvtPoolaaa;
+immutable ubyte[44 + 9 * (const(void)*).sizeof] actionScriptEvtPoolaaa;
 shared static this() {
 	actionScriptEvtPoolaaa = initializeScript(actionScriptEvtPoolaaa.length,
 		SET_X(1224),
@@ -15989,7 +16091,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 1336),
 		SET_VAR(ActionScriptVars.v7, 6560),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		START_TASK(&actionScriptEvtPoolaaa[44 + 9 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPoolaaaTask[0]),
 		SET_VAR(ActionScriptVars.v6, 1376),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		END_LAST_TASK(),
@@ -15999,11 +16101,17 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
+	);
+}
+/// $C3
+immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScriptEvtPoolaaaTask;
+shared static this() {
+	actionScriptEvtPoolaaaTask = initializeScript(actionScriptEvtPoolaaaTask.length,
 		CHOOSE_RANDOM(Direction.down, Direction.left, Direction.right, Direction.up),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(8),
-		SHORTJUMP(&actionScriptEvtPoolaaa[44 + 9 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptEvtPoolaaaTask[0]),
 	);
 }
 /// $C3949B
@@ -16694,7 +16802,7 @@ shared static this() {
 		SHORTJUMP(&actionScript767[17 + 7 * (const(void)*).sizeof]),
 	);
 }
-/** Handles the visual effects for the power up scene just before leaving magicant
+/** ActionScript 768 - Handles the visual effects for the power up scene just before leaving magicant
  * Original_Address: $(DOLLAR)C39B86
  */
 immutable ubyte[189 + 50 * (const(void)*).sizeof] actionScriptEvtFluctuateMagicant;
@@ -16950,7 +17058,7 @@ shared static this() {
 	actionScriptToBeContOvalClose = initializeScript(actionScriptToBeContOvalClose.length,
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
-		START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptEvtPrayOvalWindowTask[0]),
 		START_TASK(&actionScriptToBeContOvalCloseTask[0]),
 		SET_VELOCITIES_ZERO(),
 		SET_ANIMATION(255),
@@ -17166,25 +17274,33 @@ shared static this() {
 		SHORTJUMP(&actionScript784[20 + 5 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A043
-immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScript1;
+/** ActionScript 1 - Party leader. This isn't the party member that's in front of the party, but an invisible entity that the party members all follow.
+ *
+ * Runs a hardware check on creation, tries to inflict sunstroke every 1200 frames.
+ * Original_Address: $(DOLLAR)C3A043
+ */
+immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScriptPartyLeader;
 shared static this() {
-	actionScript1 = initializeScript(actionScript1.length,
+	actionScriptPartyLeader = initializeScript(actionScriptPartyLeader.length,
 		SRAM_CHECK_ROUTINE_CHECKSUM(),
-		JUMP_IF_FALSE(&actionScript1[3 + 3 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptPartyLeader[3 + 3 * (const(void)*).sizeof]),
 		DISPLAY_COPYRIGHT_WARNING_SCREEN(),
 		SET_TICK_CALLBACK(&partyLeaderTick),
 		LOOP(6),
 			PAUSE(200),
 		LOOP_END(),
 		INFLICT_SUNSTROKE_CHECK(),
-		SHORTJUMP(&actionScript1[4 + 4 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptPartyLeader[4 + 4 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A05E
-immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScript2;
+/** ActionScript 2 - Party Member. Movement is based on where the party leader entity has been.
+ *
+ * Positioning, direction and animation are all based on the player position buffer, offset by entity size and position in party.
+ * Original_Address: $(DOLLAR)C3A05E
+ */
+immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScriptPartyMember;
 shared static this() {
-	actionScript2 = initializeScript(actionScript2.length,
+	actionScriptPartyMember = initializeScript(actionScriptPartyMember.length,
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		SET_ANIMATION(0),
@@ -17194,20 +17310,24 @@ shared static this() {
 		SET_TICK_CALLBACK(&partyMemberTick),
 		C0A6E3(),
 		PAUSE(1),
-		SHORTJUMP(&actionScript2[8 + 6 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptPartyMember[8 + 6 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A07F
-immutable ubyte[1] unknownC3A07F;
+/** Unused ActionScript subroutine. Just halts.
+ * Original_Address: $(DOLLAR)C3A07F
+ */
+immutable ubyte[1] actionScriptUnusedC3A07F;
 shared static this() {
-	unknownC3A07F = initializeScript(unknownC3A07F.length,
+	actionScriptUnusedC3A07F = initializeScript(actionScriptUnusedC3A07F.length,
 		HALT(),
 	);
 }
-/// $C3A080
-immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScript3;
+/** ActionScript 3 - Party Member (Bubble Monkey). Like ActionScript 2, but more chaotic.
+ * Original_Address: $(DOLLAR)C3A080
+ */
+immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScriptPartyMemberBMonkey;
 shared static this() {
-	actionScript3 = initializeScript(actionScript3.length,
+	actionScriptPartyMemberBMonkey = initializeScript(actionScriptPartyMemberBMonkey.length,
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
 		SET_PHYSICS_CALLBACK(&unknownC0A26B),
 		SET_ANIMATION(0),
@@ -17215,13 +17335,15 @@ shared static this() {
 		SET_TICK_CALLBACK(&bubbleMonkeyTick),
 		C0A6E3(),
 		PAUSE(1),
-		SHORTJUMP(&actionScript3[6 + 4 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptPartyMemberBMonkey[6 + 4 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A099
-immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript894;
+/** ActionScript 894 - Unused. Added for Earthbound's localization, writes to an otherwise unused memory address. What was this for?
+ * Original_Address: $(DOLLAR)C3A099
+ */
+immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScriptUnused894;
 shared static this() {
-	actionScript894 = initializeScript(actionScript894.length,
+	actionScriptUnused894 = initializeScript(actionScriptUnused894.length,
 		WRITE_WORD_WRAM(&unread7E00AD, 1),
 		HALT(),
 	);
@@ -17505,17 +17627,19 @@ shared static this() {
 		SHORTJUMP(&checkCollisionTask[1 + 1 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A273
-immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript4;
+/** ActionScript 4 - Character viewer. Placed statically on screen, faces same direction as entity 1.
+ * Original_Address: $(DOLLAR)C3A273
+ */
+immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScriptCharacterViewer;
 shared static this() {
-	actionScript4 = initializeScript(actionScript4.length,
+	actionScriptCharacterViewer = initializeScript(actionScriptCharacterViewer.length,
 		SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 		SET_ANIMATION(0),
 		START_TASK(&animateD8F2[0]),
 		WRITE_WRAM_TEMPVAR(&entityDirections[1]),
 		SET_DIRECTION(),
 		PAUSE(30),
-		SHORTJUMP(&actionScript4[4 + 2 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptCharacterViewer[4 + 2 * (const(void)*).sizeof]),
 	);
 }
 /// $C3A287
@@ -17612,55 +17736,71 @@ shared static this() {
 		SHORTJUMP(&actionScriptPeopleWalk1[10 + 6 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A33B
+/** ActionScript 13 - Wanders around a 8x8 tile area, by moving 1-2 tiles in random cardinal directions
+ * Original_Address: $(DOLLAR)C3A33B
+ */
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1Narrow;
 shared static this() {
 	actionScriptPeopleWalk1Narrow = initializeScript(actionScriptPeopleWalk1Narrow.length,
-		SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
+		SHORTCALL(&actionScriptWanderWithinBounds2Initialization[0]),
 		SET_BOUNDARIES(8, 8),
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A349
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript14;
+/** ActionScript 14 - Wanders around a 16x16 tile area, by moving 1-2 tiles in random cardinal directions
+ * Original_Address: $(DOLLAR)C3A349
+ */
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1MediumSquare;
 shared static this() {
-	actionScript14 = initializeScript(actionScript14.length,
-		SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
+	actionScriptPeopleWalk1MediumSquare = initializeScript(actionScriptPeopleWalk1MediumSquare.length,
+		SHORTCALL(&actionScriptWanderWithinBounds2Initialization[0]),
 		SET_BOUNDARIES(16, 16),
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A357
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript15;
+/** ActionScript 15 - Wanders around a 32x32 tile area, by moving 1-2 tiles in random cardinal directions
+ * Original_Address: $(DOLLAR)C3A357
+ */
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1LargeSquare;
 shared static this() {
-	actionScript15 = initializeScript(actionScript15.length,
-		SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
+	actionScriptPeopleWalk1LargeSquare = initializeScript(actionScriptPeopleWalk1LargeSquare.length,
+		SHORTCALL(&actionScriptWanderWithinBounds2Initialization[0]),
 		SET_BOUNDARIES(32, 32),
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A365
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript16;
+/** ActionScript 16 - Wanders around a 24x8 tile area, by moving 1-2 tiles in random cardinal directions
+ * Original_Address: $(DOLLAR)C3A365
+ */
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1Wide;
 shared static this() {
-	actionScript16 = initializeScript(actionScript16.length,
-		SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
+	actionScriptPeopleWalk1Wide = initializeScript(actionScriptPeopleWalk1Wide.length,
+		SHORTCALL(&actionScriptWanderWithinBounds2Initialization[0]),
 		SET_BOUNDARIES(24, 8),
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A373
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript17;
+/** ActionScript 17 - Wanders around a 24x8 tile area, by moving 1-2 tiles in random cardinal directions
+ *
+ * Duplicate of ActionScript 16?
+ * Original_Address: $(DOLLAR)C3A373
+ */
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1Wide2;
 shared static this() {
-	actionScript17 = initializeScript(actionScript17.length,
-		SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
+	actionScriptPeopleWalk1Wide2 = initializeScript(actionScriptPeopleWalk1Wide2.length,
+		SHORTCALL(&actionScriptWanderWithinBounds2Initialization[0]),
 		SET_BOUNDARIES(24, 8),
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A381
-immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript18;
+/** ActionScript 18 - Your pet dog. Wanders around an 8x8 tile area, by moving 1-2 tiles in random cardinal directions
+ *
+ * Identical to ActionScript 14 except for animation.
+ * Original_Address: $(DOLLAR)C3A381
+ */
+immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScriptKing1;
 shared static this() {
-	actionScript18 = initializeScript(actionScript18.length,
+	actionScriptKing1 = initializeScript(actionScriptKing1.length,
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
@@ -17671,10 +17811,12 @@ shared static this() {
 		SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
 	);
 }
-/// $C3A3A1
-immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript13_14_15_16_17_Common;
+/** Common initialization script for ActionScripts 13-17, sets up default drawing, physics, animation and speed.
+ * Original_Address: $(DOLLAR)C3A3A1
+ */
+immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScriptWanderWithinBounds2Initialization;
 shared static this() {
-	actionScript13_14_15_16_17_Common = initializeScript(actionScript13_14_15_16_17_Common.length,
+	actionScriptWanderWithinBounds2Initialization = initializeScript(actionScriptWanderWithinBounds2Initialization.length,
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		START_TASK(&unknownC3A15E[0]),
@@ -17684,7 +17826,14 @@ shared static this() {
 		SHORT_RETURN(),
 	);
 }
-/// $C3A3B7
+/** Common logic for ActionScripts 13-18. Wanders around a rectangular area, as defined by vars 0-3.
+ *
+ * Var 0 - Xmin
+ * Var 1 - Xmax
+ * Var 2 - Ymin
+ * Var 3 - Ymax
+ * Original_Address: $(DOLLAR)C3A3B7
+ */
 immutable ubyte[47 + 10 * (const(void)*).sizeof] actionScriptWanderWithinBounds2;
 shared static this() {
 	actionScriptWanderWithinBounds2 = initializeScript(actionScriptWanderWithinBounds2.length,
@@ -17814,36 +17963,42 @@ shared static this() {
 		END(),
 	);
 }
-/// $C3A481
-immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript5;
+/** ActionScript 5 - Unused, static enemy that can't start a fight
+ * Original_Address: $(DOLLAR)C3A481
+ */
+immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScriptStaticEnemy;
 shared static this() {
-	actionScript5 = initializeScript(actionScript5.length,
+	actionScriptStaticEnemy = initializeScript(actionScriptStaticEnemy.length,
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_ANIMATION(0),
 		SHORTJUMP(&actionScriptHandleBattleCleanup[0]),
 	);
 }
-/// $C3A48A
-immutable ubyte[23 + 15 * (const(void)*).sizeof] actionScript19;
+/** ActionScript 19 - Default enemy script, used when randomly spawned enemies don't have a script defined. Does not move and faces downward until the party draws near, then runs towards them
+ *
+ * All randomly-spawning enemies have a script defined, so this normally goes unused.
+ * Original_Address: $(DOLLAR)C3A48A
+ */
+immutable ubyte[23 + 15 * (const(void)*).sizeof] actionScriptDefaultEnemy;
 shared static this() {
-	actionScript19 = initializeScript(actionScript19.length,
+	actionScriptDefaultEnemy = initializeScript(actionScriptDefaultEnemy.length,
 		SHORTCALL(&actionScriptGroundedEnemyInitialize[0]),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE(&actionScriptDeleteEnemy[0]),
 		SET_MOVEMENT_SPEED(512),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_FALSE(&actionScript19[14 + 8 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptDefaultEnemy[14 + 8 * (const(void)*).sizeof]),
 		SET_DIRECTION8(Direction.down),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(8),
-		SHORTJUMP(&actionScript19[6 + 4 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDefaultEnemy[6 + 4 * (const(void)*).sizeof]),
 		SET_DESTINATION_TO_PARTY_LEADER_LOCATION(),
 		GET_ANGLE_TOWARDS_DESTINATION_UNLESS_WEAK(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(8),
-		SHORTJUMP(&actionScript19[6 + 4 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptDefaultEnemy[6 + 4 * (const(void)*).sizeof]),
 	);
 }
 /// $C3A4C9
@@ -17972,21 +18127,21 @@ shared static this() {
 /** ActionScript 23 - Flying metallic/robotic enemies. Moves erratically in diagonals, moves diagonally towards player if within 128 pixels
  * Original_Address: $(DOLLAR)C3A643
  */
-immutable ubyte[48 + 24 * (const(void)*).sizeof] actionScript23;
+immutable ubyte[48 + 24 * (const(void)*).sizeof] actionScriptFlyingInanimateEnemy;
 shared static this() {
-	actionScript23 = initializeScript(actionScript23.length,
-		START_TASK(&actionScript23Task[0]),
+	actionScriptFlyingInanimateEnemy = initializeScript(actionScriptFlyingInanimateEnemy.length,
+		START_TASK(&actionScriptFlyingInanimateEnemyTask[0]),
 		SHORTCALL(&actionScriptFlyingEnemyInitialize[0]),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE(&actionScriptDeleteEnemy[0]),
 		SET_MOVEMENT_SPEED(512),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_FALSE(&actionScript23[21 + 12 * (const(void)*).sizeof]),
+		JUMP_IF_FALSE(&actionScriptFlyingInanimateEnemy[21 + 12 * (const(void)*).sizeof]),
 		CHOOSE_RANDOM(Direction.up, Direction.down),
 		SET_DIRECTION(),
 		MOVE_IN_DIRECTION(),
 		SLEEP_UNTIL_CARDINAL_PIXELS_MOVED(32),
-		SHORTJUMP(&actionScript23[7 + 5 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingInanimateEnemy[7 + 5 * (const(void)*).sizeof]),
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 		LOOP(15),
 			SET_Y_RELATIVE(-1),
@@ -17995,24 +18150,24 @@ shared static this() {
 			PAUSE(1),
 		LOOP_END(),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		SHORTJUMP(&actionScript23[39 + 17 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingInanimateEnemy[39 + 17 * (const(void)*).sizeof]),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_TRUE(&actionScript23[7 + 5 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptFlyingInanimateEnemy[7 + 5 * (const(void)*).sizeof]),
 		SET_DESTINATION_TO_PARTY_LEADER_LOCATION(),
 		GET_ANGLE_TOWARDS_DESTINATION_UNLESS_WEAK(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(32),
-		SHORTJUMP(&actionScript23[37 + 15 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingInanimateEnemy[37 + 15 * (const(void)*).sizeof]),
 	);
 }
 /** Task for ActionScript 23 - Swaps directions every 16 frames
  * Original_Address: $(DOLLAR)C3A6B1
  */
-immutable ubyte[17 + 1 * (const(void)*).sizeof] actionScript23Task;
+immutable ubyte[17 + 1 * (const(void)*).sizeof] actionScriptFlyingInanimateEnemyTask;
 shared static this() {
-	actionScript23Task = initializeScript(actionScript23Task.length,
+	actionScriptFlyingInanimateEnemyTask = initializeScript(actionScriptFlyingInanimateEnemyTask.length,
 		LOOP(16),
 			SET_X_VELOCITY_RELATIVE(128),
 			PAUSE(1),
@@ -18021,7 +18176,7 @@ shared static this() {
 			SET_X_VELOCITY_RELATIVE(-128),
 			PAUSE(1),
 		LOOP_END(),
-		SHORTJUMP(&actionScript23Task[0]),
+		SHORTJUMP(&actionScriptFlyingInanimateEnemyTask[0]),
 	);
 }
 /** ActionScript 24 - Plants, stinky ghosts, shattered men. Wait for player to be less than 64 pixels away, then move directly towards them
@@ -18054,11 +18209,13 @@ shared static this() {
 		SHORTJUMP(&actionScript24[24 + 8 * (const(void)*).sizeof]),
 	);
 }
-/// $C3A714
-immutable ubyte[55 + 21 * (const(void)*).sizeof] actionScript25;
+/** ActionScript 25 - Flying enemies. Rests on the ground until the player approaches, then flies towards the player with wavy left/right movement
+ * Original_Address: $(DOLLAR)C3A714
+ */
+immutable ubyte[38 + 20 * (const(void)*).sizeof] actionScriptFlyingEnemy;
 shared static this() {
-	actionScript25 = initializeScript(actionScript25.length,
-		START_TASK(&actionScript25[38 + 20 * (const(void)*).sizeof]),
+	actionScriptFlyingEnemy = initializeScript(actionScriptFlyingEnemy.length,
+		START_TASK(&actionScriptFlyingEnemyTask[0]),
 		SHORTCALL(&actionScriptFlyingEnemyInitialize[0]),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE(&actionScriptDeleteEnemy[0]),
@@ -18070,19 +18227,27 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
 		PAUSE(8),
-		JUMP_IF_TRUE(&actionScript25[17 + 7 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptFlyingEnemy[17 + 7 * (const(void)*).sizeof]),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_VAR(ActionScriptVars.v0, 0),
-		SHORTJUMP(&actionScript25[29 + 13 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingEnemy[29 + 13 * (const(void)*).sizeof]),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_TRUE(&actionScript25[7 + 5 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptFlyingEnemy[7 + 5 * (const(void)*).sizeof]),
 		SET_DESTINATION_TO_PARTY_LEADER_LOCATION(),
 		GET_ANGLE_TOWARDS_DESTINATION_UNLESS_WEAK(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(32),
-		SHORTJUMP(&actionScript25[27 + 11 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingEnemy[27 + 11 * (const(void)*).sizeof]),
+	);
+}
+/** Task for ActionScript 25 - Swaps directions every 16 frames
+ * Original_Address: $(DOLLAR)C3A76D
+ */
+ immutable ubyte[17 + 1 * (const(void)*).sizeof] actionScriptFlyingEnemyTask;
+shared static this() {
+	actionScriptFlyingEnemyTask = initializeScript(actionScriptFlyingEnemyTask.length,
 		LOOP(16),
 			SET_X_VELOCITY_RELATIVE(64),
 			PAUSE(1),
@@ -18091,7 +18256,7 @@ shared static this() {
 			SET_X_VELOCITY_RELATIVE(-64),
 			PAUSE(1),
 		LOOP_END(),
-		SHORTJUMP(&actionScript25[38 + 20 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptFlyingEnemyTask[0]),
 	);
 }
 /// $C3A780
@@ -18818,7 +18983,7 @@ immutable ubyte[45 + 21 * (const(void)*).sizeof + 1 * string.sizeof] actionScrip
 shared static this() {
 	actionScript37 = initializeScript(actionScript37.length,
 		GET_EVENT_FLAG(EventFlag.myHomeKnockAppear),
-		JUMP_IF_FALSE(&actionScript18[0]),
+		JUMP_IF_FALSE(&actionScriptKing1[0]),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		START_TASK(&animateD8F2[0]),
 		START_TASK(&checkCollisionTask[0]),
@@ -18886,7 +19051,7 @@ shared static this() {
 	);
 }
 /// $C3AE1E
-immutable ubyte[51 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptKnockDoor;
+immutable ubyte[37 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptKnockDoor;
 shared static this() {
 	actionScriptKnockDoor = initializeScript(actionScriptKnockDoor.length,
 		SET_X(7792),
@@ -18899,7 +19064,7 @@ shared static this() {
 		SET_DIRECTION(),
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		START_TASK(&actionScriptKnockDoor[37 + 12 * (const(void)*).sizeof + string.sizeof]),
+		START_TASK(&actionScriptKnockDoorTask[0]),
 		COPY_XY_TO_VARS(),
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 24),
@@ -18911,6 +19076,12 @@ shared static this() {
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		HALT(),
+	);
+}
+/// $C3AE68
+immutable ubyte[14 + 1 * (const(void)*).sizeof] actionScriptKnockDoorTask;
+shared static this() {
+	actionScriptKnockDoorTask = initializeScript(actionScriptKnockDoorTask.length,
 		LOOP(3),
 			PAUSE(8),
 			SET_ANIMATION(0),
@@ -18918,7 +19089,7 @@ shared static this() {
 			SET_ANIMATION(255),
 		LOOP_END(),
 		PAUSE(30),
-		SHORTJUMP(&actionScriptKnockDoor[37 + 12 * (const(void)*).sizeof + string.sizeof]),
+		SHORTJUMP(&actionScriptKnockDoorTask[0]),
 	);
 }
 /// $C3AE78
@@ -23781,16 +23952,16 @@ shared static this() {
 	);
 }
 /// $C3DE01
-immutable ubyte[132 + 65 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMagicButterfly;
+immutable ubyte[28 + 13 * (const(void)*).sizeof] actionScriptMagicButterfly;
 shared static this() {
 	actionScriptMagicButterfly = initializeScript(actionScriptMagicButterfly.length,
 		SHORTCALL(&actionScriptEnemyInitialize[0]),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE(&actionScriptDeleteEnemy[0]),
 		SET_VAR(ActionScriptVars.v1, 0),
-		START_TASK(&actionScriptMagicButterfly[114 + 55 * (const(void)*).sizeof]),
-		START_TASK(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
-		START_TASK(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
+		START_TASK(&actionScriptMagicButterflyTask3[0]),
+		START_TASK(&actionScriptMagicButterflyTask1[0]),
+		START_TASK(&actionScriptMagicButterflyTask2[0]),
 		PAUSE(10),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
 		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[16 + 9 * (const(void)*).sizeof], &actionScriptMagicButterfly[16 + 9 * (const(void)*).sizeof], &actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
@@ -23800,48 +23971,66 @@ shared static this() {
 		SHORTJUMP(&actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
 		SET_VAR(ActionScriptVars.v1, 1),
 		SHORTJUMP(&actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
+	);
+}
+/// $C3DE39
+immutable ubyte[46 + 23 * (const(void)*).sizeof] actionScriptMagicButterflyTask1;
+shared static this() {
+	actionScriptMagicButterflyTask1 = initializeScript(actionScriptMagicButterflyTask1.length,
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
-		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[64 + 25 * (const(void)*).sizeof], &actionScriptMagicButterfly[68 + 35 * (const(void)*).sizeof]),
+		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterflyTask1[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[36 + 12 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[40 + 22 * (const(void)*).sizeof]),
 		CHOOSE_RANDOM(0, 1),
-		JUMP_IF_TRUE(&actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptMagicButterflyTask1[18 + 7 * (const(void)*).sizeof]),
 		SET_DIRECTION8(Direction.left),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_X_VELOCITY(-256),
-		SHORTJUMP(&actionScriptMagicButterfly[52 + 23 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask1[24 + 10 * (const(void)*).sizeof]),
 		SET_DIRECTION8(Direction.right),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_X_VELOCITY(256),
 		CHOOSE_RANDOM(30, 60, 90, 120),
 		WRITE_TEMPVAR_WAITTIMER(),
-		SHORTJUMP(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask1[0]),
 		GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
-		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof]),
-		SHORTJUMP(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof]),
+		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterflyTask1[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[18 + 8 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[18 + 8 * (const(void)*).sizeof], &actionScriptMagicButterflyTask1[18 + 8 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask1[4 + 3 * (const(void)*).sizeof]),
 		SET_X_VELOCITY(0),
 		PAUSE(10),
-		SHORTJUMP(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask1[0]),
+	);
+}
+/// $C3DE9C
+immutable ubyte[40 + 19 * (const(void)*).sizeof] actionScriptMagicButterflyTask2;
+shared static this() {
+	actionScriptMagicButterflyTask2 = initializeScript(actionScriptMagicButterflyTask2.length,
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
-		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[104 + 44 * (const(void)*).sizeof], &actionScriptMagicButterfly[108 + 54 * (const(void)*).sizeof]),
+		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterflyTask2[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[30 + 8 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[34 + 18 * (const(void)*).sizeof]),
 		CHOOSE_RANDOM(0, 1),
-		JUMP_IF_TRUE(&actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptMagicButterflyTask2[15 + 6 * (const(void)*).sizeof]),
 		SET_Y_VELOCITY(-256),
-		SHORTJUMP(&actionScriptMagicButterfly[92 + 42 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask2[20 + 6 * (const(void)*).sizeof]),
 		SET_Y_VELOCITY(256),
 		CHOOSE_RANDOM(15, 30, 45, 60),
 		WRITE_TEMPVAR_WAITTIMER(),
-		SHORTJUMP(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask2[0]),
 		GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
-		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof], &actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof], &actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof]),
-		SHORTJUMP(&actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof]),
+		SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterflyTask2[15 + 6 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[15 + 6 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[11 + 5 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[4 + 3 * (const(void)*).sizeof], &actionScriptMagicButterflyTask2[15 + 6 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask2[4 + 3 * (const(void)*).sizeof]),
 		SET_Y_VELOCITY(0),
 		PAUSE(10),
-		SHORTJUMP(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask2[0]),
+	);
+}
+/// $C3DEED
+immutable ubyte[18 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMagicButterflyTask3;
+shared static this() {
+	actionScriptMagicButterflyTask3 = initializeScript(actionScriptMagicButterflyTask3.length,
 		CHECK_PROSPECTIVE_ENTITY_COLLISION_WAIT_ENEMY(),
 		UPDATE_FLYING_ENEMY_ENTITY_COLLISION(),
 		TRY_BATTLE_START(),
-		JUMP_IF_TRUE(&actionScriptMagicButterfly[121 + 60 * (const(void)*).sizeof]),
+		JUMP_IF_TRUE(&actionScriptMagicButterflyTask3[7 + 5 * (const(void)*).sizeof]),
 		PAUSE(1),
-		SHORTJUMP(&actionScriptMagicButterfly[114 + 55 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask3[0]),
 		C0D77F(),
 		SET_VAR(ActionScriptVars.v1, 2),
 		SET_VELOCITIES_ZERO(),

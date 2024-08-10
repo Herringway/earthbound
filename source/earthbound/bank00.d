@@ -1359,7 +1359,7 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 		spawningEnemySprite = sprite;
 		short script = enemyConfigurationTable[groupEnemies[0].enemyID].eventScript;
 		if (script == 0) {
-			script = ActionScript.unknown019;
+			script = ActionScript.defaultEnemy;
 		}
 		while (enemySpawnRemainingEnemyCount-- != 0) {
 			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
@@ -4446,7 +4446,7 @@ void createMiniGhostEntity() {
 	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
-	miniGhostEntityID = createOverworldEntity(OverworldSprite.miniGhost, ActionScript.unknown786, -1, 0, 0);
+	miniGhostEntityID = createOverworldEntity(OverworldSprite.miniGhost, ActionScript.miniGhost, -1, 0, 0);
 	entityAnimationFrames[miniGhostEntityID] = -1;
 	entityScreenYTable[miniGhostEntityID] = -256;
 	entityAbsYTable[miniGhostEntityID] = -256;

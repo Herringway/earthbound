@@ -1507,13 +1507,13 @@ enum BackgroundLayer {
 }
 ///
 enum ActionScript {
-	none, //0
-	debugCursor = 0, //0
-	partyMemberLeading, //1
-	partyMemberFollowing, //2
-	partyMemberFollowingBubbleMonkey, //3
-	characterViewer, //4
-	unknown005, //5
+	none, /// No script
+	debugCursor = 0, /// Cursor for boot debug menu
+	partyMemberLeading, /// Invisible party leader
+	partyMemberFollowing, /// Party member movement
+	partyMemberFollowingBubbleMonkey, /// Erratic party member movement
+	characterViewer, /// Places static sprite on screen for sprite testing
+	staticEnemy, /// Unused
 	unknown006, //6
 	animBillboard, //7
 	animMapObjStill, //8
@@ -1521,19 +1521,19 @@ enum ActionScript {
 	animPeopleWalk0, //10
 	animPeopleWalk0A, //11
 	animPeopleWalk1, //12
-	animPeopleWalk1Narrow, //13
-	unknown014, //14
-	unknown015, //15
-	unknown016, //16
-	unknown017, //17
+	animPeopleWalk1Narrow, /// Wanders around an 8x8 tile area
+	animPeopleWalk1MediumSquare, /// Wanders around a 16x16 tile area
+	animPeopleWalk1LargeSquare, /// Wanders around a 32x32 tile area
+	animPeopleWalk1Wide, /// Wanders around a 24x8 tile area
+	animPeopleWalk1Wide2, /// Wanders around a 24x8 tile area (duplicate)
 	king1, //18
-	unknown019, //19
+	defaultEnemy, //19
 	unknown020, //20
 	unknown021, //21
 	unknown022, //22
-	unknown023, //23
-	unknown024, //24
-	unknown025, //25
+	flyingInanimateEnemy, /// Flying, metallic/robotic enemies
+	ambushEnemy, /// Ambush enemies that don't move until you're neat
+	flyingEnemy, /// Flying, living enemies
 	unknown026, //26
 	unknown027, //27
 	unknown028, //28
@@ -1729,7 +1729,7 @@ enum ActionScript {
 	animBusDsrtToThrk, //218
 	animBusDsrtFourIn, //219
 	animBusDsrtToFour, //220
-	unknown221, //221
+	paulaDadIndoors, /// Paula's dad, indoors
 	animSyochoA, //222
 	animSyochoB, //223
 	animSyochoC, //224
@@ -1750,7 +1750,7 @@ enum ActionScript {
 	animSyochoToNess, //239
 	unknown240, //240
 	animGrfdPolaAddParty, //241
-	animTopolloHallA, //242
+	animTopolloHallA, /// Apollo Theatre backstage guard moving out of your way
 	animMuseumKomorita, //243
 	animFrsdFieldO, //244
 	animFrsdFieldL, //245
@@ -2007,8 +2007,8 @@ enum ActionScript {
 	animLeaf2, //496
 	unknown497, //497
 	unknown498, //498
-	freshDelivery, //499
-	respawnedDelivery, //500
+	freshDelivery, /// Start making delivery attempts
+	respawnedDelivery, /// Resume making delivery attempts
 	unknown501, //501
 	unknown502, //502
 	unknown503, //503
@@ -2276,7 +2276,7 @@ enum ActionScript {
 	animKanjiAtTheNight, //765
 	animEvtFeelDiggy, //766
 	unknown767, //767
-	animEvtFluctuateMagicant, //768
+	animEvtFluctuateMagicant, /// Magicant power up scene intro effect
 	unknown769, //769
 	animOmarGiveHierogriph, //770
 	unknown771, //771
@@ -2294,7 +2294,7 @@ enum ActionScript {
 	unknown783, //783
 	unknown784, //784
 	unknown785, //785
-	unknown786, //786
+	miniGhost, /// Mini ghost's oval orbit
 	unknown787, //787
 	titleScreen1, //788
 	titleScreen2, //789
@@ -2402,7 +2402,7 @@ enum ActionScript {
 	unknown891, //891
 	unknown892, //892
 	unknown893, //893
-	unknown894, //894
+	unknown894, /// Unused, Earthbound exclusive
 }
 ///
 enum OverworldSprite {
