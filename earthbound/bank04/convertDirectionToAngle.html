@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable actionscriptCOLDATARed</title>
+		<title>Function convertDirectionToAngle</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -50,7 +50,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -140,7 +140,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/globals.html">globals</a>
 					</div>
 				</li>
@@ -154,19 +154,32 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable actionscriptCOLDATARed</h1><p>Red component of the colour to send to COLDATA from actionscripts
+			<h1>Function convertDirectionToAngle</h1><p>Converts a Direction to an angle, adjusted by ~22.5 degrees
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">ubyte</span> <span class="pln">actionscriptCOLDATARed</span>
-			<span class="pun">;</span>
+			<span class="typ">short</span> <span class="pln">convertDirectionToAngle</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">direction</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Original Address</h2>
-<p>9E39
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="direction">direction</td><td> One of the eight Direction values</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Angle, in 1/65536ths of a circle
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C46B2D
 </p>
 </section>
 

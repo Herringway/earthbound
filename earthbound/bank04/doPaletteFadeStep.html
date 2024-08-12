@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC019E2</title>
+		<title>Function doPaletteFadeStep</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -30,7 +30,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank00.html">bank00</a>
 					</div>
 				</li>
@@ -50,7 +50,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -154,17 +154,37 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC019E2</h1><p>$C019E2
+			<h1>Function doPaletteFadeStep</h1><p>Performs a palette fade, using the backup palette + step
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC019E2</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">void</span> <span class="pln">doPaletteFadeStep</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">palette</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">step</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Because the fade doesn't use the target colour palette in its calculations, this is lossless and any arbitrary series of steps is supported
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="palette">palette</td><td> Palette ID to fade - 2</td></tr>
+<tr><td id="step">step</td><td> Value to add to each colour channel</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C473D0
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable TeleportDestination.direction</title>
+		<title>Function colourClamp</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -50,7 +50,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -135,7 +135,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -154,30 +154,31 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable TeleportDestination.direction</h1><p>4
+			<h1>Function colourClamp</h1><p>Clamps a colour channel to the legal 0-31 range.
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <a href="../../earthbound/commondefs/TeleportDestination.html"><span class="typ">TeleportDestination</span></a>
+			<span class="typ">ushort</span> <span class="pln">colourClamp</span>
+			<span class="pun">(</span>
 			<br/>
-			<span class="pun">
-				{
-				<br/>
-			</span>
-			&nbsp;&nbsp;<span class="com">// ...</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">colour</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ubyte</span> <span class="pln">direction</span>
-			<span class="pun">;</span>
-			<br/>
-			&nbsp;&nbsp;<span class="com">// ...</span>
-			<br/>
-			<span class="pun">}</span>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="colour">colour</td><td> A single colour channel value</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C473B2
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
