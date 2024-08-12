@@ -360,7 +360,7 @@ __gshared ubyte unread7E00AB;
  * Original_Address: $(DOLLAR)00AC
  */
 __gshared ubyte unused7E00AC;
-/** Unknown. Only written to by actionscript #894, which seems to be unused and does nothing else. Possibly related to the wandering photographer, as it is grouped with them
+/** Unknown. Only written to by ActionScript #894, which seems to be unused and does nothing else. Possibly related to the wandering photographer, as it is grouped with them
  * Original_Address: $(DOLLAR)00AD
  */
 __gshared ubyte unread7E00AD;
@@ -497,7 +497,7 @@ __gshared void function() currentEntityTickCallback;
  * Original_Address: $(DOLLAR)0A5E
  */
 __gshared void function() actionScriptDrawCallback;
-/** Disables actionscript execution while non-zero. Used to prevent accidental actionscript frame generation recursion
+/** Disables ActionScript execution while non-zero. Used to prevent accidental ActionScript frame generation recursion
  * Original_Address: $(DOLLAR)0A60
  */
 __gshared short disableActionscript;
@@ -662,7 +662,7 @@ __gshared const(SpriteMap*)*[maxEntities] entitySpriteMapPointersDptr;
  * Original_Address: $(DOLLAR)11A6
  */
 __gshared void function()[maxEntities] entityScreenPositionCallbacks;
-/** Draw callbacks for active entities. Called at the end of actionscript processing, this typically does whatever rendering is necessary for the entity to be visible
+/** Draw callbacks for active entities. Called at the end of ActionScript processing, this typically does whatever rendering is necessary for the entity to be visible
  * Original_Address: $(DOLLAR)11E2
  */
 __gshared void function(short, short)[maxEntities] entityDrawCallbacks;
@@ -686,7 +686,7 @@ __gshared short[maxScripts] entityScriptSleepFrames;
  * Original_Address: $(DOLLAR)13FE and $(DOLLAR)148A
  */
 __gshared const(ubyte)*[maxScripts] entityProgramCounters;
-/** The 'tempvar' for all active scripts. This is the value returned by and passed to every function called from actionscript, as well as several script commands
+/** The 'tempvar' for all active scripts. This is the value returned by and passed to every function called from ActionScript, as well as several script commands
  * Original_Address: $(DOLLAR)1516
  */
 __gshared short[maxScripts] entityScriptTempvars;
@@ -695,49 +695,49 @@ __gshared short[maxScripts] entityScriptTempvars;
  */
 __gshared ActionLoopCallState[5][maxScripts] entityScriptStacks;
 
-/** Written to by actionscript commands 0x31 and 0x37, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x31 and 0x37, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A02
  */
 __gshared short[4] entityBGHorizontalOffsetLow;
-/** Written to by actionscript commands 0x32 and 0x38, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x32 and 0x38, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A0A
  */
 __gshared short[4] entityBGVerticalOffsetLow;
-/** Written to by actionscript command 0x31, which goes unused in Earthbound.
+/** Written to by ActionScript command 0x31, which goes unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A12
  */
 __gshared short[4] entityBGHorizontalOffsetHigh;
-/** Written to by actionscript command 0x32, which goes unused in Earthbound.
+/** Written to by ActionScript command 0x32, which goes unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A1A
  */
 __gshared short[4] entityBGVerticalOffsetHigh;
-/** Written to by actionscript commands 0x33, 0x35 and 0x3A, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x33, 0x35 and 0x3A, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A22
  */
 __gshared short[4] entityBGHorizontalVelocityLow;
-/** Written to by actionscript commands 0x34, 0x36 and 0x3A, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x34, 0x36 and 0x3A, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A2A
  */
 __gshared short[4] entityBGVerticalVelocityLow;
-/** Written to by actionscript commands 0x33, 0x35 and 0x3A, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x33, 0x35 and 0x3A, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A32
  */
 __gshared short[4] entityBGHorizontalVelocityHigh;
-/** Written to by actionscript commands 0x34, 0x36 and 0x3A, which go unused in Earthbound.
+/** Written to by ActionScript commands 0x34, 0x36 and 0x3A, which go unused in Earthbound.
  *
  * Although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone
  * Original_Address: $(DOLLAR)1A3A
@@ -970,7 +970,7 @@ __gshared short entityMovementProspectX;
  * Original_Address: $(DOLLAR)284A
  */
 __gshared short entityMovementProspectY;
-/** Backup of active entity callback flags. Used by fades in actionscripts
+/** Backup of active entity callback flags. Used by fades in ActionScripts
  * Original_Address: $(DOLLAR)284C
  */
 __gshared ushort[maxEntities] entityCallbackFlagsBackup;
@@ -1055,7 +1055,7 @@ __gshared short[maxEntities] entityTileHeights;
  * Original_Address: $(DOLLAR)2AF6
  */
 __gshared short[maxEntities] entityDirections;
-/** The normal velocity of active entities. Used by certain actionscript functions to move entities around
+/** The normal velocity of active entities. Used by certain ActionScript functions to move entities around
  * Original_Address: $(DOLLAR)2B32
  */
 __gshared short[maxEntities] entityMovementSpeed;
@@ -1100,7 +1100,7 @@ __gshared ushort[maxEntities] entityEnemySpawnTiles;
  * Original_Address: $(DOLLAR)2D8A
  */
 __gshared ushort[maxEntities] entityUnknown2D8A;
-/** Unclear. Only used for actionscript 27 and 597. Every active entity has a value of either 0 or 0xFFFF. Affects movement angle with C0CD50 movement
+/** Unclear. Only used for ActionScript 27 and 597. Every active entity has a value of either 0 or 0xFFFF. Affects movement angle with C0CD50 movement
  * Original_Address: $(DOLLAR)2DC6
  */
 __gshared ushort[maxEntities] entityUnknown2DC6;
@@ -1990,7 +1990,7 @@ __gshared string[4] partyMemberSelectionScripts;
  * See_Also: earthbound.commondefs.ActionScriptState
  * Original_Address: $(DOLLAR)9641
  */
-__gshared short actionscriptState;
+__gshared short actionScriptState;
 /** Similar to battleMode, indicates whether or not the player is in a battle
  * Original_Address: $(DOLLAR)9643
  */
@@ -2267,18 +2267,18 @@ __gshared ushort cameraFocusEntity;
  * Original_Address: $(DOLLAR)9E35
  */
 __gshared short spawningTravellingPhotographerID;
-/** Red component of the colour to send to COLDATA from actionscripts
+/** Red component of the colour to send to COLDATA from ActionScripts
  * Original_Address: $(DOLLAR)9E37
  */
-__gshared ubyte actionscriptCOLDATABlue;
-/** Red component of the colour to send to COLDATA from actionscripts
+__gshared ubyte actionScriptCOLDATABlue;
+/** Red component of the colour to send to COLDATA from ActionScripts
  * Original_Address: $(DOLLAR)9E38
  */
-__gshared ubyte actionscriptCOLDATAGreen;
-/** Red component of the colour to send to COLDATA from actionscripts
+__gshared ubyte actionScriptCOLDATAGreen;
+/** Red component of the colour to send to COLDATA from ActionScripts
  * Original_Address: $(DOLLAR)9E39
  */
-__gshared ubyte actionscriptCOLDATARed;
+__gshared ubyte actionScriptCOLDATARed;
 /** Buffer index for creating rectangular regions onscreen with HDMA-controlled windowing. When odd, use the first buffer. When even, use the second buffer
  * Original_Address: $(DOLLAR)9E3A
  */
@@ -3314,11 +3314,11 @@ __gshared ubyte[0x8000] introBG2Buffer;
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
-/** Current offset into the executing actionscript. Always zero, script pointer is adjusted directly instead
+/** Current offset into the executing ActionScript. Always zero, script pointer is adjusted directly instead
  * Original_Address: $(DOLLAR)80
  */
 __gshared ushort actionScriptScriptOffset;
-/** Stack for the executing actionscript. Contains return addresses and loop counters
+/** Stack for the executing ActionScript. Contains return addresses and loop counters
  * Original_Address: $(DOLLAR)84
  */
 __gshared ActionLoopCallState* actionScriptStack;
@@ -3326,15 +3326,15 @@ __gshared ActionLoopCallState* actionScriptStack;
  * Original_Address: $(DOLLAR)86
  */
 __gshared ushort unread86;
-/** Similar to currentEntityOffset, but set for actionscript callbacks as well
+/** Similar to currentEntityOffset, but set for ActionScript callbacks as well
  * Original_Address: $(DOLLAR)88
  */
 __gshared ushort currentActiveEntityOffset;
-/** The current offset (ID * 2) for the currently executing actionscript, used for faster indexing of the script tables
+/** The current offset (ID * 2) for the currently executing ActionScript, used for faster indexing of the script tables
  * Original_Address: $(DOLLAR)8A
  */
 __gshared ushort currentEntityScriptOffset;
-/** The current spritemap being manipulated by the active actionscript
+/** The current spritemap being manipulated by the active ActionScript
  * Original_Address: $(DOLLAR)8C
  */
 __gshared const(SpriteMap)* actionScriptSpritemap;
@@ -3354,7 +3354,7 @@ __gshared short actionScriptVar90;
  * Original_Address: $(DOLLAR)92
  */
 __gshared const(ubyte)* actionScriptJumpDestination;
-/** The most recently-read actionscript offset
+/** The most recently-read ActionScript offset
  * Original_Address: $(DOLLAR)94
  */
 __gshared const(ubyte)* actionScriptLastRead;
@@ -3383,5 +3383,5 @@ bool romDataLoaded;
 /// Extra entity data
 EntityExtra[maxEntities] entityExtra;
 
-/// Whether or not actionscript execution is paused
+/// Whether or not ActionScript execution is paused
 bool breakActionscript;

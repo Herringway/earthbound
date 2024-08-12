@@ -73,7 +73,7 @@ void initializeTextSystem() {
 	battleMenuCurrentCharacterID = -1;
 	instantPrinting = 0;
 	redrawAllWindows = 0;
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	uploadHPPPMeterTiles = 0;
 	windowHead = -1;
 	windowTail = -1;

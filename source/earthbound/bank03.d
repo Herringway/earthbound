@@ -1165,7 +1165,7 @@ short showTitleScreen(short quick) {
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	if (titleScreenQuickMode == 0) {
 		// set all colours to black
 		memset(&palettes[0][0], 0, palettes.sizeof);
@@ -1194,7 +1194,7 @@ short showTitleScreen(short quick) {
 		}
 	}
 	short playerExited = 0;
-	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
+	while ((actionScriptState == ActionScriptState.running) || (actionScriptState == ActionScriptState.titleScreenSpecial)) {
 		if (nonCancellable == 0) {
 			if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
 				playerExited = 1;
@@ -1203,12 +1203,12 @@ short showTitleScreen(short quick) {
 		}
 		finishFrame();
 	}
-	if ((titleScreenQuickMode == 0) && (actionscriptState == ActionScriptState.running)) {
+	if ((titleScreenQuickMode == 0) && (actionScriptState == ActionScriptState.running)) {
 		playerExited = cancelTitleScreenSequence();
 	}
 	fadeOutWithMosaic(1, 4, 0);
 	if (nonCancellable == 0) { // always true
-		actionscriptState = ActionScriptState.running;
+		actionScriptState = ActionScriptState.running;
 		unknownC474A8(/+0+/);
 		initializeEntitySubsystem();
 		return playerExited;

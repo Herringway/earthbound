@@ -219,16 +219,16 @@ void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
 
 /// $C102D0
 void waitForActionscript() {
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	clearInstantPrinting();
 	windowTick();
-	while (actionscriptState == ActionScriptState.running) {
+	while (actionScriptState == ActionScriptState.running) {
 		if ((debugging != 0) && ((padState[0] & Pad.start) != 0) && ((padState[0] & Pad.select) != 0)) {
 			return;
 		}
 		finishFrame();
 	}
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 }
 
 /// $C10301
@@ -5960,30 +5960,30 @@ void teleport(short arg1) {
 		setEventFlag(i, 0);
 	}
 	removeNonTransitionSurvivingInteractions();
-	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 1));
+	playSfx(getScreenTransitionSoundEffect(warpPresetTable[arg1].screenTransition, 1));
 	if (disabledTransitions != 0) {
 		fadeOut(1, 1);
 	} else {
-		screenTransition(teleportDestinationTable[arg1].screenTransition, 1);
+		screenTransition(warpPresetTable[arg1].screenTransition, 1);
 	}
-	loadMapAtPosition(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
+	loadMapAtPosition(cast(short)(warpPresetTable[arg1].x * 8), cast(short)(warpPresetTable[arg1].y * 8));
 	playerHasMovedSinceMapLoad = 0;
-	setLeaderPosition(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8), cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
-	if ((teleportDestinationTable[arg1].direction & 0x80) != 0) {
-		unknownC052D4(cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
+	setLeaderPosition(cast(short)(warpPresetTable[arg1].x * 8), cast(short)(warpPresetTable[arg1].y * 8), cast(short)((warpPresetTable[arg1].direction & 0x7F) - 1));
+	if ((warpPresetTable[arg1].direction & 0x80) != 0) {
+		unknownC052D4(cast(short)((warpPresetTable[arg1].direction & 0x7F) - 1));
 	}
-	loadSectorMusic(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
+	loadSectorMusic(cast(short)(warpPresetTable[arg1].x * 8), cast(short)(warpPresetTable[arg1].y * 8));
 	changeMapMusic();
 	if (postTeleportCallback !is null) {
 		postTeleportCallback();
 		postTeleportCallback = null;
 	}
 	processEntityCreationRequests();
-	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 0));
+	playSfx(getScreenTransitionSoundEffect(warpPresetTable[arg1].screenTransition, 0));
 	if (disabledTransitions != 0) {
 		fadeIn(1, 1);
 	} else {
-		screenTransition(teleportDestinationTable[arg1].screenTransition, 0);
+		screenTransition(warpPresetTable[arg1].screenTransition, 0);
 	}
 	stairsDirection = -1;
 	overworldStatusSuppression = x16;

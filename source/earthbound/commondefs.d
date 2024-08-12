@@ -5204,7 +5204,7 @@ enum InteractionType {
 	unknown5,
 	unknown6,
 	unknown7,
-	unknown8,
+	talkToEntity,
 	unknown9,
 	textSurvivesDoorTransition, /// Displays text, and won't be removed during a door transition
 }
@@ -7086,13 +7086,13 @@ struct ScreenTransitionConfig {
 	ubyte secondaryAnimationFlags; ///10
 	ubyte endingSoundEffect; ///11
 }
-/// An entity creation request. Note that no coordinates are included here, so the actionscript should set them explicitly
+/// An entity creation request. Note that no coordinates are included here, so the ActionScript should set them explicitly
 struct EntityCreationRequest {
 	ushort sprite; /// Sprite to use for the spawned entity
 	ushort script; /// Actionscript ID for the spawned entity
 }
 ///
-struct TeleportDestination {
+struct WarpPresetConfig {
 	short x; ///0
 	short y; ///2
 	ubyte direction; ///4
@@ -7411,7 +7411,7 @@ struct BackgroundDistortionEntry {
 }
 ///
 union FadeParameters {
-	short word; /// This is just to avoid undefined behaviour with actionscripts accessing both values with one write
+	short word; /// This is just to avoid undefined behaviour with ActionScripts accessing both values with one write
 	struct {
 		ubyte step; /// Number of levels of brightness to add/subtract at a time
 		ubyte delay; /// Number of frames between each increment/decrement
@@ -8389,13 +8389,13 @@ void printActionscriptCommand(size_t entityID, const(ubyte)[] stream) {
 	if (stream.length == 0) {
 		return;
 	}
-	tracef("Entity %s: (%s) %s", entityID, printableScriptName(&stream[0]), actionscriptCommandPrinter(stream));
+	tracef("Entity %s: (%s) %s", entityID, printableScriptName(&stream[0]), actionScriptCommandPrinter(stream));
 }
 
-auto actionscriptCommandPrinter(const(ubyte)* commandStream) {
-	return actionscriptCommandPrinter(commandStream[0 .. size_t.max]);
+auto actionScriptCommandPrinter(const(ubyte)* commandStream) {
+	return actionScriptCommandPrinter(commandStream[0 .. size_t.max]);
 }
-auto actionscriptCommandPrinter(const(ubyte)[] commandStream) {
+auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 	static struct Result {
 		static immutable commandNames = ["END", "LOOP", "LOOP_END", "LONGJUMP", "LONGCALL", "LONG_RETURN", "PAUSE", "START_TASK", "SET_TICK_CALLBACK", "HALT", "SHORTCALL_CONDITIONAL", "SHORTCALL_CONDITIONAL_NOT", "END_TASK", "UNK0D", "SET_VAR", "CLEAR_TICK_CALLBACK", "SWITCH_JUMP_TEMPVAR", "SWITCH_CALL_TEMPVAR", "WRITE_BYTE_WRAM", "END_LAST_TASK", "BINOP", "WRITE_WORD_WRAM", "BREAK_IF_FALSE", "BREAK_IF_TRUE", "BINOP_WRAM", "SHORTJUMP", "SHORTCALL", "SHORT_RETURN", "SET_ANIMATION_POINTER", "WRITE_WORD_TEMPVAR", "WRITE_WRAM_TEMPVAR", "WRITE_TEMPVAR_TO_VAR", "WRITE_VAR_TO_TEMPVAR", "WRITE_VAR_TO_WAIT_TIMER", "SET_DRAW_CALLBACK", "SET_POSITION_CHANGE_CALLBACK", "LOOP_TEMPVAR", "SET_PHYSICS_CALLBACK", "SET_ANIMATION_FRAME_VAR", "BINOP_TEMPVAR", "SET_X", "SET_Y", "SET_Z", "SET_X_RELATIVE", "SET_Y_RELATIVE", "SET_Z_RELATIVE", "SET_X_VELOCITY_RELATIVE", "SET_Y_VELOCITY_RELATIVE", "SET_Z_VELOCITY_RELATIVE", "UNK31", "UNK32", "UNK33", "UNK34", "UNK35", "UNK36", "UNK37", "UNK38", "SET_VELOCITIES_ZERO", "UNK3A", "SET_ANIMATION", "NEXT_ANIMATION_FRAME", "PREV_ANIMATION_FRAME", "SKIP_N_ANIMATION_FRAMES", "SET_X_VELOCITY", "SET_Y_VELOCITY", "SET_Z_VELOCITY", "CALLROUTINE", "SET_PRIORITY", "WRITE_TEMPVAR_WAITTIMER"];
 		const(ubyte)[] stream;

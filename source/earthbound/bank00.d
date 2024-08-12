@@ -809,21 +809,23 @@ void initializeMap(short x, short y, short direction) {
 	changeMapMusic();
 }
 
-/// $C019E2
-void unknownC019E2() {
+/** Reloads the map rows and columns in a 60x60 area centred on the current BG1 coordinates
+ * Original_Address: $(DOLLAR)C019E2
+ */
+void reloadMapCurrentLocation() {
 	for (short i = 0; i < 16; i++) {
 		loadedColumnsY[i] = -1;
 		loadedColumnsX[i] = -1;
 		loadedRowsY[i] = -1;
 		loadedRowsX[i] = -1;
 	}
-	short x04 = (bg1XPosition - 0x80) /8;
-	short x10 = (bg1YPosition - 0x80) /8;
+	short x = (bg1XPosition - 128) / 8;
+	short y = (bg1YPosition - 128) / 8;
 	for (short i = 0; i < 60; i++) {
-		loadMapRow(x04, cast(short)(x10 + i));
+		loadMapRow(x, cast(short)(y + i));
 	}
 	for (short i = 0; i < 60; i++) {
-		loadCollisionRow(x04, cast(short)(x10 + i));
+		loadCollisionRow(x, cast(short)(y + i));
 	}
 }
 
@@ -4395,7 +4397,7 @@ void processQueuedInteraction() {
 			}
 			break;
 		case InteractionType.mapSwitch:
-		case InteractionType.unknown8:
+		case InteractionType.talkToEntity:
 		case InteractionType.unknown9:
 			displayInteractionText(ptr.textPtr);
 			break;
@@ -5246,7 +5248,7 @@ void fadeOut(ubyte step, ubyte timeBetweenFrames) {
 	fadeDelayFramesLeft = timeBetweenFrames;
 }
 
-/** Waits for an asynchronous fade effect to finish. Same as waitForFadeToFinish, but actionscripts aren't executed
+/** Waits for an asynchronous fade effect to finish. Same as waitForFadeToFinish, but ActionScripts aren't executed
  * Original_Address: $(DOLLAR)C0888B
  */
 void waitForFadeToFinishNoActionScript() {
@@ -6615,28 +6617,28 @@ immutable void function()[4] binopFunctions = [
 	&binopXOR,
 ];
 
-/** Perform an actionscript AND binop
+/** Perform an ActionScript AND binop
  * Original_Address: $(DOLLAR)C09AC5
  */
 void binopAND() {
 	actionScriptVar8CMemory[0] &= actionScriptVar90;
 }
 
-/** Perform an actionscript OR binop
+/** Perform an ActionScript OR binop
  * Original_Address: $(DOLLAR)C09ACC
  */
 void binopOR() {
 	actionScriptVar8CMemory[0] |= actionScriptVar90;
 }
 
-/** Perform an actionscript addition binop
+/** Perform an ActionScript addition binop
  * Original_Address: $(DOLLAR)C09AD3
  */
 void binopAdd() {
 	actionScriptVar8CMemory[0] += actionScriptVar90;
 }
 
-/** Perform an actionscript XOR binop
+/** Perform an ActionScript XOR binop
  * Original_Address: $(DOLLAR)C09ADB
  */
 void binopXOR() {
@@ -7031,7 +7033,7 @@ short unknownC09D3E(short entityOffset, short y, out short finalX) {
 	return tmpY;
 }
 
-/** Reads an 8-bit value from the actionscript.
+/** Reads an 8-bit value from the ActionScript.
  * Original_Address: $(DOLLAR)C09D86
  */
 ushort actionScriptRead8(ref const(ubyte)* arg1) {
@@ -7966,19 +7968,19 @@ void actionScriptMoveEntityToSprite(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A87A
-void unknownC0A87A(short, ref const(ubyte)* arg2) {
-	short tmp = actionScriptRead16(arg2);
+void actionScriptMoveEntityToLocationBG1Relative(short, ref const(ubyte)* arg2) {
+	short x = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	short tmp2 = actionScriptRead16(arg2);
+	short y = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC46CF5(tmp2, tmp);
+	moveEntityToLocationBG1Relative(y, x);
 }
 
 /// $C0A88D
-void actionScriptQueueInteraction8(short, ref const(ubyte)* arg2) {
+void actionScriptQueueInteractionTalkTo(short, ref const(ubyte)* arg2) {
 	string tmp = actionScriptReadString(arg2);
 	actionScriptLastRead = arg2;
-	queueInteraction8(getTextBlock(tmp));
+	queueInteractionTalkTo(getTextBlock(tmp));
 }
 
 /// $C0A8A0
@@ -8030,37 +8032,37 @@ short actionScriptPrepareNewEntityAtPartyLeader(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A907
-short actionScriptPrepareNewEntityAtTeleportDestination(short, ref const(ubyte)* arg2) {
+short actionScriptPrepareNewEntityAtWarpPreset(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	prepareNewEntityAtTeleportDestination(tmp);
+	prepareNewEntityAtWarpPreset(tmp);
 	return 0;
 }
 
 /// $C0A912
 short actionScriptPrepareNewEntity(short, ref const(ubyte)* arg1) {
-	short tmp = actionScriptRead16(arg1);
+	short x = actionScriptRead16(arg1);
 	actionScriptLastRead = arg1;
-	short tmp2 = actionScriptRead16(arg1);
+	short y = actionScriptRead16(arg1);
 	actionScriptLastRead = arg1;
-	short tmp3 = actionScriptRead8(arg1);
+	short direction = actionScriptRead8(arg1);
 	actionScriptLastRead = arg1;
-	prepareNewEntity(tmp3, tmp, tmp2);
+	prepareNewEntity(direction, x, y);
 	return 0;
 }
 
 /// $C0A92D
 void actionScriptFindNPCLocationForActiveEntity(short, ref const(ubyte)* arg2) {
-	short tmp = actionScriptRead16(arg2);
+	short npc = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	findNPCLocationForActiveEntity(tmp);
+	findNPCLocationForActiveEntity(npc);
 }
 
 /// $C0A938
-void unknownC0A938(short, ref const(ubyte)* arg2) {
-	short tmp = actionScriptRead16(arg2);
+void actionScriptFindSpriteLocationForActiveEntity(short, ref const(ubyte)* arg2) {
+	short sprite = actionScriptRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC46BBB(tmp);
+	findSpriteLocationForActiveEntity(sprite);
 }
 
 /// $C0A943
@@ -8171,11 +8173,11 @@ void actionScriptSetCOLDATACGADSUB(short tempvar, ref const(ubyte)* arg2) {
 	// color math on for BG1, BG2, OBJ and backdrop
 	// if tempvar is 1, use inverse
 	ushort cgadsub = (tempvar == 0) ? 0b00110011 : 0b10110011;
-	actionscriptCOLDATABlue = cast(ubyte)actionScriptRead8(arg2);
+	actionScriptCOLDATABlue = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	actionscriptCOLDATAGreen = cast(ubyte)actionScriptRead8(arg2);
+	actionScriptCOLDATAGreen = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
-	actionscriptCOLDATARed = cast(ubyte)actionScriptRead8(arg2);
+	actionScriptCOLDATARed = cast(ubyte)actionScriptRead8(arg2);
 	actionScriptLastRead = arg2;
 	setCOLDATACGADSUB(cgadsub);
 }
@@ -10922,7 +10924,7 @@ void unknownC0ED5C() {
  * Original_Address: $(DOLLAR)C0EDD1
  */
 void setTitleScreenActionScriptState() {
-	actionscriptState = ActionScriptState.titleScreenSpecial;
+	actionScriptState = ActionScriptState.titleScreenSpecial;
 }
 
 /** Rotates in a loaded palette based on VAR0, VAR1 and VAR2 of the active entity

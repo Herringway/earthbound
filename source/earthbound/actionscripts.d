@@ -1162,7 +1162,7 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		PLAY_SFX(Sfx.doorClose),
 		PAUSE(1),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_PAURA_FATHER_WAKARE"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_PAURA_FATHER_WAKARE"),
 		// move 18 pixels ahead of party
 		PAUSE(1),
 		SET_MOVEMENT_SPEED(256),
@@ -1256,12 +1256,12 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SHORTCALL(&actionScriptMakeIntangible[0]),
 		SET_VAR(ActionScriptVars.v5, 17),
-		C0A938(75),
+		SET_SPRITE_DESTINATION(OverworldSprite.captainStrong),
 		SET_MOVEMENT_SPEED(256),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		C0A938(75),
+		SET_SPRITE_DESTINATION(OverworldSprite.captainStrong),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptFollowToSyocho[14 + 5 * (const(void)*).sizeof]),
 	);
@@ -1634,7 +1634,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6944),
 		SET_VAR(ActionScriptVars.v7, 744),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_LIBRARY_TOILET"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_LIBRARY_TOILET"),
 		START_TASK(&unknownC3AFA3[0]),
 		SET_VAR(ActionScriptVars.v6, 7104),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -1747,7 +1747,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 8),
 		SET_VAR(ActionScriptVars.v3, 40),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_YUNBO_APPEAR"),
+		QUEUE_TEXT_SCRIPT("MSG_YUNBO_APPEAR"),
 		PAUSE(1),
 		CLEAR_CURRENT_ENTITY_COLLISION2(),
 		SET_X(4928),
@@ -1806,7 +1806,7 @@ shared static this() {
 		START_TASK(&unknownC3AFA3[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0795),
+		SET_NPC_DESTINATION(NPCID.unknown0795),
 		ADD(ActionScriptVars.v6, -8),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -1819,7 +1819,7 @@ shared static this() {
 		PAUSE(1),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
-		GET_NPC_COORDINATES(NPCID.unknown0795),
+		SET_NPC_DESTINATION(NPCID.unknown0795),
 		ADD(ActionScriptVars.v6, -8),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -1936,7 +1936,7 @@ shared static this() {
 			ADD_TEMPVAR(1),
 			PAUSE(4),
 		LOOP_END(),
-		C47369(),
+		RELOAD_MAP(),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v4, 0),
@@ -2102,7 +2102,7 @@ shared static this() {
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0482),
+		SET_NPC_DESTINATION(NPCID.unknown0482),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -2121,10 +2121,10 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0482),
+		SET_NPC_DESTINATION(NPCID.unknown0482),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0482),
+		SET_NPC_DESTINATION(NPCID.unknown0482),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -2184,7 +2184,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 16),
 		SET_VAR(ActionScriptVars.v3, 16),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_KOYA_POKEY_BATTLE"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_KOYA_POKEY_BATTLE"),
 		PAUSE(1),
 		START_TASK(&unknownC3AFA3[0]),
 		SET_VAR(ActionScriptVars.v4, 14),
@@ -2395,7 +2395,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 16),
 		SET_VAR(ActionScriptVars.v3, 24),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_52_BMONKEY_BYE"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_52_BMONKEY_BYE"),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v4, 11),
 		SET_MOVEMENT_SPEED(288),
@@ -2487,7 +2487,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_SPACETUNNEL_KUROKOGE"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_SPACETUNNEL_KUROKOGE"),
 		PAUSE(1),
 		LOOP(10),
 			SET_X_RELATIVE(2),
@@ -2511,10 +2511,10 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0741),
+		SET_NPC_DESTINATION(NPCID.unknown0741),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0741),
+		SET_NPC_DESTINATION(NPCID.unknown0741),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		MOVE_PARTY_TO_LEADER_POSITION(),
@@ -2587,7 +2587,7 @@ shared static this() {
 		MOVE_IN_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(115),
-		GET_NPC_COORDINATES(NPCID.unknown1088),
+		SET_NPC_DESTINATION(NPCID.unknown1088),
 		ADD(ActionScriptVars.v7, -1),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		GET_PARTY_COUNT(),
@@ -2708,7 +2708,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(12),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(8),
 		LOOP_END(),
 		END_TASK(),
@@ -2969,11 +2969,11 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(192),
 		SET_VAR(ActionScriptVars.v5, 15),
-		GET_NPC_COORDINATES(NPCID.unknown0866),
+		SET_NPC_DESTINATION(NPCID.unknown0866),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown0866),
+		SET_NPC_DESTINATION(NPCID.unknown0866),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptToGuard[18 + 7 * (const(void)*).sizeof]),
 	);
@@ -3041,7 +3041,7 @@ shared static this() {
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
-		GET_NPC_COORDINATES(NPCID.unknown1268),
+		SET_NPC_DESTINATION(NPCID.unknown1268),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		END_LAST_TASK(),
 		SHORTJUMP(&actionScriptPeopleWalk0[0]),
@@ -3145,7 +3145,7 @@ shared static this() {
 				PAUSE(1),
 			LOOP_END(),
 		LOOP_END(),
-		QUEUE_INTERACTION_TYPE_8("MSG_GPFT_PASSWORD_LATER"),
+		QUEUE_TEXT_SCRIPT("MSG_GPFT_PASSWORD_LATER"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -3182,7 +3182,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 1736),
 		SET_VAR(ActionScriptVars.v7, 5544),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		SET_VAR(ActionScriptVars.v0, 32768),
+		SET_VAR(ActionScriptVars.v0, -32768),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		SET_MOVEMENT_FROM_ANGLE(),
 		GET_DIRECTION_ROTATED_ANGLE_90(),
@@ -3208,7 +3208,7 @@ shared static this() {
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(160),
 		SET_VAR(ActionScriptVars.v5, 17),
-		C0A938(98),
+		SET_SPRITE_DESTINATION(OverworldSprite.starMasterGuy),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
@@ -3509,7 +3509,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_ST2"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_ST2"),
 		HALT(),
 	);
 }
@@ -3520,10 +3520,10 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0741),
+		SET_NPC_DESTINATION(NPCID.unknown0741),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0741),
+		SET_NPC_DESTINATION(NPCID.unknown0741),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		MOVE_PARTY_TO_LEADER_POSITION(),
@@ -3665,7 +3665,7 @@ shared static this() {
 		// meditation failed. fade out, reload the map and finish up
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		RELOAD_MAP(),
+		RELOAD_MAP_FULL(),
 		PAUSE(150),
 		FADE_IN(1, 1),
 		YIELD_TO_TEXT(),
@@ -3674,7 +3674,7 @@ shared static this() {
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
 		CLEAR_TICK_CALLBACK(),
-		RELOAD_MAP(),
+		RELOAD_MAP_FULL(),
 		WRITE_WORD_TEMPVAR(0),
 		SET_EVENT_FLAG(EventFlag.temp3),
 		PAUSE(1),
@@ -3712,7 +3712,7 @@ shared static this() {
 immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScriptSenzo1;
 shared static this() {
 	actionScriptSenzo1 = initializeScript(actionScriptSenzo1.length,
-		C0A87A(128, 0),
+		MOVE_TO_LOCATION_BG1_RELATIVE(128, 0),
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(64),
 		SET_VAR(ActionScriptVars.v5, 1),
@@ -3729,7 +3729,7 @@ shared static this() {
 immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScriptSenzo2;
 shared static this() {
 	actionScriptSenzo2 = initializeScript(actionScriptSenzo2.length,
-		C0A87A(128, 128),
+		MOVE_TO_LOCATION_BG1_RELATIVE(128, 128),
 		SHORTCALL(&unknownC3AA38[0]),
 		HALT(),
 	);
@@ -3770,7 +3770,7 @@ shared static this() {
 immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScriptSyugyouAddPoo;
 shared static this() {
 	actionScriptSyugyouAddPoo = initializeScript(actionScriptSyugyouAddPoo.length,
-		C0A87A(0, 128),
+		MOVE_TO_LOCATION_BG1_RELATIVE(0, 128),
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(1024),
 		WRITE_WORD_TEMPVAR(Direction.right),
@@ -3953,24 +3953,24 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(9),
 			ADD(ActionScriptVars.v0, 1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(12),
 		LOOP_END(),
 		LOOP(9),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(12),
 		LOOP_END(),
 		GET_EVENT_FLAG(EventFlag.temp1),
 		JUMP_IF_TRUE(&actionScriptPowspot[58 + 8 * (const(void)*).sizeof]),
 		LOOP(9),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(12),
 		LOOP_END(),
 		LOOP(9),
 			ADD(ActionScriptVars.v0, 1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(12),
 		LOOP_END(),
 		GET_EVENT_FLAG(EventFlag.temp1),
@@ -4078,7 +4078,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6912),
 		SET_VAR(ActionScriptVars.v7, 8560),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE1_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE1_A"),
 		HALT(),
 	);
 }
@@ -4096,12 +4096,12 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
 		SET_VAR(ActionScriptVars.v2, 0),
 		START_TASK(&unknownC31E2DTask[0]),
-		C0A938(1),
+		SET_SPRITE_DESTINATION(OverworldSprite.ness),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PAUSE(1),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 		JUMP_IF_FALSE(&actionScriptTStage1Scr2[30 + 6 * (const(void)*).sizeof]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE1_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE1_B"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -4158,7 +4158,7 @@ shared static this() {
 immutable ubyte[22 + 1 * (const(void)*).sizeof] unknownC31E2DTask;
 shared static this() {
 	unknownC31E2DTask = initializeScript(unknownC31E2DTask.length,
-		SET_VAR(ActionScriptVars.v0, 65521),
+		SET_VAR(ActionScriptVars.v0, -15),
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP(15),
 			ADD(ActionScriptVars.v0, 1),
@@ -4793,7 +4793,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4736),
 		SET_VAR(ActionScriptVars.v7, 5744),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE2_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE2_A"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -4807,7 +4807,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v1, 20),
 		SHORTCALL(&unknownC31E2D[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE2_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE2_B"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -5783,14 +5783,14 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
-		SET_VAR(ActionScriptVars.v0, 65521),
+		SET_VAR(ActionScriptVars.v0, -15),
 		C474A8(),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v6, 4736),
 		SET_VAR(ActionScriptVars.v7, 5744),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE3_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE3_A"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -5804,7 +5804,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v1, 20),
 		SHORTCALL(&unknownC31E2D[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE3_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TSTAGE3_B"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -6568,14 +6568,14 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
-		SET_VAR(ActionScriptVars.v0, 65521),
+		SET_VAR(ActionScriptVars.v0, -15),
 		C474A8(),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v6, 4736),
 		SET_VAR(ActionScriptVars.v7, 5744),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_VSTAGE1_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_VSTAGE1_A"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -7151,7 +7151,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v1, 20),
 		SHORTCALL(&unknownC31E2D[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_VSTAGE1_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_VSTAGE1_B"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -7160,7 +7160,7 @@ immutable ubyte[55 + 18 * (const(void)*).sizeof] actionScriptPhotographer;
 shared static this() {
 	actionScriptPhotographer = initializeScript(actionScriptPhotographer.length,
 		SET_PRIORITY(0),
-		C46D4B(),
+		MOVE_TO_TRAVELLING_PHOTOGRAPHER_SPOT(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 		SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
 		SET_ANIMATION(0),
@@ -7212,7 +7212,7 @@ shared static this() {
 immutable ubyte[8 + 4 * (const(void)*).sizeof] actionScriptPhotographerS;
 shared static this() {
 	actionScriptPhotographerS = initializeScript(actionScriptPhotographerS.length,
-		C46D4B(),
+		MOVE_TO_TRAVELLING_PHOTOGRAPHER_SPOT(),
 		SHORTCALL(&unknownC3AA38[0]),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -7692,7 +7692,7 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(192),
 		SET_VAR(ActionScriptVars.v5, 1),
-		C0A938(252),
+		SET_SPRITE_DESTINATION(OverworldSprite.tessie),
 		ADD(ActionScriptVars.v6, -8),
 		ADD(ActionScriptVars.v7, -22),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
@@ -7881,14 +7881,14 @@ shared static this() {
 		SET_PRIORITY(0),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
-		C46D23(),
+		MOVE_TO_TOP_OF_SCREEN_RANDOM(),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		START_TASK(&actionScriptLeaf1Task[0]),
 		SHORTCALL(&actionScriptLeaf1[14 + 6 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScriptTerminate[0]),
-		C46D23(),
+		MOVE_TO_TOP_OF_SCREEN_RANDOM(),
 		SET_X_VELOCITY(-1024),
 		SET_Y_VELOCITY(1024),
 		GENERATE_RANDOM_LEAF_DELAY(),
@@ -7941,7 +7941,7 @@ shared static this() {
 		SET_PRIORITY(0),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
-		C46D23(),
+		MOVE_TO_TOP_OF_SCREEN_RANDOM(),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -7968,7 +7968,7 @@ shared static this() {
 		GET_PRESSED_BUTTONS(),
 		AND_TEMPVAR(Pad.up),
 		JUMP_IF_FALSE(&actionScript497[20 + 5 * (const(void)*).sizeof]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_89_DUNGEONMAN"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_89_DUNGEONMAN"),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScript497[20 + 5 * (const(void)*).sizeof]),
 	);
@@ -7992,7 +7992,7 @@ shared static this() {
 		GET_PRESSED_BUTTONS(),
 		AND_TEMPVAR(Pad.up),
 		JUMP_IF_FALSE(&actionScript498[20 + 5 * (const(void)*).sizeof]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_90_DUNGEONMAN"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_90_DUNGEONMAN"),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScript498[20 + 5 * (const(void)*).sizeof]),
 	);
@@ -8235,7 +8235,7 @@ shared static this() {
 		C0D98F(),
 		JUMP_IF_FALSE(&actionScriptDeliveryCommon[69 + 37 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		C46C87(),
+		COPY_DESTINATION_TO_LOCATION(),
 		SHORTJUMP(&actionScriptDeliveryCommon[64 + 32 * (const(void)*).sizeof]),
 
 		SET_VELOCITIES_ZERO(),
@@ -8252,7 +8252,7 @@ shared static this() {
 		C0D98F(),
 		JUMP_IF_FALSE(&actionScriptDeliveryCommon[88 + 47 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		C46C87(),
+		COPY_DESTINATION_TO_LOCATION(),
 		SHORTJUMP(&actionScriptDeliveryCommon[83 + 42 * (const(void)*).sizeof]),
 
 		SET_VAR(ActionScriptVars.v4, 1),
@@ -8491,7 +8491,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, 1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(4),
 		LOOP_END(),
 		YIELD_TO_TEXT(),
@@ -9796,7 +9796,7 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.runawayFiveSaxPlayer, ActionScript.unknown802),
 		WRITE_WORD_TEMPVAR(3),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65504),
+		SET_VAR(ActionScriptVars.v0, -32),
 		SET_VAR(ActionScriptVars.v1, 256),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.runaway5Bus, ActionScript.unknown815),
 		WRITE_WORD_TEMPVAR(2),
@@ -10134,7 +10134,7 @@ shared static this() {
 		PRINT_CAST_NAME(CastSequenceName.poosMaster, 23, 28),
 		WRITE_WORD_TEMPVAR(2),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65528),
+		SET_VAR(ActionScriptVars.v0, -8),
 		SET_VAR(ActionScriptVars.v1, 112),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.starMasterFlyingAway, ActionScript.unknown834),
 		WRITE_WORD_TEMPVAR(5),
@@ -10235,10 +10235,10 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.someBrunetteKid, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65432),
+		SET_VAR(ActionScriptVars.v0, -104),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.oldGuyWithCane, ActionScript.unknown851),
-		SET_VAR(ActionScriptVars.v0, 65496),
+		SET_VAR(ActionScriptVars.v0, -40),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.oldLadyWithCane, ActionScript.unknown851),
 		WRITE_WORD_TEMPVAR(5),
@@ -10254,15 +10254,15 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.jamaicanGuy, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65432),
+		SET_VAR(ActionScriptVars.v0, -104),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.baker, ActionScript.unknown851),
-		SET_VAR(ActionScriptVars.v0, 65496),
+		SET_VAR(ActionScriptVars.v0, -40),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.girlInStripedApron, ActionScript.unknown851),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65400),
+		SET_VAR(ActionScriptVars.v0, -136),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.bigNoseArabGuy, ActionScript.unknown851),
 		SET_VAR(ActionScriptVars.v0, 328),
@@ -10273,7 +10273,7 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.chineseMonkGuy, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65432),
+		SET_VAR(ActionScriptVars.v0, -104),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.guyInSwimmingSuit, ActionScript.unknown851),
 		SET_VAR(ActionScriptVars.v0, 360),
@@ -10281,10 +10281,10 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.girlInBikini, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65400),
+		SET_VAR(ActionScriptVars.v0, -136),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.blondeLadyBlueDress, ActionScript.unknown851),
-		SET_VAR(ActionScriptVars.v0, 65464),
+		SET_VAR(ActionScriptVars.v0, -72),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.brunetteShoppingLady, ActionScript.unknown851),
 		SET_VAR(ActionScriptVars.v0, 392),
@@ -10292,7 +10292,7 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.sneakyGuyWithAHat, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65432),
+		SET_VAR(ActionScriptVars.v0, -104),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.doctor, ActionScript.unknown851),
 		SET_VAR(ActionScriptVars.v0, 360),
@@ -10300,7 +10300,7 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.nurse, ActionScript.unknown850),
 		WRITE_WORD_TEMPVAR(5),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65400),
+		SET_VAR(ActionScriptVars.v0, -136),
 		SET_VAR(ActionScriptVars.v1, 240),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.shyGuy, ActionScript.unknown851),
 		SET_VAR(ActionScriptVars.v0, 328),
@@ -10336,7 +10336,7 @@ shared static this() {
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.ness, ActionScript.unknown857),
 		WRITE_WORD_TEMPVAR(4),
 		SHORTCALL(&waitCreditsTiles[0]),
-		SET_VAR(ActionScriptVars.v0, 65528),
+		SET_VAR(ActionScriptVars.v0, -8),
 		SET_VAR(ActionScriptVars.v1, 208),
 		CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite.tracy, ActionScript.unknown855),
 		SET_VAR(ActionScriptVars.v0, 264),
@@ -10871,7 +10871,7 @@ shared static this() {
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		PAUSE(1),
 		ADD(ActionScriptVars.v0, 2048),
-		C46C87(),
+		COPY_DESTINATION_TO_LOCATION(),
 		SPIRAL_MOVEMENT_FRAME(),
 		HALVE_Y_SPEED(),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -11229,7 +11229,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveInDirection[0]),
 		PAUSE(36),
 		SET_VELOCITIES_ZERO(),
-		SET_VAR(ActionScriptVars.v0, 32768),
+		SET_VAR(ActionScriptVars.v0, -32768),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		SET_MOVEMENT_FROM_ANGLE(),
 		GET_DIRECTION_ROTATED_ANGLE_90(),
@@ -11801,7 +11801,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 32),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_THRK_FIGHT_MATENT"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_THRK_FIGHT_MATENT"),
 		HALT(),
 	);
 }
@@ -12178,11 +12178,11 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(352),
 		SET_VAR(ActionScriptVars.v5, 18),
-		GET_NPC_COORDINATES(NPCID.unknown0906),
+		SET_NPC_DESTINATION(NPCID.unknown0906),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown0906),
+		SET_NPC_DESTINATION(NPCID.unknown0906),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptFourFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
 	);
@@ -12250,11 +12250,11 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(352),
 		SET_VAR(ActionScriptVars.v5, 18),
-		GET_NPC_COORDINATES(NPCID.unknown1033),
+		SET_NPC_DESTINATION(NPCID.unknown1033),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown1033),
+		SET_NPC_DESTINATION(NPCID.unknown1033),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptSumsFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
 	);
@@ -12324,7 +12324,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5720),
 		SET_VAR(ActionScriptVars.v7, 344),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		SET_VAR(ActionScriptVars.v0, 32768),
+		SET_VAR(ActionScriptVars.v0, -32768),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 		SET_MOVEMENT_FROM_ANGLE(),
 		GET_DIRECTION_ROTATED_ANGLE_90(),
@@ -12728,7 +12728,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(4),
 		LOOP_END(),
 		YIELD_TO_TEXT(),
@@ -12745,7 +12745,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(8),
 		LOOP_END(),
 		YIELD_TO_TEXT(),
@@ -13054,7 +13054,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 32),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_ROOF_TONCHIKI"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_ROOF_TONCHIKI"),
 		HALT(),
 	);
 }
@@ -13141,7 +13141,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(9),
 		LOOP_END(),
 		PLAY_SFX(Sfx.ouch),
@@ -13582,7 +13582,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 1232),
 		SET_VAR(ActionScriptVars.v7, 10000),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_READY_SARUSENSEI"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_READY_SARUSENSEI"),
 		HALT(),
 	);
 }
@@ -13724,7 +13724,7 @@ shared static this() {
 		JUMP_IF_FALSE(&actionScript672[49 + 13 * (const(void)*).sizeof]),
 		WRITE_WORD_TEMPVAR(1),
 		SET_EVENT_FLAG(EventFlag.animPort4),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_FOUNTAIN_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_FOUNTAIN_A"),
 		SHORTCALL(&actionScript674[61 + 21 * (const(void)*).sizeof + string.sizeof]),
 		SHORTJUMP(&actionScript672[1 + 1 * (const(void)*).sizeof]),
 	);
@@ -13753,7 +13753,7 @@ shared static this() {
 		JUMP_IF_FALSE(&actionScript673[49 + 13 * (const(void)*).sizeof]),
 		WRITE_WORD_TEMPVAR(1),
 		SET_EVENT_FLAG(EventFlag.animPort5),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_FOUNTAIN_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_FOUNTAIN_B"),
 		SHORTCALL(&actionScript674[61 + 21 * (const(void)*).sizeof + string.sizeof]),
 		SHORTJUMP(&actionScript673[1 + 1 * (const(void)*).sizeof]),
 	);
@@ -13782,7 +13782,7 @@ shared static this() {
 		JUMP_IF_FALSE(&actionScript674[49 + 12 * (const(void)*).sizeof + string.sizeof]),
 		WRITE_WORD_TEMPVAR(1),
 		SET_EVENT_FLAG(EventFlag.animPort6),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_FOUNTAIN_C"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_FOUNTAIN_C"),
 		SHORTCALL(&actionScript674[61 + 21 * (const(void)*).sizeof + string.sizeof]),
 		SHORTJUMP(&actionScript674[1 + 1 * (const(void)*).sizeof]),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -13918,7 +13918,7 @@ immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainA;
 shared static this() {
 	actionScriptToFountainA = initializeScript(actionScriptToFountainA.length,
 		SHORTCALL(&actionScriptToFountainCommon1[0]),
-		GET_NPC_COORDINATES(NPCID.unknown1303),
+		SET_NPC_DESTINATION(NPCID.unknown1303),
 		SHORTJUMP(&actionScriptToFountainCommon2[0]),
 	);
 }
@@ -13927,7 +13927,7 @@ immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainB;
 shared static this() {
 	actionScriptToFountainB = initializeScript(actionScriptToFountainB.length,
 		SHORTCALL(&actionScriptToFountainCommon1[0]),
-		GET_NPC_COORDINATES(NPCID.unknown1304),
+		SET_NPC_DESTINATION(NPCID.unknown1304),
 		SHORTJUMP(&actionScriptToFountainCommon2[0]),
 	);
 }
@@ -13936,7 +13936,7 @@ immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainC;
 shared static this() {
 	actionScriptToFountainC = initializeScript(actionScriptToFountainC.length,
 		SHORTCALL(&actionScriptToFountainCommon1[0]),
-		GET_NPC_COORDINATES(NPCID.unknown1305),
+		SET_NPC_DESTINATION(NPCID.unknown1305),
 		SHORTJUMP(&actionScriptToFountainCommon2[0]),
 	);
 }
@@ -14098,13 +14098,13 @@ shared static this() {
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		ADD_TEMPVAR(-7),
 		JUMP_IF_TRUE(&actionScript683[79 + 16 * (const(void)*).sizeof + string.sizeof]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_DOSEI_ONSEN_HEAL"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_DOSEI_ONSEN_HEAL"),
 		PAUSE(2),
 		SHORTJUMP(&actionScript683[75 + 17 * (const(void)*).sizeof]),
 		IS_ENTITY_ONSCREEN(),
 		JUMP_IF_TRUE(&actionScript683[56 + 12 * (const(void)*).sizeof + string.sizeof]),
 		SET_VAR(ActionScriptVars.v0, 0),
-		C47499(),
+		DO_PALETTES_FADE_STEP(),
 		PAUSE(1),
 		SHORTJUMP(&actionScriptTerminate[0]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
@@ -14118,7 +14118,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v4, 0),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v0),
-		C47499(),
+		DO_PALETTES_FADE_STEP(),
 		PAUSE(1),
 		SHORTJUMP(&actionScript683[22 + 3 * (const(void)*).sizeof]),
 	);
@@ -14144,7 +14144,7 @@ shared static this() {
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		ADD_TEMPVAR(-7),
 		JUMP_IF_TRUE(&actionScript684[69 + 12 * (const(void)*).sizeof + string.sizeof]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_GUMI_ONSEN_HEAL"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_GUMI_ONSEN_HEAL"),
 		PAUSE(2),
 		SHORTJUMP(&actionScript684[65 + 12 * (const(void)*).sizeof + string.sizeof]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
@@ -14158,7 +14158,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v4, 0),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v0),
-		C47499(),
+		DO_PALETTES_FADE_STEP(),
 		PAUSE(1),
 		SHORTJUMP(&actionScript684[22 + 3 * (const(void)*).sizeof]),
 	);
@@ -14321,7 +14321,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 3232),
 		SET_VAR(ActionScriptVars.v7, 9952),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		SET_VAR(ActionScriptVars.v4, 65535),
+		SET_VAR(ActionScriptVars.v4, -1),
 		SET_ANIMATION(0),
 		SET_DIRECTION8(Direction.left),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -14543,7 +14543,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5632),
 		SET_VAR(ActionScriptVars.v7, 6016),
 		SHORTCALL(&actionScriptMoveToLocationBackwards[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_FOUR_MONOTOLY"),
+		QUEUE_TEXT_SCRIPT("MSG_FOUR_MONOTOLY"),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v4, 9),
 		SET_MOVEMENT_SPEED(352),
@@ -14551,7 +14551,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5608),
 		SET_VAR(ActionScriptVars.v7, 6016),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0873),
+		SET_NPC_DESTINATION(NPCID.unknown0873),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		ADD(ActionScriptVars.v6, -16),
@@ -14864,7 +14864,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_HELIPOKEY"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_HELIPOKEY"),
 		PAUSE(1),
 		MOVE_TO_SPRITE(OverworldSprite.hitChr),
 		PAUSE(1),
@@ -15374,7 +15374,7 @@ shared static this() {
 immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScriptEvtPray4GazeTonyEntry2;
 shared static this() {
 	actionScriptEvtPray4GazeTonyEntry2 = initializeScript(actionScriptEvtPray4GazeTonyEntry2.length,
-		C0A938(182),
+		SET_SPRITE_DESTINATION(OverworldSprite.tony),
 		GET_ANGLE_TO_DESTINATION(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
@@ -15917,7 +15917,7 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		PAUSE(15),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_THRK_GATEKEEPER_AB"),
+		QUEUE_TEXT_SCRIPT("MSG_THRK_GATEKEEPER_AB"),
 		PAUSE(30),
 		UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 		HALT(),
@@ -16009,20 +16009,20 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(4),
 			ADD(ActionScriptVars.v0, 7),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(1),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v0, 31),
-		C47499(),
+		DO_PALETTES_FADE_STEP(),
 		PAUSE(30),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(7),
 		LOOP_END(),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C47499(),
+			DO_PALETTES_FADE_STEP(),
 			PAUSE(2),
 		LOOP_END(),
 		YIELD_TO_TEXT(),
@@ -16130,7 +16130,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript862[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_1"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_1"),
 		HALT(),
 	);
 }
@@ -16149,7 +16149,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript863[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_2"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_2"),
 		HALT(),
 	);
 }
@@ -16168,7 +16168,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript864[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_3"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_3"),
 		HALT(),
 	);
 }
@@ -16187,7 +16187,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript865[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_4"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_4"),
 		HALT(),
 	);
 }
@@ -16206,7 +16206,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript866[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_5"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_5"),
 		HALT(),
 	);
 }
@@ -16225,7 +16225,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript867[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_6"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_6"),
 		HALT(),
 	);
 }
@@ -16244,7 +16244,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript868[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_7"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_7"),
 		HALT(),
 	);
 }
@@ -16263,7 +16263,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript869[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_8"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_8"),
 		HALT(),
 	);
 }
@@ -16282,7 +16282,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript870[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_9"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_9"),
 		HALT(),
 	);
 }
@@ -16301,7 +16301,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript871[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_10"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_10"),
 		HALT(),
 	);
 }
@@ -16320,7 +16320,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript872[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_11"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_11"),
 		HALT(),
 	);
 }
@@ -16339,7 +16339,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript873[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_12"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_12"),
 		HALT(),
 	);
 }
@@ -16358,7 +16358,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript874[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_13"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_13"),
 		HALT(),
 	);
 }
@@ -16377,7 +16377,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript875[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_14"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_14"),
 		HALT(),
 	);
 }
@@ -16396,7 +16396,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript876[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_15"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_15"),
 		HALT(),
 	);
 }
@@ -16415,7 +16415,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript877[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_16"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_16"),
 		HALT(),
 	);
 }
@@ -16434,7 +16434,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript878[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_17"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_17"),
 		HALT(),
 	);
 }
@@ -16453,7 +16453,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript879[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_18"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_18"),
 		HALT(),
 	);
 }
@@ -16472,7 +16472,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript880[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_19"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_19"),
 		HALT(),
 	);
 }
@@ -16491,7 +16491,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript881[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_20"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_20"),
 		HALT(),
 	);
 }
@@ -16510,7 +16510,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript882[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_21"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_21"),
 		HALT(),
 	);
 }
@@ -16529,7 +16529,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript883[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_22"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_22"),
 		HALT(),
 	);
 }
@@ -16548,7 +16548,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript884[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_23"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_23"),
 		HALT(),
 	);
 }
@@ -16567,7 +16567,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript885[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_24"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_24"),
 		HALT(),
 	);
 }
@@ -16586,7 +16586,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript886[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_25"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_25"),
 		HALT(),
 	);
 }
@@ -16605,7 +16605,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript887[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_26"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_26"),
 		HALT(),
 	);
 }
@@ -16624,7 +16624,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript888[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_27"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_27"),
 		HALT(),
 	);
 }
@@ -16643,7 +16643,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript889[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_28"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_28"),
 		HALT(),
 	);
 }
@@ -16662,7 +16662,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript890[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_29"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_29"),
 		HALT(),
 	);
 }
@@ -16681,7 +16681,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript891[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_30"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_30"),
 		HALT(),
 	);
 }
@@ -16700,7 +16700,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript892[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_31"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_31"),
 		HALT(),
 	);
 }
@@ -16719,7 +16719,7 @@ shared static this() {
 		TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 		JUMP_IF_FALSE(&actionScript893[1 + 1 * (const(void)*).sizeof]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_32"),
+		QUEUE_TEXT_SCRIPT("MSG_GLOBAL_PHOTO_32"),
 		HALT(),
 	);
 }
@@ -16980,7 +16980,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 4),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_CHIKA_GUMIDORIAN"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_CHIKA_GUMIDORIAN"),
 		PAUSE(1),
 		SET_MOVEMENT_SPEED(64),
 		SET_VAR(ActionScriptVars.v5, 1),
@@ -17157,7 +17157,7 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 		SET_ANIMATION(255),
-		SET_VAR(ActionScriptVars.v0, 65505),
+		SET_VAR(ActionScriptVars.v0, -31),
 		C474A8(),
 		PAUSE(4),
 		YIELD_TO_TEXT(),
@@ -17225,7 +17225,7 @@ shared static this() {
 immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptRemodelOperationUnknownRoutine4;
 shared static this() {
 	actionScriptRemodelOperationUnknownRoutine4 = initializeScript(actionScriptRemodelOperationUnknownRoutine4.length,
-		SET_VAR(ActionScriptVars.v0, 65505),
+		SET_VAR(ActionScriptVars.v0, -31),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, 1),
 			C474A8(),
@@ -18442,7 +18442,7 @@ shared static this() {
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v0, 0),
 		GET_SELF_DIRECTION(),
-		C46B2D(),
+		DIRECTION_TO_ANGLE(),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v4),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SHORTJUMP(&actionScript30[53 + 20 * (const(void)*).sizeof]),
@@ -18991,7 +18991,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_KNOCK"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_KNOCK"),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 42),
 		GET_POSITION_OF_PARTY_MEMBER(1),
@@ -19072,7 +19072,7 @@ shared static this() {
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		END_LAST_TASK(),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_KNOCK_NEAR"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_KNOCK_NEAR"),
 		WRITE_WORD_TEMPVAR(Direction.up),
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -19162,7 +19162,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 16),
 		SET_VAR(ActionScriptVars.v3, 16),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_SOFER_POKEY"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_SOFER_POKEY"),
 		PAUSE(1),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
@@ -19226,7 +19226,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 48),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_DOG_BYE"),
+		QUEUE_TEXT_SCRIPT("MSG_DOG_BYE"),
 		HALT(),
 	);
 }
@@ -19292,7 +19292,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 40),
 		SET_VAR(ActionScriptVars.v3, 32),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_INSEKI_POKEY"),
+		QUEUE_TEXT_SCRIPT("MSG_INSEKI_POKEY"),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
@@ -19433,7 +19433,7 @@ shared static this() {
 		SET_Z(16),
 		SET_MOVEMENT_SPEED(48),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0045),
+		SET_NPC_DESTINATION(NPCID.unknown0045),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
@@ -19530,7 +19530,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 80),
 		SET_VAR(ActionScriptVars.v3, 80),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_13_MIZUNO_3A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_13_MIZUNO_3A"),
 		PAUSE(1),
 		UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 		PAUSE(8),
@@ -19554,7 +19554,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 24),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_INSEKI_MIZUNO_B1"),
+		QUEUE_TEXT_SCRIPT("MSG_INSEKI_MIZUNO_B1"),
 		PAUSE(1),
 		WRITE_WORD_TEMPVAR(Direction.down),
 		SET_DIRECTION(),
@@ -19699,7 +19699,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_TWSN_BUSDRIVER"),
+		QUEUE_TEXT_SCRIPT("MSG_TWSN_BUSDRIVER"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScript65[20 + 5 * (const(void)*).sizeof]),
@@ -19727,8 +19727,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 1256),
 		SET_VAR(ActionScriptVars.v7, 8728),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TWSN_TUNNEL),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TO_THRK_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TWSN_TUNNEL),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TO_THRK_TUNNEL"),
 		HALT(),
 	);
 }
@@ -19744,11 +19744,11 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		GET_EVENT_FLAG(EventFlag.winGeppu),
 		JUMP_IF_TRUE(&actionScriptBusTwsnTunnel[25 + 7 * (const(void)*).sizeof + string.sizeof]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_TWSN),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_RETURN_TWSN"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_TWSN),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_RETURN_TWSN"),
 		HALT(),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_INTO_THRK"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_THRK_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_INTO_THRK"),
 		HALT(),
 	);
 }
@@ -19788,7 +19788,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocationBackwards[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_RETURN_TWSN_B"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_RETURN_TWSN_B"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -19811,7 +19811,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_RETURN_TWSN_A"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_RETURN_TWSN_A"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -19854,7 +19854,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TOUCH_THRK"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TOUCH_THRK"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -19949,10 +19949,10 @@ shared static this() {
 		MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		C0A938(205),
+		SET_SPRITE_DESTINATION(OverworldSprite.cityBus),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		C0A938(205),
+		SET_SPRITE_DESTINATION(OverworldSprite.cityBus),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -20006,7 +20006,7 @@ shared static this() {
 		SET_TICK_CALLBACK(&makePartyLookAtActiveEntity),
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		C0A938(243),
+		SET_SPRITE_DESTINATION(OverworldSprite.runaway5Bus),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -20033,7 +20033,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 32),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BIKINI_X_NEAR_2"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BIKINI_X_NEAR_2"),
 		PAUSE(1),
 		WRITE_WORD_TEMPVAR(Direction.up),
 		SHORTCALL(&actionScriptMoveInDirection[0]),
@@ -20289,7 +20289,7 @@ shared static this() {
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTCALL(&unknownC3BB5C[0]),
 		SHORTCALL(&unknownC3BB73[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_1"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_GHOST_1"),
 		PAUSE(1),
 		SET_MOVEMENT_SPEED(448),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v6),
@@ -20309,7 +20309,7 @@ shared static this() {
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTCALL(&unknownC3BB5C[0]),
 		SHORTCALL(&unknownC3BB73[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_1"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_GHOST_1"),
 		PAUSE(1),
 		GET_POSITION_OF_PARTY_MEMBER(255),
 		SET_VELOCITIES_ZERO(),
@@ -20324,7 +20324,7 @@ shared static this() {
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTCALL(&unknownC3BB5C[0]),
 		SHORTCALL(&unknownC3BB73[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_WARP"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_GHOST_WARP"),
 		HALT(),
 	);
 }
@@ -20335,7 +20335,7 @@ shared static this() {
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SHORTCALL(&unknownC3BB5C[0]),
 		SHORTCALL(&unknownC3BB73[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_WARP_THRK"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_GHOST_WARP_THRK"),
 		HALT(),
 	);
 }
@@ -20343,13 +20343,13 @@ shared static this() {
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScriptGhostPlus1;
 shared static this() {
 	actionScriptGhostPlus1 = initializeScript(actionScriptGhostPlus1.length,
-		C0A87A(0, 80),
+		MOVE_TO_LOCATION_BG1_RELATIVE(0, 80),
 		GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 		JUMP_IF_TRUE(&actionScriptGhostPlus1[15 + 5 * (const(void)*).sizeof]),
 		SET_X_RELATIVE(256),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.THRK_GHOSTTUNNEL_L),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.THRK_GHOSTTUNNEL_L),
 		SHORTJUMP(&actionScriptGhostPlus1[17 + 6 * (const(void)*).sizeof]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.TWSN_GHOSTTUNNEL),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.TWSN_GHOSTTUNNEL),
 		SHORTCALL(&unknownC3AA38[0]),
 		SHORTCALL(&unknownC3BB73[0]),
 		YIELD_TO_TEXT(),
@@ -20361,7 +20361,7 @@ shared static this() {
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScriptGhostPlus2;
 shared static this() {
 	actionScriptGhostPlus2 = initializeScript(actionScriptGhostPlus2.length,
-		C0A87A(0, 144),
+		MOVE_TO_LOCATION_BG1_RELATIVE(0, 144),
 		GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 		JUMP_IF_TRUE(&actionScriptGhostPlus2[12 + 3 * (const(void)*).sizeof]),
 		SET_X_RELATIVE(256),
@@ -20375,8 +20375,8 @@ shared static this() {
 immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScriptGhostThrkPlus1;
 shared static this() {
 	actionScriptGhostThrkPlus1 = initializeScript(actionScriptGhostThrkPlus1.length,
-		C0A87A(0, 80),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.THRK_GHOSTTUNNEL_R),
+		MOVE_TO_LOCATION_BG1_RELATIVE(0, 80),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.THRK_GHOSTTUNNEL_R),
 		SHORTCALL(&unknownC3AA38[0]),
 		SHORTCALL(&unknownC3BB73[0]),
 		YIELD_TO_TEXT(),
@@ -20388,7 +20388,7 @@ shared static this() {
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptGhostThrkPlus2;
 shared static this() {
 	actionScriptGhostThrkPlus2 = initializeScript(actionScriptGhostThrkPlus2.length,
-		C0A87A(0, 144),
+		MOVE_TO_LOCATION_BG1_RELATIVE(0, 144),
 		SHORTCALL(&unknownC3AA38[0]),
 		SHORTCALL(&unknownC3BB73[0]),
 		SET_VELOCITIES_ZERO(),
@@ -20672,11 +20672,11 @@ shared static this() {
 		SHORTCALL(&actionScriptMakeIntangible[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
-		GET_NPC_COORDINATES(NPCID.unknown0231),
+		SET_NPC_DESTINATION(NPCID.unknown0231),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown0231),
+		SET_NPC_DESTINATION(NPCID.unknown0231),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptFollowToMichiko[14 + 5 * (const(void)*).sizeof]),
 	);
@@ -20689,11 +20689,11 @@ shared static this() {
 		SHORTCALL(&actionScriptMakeIntangible[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
-		C0A938(120),
+		SET_SPRITE_DESTINATION(OverworldSprite.pigtailBlondeGirl),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		C0A938(120),
+		SET_SPRITE_DESTINATION(OverworldSprite.pigtailBlondeGirl),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptFollowToMichikoB[14 + 5 * (const(void)*).sizeof]),
 	);
@@ -20712,7 +20712,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 80),
 		SET_VAR(ActionScriptVars.v3, 192),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_WAKEUP_TONY"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_WAKEUP_TONY"),
 		HALT(),
 	);
 }
@@ -21080,10 +21080,10 @@ shared static this() {
 		START_TASK(&unknownC3C227[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
-		C0A938(187),
+		SET_SPRITE_DESTINATION(OverworldSprite.runawayFiveSaxPlayer),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
-		C0A938(187),
+		SET_SPRITE_DESTINATION(OverworldSprite.runawayFiveSaxPlayer),
 		MOVE_TOWARDS_DESTINATION(),
 		JUMP_IF_FALSE(&actionScriptGorgeousFree2C[19 + 5 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
@@ -21371,7 +21371,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v3, 40),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_KIFUYA"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_KIFUYA"),
 		PAUSE(1),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
@@ -21452,10 +21452,10 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 2),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_SW_WINS"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_SW_WINS"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		PAUSE(1),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_SW_WINS_LAUNCH"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_SW_WINS_LAUNCH"),
 		LOOP(10),
 			SET_X_RELATIVE(2),
 			PAUSE(4),
@@ -21495,10 +21495,10 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 2),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_SW_WINS"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_SW_WINS"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		PAUSE(1),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_SW2_WINS_LAUNCH"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_SW2_WINS_LAUNCH"),
 		SHORTJUMP(&actionScriptSwWins[25 + 9 * (const(void)*).sizeof + string.sizeof]),
 	);
 }
@@ -21636,10 +21636,10 @@ shared static this() {
 	actionScriptIntoSwWins = initializeScript(actionScriptIntoSwWins.length,
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0623),
+		SET_NPC_DESTINATION(NPCID.unknown0623),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0623),
+		SET_NPC_DESTINATION(NPCID.unknown0623),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -21684,7 +21684,7 @@ shared static this() {
 		PAUSE(30),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_B),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21727,7 +21727,7 @@ shared static this() {
 		PAUSE(48),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21768,7 +21768,7 @@ shared static this() {
 		PAUSE(48),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21869,7 +21869,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyA;
 shared static this() {
 	actionScriptSwSkyA = initializeScript(actionScriptSwSkyA.length,
 		SHORTCALL(&unknownC3C90C[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_FOUR_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_FOUR_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21879,7 +21879,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyB;
 shared static this() {
 	actionScriptSwSkyB = initializeScript(actionScriptSwSkyB.length,
 		SHORTCALL(&unknownC3C90C[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_DSRT_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_DSRT_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21889,7 +21889,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyC;
 shared static this() {
 	actionScriptSwSkyC = initializeScript(actionScriptSwSkyC.length,
 		SHORTCALL(&unknownC3C90C[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_THRK_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_THRK_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21899,7 +21899,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyD;
 shared static this() {
 	actionScriptSwSkyD = initializeScript(actionScriptSwSkyD.length,
 		SHORTCALL(&unknownC3C94E[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_DSRT_B),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_DSRT_B),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21909,7 +21909,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyE;
 shared static this() {
 	actionScriptSwSkyE = initializeScript(actionScriptSwSkyE.length,
 		SHORTCALL(&unknownC3C94E[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_FOUR_B),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_FOUR_B),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21919,7 +21919,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyF;
 shared static this() {
 	actionScriptSwSkyF = initializeScript(actionScriptSwSkyF.length,
 		SHORTCALL(&unknownC3C94E[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_WINS_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_WINS_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -21929,7 +21929,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] unknownC3C8FD;
 shared static this() {
 	unknownC3C8FD = initializeScript(unknownC3C8FD.length,
 		SHORTCALL(&unknownC3C94E[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SUMS_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SUMS_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -22044,7 +22044,7 @@ shared static this() {
 		PAUSE(96),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_B),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -22104,7 +22104,7 @@ shared static this() {
 		PAUSE(96),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -22161,7 +22161,7 @@ shared static this() {
 		PAUSE(128),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_B),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -22218,7 +22218,7 @@ shared static this() {
 		PAUSE(128),
 		FADE_OUT(1, 1),
 		SHORTCALL(&waitForFadeEnd[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.SKYW_SKY_A),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
@@ -22364,7 +22364,7 @@ shared static this() {
 		SET_VELOCITIES_ZERO(),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
-		SET_VAR(ActionScriptVars.v0, 65528),
+		SET_VAR(ActionScriptVars.v0, -8),
 		C474A8(),
 		SET_VAR(ActionScriptVars.v0, 4),
 		SET_VAR(ActionScriptVars.v1, 0),
@@ -22591,7 +22591,7 @@ shared static this() {
 		SET_Z_VELOCITY(0),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
-		SET_VAR(ActionScriptVars.v0, 65528),
+		SET_VAR(ActionScriptVars.v0, -8),
 		C474A8(),
 		SET_VAR(ActionScriptVars.v0, 4),
 		SET_VAR(ActionScriptVars.v1, 0),
@@ -22797,11 +22797,11 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(320),
 		SET_VAR(ActionScriptVars.v5, 17),
-		GET_NPC_COORDINATES(NPCID.unknown0320),
+		SET_NPC_DESTINATION(NPCID.unknown0320),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown0320),
+		SET_NPC_DESTINATION(NPCID.unknown0320),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScriptToGorgeousChaous[16 + 6 * (const(void)*).sizeof]),
 	);
@@ -22820,7 +22820,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_TONZURABUS_CHAOUS"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_TONZURABUS_CHAOUS"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		HALT(),
 	);
@@ -22831,10 +22831,10 @@ shared static this() {
 	actionScriptIntoTonzuraBusChaous = initializeScript(actionScriptIntoTonzuraBusChaous.length,
 		SET_MOVEMENT_SPEED(128),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0373),
+		SET_NPC_DESTINATION(NPCID.unknown0373),
 		ADD(ActionScriptVars.v7, 8),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		GET_NPC_COORDINATES(NPCID.unknown0373),
+		SET_NPC_DESTINATION(NPCID.unknown0373),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -22847,7 +22847,7 @@ shared static this() {
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0373),
+		SET_NPC_DESTINATION(NPCID.unknown0373),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -22874,7 +22874,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 2352),
 		SET_VAR(ActionScriptVars.v7, 6568),
 		SHORTCALL(&actionScriptMoveToLocationBackwards[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TONZURABUS_CHAOUS"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TONZURABUS_CHAOUS"),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v6, 2280),
 		SET_VAR(ActionScriptVars.v7, 6600),
@@ -22891,8 +22891,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 1256),
 		SET_VAR(ActionScriptVars.v7, 8728),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TWSN_TUNNEL),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TO_THRK_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TWSN_TUNNEL),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TO_THRK_TUNNEL"),
 		HALT(),
 	);
 }
@@ -22906,8 +22906,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 7888),
 		SET_VAR(ActionScriptVars.v7, 10208),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_INTO_THRK"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_THRK_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_INTO_THRK"),
 		HALT(),
 	);
 }
@@ -22934,7 +22934,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TOUCH_THRK"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TOUCH_THRK"),
 		SET_TICK_CALLBACK(&makePartyLookAtActiveEntity),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -22981,12 +22981,12 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 17),
-		GET_NPC_COORDINATES(NPCID.unknown0960),
+		SET_NPC_DESTINATION(NPCID.unknown0960),
 		SET_MOVEMENT_SPEED(256),
 		SHORTCALL(&actionScriptTakeStepTowardsDestination[0]),
 		PAUSE(1),
 		SET_VELOCITIES_ZERO(),
-		GET_NPC_COORDINATES(NPCID.unknown0960),
+		SET_NPC_DESTINATION(NPCID.unknown0960),
 		MOVE_TOWARDS_DESTINATION(),
 		SHORTJUMP(&actionScript188[19 + 7 * (const(void)*).sizeof]),
 	);
@@ -23001,7 +23001,7 @@ shared static this() {
 		SET_TICK_CALLBACK(&actionScriptSimpleScreenPositionCallback),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0994),
+		SET_NPC_DESTINATION(NPCID.unknown0994),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -23021,7 +23021,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 16),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_TONZURABUS_MONO"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_TONZURABUS_MONO"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		HALT(),
 	);
@@ -23030,7 +23030,7 @@ shared static this() {
 immutable ubyte[6 + 4 * (const(void)*).sizeof] actionScriptIntoTonzuraBusMono;
 shared static this() {
 	actionScriptIntoTonzuraBusMono = initializeScript(actionScriptIntoTonzuraBusMono.length,
-		GET_NPC_COORDINATES(NPCID.unknown0994),
+		SET_NPC_DESTINATION(NPCID.unknown0994),
 		SHORTCALL(&unknownC3B70C[0]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -23043,7 +23043,7 @@ shared static this() {
 		SHORTCALL(&unknownC3AA38[0]),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
-		GET_NPC_COORDINATES(NPCID.unknown0994),
+		SET_NPC_DESTINATION(NPCID.unknown0994),
 		ADD(ActionScriptVars.v7, -1),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		YIELD_TO_TEXT(),
@@ -23070,8 +23070,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 2280),
 		SET_VAR(ActionScriptVars.v7, 5080),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_FOUR_TUNNEL),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_FOUR_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_FOUR_TUNNEL),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_FOUR_TUNNEL"),
 		HALT(),
 	);
 }
@@ -23085,8 +23085,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5688),
 		SET_VAR(ActionScriptVars.v7, 3400),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_BRDG"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_BRDG_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TUNNEL_BRDG"),
 		HALT(),
 	);
 }
@@ -23100,8 +23100,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4544),
 		SET_VAR(ActionScriptVars.v7, 10008),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_BRDG_TUNNEL_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_BRDG_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_BRDG_TUNNEL_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_BRDG_TUNNEL"),
 		HALT(),
 	);
 }
@@ -23115,8 +23115,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 7736),
 		SET_VAR(ActionScriptVars.v7, 8648),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_DSRT_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_DSRT"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_DSRT_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TUNNEL_DSRT"),
 		HALT(),
 	);
 }
@@ -23131,8 +23131,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 440),
 		SET_VAR(ActionScriptVars.v7, 10008),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_DSRT_TUNNEL_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_DSRT_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_DSRT_TUNNEL_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_DSRT_TUNNEL"),
 		HALT(),
 	);
 }
@@ -23146,8 +23146,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6200),
 		SET_VAR(ActionScriptVars.v7, 72),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_HWAY_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_HWAY_L"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_HWAY_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TUNNEL_HWAY_L"),
 		HALT(),
 	);
 }
@@ -23175,8 +23175,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 2584),
 		SET_VAR(ActionScriptVars.v7, 7688),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_HWAY_TUNNEL_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_HWAY_TUNNEL_L"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_HWAY_TUNNEL_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_HWAY_TUNNEL_L"),
 		HALT(),
 	);
 }
@@ -23206,7 +23206,7 @@ shared static this() {
 		PAUSE(1),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TOUCH_THRK_L"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TOUCH_THRK_L"),
 		SET_TICK_CALLBACK(&makePartyLookAtActiveEntity),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -23254,7 +23254,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_BUS_THRK_TWSN"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_BUS_THRK_TWSN"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScriptBusThrkTwsnIn[49 + 11 * (const(void)*).sizeof]),
@@ -23284,8 +23284,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4528),
 		SET_VAR(ActionScriptVars.v7, 9416),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_THRK_TUNNEL_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_THRK_TUNNEL"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_THRK_TUNNEL_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_THRK_TUNNEL"),
 		HALT(),
 	);
 }
@@ -23299,8 +23299,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5944),
 		SET_VAR(ActionScriptVars.v7, 10184),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_TWSN),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_TWSN"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_TWSN),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_TWSN"),
 		HALT(),
 	);
 }
@@ -23336,7 +23336,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocationBackwards[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TOUCH_TWSN"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TOUCH_TWSN"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -23371,7 +23371,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_BUS_THRK_DSRT"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_BUS_THRK_DSRT"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScriptBusThrkDsrtIn[46 + 9 * (const(void)*).sizeof]),
@@ -23401,8 +23401,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6488),
 		SET_VAR(ActionScriptVars.v7, 9432),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_THRK_TUNNEL_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_THRK_TUNNEL_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_THRK_TUNNEL_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_THRK_TUNNEL_R"),
 		HALT(),
 	);
 }
@@ -23416,8 +23416,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5584),
 		SET_VAR(ActionScriptVars.v7, 10208),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_HWAY_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_HWAY_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_HWAY_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_HWAY_R"),
 		HALT(),
 	);
 }
@@ -23431,8 +23431,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 3112),
 		SET_VAR(ActionScriptVars.v7, 7704),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_HWAY_TUNNEL_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_HWAY_TUNNEL_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_HWAY_TUNNEL_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_HWAY_TUNNEL_R"),
 		HALT(),
 	);
 }
@@ -23446,10 +23446,10 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6864),
 		SET_VAR(ActionScriptVars.v7, 96),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_DSRT_R),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_DSRT_R),
 		GET_EVENT_FLAG(EventFlag.dsrtClear),
 		JUMP_IF_TRUE(&unknownC3D913[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_DSRT_R_JYUUTAI"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_DSRT_R_JYUUTAI"),
 		HALT(),
 	);
 }
@@ -23457,7 +23457,7 @@ shared static this() {
 immutable ubyte[2 + 1 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3D913;
 shared static this() {
 	unknownC3D913 = initializeScript(unknownC3D913.length,
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_DSRT_R"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_DSRT_R"),
 		HALT(),
 	);
 }
@@ -23498,8 +23498,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4168),
 		SET_VAR(ActionScriptVars.v7, 10032),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_DSRT_TUNNEL_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_DSRT_TUNNEL_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_DSRT_TUNNEL_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_DSRT_TUNNEL_R"),
 		HALT(),
 	);
 }
@@ -23513,8 +23513,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 8128),
 		SET_VAR(ActionScriptVars.v7, 8672),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_BRDG_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_BRDG_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_BRDG_R"),
 		HALT(),
 	);
 }
@@ -23528,8 +23528,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 5696),
 		SET_VAR(ActionScriptVars.v7, 10032),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_BRDG_TUNNEL_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_BRDG_TUNNEL_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_BRDG_TUNNEL_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_BRDG_TUNNEL_R"),
 		HALT(),
 	);
 }
@@ -23543,8 +23543,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 6320),
 		SET_VAR(ActionScriptVars.v7, 3424),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_FOUR),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_FOUR"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_FOUR),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_FOUR"),
 		HALT(),
 	);
 }
@@ -23560,7 +23560,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TOUCH_FOUR"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TOUCH_FOUR"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -23590,7 +23590,7 @@ shared static this() {
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		MOVE_PARTY_TO_LEADER_POSITION(),
 		PREPARE_NEW_ENTITY_AT_SELF(),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TOUCH_DSRT"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TOUCH_DSRT"),
 		CLEAR_TICK_CALLBACK(),
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 		PAUSE(1),
@@ -23628,7 +23628,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_BUS_DSRT_THRK"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_BUS_DSRT_THRK"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScriptBusDsrtThrkIn[50 + 10 * (const(void)*).sizeof]),
@@ -23644,7 +23644,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 432),
 		SET_VAR(ActionScriptVars.v7, 10008),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_HWAY_L"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_HWAY_L"),
 		HALT(),
 	);
 }
@@ -23675,7 +23675,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_BUS_DSRT_FOUR"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_BUS_DSRT_FOUR"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScriptBusDsrtFourIn[50 + 10 * (const(void)*).sizeof]),
@@ -23691,8 +23691,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4168),
 		SET_VAR(ActionScriptVars.v7, 10032),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_R),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_BRDG_R"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_BRDG_R),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_BUS_TUNNEL_BRDG_R"),
 		HALT(),
 	);
 }
@@ -23774,7 +23774,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v2, 24),
 		SET_VAR(ActionScriptVars.v3, 8),
 		SHORTCALL(&actionScriptWaitForLeaderApproach[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_BUS_FOUR_DSRT"),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_RIDE_BUS_FOUR_DSRT"),
 		PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 		SHORTCALL(&actionScriptWaitForLeaderToLeaveArea[0]),
 		SHORTJUMP(&actionScriptBusFourThrkIn[55 + 10 * (const(void)*).sizeof]),
@@ -23901,8 +23901,8 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 4416),
 		SET_VAR(ActionScriptVars.v7, 10184),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_L),
-		QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_THRK_L"),
+		PREPARE_NEW_ENTITY_AT_WARP_PRESET(WarpPreset.BUS_TUNNEL_THRK_L),
+		QUEUE_TEXT_SCRIPT("MSG_EVT_TBUS_TUNNEL_THRK_L"),
 		HALT(),
 	);
 }
@@ -24037,7 +24037,7 @@ shared static this() {
 		SET_VELOCITIES_ZERO(),
 		BACKUP_POSITION(),
 		SHORTCALL(&actionScriptWaitBattleFinished[0]),
-		QUEUE_INTERACTION_TYPE_8("MSG_BUTTERFLY_HIT"),
+		QUEUE_TEXT_SCRIPT("MSG_BUTTERFLY_HIT"),
 		CLEANUP_SELF(),
 		END(),
 	);
@@ -25856,7 +25856,7 @@ ubyte[] END_TASK() {
 	return actionCommand(0x0C);
 }
 
-ubyte[] SET_VAR(ubyte var, ushort val) {
+ubyte[] SET_VAR(ubyte var, short val) {
 	return actionCommand(0x0E, var, val);
 }
 
@@ -26150,7 +26150,7 @@ alias GET_POSITION_OF_PARTY_MEMBER = CALL!(actionScriptGetPositionOfPartyMember,
 alias PREPARE_NEW_ENTITY_AT_PARTY_LEADER = CALL!actionScriptPrepareNewEntityAtPartyLeader;
 alias PREPARE_NEW_ENTITY_AT_SELF = CALL!actionScriptPrepareNewEntityAtSelf;
 alias PREPARE_NEW_ENTITY = CALL!(actionScriptPrepareNewEntity, ushort, ushort, ubyte);
-alias PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION = CALL!(actionScriptPrepareNewEntityAtTeleportDestination, ubyte);
+alias PREPARE_NEW_ENTITY_AT_WARP_PRESET = CALL!(actionScriptPrepareNewEntityAtWarpPreset, ubyte);
 alias CLEAR_CURRENT_ENTITY_COLLISION = CALL!clearCurrentEntityCollision;
 alias CLEAR_CURRENT_ENTITY_COLLISION2 = CALL!clearCurrentEntityCollision2;
 alias DISABLE_CURRENT_ENTITY_COLLISION = CALL!disableCurrentEntityCollision;
@@ -26166,14 +26166,14 @@ alias SET_DIRECTION8 = CALL!(setDirection8, ubyte);
 alias PLAY_SFX = CALL!(actionScriptPlaySFX, ushort);
 alias PRINT_CAST_NAME = CALL!(actionScriptPrintCastName, short, ushort, ushort);
 alias PERFORM_PALETTE_FADE = CALL!(actionScriptPerformPaletteFade, ushort, ubyte, ubyte);
-alias QUEUE_INTERACTION_TYPE_8 = CALL!(actionScriptQueueInteraction8, string);
+alias QUEUE_TEXT_SCRIPT = CALL!(actionScriptQueueInteractionTalkTo, string);
 alias DISPLAY_TEXT_NOW = CALL!(actionScriptDisplayTextNow, string);
 alias MOVE_TO_PARTY_MEMBER = CALL!(actionScriptMoveEntityToPartyMember, ubyte);
 alias MOVE_TO_SPRITE = CALL!(actionScriptMoveEntityToSprite, ushort);
 alias SET_EVENT_FLAG = CALL!(actionScriptSetEventFlag, ushort);
 alias LOAD_BATTLE_BG = CALL!(actionScriptLoadBattleBG, ushort, ushort);
 alias RAND = CALL!rand;
-alias RELOAD_MAP = CALL!reloadMap;
+alias RELOAD_MAP_FULL = CALL!reloadMap;
 alias RESTORE_MAP_RENDERING = CALL!restoreMapRendering;
 alias DECOMP_ITOI_PRODUCTION = CALL!decompItoiProduction;
 alias DECOMP_NINTENDO_PRESENTATION = CALL!decompNintendoPresentation;
@@ -26199,9 +26199,9 @@ alias MOVE_RELATIVE_TO_BG3 = CALL!moveRelativeToBG3;
 alias C0A643 = CALL!(unknownC0A643, ushort);
 alias SLEEP_UNTIL_CARDINAL_PIXELS_MOVED = CALL!(actionScriptSleepUntilCardinalPixelsMoved, ushort);
 alias SLEEP_UNTIL_PIXELS_MOVED = CALL!(actionScriptSleepUntilPixelsMoved, ushort);
-alias C0A87A = CALL!(unknownC0A87A, ushort, ushort);
+alias MOVE_TO_LOCATION_BG1_RELATIVE = CALL!(actionScriptMoveEntityToLocationBG1Relative, ushort, ushort);
 alias COPY_XY_TO_VARS_OFFSET = CALL!(actionScriptCopyAdjustedXYToVars, ushort, ushort);
-alias C0A938 = CALL!(unknownC0A938, ushort);
+alias SET_SPRITE_DESTINATION = CALL!(actionScriptFindSpriteLocationForActiveEntity, ushort);
 alias MAKE_NPC_LOOK_AT_SELF = CALL!(actionScriptMakeNPCLookAtActiveEntity, ushort);
 alias MAKE_SPRITE_LOOK_AT_SELF = CALL!(actionScriptMakeSpriteLookAtActiveEntity, ushort);
 alias SET_BOUNDARIES = CALL!(actionScriptSetEntityBoundaries, ushort, ushort);
@@ -26210,7 +26210,7 @@ alias PRINT_CAST_NAME_PARTY = CALL!(actionScriptPrintCastNameParty, ushort, usho
 alias PRINT_CAST_NAME_VAR0 = CALL!(actionScriptPrintCastNameEntityVar0, ushort, ushort, ushort);
 alias ENABLE_STAGE_HDMA = CALL!(actionScriptEnableStageHDMA, ushort, ushort, ushort);
 alias SET_COLDATA_CGADSUB = CALL!(actionScriptSetCOLDATACGADSUB, ubyte, ubyte, ubyte);
-alias GET_NPC_COORDINATES = CALL!(actionScriptFindNPCLocationForActiveEntity, ushort);
+alias SET_NPC_DESTINATION = CALL!(actionScriptFindNPCLocationForActiveEntity, ushort);
 alias GET_EVENT_FLAG = CALL!(actionScriptGetEventFlag, ushort);
 alias SET_SURFACE_FLAGS = CALL!(setSurfaceFlags, ubyte);
 alias GET_SELF_DIRECTION = CALL!actionScriptGetSelfDirection;
@@ -26291,14 +26291,14 @@ alias GET_UR_DL_DIRECTION = CALL!actionScriptGetURDLDirection;
 alias CONVERT_8DIR_TO_4DIR_PREFER_LR = CALL!convert8DirectionTo4PreferLeftRight;
 alias GET_ANGLE_TO_DESTINATION = CALL!entityAngleToDestination;
 alias SET_MOVING_DIRECTION_FROM_ANGLE = CALL!setMovingDirectionFromAngle;
-alias C46B2D = CALL!unknownC46B2D;
+alias DIRECTION_TO_ANGLE = CALL!convertDirectionToAngle;
 alias GET_OPPOSITE_DIRECTION = CALL!getOppositeDirection;
 alias GET_DIRECTION_ROTATED_ANGLE_90 = CALL!getDirectionRotatedAngle90;
 alias SET_DESTINATION_TO_PARTY_LEADER_LOCATION = CALL!actionScriptSetDestinationPartyLeader;
 alias COPY_XY_TO_VARS = CALL!copyXYToVars;
-alias C46C87 = CALL!unknownC46C87;
-alias C46D23 = CALL!unknownC46D23;
-alias C46D4B = CALL!unknownC46D4B;
+alias COPY_DESTINATION_TO_LOCATION = CALL!copyDestinationToLocation;
+alias MOVE_TO_TOP_OF_SCREEN_RANDOM = CALL!moveEntityToRandomTopOfScreen;
+alias MOVE_TO_TRAVELLING_PHOTOGRAPHER_SPOT = CALL!moveEntityToPreparedTravellingPhotographerLocation;
 alias TEST_IF_LEADER_WITHIN_BOUNDARIES = CALL!isLeaderWithinBoundaries;
 alias TEST_IF_LEADER_CLOSE_BY = CALL!isLeaderClose;
 alias GET_DIRECTION_TO_BOUNDARY = CALL!directionToEntityBoundaries;
@@ -26306,8 +26306,8 @@ alias HALVE_Y_SPEED = CALL!halveYSpeed;
 alias GET_PARTY_COUNT = CALL!getPartyCount;
 alias RELOAD_MAP_BLOCK_EVENT_CHANGES = CALL!reloadMapBlockEventChanges;
 alias RERENDER_ROW = CALL!actionScriptRerenderRow;
-alias C47369 = CALL!unknownC47369;
-alias C47499 = CALL!unknownC47499;
+alias RELOAD_MAP = CALL!actionScriptReloadMapCurrentLocation;
+alias DO_PALETTES_FADE_STEP = CALL!actionScriptDoAllPalettesFadeStep;
 alias C474A8 = CALL!unknownC474A8;
 alias C47A6B = CALL!unknownC47A6B;
 alias LOAD_FULLSCREEN_ANIMATION = CALL!loadActionScriptAnimation;

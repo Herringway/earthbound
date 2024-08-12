@@ -724,14 +724,14 @@ void elevaterInitialization() {
 	WOBJLOG = 0;
 }
 
-/** Sets COLDATA for all three colours using actionscript globals, as well as CGADSUB
+/** Sets COLDATA for all three colours using ActionScript globals, as well as CGADSUB
  * Original_Address: $(DOLLAR)C42439
  */
 void setCOLDATACGADSUB(short cgadsub) {
 	CGADSUB = cast(ubyte)cgadsub;
-	setFixedColourData(actionscriptCOLDATABlue | 0x80);
-	setFixedColourData(actionscriptCOLDATAGreen | 0x40);
-	setFixedColourData(actionscriptCOLDATARed | 0x20);
+	setFixedColourData(actionScriptCOLDATABlue | 0x80);
+	setFixedColourData(actionScriptCOLDATAGreen | 0x40);
+	setFixedColourData(actionScriptCOLDATARed | 0x20);
 }
 
 /** Enables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
@@ -3708,7 +3708,7 @@ void fadeSprite(short sprite, short fadeStyle) {
 	setEntityActionScript((fadeStyle != ObjFX.hideNone) ? &fadeWaitScript.ptr[0] : &actionScriptTerminate.ptr[0], entity);
 }
 
-/** Changes an entity with matching NPC ID's actionscript
+/** Changes an entity with matching NPC ID's ActionScript
  *
  * Has no effect if NPC not found.
  * Params:
@@ -3725,7 +3725,7 @@ void changeScriptForEntityByNPCID(short npc, short script) {
 	setEntityActionScript(&actionScriptScriptPointers[script][0], entity);
 }
 
-/** Changes an entity with matching sprite's actionscript
+/** Changes an entity with matching sprite's ActionScript
  *
  * Has no effect if sprite not found.
  * Params:
@@ -4202,7 +4202,7 @@ void actionScriptTriggerTalkText() {
 	if (npcConfig[entityNPCIDs[currentEntitySlot]].talkText == null) {
 		return;
 	}
-	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(npcConfig[entityNPCIDs[currentEntitySlot]].talkText)));
+	queueInteraction(InteractionType.talkToEntity, QueuedInteractionPtr(getTextBlock(npcConfig[entityNPCIDs[currentEntitySlot]].talkText)));
 }
 
 /** Display text without a window
@@ -4210,7 +4210,7 @@ void actionScriptTriggerTalkText() {
  */
 void displayTextWindowless(const(ubyte)* script) {
 	disableEntityByCharacterOrParty(0xFF);
-	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(script));
+	queueInteraction(InteractionType.talkToEntity, QueuedInteractionPtr(script));
 }
 
 /**
@@ -4409,23 +4409,41 @@ ushort entityAngleToDestination() {
 	return getScreenAngle(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]);
 }
 
-/// $C46B0A
-short setMovingDirectionFromAngle(short arg1) {
-	entityMovingDirection[currentEntitySlot] = cast(short)(cast(ushort)(arg1 + 0x1000) / 0x2000);
+/** Sets the active entity's direction from the given angle
+ * Params:
+ * 	angle = Angle, in 1/65536ths of a circle
+ * Returns: The Direction the entity is now facing
+ * Original_Address: $(DOLLAR)C46B0A
+ */
+short setMovingDirectionFromAngle(short angle) {
+	entityMovingDirection[currentEntitySlot] = cast(short)(cast(ushort)(angle + 0x1000) / 0x2000);
 	return entityMovingDirection[currentEntitySlot];
 }
 
-/// $C46B2D
-short unknownC46B2D(short arg1) {
-	return cast(short)(arg1 * 0x2000);
+/** Converts a Direction to an angle, adjusted by ~22.5 degrees
+ * Params:
+ * 	direction = One of the eight Direction values
+ * Returns: Angle, in 1/65536ths of a circle
+ * Original_Address: $(DOLLAR)C46B2D
+ */
+// TODO: Why 22.5 degrees...?
+short convertDirectionToAngle(short direction) {
+	return cast(short)(direction * 0x2000);
 }
 
-/// $C46B37
-short getOppositeDirection(short arg1) {
-	return (arg1 + 4) & 7;
+/** Returns the opposite of the given direction
+ * Params:
+ * 	direction = A Direction
+ * Returns: Direction opposite of the input
+ * Original_Address: $(DOLLAR)C46B37
+ */
+short getOppositeDirection(short direction) {
+	return (direction + 4) & 7;
 }
 
-/// $C46B41
+/** A table of the eight directions, rotated 90 degrees clockwise
+ * Original_Address: $(DOLLAR)C46B41
+ */
 immutable short[8] directionTableRotated90 = [
 	Direction.up: Direction.right,
 	Direction.upRight: Direction.downRight,
@@ -4437,9 +4455,14 @@ immutable short[8] directionTableRotated90 = [
 	Direction.upLeft: Direction.upRight,
 ];
 
-/// $C46B51
-short getDirectionRotatedAngle90(ushort arg1) {
-	return directionTableRotated90[cast(ushort)(arg1 + 0x1000) / 0x2000];
+/** Gets the nearest direction for the given angle, rotated 90 degrees clockwise
+ * Params:
+ * 	angle = Angle, in 1/65536ths of a circle
+ * Returns: One of the eight Direction values
+ * Original_Address: $(DOLLAR)C46B51
+ */
+short getDirectionRotatedAngle90(ushort angle) {
+	return directionTableRotated90[cast(ushort)(angle + 0x1000) / 0x2000];
 }
 
 unittest {
@@ -4456,7 +4479,9 @@ void actionScriptSetDestinationPartyLeader() {
 	entityScriptVar7Table[currentEntitySlot] = gameState.leaderY.integer;
 }
 
-/** Finds the x,y coordinates of an NPC entity and copies them into vars 6,7 for the active entity. Note that this does no error checking, so be sure that the NPC is active!
+/** Finds the x,y coordinates of an NPC entity and copies them into vars 6,7 for the active entity.
+ *
+ * Warning: this does no error checking, so be sure that the NPC is active!
  * Params:
  * 	npc = The NPC ID to look for
  * Original_Address: $(DOLLAR)C46B8D
@@ -4467,24 +4492,36 @@ void findNPCLocationForActiveEntity(short npc) {
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[entity];
 }
 
-/// $C46BBB
-void unknownC46BBB(short arg1) {
-	short entity = findEntityBySprite(arg1);
+/** Finds the x,y coordinates of an entity with a matching sprite and copies them into vars 6,7 for the active entity.
+ *
+ * Warning: this does no error checking, so be sure that there is a matching entity!
+ * Params:
+ * 	sprite = The sprite ID to look for
+ * Original_Address: $(DOLLAR)C46BBB
+ */
+void findSpriteLocationForActiveEntity(short sprite) {
+	short entity = findEntityBySprite(sprite);
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[entity];
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[entity];
 }
 
-/// $C46BE9
-void getPositionOfPartyMember(short arg1) {
+/** Gets the position of the matching party member and copies it to vars 6,7 of the active entity
+ *
+ * Warning: this does no error checking, so be sure that there is a matching entity!
+ * Params:
+ * 	member = Party member ID to look for, or 0xFE for last party member
+ * Original_Address: $(DOLLAR)C46BE9
+ */
+void getPositionOfPartyMember(short member) {
 	short selfEntity = currentEntitySlot;
 	short foundEntity;
-	if (arg1 == 0xFE) {
+	if (member == 0xFE) {
 		foundEntity = gameState.partyEntities[gameState.partyCount - 1];
 		if (entityAbsXTable[foundEntity] == 0) {
 			foundEntity = gameState.partyEntities[gameState.partyCount - 2];
 		}
 	} else {
-		foundEntity = findEntityByPartyMemberID(arg1);
+		foundEntity = findEntityByPartyMemberID(member);
 	}
 	entityScriptVar6Table[selfEntity] = entityAbsXTable[foundEntity];
 	entityScriptVar7Table[selfEntity] = entityAbsYTable[foundEntity];
@@ -4506,15 +4543,21 @@ void copyAdjustedXYToVars(short y, short x) {
 	entityScriptVar1Table[currentEntitySlot] = cast(short)(y + entityAbsYTable[currentEntitySlot]);
 }
 
-/// $C46C87
-void unknownC46C87() {
+/** Moves the active entity to the X,Y coordinates in vars 6,7
+ * Original_Address: $(DOLLAR)C46C87
+ */
+void copyDestinationToLocation() {
 	entityAbsXTable[currentEntitySlot] = entityScriptVar6Table[currentEntitySlot];
 	entityAbsYTable[currentEntitySlot] = entityScriptVar7Table[currentEntitySlot];
 }
 
-/// $C46C9B
-void moveEntityToPartyMember(short arg1) {
-	short entity = findEntityByPartyMemberID(arg1);
+/** Move the active entity to a party member's position
+ * Params:
+ * 	member = The party member to search for
+ * Original_Address: $(DOLLAR)C46C9B
+ */
+void moveEntityToPartyMember(short member) {
+	short entity = findEntityByPartyMemberID(member);
 	version(noUndefinedBehaviour) { // if no party member found, an underflow will occur here
 		if (entity == -1) {
 			return;
@@ -4524,9 +4567,13 @@ void moveEntityToPartyMember(short arg1) {
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[entity];
 }
 
-/// $C46CC7
-void moveEntityToSprite(short arg1) {
-	short entity = findEntityBySprite(arg1);
+/** Move the active entity to the position of the first entity with a matching sprite
+ * Params:
+ * 	sprite = The sprite to search for
+ * Original_Address: $(DOLLAR)C46CC7
+ */
+void moveEntityToSprite(short sprite) {
+	short entity = findEntityBySprite(sprite);
 	version(noUndefinedBehaviour) { // if no sprite found, an underflow will occur here
 		if (entity == -1) {
 			return;
@@ -4536,32 +4583,42 @@ void moveEntityToSprite(short arg1) {
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[entity];
 }
 
-/// $C46CF5
-void unknownC46CF5(short arg1, short arg2) {
-	entityAbsXTable[currentEntitySlot] = cast(short)(arg2 + bg1XPosition);
-	entityAbsYTable[currentEntitySlot] = cast(short)(arg1 + bg1YPosition);
+/** Moves the active entity to the given coordinates, relative to the current BG1 position
+ * Original_Address: $(DOLLAR)C46CF5
+ */
+void moveEntityToLocationBG1Relative(short y, short x) {
+	entityAbsXTable[currentEntitySlot] = cast(short)(x + bg1XPosition);
+	entityAbsYTable[currentEntitySlot] = cast(short)(y + bg1YPosition);
 	entityAbsXFractionTable[currentEntitySlot] = cast(short)0x8000;
 	entityAbsYFractionTable[currentEntitySlot] = cast(short)0x8000;
 }
 
-/// $C46D23
-void unknownC46D23() {
-	entityAbsXTable[currentEntitySlot] = cast(short)(rand() + bg1XPosition + 0x70);
+/** Moves the active entity to a randomly chosen point at the very top of the screen
+ * Original_Address: $(DOLLAR)C46D23
+ */
+void moveEntityToRandomTopOfScreen() {
+	entityAbsXTable[currentEntitySlot] = cast(short)(rand() + bg1XPosition + 112);
 	entityAbsYTable[currentEntitySlot] = bg1YPosition;
 }
 
-/// $C46D4B
-void unknownC46D4B() {
+/** Moves the active entity to the preset coordinates for the prepared travelling photographer
+ * Original_Address: $(DOLLAR)C46D4B
+ */
+void moveEntityToPreparedTravellingPhotographerLocation() {
 	entityAbsXTable[currentEntitySlot] = cast(short)(photographerConfigTable[spawningTravellingPhotographerID].photographerX * 8);
 	entityAbsYTable[currentEntitySlot] = cast(short)(photographerConfigTable[spawningTravellingPhotographerID].photographerY * 8);
 	entityAbsYFractionTable[currentEntitySlot] = 0;
 	entityAbsXFractionTable[currentEntitySlot] = 0;
 }
 
-/// $C46DAD
-void prepareNewEntityAtExistingEntityLocation(short arg1) {
+/** Prepares the starting position and direction for the next created entity based on an existing entity
+ * Params:
+ * 	type = 0 to use the active entity, 1 to use the first party member
+ * Original_Address: $(DOLLAR)C46DAD
+ */
+void prepareNewEntityAtExistingEntityLocation(short type) {
 	short sourceEntity;
-	switch (arg1) {
+	switch (type) {
 		case 0:
 			sourceEntity = currentEntitySlot;
 			break;
@@ -4575,31 +4632,50 @@ void prepareNewEntityAtExistingEntityLocation(short arg1) {
 	entityPreparedDirection = entityDirections[sourceEntity];
 }
 
-/// $C46DE6
-void prepareNewEntityAtTeleportDestination(short arg1) {
-	entityPreparedXCoordinate = cast(ushort)(teleportDestinationTable[arg1].x * 8);
-	entityPreparedYCoordinate = cast(ushort)(teleportDestinationTable[arg1].y * 8);
-	entityPreparedDirection = cast(ushort)(teleportDestinationTable[arg1].direction - 1);
+/** Prepares the starting position and direction for the next created entity using a warp preset
+ * Params:
+ * 	warpPreset = The WarpPreset to use
+ * Original_Address: $(DOLLAR)C46DE6
+ */
+void prepareNewEntityAtWarpPreset(short warpPreset) {
+	entityPreparedXCoordinate = cast(ushort)(warpPresetTable[warpPreset].x * 8);
+	entityPreparedYCoordinate = cast(ushort)(warpPresetTable[warpPreset].y * 8);
+	entityPreparedDirection = cast(ushort)(warpPresetTable[warpPreset].direction - 1);
 }
 
-/// $C46E37
-void prepareNewEntity(short arg1, short arg2, short arg3) {
-	entityPreparedXCoordinate = arg2;
-	entityPreparedYCoordinate = arg3;
-	entityPreparedDirection = arg1 & 0xFF;
+/** Prepares the starting position and direction for the next created entity
+ * Params:
+ * 	direction = New entity's facing direction
+ * 	x = New entity's X coordinate
+ * 	y = New entity's Y coordinate
+ * Original_Address: $(DOLLAR)C46E37
+ */
+void prepareNewEntity(short direction, short x, short y) {
+	entityPreparedXCoordinate = x;
+	entityPreparedYCoordinate = y;
+	entityPreparedDirection = direction & 0xFF;
 }
 
-/// $C46E46
+/** Signals that the ActionScript interpreter should wait for the text system to yield
+ * Original_Address: $(DOLLAR)C46E46
+ */
 void actionScriptYieldToText() {
-	actionscriptState = ActionScriptState.paused;
+	actionScriptState = ActionScriptState.paused;
 }
 
-/// $C46E4F
-void queueInteraction8(const(ubyte)* arg1) {
-	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
+/** Queues a talking-to-entity map interaction with the provided script
+ * Params:
+ * 	script = Text script to use
+ * Original_Address: $(DOLLAR)C46E4F
+ */
+void queueInteractionTalkTo(const(ubyte)* script) {
+	queueInteraction(InteractionType.talkToEntity, QueuedInteractionPtr(script));
 }
 
-/// $C46E74
+/** Tests if the party leader is within the boundaries as defined by the active entity's vars 0-3
+ * Returns: 1 if within boundaries and not teleporting, 0 otherwise
+ * Original_Address: $(DOLLAR)C46E74
+ */
 short isLeaderWithinBoundaries() {
 	if (psiTeleportDestination != 0) {
 		return 0;
@@ -4616,7 +4692,10 @@ short isLeaderWithinBoundaries() {
 	return 0;
 }
 
-/// $C46EF8
+/** Tests if the party leader is close to the active entity, with the width and height of the boundary defined using vars 2,3
+ * Returns: 1 if within boundaries and not teleporting, 0 otherwise
+ * Original_Address: $(DOLLAR)C46EF8
+ */
 short isLeaderClose() {
 	if (psiTeleportDestination != 0) {
 		return 0;
@@ -4633,7 +4712,12 @@ short isLeaderClose() {
 	return 0;
 }
 
-/// $C47044
+/** Moves the active entity towards the specified angle (with respect to the screen) using its movement speed
+ * Params:
+ * 	angle = Angle, in 1/65536ths of a circle
+ * Returns: The original angle
+ * Original_Address: $(DOLLAR)C47044
+ */
 short setMovementFromAngle(short angle) {
 	auto vector = angleToVector(angle, entityMovementSpeed[currentEntitySlot]);
 	short distance = vector.x;
@@ -4709,7 +4793,10 @@ void setEntityBoundaries(short height, short width) {
 	entityScriptVar3Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] + height);
 }
 
-/// $C47269 - Returns the direction + 1 towards the boundaries set by setEntityBoundaries, 0 if already inside. Uses vars 0-3.
+/** Gets the direction + 1 towards the boundaries set by setEntityBoundaries, 0 if already inside. Uses vars 0-3 as boundaries.
+ * Returns: One of the four cardinal Direction values + 1 if outside boundaries, or 0 if within boundaries
+ * Original_Address: $(DOLLAR)C47269
+ */
 short directionToEntityBoundaries() {
 	if (entityAbsXTable[currentEntitySlot] < entityScriptVar0Table[currentEntitySlot]) {
 		return Direction.right + 1;
@@ -4727,7 +4814,11 @@ short directionToEntityBoundaries() {
 	return 0;
 }
 
-/// $C472A8
+/** Performs a frame of spiral movement, using active entity var 0 to store the current angle
+ * Params:
+ * 	flip = Whether or not to invert the angle when determining new direction to face
+ * Original_Address: $(DOLLAR)C472A8
+ */
 void entitySpiralMovement(short flip) {
 	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
 	short direction = getDirectionRotatedAngle90(entityScriptVar0Table[currentEntitySlot]);
@@ -4778,7 +4869,9 @@ unittest {
 	}
 }
 
-/// $C4730E
+/** Halves the velocity for the active entity's movement along the Y axis this frame
+ * Original_Address: $(DOLLAR)C4730E
+ */
 void halveYSpeed() {
 	entityDeltaYTable[currentEntitySlot] /= 2;
 }
@@ -4809,64 +4902,90 @@ short actionScriptRerenderRow(short y) {
 	return y;
 }
 
-/// $C47369
-void unknownC47369() {
-	unknownC019E2();
+/** ActionScript helper: Reloads the map
+ * Original_Address: $(DOLLAR)C47369
+ */
+void actionScriptReloadMapCurrentLocation() {
+	reloadMapCurrentLocation();
 }
 
-/// $C47370
-void loadBackgroundAnimation(short bg, short arg2) {
+/** Fully loads an animated background and blanks the screen, ready to load more graphics or fade in immediately.
+ * Params:
+ * 	bg1 = Background layer to use for BG1
+ * 	bg2 = Background layer to use for BG2
+ * Original_Address: $(DOLLAR)C47370
+ */
+void loadBackgroundAnimation(short bg1, short bg2) {
 	prepareForImmediateDMA();
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0x0000);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
-	loadBattleBG(bg, arg2, 4);
+	loadBattleBG(bg1, bg2, 4);
 	setForceBlank();
 }
 
-/// $C473B2
-ushort unknownC473B2(short arg1) {
-	if (arg1 < 0) {
+/** Clamps a colour channel to the legal 0-31 range.
+ * Params:
+ * 	colour = A single colour channel value
+ * Original_Address: $(DOLLAR)C473B2
+ */
+ushort colourClamp(short colour) {
+	if (colour < 0) {
 		return 0;
 	}
-	if (arg1 >= 31) {
+	if (colour >= 31) {
 		return 31;
 	}
-	return arg1 & 0x1F;
+	return colour & 0x1F;
 }
 
-/// $C473D0
-void unknownC473D0(short arg1, short arg2) {
-	ushort* backupColour = &mapPaletteBackup[arg1][0];
+/** Performs a palette fade, using the backup palette + step
+ *
+ * Because the fade doesn't use the target colour palette in its calculations, this is lossless and any arbitrary series of steps is supported
+ * Params:
+ * 	palette = Palette ID to fade - 2
+ * 	step = Value to add to each colour channel
+ * Original_Address: $(DOLLAR)C473D0
+ */
+void doPaletteFadeStep(short palette, short step) {
+	ushort* sourceColour = &mapPaletteBackup[palette][0];
 	version(bugfix) {
-		if (arg1 >= palettes.length - 2) {
+		if (palette >= palettes.length - 2) {
 			return;
 		}
 	}
-	ushort* destination = &palettes[arg1 + 2][0];
+	ushort* destination = &palettes[palette + 2][0];
 	for (short i = 0; i < 16; i++) {
-		short red = cast(ushort)((backupColour[0] & 0x1F) + arg2);
-		short green = cast(ushort)(((backupColour[0] >> 5) & 0x1F) + arg2);
-		short blue = cast(ushort)(((backupColour[0] >> 10) & 0x1F) + arg2);
-		ushort finalRed = unknownC473B2(red);
-		ushort finalGreen = unknownC473B2(green);
-		ushort finalBlue = unknownC473B2(blue);
-		backupColour++;
+		short red = cast(ushort)((sourceColour[0] & 0x1F) + step);
+		short green = cast(ushort)(((sourceColour[0] >> 5) & 0x1F) + step);
+		short blue = cast(ushort)(((sourceColour[0] >> 10) & 0x1F) + step);
+		ushort finalRed = colourClamp(red);
+		ushort finalGreen = colourClamp(green);
+		ushort finalBlue = colourClamp(blue);
+		sourceColour++;
 		(destination++)[0] = cast(ushort)((finalGreen << 5) | (finalBlue << 10) | finalRed);
 	}
 }
 
-/// $C4746B
-void unknownC4746B(short arg1) {
+/** Performs palette fades for all palettes except text palettes
+ *
+ * See_Also: doPaletteFadeStep
+ * Params:
+ * 	step = Value to add to each colour channel
+ * Original_Address: $(DOLLAR)C4746B
+ */
+void doAllPalettesFadeStep(short step) {
 	for (short i = 0; i < 16; i++) {
-		unknownC473D0(i, arg1);
+		doPaletteFadeStep(i, step);
 	}
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C47499
-void unknownC47499() {
-	unknownC4746B(entityScriptVar0Table[currentEntitySlot]);
+/** ActionScript helper: Performs palette fades for all palettes
+ * Original_Address: $(DOLLAR)C47499
+ */
+void actionScriptDoAllPalettesFadeStep() {
+	doAllPalettesFadeStep(entityScriptVar0Table[currentEntitySlot]);
 }
 
 /// $C474A8
@@ -8726,11 +8845,11 @@ short runAttractModeScene(short arg1) {
 	mirrorTM = TMTD.none;
 	openOvalWindow(0);
 	updateSwirlFrame();
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	short x12 = 0;
 	short x14 = 0;
 	displayText(getTextBlock(attractModeText[arg1]));
-	while (actionscriptState == ActionScriptState.running) {
+	while (actionScriptState == ActionScriptState.running) {
 		updateSwirlFrame();
 		if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
 			x12 = 1;
@@ -8752,7 +8871,7 @@ short runAttractModeScene(short arg1) {
 		finishFrame();
 	}
 	disableOvalWindow();
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	unknownC021E6();
 	return x12;
 }
@@ -9078,7 +9197,7 @@ void loadCastScene() {
 	setForceBlank();
 }
 
-/** Sets the scroll threshold in tiles, after which the actionscript will continue
+/** Sets the scroll threshold in tiles, after which the ActionScript will continue
  * Params:
  * 	tiles = Number of tiles
  * Original_Address: $(DOLLAR)C4E4DA
@@ -9268,7 +9387,7 @@ void uploadSpecialCastPalette(short id) {
 /** Creates an entity with the given sprite and script relative to the active entity's (Var0, Var1) + BG3 Y position
  * Params:
  * 	sprite = An overworld sprite ID
- * 	script = An actionscript ID
+ * 	script = An ActionScript ID
  * Return: The ID of the newly-created entity
  * Original_Address: $(DOLLAR)C4ECAD
  */
@@ -9297,8 +9416,8 @@ void playCastScene() {
 	oamClear();
 	fadeIn(1, 1);
 	initEntityWipe(ActionScript.castScene, 0, 0);
-	actionscriptState = ActionScriptState.running;
-	while (actionscriptState == ActionScriptState.running) {
+	actionScriptState = ActionScriptState.running;
+	while (actionScriptState == ActionScriptState.running) {
 		finishFrame();
 		drawBattleFrame();
 	}

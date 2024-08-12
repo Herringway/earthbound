@@ -248,7 +248,7 @@ short cancelTitleScreenSequence() {
 	// create title screen entities and let them complete a full frame while the DMA occurs
 	titleScreenQuickMode = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	finishFrame();
 	// fade in quickly
 	fadeIn(16, 1);
@@ -257,7 +257,7 @@ short cancelTitleScreenSequence() {
 	}
 	// display the title screen until the scripts are done running. Watch for player input and exit early if this is a cancellable sequence
 	short cancelled = 0;
-	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
+	while ((actionScriptState == ActionScriptState.running) || (actionScriptState == ActionScriptState.titleScreenSpecial)) {
 		if ((nonCancellable == 0) && (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0))) {
 			cancelled = 1;
 			break;
@@ -266,7 +266,7 @@ short cancelTitleScreenSequence() {
 	}
 	// sequence is done, so fade out and clean up
 	fadeOutWithMosaic(1, 4, 0);
-	actionscriptState = ActionScriptState.running;
+	actionScriptState = ActionScriptState.running;
 	unknownC474A8(/+0+/);
 	initializeEntitySubsystem();
 	return cancelled;
@@ -627,7 +627,7 @@ ushort doDeliveryCountdown() {
  * Original_Address: $(DOLLAR)EF0D8D
  */
 void startDeliverySuccessText() {
-	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
+	queueInteraction(InteractionType.talkToEntity, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
 /** Displays the delivery failure text associated with the active entity
@@ -22433,15 +22433,15 @@ immutable RGB[16][16] debugMenuPalettes = [
  * Original_Address: $(DOLLAR)EFF5BB
  */
 immutable SpriteMap*[1] debugCursorSpritemap = [[
-	SpriteMap(0xF4, 0x00, 0x30, 0xF4, 0x00),
-	SpriteMap(0xF4, 0x01, 0x30, 0xFC, 0x00),
-	SpriteMap(0xF4, 0x02, 0x30, 0x04, 0x00),
-	SpriteMap(0xFC, 0x03, 0x30, 0xF4, 0x00),
-	SpriteMap(0xFC, 0x04, 0x30, 0xFC, 0x00),
-	SpriteMap(0xFC, 0x05, 0x30, 0x04, 0x00),
-	SpriteMap(0x04, 0x06, 0x30, 0xF4, 0x00),
-	SpriteMap(0x04, 0x07, 0x30, 0xFC, 0x00),
-	SpriteMap(0x04, 0x08, 0x30, 0x04, 0x80),
+	SpriteMap(244, 0, 0x30, 244, 0x00),
+	SpriteMap(244, 1, 0x30, 252, 0x00),
+	SpriteMap(244, 2, 0x30, 4, 0x00),
+	SpriteMap(252, 3, 0x30, 244, 0x00),
+	SpriteMap(252, 4, 0x30, 252, 0x00),
+	SpriteMap(252, 5, 0x30, 4, 0x00),
+	SpriteMap(4, 6, 0x30, 244, 0x00),
+	SpriteMap(4, 7, 0x30, 252, 0x00),
+	SpriteMap(4, 8, 0x30, 4, 0x80),
 	SpriteMap(0, 0, 0, 0, 0)
 ]];
 
