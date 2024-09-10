@@ -292,6 +292,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="actionScriptInvertYPositionRelative" class="public" href="../earthbound/bank04/actionScriptInvertYPositionRelative.html">actionScriptInvertYPositionRelative</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Inverts the active entity's Y position relative to the coordinates stored in (var 6, var 7)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="actionScriptObjFXClearDotBuffer" class="public" href="../earthbound/bank04/actionScriptObjFXClearDotBuffer.html">actionScriptObjFXClearDotBuffer</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -529,7 +538,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="bunbuunBeamConfigure" class="public" href="../earthbound/bank04/bunbuunBeamConfigure.html">bunbuunBeamConfigure</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C479E9
+						<td>Configures the beam of light that appears when buzz buzz shows up
 </td>
 					</tr>
 					<tr>
@@ -661,10 +670,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="clamp0Upper" class="public" href="../earthbound/bank04/clamp0Upper.html">clamp0Upper</a><span class="tableEntryAnnotation">(value, upper)</span>
+							</code>
+						</td>
+						<td>Clamps a value between 0 and an upper limit
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="clearAutoMovementDemo" class="public" href="../earthbound/bank04/clearAutoMovementDemo.html">clearAutoMovementDemo</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C48C69
+						<td>Wipes the recorded auto-movement demo
 </td>
 					</tr>
 					<tr>
@@ -773,6 +791,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Converts a Direction to an angle, adjusted by ~22.5 degrees
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="convertTextToTilemap" class="public" href="../earthbound/bank04/convertTextToTilemap.html">convertTextToTilemap</a><span class="tableEntryAnnotation">(start, dest)</span>
+							</code>
+						</td>
+						<td>Converts rendered text to a tilemap suitable for uploading to the overworld tilemap
 </td>
 					</tr>
 					<tr>
@@ -1385,7 +1412,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="finishAutoMovementDemoAndStart" class="public" href="../earthbound/bank04/finishAutoMovementDemoAndStart.html">finishAutoMovementDemoAndStart</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C48E95
+						<td>Finish recording an auto-movement demo and immediately play it back
 </td>
 					</tr>
 					<tr>
@@ -1961,7 +1988,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="loadTextPalette" class="public" href="../earthbound/bank04/loadTextPalette.html">loadTextPalette</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C47F87
+						<td>Picks a text palette and uploads it to CGRAM
 </td>
 					</tr>
 					<tr>
@@ -2300,6 +2327,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="prepareLumineHallTextRender" class="public" href="../earthbound/bank04/prepareLumineHallTextRender.html">prepareLumineHallTextRender</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Prepares the rendered text used by the Lumine Hall scene
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="prepareNewEntity" class="public" href="../earthbound/bank04/prepareNewEntity.html">prepareNewEntity</a><span class="tableEntryAnnotation">(direction, x, y)</span>
 							</code>
 						</td>
@@ -2366,7 +2402,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="prepareWindowGraphics" class="public" href="../earthbound/bank04/prepareWindowGraphics.html">prepareWindowGraphics</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C47C3F
+						<td>Prepares text layer graphics for BG3
 </td>
 					</tr>
 					<tr>
@@ -2528,7 +2564,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="recordAutoMovementDemo" class="public" href="../earthbound/bank04/recordAutoMovementDemo.html">recordAutoMovementDemo</a><span class="tableEntryAnnotation">(startX, startY, destX, destY)</span>
 							</code>
 						</td>
-						<td>$C48D58
+						<td>Records a short auto-movement demo for the player to move from point A to point B
 </td>
 					</tr>
 					<tr>
@@ -2537,7 +2573,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="recordAutoMovementDemoFrame" class="public" href="../earthbound/bank04/recordAutoMovementDemoFrame.html">recordAutoMovementDemoFrame</a><span class="tableEntryAnnotation">(newPadState)</span>
 							</code>
 						</td>
-						<td>$C48C97
+						<td>Records a single frame of an auto-movement demo
 </td>
 					</tr>
 					<tr>
@@ -2546,7 +2582,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="recordAutoMovementDemoNFramesDirection" class="public" href="../earthbound/bank04/recordAutoMovementDemoNFramesDirection.html">recordAutoMovementDemoNFramesDirection</a><span class="tableEntryAnnotation">(direction, frames)</span>
 							</code>
 						</td>
-						<td>$C48E6B
+						<td>Record N frames of movement in the given direction in the auto-movement demo currently being recorded
 </td>
 					</tr>
 					<tr>
@@ -2555,7 +2591,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="rectangleWindowAddHdmaEntry" class="public" href="../earthbound/bank04/rectangleWindowAddHdmaEntry.html">rectangleWindowAddHdmaEntry</a><span class="tableEntryAnnotation">(numLines, winL, winR, hdmaTable)</span>
 							</code>
 						</td>
-						<td>$C4789E
+						<td>Sets up a single window HDMA table entry with the specified dimensions
 </td>
 					</tr>
 					<tr>
@@ -2564,7 +2600,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="rectangleWindowConfigure" class="public" href="../earthbound/bank04/rectangleWindowConfigure.html">rectangleWindowConfigure</a><span class="tableEntryAnnotation">(xmin, ymin, xmax, ymax)</span>
 							</code>
 						</td>
-						<td>$C47930 - Configures HDMA + window to create a rectangular window on screen
+						<td>Configures HDMA + window to create a rectangular window on screen. Only configures positioning and dimensions, no other parameters
 </td>
 					</tr>
 					<tr>
@@ -2690,7 +2726,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="renderWholeCharacter" class="public" href="../earthbound/bank04/renderWholeCharacter.html">renderWholeCharacter</a><span class="tableEntryAnnotation">(font, character)</span>
 							</code>
 						</td>
-						<td>$C4827B
+						<td>Renders a full text character into the VWF buffer
 </td>
 					</tr>
 					<tr>
@@ -2726,7 +2762,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="restoreMapRendering" class="public" href="../earthbound/bank04/restoreMapRendering.html">restoreMapRendering</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4800B
+						<td>Restores PPU data for overworld map rendering after special scenes
 </td>
 					</tr>
 					<tr>
@@ -2772,6 +2808,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Saves any player-controllable state on the screen for the credits photographs
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="scrollLumineHallTextFrame" class="public" href="../earthbound/bank04/scrollLumineHallTextFrame.html">scrollLumineHallTextFrame</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Scrolls the Lumine Hall text one "pixel" to the left
 </td>
 					</tr>
 					<tr>
@@ -3141,8 +3186,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="unknownC474A8" class="public" href="../earthbound/bank04/unknownC474A8.html">unknownC474A8</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C474A8
-</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>
@@ -3169,51 +3213,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C47705
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47866" class="public" href="../earthbound/bank04/unknownC47866.html">unknownC47866</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C47866
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47A6B" class="public" href="../earthbound/bank04/unknownC47A6B.html">unknownC47A6B</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47A6B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4810E" class="public" href="../earthbound/bank04/unknownC4810E.html">unknownC4810E</a><span class="tableEntryAnnotation">(start, dest)</span>
-							</code>
-						</td>
-						<td>$C4810E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4880C" class="public" href="../earthbound/bank04/unknownC4880C.html">unknownC4880C</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4880C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC48A6D" class="public" href="../earthbound/bank04/unknownC48A6D.html">unknownC48A6D</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C48A6D
 </td>
 					</tr>
 					<tr>
@@ -3496,7 +3495,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4E796
+						<td>Text used for the titles of party member guardians
 </td>
 					</tr>
 					<tr>
@@ -3627,7 +3626,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C48C59
+						<td>A mapping of directions to d-pad presses, used for generating auto-movement demos
 </td>
 					</tr>
 					<tr>
@@ -3997,7 +3996,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">215</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C48037
+						<td>Text for the Lumine Hall scene
 </td>
 					</tr>
 					<tr>

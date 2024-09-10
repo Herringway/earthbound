@@ -154,7 +154,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function recordAutoMovementDemo</h1><p>$C48D58
+			<h1>Function recordAutoMovementDemo</h1><p>Records a short auto-movement demo for the player to move from point A to point B
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -174,8 +174,27 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Note that this does not take collision into account and can cause a softlock if collision is enabled during playback!
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="startX">startX</td><td> Starting X coordinate</td></tr>
+<tr><td id="startY">startY</td><td> Starting Y coordinate</td></tr>
+<tr><td id="destX">destX</td><td> Destination X coordinate</td></tr>
+<tr><td id="destY">destY</td><td> Destination Y coordinate</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Total number of frames in demo
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C48D58
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

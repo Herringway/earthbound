@@ -2590,6 +2590,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptGetPressedButtons.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptGetURDLDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptHStripe.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/actionScriptInvertYPositionRelative.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptObjFXClearDotBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptObjFXDots.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/actionScriptReloadMapCurrentLocation.html</loc></url>
@@ -2641,6 +2642,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/checkIfPSIKnown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/checkIfValidTarget.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/checkStatusGroup.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/clamp0Upper.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearAutoMovementDemo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearCameraFocus.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearCurrentTextLine.html</loc></url>
@@ -2657,6 +2659,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/convert8DirectionTo4PreferLeftRight.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/convert8DirectionTo4PreferUpDown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/convertDirectionToAngle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/convertTextToTilemap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/copyAdjustedXYToVars.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/copyCastNameTilemap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/copyDestinationToLocation.html</loc></url>
@@ -2877,6 +2880,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareGameFailure.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareLoadedPaletteFadeTables.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareLoadedPalettesForFade.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/prepareLumineHallTextRender.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntityAtExistingEntityLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareNewEntityAtWarpPreset.html</loc></url>
@@ -2931,6 +2935,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/runAttractModeScene.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/runFlyover.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/savePhotoState.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/scrollLumineHallTextFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setAudioChannels.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setAutoSectorMusicChanges.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setCastScrollThreshold.html</loc></url>
@@ -2998,11 +3003,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47501.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC476A5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47705.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC47866.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC47A6B.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4810E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4880C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC48A6D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4981F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC49841.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A626.html</loc></url>

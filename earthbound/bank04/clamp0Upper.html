@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC47866</title>
+		<title>Function clamp0Upper</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,24 +154,38 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC47866</h1><p>$C47866
+			<h1>Function clamp0Upper</h1><p>Clamps a value between 0 and an upper limit
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC47866</span>
+			<span class="typ">short</span> <span class="pln">clamp0Upper</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">value</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">upper</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="value">value</td><td> Value for clamping</td></tr>
+<tr><td id="upper">upper</td><td> The upper limit for the value</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Value between 0..upper
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C47866
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC48A6D</title>
+		<title>Function convertTextToTilemap</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,17 +154,38 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC48A6D</h1><p>$C48A6D
+			<h1>Function convertTextToTilemap</h1><p>Converts rendered text to a tilemap suitable for uploading to the overworld tilemap
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">unknownC48A6D</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">ushort</span><span class="pun">*</span> <span class="pln">convertTextToTilemap</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">start</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ushort</span><span class="pun">*</span> <span class="pln">dest</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="start">start</td><td> Tile offset to start rendering from</td></tr>
+<tr><td id="dest">dest</td><td> The destination tile buffer</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The next position in the destination buffer to be written to
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4810E
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
