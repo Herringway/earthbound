@@ -5689,11 +5689,27 @@ short recordAutoMovementDemo(short startX, short startY, short destX, short dest
 		}
 		short nextDirection = (getScreenAngle(xPosition.integer, yPosition.integer, destX, destY) + 0x1000) / 0x2000;
 		recordAutoMovementDemoFrame(directionToButtonMap[nextDirection]);
-		xPosition.combined += horizontalMovementSpeeds[nextDirection / 8].directionSpeeds[0].combined;
-		yPosition.combined += verticalMovementSpeeds[nextDirection / 8].directionSpeeds[0].combined;
+		xPosition.combined += horizontalMovementSpeeds[0].directionSpeeds[nextDirection].combined;
+		yPosition.combined += verticalMovementSpeeds[0].directionSpeeds[nextDirection].combined;
 		result++;
 	}
 	return result;
+}
+
+unittest {
+	if (romDataLoaded) {
+		initializeMovementSpeeds();
+		assert(recordAutoMovementDemo(6956, 7533, 6944, 7528) == 9);
+		assert(autoMovementDemoBuffer[0] == DemoEntry(2, Pad.left | Pad.up));
+		assert(autoMovementDemoBuffer[1] == DemoEntry(1, Pad.left));
+		assert(autoMovementDemoBuffer[2] == DemoEntry(1, Pad.left | Pad.up));
+		assert(autoMovementDemoBuffer[3] == DemoEntry(2, Pad.left));
+		assert(autoMovementDemoBuffer[4] == DemoEntry(1, Pad.left | Pad.up));
+		assert(autoMovementDemoBuffer[5] == DemoEntry(1, Pad.left));
+		assert(autoMovementDemoBuffer[6] == DemoEntry(1, Pad.left | Pad.up));
+		assert(autoMovementDemoBuffer[7] == DemoEntry(0, 0));
+		assert(autoMovementDemoBuffer[8] == DemoEntry(0, 0));
+	}
 }
 
 /// $C48E6B
