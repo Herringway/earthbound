@@ -4988,7 +4988,9 @@ void actionScriptDoAllPalettesFadeStep() {
 	doAllPalettesFadeStep(entityScriptVar0Table[currentEntitySlot]);
 }
 
-/// $C474A8
+/**
+ * Original_Address: $(DOLLAR)C474A8
+ */
 // calls to this seem to specify an argument, but the registers are clobbered immediately
 void unknownC474A8() {
 	enum commonCGADSUB = CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop;
@@ -5118,19 +5120,33 @@ void enableStageHDMA(short xStart, short y, short xEnd) {
 	enableBrightnessHDMA(&buffer[0xBF8]);
 }
 
-/// $C47866
-short unknownC47866(short arg1, short arg2) {
-	short result = arg1;
-	if (0 > arg1) {
+/** Clamps a value between 0 and an upper limit
+ * Params:
+ * 	value = Value for clamping
+ * 	upper = The upper limit for the value
+ * Returns: Value between 0..upper
+ * Original_Address: $(DOLLAR)C47866
+ */
+short clamp0Upper(short value, short upper) {
+	short result = value;
+	if (0 > value) {
 		result = 0;
 	}
-	if (result > arg2) {
-		result = arg2;
+	if (result > upper) {
+		result = upper;
 	}
 	return result;
 }
 
-/// $C4789E
+/** Sets up a single window HDMA table entry with the specified dimensions
+ * Params:
+ * 	numLines = Height of the rectangle
+ * 	winL = Left edge of the rectangle
+ * 	winR = Right edge of the rectangle
+ * 	hdmaTable = Preallocated buffer for HDMA, at least 3 bytes long for windows with a height below 128, 6 bytes for larger ones
+ * Returns: The beginning of the unused buffer space
+ * Original_Address: $(DOLLAR)C4789E
+ */
 ubyte* rectangleWindowAddHdmaEntry(short numLines, short winL, short winR, ubyte* hdmaTable) {
 	if (numLines == 0) {
 		return hdmaTable;
@@ -5150,7 +5166,14 @@ ubyte* rectangleWindowAddHdmaEntry(short numLines, short winL, short winR, ubyte
 	return hdmaTable;
 }
 
-/// $C47930 - Configures HDMA + window to create a rectangular window on screen
+/** Configures HDMA + window to create a rectangular window on screen. Only configures positioning and dimensions, no other parameters
+ * Params:
+ * 	xmin = Left X coordinate
+ * 	ymin = Upper Y coordinate
+ * 	xmax = Right X coordinate
+ * 	ymax = Lower Y coordinate
+ * Original_Address: $(DOLLAR)C47930
+ */
 void rectangleWindowConfigure(short xmin, short ymin, short xmax, short ymax) {
 	short bufferOffset;
 	if ((rectangleWindowBufferIndex & 1) != 0) {
@@ -5158,10 +5181,11 @@ void rectangleWindowConfigure(short xmin, short ymin, short xmax, short ymax) {
 	} else {
 		bufferOffset = 0x2FE;
 	}
-	short yminClamp = unknownC47866(ymin, 224);
-	short ymaxClamp = unknownC47866(ymax, 224);
-	short xminClamp = unknownC47866(xmin, 256);
-	short xmaxClamp = unknownC47866(xmax, 256);
+	// keep dimensions within (0,0) .. (224, 256)
+	short yminClamp = clamp0Upper(ymin, 224);
+	short ymaxClamp = clamp0Upper(ymax, 224);
+	short xminClamp = clamp0Upper(xmin, 256);
+	short xmaxClamp = clamp0Upper(xmax, 256);
 	ubyte* buffer = &buffer[bufferOffset];
 	// Configure a region above the rectangle with no windowing (WH0 > WH1 means no window)
 	buffer = rectangleWindowAddHdmaEntry(yminClamp, 0x80, 0x7F, buffer);
@@ -5175,7 +5199,11 @@ void rectangleWindowConfigure(short xmin, short ymin, short xmax, short ymax) {
 	rectangleWindowBufferIndex++;
 }
 
-/// $C479E9
+/** Configures the beam of light that appears when buzz buzz shows up
+ *
+ * The beam is centered on the active entity's current position, with size depending on entity's var 0.
+ * Original_Address: $(DOLLAR)C479E9
+ */
 void bunbuunBeamConfigure() {
 	short ymin = void; // whoops?
 	version(noUndefinedBehaviour) {
@@ -5198,8 +5226,10 @@ void elevaterConfigure() {
 	rectangleWindowConfigure(16, cast(short)(x10 - 96), 240, cast(short)(x10 + 96));
 }
 
-/// $C47A6B
-void unknownC47A6B() {
+/** Inverts the active entity's Y position relative to the coordinates stored in (var 6, var 7)
+ * Original_Address: $(DOLLAR)C47A6B
+ */
+void actionScriptInvertYPositionRelative() {
 	entityAbsYTable[currentEntitySlot] = cast(short)(entityScriptVar7Table[currentEntitySlot] - (entityAbsYTable[currentEntitySlot] - entityScriptVar7Table[currentEntitySlot]));
 }
 
@@ -5235,7 +5265,11 @@ short updateActionScriptAnimationFrame() {
 	return animationSequences[entityScriptVar0Table[currentEntitySlot]].frameDelay;
 }
 
-/// $C47C3F
+/** Prepares text layer graphics for BG3
+ *
+ * Includes window tiles, special text graphics, and names for the HP/PP windows
+ * Original_Address: $(DOLLAR)C47C3F
+ */
 //definitely need to check this one over
 void prepareWindowGraphics() {
 	decomp(&textWindowTiles[0], &buffer[0]);
@@ -5306,11 +5340,17 @@ unittest {
 	}
 }
 
-/// $C47F87
+/** Picks a text palette and uploads it to CGRAM
+ *
+ * Uses the player's selected text flavour palette, unless the last party member is either unconscious or diamondized,
+ * when it'll use the special death palette instead.
+ * Original_Address: $(DOLLAR)C47F87
+ */
 void loadTextPalette() {
 	ubyte affliction = 0;
-	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
+	// get the last party member's group 0 affliction. thanks to sorting, if any party members are unconscious or diamondized, they'll be at the back
 	version(bugfix) {
+		// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
 		if (gameState.playerControlledPartyMemberCount > 0) {
 			if (chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] != null){
 				affliction = chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
@@ -5320,22 +5360,27 @@ void loadTextPalette() {
 		affliction = chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
 	}
 	switch(affliction) {
-		case 1:
-		case 2:
+		case Status0.unconscious:
+		case Status0.diamondized:
 			if (disabledTransitions != 0) {
 				goto default;
 			}
 			memcpy(palettes.ptr, textWindowFlavourPalettes[5].ptr, 0x40);
 			break;
 		default:
+			// weird, but ok
 			memcpy(palettes.ptr, (cast(void*)textWindowFlavourPalettes.ptr) + textWindowProperties[gameState.textFlavour - 1].offset, 0x40);
 			break;
 	}
+	// colour 0 is the background - make sure it's always black
 	palettes[0][0] = 0;
+	// upload all BG palettes
 	preparePaletteUpload(PaletteUpload.bgOnly);
 }
 
-/// $C4800B
+/** Restores PPU data for overworld map rendering after special scenes
+ * Original_Address: $(DOLLAR)C4800B
+ */
 void restoreMapRendering() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	unknownC2038B();
@@ -5345,43 +5390,65 @@ void restoreMapRendering() {
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C48037
+/** Text for the Lumine Hall scene
+ * Original_Address: $(DOLLAR)C48037
+ */
 immutable ubyte[215] lumineHallText = ebString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
 
-/// $C4810E
-ushort* unknownC4810E(short start, ushort* dest) {
+/** Converts rendered text to a tilemap suitable for uploading to the overworld tilemap
+ * Params:
+ * 	start = Tile offset to start rendering from
+ * 	dest = The destination tile buffer
+ * Returns: The next position in the destination buffer to be written to
+ * Original_Address: $(DOLLAR)C4810E
+ */
+ushort* convertTextToTilemap(short start, ushort* dest) {
 	ubyte* src = &buffer[0];
 	src += (((start & 0xFFF0) * 2) + (start & 0xF)) * 16;
+	// The text is rendered in 2bpp, but we only want 1bpp in a 2x2 square.
+	// First, merge the planes of two rows by XORing them together.
+	// Then, shift and mask off the row so only two pixels remain
+	// Then, concatenate the four pixels into a 4 bit value like 0000DCBA, with each bit corresponding to a pixel in a 2x2 grid like so:
+	// [B A]
+	// [D C]
+	// That will be your base tile. Do this for an entire 8x16 text tile pair.
 	for (ushort i = 6; i < 7; i -= 2) {
 		for (short j = 0; j < 4; j++) {
-			ubyte x00 = src[0];
-			ubyte x01 = src[1];
-			ushort x0E = (x00 ^ x01) & x00;
-			x00 = src[2];
-			x01 = src[3];
-			ushort x02 = (x00 ^ x01) & x00;
-			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
-			(dest++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			ubyte plane0 = src[0];
+			ubyte plane1 = src[1];
+			ushort rowA = (plane0 ^ plane1) & plane0;
+			plane0 = src[2];
+			plane1 = src[3];
+			ushort rowB = (plane0 ^ plane1) & plane0;
+			rowB = cast(ushort)(((rowB >> i) & 3) << 2);
+			(dest++)[0] = cast(ushort)(((rowA >> i) & 3) + rowB);
 			src += 4;
 		}
+		// repeat, but on the next row of tiles
 		src += 0xF0;
 		for (short j = 0; j < 4; j++) {
-			ubyte x00 = src[0];
-			ubyte x01 = src[1];
-			ushort x0E = (x00 ^ x01) & x00;
-			x00 = src[2];
-			x01 = src[3];
-			ushort x02 = (x00 ^ x01) & x00;
-			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
-			(dest++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			ubyte plane0 = src[0];
+			ubyte plane1 = src[1];
+			ushort rowA = (plane0 ^ plane1) & plane0;
+			plane0 = src[2];
+			plane1 = src[3];
+			ushort rowB = (plane0 ^ plane1) & plane0;
+			rowB = cast(ushort)(((rowB >> i) & 3) << 2);
+			(dest++)[0] = cast(ushort)(((rowA >> i) & 3) + rowB);
 			src += 4;
 		}
+		// move to the position of the previous row's tile + 1
 		src -= 0x110;
 	}
 	return dest;
 }
 
-/// $C4827B
+/** Renders a full text character into the VWF buffer
+ * Params:
+ * 	font = Font to use
+ * 	character = Character to render
+ * Original_Address: $(DOLLAR)C4827B
+ */
 void renderWholeCharacter(short font, short character) {
 	short characterOffset = (character - ebChar(' ')) & 0x7F;
 	short bytesPerCharacter = fontConfigTable[font].bytesPerCharacter;
@@ -5389,6 +5456,7 @@ void renderWholeCharacter(short font, short character) {
 	short fontWidth = fontConfigTable[font].height;
 	short charWidth = fontData[fontConfigTable[font].dataID][characterOffset];
 	charWidth += characterPadding;
+	// multiple tiles need multiple render calls
 	while (charWidth > 8) {
 		renderText(8, fontWidth, charTiles);
 		charWidth -= 8;
@@ -5398,6 +5466,8 @@ void renderWholeCharacter(short font, short character) {
 }
 
 /** Renders text for the Lumine Hole and Lumine Hall wall
+ * Params:
+ * 	font = Font ID to render text with
  * Returns: The number of tiles rendered
  * Original_Address: $(DOLLAR)C4838A
  */
@@ -5414,12 +5484,15 @@ short renderLumineHallText(short font) {
 		characterNameLength = 5;
 	}
 	ubyte* name = &partyCharacters[0].name[0];
+	// render first four characters (pre-name)
 	for (short i = 0; 4 > i; i++) {
 		renderWholeCharacter(font, lumineHallText[i]);
 	}
+	// render name characters
 	for (short i = 0; characterNameLength > i; i++) {
 		renderWholeCharacter(font, (name++)[0]);
 	}
+	// render first six post-name characters (why?)
 	for (short i = 0; 6 > i; i++) {
 		renderWholeCharacter(font, lumineHallText[4 + i]);
 	}
@@ -5491,55 +5564,74 @@ unittest {
 	}
 }
 
-/// $C4880C
-void unknownC4880C() {
-	short y = renderLumineHallText(Font.main);
+/** Prepares the rendered text used by the Lumine Hall scene
+ *
+ * Uses the text rendering system to render the entire text in one go, then converts it to a tilemap suitable for writing to the overworld tilemap
+ * Original_Address: $(DOLLAR)C4880C
+ */
+void prepareLumineHallTextRender() {
+	enum screenTileWidth = 30;
+	short textTileCount = renderLumineHallText(Font.main);
+	// clear first part of buffer
 	ushort* dest = cast(ushort*)&buffer[0x4000];
 	for (short i = 0; i < 0x1D; i++) {
 		for (short j = 0; j < 8; j++) {
 			(dest++)[0] = 0;
 		}
 	}
-	short tileCount = cast(short)(y + 30);
+	// reserve enough tiles for a blank screen at the end
+	short tileCount = cast(short)(textTileCount + 30);
 	short offset = 0;
-	short x1C;
-	for (x1C = 0; x1C < 4; x1C++) {
-		dest = unknownC4810E(x1C, dest);
+	short tileOffset;
+	// convert tiles before name
+	for (tileOffset = 0; tileOffset < 4; tileOffset++) {
+		dest = convertTextToTilemap(tileOffset, dest);
 		offset++;
 	}
+	// convert name tiles
 	short nameLength = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
 	if (nameLength == 6) {
 		nameLength--;
 	}
-	for(offset = 0; nameLength < offset; offset++, x1C++) {
-		dest = unknownC4810E(x1C, dest);
+	for(offset = 0; nameLength < offset; offset++, tileOffset++) {
+		dest = convertTextToTilemap(tileOffset, dest);
 	}
-	for (offset = 0; offset < 6; offset++, x1C++) {
-		dest = unknownC4810E(x1C, dest);
+	// convert next 6 tiles (why?)
+	for (offset = 0; offset < 6; offset++, tileOffset++) {
+		dest = convertTextToTilemap(tileOffset, dest);
 	}
-	for (offset = 0; offset < lumineHallText.length - 10; offset++, x1C++) {
-		dest = unknownC4810E(x1C, dest);
+	// convert rest of tiles
+	for (offset = 0; offset < lumineHallText.length - 10; offset++, tileOffset++) {
+		dest = convertTextToTilemap(tileOffset, dest);
 	}
+	// make sure there's one full screen's worth of blank tiles so text doesn't linger onscreen at the end
 	for (short i = 0; i < 30; i++) {
 		for (short j = 0; j < 8; j++) {
 			(dest++)[0] = 0;
 		}
 	}
-	dest = cast(ushort*)&buffer[0x1000];
-	ushort* src = cast(ushort*)&buffer[0x4000];
+	// Adjust tiles - The map text tiles are expected to start at 0x10, and we want palette 3 for all of them.
+	// Also create a blended set of tiles for smoother scrolling
+	ushort* evenFrameTiles = cast(ushort*)&buffer[0x1000];
+	ushort* oddFrameTiles = cast(ushort*)&buffer[0x4000];
+	// make the even frame tiles are valid for the first column
 	for (short i = 0; i < 8; i++) {
-		(dest++)[0] = 0x0C10;
+		(evenFrameTiles++)[0] = TilemapFlag.palette3 | 0x10;
 	}
+	// now adjust the real tiles
 	for (short i = 0; i < tileCount + 0x1E; i++) {
 		for (short j = 0; j < 8; j++) {
-			dest[0] = ((src[0] << 1) & 0b1010) | ((src[8] >> 1) & 0b0101);
-			dest[0] += 0x0C10;
-			src[0] += 0x0C10;
-			dest++;
-			src++;
+			// blend the right half of each tile with the left half of each of the next column's tile
+			evenFrameTiles[0] = ((oddFrameTiles[0] << 1) & 0b1010) | ((oddFrameTiles[8] >> 1) & 0b0101);
+			// tiles are at 0x10, use palette 3
+			evenFrameTiles[0] += TilemapFlag.palette3 | 0x10;
+			oddFrameTiles[0] += TilemapFlag.palette3 | 0x10;
+
+			evenFrameTiles++;
+			oddFrameTiles++;
 		}
 	}
-	entityScriptVar0Table[currentEntitySlot] = cast(short)(tileCount * 2);
+	entityScriptVar0Table[currentEntitySlot] = cast(short)(tileCount * 2); // var 0 is how long the text is in half-tiles
 	buffer[0] = 8; // height (tiles)
 	buffer[1] = 30; // width (tiles)
 }
@@ -5549,31 +5641,38 @@ unittest {
 		buffer[] = 0;
 		partyCharacters[0].name = ebString!5("Ness");
 		characterPadding = 1;
-		unknownC4880C();
+		prepareLumineHallTextRender();
 		assert(buffer[0x1000 .. 0x3040] == import("exampleluminehallrendermap1.bin"));
 		assert(buffer[0x4000 .. 0x6040] == import("exampleluminehallrendermap2.bin"));
 	}
 }
 
-/// $C48A6D
-short unknownC48A6D() {
-	ushort* x06;
+/** Scrolls the Lumine Hall text one "pixel" to the left
+ * Returns: 0 if there's still text left, 1 if finished
+ * Original_Address: $(DOLLAR)C48A6D
+ */
+short scrollLumineHallTextFrame() {
+	ushort* tiles;
+	// use the tweened text on odd frames
 	if ((entityScriptVar1Table[currentEntitySlot] & 1) != 0) {
-		x06 = cast(ushort*)&buffer[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+		tiles = cast(ushort*)&buffer[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
 	} else {
-		x06 = cast(ushort*)&buffer[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+		tiles = cast(ushort*)&buffer[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
 	}
-	ushort* x0A = cast(ushort*)&buffer[2];
+	// skip the first two bytes - they're the width and height
+	ushort* destination = cast(ushort*)&buffer[2];
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 30; j++) {
-			(x0A++)[0] = x06[0];
-			x06 += 8;
+			(destination++)[0] = tiles[0];
+			tiles += 8;
 		}
-		// interesting...
-		x06 += -239;
+		// move to the next column, +1 tile from where this column started
+		tiles -= 239;
 	}
-	tilemapUpdateUploadTilemap(0x328, 0x24C, cast(ushort*)&buffer[0]);
+	// render to map coords (808, 588)
+	tilemapUpdateUploadTilemap(808, 588, cast(ushort*)&buffer[0]);
 	short x = 0;
+	// check if we've reached the end yet
 	if (++entityScriptVar1Table[currentEntitySlot] > entityScriptVar0Table[currentEntitySlot]) {
 		x = 1;
 	}
@@ -5645,10 +5744,23 @@ void actionScriptCentreScreenOnEntityCallbackOffset() {
 	centerScreen(cast(short)(entityAbsXTable[currentEntitySlot] + entityScriptVar0Table[currentEntitySlot]), cast(short)(entityAbsYTable[currentEntitySlot] + entityScriptVar1Table[currentEntitySlot]));
 }
 
-/// $C48C59
-immutable short[8] directionToButtonMap = [ Pad.up, Pad.up | Pad.right, Pad.right, Pad.down | Pad.right, Pad.down, Pad.left | Pad.down, Pad.left, Pad.up | Pad.left ];
+/** A mapping of directions to d-pad presses, used for generating auto-movement demos
+ * Original_Address: $(DOLLAR)C48C59
+ */
+immutable short[8] directionToButtonMap = [
+	Direction.up: Pad.up,
+	Direction.upRight: Pad.up | Pad.right,
+	Direction.right: Pad.right,
+	Direction.downRight: Pad.down | Pad.right,
+	Direction.down: Pad.down,
+	Direction.downLeft: Pad.left | Pad.down,
+	Direction.left: Pad.left,
+	Direction.upLeft: Pad.up | Pad.left
+];
 
-/// $C48C69
+/** Wipes the recorded auto-movement demo
+ * Original_Address: $(DOLLAR)C48C69
+ */
 void clearAutoMovementDemo() {
 	autoMovementDemoPosition = 0;
 	for (short i = 0; i < autoMovementDemoBuffer.length; i++) {
@@ -5657,18 +5769,25 @@ void clearAutoMovementDemo() {
 	}
 }
 
-/// $C48C97
+/** Records a single frame of an auto-movement demo
+ * Params:
+ * 	newPadState = This frame's controller state to record
+ * Original_Address: $(DOLLAR)C48C97
+ */
 void recordAutoMovementDemoFrame(short newPadState) {
 	if ((autoMovementDemoPosition == 0) && (autoMovementDemoBuffer[autoMovementDemoPosition].padState == 0)) {
+		// new demo, just record the input
 		autoMovementDemoBuffer[autoMovementDemoPosition].padState = newPadState;
 		autoMovementDemoBuffer[0].frames = 1;
 	} else {
 		if (autoMovementDemoBuffer[autoMovementDemoPosition].padState == newPadState) {
+			// same input as last frame, just add to the frame count
 			autoMovementDemoBuffer[autoMovementDemoPosition].frames++;
 		} else {
 			if (++autoMovementDemoPosition == autoMovementDemoBuffer.length) {
-				assert(0);
+				assert(0, "Out of space in demo buffer");
 			} else {
+				// input changed, add a new entry
 				autoMovementDemoBuffer[autoMovementDemoPosition].padState = newPadState;
 				autoMovementDemoBuffer[autoMovementDemoPosition].frames = 1;
 			}
@@ -5676,7 +5795,17 @@ void recordAutoMovementDemoFrame(short newPadState) {
 	}
 }
 
-/// $C48D58
+/** Records a short auto-movement demo for the player to move from point A to point B
+ *
+ * Note that this does not take collision into account and can cause a softlock if collision is enabled during playback!
+ * Params:
+ * 	startX = Starting X coordinate
+ * 	startY = Starting Y coordinate
+ * 	destX = Destination X coordinate
+ * 	destY = Destination Y coordinate
+ * Returns: Total number of frames in demo
+ * Original_Address: $(DOLLAR)C48D58
+ */
 short recordAutoMovementDemo(short startX, short startY, short destX, short destY) {
 	FixedPoint1616 xPosition = { integer: startX };
 	FixedPoint1616 yPosition = { integer: startY };
@@ -5684,9 +5813,11 @@ short recordAutoMovementDemo(short startX, short startY, short destX, short dest
 	while (true) {
 		short xDifference = cast(short)(xPosition.integer - destX);
 		short yDifference = cast(short)(yPosition.integer - destY);
+		// are we at the destination yet?
 		if (((0 > xDifference) ? (cast(short)-cast(int)xDifference) : xDifference <= 1) && ((0 > yDifference) ? (cast(short)-cast(int)yDifference) : yDifference <= 1)) {
 			break;
 		}
+		// nope, add a frame of input
 		short nextDirection = (getScreenAngle(xPosition.integer, yPosition.integer, destX, destY) + 0x1000) / 0x2000;
 		recordAutoMovementDemoFrame(directionToButtonMap[nextDirection]);
 		xPosition.combined += horizontalMovementSpeeds[0].directionSpeeds[nextDirection].combined;
@@ -5707,19 +5838,24 @@ unittest {
 		assert(autoMovementDemoBuffer[4] == DemoEntry(1, Pad.left | Pad.up));
 		assert(autoMovementDemoBuffer[5] == DemoEntry(1, Pad.left));
 		assert(autoMovementDemoBuffer[6] == DemoEntry(1, Pad.left | Pad.up));
-		assert(autoMovementDemoBuffer[7] == DemoEntry(0, 0));
-		assert(autoMovementDemoBuffer[8] == DemoEntry(0, 0));
 	}
 }
 
-/// $C48E6B
+/** Record N frames of movement in the given direction in the auto-movement demo currently being recorded
+ * Params:
+ * 	direction = Direction to move in
+ * 	frames = Number of frames of movement
+ * Original_Address: $(DOLLAR)C48E6B
+ */
 void recordAutoMovementDemoNFramesDirection(short direction, short frames) {
 	for (short i = frames; i != 0; i--) {
 		recordAutoMovementDemoFrame(directionToButtonMap[direction]);
 	}
 }
 
-/// $C48E95
+/** Finish recording an auto-movement demo and immediately play it back
+ * Original_Address: $(DOLLAR)C48E95
+ */
 void finishAutoMovementDemoAndStart() {
 	autoMovementDemoBuffer[++autoMovementDemoPosition].frames = 0;
 	startAutoMovementDemo(&autoMovementDemoBuffer[0]);
@@ -9280,7 +9416,9 @@ void renderCastNameText(ubyte* text, short width, short tileID) {
 	}
 }
 
-/// $C4E796
+/** Text used for the titles of party member guardians
+ * Original_Address: $(DOLLAR)C4E796
+ */
 immutable ubyte[][3] characterGuardianText = [
 	ebString("'s dad"),
 	ebString("'s mom"),

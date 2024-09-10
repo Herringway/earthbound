@@ -3979,15 +3979,21 @@ shared static this() {
 		SHORTJUMP(&actionScriptTerminate[0]),
 	);
 }
-/// $C31CFB
+/** ActionScript 353 - Lumine Hall cutscene director
+ *
+ * Var 0 is used for the text width in half-tiles.
+ * Var 1 is used for the current text position.
+ * Original_Address: $(DOLLAR)C31CFB
+ */
 immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScriptKoke;
 shared static this() {
 	actionScriptKoke = initializeScript(actionScriptKoke.length,
 		SET_ANIMATION(255),
-		C4880C(),
+		PREPARE_LUMINE_HALL_TEXT(),
 		SET_VAR(ActionScriptVars.v1, 0),
+		// loop
 		PAUSE(3),
-		C48A6D(),
+		SCROLL_LUMINE_HALL_TEXT(),
 		JUMP_IF_FALSE(&actionScriptKoke[7 + 1 * (const(void)*).sizeof]),
 		YIELD_TO_TEXT(),
 		SHORTJUMP(&actionScriptTerminate[0]),
@@ -9205,7 +9211,7 @@ shared static this() {
 		SET_VELOCITIES_ZERO(),
 		END_LAST_TASK(),
 		PAUSE(60),
-		C47A6B(),
+		INVERT_Y_POSITION_RELATIVE(),
 		START_TASK(&actionScriptElevaterDownTask[0]),
 		PAUSE(150),
 		LOOP(64),
@@ -26309,11 +26315,11 @@ alias RERENDER_ROW = CALL!actionScriptRerenderRow;
 alias RELOAD_MAP = CALL!actionScriptReloadMapCurrentLocation;
 alias DO_PALETTES_FADE_STEP = CALL!actionScriptDoAllPalettesFadeStep;
 alias C474A8 = CALL!unknownC474A8;
-alias C47A6B = CALL!unknownC47A6B;
+alias INVERT_Y_POSITION_RELATIVE = CALL!actionScriptInvertYPositionRelative;
 alias LOAD_FULLSCREEN_ANIMATION = CALL!loadActionScriptAnimation;
 alias UPDATE_FULLSCREEN_ANIMATION = CALL!updateActionScriptAnimationFrame;
-alias C4880C = CALL!unknownC4880C;
-alias C48A6D = CALL!unknownC48A6D;
+alias PREPARE_LUMINE_HALL_TEXT = CALL!prepareLumineHallTextRender;
+alias SCROLL_LUMINE_HALL_TEXT = CALL!scrollLumineHallTextFrame;
 alias START_PSI_TELEPORT_TUTORIAL = CALL!actionScriptStartPSITeleportTutorial;
 alias MAKE_PARTY_LOOK_AT_SELF = CALL!makePartyLookAtActiveEntity;
 alias FINISH_PALETTE_FADE = CALL!finishPaletteFade;
