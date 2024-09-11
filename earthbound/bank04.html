@@ -221,10 +221,37 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="actionScriptClearBG3Tilemap" class="public" href="../earthbound/bank04/actionScriptClearBG3Tilemap.html">actionScriptClearBG3Tilemap</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Clears the BG3 tilemap. Intended to be used after BG3 effects are done, so text can be displayed without corruption
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="actionScriptDoAllPalettesFadeStep" class="public" href="../earthbound/bank04/actionScriptDoAllPalettesFadeStep.html">actionScriptDoAllPalettesFadeStep</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>ActionScript helper: Performs palette fades for all palettes
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="actionScriptEnableSpotlight1" class="public" href="../earthbound/bank04/actionScriptEnableSpotlight1.html">actionScriptEnableSpotlight1</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>ActionScript tick callback for entities with spotlight 1 focused on them
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="actionScriptEnableSpotlight2" class="public" href="../earthbound/bank04/actionScriptEnableSpotlight2.html">actionScriptEnableSpotlight2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>ActionScript tick callback for entities with spotlight 2 focused on them
 </td>
 					</tr>
 					<tr>
@@ -314,6 +341,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4CED8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="actionScriptOpenPrayerWindow" class="public" href="../earthbound/bank04/actionScriptOpenPrayerWindow.html">actionScriptOpenPrayerWindow</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Opens the oval window used for prayer scenes
 </td>
 					</tr>
 					<tr>
@@ -592,7 +628,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="changeMapPalette" class="public" href="../earthbound/bank04/changeMapPalette.html">changeMapPalette</a><span class="tableEntryAnnotation">(tilesetNum, paletteNum, fadeDuration)</span>
 							</code>
 						</td>
-						<td>$C4939C
+						<td>Change from one map palette set to another, with an optional fading animation
 </td>
 					</tr>
 					<tr>
@@ -1439,7 +1475,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="finishPaletteFade" class="public" href="../earthbound/bank04/finishPaletteFade.html">finishPaletteFade</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C49740
+						<td>Finishes a palette fade by committing the target palette to CGRAM
 </td>
 					</tr>
 					<tr>
@@ -1580,10 +1616,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="getColourFadeSlope" class="public" href="../earthbound/bank04/getColourFadeSlope.html">getColourFadeSlope</a><span class="tableEntryAnnotation">(colour1, colour2, duration)</span>
+								<a id="getColourFadeSlope" class="public" href="../earthbound/bank04/getColourFadeSlope.html">getColourFadeSlope</a><span class="tableEntryAnnotation">(initial, target, duration)</span>
 							</code>
 						</td>
-						<td>$C491EE
+						<td>Calculates the linear slope of a colour channel to be used for colour fading
 </td>
 					</tr>
 					<tr>
@@ -1808,7 +1844,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="initializeMapPaletteFade" class="public" href="../earthbound/bank04/initializeMapPaletteFade.html">initializeMapPaletteFade</a><span class="tableEntryAnnotation">(duration)</span>
 							</code>
 						</td>
-						<td>$C49208
+						<td>Prepares the colour tables for a map palette fade
 </td>
 					</tr>
 					<tr>
@@ -1859,6 +1895,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="initializeSpotlightWindowHDMATable" class="public" href="../earthbound/bank04/initializeSpotlightWindowHDMATable.html">initializeSpotlightWindowHDMATable</a><span class="tableEntryAnnotation">(hdmaTable)</span>
+							</code>
+						</td>
+						<td>Sets up the HDMA table for spotlight windows
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="initializeUsedBG2TileMap" class="public" href="../earthbound/bank04/initializeUsedBG2TileMap.html">initializeUsedBG2TileMap</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1889,7 +1934,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="invertRenderedText" class="public" href="../earthbound/bank04/invertRenderedText.html">invertRenderedText</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4984B
+						<td>Inverts the colours of all rendered text
 </td>
 					</tr>
 					<tr>
@@ -1931,10 +1976,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="isValidItemTransformation" class="public" href="../earthbound/bank04/isValidItemTransformation.html">isValidItemTransformation</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="isValidItemTransformation" class="public" href="../earthbound/bank04/isValidItemTransformation.html">isValidItemTransformation</a><span class="tableEntryAnnotation">(index)</span>
 							</code>
 						</td>
-						<td>$C48ECE
+						<td>Tests if the given index corresponds to an active transforming item
 </td>
 					</tr>
 					<tr>
@@ -3060,7 +3105,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="stepMapPaletteFade" class="public" href="../earthbound/bank04/stepMapPaletteFade.html">stepMapPaletteFade</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C492D2
+						<td>Performs a single step of map palette fading and commits it to CGRAM
 </td>
 					</tr>
 					<tr>
@@ -3187,51 +3232,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47501" class="public" href="../earthbound/bank04/unknownC47501.html">unknownC47501</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C47501
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC476A5" class="public" href="../earthbound/bank04/unknownC476A5.html">unknownC476A5</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C476A5
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47705" class="public" href="../earthbound/bank04/unknownC47705.html">unknownC47705</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47705
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4981F" class="public" href="../earthbound/bank04/unknownC4981F.html">unknownC4981F</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4981F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC49841" class="public" href="../earthbound/bank04/unknownC49841.html">unknownC49841</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C49841
-</td>
 					</tr>
 					<tr>
 						<td>
@@ -4274,6 +4274,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="spotlightTaperRadii" class="public" href="../earthbound/bank04/spotlightTaperRadii.html">
+								<code>spotlightTaperRadii</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Precalculated radii for the rounded bottom part of the spotlight effect
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="statusEquipWindowText13" class="public" href="../earthbound/bank04/statusEquipWindowText13.html">
 								<code>statusEquipWindowText13</code>
 							</a>
@@ -4408,18 +4420,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C41FDF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC474F6" class="public" href="../earthbound/bank04/unknownC474F6.html">
-								<code>unknownC474F6</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C474F6
 </td>
 					</tr>
 					<tr>

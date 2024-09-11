@@ -154,7 +154,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function getColourFadeSlope</h1><p>$C491EE
+			<h1>Function getColourFadeSlope</h1><p>Calculates the linear slope of a colour channel to be used for colour fading
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -162,9 +162,9 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ushort</span> <span class="pln">getColourFadeSlope</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">colour1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">initial</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">colour2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">target</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">duration</span>
 			<br/>
@@ -173,7 +173,22 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="initial">initial</td><td> The starting value of the channel</td></tr>
+<tr><td id="target">target</td><td> The desired final value of the channel</td></tr>
+<tr><td id="duration">duration</td><td> Number of frames of fading that are expected to occur</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Linear slope
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C491EE
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
