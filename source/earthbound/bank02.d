@@ -171,8 +171,8 @@ void setWindowTitle(short arg1, short arg2, const(ubyte)* arg3) {
 
 /// $C2038B
 void unknownC2038B() {
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, 0x7F80, &blankTiles[0]);
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x7F80, &blankTiles[0]);
 }
 
 /// $C203C3
@@ -692,8 +692,8 @@ void updateHPPPMeterTiles() {
 	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction & 1) != 0) {
 		fillCharacterHPTileBuffer(frameCounter & 3, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction);
 		if (uploadHPPPMeterTiles == 0) {
-			copyToVRAMAlt(VRAMCopyMode.unknown00, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][0]);
-			copyToVRAMAlt(VRAMCopyMode.unknown00, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][3]);
+			copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][0]);
+			copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][3]);
 		}
 		ushort* y = &hpPPWindowBuffer[frameCounter & 3][0];
 		for (short i = 0; i != 3; i++) {
@@ -710,8 +710,8 @@ void updateHPPPMeterTiles() {
 	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction & 1) != 0) {
 		fillCharacterPPTileBuffer(frameCounter & 3, &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction);
 		if (uploadHPPPMeterTiles == 0) {
-			copyToVRAMAlt(VRAMCopyMode.unknown00, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][6]);
-			copyToVRAMAlt(VRAMCopyMode.unknown00, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][9]);
+			copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][6]);
+			copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][9]);
 		}
 		ushort* x12 = &hpPPWindowBuffer[frameCounter & 3][6];
 		for (short i = 0; i != 3; i++) {
@@ -7054,7 +7054,7 @@ void setBattleModeLayerConfig() {
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	setOAMSize(0x61);
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &buffer[0x8000]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x7C00, &buffer[0x8000]);
 }
 
 /// $C2C92D
@@ -7303,20 +7303,20 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	decomp(&animatedBackgroundTiles[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (currentBattleGroup == 0x1DE) {
 		setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x3000);
-		copyToVRAM(VRAMCopyMode.unknown00, 0x5000, 0x3000, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x5000, 0x3000, &buffer[0]);
 	} else {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0x1000, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2000, 0x1000, &buffer[0]);
 	}
 	*(cast(ushort*)&buffer[0]) = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x5800, &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x5800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0, &buffer[0]);
 	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (animatedBackgrounds[layer1].bitsPerPixel == 4) {
 		setBGMODE(BGMode.mode1 | BG3Priority);
 		for (short i = 0; i < 0x800; i += 2) {
 			buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 		}
-		copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x5C00, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[2];
 		memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
@@ -7334,12 +7334,12 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				currentLayerConfig = LayerConfig.ColourBackdropBG2AddAvg;
 				setLayerConfig(currentLayerConfig);
 				decomp(&animatedBackgroundTiles[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
-				copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0, &buffer[0]);
+				copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2000, 0, &buffer[0]);
 				decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 				for (short i = 0; i < 0x800; i += 2) {
 					buffer[i + 1] = (buffer[i + 1] & 0xDF) | 16;
 				}
-				copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x5800, &buffer[0]);
+				copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x5800, &buffer[0]);
 				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
 				loadedBGDataLayer2.palettePointer = &palettes[4];
 				loadedBGDataLayer2.targetLayer = 1;
@@ -7364,7 +7364,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		for (short i = 0; i < 0x800; i++) {
 			buffer[i + 1] = buffer[i + 1] & 0xDF;
 		}
-		copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x5C00, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[4];
 		memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer1].palette][0], 32);
@@ -7376,12 +7376,12 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			setLayerConfig(currentLayerConfig);
 
 			decomp(&animatedBackgroundTiles[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
-			copyToVRAM(VRAMCopyMode.unknown00, 0x1800, 0x3000, &buffer[0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x1800, 0x3000, &buffer[0]);
 			decomp(&animatedBackgroundTilemaps[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 			for (short i = 0; i < 0x800; i += 2) {
 				buffer[i + 1] = (buffer[i + 1] & 0xDF);
 			}
-			copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0xC00, &buffer[0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0xC00, &buffer[0]);
 			loadBackgroundAnimationInfo(&loadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
 			loadedBGDataLayer2.palettePointer = &palettes[6];
 			memcpy(&loadedBGDataLayer2.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[layer2].palette][0], 32);
@@ -7633,7 +7633,7 @@ void unknownC2E0E7() {
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
 		decomp(&psiAnimationTilesets[psiAnimationConfig[arg1].graphics][0], &buffer[0x8000]);
-		copyToVRAMChunked(VRAMCopyMode.unknown00, 0x1000, 0, &buffer[0x8000]);
+		copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x1000, 0, &buffer[0x8000]);
 		psiAnimationPalette = &palettes[3][0];
 	} else {
 		decomp(&psiAnimationTilesets[psiAnimationConfig[arg1].graphics][0], &buffer[0]);
@@ -7657,7 +7657,7 @@ void showPSIAnimation(short arg1) {
 			(x0A++)[0] = 0;
 			(x0A++)[0] = 0;
 		}
-		copyToVRAMChunked(VRAMCopyMode.unknown00, 0x2000, 0, &buffer[0x8000]);
+		copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x2000, 0, &buffer[0x8000]);
 		psiAnimationPalette = &palettes[4][0];
 	}
 	waitUntilNextFrame();
@@ -7750,19 +7750,20 @@ void showPSIAnimation(short arg1) {
 	}
 }
 
-immutable ubyte[3] unknownC2E6B3 = [ 0x30, 0, 0 ];
+immutable ubyte[1] unknownC2E6B3 = [ (TilemapFlag.priority | TilemapFlag.palette4) >> 8 ];
+immutable ushort[1] unknownC2E6B4 = [ 0 ];
 
 /// $C2E6B6
 void unknownC2E6B6() {
 	if ((psiAnimationTimeUntilNextFrame != 0) && (--psiAnimationTimeUntilNextFrame == 0)) {
 		if (psiAnimationTotalFrames != 0) {
 			psiAnimationTimeUntilNextFrame = psiAnimationFrameHoldFrames;
-			copyToVRAM(VRAMCopyMode.unknown02, 0x400, 0x5800, psiAnimationFrameData);
-			copyToVRAM(VRAMCopyMode.unknown05, 0x400, 0x5800, &unknownC2E6B3[0]);
+			copyToVRAM(VRAMCopyMode.copyToVRAMStripeEven, 0x400, 0x5800, psiAnimationFrameData);
+			copyToVRAM(VRAMCopyMode.repeatByteToVRAMOdd, 0x400, 0x5800, &unknownC2E6B3[0]);
 			psiAnimationFrameData += 0x400;
 			psiAnimationTotalFrames--;
 		} else {
-			copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x5800, &unknownC2E6B3[1]);
+			copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x5800, cast(const(ubyte)*)&unknownC2E6B4[0]);
 			restoreAnimatedBackgroundColour();
 		}
 		if ((psiAnimationPaletteTimeUntilNextFrame != 0) && (--psiAnimationPaletteTimeUntilNextFrame == 0)) {
@@ -8082,7 +8083,7 @@ void uploadBattleSprites() {
 		loadBattleSprite(enemyConfigurationTable[battleEnemies.enemyID].battleSprite);
 		battleEnemies++;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, (currentBattleSpritemapsAllocated > 16) ? 0x3000 : 0x2000, 0x2000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, (currentBattleSpritemapsAllocated > 16) ? 0x3000 : 0x2000, 0x2000, &buffer[0]);
 }
 
 /** Gets the width of a battle sprite

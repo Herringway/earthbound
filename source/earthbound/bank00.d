@@ -48,7 +48,7 @@ void overworldSetupVRAM() {
 void overworldInitialize() {
 	overworldSetupVRAM();
 	buffer[0] = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0, 0, &buffer[0]);
 	loadedMapPalette = -1;
 	loadedMapTileCombo = -1;
 }
@@ -84,7 +84,7 @@ void animateTileset() {
 			overworldTilesetAnim[i].frameCounter = 0;
 			overworldTilesetAnim[i].sourceOffset2 = overworldTilesetAnim[i].sourceOffset;
 		}
-		copyToVRAM(VRAMCopyMode.unknown00, overworldTilesetAnim[i].copySize, overworldTilesetAnim[i].destinationAddress, &animatedTilesetBuffer[overworldTilesetAnim[i].sourceOffset2]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, overworldTilesetAnim[i].copySize, overworldTilesetAnim[i].destinationAddress, &animatedTilesetBuffer[overworldTilesetAnim[i].sourceOffset2]);
 		overworldTilesetAnim[i].sourceOffset2 += overworldTilesetAnim[i].copySize;
 		overworldTilesetAnim[i].frameCounter++;
 	}
@@ -320,9 +320,9 @@ void loadMapAtSector(short x, short y) {
 		decomp(&mapTiles[tilesetGraphicsMapping[tileCombo]][0], &buffer[0]);
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
-			copyToVRAMChunked(VRAMCopyMode.unknown00, 0x7000, 0, &buffer[0]);
+			copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x7000, 0, &buffer[0]);
 		} else {
-			copyToVRAMChunked(VRAMCopyMode.unknown00, 0x4000, 0, &buffer[0]);
+			copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x4000, 0, &buffer[0]);
 		}
 	}
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
@@ -545,11 +545,11 @@ void loadMapRowVRAM(short x, short y) {
 		x16 = (x16 + 1) & 0x3F;
 		x++;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, 0x3800 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, 0x3C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0x20]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x3800 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x3C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0x20]);
 	if (photographMapLoadingMode == 0) {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x40, 0x5800 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0]);
-		copyToVRAM(VRAMCopyMode.unknown00, 0x40, 0x5C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0x20]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x5800 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x5C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0x20]);
 	}
 }
 
@@ -580,11 +580,11 @@ void loadMapColumnVRAM(short x, short y) {
 		y++;
 	}
 	if ((x & 0x3F) <= 0x1F) {
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, 0x3800 + (x & 0x3F), cast(ubyte*)x1E);
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, 0x5800 + (x & 0x3F), cast(ubyte*)x1C);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, 0x3800 + (x & 0x3F), cast(ubyte*)x1E);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, 0x5800 + (x & 0x3F), cast(ubyte*)x1C);
 	} else {
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, 0x3C00 + (x & 0x1F), cast(ubyte*)x1E);
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, 0x5C00 + (x & 0x1F), cast(ubyte*)x1C);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, 0x3C00 + (x & 0x1F), cast(ubyte*)x1E);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, 0x5C00 + (x & 0x1F), cast(ubyte*)x1C);
 	}
 }
 
@@ -592,10 +592,10 @@ void loadMapColumnVRAM(short x, short y) {
 void unknownC01181(short arg1, short arg2) {
 	ubyte* x12 = cast(ubyte*)sbrk(0x40);
 	memset(x12, 0, 0x40);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x3800), x12);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x3C00), x12);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x5800), x12);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x5C00), x12);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x3800), x12);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x3C00), x12);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x5800), x12);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, cast(ushort)(((arg2 & 0x1F) * 32) + 0x5C00), x12);
 }
 
 /// $C0122A
@@ -604,11 +604,11 @@ void unknownC0122A(short arg1, short arg2) {
 	memset(x12, 0, 0x40);
 	arg1 &= 0x3F;
 	if (arg1 <= 0x1F) {
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, cast(ushort)(arg1 + 0x3800), x12);
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, cast(ushort)(arg1 + 0x5800), x12);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, cast(ushort)(arg1 + 0x3800), x12);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, cast(ushort)(arg1 + 0x5800), x12);
 	} else {
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, cast(ushort)((arg1 & 0x1F) + 0x3C00), x12);
-		copyToVRAM(VRAMCopyMode.unknown09, 0x40, cast(ushort)((arg1 & 0x1F) + 0x5C00), x12);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, cast(ushort)((arg1 & 0x1F) + 0x3C00), x12);
+		copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, cast(ushort)((arg1 & 0x1F) + 0x5C00), x12);
 	}
 }
 
@@ -957,8 +957,8 @@ short reserveOverworldSpriteVRAM(short tileWidth, short tileHeight, short needle
 			if (firstTile + spriteNumTiles - i < tileCount) {
 				tileCount = cast(short)(firstTile + spriteNumTiles - i);
 			}
-			copyToVRAM(VRAMCopyMode.unknown01, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4000), &blankTiles[0]);
-			copyToVRAM(VRAMCopyMode.unknown01, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4100), &blankTiles[0]);
+			copyToVRAM(VRAMCopyMode.repeatWordToVRAM, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4000), &blankTiles[0]);
+			copyToVRAM(VRAMCopyMode.repeatWordToVRAM, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4100), &blankTiles[0]);
 		}
 	}
 	return firstTile;
@@ -5596,16 +5596,16 @@ immutable PaletteDMAParameters[4] paletteDMAParameters = [
 
 /// $C08FB0
 immutable DMATableEntry[18] dmaTable = [
-	VRAMCopyMode.unknown00 / 3: DMATableEntry(0b0_0_0_00_001, 0x18, 0b1_000_00_00), /// WRAM -> VRAM, incrementing WRAM word, VRAM 1 word increment (high)
-	VRAMCopyMode.unknown01 / 3: DMATableEntry(0b0_0_0_01_001, 0x18, 0b1_000_00_00), /// WRAM -> VRAM, repeat WRAM word, VRAM 1 word increment (high)
-	VRAMCopyMode.unknown02 / 3: DMATableEntry(0b0_0_0_00_000, 0x18, 0b0_000_00_00), /// WRAM -> VRAM, incrementing WRAM byte, VRAM 1 word increment (low)
-	VRAMCopyMode.unknown03 / 3: DMATableEntry(0b0_0_0_01_000, 0x18, 0b0_000_00_00), /// WRAM -> VRAM, repeat WRAM byte, VRAM 1 word increment (low)
-	VRAMCopyMode.unknown04 / 3: DMATableEntry(0b0_0_0_00_000, 0x19, 0b1_000_00_00), /// WRAM -> VRAM, incrementing WRAM byte, VRAM 1 word increment (high)
-	VRAMCopyMode.unknown05 / 3: DMATableEntry(0b0_0_0_01_000, 0x19, 0b1_000_00_00), /// WRAM -> VRAM, repeat WRAM byte, VRAM 1 word increment (high)
-	VRAMCopyMode.unknown06 / 3: DMATableEntry(0b1_0_0_00_001, 0x39, 0b1_000_00_00), /// VRAM -> WRAM, incrementing WRAM word, VRAM 1 word increment (high)
+	VRAMCopyMode.simpleCopyToVRAM / 3: DMATableEntry(0b0_0_0_00_001, 0x18, 0b1_000_00_00), /// WRAM -> VRAM, incrementing WRAM word, VRAM 1 word increment (high)
+	VRAMCopyMode.repeatWordToVRAM / 3: DMATableEntry(0b0_0_0_01_001, 0x18, 0b1_000_00_00), /// WRAM -> VRAM, repeat WRAM word, VRAM 1 word increment (high)
+	VRAMCopyMode.copyToVRAMStripeEven / 3: DMATableEntry(0b0_0_0_00_000, 0x18, 0b0_000_00_00), /// WRAM -> VRAM, incrementing WRAM byte, VRAM 1 word increment (low)
+	VRAMCopyMode.repeatByteToVRAMEven / 3: DMATableEntry(0b0_0_0_01_000, 0x18, 0b0_000_00_00), /// WRAM -> VRAM, repeat WRAM byte, VRAM 1 word increment (low)
+	VRAMCopyMode.copyToVRAMStripeOdd / 3: DMATableEntry(0b0_0_0_00_000, 0x19, 0b1_000_00_00), /// WRAM -> VRAM, incrementing WRAM byte, VRAM 1 word increment (high)
+	VRAMCopyMode.repeatByteToVRAMOdd / 3: DMATableEntry(0b0_0_0_01_000, 0x19, 0b1_000_00_00), /// WRAM -> VRAM, repeat WRAM byte, VRAM 1 word increment (high)
+	VRAMCopyMode.simpleCopyFromVRAM / 3: DMATableEntry(0b1_0_0_00_001, 0x39, 0b1_000_00_00), /// VRAM -> WRAM, incrementing WRAM word, VRAM 1 word increment (high)
 	VRAMCopyMode.unknown07 / 3: DMATableEntry(0b1_0_0_00_000, 0x39, 0b0_000_00_00), /// VRAM -> WRAM, incrementing WRAM byte, VRAM 1 word increment (low)
 	VRAMCopyMode.unknown08 / 3: DMATableEntry(0b1_0_0_00_000, 0x3A, 0b1_000_00_00), /// VRAM -> WRAM, incrementing WRAM byte, VRAM 1 word increment (high)
-	VRAMCopyMode.unknown09 / 3: DMATableEntry(0b0_0_0_00_001, 0x18, 0b1_000_00_01), /// WRAM -> VRAM, incrementing WRAM word, VRAM 32 word increment (high)
+	VRAMCopyMode.copyTileColumnVRAM / 3: DMATableEntry(0b0_0_0_00_001, 0x18, 0b1_000_00_01), /// WRAM -> VRAM, incrementing WRAM word, VRAM 32 word increment (high)
 	VRAMCopyMode.unknown10 / 3: DMATableEntry(0b0_0_0_01_001, 0x18, 0b1_000_00_01), /// WRAM -> VRAM, repeat WRAM word, VRAM 32 word increment (high)
 	VRAMCopyMode.unknown11 / 3: DMATableEntry(0b0_0_0_00_000, 0x18, 0b0_000_00_01), /// WRAM -> VRAM, incrementing WRAM byte, VRAM 32 word increment (low)
 	VRAMCopyMode.unknown12 / 3: DMATableEntry(0b0_0_0_01_000, 0x18, 0b0_000_00_01), /// WRAM -> VRAM, repeat WRAM byte, VRAM 32 word increment (low)
@@ -7659,7 +7659,7 @@ void updateEntitySpriteOffset(short arg1) {
 		spriteDefinition += 1;
 	}
 	if (((spriteDefinition.flags & OverworldSpriteFlags.unknown1) == 0) && (entitySurfaceFlags[arg1 / 2] & SurfaceFlags.shallowWater) != 0) {
-		dmaCopyMode = VRAMCopyMode.unknown01;
+		dmaCopyMode = VRAMCopyMode.repeatWordToVRAM;
 		dmaCopyRAMSource = &blankTiles;
 		uploadSpriteTileRow();
 		if (--actionScriptVar00 == 0) {
@@ -7677,7 +7677,7 @@ void updateEntitySpriteOffset(short arg1) {
 	//dmaCopyRAMSource = cast(void*)((*spriteDefinition) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
 	dmaCopyRAMSource = sprites[spriteDefinition.id].ptr;
-	dmaCopyMode = VRAMCopyMode.unknown00;
+	dmaCopyMode = VRAMCopyMode.simpleCopyToVRAM;
 	while (true) {
 		uploadSpriteTileRow();
 		if (--actionScriptVar00 == 0) {
@@ -7893,7 +7893,7 @@ void updateEntitySpriteFrameCurrent() {
 	dmaCopyVRAMDestination = entityVramAddresses[spriteUpdateEntityOffset / 2];
 	const(OverworldSpriteGraphics)* x02 = (entityGraphicsPointers[spriteUpdateEntityOffset / 2] + spriteDirectionMappings8Direction[entityDirections[spriteUpdateEntityOffset / 2]] * 2 + entityAnimationFrames[spriteUpdateEntityOffset / 2] / 2);
 	if (((x02.flags & OverworldSpriteFlags.unknown1) == 0) && ((entitySurfaceFlags[spriteUpdateEntityOffset / 2] & SurfaceFlags.shallowWater) != 0)) {
-		dmaCopyMode = VRAMCopyMode.unknown01;
+		dmaCopyMode = VRAMCopyMode.repeatWordToVRAM;
 		dmaCopyRAMSource = &blankTiles;
 		uploadSpriteTileRow();
 		if (--x00 == 0) {
@@ -7910,7 +7910,7 @@ void updateEntitySpriteFrameCurrent() {
 	//dmaCopyRAMSource = (*x02) & 0xFFFE;
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[spriteUpdateEntityOffset / 2];
 	dmaCopyRAMSource = sprites[x02.id].ptr;
-	dmaCopyMode = VRAMCopyMode.unknown00;
+	dmaCopyMode = VRAMCopyMode.simpleCopyToVRAM;
 	while (true) {
 		uploadSpriteTileRow();
 		if (--x00 == 0) {
@@ -8804,7 +8804,7 @@ void fileSelectInit() {
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	initializeTextSystem();
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, buffer.ptr);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x7C00, buffer.ptr);
 	decomp(&textWindowTiles[0], buffer.ptr);
 	memcpy(&buffer[0x2000], &buffer[0x1000], 0x2A00);
 	loadWindowGraphics(WindowGraphicsToLoad.all);
@@ -10861,11 +10861,11 @@ void teleportMainLoop() {
  */
 void loadTitleScreenGraphics() {
 	decomp(&titleScreenTiles[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x8000, 0, &buffer[0]);
 	decomp(&titleScreenTilemap[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x1000, 0x5800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x1000, 0x5800, &buffer[0]);
 	decomp(&titleScreenLetterTiles[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x4000, 0x6000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x4000, 0x6000, &buffer[0]);
 }
 
 /** Loads the palettes for one of the two special title screen effects
@@ -10980,8 +10980,8 @@ void logoScreenLoad(short arg1) {
 			break;
 		default: break;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x4000, &introBG2Buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x8000, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x4000, &introBG2Buffer[0]);
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -11032,9 +11032,9 @@ void gasStationLoad() {
 	bg1YPosition = 0;
 	bg1XPosition = 0;
 	decomp(&gasStationTiles[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0xC000, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xC000, 0, &buffer[0]);
 	decomp(&gasStationTilemap[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7800, &buffer[0]);
 	decomp(&gasStationPalette[0], &palettes[0][0]);
 	setupGiygasOverlay();
 	prepareLoadedPalettesForFade();

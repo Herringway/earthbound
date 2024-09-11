@@ -21477,7 +21477,7 @@ void renderDebugByte(short x, short y, ushort amount) {
 	}
 	buf[1] = cast(ushort)(digit + (TilemapFlag.priority | 0x30));
 
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
 
 /** Reinitialize debug sound menu state and redraw
@@ -21641,13 +21641,13 @@ void loadDebugTextGraphics() {
 		loadTextPalette();
 	} else {
 		version(bugfix) {
-			copyToVRAM(VRAMCopyMode.unknown00, 0x400, 0x6100, &debugMenuFont[0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x400, 0x6100, &debugMenuFont[0]);
 		} else {
-			copyToVRAM(VRAMCopyMode.unknown00, 0x1000, 0x6100, &debugMenuFont[0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x1000, 0x6100, &debugMenuFont[0]);
 		}
 		buffer[0] = 0;
 		buffer[1] = 0;
-		copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x7C00, &buffer[0]);
 		if (debugModeNumber != DebugMode.viewAttribute) {
 			palettes[0][2] = 0xFFFF;
 		} else {
@@ -21686,7 +21686,7 @@ void initDebugMenuScreen() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	setOAMSize(2);
 	buffer[0] = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0, 0, &buffer[0]);
 	memcpy(&palettes[0][0], &debugMenuPalettes[0][0], 0x200);
 	loadDebugTextGraphics();
 	entityAllocationMinSlot = 0;
@@ -21711,7 +21711,7 @@ void renderDebugMenuString(short x, short y, const(char)* str) {
 		(temp++)[0] = TilemapFlag.priority | (str++)[0];
 		byteCount += 2;
 	}
-	copyToVRAMAlt(VRAMCopyMode.unknown00, byteCount, cast(ushort)(0x7C00 + y * 32 + x), cast(ubyte*)buffer);
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, byteCount, cast(ushort)(0x7C00 + y * 32 + x), cast(ubyte*)buffer);
 }
 
 /** Renders the debug menu options to the screen
@@ -21799,32 +21799,32 @@ ushort* integerToBinaryDebugTiles(short value) {
  * Original_Address: $(DOLLAR)EFDCBC
  */
 void displayCheckPositionDebugOverlay() {
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 26)), cast(ubyte*)integerToHexDebugTiles((gameState.leaderX.integer >> 8) & 0xFF));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 26)), cast(ubyte*)integerToHexDebugTiles((gameState.leaderY.integer >> 8) & 0xFF));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 8));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 8));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 24)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer & 0xFF));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 24)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer & 0xFF));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 4, cast(ushort)(0x7C00 + tilemapCoords(2, 2)), cast(ubyte*)integerToHexDebugTiles(mapDataPerSectorMusic[gameState.leaderY.integer / 128][gameState.leaderX.integer >> 8]));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 16, cast(ushort)(0x7C00 + tilemapCoords(2, 3)), cast(ubyte*)integerToBinaryDebugTiles(currentSectorAttributes));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 16, cast(ushort)(0x7C00 + tilemapCoords(2, 4)), cast(ubyte*)integerToBinaryDebugTiles(gameState.troddenTileType));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 26)), cast(ubyte*)integerToHexDebugTiles((gameState.leaderX.integer >> 8) & 0xFF));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 26)), cast(ubyte*)integerToHexDebugTiles((gameState.leaderY.integer >> 8) & 0xFF));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 8));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 8));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 24)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer & 0xFF));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 24)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer & 0xFF));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 4, cast(ushort)(0x7C00 + tilemapCoords(2, 2)), cast(ubyte*)integerToHexDebugTiles(mapDataPerSectorMusic[gameState.leaderY.integer / 128][gameState.leaderX.integer >> 8]));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 16, cast(ushort)(0x7C00 + tilemapCoords(2, 3)), cast(ubyte*)integerToBinaryDebugTiles(currentSectorAttributes));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 16, cast(ushort)(0x7C00 + tilemapCoords(2, 4)), cast(ubyte*)integerToBinaryDebugTiles(gameState.troddenTileType));
 }
 
 /** Draws the 'View character' debug overlay
  * Original_Address: $(DOLLAR)EFDE1A
  */
 void displayViewCharacterDebugOverlay() {
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 0x40));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 0x40));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(21, 25)), cast(ubyte*)integerToDecimalDebugTiles(getEncounterGroupID(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(26, 25)), cast(ubyte*)integerToDecimalDebugTiles(enemySpawnTooManyEnemiesFailureCount));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(4, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 0x40));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(10, 25)), cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 0x40));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(21, 25)), cast(ubyte*)integerToDecimalDebugTiles(getEncounterGroupID(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(26, 25)), cast(ubyte*)integerToDecimalDebugTiles(enemySpawnTooManyEnemiesFailureCount));
 	if (battleSwirlCountdown == 0) {
 		return;
 	}
 	for (short i = 0; i != 5; i++) {
-		copyToVRAM(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(6, 26) + i * 5), cast(ubyte*)integerToDecimalDebugTiles(enemiesInBattleIDs[i]));
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(6, 26) + i * 5), cast(ubyte*)integerToDecimalDebugTiles(enemiesInBattleIDs[i]));
 	}
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 8, cast(ushort)(0x7C00 + tilemapCoords(1, 26)), cast(ubyte*)integerToDecimalDebugTiles(currentBattleGroup));
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)(0x7C00 + tilemapCoords(1, 26)), cast(ubyte*)integerToDecimalDebugTiles(currentBattleGroup));
 }
 
 /** Gets the attribute highlight tile to render for the given collision and coordinates
@@ -21897,7 +21897,7 @@ void renderAttributeRow(ushort x, ushort y) {
 			x++;
 		}
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, 0x40, cast(ushort)(0x7C00 + y * 32), cast(ubyte*)buffer);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, cast(ushort)(0x7C00 + y * 32), cast(ubyte*)buffer);
 }
 
 /** Renders a column of attribute overlay tiles, with the topmost tile at the specified coordinates
@@ -21921,7 +21921,7 @@ void renderAttributeColumn(short x, short y) {
 			y++;
 		}
 	}
-	copyToVRAM(VRAMCopyMode.unknown09, 0x40, 0x7C00 + (x & 0x1F), cast(ubyte*)buffer);
+	copyToVRAM(VRAMCopyMode.copyTileColumnVRAM, 0x40, 0x7C00 + (x & 0x1F), cast(ubyte*)buffer);
 }
 
 /** Renders a tile attribute overlay on top of the entire screen, centred on the given coordinates
@@ -22092,7 +22092,7 @@ void debugMain() {
  * Original_Address: $(DOLLAR)EFE556
  */
 short loadDebugCursorGraphics(short, ref const(ubyte)*) {
-	copyToVRAM(VRAMCopyMode.unknown00, 0x200, 0x4000, &debugCursorGraphics[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x200, 0x4000, &debugCursorGraphics[0]);
 	return 0;
 }
 

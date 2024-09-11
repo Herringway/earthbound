@@ -6164,16 +6164,16 @@ enum PSI {
 
 ///
 enum VRAMCopyMode {
-	unknown00 = 0,
-	unknown01 = 3,
-	unknown02 = 6,
-	unknown03 = 9,
-	unknown04 = 12,
-	unknown05 = 15,
-	unknown06 = 18,
+	simpleCopyToVRAM = 0, // simple 16-bit value copying to VRAM
+	repeatWordToVRAM = 3, // copies a 16-bit value N times to VRAM
+	copyToVRAMStripeEven = 6, // copies 8-bit values to lower 8 bits of each word in VRAM
+	repeatByteToVRAMEven = 9, // copies an 8-bit value N times to VRAM, but only for the lower 8 bits of each word in VRAM
+	copyToVRAMStripeOdd = 12, // like copyToVRAMStripeEven, but for the upper 8 bits
+	repeatByteToVRAMOdd = 15, // like repeatByteToVRAMEven, but for the upper 8 bits
+	simpleCopyFromVRAM = 18, // simple 16-bit value copying from VRAM
 	unknown07 = 21,
 	unknown08 = 24,
-	unknown09 = 27,
+	copyTileColumnVRAM = 27, // copies 16-bit values with an address increment of 32, perfect for copying a column of tiles into a tilemap
 	unknown10 = 30,
 	unknown11 = 33,
 	unknown12 = 36,

@@ -197,14 +197,14 @@ void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
 		}
 	} else {
 		outer: while (true) {
-			copyToVRAM(VRAMCopyMode.unknown00, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[0]);
 			for (short i = 15; i != 0; i--) {
 				if ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) != 0) {
 					break outer;
 				}
 				windowTickMinimal();
 			}
-			copyToVRAM(VRAMCopyMode.unknown00, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[1]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[1]);
 			for (short i = 10; i != 0; i--) {
 				if ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) != 0) {
 					break outer;
@@ -212,7 +212,7 @@ void cc1314(short displayPrompt, short dontUseSpeedBasedWait) {
 				windowTickMinimal();
 			}
 		}
-		copyToVRAM(VRAMCopyMode.unknown00, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[2]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(short)(0x7C20 + windowStats[windowTable[currentFocusWindow]].width + windowStats[windowTable[currentFocusWindow]].x + (windowStats[windowTable[currentFocusWindow]].y + windowStats[windowTable[currentFocusWindow]].height) * 32), cast(const(ubyte)*)&blinkingTriangleTiles[2]);
 	}
 	resumeHPPPRolling();
 }
@@ -407,7 +407,7 @@ void createWindow(short id) {
  * Original_Address: $(DOLLAR)C1078D
  */
 void uploadHPPPMeterArea() {
-	copyToVRAMAlt(VRAMCopyMode.unknown00, 0x240, 0x7E40, cast(ubyte*)&bg2Buffer[0x240]);
+	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 0x240, 0x7E40, cast(ubyte*)&bg2Buffer[0x240]);
 }
 
 /// $C107AF - Draws a window
@@ -1186,8 +1186,8 @@ short selectionMenu(short cancelable) {
 
 			ushort vramAddress = cast(ushort)((window.x + window.textX) + ((window.textY * 2 + window.y) * 32) + 0x7C20);
 
-			copyToVRAM(VRAMCopyMode.unknown00, 2, vramAddress, cast(const(ubyte)*)&selectionCursorFramesUpper[cursorFrame]);
-			copyToVRAM(VRAMCopyMode.unknown00, 2, cast(ushort)(vramAddress+32), cast(const(ubyte)*)&selectionCursorFramesLower[cursorFrame]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, vramAddress, cast(const(ubyte)*)&selectionCursorFramesUpper[cursorFrame]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(ushort)(vramAddress+32), cast(const(ubyte)*)&selectionCursorFramesLower[cursorFrame]);
 
 			for (short i = 0; i < 10; i++) { // wait a maximum of ten frames for input
 				windowTickMinimal();
@@ -1609,7 +1609,7 @@ short unknownC1244C(string* scripts, short mode, short cancellable) {
 			short sfx;
 			l2: while (true) {
 				if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
-					copyToVRAM(VRAMCopyMode.unknown00, 8, cast(ushort)((paginationWindowStat.y * 32) + paginationWindowStat.x + paginationWindowStat.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
+					copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)((paginationWindowStat.y * 32) + paginationWindowStat.x + paginationWindowStat.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
 				}
 				for (short i = 0; i < frameWait; i++) {
 					windowTickMinimal();
@@ -1698,7 +1698,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			short x16;
 			l2: while (true) {
 				if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
-					copyToVRAM(VRAMCopyMode.unknown00, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
+					copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
 				}
 				for (x1E = 0; x1E < x20; x1E++) {
 					windowTickMinimal();
@@ -7125,8 +7125,8 @@ short textInputDialog(short inputWindow, short arg2, ubyte* arg3, short arg4, sh
 			selectionCursorFrame = 1;
 			l2: while (true) {
 				selectionCursorFrame ^= 1;
-				copyToVRAM(VRAMCopyMode.unknown00, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C20), cast(const(ubyte)*)&selectionCursorFramesUpper[selectionCursorFrame]);
-				copyToVRAM(VRAMCopyMode.unknown00, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C40), cast(const(ubyte)*)&selectionCursorFramesLower[selectionCursorFrame]);
+				copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C20), cast(const(ubyte)*)&selectionCursorFramesUpper[selectionCursorFrame]);
+				copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C40), cast(const(ubyte)*)&selectionCursorFramesLower[selectionCursorFrame]);
 				for (short i = 0; 10 > i; i++) {
 					finishFrame();
 					if ((padPress[0] & Pad.up) != 0) {

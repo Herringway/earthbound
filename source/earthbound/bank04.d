@@ -116,8 +116,8 @@ void prepareGameFailure() {
  * Original_Address: $(DOLLAR)C40B75
  */
 noreturn gameFailureLoop() {
-	copyToVRAM(VRAMCopyMode.unknown00, 0xA00, 0, &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x4000, &buffer[0x4000]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xA00, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x4000, &buffer[0x4000]);
 	memcpy(&palettes[0][0], &warningPalette[0], 0x10);
 	preparePaletteUpload(PaletteUpload.full);
 	fadeInWithMosaic(1, 1, 0);
@@ -2355,8 +2355,8 @@ short keyboardInputSingleCharacter(short window, short length, short character) 
 	// upload text tiles
 	ushort destinationVRAM = 0x7700;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x10, destinationVRAM, &vwfBuffer[i][0]);
-		copyToVRAM(VRAMCopyMode.unknown00, 0x10, cast(ushort)(destinationVRAM + 8), &vwfBuffer[i][16]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, cast(ushort)(destinationVRAM + 8), &vwfBuffer[i][16]);
 		destinationVRAM += 16;
 	}
 	dmaTransferFlag = 1;
@@ -2403,7 +2403,7 @@ void renderSmallTextToVRAM(ubyte* str, ushort destinationVRAM) {
 		renderText(6, fontConfigTable[Font.tiny].height, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((str++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].bytesPerCharacter]);
 	}
 	for (short i = currentVWFTile; (strTemp++)[0] != 0; i++) {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x10, destinationVRAM, &vwfBuffer[i][0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, destinationVRAM, &vwfBuffer[i][0]);
 		destinationVRAM += 8;
 		if (i == 0x33) {
 			i = -1;
@@ -2519,24 +2519,24 @@ void printWordsAutoNewline(short length, const(ubyte)* text) {
 void loadWindowGraphics(short what) {
 	switch (what) {
 		case WindowGraphicsToLoad.all: // reload all window graphics in VRAM
-			copyToVRAM(VRAMCopyMode.unknown00, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			goto case;
 		case WindowGraphicsToLoad.allButMeter: // same as 1, but no meter or special text
-			copyToVRAM(VRAMCopyMode.unknown00, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(VRAMCopyMode.unknown00, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(VRAMCopyMode.unknown00, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
-			copyToVRAM(VRAMCopyMode.unknown00, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
-			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
-			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
 			break;
 		case WindowGraphicsToLoad.all2: // this seems to be a copy of 1, for some reason
-			copyToVRAM(VRAMCopyMode.unknown00, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(VRAMCopyMode.unknown00, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(VRAMCopyMode.unknown00, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
-			copyToVRAM(VRAMCopyMode.unknown00, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
-			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
-			copyToVRAM(VRAMCopyMode.unknown00, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
-			copyToVRAM(VRAMCopyMode.unknown00, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			break;
 		default: break;
 	}
@@ -5000,86 +5000,109 @@ void unknownC474A8() {
 	);
 }
 
-/// $C474F6
-immutable ubyte[11] unknownC474F6 = [ 0x10, 0x10, 0x0F, 0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x09, 0x06, 0x03 ];
+/** Precalculated radii for the rounded bottom part of the spotlight effect
+ * Original_Address: $(DOLLAR)C474F6
+ */
+immutable ubyte[11] spotlightTaperRadii = [ 16, 16, 15, 15, 14, 13, 12, 11, 9, 6, 3 ];
 
-/// $C47501
-void unknownC47501(ubyte* arg1) {
+/** Sets up the HDMA table for spotlight windows
+ * Params:
+ * 	hdmaTable = Buffer to start writing the HDMA table contents into
+ * Original_Address: $(DOLLAR)C47501
+ */
+void initializeSpotlightWindowHDMATable(ubyte* hdmaTable) {
+	// make sure the entity is onscreen, at least in the Y dimension
 	if (entityAbsYTable[currentEntitySlot] - bg1YPosition + 4 >= 0) {
-		(arg1++)[0] = cast(ubyte)(entityAbsYTable[currentEntitySlot] - bg1YPosition + 5);
-		short x12 = cast(short)(entityAbsXTable[currentEntitySlot] + 16 - bg1XPosition);
-		if (entityAbsXTable[currentEntitySlot] - 16 - bg1XPosition < 0x100) {
-			(arg1++)[0] = cast(ubyte)(entityAbsXTable[currentEntitySlot] - 16 - bg1XPosition);
-			if (x12 < 0x100) {
-				(arg1++)[0] = cast(ubyte)x12;
+		// We want the spotlight starting at line 0 and continuing to roughly the position of the current active entity
+		(hdmaTable++)[0] = cast(ubyte)(entityAbsYTable[currentEntitySlot] - bg1YPosition + 5);
+		// fixed radius of 16 pixels
+		short leftSide = cast(short)(entityAbsXTable[currentEntitySlot] - 16 - bg1XPosition);
+		short rightSide = cast(short)(entityAbsXTable[currentEntitySlot] + 16 - bg1XPosition);
+		// clamp left and right sides of spotlight to screen boundaries
+		if (leftSide < 256) {
+			(hdmaTable++)[0] = cast(ubyte)leftSide;
+			if (rightSide < 256) {
+				(hdmaTable++)[0] = cast(ubyte)rightSide;
 			} else {
-				(arg1++)[0] = 0xFF;
+				(hdmaTable++)[0] = 255;
 			}
 		} else {
-			if (x12 < 0x100) {
-				(arg1++)[0] = 0;
-				(arg1++)[0] = cast(ubyte)x12;
+			if (rightSide < 256) {
+				(hdmaTable++)[0] = 0;
+				(hdmaTable++)[0] = cast(ubyte)rightSide;
 			} else {
-				(arg1++)[0] = 0x80;
-				(arg1++)[0] = 0x7F;
+				// completely offscreen. putting the right side to the left of the left side disables the spotlight
+				(hdmaTable++)[0] = 128;
+				(hdmaTable++)[0] = 127;
 			}
 		}
 	}
-	short x04 = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition);
+	// add a tapering round portion to the spotlight so it isn't just a boring yellow rectangle
+	short xBase = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition);
+	// skip if this part is offscreen
 	if (entityAbsYTable[currentEntitySlot] - bg1YPosition + 15 >= 0) {
-		short x02 = (entityAbsYTable[currentEntitySlot] - bg1YPosition + 15 < 10) ? cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition + 15) : 10;
-		const(ubyte)* x0A = &unknownC474F6[10 - x02];
-		for (short i = 0; i < x02 + 1; i++) {
-			(arg1++)[0] = 1;
-			short x0E = cast(short)(x04 - x0A[0]);
-			short x = cast(short)(x04 + x0A[0] - 1);
-			x0A++;
-			if (x0E < 0x100) {
-				(arg1++)[0] = cast(ubyte)x0E;
-				if (x < 0x100) {
-					(arg1++)[0] = cast(ubyte)x;
+		// calculate the height of this portion
+		short taperHeight = (entityAbsYTable[currentEntitySlot] - bg1YPosition + 15 < spotlightTaperRadii.length - 1) ? cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition + 15) : spotlightTaperRadii.length - 1;
+		// use the table to determine radius
+		const(ubyte)* spotlightTaperRadius = &spotlightTaperRadii[spotlightTaperRadii.length - 1 - taperHeight];
+		for (short i = 0; i < taperHeight + 1; i++) {
+			(hdmaTable++)[0] = 1;
+			short leftSide = cast(short)(xBase - spotlightTaperRadius[0]);
+			short rightSide = cast(short)(xBase + spotlightTaperRadius[0] - 1);
+			spotlightTaperRadius++;
+			// as before, clamp both sides to the screen boundaries
+			if (leftSide < 256) {
+				(hdmaTable++)[0] = cast(ubyte)leftSide;
+				if (rightSide < 256) {
+					(hdmaTable++)[0] = cast(ubyte)rightSide;
 				} else {
-					(arg1++)[0] = 0xFF;
+					(hdmaTable++)[0] = 255;
 				}
 			} else {
-				if (x < 0x100) {
-					(arg1++)[0] = 0;
-					(arg1++)[0] = cast(ubyte)x;
+				if (rightSide < 256) {
+					(hdmaTable++)[0] = 0;
+					(hdmaTable++)[0] = cast(ubyte)rightSide;
 				} else {
-					(arg1++)[0] = 0x80;
-					(arg1++)[0] = 0x7F;
+					(hdmaTable++)[0] = 128;
+					(hdmaTable++)[0] = 127;
 				}
 			}
 		}
 	}
-	(arg1++)[0] = 1;
-	(arg1++)[0] = 0x80;
-	(arg1++)[0] = 0x7F;
-	(arg1++)[0] = 0;
+	// disable spotlight for rest of screen with a negative width
+	(hdmaTable++)[0] = 1;
+	(hdmaTable++)[0] = 128;
+	(hdmaTable++)[0] = 127;
+	// terminate table
+	(hdmaTable++)[0] = 0;
 }
 
-/// $C476A5
-void unknownC476A5() {
+/** ActionScript tick callback for entities with spotlight 1 focused on them
+ * Original_Address: $(DOLLAR)C476A5
+ */
+void actionScriptEnableSpotlight1() {
 	short bufStart;
 	if ((entityScriptVar0Table[currentEntitySlot] & 1) != 0) {
 		bufStart = 0;
 	} else {
 		bufStart = 0x2FE;
 	}
-	unknownC47501(&buffer[bufStart]);
+	initializeSpotlightWindowHDMATable(&buffer[bufStart]);
 	enableSpotlightHDMA1(&buffer[bufStart]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
 
-/// $C47705
-void unknownC47705() {
+/** ActionScript tick callback for entities with spotlight 2 focused on them
+ * Original_Address: $(DOLLAR)C47705
+ */
+void actionScriptEnableSpotlight2() {
 	short bufStart;
 	if ((entityScriptVar0Table[currentEntitySlot] & 1) != 0) {
 		bufStart = 0x5FC;
 	} else {
 		bufStart = 0x8FA;
 	}
-	unknownC47501(&buffer[bufStart]);
+	initializeSpotlightWindowHDMATable(&buffer[bufStart]);
 	enableSpotlightHDMA2(&buffer[bufStart]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
@@ -5240,7 +5263,7 @@ void actionScriptInvertYPositionRelative() {
  */
 void loadActionScriptAnimation() {
 	decomp(&animationGraphics[animationSequences[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
-	copyToVRAMChunked(VRAMCopyMode.unknown00, animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize, 0x6000, &buffer[0]);
+	copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize, 0x6000, &buffer[0]);
 	memcpy(&palettes[0][0], &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize], ushort[4].sizeof);
 	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
@@ -5257,7 +5280,7 @@ short updateActionScriptAnimationFrame() {
 	// set BG3 Y position to -1. A minor adjustment to account for overscan, perhaps?
 	bg3YPosition = 0xFFFF;
 	// The animation is assumed to have been decompressed into the buffer already, in the order of tiles + 2bpp palette + N 32x28 tilemaps
-	copyToVRAM(VRAMCopyMode.unknown00, 0x700, 0x7C00, &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize + ushort[4].sizeof + entityScriptVar1Table[currentEntitySlot] * 0x700]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x700, 0x7C00, &buffer[animationSequences[entityScriptVar0Table[currentEntitySlot]].tileSize + ushort[4].sizeof + entityScriptVar1Table[currentEntitySlot] * 0x700]);
 	// last frame played? return 0 if so
 	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequences[entityScriptVar0Table[currentEntitySlot]].frames) {
 		return 0;
@@ -5861,12 +5884,17 @@ void finishAutoMovementDemoAndStart() {
 	startAutoMovementDemo(&autoMovementDemoBuffer[0]);
 }
 
-/// $C48ECE
-short isValidItemTransformation(short arg1) {
-	if (loadedItemTransformations[arg1].transformationCountdown != 0) {
+/** Tests if the given index corresponds to an active transforming item
+ * Params:
+ * 	index = Index into item transformation table. Do not exceed table length!
+ * Returns: 1 if valid, 0 otherwise
+ * Original_Address: $(DOLLAR)C48ECE
+ */
+short isValidItemTransformation(short index) {
+	if (loadedItemTransformations[index].transformationCountdown != 0) {
 		return 1;
 	}
-	if (loadedItemTransformations[arg1].sfxFrequency != 0) {
+	if (loadedItemTransformations[index].sfxFrequency != 0) {
 		return 1;
 	}
 	return 0;
@@ -5969,16 +5997,29 @@ short getDistanceToMagicTruffle() {
 }
 
 
-/// $C491EE
-ushort getColourFadeSlope(ushort colour1, ushort colour2, short duration) {
-	return cast(ushort)(((colour2 - colour1) << 8) / duration);
+/** Calculates the linear slope of a colour channel to be used for colour fading
+ * Params:
+ * 	initial = The starting value of the channel
+ * 	target = The desired final value of the channel
+ * 	duration = Number of frames of fading that are expected to occur
+ * Returns: Linear slope
+ * Original_Address: $(DOLLAR)C491EE
+ */
+ushort getColourFadeSlope(ushort initial, ushort target, short duration) {
+	return cast(ushort)(((target - initial) << 8) / duration);
 }
 
 unittest {
 	assert(getColourFadeSlope(RGB(0, 0, 0).bgr555, RGB(18, 0, 0).bgr555, 480) == 9);
 }
 
-/// $C49208
+/** Prepares the colour tables for a map palette fade
+ *
+ * This covers all BG palettes except for the 2BPP text palettes
+ * Params:
+ * 	duration = The number of frames the fade is expected to last for
+ * Original_Address: $(DOLLAR)C49208
+ */
 void initializeMapPaletteFade(short duration) {
 	ushort* endColorPtr = &paletteAnimTargetPalette()[0];
 	for (short i = 0; i < 0x60; i++) {
@@ -5995,7 +6036,11 @@ void initializeMapPaletteFade(short duration) {
 	}
 }
 
-/// $C492D2
+/** Performs a single step of map palette fading and commits it to CGRAM
+ *
+ * Be sure to call initializeMapPaletteFade before calling this.
+ * Original_Address: $(DOLLAR)C492D2
+ */
 void stepMapPaletteFade() {
 	ushort* outputPtr = &palettes[2][0];
 	for (short i = 0; i < 0x60; i++) {
@@ -6011,7 +6056,13 @@ void stepMapPaletteFade() {
 	preparePaletteUpload(PaletteUpload.bgOnly);
 }
 
-/// $C4939C
+/** Change from one map palette set to another, with an optional fading animation
+ * Params:
+ * 	tilesetNum = Current map tileset
+ * 	paletteNum = Target palette ID
+ * 	fadeDuration = Number of frames for the fading animation (0 to  disable)
+ * Original_Address: $(DOLLAR)C4939C
+ */
 void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 	mapPaletteAnimationLoaded = 0;
 	if (fadeDuration == 0) {
@@ -6139,7 +6190,9 @@ void prepareLoadedPalettesForFade() {
 	memcpy(&buffer[0], &palettes[0][0], palettes.sizeof);
 }
 
-/// $C49740
+/** Finishes a palette fade by committing the target palette to CGRAM
+ * Original_Address: $(DOLLAR)C49740
+ */
 void finishPaletteFade() {
 	memcpy(&palettes[0][0], &buffer[0], palettes.sizeof);
 	preparePaletteUpload(PaletteUpload.full);
@@ -6172,17 +6225,23 @@ void performPaletteFade(short duration, short multiplier, ushort affectedPalette
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C4981F
-void unknownC4981F() {
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &blankTiles[0]);
+/** Clears the BG3 tilemap. Intended to be used after BG3 effects are done, so text can be displayed without corruption
+ * Original_Address: $(DOLLAR)C4981F
+ */
+void actionScriptClearBG3Tilemap() {
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x7C00, &blankTiles[0]);
 }
 
-/// $C49841
-void unknownC49841() {
+/** Opens the oval window used for prayer scenes
+ * Original_Address: $(DOLLAR)C49841
+ */
+void actionScriptOpenPrayerWindow() {
 	openOvalWindow(1);
 }
 
-/// $C4984B
+/** Inverts the colours of all rendered text
+ * Original_Address: $(DOLLAR)C4984B
+ */
 void invertRenderedText() {
 	ushort* pixels = cast(ushort*)&vwfBuffer[0][0];
 	for (short i = vwfBuffer.sizeof / ushort.sizeof; i != 0; i--) {
@@ -6267,7 +6326,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 	prepareForImmediateDMA();
 	setBG3VRAMLocation(BGTileMapSize.normal, bg3TileMapAddress, bg3TileAddress);
 	*cast(ushort*)(&buffer[0]) = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0x3800, bg3TileAddress, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x3800, bg3TileAddress, &buffer[0]);
 	memcpy(&palettes[0][0], &flyoverTextPalette[0], 8);
 	paletteUploadMode = PaletteUpload.full;
 	memset(&vwfBuffer[0][0], 0xFF, vwfBuffer.sizeof);
@@ -6286,7 +6345,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 		bg2Buffer[i * 32 + 30] = 0;
 		bg2Buffer[i * 32 + 31] = 0;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, bg3TileMapAddress, cast(ubyte*)&bg2Buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, bg3TileMapAddress, cast(ubyte*)&bg2Buffer[0]);
 	// old mother 2 stuff
 	unused7E3C18 = 0x1A;
 	unread7E3C1C = 0;
@@ -6315,15 +6374,15 @@ void flyoverCopyRenderedText(short) {
 	// this branch is only taken if flyoverScreenOffset is 30, which is offscreen
 	if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 > maximumSize) {
 		if (maximumSize - flyoverScreenOffset * sizeIncrements != 0) {
-			copyToVRAM(VRAMCopyMode.unknown00, cast(short)(maximumSize - flyoverScreenOffset * sizeIncrements), cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
+			copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, cast(short)(maximumSize - flyoverScreenOffset * sizeIncrements), cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 		}
 		// this can never be true, fortunately
 		if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize != 0) {
 			assert(0, "Not implemented");
-			//copyToVRAM(VRAMCopyMode.unknown00, flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize, baseDestination, 0x6892 - flyoverScreenOffset * sizeIncrements);
+			//copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize, baseDestination, 0x6892 - flyoverScreenOffset * sizeIncrements);
 		}
 	} else {
-		copyToVRAM(VRAMCopyMode.unknown00, sizeIncrements * 3, cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, sizeIncrements * 3, cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 	}
 	unused7E3C1E = -1;
 	unused7E3C20 = 0;
@@ -6789,12 +6848,12 @@ void setupGiygasOverlay() {
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&animatedBackgroundTiles[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0x6000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2000, 0x6000, &buffer[0]);
 	decomp(&animatedBackgroundTilemaps[animatedBackgrounds[BackgroundLayer.introGiygas].graphics][0], &buffer[0]);
 	for (short i = 0; i < 0x800; i += 2) {
 		buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7C00, &buffer[0]);
 	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BackgroundLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
 	memcpy(&loadedBGDataLayer1.palette[0], &animatedBackgroundPalettes[animatedBackgrounds[BackgroundLayer.introGiygas].palette][0], 0x20);
@@ -7235,7 +7294,7 @@ void useSoundStone(short cancellable) {
 	setBattleModeLayerConfig();
 	// load the data we need
 	decomp(&soundStoneSpriteTiles[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x2C00, 0x2000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2C00, 0x2000, &buffer[0]);
 	memcpy(&palettes[8][0], &soundStoneSpritePalettes[0], 0xC0);
 	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
@@ -7393,8 +7452,8 @@ ushort allocateAndUploadOverlaySprite(ushort vramBase, ushort sprite, ushort fra
 	if (frame == 0xFF) {
 		return vramBase;
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, spriteGroups[sprite].width * 2, vramBase, &sprites[spriteGroups[sprite].sprites[frame].id][0]);
-	copyToVRAM(VRAMCopyMode.unknown00, spriteGroups[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroups[sprite].sprites[frame].id][spriteGroups[sprite].width]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, spriteGroups[sprite].width * 2, vramBase, &sprites[spriteGroups[sprite].sprites[frame].id][0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, spriteGroups[sprite].width * 2, cast(ushort)(vramBase + 0x100), &sprites[spriteGroups[sprite].sprites[frame].id][spriteGroups[sprite].width]);
 	return cast(ushort)(vramBase + spriteGroups[sprite].width);
 }
 
@@ -8132,12 +8191,12 @@ void unknownC4C2DE() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&gameOverTiles[0], &buffer[0]);
 	if (gameState.partyMembers[0] == 3) {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0x8000]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x8000, 0, &buffer[0x8000]);
 	} else {
-		copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x8000, 0, &buffer[0]);
 	}
 	decomp(&gameOverTilemap[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x5800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x5800, &buffer[0]);
 	decomp(&gameOverPalette[0], cast(ubyte*)&palettes[0][0]);
 	memcpy(&palettes[7][0], &palettes[0][0], 0x20);
 	memset(&palettes[1][0], 0, 0xC0);
@@ -8824,10 +8883,10 @@ void loadTownMapData(short arg1) {
 	CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x3000, &buffer[0x40]);
-	copyToVRAMChunked(VRAMCopyMode.unknown00, 0x4000, 0, &buffer[0x840]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x3000, &buffer[0x40]);
+	copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x4000, 0, &buffer[0x840]);
 	decomp(&townMapIconGraphics[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x2400, 0x6000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	bg1YPosition = 0;
@@ -9144,9 +9203,9 @@ void setDecompressedArrangementPriorityBit() {
 void decompItoiProduction() {
 	decomp(&attractModeOverlay1Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7C00, &buffer[0]);
 	decomp(&attractModeOverlay1Tiles[0], &buffer[0x800]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x400, 0x6000, &buffer[0x800]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -9156,9 +9215,9 @@ void decompItoiProduction() {
 void decompNintendoPresentation() {
 	decomp(&attractModeOverlay2Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(VRAMCopyMode.unknown00, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7C00, &buffer[0]);
 	decomp(&attractModeOverlay2Tiles[0], &buffer[0x800]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x400, 0x6000, &buffer[0x800]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&attractModeOverlayPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -9231,7 +9290,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		if (yourSanctuaryLocationTileOffsets[i] == 0) {
 			continue;
 		}
-		copyToVRAM(VRAMCopyMode.unknown00, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tilemapBuffer[i * 16]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tilemapBuffer[i * 16]);
 		yourSanctuaryLocationTileOffsets[i] = nextYourSanctuaryLocationTileIndex;
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
@@ -9273,7 +9332,7 @@ void displayYourSanctuaryLocation(short arg1) {
 		waitUntilNextFrame();
 	}
 	waitDMAFinished();
-	copyToVRAM(VRAMCopyMode.unknown00, 0x780, 0x3800, &buffer[x02 * 0x800]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x780, 0x3800, &buffer[x02 * 0x800]);
 	memcpy(&palettes[0][0], &buffer[0x4000 + x02 * 0x200], 0x100);
 	paletteUploadMode = PaletteUpload.bgOnly;
 	screenTopY = 0;
@@ -9330,13 +9389,13 @@ void loadCastScene() {
 	bg1XPosition = 0;
 	updateScreen();
 	*cast(ushort*)&buffer[0] = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x7C00, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x7C00, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0xFF;
 	memset(&buffer[0], 0, 0x1000);
 	decomp(&specialCastNamesGraphics[0], &buffer[0x200]);
 	decomp(&castNamesGraphics[0], &buffer[0x600]);
 	prepareDynamicCastNameText();
-	copyToVRAM(VRAMCopyMode.unknown00, 0x8000, 0, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x8000, 0, &buffer[0]);
 	forceNormalFontForLengthCalculation = 0;
 	loadTextPalette();
 	memcpy(&palettes[0][0], &castTextPalette[0], 0x20);
@@ -9379,7 +9438,7 @@ void handleCastScrolling() {
 	if (entityScriptVar7Table[currentEntitySlot] < entityAbsYTable[currentEntitySlot]) {
 		entityScriptVar7Table[currentEntitySlot] += 8;
 		x06[0] = 0;
-		copyToVRAM(VRAMCopyMode.unknown01, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
+		copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
 	}
 }
 
@@ -9479,7 +9538,7 @@ void prepareCastNameTilemap(short offset, short tileWidth, short x) {
 void copyCastNameTilemap(short centreX, short centreY, short tileWidth) {
 	short row1TileOffset = (bg3YPosition / 8 + centreY) & 0x1F;
 	short row1Address = cast(short)((row1TileOffset * 32) + centreX + 0x7C00 - (tileWidth + 1) / 2);
-	copyToVRAM(VRAMCopyMode.unknown00, cast(ushort)(tileWidth * 2), row1Address, &buffer[0x4000 + centreX * 2]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, cast(ushort)(tileWidth * 2), row1Address, &buffer[0x4000 + centreX * 2]);
 	short row2Address;
 	// if last row, wrap around to first row
 	if (row1TileOffset != 31) {
@@ -9487,7 +9546,7 @@ void copyCastNameTilemap(short centreX, short centreY, short tileWidth) {
 	} else {
 		row2Address = cast(short)(row1Address - 0x3E0);
 	}
-	copyToVRAM(VRAMCopyMode.unknown00, cast(short)(tileWidth * 2), row2Address, &buffer[0x4000 + centreX * 2 + 64]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, cast(short)(tileWidth * 2), row2Address, &buffer[0x4000 + centreX * 2 + 64]);
 }
 
 /** Prints the given cast name to the given relative tilemap coordinates
@@ -9670,18 +9729,19 @@ void initializeCreditsScene() {
 	bg1XPosition = 0;
 	updateScreen();
 	*(cast(ushort*)&buffer[0]) = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0x1000, 0x3800, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x1000, 0x3800, &buffer[0]);
 	*(cast(ushort*)&buffer[0]) = 0x240C;
-	copyToVRAM(VRAMCopyMode.unknown03, 0x1000, 0x7000, &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown05, 0x1000, 0x7000, &buffer[1]);
+	// this is a strange way to fill VRAM at $7000 with 0x0C 0x24, but it works
+	copyToVRAM(VRAMCopyMode.repeatByteToVRAMEven, 0x1000, 0x7000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.repeatByteToVRAMOdd, 0x1000, 0x7000, &buffer[1]);
 	decomp(&creditsPhotographBorderTilemap[0], &buffer[0]);
 	memcpy(&palettes[1][0], &creditsPhotographBorderPalette[0], 0x20);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x700, 0x7000, &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0x2000, 0x2000, &buffer[0x700]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x700, 0x7000, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x2000, 0x2000, &buffer[0x700]);
 	*(cast(ushort*)&buffer[0]) = 0;
-	copyToVRAM(VRAMCopyMode.unknown01, 0x800, 0x6C00, &buffer[0x700]);
+	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x6C00, &buffer[0x700]);
 	decomp(&staffCreditsFontGraphics[0], &buffer[0]);
-	copyToVRAM(VRAMCopyMode.unknown00, 0xC00, 0x6200, &buffer[0]);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0xC00, 0x6200, &buffer[0]);
 	memcpy(&palettes[0][0], &staffCreditsFontPalette[0], 0x10);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	memset(&palettes[1][0], 0, 0x1E0);
