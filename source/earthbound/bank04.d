@@ -7599,42 +7599,51 @@ void deleteManpuBySprite(short sprite) {
 	deleteManpu(findEntityBySprite(sprite));
 }
 
-/// $C4B587
+/** Reserves some memory from the pathfinding heap
+ *
+ * Does not check for overflow.
+ * Params:
+ * 	inc = Amount of memory to reserve
+ * Returns: A pointer to the newly-reserved memory
+ * Original_Address: $(DOLLAR)C4B587
+ */
 void* pathSbrk(size_t inc) {
 	void *ptr = pathHeapCurrent;
 	pathHeapCurrent = cast(byte*)pathHeapCurrent + inc;
 	return ptr;
 }
 
-/// $C4B595
+/** Get size of memory reserved from the pathfinding heap
+ * Returns: Amount of memory in bytes
+ * Original_Address: $(DOLLAR)C4B595
+ */
 ushort pathGetHeapSize() {
 	return cast(ushort)(cast(byte*)pathHeapCurrent - cast(byte*)pathHeapStart);
 }
 
-/++
-$C4B59F- Finds a path from pathers to targets
-Returns: unknown
-
-Params:
-	heap_size = Size of the heap used for allocation of various temporary arrays/structs
-	heap_start = Pointer to the start of the heap
-	matrix_dim = Pointer to a VecYX struct containing the pathfinding matrix dimensions
-	matrix = FAR pointer to the pathfinding matrix
-	border_size = Size of the border used for the start positions of deliverymen
-	targetCount = Amount of VecYX elements in the `targetsPos` array
-	targetsPos = Array of VecYX containing the positions of the targets
-	patherCount = Amount of Pather elements in the `pathers` array
-	pathers = Array of Pather for the pathfinding objects
-	unk1 = Unknown (-1 as called from $C0BA35)
-	maxPoints = maximum number of points to generate in matrix
-	search_radius = Just a guess...
-++/
-ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort maxPoints, ushort search_radius) {
+/** Finds a path from pathers to targets
+ * Params:
+ * 	heap_size = Size of the heap used for allocation of various temporary arrays/structs
+ * 	heap_start = Pointer to the start of the heap
+ * 	matrix_dim = Pointer to a VecYX struct containing the pathfinding matrix dimensions
+ * 	matrix = pointer to the pathfinding matrix
+ * 	border_size = Size of the border used for the start positions of deliverymen
+ * 	targetCount = Amount of VecYX elements in the `targetsPos` array
+ * 	targetsPos = Array of VecYX containing the positions of the targets
+ * 	patherCount = Amount of Pather elements in the `pathers` array
+ * 	pathers = Array of Pather for the pathfinding objects
+ * 	unk1 = Unknown (-1 as called from unknownC0BA35)
+ * 	maxPoints = maximum number of points to generate in matrix
+ * 	search_radius = Just a guess...
+ * Returns: unknown
+ * Original_Address: $(DOLLAR)C4B59F
+**/
+ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort maxPoints, ushort search_radius) {
 	debug(pathing) {
 		import std.stdio;
 		writeln(heap_size, ", ", *matrix_dim, ", ", border_size, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", unk1, ", ", maxPoints, ", ", search_radius);
 	}
-	ushort dp20 = 0;
+	ushort successes = 0;
 
 	pathHeapStart = heap_start;
 	pathHeapCurrent = heap_start;
@@ -7653,36 +7662,36 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	pathSearchTempA = offsetBuffer;
 	pathSearchTempB = offsetBuffer;
 
-	pathCardinalOffset[0] = cast(short)-pathMatrixCols; // NORTH
-	pathCardinalOffset[1] = 1; // EAST
-	pathCardinalOffset[2] = pathMatrixCols; // SOUTH
-	pathCardinalOffset[3] = -1; // WEST
+	pathCardinalOffset[PathCardinal.north] = cast(short)-pathMatrixCols;
+	pathCardinalOffset[PathCardinal.east] = 1;
+	pathCardinalOffset[PathCardinal.south] = pathMatrixCols;
+	pathCardinalOffset[PathCardinal.west] = -1;
 
 	// NORTH
-	pathCardinalIndex[0].y = -1;
-	pathCardinalIndex[0].x = 0;
+	pathCardinalIndex[PathCardinal.north].y = -1;
+	pathCardinalIndex[PathCardinal.north].x = 0;
 	// EAST
-	pathCardinalIndex[1].y = 0;
-	pathCardinalIndex[1].x = 1;
+	pathCardinalIndex[PathCardinal.east].y = 0;
+	pathCardinalIndex[PathCardinal.east].x = 1;
 	// SOUTH
-	pathCardinalIndex[2].y = 1;
-	pathCardinalIndex[2].x = 0;
+	pathCardinalIndex[PathCardinal.south].y = 1;
+	pathCardinalIndex[PathCardinal.south].x = 0;
 	// WEST
-	pathCardinalIndex[3].y = 0;
-	pathCardinalIndex[3].x = -1;
+	pathCardinalIndex[PathCardinal.west].y = 0;
+	pathCardinalIndex[PathCardinal.west].x = -1;
 
 	// NORTHEAST
-	pathDiagonalIndex[0].y = -1;
-	pathDiagonalIndex[0].x = 1;
+	pathDiagonalIndex[PathDiagonal.northEast].y = -1;
+	pathDiagonalIndex[PathDiagonal.northEast].x = 1;
 	// SOUTHEAST
-	pathDiagonalIndex[1].y = 1;
-	pathDiagonalIndex[1].x = 1;
+	pathDiagonalIndex[PathDiagonal.southEast].y = 1;
+	pathDiagonalIndex[PathDiagonal.southEast].x = 1;
 	// SOUTHWEST
-	pathDiagonalIndex[2].y = 1;
-	pathDiagonalIndex[2].x = -1;
+	pathDiagonalIndex[PathDiagonal.southWest].y = 1;
+	pathDiagonalIndex[PathDiagonal.southWest].x = -1;
 	// NORTHWEST
-	pathDiagonalIndex[3].y = -1;
-	pathDiagonalIndex[3].x = -1;
+	pathDiagonalIndex[PathDiagonal.northWest].y = -1;
+	pathDiagonalIndex[PathDiagonal.northWest].x = -1;
 
 	if (maxPoints >= 251) {
 		maxPoints = 251;
@@ -7691,20 +7700,21 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	Pather **tempPathers = cast(Pather**)pathSbrk(patherCount * Pather.sizeof);
 	initializePathers(patherCount, pathers, tempPathers);
 
-	VecYX* dp2A = cast(VecYX*)pathSbrk(maxPoints * VecYX.sizeof); // Allocate space on heap for pathfinding tile positions
-	assert(dp2A);
+	// Allocate space on heap for initial path points
+	VecYX* points = cast(VecYX*)pathSbrk(maxPoints * VecYX.sizeof);
+	assert(points);
 	initializePathMatrix();
 
 	ushort y = 0;
 	ushort x = 0;
 	for (ushort i = 0; i < patherCount; i++) {
-		Pather* dp02 = tempPathers[i];
-		Pather* dp32 = dp02;
+		Pather* tempPather = tempPathers[i];
+		Pather* tempPatherBackup = tempPather;
 
-		if ((dp02.hitbox.y != y) || (dp02.hitbox.x != x)) {
+		if ((tempPather.hitbox.y != y) || (tempPather.hitbox.x != x)) {
 			ushort matching = 1;
-			y = dp02.hitbox.y;
-			x = dp02.hitbox.x;
+			y = tempPather.hitbox.y;
+			x = tempPather.hitbox.x;
 
 			for (ushort j = cast(short)(i + 1); j < patherCount; j++) {
 				if (tempPathers[j].hitbox.y != y) break;
@@ -7714,30 +7724,31 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 			}
 
 			paintPathMatrixPass1(matching, &tempPathers[i]);
-			paintPathMatrixPass2(targetCount, targetsPos, dp02, matching, maxPoints, unk1);
+			paintPathMatrixPass2(targetCount, targetsPos, tempPather, matching, maxPoints, unk1);
 		}
 
-		dp02.pointCount = pathC4BD9A(&dp02.origin, maxPoints, dp2A);
-		ushort dp14 = pathC4BF7F(cast(ushort)dp02.pointCount, dp2A);
+		tempPather.initialPointCount = pathBuildPathPoints(&tempPather.origin, maxPoints, points);
+		ushort finalPointCount = pathTrimRedundancies(cast(ushort)tempPather.initialPointCount, points);
 
-		VecYX *dp22 = cast(VecYX*)pathSbrk(dp14 * VecYX.sizeof);
+		VecYX* finalPathPoints = cast(VecYX*)pathSbrk(finalPointCount * VecYX.sizeof);
 
-		for (ushort j = 0; j < dp14; ++j) {
-			dp22[j].y = dp2A[j].y;
-			dp22[j].x = dp2A[j].x;
+		for (ushort j = 0; j < finalPointCount; ++j) {
+			finalPathPoints[j].y = points[j].y;
+			finalPathPoints[j].x = points[j].x;
 		}
 
-		dp02 = dp32;
-		dp02.field0A = dp14;
-		dp02.points = dp22;
+		tempPather = tempPatherBackup;
+		tempPather.pointCount = finalPointCount;
+		tempPather.points = finalPathPoints;
 
-		if (dp14) {
-			++dp20;
+		// if we have path points, we have a valid path
+		if (finalPointCount) {
+			++successes;
 		}
 	}
 	debug(pathing) printPathMatrix();
 
-	return dp20;
+	return successes;
 }
 
 unittest {
@@ -7757,10 +7768,10 @@ unittest {
 	ubyte[] buffer = (cast(immutable(ubyte[]))import("examplepathfinding.bin")).dup;
 	assert(pathMain(cast(short)heap.length, &heap[0], &pathState.radius, &buffer[0], 4, 1, &pathState.targetsPos[0], 4, &pathState.pathers[0], -1, 64, 50) == 4);
 	//TODO: fix me
-	//assert(pathState.pathers[0].points[0 .. pathState.pathers[0].field0A] == [VecYX(46, 17), VecYX(32, 31), VecYX(32, 32)]);
-	//assert(pathState.pathers[1].points[0 .. pathState.pathers[1].field0A] == [VecYX(37, 25), VecYX(32, 30), VecYX(32, 32)]);
-	//assert(pathState.pathers[2].points[0 .. pathState.pathers[2].field0A] == [VecYX(44, 18), VecYX(32, 30), VecYX(32, 32)]);
-	//assert(pathState.pathers[3].points[0 .. pathState.pathers[3].field0A] == [VecYX(32, 31), VecYX(32, 32)]);
+	//assert(pathState.pathers[0].points[0 .. pathState.pathers[0].pointCount] == [VecYX(46, 17), VecYX(32, 31), VecYX(32, 32)]);
+	//assert(pathState.pathers[1].points[0 .. pathState.pathers[1].pointCount] == [VecYX(37, 25), VecYX(32, 30), VecYX(32, 32)]);
+	//assert(pathState.pathers[2].points[0 .. pathState.pathers[2].pointCount] == [VecYX(44, 18), VecYX(32, 30), VecYX(32, 32)]);
+	//assert(pathState.pathers[3].points[0 .. pathState.pathers[3].pointCount] == [VecYX(32, 31), VecYX(32, 32)]);
 }
 
 /** Adds an impassible border at the perimeter of the pathfinding matrix
@@ -7970,129 +7981,163 @@ void paintPathMatrixPass2(ushort targetCount, VecYX* targetsPos, Pather* pather,
 	}
 }
 
-/// $C4BD9A
-ushort pathC4BD9A(VecYX *start, ushort max_points, VecYX* points)
+/** Builds a path from a painted path matrix
+ *	Params:
+ * 	start = Origin point to start the path from
+ * 	maxPoints = Maximum length of path
+ * 	points = The output buffer for each point in the path. Should be at least maxPoints in length
+ * Returns: Actual number of points in path
+ * Original_Address: $(DOLLAR)C4BD9A
+ */
+ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 	in(points)
 {
-	ushort dp28 = start.y;
-	ushort dp26 = start.x;
-	ushort dp24 = 0;
+	ushort nextPointY = start.y;
+	ushort nextPointX = start.x;
+	ushort pathCardinal = PathCardinal.north;
 
-	ubyte dp00 = pathMatrixBuffer[(dp28 * pathMatrixCols) + dp26];
-	if (dp00 > PathfindingTile.unknownFB) { // if PathfindingTile.unknownFC, PathfindingTile.unwalkable, PathfindingTile.unpainted, PathfindingTile.start
+	ubyte pathTile = pathMatrixBuffer[(nextPointY * pathMatrixCols) + nextPointX];
+	// bail early if starting point is invalid
+	if (pathTile > PathfindingTile.unknownFB) { // if PathfindingTile.unknownFC, PathfindingTile.unwalkable, PathfindingTile.unpainted, PathfindingTile.start
 		return 0;
 	}
 
-	if (max_points == 0) {
+	// if maxPoints is 0, we're already done I guess?
+	if (maxPoints == 0) {
 		return 0;
 	}
 
-	points[0].y = dp28;
-	points[0].x = dp26;
+	// set origin point
+	points[0].y = nextPointY;
+	points[0].x = nextPointX;
 
 
-	ushort dp22 = 1;
-	while (dp00 != 0) {
-		ushort dp20 = 666; // No, really.
-		ushort dp1E = 666;
+	ushort count = 1;
+	// look for tiles with lower values than the current tile
+	// once we exhaust the number of candidates or exceed maxPoints, we're done
+	outer: while (pathTile != PathfindingTile.clear) {
+		ushort selectedCardinalDirection = 666; // Assume we're moving in an evil direction
+		ushort selectedDiagonalDirection = 666;
 
-		ushort dp0E;
-		ushort dp10;
-		ushort dp12;
-		ushort dp14;
+		ushort selectedCardinalY;
+		ushort selectedCardinalX;
+		ushort selectedDiagonalY;
+		ushort selectedDiagonalX;
 
-		dp00--;
+		pathTile--;
 
-		ushort dp1C = dp24; // Also dp02
+		// prefer moving forward to turning, if possible
+		ushort cardinalCandidate = pathCardinal;
 
-		for (dp24 = 0; dp24 < 4; ++dp24) {
-			ushort tmp = cast(ushort)(pathCardinalIndex[dp1C].y + dp28); // X REGISTER
-			ushort dp1A = cast(ushort)(pathCardinalIndex[dp1C].x + dp26);
+		// check all four cardinal directions
+		for (pathCardinal = 0; pathCardinal < 4; ++pathCardinal) {
+			// add cardinal vector to last coordinates
+			ushort candidateY = cast(ushort)(pathCardinalIndex[cardinalCandidate].y + nextPointY);
+			ushort candidateX = cast(ushort)(pathCardinalIndex[cardinalCandidate].x + nextPointX);
 
-			ushort dp04 = dp1C & 3;
+			ushort pathCardinalLimited = cardinalCandidate & 3;
 
-			if (pathMatrixBuffer[(pathMatrixCols * tmp) + dp1A] == dp00) {
-				if (dp20 == 666) {
-					dp20 = dp1C;
-					dp0E = tmp;
-					dp10 = dp1A;
+			// found an adjacent path tile with lower value on a cardinal?
+			if (pathMatrixBuffer[(pathMatrixCols * candidateY) + candidateX] == pathTile) {
+				// for cardinals, we only want the first one found
+				// but we don't exit early in case we find a cardinal next to a diagonal tile that looks even better
+				if (selectedCardinalDirection == 666) {
+					selectedCardinalDirection = cardinalCandidate;
+					selectedCardinalY = candidateY;
+					selectedCardinalX = candidateX;
 				}
 
-				ushort dp18 = cast(ushort)(pathDiagonalIndex[dp1C].y + dp28);
-				ushort dp16 = cast(ushort)(pathDiagonalIndex[dp1C].x + dp26);
+				// add diagonal vector to last coordinates
+				ushort candidateDiagonalY = cast(ushort)(pathDiagonalIndex[cardinalCandidate].y + nextPointY);
+				ushort candidateDiagonalX = cast(ushort)(pathDiagonalIndex[cardinalCandidate].x + nextPointX);
 
-				if (pathMatrixBuffer[(dp18 * pathMatrixCols) + dp16] == dp00 - 1) {
-					ushort dp02 = cast(ushort)(pathCardinalIndex[dp04].x + dp26);
-					if (pathMatrixBuffer[((pathCardinalIndex[dp04].y + dp28) * pathMatrixCols) + dp02] == dp00) {
-						dp1E = dp1C;
-						dp12 = dp18;
-						dp14 = dp16;
-						goto exit_loop;
+				// if the clockwise adjacent tile has an even lower value, prefer that and exit early
+				if (pathMatrixBuffer[(pathMatrixCols * candidateDiagonalY) + candidateDiagonalX] == pathTile - 1) {
+					if (pathMatrixBuffer[(pathMatrixCols * candidateY) + candidateX] == pathTile) {
+						selectedDiagonalDirection = cardinalCandidate;
+						selectedDiagonalY = candidateDiagonalY;
+						selectedDiagonalX = candidateDiagonalX;
+						break outer;
 					}
 				}
 			}
 
-			dp1C = dp04;
+			cardinalCandidate = pathCardinalLimited;
 		}
 
-exit_loop:
-		if (dp1E != 666) {
-			dp28 = dp12;
-			dp26 = dp14;
-			dp24 = dp1E;
-			dp00--;
+		// prefer diagonal to cardinal movement, if available
+		if (selectedDiagonalDirection != 666) {
+			nextPointY = selectedDiagonalY;
+			nextPointX = selectedDiagonalX;
+			pathCardinal = selectedDiagonalDirection;
+			pathTile--;
 		} else {
-			if (dp20 == 666) break;
-
-			dp28 = dp0E;
-			dp26 = dp10;
-			dp24 = dp20;
-		}
-
-		if (max_points == dp22) return dp22;
-
-		points[dp22].y = dp28;
-		points[dp22].x = dp26;
-
-		++dp22;
-	}
-
-	return dp22;
-}
-
-/// $C4BF7F
-ushort pathC4BF7F(ushort count, VecYX* points) {
-	if (count >= 3) {
-		ushort dp04 = points[1].y;
-		ushort dp1A = points[1].x;
-
-		ushort dp18 = cast(ushort)(dp04 - points[0].y);
-		ushort dp16 = cast(ushort)(dp1A - points[0].x);
-
-		ushort dp14 = 1;
-		ushort dp12;
-
-		for (dp12 = 2; dp12 != count; ++dp12) {
-			ushort dp10 = points[dp12].y;
-			ushort dp0E = points[dp12].x;
-
-			if ((dp04 + dp18 == dp10) && (dp1A + dp16 == dp0E)) {
-				points[dp14].y = dp10;
-				points[dp14].x = dp0E;
-			} else {
-				++dp14;
-				points[dp14].y = dp10;
-				points[dp14].x = dp0E;
-
-				dp18 = cast(ushort)(dp10 - dp04);
-				dp16 = cast(ushort)(dp0E - dp1A);
+			if (selectedCardinalDirection == 666) {
+				// didn't find anywhere better to go, so we're done
+				break;
 			}
 
-			dp04 = dp10;
-			dp1A = dp0E;
+			nextPointY = selectedCardinalY;
+			nextPointX = selectedCardinalX;
+			pathCardinal = selectedCardinalDirection;
 		}
 
-		count = cast(ushort)(dp14 + 1);
+		// bail if we've reached the limit
+		if (maxPoints == count) {
+			return count;
+		}
+
+		points[count].y = nextPointY;
+		points[count].x = nextPointX;
+
+		++count;
+	}
+
+	return count;
+}
+
+/** Removes redundant points in a path
+ *
+ * Redundancies here are any points that don't come with a change in direction. This assumes that each point has an equal distance from the ones before and after.
+ * Params:
+ * 	count = Original number of points in path
+ * 	points = The actual points in the path
+ * Returns: The new number of points in the path
+ * Original_Address: $(DOLLAR)C4BF7F
+ */
+ushort pathTrimRedundancies(ushort count, VecYX* points) {
+	// need at least 3 points to do anything useful
+	if (count >= 3) {
+		ushort startY = points[1].y;
+		ushort startX = points[1].x;
+
+		ushort yDistance = cast(ushort)(startY - points[0].y);
+		ushort xDistance = cast(ushort)(startX - points[0].x);
+		// the 0th point is the origin, don't touch that
+		ushort rewriteIndex = 1;
+
+		for (ushort i = 2; i != count; ++i) {
+			ushort nextY = points[i].y;
+			ushort nextX = points[i].x;
+
+			// test if we're moving in the same direction as the last two points. if so, cut out the middle point
+			if ((startY + yDistance == nextY) && (startX + xDistance == nextX)) {
+				points[rewriteIndex].y = nextY;
+				points[rewriteIndex].x = nextX;
+			} else {
+				++rewriteIndex;
+				points[rewriteIndex].y = nextY;
+				points[rewriteIndex].x = nextX;
+
+				yDistance = cast(ushort)(nextY - startY);
+				xDistance = cast(ushort)(nextX - startX);
+			}
+
+			startY = nextY;
+			startX = nextX;
+		}
+
+		count = cast(ushort)(rewriteIndex + 1);
 	}
 
 	return count;

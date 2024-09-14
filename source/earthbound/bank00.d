@@ -9123,9 +9123,9 @@ short unknownC0BA35(PathCtx* pathState, short targets, short baseX, short baseY,
 	} else {
 		for (short i = 0; i < pathfinders; i++) {
 			short x22 = pathState.pathers[i].objIndex;
-			if (pathState.pathers[i].field0A != 0) {
+			if (pathState.pathers[i].pointCount != 0) {
 				entityPathPoints[x22] = pathState.pathers[i].points;
-				entityPathPointsCount[x22] = pathState.pathers[i].field0A;
+				entityPathPointsCount[x22] = pathState.pathers[i].pointCount;
 			} else {
 				entityPathfindingState[x22] = 1;
 			}
@@ -9846,14 +9846,14 @@ void unknownC0D19B() {
 							if (entityEnemyIDs[pathfindingState.pathers[k].objIndex] != searchEnemy) {
 								continue;
 							}
-							if (pathfindingState.pathers[k].pointCount <= x1C) {
+							if (pathfindingState.pathers[k].initialPointCount <= x1C) {
 								continue;
 							}
 							x10 = matchingEnemies;
-							x1C = entityEnemyIDs[pathfindingState.pathers[k].pointCount];
+							x1C = entityEnemyIDs[pathfindingState.pathers[k].initialPointCount];
 						}
 						if (pathfindingState.pathers[x10].objIndex != enemyEntity) {
-							pathfindingState.pathers[x10].pointCount = 0;
+							pathfindingState.pathers[x10].initialPointCount = 0;
 							entityPathfindingState[pathfindingState.pathers[x10].objIndex] = 0;
 						}
 					}

@@ -71,6 +71,20 @@ enum PathfindingTile {
 	start = 0xFF, /// Is this even correct?
 }
 
+enum PathCardinal {
+	north,
+	east,
+	south,
+	west,
+}
+
+enum PathDiagonal {
+	northEast,
+	southEast,
+	southWest,
+	northWest,
+}
+
 enum jpn = false; ///
 enum usa = true; ///
 enum usaPrototype = false; ///
@@ -6357,13 +6371,13 @@ struct VecYX {
 }
 ///
 struct Pather {
-	short fromOffscreen; /// 0 - Starts off-screen flag
-	VecYX hitbox; /// 2 - Origin hitbox
-	VecYX origin; /// 6 - Origin point
-	short field0A; /// 10 - ??? unknown index
-	VecYX* points; /// 12 - Goal points
-	short pointCount; /// 14 - Amount of goal points
-	short objIndex; /// 16 - Object index
+	short fromOffscreen; /// 1 if path starts from off-screen
+	VecYX hitbox; /// Origin hitbox
+	VecYX origin; /// Origin point
+	short pointCount; /// Number of path points
+	VecYX* points; /// Final path points
+	short initialPointCount; /// Number of path points before trimming
+	short objIndex; /// Object index
 }
 ///
 struct PathCtx {
