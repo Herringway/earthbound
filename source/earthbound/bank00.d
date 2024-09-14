@@ -9850,7 +9850,7 @@ void unknownC0D19B() {
 								continue;
 							}
 							x10 = matchingEnemies;
-							x1C = entityEnemyIDs[pathfindingState.pathers[k].initialPointCount];
+							x1C = entityEnemyIDs[pathfindingState.pathers[k].objIndex];
 						}
 						if (pathfindingState.pathers[x10].objIndex != enemyEntity) {
 							pathfindingState.pathers[x10].initialPointCount = 0;
