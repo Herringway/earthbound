@@ -2237,7 +2237,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="paintPathMatrixPass2" class="public" href="../earthbound/bank04/paintPathMatrixPass2.html">paintPathMatrixPass2</a><span class="tableEntryAnnotation">(targetCount, targetsPos, pather, unk1, maxDistance, unk3)</span>
+								<a id="paintPathMatrixPass2" class="public" href="../earthbound/bank04/paintPathMatrixPass2.html">paintPathMatrixPass2</a><span class="tableEntryAnnotation">(targetCount, targetsPos, pather, maxTargets, maxDistance, maxIterations)</span>
 							</code>
 						</td>
 						<td>Paints the path matrix with distances to targets
@@ -2246,19 +2246,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="pathC4BD9A" class="public" href="../earthbound/bank04/pathC4BD9A.html">pathC4BD9A</a><span class="tableEntryAnnotation">(start, max_points, points)</span>
+								<a id="pathBuildPathPoints" class="public" href="../earthbound/bank04/pathBuildPathPoints.html">pathBuildPathPoints</a><span class="tableEntryAnnotation">(start, maxPoints, points)</span>
 							</code>
 						</td>
-						<td>$C4BD9A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="pathC4BF7F" class="public" href="../earthbound/bank04/pathC4BF7F.html">pathC4BF7F</a><span class="tableEntryAnnotation">(count, points)</span>
-							</code>
-						</td>
-						<td>$C4BF7F
+						<td>Builds a path from a painted path matrix
 </td>
 					</tr>
 					<tr>
@@ -2267,16 +2258,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="pathGetHeapSize" class="public" href="../earthbound/bank04/pathGetHeapSize.html">pathGetHeapSize</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4B595
+						<td>Get size of memory reserved from the pathfinding heap
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="pathMain" class="public" href="../earthbound/bank04/pathMain.html">pathMain</a><span class="tableEntryAnnotation">(heap_size, heap_start, matrix_dim, matrix, border_size, targetCount, targetsPos, patherCount, pathers, unk1, maxPoints, search_radius)</span>
+								<a id="pathMain" class="public" href="../earthbound/bank04/pathMain.html">pathMain</a><span class="tableEntryAnnotation">(heapSize, heapStart, matrixDimensions, matrix, borderSize, targetCount, targetsPos, patherCount, pathers, maxIterations, maxPoints, radius)</span>
 							</code>
 						</td>
-						<td>$C4B59F- Finds a path from pathers to targets
+						<td>Finds a path from pathers to targets
 </td>
 					</tr>
 					<tr>
@@ -2285,7 +2276,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="pathSbrk" class="public" href="../earthbound/bank04/pathSbrk.html">pathSbrk</a><span class="tableEntryAnnotation">(inc)</span>
 							</code>
 						</td>
-						<td>$C4B587
+						<td>Reserves some memory from the pathfinding heap
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="pathTrimRedundancies" class="public" href="../earthbound/bank04/pathTrimRedundancies.html">pathTrimRedundancies</a><span class="tableEntryAnnotation">(count, points)</span>
+							</code>
+						</td>
+						<td>Removes redundant points in a path
 </td>
 					</tr>
 					<tr>

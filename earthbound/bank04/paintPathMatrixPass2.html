@@ -168,18 +168,28 @@ $('#symbolSearchPane').show();</script>
 			<br/>
 			&nbsp;&nbsp;<a href="../../earthbound/commondefs/Pather.html"><span class="typ">Pather</span></a><span class="pun">*</span> <span class="pln">pather</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">unk1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">maxTargets</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">maxDistance</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">unk3</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">maxIterations</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Original Address</h2>
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="targetCount">targetCount</td><td> Number of targets</td></tr>
+<tr><td id="targetsPos">targetsPos</td><td> Target positions</td></tr>
+<tr><td id="pather">pather</td><td> Pathfinding struct</td></tr>
+<tr><td id="maxTargets">maxTargets</td><td> Maximum number of targets to reach</td></tr>
+<tr><td id="maxDistance">maxDistance</td><td> Maximum distance to paint</td></tr>
+<tr><td id="maxIterations">maxIterations</td><td> Maximum number of iterations to perform</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
 <p>C4BAF6
 </p>
 </section>

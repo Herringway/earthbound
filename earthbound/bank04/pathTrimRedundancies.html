@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable pathMatrixCols</title>
+		<title>Function pathTrimRedundancies</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -50,7 +50,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -140,7 +140,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/globals.html">globals</a>
 					</div>
 				</li>
@@ -154,19 +154,38 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable pathMatrixCols</h1><p>Number of columns in the pathfinding matrix
+			<h1>Function pathTrimRedundancies</h1><p>Removes redundant points in a path
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">ushort</span> <span class="pln">pathMatrixCols</span>
-			<span class="pun">;</span>
+			<span class="typ">ushort</span> <span class="pln">pathTrimRedundancies</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">count</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<a href="../../earthbound/commondefs/VecYX.html"><span class="typ">VecYX</span></a><span class="pun">*</span> <span class="pln">points</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			<section><h2>Original Address</h2>
-<p>B402
+			<section><p>Redundancies here are any points that don't come with a change in direction. This assumes that each point has an equal distance from the ones before and after.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="count">count</td><td> Original number of points in path</td></tr>
+<tr><td id="points">points</td><td> The actual points in the path</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>The new number of points in the path
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4BF7F
 </p>
 </section>
 

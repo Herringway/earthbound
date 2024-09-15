@@ -154,7 +154,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function pathMain</h1><p>$C4B59F- Finds a path from pathers to targets
+			<h1>Function pathMain</h1><p>Finds a path from pathers to targets
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -162,15 +162,15 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">ushort</span> <span class="pln">pathMain</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">heap_size</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">heapSize</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">void</span><span class="pun">*</span> <span class="pln">heap_start</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">void</span><span class="pun">*</span> <span class="pln">heapStart</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<a href="../../earthbound/commondefs/VecYX.html"><span class="typ">VecYX</span></a><span class="pun">*</span> <span class="pln">matrix_dim</span><span class="pun">,</span>
+			&nbsp;&nbsp;<a href="../../earthbound/commondefs/VecYX.html"><span class="typ">VecYX</span></a><span class="pun">*</span> <span class="pln">matrixDimensions</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ubyte</span><span class="pun">*</span> <span class="pln">matrix</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">border_size</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">borderSize</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">targetCount</span><span class="pun">,</span>
 			<br/>
@@ -180,36 +180,40 @@ $('#symbolSearchPane').show();</script>
 			<br/>
 			&nbsp;&nbsp;<a href="../../earthbound/commondefs/Pather.html"><span class="typ">Pather</span></a><span class="pun">*</span> <span class="pln">pathers</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">unk1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">maxIterations</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">maxPoints</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">search_radius</span>
+			&nbsp;&nbsp;<span class="typ">ushort</span> <span class="pln">radius</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Returns</h2>
-<p>unknown
-</p>
-</section>
-<section><h2>Parameters</h2>
+			<section><h2>Parameters</h2>
 <table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
-<tr><td id="heap_size">heap_size</td><td> Size of the heap used for allocation of various temporary arrays/structs</td></tr>
-<tr><td id="heap_start">heap_start</td><td> Pointer to the start of the heap</td></tr>
-<tr><td id="matrix_dim">matrix_dim</td><td> Pointer to a VecYX struct containing the pathfinding matrix dimensions</td></tr>
-<tr><td id="matrix">matrix</td><td> FAR pointer to the pathfinding matrix</td></tr>
-<tr><td id="border_size">border_size</td><td> Size of the border used for the start positions of deliverymen</td></tr>
+<tr><td id="heapSize">heapSize</td><td> Size of the heap used for allocation of various temporary arrays/structs</td></tr>
+<tr><td id="heapStart">heapStart</td><td> Pointer to the start of the heap</td></tr>
+<tr><td id="matrixDimensions">matrixDimensions</td><td> Pointer to a VecYX struct containing the pathfinding matrix dimensions</td></tr>
+<tr><td id="matrix">matrix</td><td> pointer to the pathfinding matrix</td></tr>
+<tr><td id="borderSize">borderSize</td><td> Size of the border used for the start positions of offscreen targets</td></tr>
 <tr><td id="targetCount">targetCount</td><td> Amount of VecYX elements in the <code class="lang-d"><a href="../../earthbound/bank04/pathMain.html#targetsPos"><span class="pln">targetsPos</span></a></code> array</td></tr>
 <tr><td id="targetsPos">targetsPos</td><td> Array of VecYX containing the positions of the targets</td></tr>
 <tr><td id="patherCount">patherCount</td><td> Amount of Pather elements in the <code class="lang-d"><a href="../../earthbound/bank04/pathMain.html#pathers"><span class="pln">pathers</span></a></code> array</td></tr>
 <tr><td id="pathers">pathers</td><td> Array of Pather for the pathfinding objects</td></tr>
-<tr><td id="unk1">unk1</td><td> Unknown (-1 as called from $C0BA35)</td></tr>
+<tr><td id="maxIterations">maxIterations</td><td> Maximum number of painting iterations, for setting an upper bound on execution time</td></tr>
 <tr><td id="maxPoints">maxPoints</td><td> maximum number of points to generate in matrix</td></tr>
-<tr><td id="search_radius">search_radius</td><td> Just a guess...</td></tr>
+<tr><td id="radius">radius</td><td> Distance from the center of the pathfinding matrix to the edge</td></tr>
 </table>
+</section>
+<section><h2>Returns</h2>
+<p>Number of paths found
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4B59F
+</p>
 </section>
 
 			<footer>

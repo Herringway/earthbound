@@ -2868,11 +2868,11 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/overworldSpriteVRAMOffsets.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/paintPathMatrixPass1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/paintPathMatrixPass2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/pathC4BD9A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/pathC4BF7F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/pathBuildPathPoints.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathGetHeapSize.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathMain.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathSbrk.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/pathTrimRedundancies.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/performPaletteFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/phoneCallText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pixelPlaneMasks.html</loc></url>
@@ -3943,9 +3943,9 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/PathCtx.targetsPos.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PathCtx.unknown0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/Pather.field0A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.fromOffscreen.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.hitbox.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Pather.initialPointCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.objIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.origin.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Pather.pointCount.html</loc></url>
@@ -4837,7 +4837,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/pathHeapStart.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixBorder.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixBuffer.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/pathMatrixCols.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/pathMatrixColumns.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixRows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixSize.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathSearchTempA.html</loc></url>

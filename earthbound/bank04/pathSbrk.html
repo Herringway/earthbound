@@ -154,7 +154,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function pathSbrk</h1><p>$C4B587
+			<h1>Function pathSbrk</h1><p>Reserves some memory from the pathfinding heap
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -168,8 +168,24 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Does not check for overflow.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="inc">inc</td><td> Amount of memory to reserve</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A pointer to the newly-reserved memory
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4B587
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
