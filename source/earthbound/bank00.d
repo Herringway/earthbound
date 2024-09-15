@@ -10008,8 +10008,8 @@ void unknownC0D7F7() {
 	VecYX* x1A = entityPathPoints[currentEntitySlot];
 	short x18 = entityAbsXTable[currentEntitySlot];
 	short x16 = entityAbsYTable[currentEntitySlot];
-	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth * 8) + x1A.x * 8 + collisionWidths[x1C]);
-	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight * 8) + x1A.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
+	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x1A.x * 8 + collisionWidths[x1C]);
+	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x1A.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
 	short x10 = cast(short)(x18 - x12);
 	if (0 > x10) {
 		x10 = cast(short)-cast(int)x10;
