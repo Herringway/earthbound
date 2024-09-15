@@ -7650,9 +7650,9 @@ ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* ma
 	pathHeapEnd = cast(byte*)heap_start + heap_size;
 
 	pathMatrixRows = matrix_dim.y;
-	pathMatrixCols = matrix_dim.x;
+	pathMatrixColumns = matrix_dim.x;
 	pathMatrixBorder = border_size;
-	pathMatrixSize = cast(ushort)(pathMatrixRows * pathMatrixCols);
+	pathMatrixSize = cast(ushort)(pathMatrixRows * pathMatrixColumns);
 	pathMatrixBuffer = matrix;
 
 	// allocates n + 1 offsets to work around a bug in matrix painting
@@ -7662,9 +7662,9 @@ ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* ma
 	pathSearchTempA = offsetBuffer;
 	pathSearchTempB = offsetBuffer;
 
-	pathCardinalOffset[PathCardinal.north] = cast(short)-pathMatrixCols;
+	pathCardinalOffset[PathCardinal.north] = cast(short)-pathMatrixColumns;
 	pathCardinalOffset[PathCardinal.east] = 1;
-	pathCardinalOffset[PathCardinal.south] = pathMatrixCols;
+	pathCardinalOffset[PathCardinal.south] = pathMatrixColumns;
 	pathCardinalOffset[PathCardinal.west] = -1;
 
 	// NORTH
@@ -7717,8 +7717,9 @@ ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* ma
 			x = tempPather.hitbox.x;
 
 			for (ushort j = cast(short)(i + 1); j < patherCount; j++) {
-				if (tempPathers[j].hitbox.y != y) break;
-				if (tempPathers[j].hitbox.x != x) break;
+				if ((tempPathers[j].hitbox.y != y) || (tempPathers[j].hitbox.x != x)) {
+					break;
+				}
 
 				matching++;
 			}
@@ -7779,12 +7780,12 @@ unittest {
  */
 void initializePathMatrix() {
 	for (short i = 0; i < pathMatrixRows; ++i) {
-		pathMatrixBuffer[pathMatrixCols * i + pathMatrixCols - 1] = PathfindingTile.unwalkable;
-		pathMatrixBuffer[pathMatrixCols  * i] = PathfindingTile.unwalkable;
+		pathMatrixBuffer[pathMatrixColumns * i + pathMatrixColumns - 1] = PathfindingTile.unwalkable;
+		pathMatrixBuffer[pathMatrixColumns  * i] = PathfindingTile.unwalkable;
 	}
 
-	for (short i = 0; i < pathMatrixCols; ++i) {
-		pathMatrixBuffer[(pathMatrixRows - 1) * pathMatrixCols + i] = PathfindingTile.unwalkable;
+	for (short i = 0; i < pathMatrixColumns; ++i) {
+		pathMatrixBuffer[(pathMatrixRows - 1) * pathMatrixColumns + i] = PathfindingTile.unwalkable;
 		pathMatrixBuffer[i] = PathfindingTile.unwalkable;
 	}
 }
@@ -7836,7 +7837,9 @@ void initializePathers(ushort patherCount, Pather* inPathers, Pather** outPather
  * 	pathers = array of pathers with single origin points or the 'fromOffscreen' flag set
  * Original_Address: $(DOLLAR)C4B923
  */
-void paintPathMatrixPass1(ushort count, Pather **pathers) {
+void paintPathMatrixPass1(ushort count, Pather** pathers)
+	in(pathMatrixBuffer)
+{
 	for (ushort i = 0; i < pathMatrixSize; i++) {
 		if (pathMatrixBuffer[i] != PathfindingTile.unwalkable) {
 			pathMatrixBuffer[i] = PathfindingTile.unpainted;
@@ -7844,43 +7847,43 @@ void paintPathMatrixPass1(ushort count, Pather **pathers) {
 	}
 
 	for (ushort i = 0; i < count; i++) {
-		Pather* pather = pathers[i]; // also Y REGISTER
+		Pather* pather = pathers[i];
 
 		if (pather.fromOffscreen == 0) {
 			// Starting point is the same as current position
-			if (pathMatrixBuffer[(pathMatrixCols * pather.origin.y) + pather.origin.x] != PathfindingTile.unwalkable) {
-				pathMatrixBuffer[(pathMatrixCols * pather.origin.y) + pather.origin.x] = PathfindingTile.start;
+			if (pathMatrixBuffer[(pathMatrixColumns * pather.origin.y) + pather.origin.x] != PathfindingTile.unwalkable) {
+				pathMatrixBuffer[(pathMatrixColumns * pather.origin.y) + pather.origin.x] = PathfindingTile.target;
 			}
 		} else {
 			// Starting from offscreen
 			for (ushort j = 0; j < pathMatrixBorder; j++) {
-				for (ushort k = 0; k < pathMatrixCols; ++k) {
-					if (pathMatrixBuffer[(j * pathMatrixCols) + k] != PathfindingTile.unwalkable) {
-						pathMatrixBuffer[(j * pathMatrixCols) + k] = PathfindingTile.start;
+				for (ushort k = 0; k < pathMatrixColumns; ++k) {
+					if (pathMatrixBuffer[(j * pathMatrixColumns) + k] != PathfindingTile.unwalkable) {
+						pathMatrixBuffer[(j * pathMatrixColumns) + k] = PathfindingTile.target;
 					}
 				}
 			}
 
 			for (ushort j = cast(ushort)(pathMatrixRows - pathMatrixBorder); j < pathMatrixRows; j++) {
-				for (ushort k = 0; k < pathMatrixCols; ++k) {
-					if (pathMatrixBuffer[(j * pathMatrixCols) + k] != PathfindingTile.unwalkable) {
-						pathMatrixBuffer[(j * pathMatrixCols) + k] = PathfindingTile.start;
+				for (ushort k = 0; k < pathMatrixColumns; ++k) {
+					if (pathMatrixBuffer[(j * pathMatrixColumns) + k] != PathfindingTile.unwalkable) {
+						pathMatrixBuffer[(j * pathMatrixColumns) + k] = PathfindingTile.target;
 					}
 				}
 			}
 
 			for (ushort j = 0; j < pathMatrixBorder; ++j) {
 				for (ushort k = 0; k < pathMatrixRows; k++) {
-					if (pathMatrixBuffer[(k * pathMatrixCols) + j] != PathfindingTile.unwalkable) {
-						pathMatrixBuffer[(k * pathMatrixCols) + j] = PathfindingTile.start;
+					if (pathMatrixBuffer[(k * pathMatrixColumns) + j] != PathfindingTile.unwalkable) {
+						pathMatrixBuffer[(k * pathMatrixColumns) + j] = PathfindingTile.target;
 					}
 				}
 			}
 
-			for (ushort j = 0; j < pathMatrixCols - pathMatrixBorder; ++j) {
+			for (ushort j = 0; j < pathMatrixColumns - pathMatrixBorder; ++j) {
 				for (ushort k = 0; k < pathMatrixRows; k++) {
-					if (pathMatrixBuffer[(k * pathMatrixCols) + j] != PathfindingTile.unwalkable) {
-						pathMatrixBuffer[(k * pathMatrixCols) + j] = PathfindingTile.start;
+					if (pathMatrixBuffer[(k * pathMatrixColumns) + j] != PathfindingTile.unwalkable) {
+						pathMatrixBuffer[(k * pathMatrixColumns) + j] = PathfindingTile.target;
 					}
 				}
 			}
@@ -7891,18 +7894,43 @@ void paintPathMatrixPass1(ushort count, Pather **pathers) {
 	}
 }
 
+unittest {
+	pathMatrixBuffer = &(cast(immutable(ubyte[]))import("paintPathMatrixPass1sample1.bin")).dup[0];
+	pathMatrixRows = 64;
+	pathMatrixColumns = 64;
+	pathMatrixBorder = 4;
+	pathMatrixSize = 4096;
+	Pather*[4] pathers = [
+		new Pather(0, VecYX(1, 2), VecYX(44, 10), 0, null, 0, 0),
+		new Pather(0, VecYX(1, 2), VecYX(32, 33), 0, null, 0, 5),
+		new Pather(0, VecYX(1, 2), VecYX(33, 36), 0, null, 0, 9),
+		new Pather(0, VecYX(1, 2), VecYX(27, 41), 0, null, 0, 10),
+	];
+	paintPathMatrixPass1(4, &pathers[0]);
+	assert(pathMatrixBuffer[0 .. 0x1000] == cast(immutable(ubyte[]))import("paintPathMatrixPass1sample1output.bin"));
+}
+
 /** Paints the path matrix with distances to targets
+ * Params:
+ * 	targetCount = Number of targets
+ * 	targetsPos = Target positions
+ * 	pather = Pathfinding struct
+ * 	maxTargets = Maximum number of targets to reach
+ * 	maxDistance = Maximum distance to paint
+ * 	maxIterations = Maximum number of iterations to perform
  * Original_Address: $(DOLLAR)C4BAF6
  */
-void paintPathMatrixPass2(ushort targetCount, VecYX* targetsPos, Pather* pather, ushort unk1, ushort maxDistance, ushort unk3) {
-	ushort dp15 = 0;
-	ushort dp13 = 0;
+void paintPathMatrixPass2(ushort targetCount, VecYX* targetsPos, Pather* pather, ushort maxTargets, ushort maxDistance, ushort maxIterations)
+	in(pathSearchTempStart)
+{
+	ushort targetsHit = 0;
+	ushort iterations = 0;
 
 	pathSearchTempB = pathSearchTempStart;
 	pathSearchTempA = pathSearchTempStart;
 
 	for (short i = 0; i < targetCount; i++) {
-		*pathSearchTempB = cast(ushort)((targetsPos[i].y * pathMatrixCols) + targetsPos[i].x);
+		*pathSearchTempB = cast(ushort)((targetsPos[i].y * pathMatrixColumns) + targetsPos[i].x);
 		pathSearchTempB = (pathSearchTempB == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempB + 1;
 	}
 
@@ -7911,16 +7939,19 @@ void paintPathMatrixPass2(ushort targetCount, VecYX* targetsPos, Pather* pather,
 
 		pathSearchTempA = (pathSearchTempA == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempA + 1;
 
-		ubyte dp00 = pathMatrixBuffer[currentBufferPosition];
-		if (dp00 < PathfindingTile.unpainted) continue; // leave already-painted areas alone
+		ubyte tileValue = pathMatrixBuffer[currentBufferPosition];
+		if (tileValue < PathfindingTile.unpainted) {
+			// leave already-painted areas alone
+			continue;
+		}
 
 		bool startingPointClear = true;
-		ushort tmp = currentBufferPosition;
+		ushort tempBufferPosition = currentBufferPosition;
 
 		// detect starting points that start on unwalkable areas
-		outer: for (short i = 0; i < pather.hitbox.y; tmp += pathMatrixCols, i++) {
+		outer: for (short i = 0; i < pather.hitbox.y; tempBufferPosition += pathMatrixColumns, i++) {
 			for (short j = 0; j < pather.hitbox.x; j++) {
-				if (pathMatrixBuffer[tmp + j] == PathfindingTile.unwalkable) {
+				if (pathMatrixBuffer[tempBufferPosition + j] == PathfindingTile.unwalkable) {
 					startingPointClear = 0;
 					break outer;
 				}
@@ -7928,57 +7959,90 @@ void paintPathMatrixPass2(ushort targetCount, VecYX* targetsPos, Pather* pather,
 		}
 
 		if (!startingPointClear) {
-			pathMatrixBuffer[currentBufferPosition] = PathfindingTile.unknownFC;
+			// starting point wasn't clear of obstacles, so mark it as invalid
+			pathMatrixBuffer[currentBufferPosition] = PathfindingTile.invalid;
 		} else {
-			if (dp00 == PathfindingTile.start) {
-				++dp15;
+			// found a target?
+			if (tileValue == PathfindingTile.target) {
+				++targetsHit;
 				if (pather.fromOffscreen) {
-					pather.origin.y = cast(short)(tmp / pathMatrixCols);
-					pather.origin.x = cast(short)(tmp % pathMatrixCols);
+					// since offscreen targets don't start with a set of coordinates, set them now
+					pather.origin.y = cast(short)(tempBufferPosition / pathMatrixColumns);
+					pather.origin.x = cast(short)(tempBufferPosition % pathMatrixColumns);
 				}
 			}
 
-			dp00 = PathfindingTile.unknownFC;
+			tileValue = PathfindingTile.invalid;
 
-			for (short i = 0; i < 4; i++) {
+			// add next points to queue
+			for (short i = PathCardinal.north; i < PathCardinal.max + 1; i++) {
 				ushort newBufferPosition = cast(ushort)(currentBufferPosition + pathCardinalOffset[i]);
-				ubyte dp01 = pathMatrixBuffer[newBufferPosition];
-				if (dp01 >= PathfindingTile.unpainted) { // if PathfindingTile.unpainted or PathfindingTile.start
-					bool lastInQueue;
+				ubyte candidateTile = pathMatrixBuffer[newBufferPosition];
+				// found unpainted tile?
+				if (candidateTile >= PathfindingTile.unpainted) {
+					bool queueFull;
 					if (pathSearchTempA == pathSearchTempStart) {
-						lastInQueue = (pathSearchTempB == pathSearchTempEnd);
+						queueFull = (pathSearchTempB == pathSearchTempEnd);
 					} else {
-						lastInQueue = (pathSearchTempB + 1 == pathSearchTempA);
+						queueFull = (pathSearchTempB + 1 == pathSearchTempA);
 					}
 
-					if (!lastInQueue) {
+					// add new point if we have space for it
+					if (!queueFull) {
 						*pathSearchTempB = newBufferPosition;
 						pathSearchTempB = (pathSearchTempB == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempB + 1;
 					}
-				} else if (dp00 > dp01) {
-					dp00 = dp01;
+				} else if (tileValue > candidateTile) {
+					// we've seen this tile before, but it's less than what we're currently using, so use it as a shortcut
+					tileValue = candidateTile;
 				}
 			}
 
-			if (dp00 == PathfindingTile.unknownFC) {
+			// write tile
+			if (tileValue == PathfindingTile.invalid) {
 				pathMatrixBuffer[currentBufferPosition] = 0;
 			} else {
-				ubyte newValue = cast(ubyte)(dp00 + 1);
+				ubyte newValue = cast(ubyte)(tileValue + 1);
 				pathMatrixBuffer[currentBufferPosition] = newValue;
 
 				if (newValue == maxDistance) {
 					for (short i = 0; i < 4; i++) {
-						if (pathMatrixBuffer[currentBufferPosition + pathCardinalOffset[i]] >= PathfindingTile.unpainted) { // if PathfindingTile.unpainted or PathfindingTile.start
-							pathMatrixBuffer[currentBufferPosition + pathCardinalOffset[i]] = PathfindingTile.unknownFC;
+						if (pathMatrixBuffer[currentBufferPosition + pathCardinalOffset[i]] >= PathfindingTile.unpainted) { // if PathfindingTile.unpainted or PathfindingTile.target
+							pathMatrixBuffer[currentBufferPosition + pathCardinalOffset[i]] = PathfindingTile.invalid;
 						}
 					}
 				}
 			}
 
-			++dp13;
-			if ((unk3 <= dp13) || (dp15 == unk1)) return;
+			// exit if we met our requirements
+			if ((maxIterations <= ++iterations) || (targetsHit == maxTargets)) {
+				break;
+			}
 		}
 	}
+}
+
+unittest {
+	auto buffer = (cast(immutable(ubyte[]))import("paintPathMatrixPass1sample1output.bin")).dup;
+	pathMatrixBuffer = &buffer[0];
+	pathMatrixRows = 64;
+	pathMatrixColumns = 64;
+	pathMatrixBorder = 4;
+	pathMatrixSize = 4096;
+	auto pathSearchBuffer = new ushort[](64 + 1);
+	pathSearchTempStart = &pathSearchBuffer[0];
+	pathSearchTempEnd = &pathSearchBuffer[50];
+	auto pather = Pather(0, VecYX(1, 2), VecYX(44, 10), 0, null, 0, 0);
+	auto targets = [
+		VecYX(32, 32),
+		VecYX(32, 30),
+		VecYX(32, 29),
+		VecYX(32, 27),
+		VecYX(34, 26),
+	];
+	pathCardinalOffset = [-64, 1, 64, -1];
+	paintPathMatrixPass2(5, &targets[0], &pather, 4, 64, 0xFFFF);
+	assert(buffer == cast(immutable(ubyte[]))import("paintPathMatrixPass2sample1output.bin"));
 }
 
 /** Builds a path from a painted path matrix
@@ -7996,9 +8060,9 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 	ushort nextPointX = start.x;
 	ushort pathCardinal = PathCardinal.north;
 
-	ubyte pathTile = pathMatrixBuffer[(nextPointY * pathMatrixCols) + nextPointX];
+	ubyte pathTile = pathMatrixBuffer[(nextPointY * pathMatrixColumns) + nextPointX];
 	// bail early if starting point is invalid
-	if (pathTile > PathfindingTile.unknownFB) { // if PathfindingTile.unknownFC, PathfindingTile.unwalkable, PathfindingTile.unpainted, PathfindingTile.start
+	if (pathTile > PathfindingTile.unknownFB) { // if PathfindingTile.invalid, PathfindingTile.unwalkable, PathfindingTile.unpainted, PathfindingTile.target
 		return 0;
 	}
 
@@ -8038,7 +8102,7 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 			ushort pathCardinalLimited = cardinalCandidate & 3;
 
 			// found an adjacent path tile with lower value on a cardinal?
-			if (pathMatrixBuffer[(pathMatrixCols * candidateY) + candidateX] == pathTile) {
+			if (pathMatrixBuffer[(pathMatrixColumns * candidateY) + candidateX] == pathTile) {
 				// for cardinals, we only want the first one found
 				// but we don't exit early in case we find a cardinal next to a diagonal tile that looks even better
 				if (selectedCardinalDirection == 666) {
@@ -8052,8 +8116,8 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 				ushort candidateDiagonalX = cast(ushort)(pathDiagonalIndex[cardinalCandidate].x + nextPointX);
 
 				// if the clockwise adjacent tile has an even lower value, prefer that and exit early
-				if (pathMatrixBuffer[(pathMatrixCols * candidateDiagonalY) + candidateDiagonalX] == pathTile - 1) {
-					if (pathMatrixBuffer[(pathMatrixCols * candidateY) + candidateX] == pathTile) {
+				if (pathMatrixBuffer[(pathMatrixColumns * candidateDiagonalY) + candidateDiagonalX] == pathTile - 1) {
+					if (pathMatrixBuffer[(pathMatrixColumns * candidateY) + candidateX] == pathTile) {
 						selectedDiagonalDirection = cardinalCandidate;
 						selectedDiagonalY = candidateDiagonalY;
 						selectedDiagonalX = candidateDiagonalX;

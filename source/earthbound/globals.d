@@ -2965,7 +2965,7 @@ __gshared ushort pathMatrixRows;
 /** Number of columns in the pathfinding matrix
  * Original_Address: $(DOLLAR)B402
  */
-__gshared ushort pathMatrixCols;
+__gshared ushort pathMatrixColumns;
 /** The width of the offscreen pathfinding area in tiles
  * Original_Address: $(DOLLAR)B404
  */

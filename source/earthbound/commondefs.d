@@ -65,10 +65,10 @@ enum PathfindingTile {
 	unknown1A = 0x1A, ///
 	unknown1B = 0x1B, ///
 	unknownFB = 0xFB, ///
-	unknownFC = 0xFC, ///
+	invalid = 0xFC, /// Invalid starting position
 	unwalkable = 0xFD, ///
 	unpainted = 0xFE, /// Areas that haven't been painted
-	start = 0xFF, /// Is this even correct?
+	target = 0xFF, /// Is this even correct?
 }
 
 enum PathCardinal {
@@ -8657,8 +8657,8 @@ string getBattlerName(ref Battler battler) {
 }
 
 void printPathMatrix(VecYX[] highlights = [], bool gradient = false) {
-	import earthbound.globals : pathMatrixBuffer, pathMatrixCols, pathMatrixRows;
-	printPathMatrix(pathMatrixBuffer[0 .. pathMatrixCols * pathMatrixRows], pathMatrixCols, pathMatrixRows, highlights, gradient);
+	import earthbound.globals : pathMatrixBuffer, pathMatrixColumns, pathMatrixRows;
+	printPathMatrix(pathMatrixBuffer[0 .. pathMatrixColumns * pathMatrixRows], pathMatrixColumns, pathMatrixRows, highlights, gradient);
 }
 void printPathMatrix(const ubyte[] buffer, uint cols, uint rows, VecYX[] highlights = [], bool gradient = false) {
 	import std.algorithm.searching : canFind;
@@ -8673,10 +8673,10 @@ void printPathMatrix(const ubyte[] buffer, uint cols, uint rows, VecYX[] highlig
 				case cast(PathfindingTile)0x01: .. case cast(PathfindingTile)0x80:
 					colour = [cast(ubyte)(block * 2), cast(ubyte)(block * 2), cast(ubyte)(block * 2)]; break;
 				case PathfindingTile.unknownFB: colour = [0, 128, 128]; break;
-				case PathfindingTile.unknownFC: colour = [128, 128, 0]; break;
+				case PathfindingTile.invalid: colour = [128, 128, 0]; break;
 				case PathfindingTile.unwalkable: colour = [128, 0, 0]; break;
 				case PathfindingTile.unpainted: colour = [0, 0, 128]; break;
-				case PathfindingTile.start: colour = [0, 128, 0]; break;
+				case PathfindingTile.target: colour = [0, 128, 0]; break;
 				default: writeln(block); break;
 			}
 			if (highlights.canFind(VecYX(cast(short)i, cast(short)j))) {
