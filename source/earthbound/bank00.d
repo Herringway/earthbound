@@ -9171,7 +9171,7 @@ unittest {
 		gameState.firstPartyMemberEntity = 24;
 		gameState.partyEntities[0] = cast(ubyte)gameState.firstPartyMemberEntity;
 		entitySizes[gameState.firstPartyMemberEntity] = 5;
-		//assert(findPathToParty(1, 64, 64) == 0);
+		assert(findPathToParty(1, 64, 64) == 0);
 	}
 }
 
