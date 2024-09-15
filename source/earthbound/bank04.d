@@ -7768,11 +7768,10 @@ unittest {
 	auto heap = new ubyte[](0xC00);
 	ubyte[] buffer = (cast(immutable(ubyte[]))import("examplepathfinding.bin")).dup;
 	assert(pathMain(cast(short)heap.length, &heap[0], &pathState.radius, &buffer[0], 4, 1, &pathState.targetsPos[0], 4, &pathState.pathers[0], -1, 64, 50) == 4);
-	//TODO: fix me
-	//assert(pathState.pathers[0].points[0 .. pathState.pathers[0].pointCount] == [VecYX(46, 17), VecYX(32, 31), VecYX(32, 32)]);
-	//assert(pathState.pathers[1].points[0 .. pathState.pathers[1].pointCount] == [VecYX(37, 25), VecYX(32, 30), VecYX(32, 32)]);
-	//assert(pathState.pathers[2].points[0 .. pathState.pathers[2].pointCount] == [VecYX(44, 18), VecYX(32, 30), VecYX(32, 32)]);
-	//assert(pathState.pathers[3].points[0 .. pathState.pathers[3].pointCount] == [VecYX(32, 31), VecYX(32, 32)]);
+	assert(pathState.pathers[0].points[0 .. pathState.pathers[0].pointCount] == [VecYX(46, 17), VecYX(32, 31), VecYX(32, 32)]);
+	assert(pathState.pathers[1].points[0 .. pathState.pathers[1].pointCount] == [VecYX(37, 25), VecYX(32, 30), VecYX(32, 32)]);
+	assert(pathState.pathers[2].points[0 .. pathState.pathers[2].pointCount] == [VecYX(44, 18), VecYX(32, 30), VecYX(32, 32)]);
+	assert(pathState.pathers[3].points[0 .. pathState.pathers[3].pointCount] == [VecYX(32, 31), VecYX(32, 32)]);
 }
 
 /** Adds an impassible border at the perimeter of the pathfinding matrix
@@ -8053,14 +8052,14 @@ unittest {
  * Returns: Actual number of points in path
  * Original_Address: $(DOLLAR)C4BD9A
  */
-ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
+ushort pathBuildPathPoints(const VecYX *start, ushort maxPoints, VecYX* points)
 	in(points)
 {
 	ushort nextPointY = start.y;
 	ushort nextPointX = start.x;
 	ushort pathCardinal = PathCardinal.north;
 
-	ubyte pathTile = pathMatrixBuffer[(nextPointY * pathMatrixColumns) + nextPointX];
+	ubyte pathTile = pathMatrixBuffer[(pathMatrixColumns * nextPointY) + nextPointX];
 	// bail early if starting point is invalid
 	if (pathTile > PathfindingTile.unknownFB) { // if PathfindingTile.invalid, PathfindingTile.unwalkable, PathfindingTile.unpainted, PathfindingTile.target
 		return 0;
@@ -8079,8 +8078,8 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 	ushort count = 1;
 	// look for tiles with lower values than the current tile
 	// once we exhaust the number of candidates or exceed maxPoints, we're done
-	outer: while (pathTile != PathfindingTile.clear) {
-		ushort selectedCardinalDirection = 666; // Assume we're moving in an evil direction
+	while (pathTile != PathfindingTile.clear) {
+		ushort selectedCardinalDirection = 666; // Assume we're going to hell
 		ushort selectedDiagonalDirection = 666;
 
 		ushort selectedCardinalY;
@@ -8094,12 +8093,12 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 		ushort cardinalCandidate = pathCardinal;
 
 		// check all four cardinal directions
-		for (pathCardinal = 0; pathCardinal < 4; ++pathCardinal) {
+		for (pathCardinal = PathCardinal.north; pathCardinal < PathCardinal.max + 1; pathCardinal++) {
 			// add cardinal vector to last coordinates
 			ushort candidateY = cast(ushort)(pathCardinalIndex[cardinalCandidate].y + nextPointY);
 			ushort candidateX = cast(ushort)(pathCardinalIndex[cardinalCandidate].x + nextPointX);
 
-			ushort pathCardinalLimited = cardinalCandidate & 3;
+			ushort pathCardinalLimited = (cardinalCandidate + 1) & 3;
 
 			// found an adjacent path tile with lower value on a cardinal?
 			if (pathMatrixBuffer[(pathMatrixColumns * candidateY) + candidateX] == pathTile) {
@@ -8121,7 +8120,7 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 						selectedDiagonalDirection = cardinalCandidate;
 						selectedDiagonalY = candidateDiagonalY;
 						selectedDiagonalX = candidateDiagonalX;
-						break outer;
+						break;
 					}
 				}
 			}
@@ -8160,6 +8159,29 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 	return count;
 }
 
+unittest {
+	auto buffer = (cast(immutable(ubyte[]))import("paintPathMatrixPass2sample1output.bin")).dup;
+	pathMatrixBuffer = &buffer[0];
+	pathMatrixRows = 64;
+	pathMatrixColumns = 64;
+	pathMatrixBorder = 4;
+	pathMatrixSize = 4096;
+
+	pathCardinalIndex[PathCardinal.north] = VecYX(-1, 0);
+	pathCardinalIndex[PathCardinal.east] = VecYX(0, 1);
+	pathCardinalIndex[PathCardinal.south] = VecYX(1, 0);
+	pathCardinalIndex[PathCardinal.west] = VecYX(0, -1);
+	pathDiagonalIndex[PathDiagonal.northEast] = VecYX(-1, 1);
+	pathDiagonalIndex[PathDiagonal.southEast] = VecYX(1, 1);
+	pathDiagonalIndex[PathDiagonal.southWest] = VecYX(1, -1);
+	pathDiagonalIndex[PathDiagonal.northWest] = VecYX(-1, -1);
+	VecYX[20] vecBuffer;
+	assert(pathBuildPathPoints(new VecYX(44, 10), 64, &vecBuffer[0]) == 0);
+	assert(vecBuffer[0 .. pathBuildPathPoints(new VecYX(32, 33), 64, &vecBuffer[0])] == [VecYX(32, 33), VecYX(32, 32)]);
+	assert(vecBuffer[0 .. pathBuildPathPoints(new VecYX(33, 36), 64, &vecBuffer[0])] == [VecYX(33, 36), VecYX(32, 36), VecYX(32, 35), VecYX(32, 34), VecYX(32, 33), VecYX(32, 32)]);
+	assert(vecBuffer[0 .. pathBuildPathPoints(new VecYX(27, 41), 64, &vecBuffer[0])] == [VecYX(27, 41), VecYX(28, 40), VecYX(29, 39), VecYX(30, 38), VecYX(31, 37), VecYX(32, 36), VecYX(32, 35), VecYX(32, 34), VecYX(32, 33), VecYX(32, 32)]);
+}
+
 /** Removes redundant points in a path
  *
  * Redundancies here are any points that don't come with a change in direction. This assumes that each point has an equal distance from the ones before and after.
@@ -8172,17 +8194,17 @@ ushort pathBuildPathPoints(VecYX *start, ushort maxPoints, VecYX* points)
 ushort pathTrimRedundancies(ushort count, VecYX* points) {
 	// need at least 3 points to do anything useful
 	if (count >= 3) {
-		ushort startY = points[1].y;
-		ushort startX = points[1].x;
+		short startY = points[1].y;
+		short startX = points[1].x;
 
-		ushort yDistance = cast(ushort)(startY - points[0].y);
-		ushort xDistance = cast(ushort)(startX - points[0].x);
+		short yDistance = cast(short)(startY - points[0].y);
+		short xDistance = cast(short)(startX - points[0].x);
 		// the 0th point is the origin, don't touch that
 		ushort rewriteIndex = 1;
 
 		for (ushort i = 2; i != count; ++i) {
-			ushort nextY = points[i].y;
-			ushort nextX = points[i].x;
+			short nextY = points[i].y;
+			short nextX = points[i].x;
 
 			// test if we're moving in the same direction as the last two points. if so, cut out the middle point
 			if ((startY + yDistance == nextY) && (startX + xDistance == nextX)) {
@@ -8193,8 +8215,8 @@ ushort pathTrimRedundancies(ushort count, VecYX* points) {
 				points[rewriteIndex].y = nextY;
 				points[rewriteIndex].x = nextX;
 
-				yDistance = cast(ushort)(nextY - startY);
-				xDistance = cast(ushort)(nextX - startX);
+				yDistance = cast(short)(nextY - startY);
+				xDistance = cast(short)(nextX - startX);
 			}
 
 			startY = nextY;
@@ -8205,6 +8227,20 @@ ushort pathTrimRedundancies(ushort count, VecYX* points) {
 	}
 
 	return count;
+}
+
+unittest {
+	VecYX[20] vecBuffer;
+	assert(vecBuffer[0 .. pathTrimRedundancies(0, &vecBuffer[0])] == []);
+
+	vecBuffer[0 .. 2] = [VecYX(32, 33), VecYX(32, 32)];
+	assert(vecBuffer[0 .. pathTrimRedundancies(2, &vecBuffer[0])] == [VecYX(32, 33), VecYX(32, 32)]);
+
+	vecBuffer[0 .. 6] = [VecYX(33, 36), VecYX(32, 36), VecYX(32, 35), VecYX(32, 34), VecYX(32, 33), VecYX(32, 32)];
+	assert(vecBuffer[0 .. pathTrimRedundancies(6, &vecBuffer[0])] == [VecYX(33, 36), VecYX(32, 36), VecYX(32, 32)]);
+
+	vecBuffer[0 .. 10] = [VecYX(27, 41), VecYX(28, 40), VecYX(29, 39), VecYX(30, 38), VecYX(31, 37), VecYX(32, 36), VecYX(32, 35), VecYX(32, 34), VecYX(32, 33), VecYX(32, 32)];
+	assert(vecBuffer[0 .. pathTrimRedundancies(10, &vecBuffer[0])] == [VecYX(27, 41), VecYX(32, 36), VecYX(32, 32)]);
 }
 
 /// $C4C05E
