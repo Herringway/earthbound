@@ -9110,7 +9110,7 @@ short unknownC0BA35(PathCtx* pathState, short targets, short baseX, short baseY,
 		pathfinders++;
 	}
 	pathState.patherCount = pathfinders;
-	ushort x28 = pathMain(0xC00, &pathfindingBuffer[0], &pathState.radius, &buffer[0x3000], 4, targets, &pathState.targetsPos[0], pathfinders, &pathState.pathers[0], -1, arg6, arg7);
+	ushort x28 = pathMain(0xC00, &pathfindingBuffer[0], &pathState.radius, &buffer[0x3000], 4, targets, &pathState.targetsPos[0], pathfinders, &pathState.pathers[0], 0xFFFF, arg6, arg7);
 	assert(pathGetHeapSize() <= 0xC00);
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {

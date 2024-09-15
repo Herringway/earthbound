@@ -7623,42 +7623,42 @@ ushort pathGetHeapSize() {
 
 /** Finds a path from pathers to targets
  * Params:
- * 	heap_size = Size of the heap used for allocation of various temporary arrays/structs
- * 	heap_start = Pointer to the start of the heap
- * 	matrix_dim = Pointer to a VecYX struct containing the pathfinding matrix dimensions
+ * 	heapSize = Size of the heap used for allocation of various temporary arrays/structs
+ * 	heapStart = Pointer to the start of the heap
+ * 	matrixDimensions = Pointer to a VecYX struct containing the pathfinding matrix dimensions
  * 	matrix = pointer to the pathfinding matrix
- * 	border_size = Size of the border used for the start positions of deliverymen
+ * 	borderSize = Size of the border used for the start positions of offscreen targets
  * 	targetCount = Amount of VecYX elements in the `targetsPos` array
  * 	targetsPos = Array of VecYX containing the positions of the targets
  * 	patherCount = Amount of Pather elements in the `pathers` array
  * 	pathers = Array of Pather for the pathfinding objects
- * 	unk1 = Unknown (-1 as called from unknownC0BA35)
+ * 	maxIterations = Maximum number of painting iterations, for setting an upper bound on execution time
  * 	maxPoints = maximum number of points to generate in matrix
- * 	search_radius = Just a guess...
- * Returns: unknown
+ * 	radius = Distance from the center of the pathfinding matrix to the edge
+ * Returns: Number of paths found
  * Original_Address: $(DOLLAR)C4B59F
 **/
-ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort maxPoints, ushort search_radius) {
+ushort pathMain(ushort heapSize, void* heapStart, VecYX* matrixDimensions, ubyte* matrix, ushort borderSize, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, ushort maxIterations, ushort maxPoints, ushort radius) {
 	debug(pathing) {
 		import std.stdio;
-		writeln(heap_size, ", ", *matrix_dim, ", ", border_size, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", unk1, ", ", maxPoints, ", ", search_radius);
+		writeln(heapSize, ", ", *matrixDimensions, ", ", borderSize, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", maxIterations, ", ", maxPoints, ", ", radius);
 	}
 	ushort successes = 0;
 
-	pathHeapStart = heap_start;
-	pathHeapCurrent = heap_start;
-	pathHeapEnd = cast(byte*)heap_start + heap_size;
+	pathHeapStart = heapStart;
+	pathHeapCurrent = heapStart;
+	pathHeapEnd = cast(byte*)heapStart + heapSize;
 
-	pathMatrixRows = matrix_dim.y;
-	pathMatrixColumns = matrix_dim.x;
-	pathMatrixBorder = border_size;
+	pathMatrixRows = matrixDimensions.y;
+	pathMatrixColumns = matrixDimensions.x;
+	pathMatrixBorder = borderSize;
 	pathMatrixSize = cast(ushort)(pathMatrixRows * pathMatrixColumns);
 	pathMatrixBuffer = matrix;
 
 	// allocates n + 1 offsets to work around a bug in matrix painting
-	ushort* offsetBuffer = cast(ushort*)pathSbrk((search_radius + 1) * ushort.sizeof);
+	ushort* offsetBuffer = cast(ushort*)pathSbrk((radius + 1) * ushort.sizeof);
 	pathSearchTempStart = offsetBuffer;
-	pathSearchTempEnd = offsetBuffer + search_radius;
+	pathSearchTempEnd = offsetBuffer + radius;
 	pathSearchTempA = offsetBuffer;
 	pathSearchTempB = offsetBuffer;
 
@@ -7725,7 +7725,7 @@ ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* ma
 			}
 
 			paintPathMatrixPass1(matching, &tempPathers[i]);
-			paintPathMatrixPass2(targetCount, targetsPos, tempPather, matching, maxPoints, unk1);
+			paintPathMatrixPass2(targetCount, targetsPos, tempPather, matching, maxPoints, maxIterations);
 		}
 
 		tempPather.initialPointCount = pathBuildPathPoints(&tempPather.origin, maxPoints, points);
@@ -7747,8 +7747,6 @@ ushort pathMain(ushort heap_size, void* heap_start, VecYX* matrix_dim, ubyte* ma
 			++successes;
 		}
 	}
-	debug(pathing) printPathMatrix();
-
 	return successes;
 }
 
@@ -7767,7 +7765,7 @@ unittest {
 	pathState.pathers[3] = Pather(0, VecYX(1, 2), VecYX(32, 31), 0, null, 0, 10);
 	auto heap = new ubyte[](0xC00);
 	ubyte[] buffer = (cast(immutable(ubyte[]))import("examplepathfinding.bin")).dup;
-	assert(pathMain(cast(short)heap.length, &heap[0], &pathState.radius, &buffer[0], 4, 1, &pathState.targetsPos[0], 4, &pathState.pathers[0], -1, 64, 50) == 4);
+	assert(pathMain(cast(short)heap.length, &heap[0], &pathState.radius, &buffer[0], 4, 1, &pathState.targetsPos[0], 4, &pathState.pathers[0], 0xFFFF, 64, 50) == 4);
 	assert(pathState.pathers[0].points[0 .. pathState.pathers[0].pointCount] == [VecYX(46, 17), VecYX(32, 31), VecYX(32, 32)]);
 	assert(pathState.pathers[1].points[0 .. pathState.pathers[1].pointCount] == [VecYX(37, 25), VecYX(32, 30), VecYX(32, 32)]);
 	assert(pathState.pathers[2].points[0 .. pathState.pathers[2].pointCount] == [VecYX(44, 18), VecYX(32, 30), VecYX(32, 32)]);
