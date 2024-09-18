@@ -17874,7 +17874,7 @@ shared static this() {
 		PAUSE(1),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE(&actionScriptEnemyInitialize[16 + 8 * (const(void)*).sizeof]),
-		SET_TICK_CALLBACK(&unknownC0D7F7),
+		SET_TICK_CALLBACK(&actionScriptPathfindingOverride),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),

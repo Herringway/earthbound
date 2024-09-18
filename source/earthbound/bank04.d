@@ -8320,8 +8320,10 @@ immutable ubyte[4] fileSelectTextAreYouSureYep = ebStringz("Yep");
 
 immutable ubyte[5] fileSelectTextAreYouSureNope = ebStringz("Nope");
 
-/// $C4C2DE
-void unknownC4C2DE() {
+/** Loads graphics, changes music and reinitializes the text system for the game over screen
+ * Original_Address: $(DOLLAR)C4C2DE
+ */
+void loadGameOverScreen() {
 	if (partyMembersAliveOverworld == 0) {
 		changeMusic(Music.youLose);
 		fadeOutWithMosaic(1, 1, 0);
@@ -8359,7 +8361,11 @@ void unknownC4C2DE() {
 	waitForFadeToFinishNoActionScript();
 }
 
-/// $C4C45F
+/** Copies the current palette into the fade buffers for smooth fading between game over frames
+ * Params:
+ * 	animFrame = The current frame of the game over screen being displayed
+ * Original_Address: $(DOLLAR)C4C45F
+ */
 void setGameOverFadeTargetPalette(short animFrame) {
 	ushort* paletteBuf = &paletteAnimTargetPalette()[0];
 	// Initialize with current palettes
@@ -8424,7 +8430,10 @@ void unknownC4C60E(short duration) {
 	finishPaletteFade();
 }
 
-/// $C4C64D
+/** Asks the player if they want to try again and handles the interruptable revival animation
+ * Returns: 0 if reviving, non-zero otherwise
+ * Original_Address: $(DOLLAR)C4C64D
+ */
 short gameOverPrompt() {
 	skippablePause(0x3C);
 	displayText(getTextBlock("MSG_SYS_COMEBACK"));
@@ -8460,10 +8469,13 @@ short gameOverPrompt() {
 	return 0;
 }
 
-/// $C4C718
-short spawn() {
+/** Tries to respawn the player after a game over
+ * Returns: 0 if player chose to try again, 1 otherwise
+ * Original_Address: $(DOLLAR)C4C718
+ */
+short respawn() {
 	freezeEntities();
-	unknownC4C2DE();
+	loadGameOverScreen();
 	short result = gameOverPrompt();
 	if (result != 0) {
 		fadeOutWithMosaic(2, 1, 0);

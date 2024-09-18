@@ -9019,7 +9019,7 @@ void ebMain() {
 				}
 			}
 		}
-		if (!unknownC04FFE() && spawn()) {
+		if (!unknownC04FFE() && respawn()) {
 			goto RestartGame;
 		}
 		if (debugging && ((padState[0] & Pad.start) != 0) && ((padState[0] & Pad.select) == 0)) {
@@ -9999,36 +9999,42 @@ void unknownC0D7E0() {
 	}
 }
 
-/// $C0D7F7
-void unknownC0D7F7() {
+/** Overrides an entity's normal direction decision logic with pathfinding-based direction logic, if available
+ * Original_Address: $(DOLLAR)C0D7F7
+ */
+void actionScriptPathfindingOverride() {
 	if (entityPathfindingState[currentEntitySlot] != -1) {
 		return;
 	}
-	short x1C = entitySizes[currentEntitySlot];
-	VecYX* x1A = entityPathPoints[currentEntitySlot];
-	short x18 = entityAbsXTable[currentEntitySlot];
-	short x16 = entityAbsYTable[currentEntitySlot];
-	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x1A.x * 8 + collisionWidths[x1C]);
-	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x1A.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
-	short x10 = cast(short)(x18 - x12);
-	if (0 > x10) {
-		x10 = cast(short)-cast(int)x10;
+	short entitySize = entitySizes[currentEntitySlot];
+	VecYX* currentPathTarget = entityPathPoints[currentEntitySlot];
+	short currentX = entityAbsXTable[currentEntitySlot];
+	short currentY = entityAbsYTable[currentEntitySlot];
+	short targetX = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + currentPathTarget.x * 8 + collisionWidths[entitySize]);
+	short targetY = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + currentPathTarget.y * 8 - collisionHeights2[entitySize] + collisionHeights1[entitySize]);
+	// figure out how close to our current path target we are
+	short xDifference = cast(short)(currentX - targetX);
+	if (0 > xDifference) {
+		xDifference = cast(short)-xDifference;
 	}
-	if (3 > x10) {
-		x10 = cast(short)(x16 - x04);
-		if (0 > x10) {
-			x10 = cast(short)-cast(int)x10;
+	if (3 > xDifference) {
+		short yDifference = cast(short)(currentY - targetY);
+		if (0 > yDifference) {
+			yDifference = cast(short)-yDifference;
 		}
-		if ((3 > x10) && (--entityPathPointsCount[currentEntitySlot] != 0)) {
-			VecYX* x14 = &x1A[1];
-			entityPathPoints[currentEntitySlot] = x14;
-			x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x14.x * 8 + collisionWidths[x1C]);
-			x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x14.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
+		// we're within 3 pixels of the target? move to the next one instead
+		if ((3 > yDifference) && (--entityPathPointsCount[currentEntitySlot] != 0)) {
+			VecYX* nextPathTarget = &currentPathTarget[1];
+			entityPathPoints[currentEntitySlot] = nextPathTarget;
+			targetX = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + nextPathTarget.x * 8 + collisionWidths[entitySize]);
+			targetY = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + nextPathTarget.y * 8 - collisionHeights2[entitySize] + collisionHeights1[entitySize]);
 		}
 	}
 	if (entityPathPointsCount[currentEntitySlot] != 0) {
-		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(setMovementFromAngle(getScreenAngle(x18, x16, x12, x04)));
+		// if we have points left in the path, move towards the next one
+		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(setMovementFromAngle(getScreenAngle(currentX, currentY, targetX, targetY)));
 	} else {
+		// otherwise, we're done pathfinding
 		entityPathfindingState[currentEntitySlot] = 0;
 		entityObstacleFlags[currentEntitySlot] |= 0x80;
 	}
