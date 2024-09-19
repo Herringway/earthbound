@@ -8363,7 +8363,7 @@ void loadGameOverScreen() {
 
 /** Copies the current palette into the fade buffers for smooth fading between game over frames
  * Params:
- * 	animFrame = The current frame of the game over screen being displayed
+ * 	animFrame = The frame of the game over screen animation to display
  * Original_Address: $(DOLLAR)C4C45F
  */
 void setGameOverFadeTargetPalette(short animFrame) {
@@ -8376,7 +8376,13 @@ void setGameOverFadeTargetPalette(short animFrame) {
 	memcpy(paletteBuf + ((animFrame - 1) * 16), &palettes[6][0], 0x20);
 }
 
-/// $C4C519
+/** Handles a frame of the game over respawn animation and its fade
+ * Params:
+ * 	animFrame = The frame of tbe game over screen animation to display
+ * 	fadeDuration = How long the fade lasts in frames
+ * Returns: Non-zero if any buttons are pressed, 0 otherwise
+ * Original_Address: $(DOLLAR)C4C519
+ */
 short doGameOverPaletteFade(short animFrame, short fadeDuration) {
 	setGameOverFadeTargetPalette(animFrame);
 	initializeMapPaletteFade(fadeDuration);
@@ -8392,7 +8398,12 @@ short doGameOverPaletteFade(short animFrame, short fadeDuration) {
 	return 0;
 }
 
-/// $C4C567
+/** Wait for up to a specified duration, but exit early if player presses any buttons
+ * Params:
+ * 	duration = Number of frames to wait
+ * Returns: Non-zero if any buttons are pressed, 0 otherwise
+ * Original_Address: $(DOLLAR)C4C567
+ */
 short skippablePause(short duration) {
 	while (duration != 0) {
 		if (padPress[0] != 0) {
