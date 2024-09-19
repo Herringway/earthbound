@@ -331,7 +331,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="actionScriptObjFXClearDotBuffer" class="public" href="../earthbound/bank04/actionScriptObjFXClearDotBuffer.html">actionScriptObjFXClearDotBuffer</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4CEB0
+						<td>Wipes the shared dots fade effect buffer
 </td>
 					</tr>
 					<tr>
@@ -340,7 +340,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="actionScriptObjFXDots" class="public" href="../earthbound/bank04/actionScriptObjFXDots.html">actionScriptObjFXDots</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4CED8
+						<td>Perform a single frame of the dots fade animation for all relevant entities
 </td>
 					</tr>
 					<tr>
@@ -448,7 +448,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="actionScriptVStripe" class="public" href="../earthbound/bank04/actionScriptVStripe.html">actionScriptVStripe</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4CD44
+						<td>Perform a single frame of the vertical stripes fade animation for all relevant entities
 </td>
 					</tr>
 					<tr>
@@ -511,7 +511,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="animateTownMapIconPalette" class="public" href="../earthbound/bank04/animateTownMapIconPalette.html">animateTownMapIconPalette</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4D2A8
+						<td>NO LONGER USED. Animates an icon palette for the town map display
 </td>
 					</tr>
 					<tr>
@@ -745,7 +745,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="clearEntityFadeBuffer" class="public" href="../earthbound/bank04/clearEntityFadeBuffer.html">clearEntityFadeBuffer</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4C8A4
+						<td>Clear all state for entity fades
 </td>
 					</tr>
 					<tr>
@@ -967,6 +967,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="createNamingSummaryEntities" class="public" href="../earthbound/bank04/createNamingSummaryEntities.html">createNamingSummaryEntities</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Creates the downward-facing naming screen summary entities
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="createPreparedEntityNPC" class="public" href="../earthbound/bank04/createPreparedEntityNPC.html">createPreparedEntityNPC</a><span class="tableEntryAnnotation">(npcID, actionScript)</span>
 							</code>
 						</td>
@@ -1007,24 +1016,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Decompresses data in HAL's proprietary compression format
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="decompItoiProduction" class="public" href="../earthbound/bank04/decompItoiProduction.html">decompItoiProduction</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4DD28
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="decompNintendoPresentation" class="public" href="../earthbound/bank04/decompNintendoPresentation.html">decompNintendoPresentation</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4DDD0
 </td>
 					</tr>
 					<tr>
@@ -1129,10 +1120,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="displayAnimatedNamingSprite" class="public" href="../earthbound/bank04/displayAnimatedNamingSprite.html">displayAnimatedNamingSprite</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="displayAnimatedNamingSprite" class="public" href="../earthbound/bank04/displayAnimatedNamingSprite.html">displayAnimatedNamingSprite</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$C4D7D9
+						<td>Creates a predefined entity for the naming screen
 </td>
 					</tr>
 					<tr>
@@ -1160,16 +1151,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="displayTownMap" class="public" href="../earthbound/bank04/displayTownMap.html">displayTownMap</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4D681
+						<td>Loads and displays the town map for the current player coordinates
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="displayYourSanctuaryLocation" class="public" href="../earthbound/bank04/displayYourSanctuaryLocation.html">displayYourSanctuaryLocation</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="displayYourSanctuaryLocation" class="public" href="../earthbound/bank04/displayYourSanctuaryLocation.html">displayYourSanctuaryLocation</a><span class="tableEntryAnnotation">(sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4E2D7
+						<td>Displays a Your Sanctuary location as part of the post-Magicant montage
 </td>
 					</tr>
 					<tr>
@@ -1187,7 +1178,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="doGameOverPaletteFade" class="public" href="../earthbound/bank04/doGameOverPaletteFade.html">doGameOverPaletteFade</a><span class="tableEntryAnnotation">(animFrame, fadeDuration)</span>
 							</code>
 						</td>
-						<td>$C4C519
+						<td>Handles a frame of the game over respawn animation and its fade
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="doIntroSequence" class="public" href="../earthbound/bank04/doIntroSequence.html">doIntroSequence</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Runs the intro sequence
 </td>
 					</tr>
 					<tr>
@@ -1322,7 +1322,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="enableYourSanctuaryDisplay" class="public" href="../earthbound/bank04/enableYourSanctuaryDisplay.html">enableYourSanctuaryDisplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4DED0
+						<td>Enables the Your Sanctuary location montage
 </td>
 					</tr>
 					<tr>
@@ -1350,6 +1350,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Performs a frame of spiral movement, using active entity var 0 to store the current angle
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="exitAnimatedNamingSprite" class="public" href="../earthbound/bank04/exitAnimatedNamingSprite.html">exitAnimatedNamingSprite</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Have naming screen entities exit stage left
 </td>
 					</tr>
 					<tr>
@@ -1571,10 +1580,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="gameOverFadeToMap" class="public" href="../earthbound/bank04/gameOverFadeToMap.html">gameOverFadeToMap</a><span class="tableEntryAnnotation">(duration)</span>
+							</code>
+						</td>
+						<td>Do a quick fade transition from end of game over to overworld
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="gameOverFadeToWhite" class="public" href="../earthbound/bank04/gameOverFadeToWhite.html">gameOverFadeToWhite</a><span class="tableEntryAnnotation">(duration)</span>
+							</code>
+						</td>
+						<td>Do a quick fade to white so the game over screen can reload the map
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="gameOverPrompt" class="public" href="../earthbound/bank04/gameOverPrompt.html">gameOverPrompt</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4C64D
+						<td>Asks the player if they want to try again and handles the interruptable revival animation
 </td>
 					</tr>
 					<tr>
@@ -1754,7 +1781,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="getTownMapID" class="public" href="../earthbound/bank04/getTownMapID.html">getTownMapID</a><span class="tableEntryAnnotation">(x, y)</span>
 							</code>
 						</td>
-						<td>$C4D274
+						<td>Gets the town map ID (if any) for the given coordinates
 </td>
 					</tr>
 					<tr>
@@ -1826,7 +1853,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="initializeEntityFade" class="public" href="../earthbound/bank04/initializeEntityFade.html">initializeEntityFade</a><span class="tableEntryAnnotation">(entityID, appearanceStyle)</span>
 							</code>
 						</td>
-						<td>$C4C91A
+						<td>Initializes an entity fade animation
 </td>
 					</tr>
 					<tr>
@@ -1904,6 +1931,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="initializeTownMapDisplay" class="public" href="../earthbound/bank04/initializeTownMapDisplay.html">initializeTownMapDisplay</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Fades out, loads the graphics, sets up hardware for a town map display and fades back in
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="initializeUsedBG2TileMap" class="public" href="../earthbound/bank04/initializeUsedBG2TileMap.html">initializeUsedBG2TileMap</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -1916,16 +1952,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="initializeYourSanctuaryDisplay" class="public" href="../earthbound/bank04/initializeYourSanctuaryDisplay.html">initializeYourSanctuaryDisplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4DE98
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="initIntro" class="public" href="../earthbound/bank04/initIntro.html">initIntro</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4DAD2
+						<td>Initializes state for the Your Sanctuary location montage
 </td>
 					</tr>
 					<tr>
@@ -2021,6 +2048,33 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="loadGameOverScreen" class="public" href="../earthbound/bank04/loadGameOverScreen.html">loadGameOverScreen</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Loads graphics, changes music and reinitializes the text system for the game over screen
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadItoiProductionOverlay" class="public" href="../earthbound/bank04/loadItoiProductionOverlay.html">loadItoiProductionOverlay</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Loads the "Produced by SHIGESATO ITOI" overlay for the attract mode demo
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="loadNintendoPresentationOverlay" class="public" href="../earthbound/bank04/loadNintendoPresentationOverlay.html">loadNintendoPresentationOverlay</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Loads the "Presented by Nintendo" overlay for the attract mode demo
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="loadOverlaySprites" class="public" href="../earthbound/bank04/loadOverlaySprites.html">loadOverlaySprites</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2039,15 +2093,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="loadTownMapData" class="public" href="../earthbound/bank04/loadTownMapData.html">loadTownMapData</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C4D552
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="loadWindowGraphics" class="public" href="../earthbound/bank04/loadWindowGraphics.html">loadWindowGraphics</a><span class="tableEntryAnnotation">(what)</span>
 							</code>
 						</td>
@@ -2057,19 +2102,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="loadYourSanctuaryLocation" class="public" href="../earthbound/bank04/loadYourSanctuaryLocation.html">loadYourSanctuaryLocation</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="loadYourSanctuaryLocation" class="public" href="../earthbound/bank04/loadYourSanctuaryLocation.html">loadYourSanctuaryLocation</a><span class="tableEntryAnnotation">(sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4E281
+						<td>Memoized version of loadYourSanctuaryLocationData, using a predefined Your Sanctuary location table
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="loadYourSanctuaryLocationData" class="public" href="../earthbound/bank04/loadYourSanctuaryLocationData.html">loadYourSanctuaryLocationData</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="loadYourSanctuaryLocationData" class="public" href="../earthbound/bank04/loadYourSanctuaryLocationData.html">loadYourSanctuaryLocationData</a><span class="tableEntryAnnotation">(x, y, sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4E13E
+						<td>Load all map data to be used for one of the Your Sanctuary locations in the montage
 </td>
 					</tr>
 					<tr>
@@ -2453,28 +2498,28 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="prepareYourSanctuaryLocationPaletteData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationPaletteData.html">prepareYourSanctuaryLocationPaletteData</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+								<a id="prepareYourSanctuaryLocationPaletteData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationPaletteData.html">prepareYourSanctuaryLocationPaletteData</a><span class="tableEntryAnnotation">(mapTileCombo, sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4DEE9
+						<td>Prepares the sprite palettes for the Your Sanctuary location montage animation
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="prepareYourSanctuaryLocationTileArrangementData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationTileArrangementData.html">prepareYourSanctuaryLocationTileArrangementData</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+								<a id="prepareYourSanctuaryLocationTileArrangementData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationTileArrangementData.html">prepareYourSanctuaryLocationTileArrangementData</a><span class="tableEntryAnnotation">(x, y, sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4DF7D
+						<td>Preloads the Your Sanctuary location for the montage
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="prepareYourSanctuaryLocationTilesetData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationTilesetData.html">prepareYourSanctuaryLocationTilesetData</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="prepareYourSanctuaryLocationTilesetData" class="public" href="../earthbound/bank04/prepareYourSanctuaryLocationTilesetData.html">prepareYourSanctuaryLocationTilesetData</a><span class="tableEntryAnnotation">(sanctuaryLocation)</span>
 							</code>
 						</td>
-						<td>$C4E08C
+						<td>Loads all tiles to be used in the Your Sanctuary location montage
 </td>
 					</tr>
 					<tr>
@@ -2804,6 +2849,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="respawn" class="public" href="../earthbound/bank04/respawn.html">respawn</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Tries to respawn the player after a game over
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="restoreMapRendering" class="public" href="../earthbound/bank04/restoreMapRendering.html">restoreMapRendering</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2831,10 +2885,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="runAttractModeScene" class="public" href="../earthbound/bank04/runAttractModeScene.html">runAttractModeScene</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="runAttractModeScene" class="public" href="../earthbound/bank04/runAttractModeScene.html">runAttractModeScene</a><span class="tableEntryAnnotation">(script)</span>
 							</code>
 						</td>
-						<td>$C4D989
+						<td>Runs one of the attract mode scripts
 </td>
 					</tr>
 					<tr>
@@ -2915,7 +2969,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="setDecompressedArrangementPriorityBit" class="public" href="../earthbound/bank04/setDecompressedArrangementPriorityBit.html">setDecompressedArrangementPriorityBit</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4DCF6
+						<td>Sets the priority bit for all tiles in the logo tilemaps
 </td>
 					</tr>
 					<tr>
@@ -2933,7 +2987,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="setGameOverFadeTargetPalette" class="public" href="../earthbound/bank04/setGameOverFadeTargetPalette.html">setGameOverFadeTargetPalette</a><span class="tableEntryAnnotation">(animFrame)</span>
 							</code>
 						</td>
-						<td>$C4C45F
+						<td>Copies the current palette into the fade buffers for smooth fading between game over frames
 </td>
 					</tr>
 					<tr>
@@ -3041,7 +3095,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="skippablePause" class="public" href="../earthbound/bank04/skippablePause.html">skippablePause</a><span class="tableEntryAnnotation">(duration)</span>
 							</code>
 						</td>
-						<td>$C4C567
+						<td>Wait for up to a specified duration, but exit early if player presses any buttons
 </td>
 					</tr>
 					<tr>
@@ -3061,15 +3115,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Handles the sliding animation for photographs in the credits sequence
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="spawn" class="public" href="../earthbound/bank04/spawn.html">spawn</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4C718
 </td>
 					</tr>
 					<tr>
@@ -3177,7 +3222,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="townMapDebug" class="public" href="../earthbound/bank04/townMapDebug.html">townMapDebug</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C4D744
+						<td>Test town map display
 </td>
 					</tr>
 					<tr>
@@ -3232,51 +3277,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4C2DE" class="public" href="../earthbound/bank04/unknownC4C2DE.html">unknownC4C2DE</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4C2DE
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4C58F" class="public" href="../earthbound/bank04/unknownC4C58F.html">unknownC4C58F</a><span class="tableEntryAnnotation">(duration)</span>
-							</code>
-						</td>
-						<td>$C4C58F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4C60E" class="public" href="../earthbound/bank04/unknownC4C60E.html">unknownC4C60E</a><span class="tableEntryAnnotation">(duration)</span>
-							</code>
-						</td>
-						<td>$C4C60E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4D830" class="public" href="../earthbound/bank04/unknownC4D830.html">unknownC4D830</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C4D830
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC4D8FA" class="public" href="../earthbound/bank04/unknownC4D8FA.html">unknownC4D8FA</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C4D8FA
-</td>
 					</tr>
 					<tr>
 						<td>
@@ -4491,7 +4491,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/YourSanctuaryLocation.html"><span class="typ">YourSanctuaryLocation</span></a><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C4DE78
+						<td>Coordinates for the Your Sanctuary locations in the post-Magicant montage
 </td>
 					</tr>
 				</table>

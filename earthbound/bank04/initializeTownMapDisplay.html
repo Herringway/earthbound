@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function decompItoiProduction</title>
+		<title>Function initializeTownMapDisplay</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,17 +154,31 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function decompItoiProduction</h1><p>$C4DD28
+			<h1>Function initializeTownMapDisplay</h1><p>Fades out, loads the graphics, sets up hardware for a town map display and fades back in
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">decompItoiProduction</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="typ">void</span> <span class="pln">initializeTownMapDisplay</span>
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">id</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="id">id</td><td> Town map ID (0-based, not 1-based!)</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C4D552
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

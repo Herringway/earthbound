@@ -1223,6 +1223,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptMoveEntityToPartyMember.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptMoveEntityToSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptNoPhysics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/actionScriptPathfindingOverride.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptPerformPaletteFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptPlaySFX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptPrepareNewEntity.html</loc></url>
@@ -1398,7 +1399,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/initEntityWipe.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initializeEntitySubsystem.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initializeMap.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/initializeMiscObjectData.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/initializeMiscEntityData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initializePSITeleportation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/interactDoor.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/interactEscalator.html</loc></url>
@@ -1667,7 +1668,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0D4DE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0D77F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0D7E0.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC0D7F7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0D98F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0ED5C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0EE47.html</loc></url>
@@ -2522,6 +2522,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/mushroomizationDirectionRemapTables.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/nameRegistryRequestString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/namingScreenEntities.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/namingScreenExitEntities.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/nessPajamaFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/npcSearchXOffsets.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/npcSearchYOffsets.html</loc></url>
@@ -2678,14 +2679,13 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/createManpuByPartyMember.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createManpuBySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createMenuOptionTable.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/createNamingSummaryEntities.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createPreparedEntityNPC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createPreparedEntitySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/darkenScreen.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/darkenScreen2Window.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/deadTargettableActions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/decomp.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/decompItoiProduction.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/decompNintendoPresentation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/defenseEquip.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/deleteManpu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/deleteManpuByNPCID.html</loc></url>
@@ -2711,6 +2711,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/displayYourSanctuaryLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/doAllPalettesFadeStep.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/doGameOverPaletteFade.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/doIntroSequence.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/doPaletteFadeStep.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/drawTownMapIcons.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/drawTownMapPlayerIcon.html</loc></url>
@@ -2748,6 +2749,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/equipmentSlotNamesRightAligned.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/eventFlagMasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/evtPrayOvalWindow.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/exitAnimatedNamingSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/fadeNPC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/fadeSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/fileSelectTextStartNewGame.html</loc></url>
@@ -2776,6 +2778,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/freeTile.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/freeTileSafe.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/gameFailureLoop.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/gameOverFadeToMap.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/gameOverFadeToWhite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/gameOverPrompt.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/generateRandomLeafDelay.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/generateRandomLeafDelay2.html</loc></url>
@@ -2817,9 +2821,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/initializePathMatrix.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeSPC700.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeSpotlightWindowHDMATable.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/initializeTownMapDisplay.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeUsedBG2TileMap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/initializeYourSanctuaryDisplay.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/initIntro.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/invertRenderedText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/isEntityOnscreenResetAnimation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/isEntityStillOnCastScreen.html</loc></url>
@@ -2832,9 +2836,11 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/loadActionScriptAnimation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadBackgroundAnimation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadCastScene.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/loadGameOverScreen.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/loadItoiProductionOverlay.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/loadNintendoPresentationOverlay.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadOverlaySprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadTextPalette.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/loadTownMapData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadWindowGraphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadYourSanctuaryLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/loadYourSanctuaryLocationData.html</loc></url>
@@ -2934,6 +2940,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/reserveBG2Tile.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/resetTextRenderState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/resetVWFState.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/respawn.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/restoreMapRendering.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/rowEnemyFlashingOff.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/rowEnemyFlashingOn.html</loc></url>
@@ -2973,7 +2980,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/soundStoneSanctuarySprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/soundStoneSanctuarySpriteX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/soundStoneSanctuarySpriteY.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/spawn.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/spawnEntityAtSelf.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/spawnTravellingPhotographer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/spotlightTaperRadii.html</loc></url>
@@ -3007,11 +3013,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC474A8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A626.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A652.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C2DE.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C58F.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4C60E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D830.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D8FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/updateActionScriptAnimationFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/updatePaletteFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/updateSwirlFrame.html</loc></url>
