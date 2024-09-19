@@ -8415,8 +8415,12 @@ short skippablePause(short duration) {
 	return 0;
 }
 
-/// $C4C58F
-void unknownC4C58F(short duration) {
+/** Do a quick fade to white so the game over screen can reload the map
+ * Params:
+ * 	duration = Length of fade in frames
+ * Original_Address: $(DOLLAR)C4C58F
+ */
+void gameOverFadeToWhite(short duration) {
 	multiplyPalettes(100, &palettes[0][0]);
 	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
 	for (short i = 0; i < duration; i++) {
@@ -8428,8 +8432,14 @@ void unknownC4C58F(short duration) {
 	waitUntilNextFrame();
 }
 
-/// $C4C60E
-void unknownC4C60E(short duration) {
+/** Do a quick fade transition from end of game over to overworld
+ *
+ * Note that the player has control while this happens
+ * Params:
+ * 	duration = Length of fade in frames
+ * Original_Address: $(DOLLAR)C4C60E
+ */
+void gameOverFadeToMap(short duration) {
 	prepareLoadedPaletteFadeTables(duration, PaletteMask.all);
 	for (short i = 0; i < duration; i++) {
 		updatePaletteFade();
@@ -8493,7 +8503,7 @@ short respawn() {
 		unfreezeEntities();
 		return result;
 	}
-	unknownC4C58F(0x20);
+	gameOverFadeToWhite(32);
 	musicEffect(MusicEffect.quickFade);
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	loadedMapTileCombo = -1;
@@ -8524,11 +8534,13 @@ short respawn() {
 	spawnBuzzBuzz();
 	oamClear();
 	unfreezeEntities();
-	unknownC4C60E(0x20);
+	gameOverFadeToMap(32);
 	return result;
 }
 
-/// $C4C8A4
+/** Clear all state for entity fades
+ * Original_Address: $(DOLLAR)C4C8A4
+ */
 void clearEntityFadeBuffer() {
 	entityFadeStatesBuffer = &buffer[0];
 	entityFadeStatesLength = 0;
@@ -8562,7 +8574,12 @@ void clearEntityFadeEntry(ubyte* dest, short length) {
 	}
 }
 
-/// $C4C91A
+/** Initializes an entity fade animation
+ * Params:
+ * 	entityID = The active entity ID to fade in/out
+ * 	appearanceStyle = The animation style to use (See ObjFX for valid values)
+ * Original_Address: $(DOLLAR)C4C91A
+ */
 void initializeEntityFade(short entityID, short appearanceStyle) {
 	if (appearanceStyle == ObjFX.none) {
 		return;
@@ -8748,7 +8765,12 @@ unittest {
 	}
 }
 
-/// $C4CD44
+/** Perform a single frame of the vertical stripes fade animation for all relevant entities
+ *
+ * First fades all even columns, then fades the odd columns
+ * Returns: Number of entities affected
+ * Original_Address: $(DOLLAR)C4CD44
+ */
 short actionScriptVStripe() {
 	short vStripeDone = 0;
 	short vStripeTotal = 0;
@@ -8805,7 +8827,9 @@ unittest {
 	}
 }
 
-/// $C4CEB0
+/** Wipes the shared dots fade effect buffer
+ * Original_Address: $(DOLLAR)C4CEB0
+ */
 void actionScriptObjFXClearDotBuffer() {
 	ushort* dest = cast(ushort*)&buffer[0x7F00];
 	for (short i = 0; i < 0x40; i++) {
@@ -8813,7 +8837,11 @@ void actionScriptObjFXClearDotBuffer() {
 	}
 }
 
-/// $C4CED8
+/** Perform a single frame of the dots fade animation for all relevant entities
+ *
+ * Fades random pixels of the sprite until they're all faded. Note that all entities using this effect will share faded pixels
+ * Original_Address: $(DOLLAR)C4CED8
+ */
 void actionScriptObjFXDots() {
 	SpriteFadeState* fadeState = entityFadeStates;
 	ushort* doneBuffer = cast(ushort*)&buffer[0x7F00];
@@ -8848,9 +8876,9 @@ void actionScriptObjFXDots() {
  * Original_Address: $(DOLLAR)C4D00F
  */
 ubyte* transliterateConsonantVowelPair(ubyte* dest, short consonant, short vowel) {
-	const(ubyte)* x06 = &consonantVowelTransliterationPairs[(consonant - 0x41)][vowel][0];
-	for (short i = 2; (i != 0) && (x06[0] != 0); i--) {
-		(dest++)[0] = (x06++)[0];
+	const(ubyte)* pair = &consonantVowelTransliterationPairs[(consonant - 0x41)][vowel][0];
+	for (short i = 2; (i != 0) && (pair[0] != 0); i--) {
+		(dest++)[0] = (pair++)[0];
 	}
 	return dest;
 }
@@ -8945,20 +8973,30 @@ void transliterateString(ubyte* dest, const(ubyte)* src) {
 	dest[0] = 0;
 }
 
-/// $C4D274
+/** Gets the town map ID (if any) for the given coordinates
+ * Params:
+ * 	x = X coordinate
+ * 	y = Y coordinate
+ * Returns: Town map ID if valid, TownMap.none otherwise
+ * Original_Address: $(DOLLAR)C4D274
+ */
 ubyte getTownMapID(short x, short y) {
 	return mapDataPerSectorTownMapData[y / 0x80][((x >> 8) & 0xFF)].areaIcon;
 }
 
-/// $C4D2A8
+/** NO LONGER USED. Animates an icon palette for the town map display
+ *
+ * Rotates half of the first sprite palette leftward every 12 frames.
+ * Original_Address: $(DOLLAR)C4D2A8
+ */
 void animateTownMapIconPalette() {
 	if (framesUntilMapIconPaletteUpdate == 0) {
 		framesUntilMapIconPaletteUpdate = 12;
-		short x10 = palettes[8][1];
+		short tmpColour = palettes[8][1];
 		for (short i = 2; i < 8; i++) {
 			palettes[8][i - 1] = palettes[8][i];
 		}
-		palettes[8][7] = x10;
+		palettes[8][7] = tmpColour;
 		preparePaletteUpload(PaletteUpload.objOnly);
 	}
 	framesUntilMapIconPaletteUpdate--;
@@ -9036,10 +9074,14 @@ void drawTownMapIcons(short map) {
 	animateTownMapIconPalette();
 }
 
-/// $C4D552
-void loadTownMapData(short arg1) {
+/** Fades out, loads the graphics, sets up hardware for a town map display and fades back in
+ * Params:
+ * 	id = Town map ID (0-based, not 1-based!)
+ * Original_Address: $(DOLLAR)C4D552
+ */
+void initializeTownMapDisplay(short id) {
 	fadeOut(2, 1);
-	decomp(&townMapGraphics[arg1][0], &buffer[0]);
+	decomp(&townMapGraphics[id][0], &buffer[0]);
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	memcpy(&palettes[0][0], &buffer[0], 0x40);
 	memcpy(&palettes[8][0], &townMapIconPalette[0], 0x100);
@@ -9061,7 +9103,12 @@ void loadTownMapData(short arg1) {
 	fadeIn(2, 1);
 }
 
-/// $C4D681
+/** Loads and displays the town map for the current player coordinates
+ *
+ * Exits and reloads map when player presses A, B, X, or L
+ * Returns: The ID of the town map that was displayed
+ * Original_Address: $(DOLLAR)C4D681
+ */
 short displayTownMap() {
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
@@ -9070,7 +9117,7 @@ short displayTownMap() {
 	if (mapID == 0) {
 		return 0;
 	}
-	loadTownMapData(cast(short)(mapID - 1));
+	initializeTownMapDisplay(cast(short)(mapID - 1));
 	do {
 		waitUntilNextFrame();
 		oamClear();
@@ -9120,34 +9167,38 @@ unittest {
 }
 
 
-/// $C4D744
+/** Test town map display
+ *
+ * Press up/down to switch maps, A to exit
+ * Original_Address: $(DOLLAR)C4D744
+ */
 void townMapDebug() {
-	short x10 = 0;
-	short x0E = 0;
+	short mapID = 0;
+	short lastMapID = 0;
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
 	framesUntilMapIconPaletteUpdate = 12;
-	loadTownMapData(0);
+	initializeTownMapDisplay(0);
 	while (true) {
 		waitUntilNextFrame();
 		oamClear();
 		if ((padPress[0] & Pad.up) != 0) {
-			x10--;
+			mapID--;
 		}
 		if ((padPress[0] & Pad.down) != 0) {
-			x10++;
+			mapID++;
 		}
-		if (x10 == -1) {
-			x10 = 5;
+		if (mapID == -1) {
+			mapID = TownMap.max - 1;
 		}
-		if (x10 == 6) {
-			x10 = 0;
+		if (mapID == TownMap.max) {
+			mapID = 0;
 		}
-		if (x0E != x10) {
-			loadTownMapData(x10);
-			x0E = x10;
+		if (lastMapID != mapID) {
+			initializeTownMapDisplay(mapID);
+			lastMapID = mapID;
 		}
-		drawTownMapIcons(x10);
+		drawTownMapIcons(mapID);
 		if ((padPress[0] & Pad.a) == 0) {
 			break;
 		}
@@ -9158,56 +9209,79 @@ void townMapDebug() {
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 }
 
-/// $C4D7D9
-void displayAnimatedNamingSprite(short arg1) {
-	for (const(NamingScreenEntity)* x06 = &namingScreenEntities[arg1][0]; x06.sprite != 0; x06++) {
-		createOverworldEntity(x06.sprite, x06.script, -1, 0, 0);
+/** Creates a predefined entity for the naming screen
+ * Params:
+ * 	id = The index of one of the entries in namingScreenEntities
+ * Original_Address: $(DOLLAR)C4D7D9
+ */
+void displayAnimatedNamingSprite(short id) {
+	for (const(NamingScreenEntity)* entityConfig = &namingScreenEntities[id][0]; entityConfig.sprite != 0; entityConfig++) {
+		createOverworldEntity(entityConfig.sprite, entityConfig.script, -1, 0, 0);
 	}
 	waitForNamingScreenActionScript = 0;
 }
 
-/// $C4D830
-void unknownC4D830(short arg1) {
+/** Have naming screen entities exit stage left
+ * Params:
+ * 	id = The index of one of the entries in namingScreenEntities
+ * Original_Address: $(DOLLAR)C4D830
+ */
+void exitAnimatedNamingSprite(short id) {
+	// wait for script to be ready
 	while (waitForNamingScreenActionScript != 0) {
 		finishFrame();
 	}
-	for (const(NamingScreenEntity)* x06 = &namingScreenEntities[arg1 + 7][0]; x06.sprite != 0; x06++) {
-		short x = findEntityBySprite(x06.sprite);
-		if (x == -1) {
+	// Look for entities and replace their scripts with their exit variants
+	for (const(NamingScreenEntity)* entityConfig = &namingScreenExitEntities[id][0]; entityConfig.sprite != 0; entityConfig++) {
+		short entity = findEntityBySprite(entityConfig.sprite);
+		if (entity == -1) {
 			continue;
 		}
-		tracef("Changing entity %s script to %s", x, cast(ActionScript)x06.script);
-		setEntityActionScript(&actionScriptScriptPointers[x06.script][0], x);
+		setEntityActionScript(&actionScriptScriptPointers[entityConfig.script][0], entity);
 	}
+	// wait for scripts to finish
 	while (true) {
-		short* y = &entityScriptTable[0];
-		ushort x0E = 0xFFFF;
+		short* script = &entityScriptTable[0];
+		ushort foundScript = 0xFFFF;
+		// finished scripts are 0xFFFF, so if we mask any bits off here then there are still active scripts
 		for (short i = 0; i < partyLeaderEntity; i++) {
-			x0E &= (y++)[0];
+			foundScript &= (script++)[0];
 		}
 		finishFrame();
-		if (x0E == 0xFFFF) {
+		if (foundScript == 0xFFFF) {
 			break;
 		}
 	}
 }
 
-/// $C4D8FA
-void unknownC4D8FA() {
-	for (short i = 0; i < 5; i++) {
+/** Creates the downward-facing naming screen summary entities
+ * Original_Address: $(DOLLAR)C4D8FA
+ */
+void createNamingSummaryEntities() {
+	for (short i = 0; i < fileSelectSummarySpriteConfig.length; i++) {
 		entityDirections[createOverworldEntity(fileSelectSummarySpriteConfig[i].sprite, fileSelectSummarySpriteConfig[i].script, -1, fileSelectSummarySpriteConfig[i].x, fileSelectSummarySpriteConfig[i].y)] = Direction.down;
 	}
 }
 
-/// $C4D989
-short runAttractModeScene(short arg1) {
+/** Runs one of the attract mode scripts
+ *
+ * This initializes the bare minimum necessary to move around in the overworld. Be careful what you use in the scripts.
+ * Params:
+ * 	script = Script ID to run
+ * Returns: 1 if player interrupted the demo, 0 otherwise
+ * Original_Address: $(DOLLAR)C4D989
+ */
+short runAttractModeScene(short script) {
+	// initialize entities
 	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
-	initializeMiscObjectData();
+	initializeMiscEntityData();
+	// disable spawns and music changes
 	npcSpawnsEnabled = SpawnControl.offscreenOnly;
 	enemySpawnsEnabled = SpawnControl.allDisabled;
 	setAutoSectorMusicChanges(0);
+	// create leader entity
 	entityAllocationMinSlot = partyLeaderEntity;
 	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	initEntity(1, 0, 0);
@@ -9215,34 +9289,41 @@ short runAttractModeScene(short arg1) {
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
-	setLeaderLocation(0x1D60, 0xB08);
+	// defaults to a place in west toto, but scripts will warp us somewhere else
+	setLeaderLocation(7520, 2824);
+
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
 	mirrorTM = TMTD.none;
+	// iris in
 	openOvalWindow(0);
 	updateSwirlFrame();
+
 	actionScriptState = ActionScriptState.running;
-	short x12 = 0;
-	short x14 = 0;
-	displayText(getTextBlock(attractModeText[arg1]));
+	short playerInterrupted = 0;
+	short frameCount = 0;
+	displayText(getTextBlock(attractModeText[script]));
+	// run scripts until they finish up
 	while (actionScriptState == ActionScriptState.running) {
 		updateSwirlFrame();
 		if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
-			x12 = 1;
+			playerInterrupted = 1;
 			break;
 		}
 		finishFrame();
-		if ((x14 == 0) || (x14 == 1)) {
+		if ((frameCount == 0) || (frameCount == 1)) {
 			mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
 		}
-		x14++;
+		frameCount++;
 	}
+	// iris out
 	closeOvalWindow();
 	while (isBattleAnimationPlaying()) {
 		finishFrame();
 		updateSwirlFrame();
 	}
+	// fade out
 	fadeOut(1, 1);
 	while (fadeParameters.step != 0) {
 		finishFrame();
@@ -9250,12 +9331,14 @@ short runAttractModeScene(short arg1) {
 	disableOvalWindow();
 	actionScriptState = ActionScriptState.running;
 	unknownC021E6();
-	return x12;
+	return playerInterrupted;
 }
 
-/// $C4DAD2
-void initIntro() {
-	short x02 = 0;
+/** Runs the intro sequence
+ * Original_Address: $(DOLLAR)C4DAD2
+ */
+void doIntroSequence() {
+	short introStage = IntroStage.logoScreens;
 	disabledTransitions = 1;
 	musicEffect(MusicEffect.quickFade);
 	initializeEntitySubsystem();
@@ -9276,25 +9359,27 @@ void initIntro() {
 	bg1XPosition = 0;
 	bg1YPosition = 0;
 	updateScreen();
-	short x;
-	while (x == 0) {
-		switch (x02) {
-			case 0:
+	short done;
+	while (done == 0) {
+		switch (introStage) {
+			case IntroStage.logoScreens:
 				if (logoScreen() != 0) {
+					// player interrupted, show fast title screen and exit
 					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
 					changeMusic(Music.titleScreen);
-					x = showTitleScreen(1);
-					x02 = 2;
+					done = showTitleScreen(1);
+					introStage = IntroStage.titleScreen;
 				} else {
-					x = 0;
+					done = 0;
 				}
 				break;
-			case 1:
+			case IntroStage.gasStation:
 				changeMusic(Music.gasStation);
 				if (gasStation() != 0) {
+					// player interrupted, show fast title screen and exit
 					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
@@ -9304,46 +9389,46 @@ void initIntro() {
 					mirrorTM = TMTD.bg1;
 					mirrorTD = TMTD.none;
 					changeMusic(Music.titleScreen);
-					x = showTitleScreen(1);
-					x02++;
+					done = showTitleScreen(1);
+					introStage = IntroStage.titleScreen;
 				} else {
-					x = 0;
+					done = 0;
 				}
 				break;
-			case 2:
+			case IntroStage.titleScreen:
 				changeMusic(Music.titleScreen);
-				x = showTitleScreen(0);
+				done = showTitleScreen(0);
 				break;
-			case 3:
+			case IntroStage.attractMode0:
 				changeMusic(Music.attractMode);
-				x = runAttractModeScene(0);
+				done = runAttractModeScene(0);
 				break;
-			case 4:
-				x = runAttractModeScene(2);
+			case IntroStage.attractMode2:
+				done = runAttractModeScene(2);
 				break;
-			case 5:
-				x = runAttractModeScene(3);
+			case IntroStage.attractMode3:
+				done = runAttractModeScene(3);
 				break;
-			case 6:
-				x = runAttractModeScene(4);
+			case IntroStage.attractMode4:
+				done = runAttractModeScene(4);
 				break;
-			case 7:
-				x = runAttractModeScene(5);
+			case IntroStage.attractMode5:
+				done = runAttractModeScene(5);
 				break;
-			case 8:
-				x = runAttractModeScene(6);
+			case IntroStage.attractMode6:
+				done = runAttractModeScene(6);
 				break;
-			case 9:
-				x = runAttractModeScene(7);
+			case IntroStage.attractMode7:
+				done = runAttractModeScene(7);
 				break;
-			case 10:
-				x = runAttractModeScene(9);
+			case IntroStage.attractMode9:
+				done = runAttractModeScene(9);
 				break;
 			default:
-				x02 = 1;
+				introStage = IntroStage.gasStation;
 				break;
 		}
-		x02++;
+		introStage++;
 	}
 	musicEffect(MusicEffect.quickFade);
 	fadeParameters.step = 0;
@@ -9357,16 +9442,20 @@ void initIntro() {
 	disableMusicChanges = 0;
 }
 
-/// $C4DCF6
+/** Sets the priority bit for all tiles in the logo tilemaps
+ * Original_Address: $(DOLLAR)C4DCF6
+ */
 void setDecompressedArrangementPriorityBit() {
-	ushort* x0A = cast(ushort*)&buffer[0];
+	ushort* tile = cast(ushort*)&buffer[0];
 	for (short i = 0; i < 0x200; i++) {
-		x0A[i] |= 0x2000;
+		tile[i] |= TilemapFlag.priority;
 	}
 }
 
-/// $C4DD28
-void decompItoiProduction() {
+/** Loads the "Produced by SHIGESATO ITOI" overlay for the attract mode demo
+ * Original_Address: $(DOLLAR)C4DD28
+ */
+void loadItoiProductionOverlay() {
 	decomp(&attractModeOverlay1Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
 	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7C00, &buffer[0]);
@@ -9377,8 +9466,10 @@ void decompItoiProduction() {
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C4DDD0
-void decompNintendoPresentation() {
+/** Loads the "Presented by Nintendo" overlay for the attract mode demo
+ * Original_Address: $(DOLLAR)C4DDD0
+ */
+void loadNintendoPresentationOverlay() {
 	decomp(&attractModeOverlay2Tilemap[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
 	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x7C00, &buffer[0]);
@@ -9389,7 +9480,9 @@ void decompNintendoPresentation() {
 	preparePaletteUpload(PaletteUpload.full);
 }
 
-/// $C4DE78
+/** Coordinates for the Your Sanctuary locations in the post-Magicant montage
+ * Original_Address: $(DOLLAR)C4DE78
+ */
 immutable YourSanctuaryLocation[8] yourSanctuaryLocations = [
 	YourSanctuaryLocation(151, 48),
 	YourSanctuaryLocation(387, 1013),
@@ -9401,7 +9494,9 @@ immutable YourSanctuaryLocation[8] yourSanctuaryLocations = [
 	YourSanctuaryLocation(766, 1228),
 ];
 
-/// $C4DE98
+/** Initializes state for the Your Sanctuary location montage
+ * Original_Address: $(DOLLAR)C4DE98
+ */
 void initializeYourSanctuaryDisplay() {
 	nextYourSanctuaryLocationTileIndex = 0;
 	totalYourSanctuaryLoadedTilesetTiles = 0;
@@ -9414,44 +9509,68 @@ void initializeYourSanctuaryDisplay() {
 	mirrorTM = TMTD.obj;
 }
 
-/// $C4DED0
+/** Enables the Your Sanctuary location montage
+ *
+ * Pretty much just enables BG1
+ * Original_Address: $(DOLLAR)C4DED0
+ */
 void enableYourSanctuaryDisplay() {
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0x6000);
 	mirrorTM = TMTD.obj | TMTD.bg1;
 }
 
-/// $C4DEE9
-void prepareYourSanctuaryLocationPaletteData(short arg1, short arg2) {
+/** Prepares the sprite palettes for the Your Sanctuary location montage animation
+ *
+ * This ensures that the sprites have their proper tinting for each location
+ * Params:
+ * 	mapTileCombo = The map tileset+palette combo ID to use
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4DEE9
+ */
+void prepareYourSanctuaryLocationPaletteData(short mapTileCombo, short sanctuaryLocation) {
 	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
-	loadMapPalette(arg1 / 8, arg1 & 7);
+	loadMapPalette(mapTileCombo / 8, mapTileCombo & 7);
 	adjustSpritePalettesByAverage();
 	paletteUploadMode = PaletteUpload.none;
-	memcpy(&buffer[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
+	memcpy(&buffer[0x4000 + sanctuaryLocation * 0x200], &palettes[0][0], 0x100);
 }
 
-/// $C4DF7D
-void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, short arg3) {
-	arg1 -= 16;
-	arg2 -= 14;
+/** Preloads the Your Sanctuary location for the montage
+ * Params:
+ * 	x = X coordinate (tiles)
+ * 	y = Y coordinate (tiles)
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4DF7D
+ */
+void prepareYourSanctuaryLocationTileArrangementData(short x, short y, short sanctuaryLocation) {
+	// centre camera (Party member sprites are 16 pixels tall)
+	x -= (screenWidth / 8) / 2;
+	y -= ((screenHeight - 16) / 8) / 2;
 	memset(&yourSanctuaryLocationTileOffsets[0], 0, 0x800);
-	ushort* x06 = cast(ushort*)&buffer[arg3 * 0x800];
-	for (short i = 0; i < maxEntities; i++) {
-		for (short j = 0; j < 0x20; j++) {
-			short x0F;
-			if (globalMapTilesetPaletteData[(i + arg2) / 16][(j + arg1) / 32] / 8 == loadedMapTileCombo) {
-				x0F = loadMapBlockF((j + arg1) / 4, (i + arg2) / 4);
+	ushort* dest = cast(ushort*)&buffer[sanctuaryLocation * 0x800];
+	for (short tileY = 0; tileY < screenHeight / 8; tileY++) {
+		for (short tileX = 0; tileX < screenWidth / 8; tileX++) {
+			short block;
+			// avoid loading blocks with different tileset+palettes
+			if (globalMapTilesetPaletteData[(tileY + y) / 16][(tileX + x) / 32] / 8 == loadedMapTileCombo) {
+				block = loadMapBlockF((tileX + x) / 4, (tileY + y) / 4);
 			} else {
-				x0F = 0;
+				block = 0;
 			}
-			yourSanctuaryLocationTileOffsets[tilemapBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
-			(x06++)[0] = tilemapBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
+			yourSanctuaryLocationTileOffsets[tilemapBuffer[(((tileY + y) & 3) * 4) + (block * 16) + (tileX + x) & 3] & 0x3FF * 2] = 0xFFFF;
+			(dest++)[0] = tilemapBuffer[(((tileY + y) & 3) * 4) + (block * 16) + (tileX + x) & 3];
 		}
 	}
 }
 
-/// $C4E08C
-void prepareYourSanctuaryLocationTilesetData(short arg1) {
+/** Loads all tiles to be used in the Your Sanctuary location montage
+ * Params:
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4E08C
+ */
+void prepareYourSanctuaryLocationTilesetData(short sanctuaryLocation) {
+	// make sure all the tiles are loaded in VRAM
 	for (short i = 0; i < 0x400; i++) {
 		if (yourSanctuaryLocationTileOffsets[i] == 0) {
 			continue;
@@ -9461,45 +9580,60 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
 	}
-	ushort* x06 = (cast(ushort*)&buffer[0x800 * arg1]);
+	ushort* tile = (cast(ushort*)&buffer[0x800 * sanctuaryLocation]);
 	for (short i = 0; i < 0x3C0; i++) {
-		ushort x14 = x06[0];
-		x06[0] = yourSanctuaryLocationTileOffsets[x14 & 0x3FF] | (x14 & 0xFC00);
-		x06++;
+		ushort tmpTile = tile[0];
+		// adjust tile IDs, not palettes, priority or flipping
+		tile[0] = yourSanctuaryLocationTileOffsets[tmpTile & 0x3FF] | (tmpTile & 0xFC00);
+		tile++;
 	}
 }
 
-/// $C4E13E
-void loadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
+/** Load all map data to be used for one of the Your Sanctuary locations in the montage
+ * Params:
+ * 	x = X coordinate (tiles)
+ * 	y = Y coordinate (tiles)
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4E13E
+ */
+void loadYourSanctuaryLocationData(short x, short y, short sanctuaryLocation) {
 	yourSanctuaryLoadedTilesetTiles = 0;
-	short x1A = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
-	loadedMapTileCombo = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
-	prepareYourSanctuaryLocationPaletteData(x1A, arg3);
-	decomp(&mapTilemaps[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
-	prepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
-	decomp(&mapTiles[tilesetGraphicsMapping[x1A]][0], &buffer[0x8000]);
-	prepareYourSanctuaryLocationTilesetData(arg3);
+	short mapTileCombo = globalMapTilesetPaletteData[y / 16][x / 32];
+	loadedMapTileCombo = globalMapTilesetPaletteData[y / 16][x / 32];
+	prepareYourSanctuaryLocationPaletteData(mapTileCombo, sanctuaryLocation);
+	decomp(&mapTilemaps[tilesetGraphicsMapping[mapTileCombo]][0], &buffer[0x8000]);
+	prepareYourSanctuaryLocationTileArrangementData(x, y, sanctuaryLocation);
+	decomp(&mapTiles[tilesetGraphicsMapping[mapTileCombo]][0], &buffer[0x8000]);
+	prepareYourSanctuaryLocationTilesetData(sanctuaryLocation);
 	totalYourSanctuaryLoadedTilesetTiles += yourSanctuaryLoadedTilesetTiles;
 }
 
-/// $C4E281
-void loadYourSanctuaryLocation(short arg1) {
-	if (loadedYourSanctuaryLocations[arg1] == 0) {
-		loadYourSanctuaryLocationData(yourSanctuaryLocations[arg1].x, yourSanctuaryLocations[arg1].y, arg1);
-		loadedYourSanctuaryLocations[arg1] = 1;
+/** Memoized version of loadYourSanctuaryLocationData, using a predefined Your Sanctuary location table
+ * Params:
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4E281
+ */
+void loadYourSanctuaryLocation(short sanctuaryLocation) {
+	if (loadedYourSanctuaryLocations[sanctuaryLocation] == 0) {
+		loadYourSanctuaryLocationData(yourSanctuaryLocations[sanctuaryLocation].x, yourSanctuaryLocations[sanctuaryLocation].y, sanctuaryLocation);
+		loadedYourSanctuaryLocations[sanctuaryLocation] = 1;
 	}
 }
 
-/// $C4E2D7
-void displayYourSanctuaryLocation(short arg1) {
-	short x02 = arg1 & 7;
-	if (loadedYourSanctuaryLocations[x02] == 0) {
-		loadYourSanctuaryLocation(x02);
+/** Displays a Your Sanctuary location as part of the post-Magicant montage
+ * Params:
+ * 	sanctuaryLocation = Your Sanctuary location ID
+ * Original_Address: $(DOLLAR)C4E2D7
+ */
+void displayYourSanctuaryLocation(short sanctuaryLocation) {
+	short location = sanctuaryLocation & 7;
+	if (loadedYourSanctuaryLocations[location] == 0) {
+		loadYourSanctuaryLocation(location);
 		waitUntilNextFrame();
 	}
 	waitDMAFinished();
-	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x780, 0x3800, &buffer[x02 * 0x800]);
-	memcpy(&palettes[0][0], &buffer[0x4000 + x02 * 0x200], 0x100);
+	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x780, 0x3800, &buffer[location * 0x800]);
+	memcpy(&palettes[0][0], &buffer[0x4000 + location * 0x200], 0x100);
 	paletteUploadMode = PaletteUpload.bgOnly;
 	screenTopY = 0;
 	screenLeftX = 0;
@@ -9599,12 +9733,12 @@ short checkCastScrollThreshold() {
  * Original_Address: $(DOLLAR)C4E51E
  */
 void handleCastScrolling() {
-	ubyte* x06 = &buffer[0x7FFE];
+	ubyte* dest = &buffer[0x7FFE];
 	bg3YPosition = entityAbsYTable[currentEntitySlot];
 	if (entityScriptVar7Table[currentEntitySlot] < entityAbsYTable[currentEntitySlot]) {
 		entityScriptVar7Table[currentEntitySlot] += 8;
-		x06[0] = 0;
-		copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
+		dest[0] = 0;
+		copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x40, cast(ushort)((((bg3YPosition / 8) - 1) & 0x1F) * 32 + 0x7C00), dest);
 	}
 }
 
@@ -9916,9 +10050,9 @@ void initializeCreditsScene() {
 	creditsNextCreditPosition = 0;
 	creditsScrollPosition.combined = 0;
 	creditsRowWipeThreshold = 7;
-	ushort* x06 = &bg2Buffer[0];
+	ushort* buffer = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
-		*(x06++) = 0;
+		*(buffer++) = 0;
 	}
 	creditsSource = &staffText[0];
 	setForceBlank();
@@ -10014,8 +10148,8 @@ void playCredits() {
 	initializeCreditsScene();
 	oamClear();
 	fadeIn(1, 2);
-	short x04 = (countPhotoFlags() != 0) ? (4528 / countPhotoFlags()) : 4528;
-	short x02 = x04;
+	short timeBetweenPhotos = (countPhotoFlags() != 0) ? (4528 / countPhotoFlags()) : 4528;
+	short timeUntilNextPhoto = timeBetweenPhotos;
 	setIRQCallback(&creditsScrollFrame);
 	for (short i = 0; i < 32; i++) {
 		if (tryRenderingPhotograph(i) != 0) {
@@ -10027,7 +10161,7 @@ void playCredits() {
 			}
 			finishPaletteFade();
 			slideCreditsPhotograph(i);
-			while (x02 > bg3YPosition) {
+			while (timeUntilNextPhoto > bg3YPosition) {
 				processCreditsDMAQueue();
 				finishFrame();
 			}
@@ -10042,7 +10176,7 @@ void playCredits() {
 			preparePaletteUpload(PaletteUpload.full);
 			processCreditsDMAQueue();
 			finishFrame();
-			x02 += x04;
+			timeUntilNextPhoto += timeBetweenPhotos;
 		}
 	}
 	while (bg3YPosition < 4528) {
@@ -10063,9 +10197,9 @@ void playCredits() {
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
 	clearParty();
 	unknownC03A24();
-	ushort* x06 = &bg2Buffer[0];
+	ushort* buffer = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
-		*(x06++) = 0;
+		*(buffer++) = 0;
 	}
 	restoreMapRendering();
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;

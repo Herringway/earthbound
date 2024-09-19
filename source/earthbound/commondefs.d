@@ -6205,6 +6205,20 @@ enum SpriteMapSpecialFlags {
 	terminator = 1 << 7,
 }
 
+enum IntroStage {
+	logoScreens,
+	gasStation,
+	titleScreen,
+	attractMode0,
+	attractMode2,
+	attractMode3,
+	attractMode4,
+	attractMode5,
+	attractMode6,
+	attractMode7,
+	attractMode9,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///

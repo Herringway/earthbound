@@ -193,3 +193,6 @@ align(1) struct HDMAIndirectTableEntry {
 	ubyte lines;
 	@skip const(ubyte)* address;
 }
+
+enum screenWidth = 256;
+enum screenHeight = 240;

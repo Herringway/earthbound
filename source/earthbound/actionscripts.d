@@ -9262,7 +9262,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v6, 7520),
 		SET_VAR(ActionScriptVars.v7, 2880),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
-		DECOMP_ITOI_PRODUCTION(),
+		LOAD_ITOI_PRODUCTION(),
 		WRITE_BYTE_WRAM(&mirrorTM, 23),
 		SET_VAR(ActionScriptVars.v6, 7472),
 		SET_VAR(ActionScriptVars.v7, 2928),
@@ -9556,7 +9556,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v7, 312),
 		SHORTCALL(&actionScriptMoveToLocation[0]),
 		PAUSE(50),
-		DECOMP_NINTENDO_PRESENTATION(),
+		LOAD_NINTENDO_PRESENTATION(),
 		WRITE_BYTE_WRAM(&mirrorTM, 23),
 		SET_VAR(ActionScriptVars.v6, 1128),
 		SET_VAR(ActionScriptVars.v7, 336),
@@ -26181,8 +26181,8 @@ alias LOAD_BATTLE_BG = CALL!(actionScriptLoadBattleBG, ushort, ushort);
 alias RAND = CALL!rand;
 alias RELOAD_MAP_FULL = CALL!reloadMap;
 alias RESTORE_MAP_RENDERING = CALL!restoreMapRendering;
-alias DECOMP_ITOI_PRODUCTION = CALL!decompItoiProduction;
-alias DECOMP_NINTENDO_PRESENTATION = CALL!decompNintendoPresentation;
+alias LOAD_ITOI_PRODUCTION = CALL!loadItoiProductionOverlay;
+alias LOAD_NINTENDO_PRESENTATION = CALL!loadNintendoPresentationOverlay;
 alias DISPLAY_COPYRIGHT_WARNING_SCREEN = CALL!displayCopyrightWarningScreen;
 alias INFLICT_SUNSTROKE_CHECK = CALL!inflictSunstrokeCheck;
 alias LOAD_DEBUG_CURSOR_GRAPHICS = CALL!loadDebugCursorGraphics;

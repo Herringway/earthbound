@@ -7794,7 +7794,7 @@ void fileMenuLoop() {
 							nameLoop: while (true) {
 								closeAllWindows();
 								short progressDirection;
-								for (short i = 0; 7 > i; unknownC4D830(i), i += progressDirection) {
+								for (short i = 0; 7 > i; exitAnimatedNamingSprite(i), i += progressDirection) {
 									if (i == -1) {
 										closeAllWindows();
 										fileSelectMenu(1);
@@ -7862,7 +7862,7 @@ void fileMenuLoop() {
 								createNewMenuOptionAtPositionWithUserdata(1, 14, 0, &fileSelectTextAreYouSureYep[0], null);
 								createNewMenuOptionAtPositionWithUserdata(0, 18, 0, &fileSelectTextAreYouSureNope[0], null);
 								printMenuItems();
-								unknownC4D8FA();
+								createNamingSummaryEntities();
 								enableWordWrap = 0xFF;
 								if (selectionMenu(1) == 0) {
 									unknownC021E6();

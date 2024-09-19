@@ -835,7 +835,7 @@ void unknownC01A63(short x, short y) {
 }
 
 /// $C01A69
-void initializeMiscObjectData() {
+void initializeMiscEntityData() {
 	for (short i = 0; i < 0x1E; i++) {
 		entityMovementSpeed[i] = 0;
 		entityCollidedObjects[i] = EntityCollision.nothing;
@@ -8798,7 +8798,7 @@ void fileSelectInit() {
 	updateScreen();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
-	initializeMiscObjectData();
+	initializeMiscEntityData();
 	overworldSetupVRAM();
 	clearPartyStatus();
 	prepareAverageForSpritePalettes();
@@ -8846,7 +8846,7 @@ void unknownC0B67F() {
 	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
-	initializeMiscObjectData();
+	initializeMiscEntityData();
 	battleMode = BattleMode.noBattle;
 	inputDisableFrameCounter = 0;
 	npcSpawnsEnabled = SpawnControl.offscreenOnly;
@@ -8927,7 +8927,7 @@ void ebMain() {
 	if (config.noIntro) {
 		disabledTransitions = 1;
 	} else {
-		initIntro();
+		doIntroSequence();
 	}
 	fileSelectInit();
 	unknownC0B67F();

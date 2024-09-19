@@ -21946,7 +21946,7 @@ void debugMain() {
 	initializeEntitySubsystem();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
-	initializeMiscObjectData();
+	initializeMiscEntityData();
 	short characterDebugSprite = debugViewCharacterSprite;
 	entityAllocationMinSlot = partyLeaderEntity;
 	entityAllocationMaxSlot = partyLeaderEntity + 1;

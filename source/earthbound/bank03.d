@@ -1570,7 +1570,7 @@ immutable uint[3] hpMeterSpeeds = [
 /** Sprite+script combinations to create for the naming sequence
  * Original_Address: $(DOLLAR)C3FD2D
  */
-immutable NamingScreenEntity[][14] namingScreenEntities = [
+immutable NamingScreenEntity[][7] namingScreenEntities = [
 	[
 		NamingScreenEntity(OverworldSprite.ness, ActionScript.unknown502),
 		NamingScreenEntity(OverworldSprite.nessPosing, ActionScript.unknown503),
@@ -1610,7 +1610,13 @@ immutable NamingScreenEntity[][14] namingScreenEntities = [
 		NamingScreenEntity(OverworldSprite.frenchKissOfDeath, ActionScript.unknown528),
 		NamingScreenEntity(OverworldSprite.twinklingStars, ActionScript.unknown530),
 		NamingScreenEntity(0x0000)
-	],	[
+	]
+];
+/** Sprite+exit script combinations to create for the naming sequence
+ * Original_Address: $(DOLLAR)C3FD49
+ */
+immutable NamingScreenEntity[][7] namingScreenExitEntities = [
+	[
 		NamingScreenEntity(OverworldSprite.ness, ActionScript.unknown532),
 		NamingScreenEntity(OverworldSprite.nessPosing, ActionScript.unknown035),
 		NamingScreenEntity(OverworldSprite.nessSurprised, ActionScript.unknown035),
