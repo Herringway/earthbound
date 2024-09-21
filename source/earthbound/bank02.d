@@ -185,14 +185,14 @@ void drawHPPPWindow(short id) {
 	ushort x18;
 	ushort x1A;
 	ushort namePalette;
-	if (x1E == 0xC00) {
-		namePalette = 3 << 10;
-		x22 = 3 << 10;
-		x1A = 2 << 10;
+	if (x1E == TilemapFlag.palette3) {
+		namePalette = TilemapFlag.palette3;
+		x22 = TilemapFlag.palette3;
+		x1A = TilemapFlag.palette2;
 	} else {
 		namePalette = cast(short)(getStatusNamePalette(&character.afflictions[0]) << 10);
-		x22 = 4 << 10;
-		x1A = 0 << 10;
+		x22 = TilemapFlag.palette4;
+		x1A = TilemapFlag.palette0;
 	}
 	if (battleMenuCurrentCharacterID == id) {
 		x18 = 18;
@@ -206,7 +206,7 @@ void drawHPPPWindow(short id) {
 		dest[0] = cast(ushort)(x1E + 5 + TilemapFlag.priority);
 		dest++;
 	}
-	dest[0] = cast(ushort)(x1E + 0x6004);
+	dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | 0x004);
 	dest++;
 	dest += 25;
 
@@ -226,13 +226,13 @@ void drawHPPPWindow(short id) {
 	}
 	dest[0] = cast(ushort)(namePalette + x20 + TilemapFlag.priority);
 	dest++;
-	dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
+	dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | 0x006);
 	dest++;
 	dest += 25;
 
 	dest[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
 	dest++;
-	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x2B0 + TilemapFlag.priority;
+	x14 = ((gameState.partyMembers[id] - 1) * 4) + TilemapFlag.priority | 0x2B0;
 	x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
 	for (short i =0 ; i != 4; i++) {
 		if (x12 != 0) {
@@ -247,7 +247,7 @@ void drawHPPPWindow(short id) {
 	}
 	dest[0] = cast(ushort)(namePalette + x20 + 16 + TilemapFlag.priority);
 	dest++;
-	dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
+	dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | 0x006);
 	dest++;
 	dest+= 25;
 
@@ -267,7 +267,7 @@ void drawHPPPWindow(short id) {
 			y++;
 			dest++;
 		}
-		dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
+		dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | 0x006);
 		dest++;
 		dest += 25;
 	}
@@ -1214,7 +1214,7 @@ void addCharToParty(short id) {
 		entityCallbackFlags[unknownC0369B(id)] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 		if (id <= 4) {
 			unknownC216DB();
-			unknownC3EBCA();
+			reinitializeItemTransformations();
 		}
 		return;
 	}
@@ -1240,7 +1240,7 @@ void removeCharFromParty(short id) {
 		unknownC03903(id);
 		if (id <= 4) {
 			unknownC216DB();
-			unknownC3EBCA();
+			reinitializeItemTransformations();
 		}
 		return;
 	}
@@ -1398,7 +1398,7 @@ short initBattleScripted(short arg1) {
 		if (battleResult != BattleResult.won) {
 			return 1;
 		}
-		unknownC3EE4D();
+		fullPartyUpdate();
 		if (currentBattleGroup < 0x1C0) {
 			playerIntangibilityFrames = 120;
 		}

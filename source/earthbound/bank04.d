@@ -3290,7 +3290,7 @@ short inflictStatusNonBattle(short character, short group, short effect) {
 	}
 	if (testIfPartyMemberPresent(character) != 0) {
 		partyCharacters[character - 1].afflictions[group - 1] = cast(ubyte)(effect - 1);
-		unknownC3EE4D();
+		fullPartyUpdate();
 		return character;
 	}
 	return 0;
@@ -5901,9 +5901,11 @@ short isValidItemTransformation(short index) {
 }
 
 /** Initializes an item transformation entry. If entry wasn't already initialized, also sets time until the next check to one second from now
+ * Params:
+ * 	id = Entry to initialize
  * Original_Address: $(DOLLAR)C48EEB
  */
-void initializeItemTransformation(short id) {
+void initializeItemTransformationEntry(short id) {
 	if (isValidItemTransformation(id) == 0) {
 		timeUntilNextItemTransformationCheck = 60;
 		itemTransformationsLoaded++;
@@ -5915,6 +5917,8 @@ void initializeItemTransformation(short id) {
 }
 
 /** Removes an item transformation entry
+ * Params:
+ * 	id = Entry to remove, 1-based index. 0 is ignored.
  * Original_Address: $(DOLLAR)C48F98
  */
 void removeItemTransformationEntry(short id) {

@@ -4620,29 +4620,27 @@ void doPartyMovementFrame(short characterID, short walkingStyle, short entityID)
 
 /// $C07B52
 void unknownC07B52() {
-	ushort x14 = partyCharacters[0].positionIndex;
-	for (ushort x12 = 0x18; x12 < 0x1E; x12++) {
-		ushort x04 = x12;
-		ushort x10 = x12;
-		if (entityScriptTable[x04] != -1) {
-			entityCallbackFlags[x04] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
-			currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[x04]];
-			if ((gameState.firstPartyMemberEntity == x12) || (currentPartyMemberTick.positionIndex == x14)) {
-				doPartyMovementFrame(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
-				entityAbsXTable[x12] = gameState.leaderX.integer;
-				entityAbsYTable[x12] = gameState.leaderY.integer;
+	ushort firstPartyMemberPositionIndex = partyCharacters[0].positionIndex;
+	for (ushort entity = 24; entity < maxEntities; entity++) {
+		if (entityScriptTable[entity] != -1) {
+			entityCallbackFlags[entity] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+			currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[entity]];
+			if ((gameState.firstPartyMemberEntity == entity) || (currentPartyMemberTick.positionIndex == firstPartyMemberPositionIndex)) {
+				doPartyMovementFrame(entityScriptVar0Table[entity], gameState.walkingStyle, entity);
+				entityAbsXTable[entity] = gameState.leaderX.integer;
+				entityAbsYTable[entity] = gameState.leaderY.integer;
 				if (gameState.partyCount != 1) {
-					entityDirections[x12] = gameState.leaderDirection;
+					entityDirections[entity] = gameState.leaderDirection;
 				}
 			} else {
-				doPartyMovementFrame(entityScriptVar0Table[x12], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, x12);
-				entityAbsXTable[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].xCoord;
-				entityAbsYTable[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].yCoord;
-				entityDirections[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
+				doPartyMovementFrame(entityScriptVar0Table[entity], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, entity);
+				entityAbsXTable[entity] = playerPositionBuffer[currentPartyMemberTick.positionIndex].xCoord;
+				entityAbsYTable[entity] = playerPositionBuffer[currentPartyMemberTick.positionIndex].yCoord;
+				entityDirections[entity] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
 			}
-			entityScreenXTable[x12] = cast(short)(entityAbsXTable[x12] - bg1XPosition);
-			entityScreenYTable[x12] = cast(short)(entityAbsYTable[x12] - bg1YPosition);
-			updateEntitySpriteFrame(x12);
+			entityScreenXTable[entity] = cast(short)(entityAbsXTable[entity] - bg1XPosition);
+			entityScreenYTable[entity] = cast(short)(entityAbsYTable[entity] - bg1YPosition);
+			updateEntitySpriteFrame(entity);
 		}
 	}
 }

@@ -396,7 +396,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.textStandard: WindowConfig(0x000C, 0x0001, 0x0013, 0x0008),
 	Window.inventory: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
 	Window.inventoryMenu: WindowConfig(0x0001, 0x0001, 0x0006, 0x000A),
-	Window.targettingDescription: WindowConfig(0x0001, 0x0003, 0x000B, 0x0006), /// Used for targetting and PP cost descriptions in battle
+	Window.targettingDescription: WindowConfig(0x0001, 0x0003, 0x000B, 0x0006), // Used for targetting and PP cost descriptions in battle
 	Window.phoneMenu: WindowConfig(0x0014, 0x0001, 0x000B, 0x0010),
 	Window.equipMenu: WindowConfig(0x0008, 0x0001, 0x0014, 0x000A),
 	Window.equipMenuItemlist: WindowConfig(0x0012, 0x0001, 0x000D, 0x0010),
@@ -900,123 +900,180 @@ unittest {
 	assert(testItemIsEquipped(PartyMember.ness, ItemID.baseballCap));
 }
 
-/// $C3E9A0
-short checkItemEquipped(short arg1, short arg2) {
-	if (partyCharacters[arg1 - 1].equipment[0] == arg2) {
+/** Tests if the item in a given slot is equipped by the character
+ * Params:
+ * 	character = The character (1-based) ID whose equipment is being checked
+ * 	slot = The item slot (1 - 14)
+ * Returns: 1 if item is equipped, 0 otherwise
+ * Original_Address: $(DOLLAR)C3E9A0
+ */
+short testItemSlotEquipment(short character, short slot) {
+	if (partyCharacters[character - 1].equipment[0] == slot) {
 		return 1;
 	}
-	if (partyCharacters[arg1 - 1].equipment[1] == arg2) {
+	if (partyCharacters[character - 1].equipment[1] == slot) {
 		return 1;
 	}
-	if (partyCharacters[arg1 - 1].equipment[2] == arg2) {
+	if (partyCharacters[character - 1].equipment[2] == slot) {
 		return 1;
 	}
-	if (partyCharacters[arg1 - 1].equipment[3] == arg2) {
+	if (partyCharacters[character - 1].equipment[3] == slot) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C3EAD0
-void unknownC3EAD0(short arg1) {
+/** Initializes an item transformation entry for the given item, if one exists and hasn't already been initialized
+ * Params:
+ * 	item = An item ID
+ * Original_Address: $(DOLLAR)C3EAD0
+ */
+void initializeItemTransformation(short item) {
 	for (short i = 0; timedItemTransformationTable[i].item != 0; i++) {
-		if (arg1 != timedItemTransformationTable[i].item) {
+		if (item != timedItemTransformationTable[i].item) {
 			continue;
 		}
 		if (isValidItemTransformation(i) != 0) {
 			return;
 		}
-		initializeItemTransformation(i);
+		initializeItemTransformationEntry(i);
 		return;
 	}
 }
 
-/// $C3EB1C
-void unknownC3EB1C(short arg1) {
-	short x14 = 0;
-	for (; (timedItemTransformationTable[x14].sfx != 0) && (timedItemTransformationTable[x14].item != arg1); x14++) {}
-	removeItemTransformationEntry(x14);
-	for (short x12 = 0; x12 < gameState.playerControlledPartyMemberCount; x12++) {
-		for (short x10 = 0; (x10 < 14) && (partyCharacters[gameState.partyMembers[x12] - 1].items[x10] != 0); x10++) {
-			if (partyCharacters[gameState.partyMembers[x12] - 1].items[x10] != arg1) {
-				initializeItemTransformation(x14);
+/** Clears an item transformation entry for the given item, if one exists
+ *
+ * If there are any copies of the item still in the inventory, reinitialize a fresh entry
+ * Original_Address: $(DOLLAR)C3EB1C
+ */
+void clearItemTransformation(short item) {
+	// find transformation entry corresponding to item, if any
+	short transformation = 0;
+	for (; (timedItemTransformationTable[transformation].sfx != 0) && (timedItemTransformationTable[transformation].item != item); transformation++) {}
+	removeItemTransformationEntry(transformation);
+	// check for other copies of item
+	for (short partyMember = 0; partyMember < gameState.playerControlledPartyMemberCount; partyMember++) {
+		for (short itemSlot = 0; (itemSlot < 14) && (partyCharacters[gameState.partyMembers[partyMember] - 1].items[itemSlot] != 0); itemSlot++) {
+			if (partyCharacters[gameState.partyMembers[partyMember] - 1].items[itemSlot] != item) {
+				// found one, reinitialize entry
+				initializeItemTransformationEntry(transformation);
 				return;
 			}
 		}
 	}
 }
 
-/// $C3EBCA
-void unknownC3EBCA() {
+/** Force a reinitialization of all item transformations for items still in the party's inventory or remove them if they aren't
+ * Original_Address: $(DOLLAR)C3EBCA
+ */
+void reinitializeItemTransformations() {
 	for (short i = 0; timedItemTransformationTable[i].item != 0; i++) {
 		if (testPartyHasItem(PartyMember.any, timedItemTransformationTable[i].item) != 0) {
-			unknownC3EAD0(timedItemTransformationTable[i].item);
+			initializeItemTransformation(timedItemTransformationTable[i].item);
 		} else {
-			unknownC3EB1C(timedItemTransformationTable[i].item);
+			clearItemTransformation(timedItemTransformationTable[i].item);
 		}
 	}
 }
 
-/// $C3EC1F
-void unknownC3EC1F(short arg1, short arg2, short arg3) {
-	if (arg1 == 0) {
+/** Reduces a party member's HP by an absolute value or percentage
+ * Params:
+ * 	character = Character ID (1-based)
+ * 	amount = Amount to reduce HP by (absolute/percent)
+ * 	useAbsoluteValue = 1 if amount is absolute value, 0 if percent
+ * Original_Address: $(DOLLAR)C3EC1F
+ */
+void reducePartyMemberHP(short character, short amount, short useAbsoluteValue) {
+	if (character == 0) {
 		return;
 	}
-	if (arg3 == 0) {
-		arg2 = cast(short)((arg2 * partyCharacters[arg1 - 1].maxHP) / 100);
+	// convert percent amount into absolute value
+	if (useAbsoluteValue == 0) {
+		amount = cast(short)((amount * partyCharacters[character - 1].maxHP) / 100);
 	}
-	partyCharacters[arg1 - 1].hp.target -= arg2;
-	if (partyCharacters[arg1 - 1].hp.target > partyCharacters[arg1 - 1].maxHP) {
-		partyCharacters[arg1 - 1].hp.target = 0;
+	// reduce HP, but don't reduce below zero
+	partyCharacters[character - 1].hp.target -= amount;
+	if (partyCharacters[character - 1].hp.target > partyCharacters[character - 1].maxHP) {
+		partyCharacters[character - 1].hp.target = 0;
 	}
 }
 
-/// $C3EC8B
-void unknownC3EC8B(short arg1, short arg2, short arg3) {
-	if (arg1 == 0) {
+/** Increases a party member's HP by an absolute value or percentage
+ * Params:
+ * 	character = Character ID (1-based)
+ * 	amount = Amount to increase HP by (absolute/percent)
+ * 	useAbsoluteValue = 1 if amount is absolute value, 0 if percent
+ * Original_Address: $(DOLLAR)C3EC8B
+ */
+void increasePartyMemberHP(short character, short amount, short useAbsoluteValue) {
+	if (character == 0) {
 		return;
 	}
-	if (arg3 == 0) {
-		arg2 = cast(short)((arg2 * partyCharacters[arg1 - 1].maxHP) / 100);
+	// convert percent amount into absolute value
+	if (useAbsoluteValue == 0) {
+		amount = cast(short)((amount * partyCharacters[character - 1].maxHP) / 100);
 	}
-	partyCharacters[arg1 - 1].hp.target += arg2;
-	if (partyCharacters[arg1 - 1].hp.current.integer == 0) {
-		partyCharacters[arg1 - 1].hp.current.integer = 1;
+	// increase HP but limit it to max HP, also set current HP to 1 if it was 0
+	partyCharacters[character - 1].hp.target += amount;
+	if (partyCharacters[character - 1].hp.current.integer == 0) {
+		partyCharacters[character - 1].hp.current.integer = 1;
 	}
-	if (partyCharacters[arg1 - 1].hp.target > partyCharacters[arg1 - 1].maxHP) {
-		partyCharacters[arg1 - 1].hp.target = partyCharacters[arg1 - 1].maxHP;
+	if (partyCharacters[character - 1].hp.target > partyCharacters[character - 1].maxHP) {
+		partyCharacters[character - 1].hp.target = partyCharacters[character - 1].maxHP;
 	}
 }
 
-/// $C3ED2C
-void unknownC3ED2C(short arg1, short arg2, short arg3) {
-	if (arg1 == 0) {
+/** Reduces a party member's PP by an absolute value or percentage
+ * Params:
+ * 	character = Character ID (1-based)
+ * 	amount = Amount to reduce PP by (absolute/percent)
+ * 	useAbsoluteValue = 1 if amount is absolute value, 0 if percent
+ * Original_Address: $(DOLLAR)C3ED2C
+ */
+void reducePartyMemberPP(short character, short amount, short useAbsoluteValue) {
+	if (character == 0) {
 		return;
 	}
-	if (arg3 == 0) {
-		arg2 = cast(short)((arg2 * partyCharacters[arg1 - 1].maxPP) / 100);
+	// convert percent amount into absolute value
+	if (useAbsoluteValue == 0) {
+		amount = cast(short)((amount * partyCharacters[character - 1].maxPP) / 100);
 	}
-	partyCharacters[arg1 - 1].pp.target -= arg2;
-	if (partyCharacters[arg1 - 1].pp.target > partyCharacters[arg1 - 1].maxPP) {
-		partyCharacters[arg1 - 1].pp.target = 0;
+	// reduce PP, but don't reduce below zero
+	partyCharacters[character - 1].pp.target -= amount;
+	if (partyCharacters[character - 1].pp.target > partyCharacters[character - 1].maxPP) {
+		partyCharacters[character - 1].pp.target = 0;
 	}
 }
 
-/// $C3ED98
-void unknownC3ED98(short arg1, short arg2, short arg3) {
-	if (arg1 == 0) {
+/** Increases a party member's PP by an absolute value or percentage
+ * Params:
+ * 	character = Character ID (1-based)
+ * 	amount = Amount to increase PP by (absolute/percent)
+ * 	useAbsoluteValue = 1 if amount is absolute value, 0 if percent
+ * Original_Address: $(DOLLAR)C3ED98
+ */
+void increasePartyMemberPP(short character, short amount, short useAbsoluteValue) {
+	if (character == 0) {
 		return;
 	}
-	if (arg3 == 0) {
-		arg2 = cast(short)((arg2 * partyCharacters[arg1 - 1].maxPP) / 100);
+	// convert percent amount into absolute value
+	if (useAbsoluteValue == 0) {
+		amount = cast(short)((amount * partyCharacters[character - 1].maxPP) / 100);
 	}
-	partyCharacters[arg1 - 1].pp.target += arg2;
-	if (partyCharacters[arg1 - 1].pp.target > partyCharacters[arg1 - 1].maxPP) {
-		partyCharacters[arg1 - 1].pp.target = partyCharacters[arg1 - 1].maxPP;
+	// increase PP but limit it to max PP
+	partyCharacters[character - 1].pp.target += amount;
+	if (partyCharacters[character - 1].pp.target > partyCharacters[character - 1].maxPP) {
+		partyCharacters[character - 1].pp.target = partyCharacters[character - 1].maxPP;
 	}
 }
 
-/// $C3EE14
+/** Tests if a character can equip a particular item
+ * Params:
+ * 	character = Character ID (1-based)
+ * 	item = Item ID
+ * Returns: 1 if character can equip item, 0 otherwise
+ * Original_Address: $(DOLLAR)C3EE14
+ */
 short canCharacterEquip(short character, short item) {
 	if ((itemData[item].flags & itemUsableFlags[character - 1]) != 0) {
 		return 1;
@@ -1025,8 +1082,10 @@ short canCharacterEquip(short character, short item) {
 	}
 }
 
-/// $C3EE4D
-void unknownC3EE4D() {
+/** Performs a full party update, including reordering dead/alive party members and updating sprites
+ * Original_Address: $(DOLLAR)C3EE4D
+ */
+void fullPartyUpdate() {
 	updateParty();
 	unknownC07B52();
 	finishFrame();
@@ -1034,18 +1093,23 @@ void unknownC3EE4D() {
 	if (entityFadeEntity == -1) {
 		return;
 	}
-	entityCallbackFlags[entityFadeEntity] &= 0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+	entityCallbackFlags[entityFadeEntity] &= ~(EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 }
 
-/// $C3EE7A
-MainRegister unknownC3EE7A(short arg1) {
+/** Gets a party statistic and returns it in a format suitable for the text system
+ * Params:
+ * 	stat = The statistic to fetch
+ * Returns: Either an integer value or a pointer to one
+ * Original_Address: $(DOLLAR)C3EE7A
+ */
+MainRegister getPartyStat(short arg1) {
 	MainRegister result;
 	if ((cc1C01Table[arg1].size & 0x80) != 0) {
 		switch (cc1C01Table[arg1].size & 0x7F) {
-			case 1:
+			case ubyte.sizeof:
 				result.integer = *cast(ubyte*)cc1C01Table[arg1].address;
 				break;
-			case 2:
+			case ushort.sizeof:
 				result.integer = *cast(ushort*)cc1C01Table[arg1].address;
 				break;
 			default:
@@ -1058,12 +1122,20 @@ MainRegister unknownC3EE7A(short arg1) {
 	return result;
 }
 
-/// $C3EF23
-void nullC3EF23(short) {
+/** Does nothing. Unclear what original intent was, except it was related to printing character statistics
+ *
+ * Possibly a more/less detailed stats screen text?
+ * Params:
+ * 	character = Character ID (1-based)
+ * Original_Address: $(DOLLAR)C3EF23
+ */
+void nullC3EF23(short character) {
 	//do nothing
 }
 
-/// $C3F054
+/** Miscellaneous font details
+ * Original_Address: $(DOLLAR)C3F054
+ */
 immutable FontConfig[5] fontConfigTable = [
 	Font.main: FontConfig(dataID: 0, graphicsID: 0, bytesPerCharacter: 32, height: 16),
 	Font.mrSaturn: FontConfig(dataID: 1, graphicsID: 1, bytesPerCharacter: 32, height: 16),
@@ -1078,7 +1150,9 @@ immutable(ubyte[])[] fontData;
 @([ROMSource(0x210CDA, 3072), ROMSource(0x2013B9, 3072), ROMSource(0x21193A, 1536), ROMSource(0x211F9A, 768), ROMSource(0x2122FA, 3072)])
 immutable(ubyte[])[] fontGraphics;
 
-/// $C3F112
+/** Characters used for PSI level suffixes
+ * Original_Address: $(DOLLAR)C3F112
+ */
 immutable ubyte[2][5] psiSuffixes = [
 	ebString!2("©"),
 	ebString!2("^"),
@@ -1087,10 +1161,14 @@ immutable ubyte[2][5] psiSuffixes = [
 	ebString!2("#"),
 ];
 
-/// $C3F11C
+/** The PP cost text used in the PSI targetting window
+ * Original_Address: $(DOLLAR)C3F11C
+ */
 immutable ubyte[8] ppCostText = ebString("PP Cost:");
 
-/// $C3F124
+/** The PSI target text used in the PSI targetting window
+ * Original_Address: $(DOLLAR)C3F124
+ */
 immutable ubyte[20][5][2] psiTargetText = [
 	[
 		ebString!20("To enemy"),
@@ -1107,24 +1185,30 @@ immutable ubyte[20][5][2] psiTargetText = [
 	]
 ];
 
-/// $C3F1EC
-short unknownC3F1EC(short arg1) {
+/** Find an item to fix and roll the dice for it, if there's enough IQ for it
+ * Params:
+ * 	successPercent = Rate of success out of 100
+ * Returns: An item ID if successful, 0 otherwise
+ * Original_Address: $(DOLLAR)C3F1EC
+ */
+short unknownC3F1EC(short successPercent) {
+	// exit early if nobody can fix items is present
 	if (testIfPartyMemberPresent(PartyMember.jeff) == 0) {
 		return 0;
 	}
 	for (short i = 0; (i < 14) && (partyCharacters[3].items[i] != 0); i++) {
-		short x0E = partyCharacters[3].items[i];
-		if (itemData[x0E].type != 8) {
+		short item = partyCharacters[3].items[i];
+		if (itemData[item].type != 8) {
 			continue;
 		}
-		if (itemData[x0E].parameters.epi > partyCharacters[3].iq) {
+		if (itemData[item].parameters.epi > partyCharacters[3].iq) {
 			continue;
 		}
-		if (randMod(99) >= arg1) {
+		if (randMod(99) >= successPercent) {
 			continue;
 		}
-		partyCharacters[3].items[i] = itemData[x0E].parameters.ep;
-		return x0E;
+		partyCharacters[3].items[i] = itemData[item].parameters.ep;
+		return item;
 	}
 	return 0;
 }

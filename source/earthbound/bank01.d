@@ -3162,7 +3162,7 @@ void* cc1D0F(DisplayTextState* arg1, ubyte arg2) {
 /// $C1575D
 void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(MainRegister(checkItemEquipped(
+	setMainRegister(MainRegister(testItemSlotEquipment(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -3886,7 +3886,7 @@ void* cc1D23(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C1776A
 void* cc1927(DisplayTextState* arg1, ubyte arg2) {
-	setMainRegister(unknownC3EE7A(cast(ushort)((arg2 != 0) ? arg2 : getSubRegister())));
+	setMainRegister(getPartyStat(cast(ushort)((arg2 != 0) ? arg2 : getSubRegister())));
 	return null;
 }
 
@@ -4665,7 +4665,7 @@ ushort giveItemToSpecificCharacter(ushort character, ubyte item) {
 			unknownC216DB();
 		}
 		if ((itemData[item].flags & ItemFlags.transform) != 0) {
-			unknownC3EAD0(item);
+			initializeItemTransformation(item);
 		}
 		return cast(ushort)(character + 1);
 	}
@@ -4721,7 +4721,7 @@ ushort removeItemFromInventory(ushort character, ushort slot) {
 		unknownC216DB();
 	}
 	if ((itemData[i].flags & ItemFlags.transform) != 0) {
-		unknownC3EB1C(i);
+		clearItemTransformation(i);
 	}
 	return character;
 }
@@ -4752,13 +4752,13 @@ ushort takeItemFromCharacter(ushort character, ushort item) {
 }
 
 /// $C18F0E
-void reduceHPAmtPercent(short arg1, short arg2, short arg3) {
-	if (arg1 == 0xFF) {
+void reduceHPAmtPercent(short character, short amount, short useAbsoluteValue) {
+	if (character == 0xFF) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			unknownC3EC1F(gameState.partyMembers[i], arg2, arg3);
+			reducePartyMemberHP(gameState.partyMembers[i], amount, useAbsoluteValue);
 		}
 	} else {
-		unknownC3EC1F(arg1, arg2, arg3);
+		reducePartyMemberHP(character, amount, useAbsoluteValue);
 	}
 }
 
@@ -4766,10 +4766,10 @@ void reduceHPAmtPercent(short arg1, short arg2, short arg3) {
 void recoverHPAmtPercent(short arg1, short arg2, short arg3) {
 	if (arg1 == 0xFF) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			unknownC3EC8B(gameState.partyMembers[i], arg2, arg3);
+			increasePartyMemberHP(gameState.partyMembers[i], arg2, arg3);
 		}
 	} else {
-		unknownC3EC8B(arg1, arg2, arg3);
+		increasePartyMemberHP(arg1, arg2, arg3);
 	}
 }
 
@@ -4777,10 +4777,10 @@ void recoverHPAmtPercent(short arg1, short arg2, short arg3) {
 void reducePPAmtPercent(short arg1, short arg2, short arg3) {
 	if (arg1 == 0xFF) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			unknownC3ED2C(gameState.partyMembers[i], arg2, arg3);
+			reducePartyMemberPP(gameState.partyMembers[i], arg2, arg3);
 		}
 	} else {
-		unknownC3ED2C(arg1, arg2, arg3);
+		reducePartyMemberPP(arg1, arg2, arg3);
 	}
 }
 
@@ -4788,10 +4788,10 @@ void reducePPAmtPercent(short arg1, short arg2, short arg3) {
 void recoverPPAmtPercent(short arg1, short arg2, short arg3) {
 	if (arg1 == 0xFF) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-			unknownC3ED98(gameState.partyMembers[i], arg2, arg3);
+			increasePartyMemberPP(gameState.partyMembers[i], arg2, arg3);
 		}
 	} else {
-		unknownC3ED98(arg1, arg2, arg3);
+		increasePartyMemberPP(arg1, arg2, arg3);
 	}
 }
 
@@ -5045,7 +5045,7 @@ void addCharacterInventoryToWindow(short character, short window) {
 	setWindowTitle(window, PartyCharacter.name.length, &partyCharacters[character].name[0]);
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
 		short x16 = partyCharacters[character].items[i];
-		if (checkItemEquipped(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
+		if (testItemSlotEquipment(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
 			temporaryTextBuffer[0] = TallTextTile.equipped;
 			memcpy(&temporaryTextBuffer[1], &itemData[x16].name[0], Item.name.length);
 		} else {
@@ -5227,7 +5227,7 @@ void printEquipment(short character) {
 			default: break;
 		}
 		if (itemSlot != 0) {
-			if (checkItemEquipped(cast(short)(character + 1), itemSlot) != 0) {
+			if (testItemSlotEquipment(cast(short)(character + 1), itemSlot) != 0) {
 				temporaryTextBuffer[0] = TallTextTile.equipped;
 				memcpy(&temporaryTextBuffer[1], &itemData[partyCharacters[character].items[itemSlot - 1]].name[0], Item.name.length);
 			} else {
@@ -5382,7 +5382,7 @@ void handleEquipMenu(short character) {
 			if (canCharacterEquip(cast(short)(character + 1), x16) == 0) {
 				continue;
 			}
-			if (checkItemEquipped(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
+			if (testItemSlotEquipment(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
 				temporaryTextBuffer = TallTextTile.equipped;
 				memcpy(&temporaryTextBuffer[1], &itemData[x16].name, Item.name.length);
 				selectedOption = menuOptionsCreated;
@@ -5762,7 +5762,7 @@ short overworldUseItem(short character, short slot, short) {
 				partyCharacters[target - 1].afflictions[j] = currentTarget.afflictions[j];
 			}
 		}
-		unknownC3EE4D();
+		fullPartyUpdate();
 	} else {
 		displayText(textToPrint);
 	}
@@ -5833,7 +5833,7 @@ short overworldPSIMenu() {
 		} while (psiTarget == 0);
 		closeWindow(Window.targettingDescription);
 	} while (psiSelected == 0);
-	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost, 1);
+	reducePartyMemberPP(psiUser, battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost, 1);
 	if (psiAbilityTable[psiSelected].category == PSICategory.other) {
 		setTeleportState(psiTarget, cast(PSITeleportStyle)psiAbilityTable[psiSelected].level);
 	} else {
@@ -5869,7 +5869,7 @@ short overworldPSIMenu() {
 				partyCharacters[psiTarget - 1].afflictions[i] = currentTarget.afflictions[i];
 			}
 		}
-		unknownC3EE4D();
+		fullPartyUpdate();
 	}
 	x27 = 1;
 	end:
