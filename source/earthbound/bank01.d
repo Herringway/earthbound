@@ -3405,7 +3405,7 @@ void* cc1FC0(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C163A7
 void* cc1FD0(DisplayTextState* arg1, ubyte arg2) {
-	short item = unknownC3F1EC(arg2.useVariableIfZero(getSubRegister()));
+	short item = selectFixableItem(arg2.useVariableIfZero(getSubRegister()));
 	setMainRegister(MainRegister(item != 0 ? getFixedVersionOfItem(item) : 0));
 	setSubRegister(item);
 	return null;

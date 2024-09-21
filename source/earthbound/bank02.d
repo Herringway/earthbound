@@ -7981,9 +7981,9 @@ void loadBattleSprite(short id) {
 	short spritemapWidth = 1;
 	for (short i = 0; i < 16; i++) {
 		newSpriteMap[i].yOffset = 0xE0;
-		//weird. why is it done like this?
-		newSpriteMap[i].firstTile = cast(ubyte)((unknownC3F8B1[i + currentBattleSpritemapsAllocated]));
-		newSpriteMap[i].flags = cast(ubyte)((unknownC3F8B1[i + currentBattleSpritemapsAllocated] >> 8) + (currentBattleSpritesAllocated * 2) + 32);
+		newSpriteMap[i].firstTile = cast(ubyte)((battleSpritemapTileMapping[i + currentBattleSpritemapsAllocated]));
+		// upper bit of tile id bleeds over to flags
+		newSpriteMap[i].flags = cast(ubyte)((battleSpritemapTileMapping[i + currentBattleSpritemapsAllocated] >> 8) + (currentBattleSpritesAllocated * 2) + 32);
 		newSpriteMap[i].xOffset = 0xF0;
 		newSpriteMap[i].specialFlags = 1;
 	}

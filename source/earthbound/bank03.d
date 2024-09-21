@@ -63,7 +63,7 @@ immutable ubyte[8] legalDeliveryAreaTypes = [
 /** Unused?
  * Original_Address: $(DOLLAR)C3DFF0
  */
-immutable short[17] unknownC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+immutable short[17] unusedC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 /** Data used to initialize overworld entities for party members
  *
@@ -289,7 +289,7 @@ immutable short[4] transitionDirections = [
 /** Unused, unreferenced data. Possibly related to stairs
  * Original_Address: $(DOLLAR)C3E1E0
  */
-immutable short[4][4] unknownC3E1E0 = [[0, 0, 4, 0], [0, 0, -4, 0], [-4, 0, 0, 0], [4, 0, 0, 0]];
+immutable short[4][4] unusedC3E1E0 = [[0, 0, 4, 0], [0, 0, -4, 0], [-4, 0, 0, 0], [4, 0, 0, 0]];
 
 /** Directions for auto-movement when getting on stairs
  * Original_Address: $(DOLLAR)C3E200
@@ -1102,22 +1102,22 @@ void fullPartyUpdate() {
  * Returns: Either an integer value or a pointer to one
  * Original_Address: $(DOLLAR)C3EE7A
  */
-MainRegister getPartyStat(short arg1) {
+MainRegister getPartyStat(short stat) {
 	MainRegister result;
-	if ((cc1C01Table[arg1].size & 0x80) != 0) {
-		switch (cc1C01Table[arg1].size & 0x7F) {
+	if ((cc1C01Table[stat].size & 0x80) != 0) {
+		switch (cc1C01Table[stat].size & 0x7F) {
 			case ubyte.sizeof:
-				result.integer = *cast(ubyte*)cc1C01Table[arg1].address;
+				result.integer = *cast(ubyte*)cc1C01Table[stat].address;
 				break;
 			case ushort.sizeof:
-				result.integer = *cast(ushort*)cc1C01Table[arg1].address;
+				result.integer = *cast(ushort*)cc1C01Table[stat].address;
 				break;
 			default:
-				result.integer = *cast(uint*)cc1C01Table[arg1].address;
+				result.integer = *cast(uint*)cc1C01Table[stat].address;
 				break;
 		}
 	} else {
-		result.pointer = cast(void*)cc1C01Table[arg1].address;
+		result.pointer = cast(void*)cc1C01Table[stat].address;
 	}
 	return result;
 }
@@ -1191,7 +1191,7 @@ immutable ubyte[20][5][2] psiTargetText = [
  * Returns: An item ID if successful, 0 otherwise
  * Original_Address: $(DOLLAR)C3F1EC
  */
-short unknownC3F1EC(short successPercent) {
+short selectFixableItem(short successPercent) {
 	// exit early if nobody can fix items is present
 	if (testIfPartyMemberPresent(PartyMember.jeff) == 0) {
 		return 0;
@@ -1214,25 +1214,29 @@ short unknownC3F1EC(short successPercent) {
 }
 
 unittest {
-	assert(unknownC3F1EC(100) == 0);
+	assert(selectFixableItem(100) == 0);
 	gameState.partyMembers[0] = PartyMember.jeff;
 	gameState.partyCount = 1;
 	partyCharacters[2].iq = 255;
 	partyCharacters[2].items[0] = ItemID.brokenMachine;
-	assert(unknownC3F1EC(100) == ItemID.brokenMachine);
+	assert(selectFixableItem(100) == ItemID.brokenMachine);
 	gameState.partyMembers[0] = PartyMember.jeff;
 	gameState.partyCount = 1;
 	partyCharacters[3].iq = 255;
 	partyCharacters[3].items[0] = ItemID.brokenMachine;
-	assert(unknownC3F1EC(100) == 0);
+	assert(selectFixableItem(100) == 0);
 }
 
-/// $C3F2B1
+/** Values added to random stat gains during level-up, indexed by level % 4
+ * Original_Address: $(DOLLAR)C3F2B1
+ */
 immutable ubyte[4] statGrowthDifferenceFactor = [8, 4, 4, 4];
 
-/// $C3F2B5
+/** Overworld sprite sets used by party members
+ * Original_Address: $(DOLLAR)C3F2B5
+ */
 immutable ushort[8][17] partyCharacterGraphicsTable = [
-	[
+	PartyMember.ness - 1: [
 		OverworldSprite.ness,
 		OverworldSprite.nessAngel,
 		OverworldSprite.nessClimbingUp,
@@ -1242,7 +1246,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.nessRobot,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.paula - 1: [
 		OverworldSprite.paula,
 		OverworldSprite.paulaAngel,
 		OverworldSprite.paulaClimbingUp,
@@ -1252,7 +1256,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.robot,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.jeff - 1: [
 		OverworldSprite.jeff,
 		OverworldSprite.jeffAngel,
 		OverworldSprite.jeffClimbingUp,
@@ -1262,7 +1266,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.robot,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.poo - 1: [
 		OverworldSprite.poo,
 		OverworldSprite.pooAngel,
 		OverworldSprite.pooClimbingUp,
@@ -1272,7 +1276,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.robot,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.pokey - 1: [
 		OverworldSprite.pokey,
 		OverworldSprite.pokey,
 		OverworldSprite.pokey,
@@ -1282,7 +1286,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.pokey,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.picky - 1: [
 		OverworldSprite.picky,
 		OverworldSprite.picky,
 		OverworldSprite.picky,
@@ -1292,7 +1296,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.picky,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.king - 1: [
 		OverworldSprite.king,
 		OverworldSprite.king,
 		OverworldSprite.kingClimbingUp,
@@ -1302,7 +1306,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.king,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.tony - 1: [
 		OverworldSprite.tony,
 		OverworldSprite.tony,
 		OverworldSprite.tony,
@@ -1312,7 +1316,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.tony,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.bubbleMonkey - 1: [
 		OverworldSprite.bubbleMonkey,
 		OverworldSprite.bubbleMonkey,
 		OverworldSprite.bubbleMonkey,
@@ -1322,7 +1326,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.bubbleMonkey,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.dungeonMan - 1: [
 		OverworldSprite.dungeonMan,
 		OverworldSprite.dungeonMan,
 		OverworldSprite.dungeonMan,
@@ -1332,7 +1336,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.dungeonMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.flyingMan1 - 1: [
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
@@ -1342,7 +1346,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.flyingMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.flyingMan2 - 1: [
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
@@ -1352,7 +1356,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.flyingMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.flyingMan3 - 1: [
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
@@ -1362,7 +1366,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.flyingMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.flyingMan4 - 1: [
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
@@ -1372,7 +1376,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.flyingMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.flyingMan5 - 1: [
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
 		OverworldSprite.flyingMan,
@@ -1382,7 +1386,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.flyingMan,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.teddyBear - 1: [
 		OverworldSprite.teddyBearParty,
 		OverworldSprite.teddyBearParty,
 		OverworldSprite.teddyBearParty,
@@ -1392,7 +1396,7 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 		OverworldSprite.teddyBearParty,
 		OverworldSprite.invalid,
 	],
-	[
+	PartyMember.plushTeddyBear - 1: [
 		OverworldSprite.teddyBearParty,
 		OverworldSprite.teddyBearParty,
 		OverworldSprite.teddyBearParty,
@@ -1404,7 +1408,12 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 	]
 ];
 
-/// $C3F3C5
+/** Plays the title screen sequence
+ * Params:
+ * 	quick = 1 to play a shortened and cancellable sequence, 0 otherise
+ * Returns: 1 unconditionally
+ * Original_Address: $(DOLLAR)C3F3C5
+ */
 short showTitleScreen(short quick) {
 	titleScreenQuickMode = quick;
 	short nonCancellable = 0; // in earlier revisions, this was = quick
@@ -1605,8 +1614,11 @@ immutable ushort[32] battleSpritemapVRAMMapping = [
 	0x3980,
 ];
 
-/// $C3F8B1
-immutable ushort[32] unknownC3F8B1 = [
+/** Tile IDs for each chunk of tile data associated with 32x32 hardware sprites
+ * See_Also: battleSpritemapVRAMMapping
+ * Original_Address: $(DOLLAR)C3F8B1
+ */
+immutable ushort[32] battleSpritemapTileMapping = [
 	0x0000,
 	0x0004,
 	0x0008,
@@ -1705,7 +1717,9 @@ immutable RGB[16][3] enemyUsingAttackPalettes = [
 	]
 ];
 
-/// $C3F951
+/** Colours to set affected enemies to during enemy PSI animations
+ * Original_Address: $(DOLLAR)C3F951
+ */
 immutable ubyte[3][11] enemyPSIColours = [
 	[31, 0, 0],
 	[18, 6, 0],
@@ -1720,7 +1734,9 @@ immutable ubyte[3][11] enemyPSIColours = [
 	[31, 31, 11],
 ];
 
-/// $C3F951
+/** Colours to set enemies to during window-type animations
+ * Original_Address: $(DOLLAR)C3F951
+ */
 immutable ubyte[3][5] miscSwirlColours = [
 	[15, 15, 15],
 	[15, 15, 0],
@@ -1729,19 +1745,23 @@ immutable ubyte[3][5] miscSwirlColours = [
 	[31, 0, 12],
 ];
 
-/// $C3F981
-void startBattleAnimation(ushort arg1) {
-	if (arg1 <= BattleAnimation.unknown34) {
-		showPSIAnimation(arg1);
+/** Starts playing battle animations
+ * Params:
+ * 	id = Animation ID (see BattleAnimation for valid values)
+ * Original_Address: $(DOLLAR)C3F981
+ */
+void startBattleAnimation(ushort id) {
+	if (id <= BattleAnimation.unknown34) {
+		showPSIAnimation(id);
 		return;
 	}
-	if (arg1 <= BattleAnimation.enemyPSI11) {
+	if (id <= BattleAnimation.enemyPSI11) {
 		darkenAnimatedBackgrounds();
-		setColData(enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][0], enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][1], enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][2]);
+		setColData(enemyPSIColours[id - BattleAnimation.enemyPSI01][0], enemyPSIColours[id - BattleAnimation.enemyPSI01][1], enemyPSIColours[id - BattleAnimation.enemyPSI01][2]);
 		setColourAddSubMode(0x10, 0x3F);
 		startSwirl(Swirl.enemyAttack, 7);
-	} else if (arg1 <= BattleAnimation.unknown48) {
-		switch (arg1 + 1) {
+	} else if (id <= BattleAnimation.unknown48) {
+		switch (id + 1) {
 			case BattleAnimation.unknown46 + 1:
 				wobbleDuration = 144;
 				break;
@@ -1752,11 +1772,11 @@ void startBattleAnimation(ushort arg1) {
 			default:
 				break;
 		}
-	} else if (arg1 <= BattleAnimation.giygasAttack) {
+	} else if (id <= BattleAnimation.giygasAttack) {
 		darkenAnimatedBackgrounds();
-		setColData(miscSwirlColours[arg1 - BattleAnimation.unknown49][0], miscSwirlColours[arg1 - BattleAnimation.unknown49][1], miscSwirlColours[arg1 - BattleAnimation.unknown49][2]);
+		setColData(miscSwirlColours[id - BattleAnimation.unknown49][0], miscSwirlColours[id - BattleAnimation.unknown49][1], miscSwirlColours[id - BattleAnimation.unknown49][2]);
 		setColourAddSubMode(0x10, 0x3F);
-		if (arg1 <= BattleAnimation.unknown52) {
+		if (id <= BattleAnimation.unknown52) {
 			startSwirl(Swirl.unknown4, 5);
 		} else {
 			startSwirl(Swirl.giygasAttack, 4);
@@ -1775,7 +1795,9 @@ short attackerIsEnemy() {
 	return 1;
 }
 
-/// $C3FB2B
+/** Prompt text used when asking the player to input their name
+ * Original_Address: $(DOLLAR)C3FB2B
+ */
 immutable ubyte[26] nameRegistryRequestString = ebString!26("Register your name, please");
 
 /** Consonant/vowel pair -> hiragana mappings, used for Mother 2's player name transliteration
@@ -1977,7 +1999,8 @@ immutable ushort[4] forSaleSignSpriteTable = [
 	OverworldSprite.oldGuyWithCane,
 ];
 
-/** Does nothing.
+/** Does nothing. Apparently had some functionality for the final battle
+ * Returns: 0 unconditionally
  * Original_Address: $(DOLLAR)C3FDC5
  */
 short nullC3FDC5() {
