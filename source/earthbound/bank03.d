@@ -846,7 +846,7 @@ short getCharacterItem(short character, short slot) {
 	return partyCharacters[character - 1].items[slot - 1];
 }
 
-/** Tests if the a particualr item is equipped on a character
+/** Tests if a particular item is equipped on a character
  * Params:
  * 	character = The character (1-based) ID whose equipment is being checked
  * 	item = The item ID to look for
