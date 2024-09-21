@@ -859,17 +859,45 @@ short testItemIsEquipped(short character, short item) {
 		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.weapon] - 1] == item) {
 			return 1;
 		}
+	}
+	if (partyCharacters[character].equipment[EquipmentSlot.body] != 0) {
 		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.body] - 1] == item) {
 			return 1;
 		}
+	}
+	if (partyCharacters[character].equipment[EquipmentSlot.arms] != 0) {
 		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.arms] - 1] == item) {
 			return 1;
 		}
+	}
+	if (partyCharacters[character].equipment[EquipmentSlot.other] != 0) {
 		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.other] - 1] == item) {
 			return 1;
 		}
 	}
 	return 0;
+}
+
+unittest {
+	assert(!testItemIsEquipped(PartyMember.ness, ItemID.crackedBat));
+	partyCharacters[0].items[0] = ItemID.crackedBat;
+	partyCharacters[0].equipment[EquipmentSlot.weapon] = 1;
+	assert(testItemIsEquipped(PartyMember.ness, ItemID.crackedBat));
+
+	assert(!testItemIsEquipped(PartyMember.ness, ItemID.travelCharm));
+	partyCharacters[0].items[1] = ItemID.travelCharm;
+	partyCharacters[0].equipment[EquipmentSlot.body] = 2;
+	assert(testItemIsEquipped(PartyMember.ness, ItemID.travelCharm));
+
+	assert(!testItemIsEquipped(PartyMember.ness, ItemID.cheapBracelet));
+	partyCharacters[0].items[2] = ItemID.cheapBracelet;
+	partyCharacters[0].equipment[EquipmentSlot.arms] = 3;
+	assert(testItemIsEquipped(PartyMember.ness, ItemID.cheapBracelet));
+
+	assert(!testItemIsEquipped(PartyMember.ness, ItemID.baseballCap));
+	partyCharacters[0].items[3] = ItemID.baseballCap;
+	partyCharacters[0].equipment[EquipmentSlot.other] = 4;
+	assert(testItemIsEquipped(PartyMember.ness, ItemID.baseballCap));
 }
 
 /// $C3E9A0
