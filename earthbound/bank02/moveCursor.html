@@ -154,7 +154,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function moveCursor</h1><p>$C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
+			<h1>Function moveCursor</h1><p>Moves menu cursor around text window
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,9 +166,9 @@ $('#symbolSearchPane').show();</script>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">curY</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">deltaX</span><span class="pun">,</span>
-			<br/>
 			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">deltaY</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">deltaX</span><span class="pun">,</span>
 			<br/>
 			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">sfx</span>
 			<br/>
@@ -177,7 +177,24 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="curX">curX</td><td> Current X coordinate (text tiles, relative to top left corner of window)</td></tr>
+<tr><td id="curY">curY</td><td> Current Y coordinate (text tiles, relative to top left corner of window)</td></tr>
+<tr><td id="deltaY">deltaY</td><td> Vertical search increment (ex: 1 searches every tile downward, -1 searches every tile upward)</td></tr>
+<tr><td id="deltaX">deltaX</td><td> Horizontal search increment (ex: 1 searches every tile rightward, -1 searches every tile leftward)</td></tr>
+<tr><td id="sfx">sfx</td><td> Sound effect to play on movement</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>X coordinate in LSB, Y coordinate in MSB. -1 on failure
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C20B65
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

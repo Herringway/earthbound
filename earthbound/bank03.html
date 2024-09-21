@@ -179,16 +179,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="canCharacterEquip" class="public" href="../earthbound/bank03/canCharacterEquip.html">canCharacterEquip</a><span class="tableEntryAnnotation">(character, item)</span>
 							</code>
 						</td>
-						<td>$C3EE14
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="checkItemEquipped" class="public" href="../earthbound/bank03/checkItemEquipped.html">checkItemEquipped</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C3E9A0
+						<td>Tests if a character can equip a particular item
 </td>
 					</tr>
 					<tr>
@@ -203,10 +194,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="closeWindow" class="public" href="../earthbound/bank03/closeWindow.html">closeWindow</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="clearItemTransformation" class="public" href="../earthbound/bank03/clearItemTransformation.html">clearItemTransformation</a><span class="tableEntryAnnotation">(item)</span>
 							</code>
 						</td>
-						<td>$C3E521
+						<td>Clears an item transformation entry for the given item, if one exists
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="closeWindow" class="public" href="../earthbound/bank03/closeWindow.html">closeWindow</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>Closes an open window
 </td>
 					</tr>
 					<tr>
@@ -230,6 +230,24 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="findFreeWindow" class="public" href="../earthbound/bank03/findFreeWindow.html">findFreeWindow</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Finds the first free window in the stats table suitable for a new window
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="fullPartyUpdate" class="public" href="../earthbound/bank03/fullPartyUpdate.html">fullPartyUpdate</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Performs a full party update, including reordering dead/alive party members and updating sprites
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="getCharacterItem" class="public" href="../earthbound/bank03/getCharacterItem.html">getCharacterItem</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
@@ -239,10 +257,46 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="nullC3EF23" class="public" href="../earthbound/bank03/nullC3EF23.html">nullC3EF23</a><span class="tableEntryAnnotation">(__param_0)</span>
+								<a id="getPartyStat" class="public" href="../earthbound/bank03/getPartyStat.html">getPartyStat</a><span class="tableEntryAnnotation">(stat)</span>
 							</code>
 						</td>
-						<td>$C3EF23
+						<td>Gets a party statistic and returns it in a format suitable for the text system
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="increasePartyMemberHP" class="public" href="../earthbound/bank03/increasePartyMemberHP.html">increasePartyMemberHP</a><span class="tableEntryAnnotation">(character, amount, useAbsoluteValue)</span>
+							</code>
+						</td>
+						<td>Increases a party member's HP by an absolute value or percentage
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="increasePartyMemberPP" class="public" href="../earthbound/bank03/increasePartyMemberPP.html">increasePartyMemberPP</a><span class="tableEntryAnnotation">(character, amount, useAbsoluteValue)</span>
+							</code>
+						</td>
+						<td>Increases a party member's PP by an absolute value or percentage
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="initializeItemTransformation" class="public" href="../earthbound/bank03/initializeItemTransformation.html">initializeItemTransformation</a><span class="tableEntryAnnotation">(item)</span>
+							</code>
+						</td>
+						<td>Initializes an item transformation entry for the given item, if one exists and hasn't already been initialized
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="nullC3EF23" class="public" href="../earthbound/bank03/nullC3EF23.html">nullC3EF23</a><span class="tableEntryAnnotation">(character)</span>
+							</code>
+						</td>
+						<td>Does nothing. Unclear what original intent was, except it was related to printing character statistics
 </td>
 					</tr>
 					<tr>
@@ -251,16 +305,43 @@ $('#symbolSearchPane').show();</script>
 								<a id="nullC3FDC5" class="public" href="../earthbound/bank03/nullC3FDC5.html">nullC3FDC5</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>Does nothing.
+						<td>Does nothing. Apparently had some functionality for the final battle
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="printBattlerArticle" class="public" href="../earthbound/bank03/printBattlerArticle.html">printBattlerArticle</a><span class="tableEntryAnnotation">(target)</span>
+								<a id="printBattlerArticle" class="public" href="../earthbound/bank03/printBattlerArticle.html">printBattlerArticle</a><span class="tableEntryAnnotation">(whom)</span>
 							</code>
 						</td>
-						<td>$C3E75D
+						<td>Prints the article for the target's name, if applicable
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="reducePartyMemberHP" class="public" href="../earthbound/bank03/reducePartyMemberHP.html">reducePartyMemberHP</a><span class="tableEntryAnnotation">(character, amount, useAbsoluteValue)</span>
+							</code>
+						</td>
+						<td>Reduces a party member's HP by an absolute value or percentage
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="reducePartyMemberPP" class="public" href="../earthbound/bank03/reducePartyMemberPP.html">reducePartyMemberPP</a><span class="tableEntryAnnotation">(character, amount, useAbsoluteValue)</span>
+							</code>
+						</td>
+						<td>Reduces a party member's PP by an absolute value or percentage
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="reinitializeItemTransformations" class="public" href="../earthbound/bank03/reinitializeItemTransformations.html">reinitializeItemTransformations</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Force a reinitialization of all item transformations for items still in the party's inventory or remove them if they aren't
 </td>
 					</tr>
 					<tr>
@@ -269,7 +350,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="resetActivePartyMemberHPPPWindow" class="public" href="../earthbound/bank03/resetActivePartyMemberHPPPWindow.html">resetActivePartyMemberHPPPWindow</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C3E6F8
+						<td>Resets the active party member's (ie the character whose turn it is in battle or has an open inventory window) HP/PP window positioning
 </td>
 					</tr>
 					<tr>
@@ -279,6 +360,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Resets a window's menu state and frees up its menu options
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="selectFixableItem" class="public" href="../earthbound/bank03/selectFixableItem.html">selectFixableItem</a><span class="tableEntryAnnotation">(successPercent)</span>
+							</code>
+						</td>
+						<td>Find an item to fix and roll the dice for it, if there's enough IQ for it
 </td>
 					</tr>
 					<tr>
@@ -296,16 +386,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="showTitleScreen" class="public" href="../earthbound/bank03/showTitleScreen.html">showTitleScreen</a><span class="tableEntryAnnotation">(quick)</span>
 							</code>
 						</td>
-						<td>$C3F3C5
+						<td>Plays the title screen sequence
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="startBattleAnimation" class="public" href="../earthbound/bank03/startBattleAnimation.html">startBattleAnimation</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="startBattleAnimation" class="public" href="../earthbound/bank03/startBattleAnimation.html">startBattleAnimation</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
-						<td>$C3F981
+						<td>Starts playing battle animations
 </td>
 					</tr>
 					<tr>
@@ -315,6 +405,24 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Starts a battle animation, automatically selecting the animation depending on the target. No animation if targetting the tiny lil ghost.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testItemIsEquipped" class="public" href="../earthbound/bank03/testItemIsEquipped.html">testItemIsEquipped</a><span class="tableEntryAnnotation">(character, item)</span>
+							</code>
+						</td>
+						<td>Tests if a particular item is equipped on a character
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="testItemSlotEquipment" class="public" href="../earthbound/bank03/testItemSlotEquipment.html">testItemSlotEquipment</a><span class="tableEntryAnnotation">(character, slot)</span>
+							</code>
+						</td>
+						<td>Tests if the item in a given slot is equipped by the character
 </td>
 					</tr>
 					<tr>
@@ -338,127 +446,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC3E450" class="public" href="../earthbound/bank03/unknownC3E450.html">unknownC3E450</a><span class="tableEntryAnnotation">()</span>
+								<a id="updateFlashTextPalette" class="public" href="../earthbound/bank03/updateFlashTextPalette.html">updateFlashTextPalette</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C3E450
+						<td>Causes text palette 5 (the can-equip HP/PP window flash palette) to blink every 4 frames
 </td>
 					</tr>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC3E4EF" class="public" href="../earthbound/bank03/unknownC3E4EF.html">unknownC3E4EF</a><span class="tableEntryAnnotation">()</span>
+								<a id="windowTickForceUpdate" class="public" href="../earthbound/bank03/windowTickForceUpdate.html">windowTickForceUpdate</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C3E4EF
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3E9F7" class="public" href="../earthbound/bank03/unknownC3E9F7.html">unknownC3E9F7</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C3E9F7
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EAD0" class="public" href="../earthbound/bank03/unknownC3EAD0.html">unknownC3EAD0</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C3EAD0
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EB1C" class="public" href="../earthbound/bank03/unknownC3EB1C.html">unknownC3EB1C</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C3EB1C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EBCA" class="public" href="../earthbound/bank03/unknownC3EBCA.html">unknownC3EBCA</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C3EBCA
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EC1F" class="public" href="../earthbound/bank03/unknownC3EC1F.html">unknownC3EC1F</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C3EC1F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EC8B" class="public" href="../earthbound/bank03/unknownC3EC8B.html">unknownC3EC8B</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C3EC8B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3ED2C" class="public" href="../earthbound/bank03/unknownC3ED2C.html">unknownC3ED2C</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C3ED2C
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3ED98" class="public" href="../earthbound/bank03/unknownC3ED98.html">unknownC3ED98</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C3ED98
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EE4D" class="public" href="../earthbound/bank03/unknownC3EE4D.html">unknownC3EE4D</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C3EE4D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3EE7A" class="public" href="../earthbound/bank03/unknownC3EE7A.html">unknownC3EE7A</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C3EE7A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC3F1EC" class="public" href="../earthbound/bank03/unknownC3F1EC.html">unknownC3F1EC</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C3F1EC
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="windowTickWithoutInstantPrinting" class="public" href="../earthbound/bank03/windowTickWithoutInstantPrinting.html">windowTickWithoutInstantPrinting</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C3E4E0
+						<td>Performs a single frame of window updating, with guaranteed drawing
 </td>
 					</tr>
 				</table>
@@ -479,7 +479,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E12C
+						<td>Masks for the allowed input directions for each walking style
 </td>
 					</tr>
 					<tr>
@@ -503,7 +503,19 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E40E
+						<td>Tiles for the auto-battle icon
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="battleSpritemapTileMapping" class="public" href="../earthbound/bank03/battleSpritemapTileMapping.html">
+								<code>battleSpritemapTileMapping</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Tile IDs for each chunk of tile data associated with 32x32 hardware sprites
 </td>
 					</tr>
 					<tr>
@@ -527,7 +539,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E416
+						<td>Tile frames for the blinking triangle animation used when the game is waiting for player input on dialogue
 </td>
 					</tr>
 					<tr>
@@ -539,7 +551,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/CharacterInitialEntityDataEntry.html"><span class="typ">CharacterInitialEntityDataEntry</span></a><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E012
+						<td>Data used to initialize overworld entities for party members
 </td>
 					</tr>
 					<tr>
@@ -551,7 +563,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E09A
+						<td>The overworld entity sizes for each party member
 </td>
 					</tr>
 					<tr>
@@ -623,7 +635,19 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/FixedPoint1616.html"><span class="typ">FixedPoint1616</span></a><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E0BC
+						<td>Cardinal walking speeds for each walking style
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="defaultMovementSpeedsDiagonal" class="public" href="../earthbound/bank03/defaultMovementSpeedsDiagonal.html">
+								<code>defaultMovementSpeedsDiagonal</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/FixedPoint1616.html"><span class="typ">FixedPoint1616</span></a><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Diagonal walking speeds for each walking style
 </td>
 					</tr>
 					<tr>
@@ -635,7 +659,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F951
+						<td>Colours to set affected enemies to during enemy PSI animations
 </td>
 					</tr>
 					<tr>
@@ -671,7 +695,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/FontConfig.html"><span class="typ">FontConfig</span></a><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F054
+						<td>Miscellaneous font details
 </td>
 					</tr>
 					<tr>
@@ -696,6 +720,18 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">uint</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>Normal HP meter speeds, one for each text speed
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="hpPPMeterLabelTiles" class="public" href="../earthbound/bank03/hpPPMeterLabelTiles.html">
+								<code>hpPPMeterLabelTiles</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Tiles used for the HP/PP meter labels
 </td>
 					</tr>
 					<tr>
@@ -731,7 +767,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3DFE8
+						<td>A mapping of area types to whether or not delivery is legal there
 </td>
 					</tr>
 					<tr>
@@ -755,7 +791,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F951
+						<td>Colours to set enemies to during window-type animations
 </td>
 					</tr>
 					<tr>
@@ -767,7 +803,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E178
+						<td>Tables for remapping directional movement "randomly" used by mushroomization
 </td>
 					</tr>
 					<tr>
@@ -779,7 +815,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">26</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3FB2B
+						<td>Prompt text used when asking the player to input their name
 </td>
 					</tr>
 					<tr>
@@ -815,7 +851,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/EventFlag.html"><span class="typ">EventFlag</span></a><span class="pun">)</span></code>
 						</td>
-						<td>$C30186
+						<td>The flag used for determining whether or not to use the alt sprite group for the main character
 </td>
 					</tr>
 					<tr>
@@ -827,7 +863,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E148
+						<td>X offsets to be added to player's position when searching for overworld objects to interact with
 </td>
 					</tr>
 					<tr>
@@ -839,7 +875,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E158
+						<td>Y offsets to be added to player's position when searching for overworld objects to interact with
 </td>
 					</tr>
 					<tr>
@@ -851,7 +887,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E168
+						<td>Opposite direction map used for making entities face other entities
 </td>
 					</tr>
 					<tr>
@@ -863,7 +899,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E43C
+						<td>Tile frames for the throbbing pagination arrows used on inventory windows and such
 </td>
 					</tr>
 					<tr>
@@ -875,7 +911,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F2B5
+						<td>Overworld sprite sets used by party members
 </td>
 					</tr>
 					<tr>
@@ -899,7 +935,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F11C
+						<td>The PP cost text used in the PSI targetting window
 </td>
 					</tr>
 					<tr>
@@ -911,7 +947,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F112
+						<td>Characters used for PSI level suffixes
 </td>
 					</tr>
 					<tr>
@@ -923,7 +959,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F124
+						<td>The PSI target text used in the PSI targetting window
 </td>
 					</tr>
 					<tr>
@@ -935,7 +971,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E40A
+						<td>Tile frames for the lower half of the animated menu cursor
 </td>
 					</tr>
 					<tr>
@@ -947,7 +983,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E406
+						<td>Tile frames for the upper half of the animated menu cursor
 </td>
 					</tr>
 					<tr>
@@ -971,7 +1007,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E220
+						<td>X coordinate offset used for auto-movement destination while getting off stairs
 </td>
 					</tr>
 					<tr>
@@ -983,7 +1019,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E228
+						<td>Y coordinate offset used for auto-movement destination while getting off stairs
 </td>
 					</tr>
 					<tr>
@@ -995,7 +1031,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E200
+						<td>Directions for auto-movement when getting on stairs
 </td>
 					</tr>
 					<tr>
@@ -1007,7 +1043,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E208
+						<td>Directions for auto-movement after getting off stairs
 </td>
 					</tr>
 					<tr>
@@ -1019,7 +1055,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E210
+						<td>X coordinate offset used for auto-movement destination while getting on stairs
 </td>
 					</tr>
 					<tr>
@@ -1031,7 +1067,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E218
+						<td>Y coordinate offset used for auto-movement destination while getting on stairs
 </td>
 					</tr>
 					<tr>
@@ -1043,7 +1079,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3F2B1
+						<td>Values added to random stat gains during level-up, indexed by level % 4
 </td>
 					</tr>
 					<tr>
@@ -1067,55 +1103,43 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E1D8
+						<td>Directions for the leader to face after door warps
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownC3DFF0" class="public" href="../earthbound/bank03/unknownC3DFF0.html">
-								<code>unknownC3DFF0</code>
+							<a id="unusedAnimationC3E400" class="public" href="../earthbound/bank03/unusedAnimationC3E400.html">
+								<code>unusedAnimationC3E400</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Unused tile animation
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="unusedC3DFF0" class="public" href="../earthbound/bank03/unusedC3DFF0.html">
+								<code>unusedC3DFF0</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3DFF0 - unused?
+						<td>Unused?
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownC3E1E0" class="public" href="../earthbound/bank03/unknownC3E1E0.html">
-								<code>unknownC3E1E0</code>
+							<a id="unusedC3E1E0" class="public" href="../earthbound/bank03/unusedC3E1E0.html">
+								<code>unusedC3E1E0</code>
 							</a>
 						</td>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C3E1E0
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC3E3F8" class="public" href="../earthbound/bank03/unknownC3E3F8.html">
-								<code>unknownC3E3F8</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3E3F8
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC3F8B1" class="public" href="../earthbound/bank03/unknownC3F8B1.html">
-								<code>unknownC3F8B1</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C3F8B1
+						<td>Unused, unreferenced data. Possibly related to stairs
 </td>
 					</tr>
 					<tr>
