@@ -1196,21 +1196,35 @@ short unknownC3F1EC(short successPercent) {
 	if (testIfPartyMemberPresent(PartyMember.jeff) == 0) {
 		return 0;
 	}
-	for (short i = 0; (i < 14) && (partyCharacters[3].items[i] != 0); i++) {
-		short item = partyCharacters[3].items[i];
+	for (short i = 0; (i < 14) && (partyCharacters[PartyMember.jeff - 1].items[i] != 0); i++) {
+		short item = partyCharacters[PartyMember.jeff - 1].items[i];
 		if (itemData[item].type != 8) {
 			continue;
 		}
-		if (itemData[item].parameters.epi > partyCharacters[3].iq) {
+		if (itemData[item].parameters.epi > partyCharacters[PartyMember.jeff - 1].iq) {
 			continue;
 		}
 		if (randMod(99) >= successPercent) {
 			continue;
 		}
-		partyCharacters[3].items[i] = itemData[item].parameters.ep;
+		partyCharacters[PartyMember.jeff - 1].items[i] = itemData[item].parameters.ep;
 		return item;
 	}
 	return 0;
+}
+
+unittest {
+	assert(unknownC3F1EC(100) == 0);
+	gameState.partyMembers[0] = PartyMember.jeff;
+	gameState.partyCount = 1;
+	partyCharacters[2].iq = 255;
+	partyCharacters[2].items[0] = ItemID.brokenMachine;
+	assert(unknownC3F1EC(100) == ItemID.brokenMachine);
+	gameState.partyMembers[0] = PartyMember.jeff;
+	gameState.partyCount = 1;
+	partyCharacters[3].iq = 255;
+	partyCharacters[3].items[0] = ItemID.brokenMachine;
+	assert(unknownC3F1EC(100) == 0);
 }
 
 /// $C3F2B1
