@@ -4213,7 +4213,7 @@ void displayTextWindowless(const(ubyte)* script) {
 	queueInteraction(InteractionType.talkToEntity, QueuedInteractionPtr(script));
 }
 
-/**
+/** ActionScript helper: Get pressed button state
  * Original_Address: $(DOLLAR)C468A9
  */
 short actionScriptGetPressedButtons() {

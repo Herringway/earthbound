@@ -13,6 +13,7 @@ import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.hardware;
 import core.stdc.string;
 import std.logger;
 
@@ -40,10 +41,14 @@ noreturn displayFaultyGamepakScreen() {
 	gameFailureLoop();
 }
 
-/// $C30186
+/** The flag used for determining whether or not to use the alt sprite group for the main character
+ * Original_Address: $(DOLLAR)C30186
+ */
 immutable nessPajamaFlag = EventFlag.myHomeNesChange;
 
-/// $C3DFE8
+/** A mapping of area types to whether or not delivery is legal there
+ * Original_Address: $(DOLLAR)C3DFE8
+ */
 immutable ubyte[8] legalDeliveryAreaTypes = [
 	SpecialGameState.none: 1,
 	SpecialGameState.indoorArea: 1,
@@ -55,86 +60,105 @@ immutable ubyte[8] legalDeliveryAreaTypes = [
 	7: 0
 ];
 
-/// $C3DFF0 - unused?
+/** Unused?
+ * Original_Address: $(DOLLAR)C3DFF0
+ */
 immutable short[17] unknownC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-/// $C3E012
+/** Data used to initialize overworld entities for party members
+ *
+ * This uses 1-based indexing, so the index<->PartyMember mapping is off by one
+ * Original_Address: $(DOLLAR)C3E012
+ */
 immutable CharacterInitialEntityDataEntry[17] characterInitialEntityData = [
-	CharacterInitialEntityDataEntry(OverworldSprite.ness, OverworldSprite.lilNess, ActionScript.partyMemberFollowing, 0x0018),
-	CharacterInitialEntityDataEntry(OverworldSprite.paula, OverworldSprite.lilPaula, ActionScript.partyMemberFollowing, 0x0019),
-	CharacterInitialEntityDataEntry(OverworldSprite.jeff, OverworldSprite.lilJeff, ActionScript.partyMemberFollowing, 0x001A),
-	CharacterInitialEntityDataEntry(OverworldSprite.poo, OverworldSprite.lilPoo, ActionScript.partyMemberFollowing, 0x001B),
-	CharacterInitialEntityDataEntry(OverworldSprite.pokey, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.picky, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.king, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.tony, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.bubbleMonkey, OverworldSprite.invalid, ActionScript.partyMemberFollowingBubbleMonkey, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.dungeonMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
-	CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.ness - 1: CharacterInitialEntityDataEntry(OverworldSprite.ness, OverworldSprite.lilNess, ActionScript.partyMemberFollowing, 0x0018),
+	PartyMember.paula - 1: CharacterInitialEntityDataEntry(OverworldSprite.paula, OverworldSprite.lilPaula, ActionScript.partyMemberFollowing, 0x0019),
+	PartyMember.jeff - 1: CharacterInitialEntityDataEntry(OverworldSprite.jeff, OverworldSprite.lilJeff, ActionScript.partyMemberFollowing, 0x001A),
+	PartyMember.poo - 1: CharacterInitialEntityDataEntry(OverworldSprite.poo, OverworldSprite.lilPoo, ActionScript.partyMemberFollowing, 0x001B),
+	PartyMember.pokey - 1: CharacterInitialEntityDataEntry(OverworldSprite.pokey, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.picky - 1: CharacterInitialEntityDataEntry(OverworldSprite.picky, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.king - 1: CharacterInitialEntityDataEntry(OverworldSprite.king, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.tony - 1: CharacterInitialEntityDataEntry(OverworldSprite.tony, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.bubbleMonkey - 1: CharacterInitialEntityDataEntry(OverworldSprite.bubbleMonkey, OverworldSprite.invalid, ActionScript.partyMemberFollowingBubbleMonkey, 0x001C),
+	PartyMember.dungeonMan - 1: CharacterInitialEntityDataEntry(OverworldSprite.dungeonMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.flyingMan1 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.flyingMan2 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.flyingMan3 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.flyingMan4 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.flyingMan5 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.teddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.plushTeddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
 ];
 
-/// $C3E09A
+/** The overworld entity sizes for each party member
+ *
+ * Like characterInitialEntityData, this uses 1-based indexing
+ * Original_Address: $(DOLLAR)C3E09A
+ */
 immutable ushort[17] characterSizes = [
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	4,
-	0,
-	0,
-	10,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
+	PartyMember.ness - 1: 0,
+	PartyMember.paula - 1: 0,
+	PartyMember.jeff - 1: 0,
+	PartyMember.poo - 1: 0,
+	PartyMember.pokey - 1: 0,
+	PartyMember.picky - 1: 0,
+	PartyMember.king - 1: 4,
+	PartyMember.tony - 1: 0,
+	PartyMember.bubbleMonkey - 1: 0,
+	PartyMember.dungeonMan - 1: 10,
+	PartyMember.flyingMan1 - 1: 0,
+	PartyMember.flyingMan2 - 1: 0,
+	PartyMember.flyingMan3 - 1: 0,
+	PartyMember.flyingMan4 - 1: 0,
+	PartyMember.flyingMan5 - 1: 0,
+	PartyMember.teddyBear - 1: 0,
+	PartyMember.plushTeddyBear - 1: 0,
 ];
 
-/// $C3E0BC
+/** Cardinal walking speeds for each walking style
+ * Original_Address: $(DOLLAR)C3E0BC
+ */
 immutable FixedPoint1616[14] defaultMovementSpeeds = [
-	FixedPoint1616(0x6000, 1), //NORMAL
-	FixedPoint1616(0x6000, 1), //UNKNOWN_01
-	FixedPoint1616(0x6000, 1), //UNKNOWN_02
-	FixedPoint1616(0xCCCC, 1), //BICYCLE
-	FixedPoint1616(0x0000, 1), //GHOST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_05
-	FixedPoint1616(0x0000, 1), //SLOWER
-	FixedPoint1616(0xCCCC, 0), //LADDER
-	FixedPoint1616(0xCCCC, 0), //ROPE
-	FixedPoint1616(0x0000, 0), //UNKNOWN_09
-	FixedPoint1616(0x8000, 0), //SLOWEST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
-	FixedPoint1616(0xCCCC, 0), //ESCALATOR
-	FixedPoint1616(0xCCCC, 0), //STAIRS
+	WalkingStyle.normal: FixedPoint1616(0x6000, 1),
+	WalkingStyle.unknown01: FixedPoint1616(0x6000, 1),
+	WalkingStyle.unknown02: FixedPoint1616(0x6000, 1),
+	WalkingStyle.bicycle: FixedPoint1616(0xCCCC, 1),
+	WalkingStyle.ghost: FixedPoint1616(0x0000, 1),
+	WalkingStyle.unknown05: FixedPoint1616(0x0000, 0),
+	WalkingStyle.slower: FixedPoint1616(0x0000, 1),
+	WalkingStyle.ladder: FixedPoint1616(0xCCCC, 0),
+	WalkingStyle.rope: FixedPoint1616(0xCCCC, 0),
+	WalkingStyle.unknown09: FixedPoint1616(0x0000, 0),
+	WalkingStyle.slowest: FixedPoint1616(0x8000, 0),
+	WalkingStyle.unknown11: FixedPoint1616(0x0000, 0),
+	WalkingStyle.escalator: FixedPoint1616(0xCCCC, 0),
+	WalkingStyle.stairs: FixedPoint1616(0xCCCC, 0),
 ];
+/** Diagonal walking speeds for each walking style
+ *
+ * This is basically just cardinal walking speed times sqrt(2)/2
+ * Original_Address: $(DOLLAR)C3E0F4
+ */
 immutable FixedPoint1616[14] defaultMovementSpeedsDiagonal = [
-	FixedPoint1616(0xF8E6, 0), //NORMAL
-	FixedPoint1616(0xF8E6, 0), //UNKNOWN_01
-	FixedPoint1616(0xF8E6, 0), //UNKNOWN_02
-	FixedPoint1616(0x45D5, 1), //BICYCLE
-	FixedPoint1616(0xB505, 0), //GHOST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_05
-	FixedPoint1616(0xB505, 0), //SLOWER
-	FixedPoint1616(0x90D0, 0), //LADDER
-	FixedPoint1616(0x90D0, 0), //ROPE
-	FixedPoint1616(0x0000, 0), //UNKNOWN_09
-	FixedPoint1616(0x5A82, 0), //SLOWEST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
-	FixedPoint1616(0x90D0, 0), //ESCALATOR
-	FixedPoint1616(0x90D0, 0), //STAIRS
+	WalkingStyle.normal: FixedPoint1616(0xF8E6, 0),
+	WalkingStyle.unknown01: FixedPoint1616(0xF8E6, 0),
+	WalkingStyle.unknown02: FixedPoint1616(0xF8E6, 0),
+	WalkingStyle.bicycle: FixedPoint1616(0x45D5, 1),
+	WalkingStyle.ghost: FixedPoint1616(0xB505, 0),
+	WalkingStyle.unknown05: FixedPoint1616(0x0000, 0),
+	WalkingStyle.slower: FixedPoint1616(0xB505, 0),
+	WalkingStyle.ladder: FixedPoint1616(0x90D0, 0),
+	WalkingStyle.rope: FixedPoint1616(0x90D0, 0),
+	WalkingStyle.unknown09: FixedPoint1616(0x0000, 0),
+	WalkingStyle.slowest: FixedPoint1616(0x5A82, 0),
+	WalkingStyle.unknown11: FixedPoint1616(0x0000, 0),
+	WalkingStyle.escalator: FixedPoint1616(0x90D0, 0),
+	WalkingStyle.stairs: FixedPoint1616(0x90D0, 0),
 ];
 
-/// $C3E12C
+/** Masks for the allowed input directions for each walking style
+ * Original_Address: $(DOLLAR)C3E12C
+ */
 immutable ushort[] allowedInputDirections = [
 	WalkingStyle.normal : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
 	WalkingStyle.unknown01 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
@@ -152,7 +176,9 @@ immutable ushort[] allowedInputDirections = [
 	WalkingStyle.stairs : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft
 ];
 
-/// $C3E148
+/** X offsets to be added to player's position when searching for overworld objects to interact with
+ * Original_Address: $(DOLLAR)C3E148
+ */
 immutable short[8] npcSearchXOffsets = [
 	Direction.up: 0,
 	Direction.upRight: 0,
@@ -164,7 +190,9 @@ immutable short[8] npcSearchXOffsets = [
 	Direction.upLeft: 0
 ];
 
-/// $C3E158
+/** Y offsets to be added to player's position when searching for overworld objects to interact with
+ * Original_Address: $(DOLLAR)C3E158
+ */
 immutable short[8] npcSearchYOffsets = [
 	Direction.up: -5,
 	Direction.upRight: -5,
@@ -176,7 +204,9 @@ immutable short[8] npcSearchYOffsets = [
 	Direction.upLeft: -5
 ];
 
-/// $C3E168
+/** Opposite direction map used for making entities face other entities
+ * Original_Address: $(DOLLAR)C3E168
+ */
 immutable short[8] oppositeCardinals = [
 	Direction.up: Direction.down,
 	Direction.upRight: Direction.down,
@@ -188,7 +218,9 @@ immutable short[8] oppositeCardinals = [
 	Direction.upLeft: Direction.down
 ];
 
-/// $C3E178
+/** Tables for remapping directional movement "randomly" used by mushroomization
+ * Original_Address: $(DOLLAR)C3E178
+ */
 immutable short[16][3] mushroomizationDirectionRemapTables = [
 	[
 		0,
@@ -244,7 +276,9 @@ immutable short[16][3] mushroomizationDirectionRemapTables = [
 	]
 ];
 
-/// $C3E1D8
+/** Directions for the leader to face after door warps
+ * Original_Address: $(DOLLAR)C3E1D8
+ */
 immutable short[4] transitionDirections = [
 	Direction.down,
 	Direction.up,
@@ -252,11 +286,14 @@ immutable short[4] transitionDirections = [
 	Direction.left
 ];
 
-/// $C3E1E0
-//wonder what this is...?
+/** Unused, unreferenced data. Possibly related to stairs
+ * Original_Address: $(DOLLAR)C3E1E0
+ */
 immutable short[4][4] unknownC3E1E0 = [[0, 0, 4, 0], [0, 0, -4, 0], [-4, 0, 0, 0], [4, 0, 0, 0]];
 
-/// $C3E200
+/** Directions for auto-movement when getting on stairs
+ * Original_Address: $(DOLLAR)C3E200
+ */
 immutable short[4] staircaseEntryDirections = [
 	StairDirection.upLeft >> 8: Direction.upLeft,
 	StairDirection.upRight >> 8: Direction.upRight,
@@ -264,7 +301,9 @@ immutable short[4] staircaseEntryDirections = [
 	StairDirection.downRight >> 8: Direction.downRight
 ];
 
-/// $C3E208
+/** Directions for auto-movement after getting off stairs
+ * Original_Address: $(DOLLAR)C3E208
+ */
 immutable short[4] staircaseExitDirections = [
 	StairDirection.upLeft >> 8: Direction.right,
 	StairDirection.upRight >> 8: Direction.left,
@@ -272,7 +311,9 @@ immutable short[4] staircaseExitDirections = [
 	StairDirection.downRight >> 8: Direction.left
 ];
 
-/// $C3E210
+/** X coordinate offset used for auto-movement destination while getting on stairs
+ * Original_Address: $(DOLLAR)C3E210
+ */
 immutable short[4] staircaseStartOffsetX = [
 	StairDirection.upLeft >> 8: 0,
 	StairDirection.upRight >> 8: 8,
@@ -280,7 +321,9 @@ immutable short[4] staircaseStartOffsetX = [
 	StairDirection.downRight >> 8: 8
 ];
 
-/// $C3E218
+/** Y coordinate offset used for auto-movement destination while getting on stairs
+ * Original_Address: $(DOLLAR)C3E218
+ */
 immutable short[4] staircaseStartOffsetY = [
 	StairDirection.upLeft >> 8: 0,
 	StairDirection.upRight >> 8: 0,
@@ -288,7 +331,9 @@ immutable short[4] staircaseStartOffsetY = [
 	StairDirection.downRight >> 8: 8
 ];
 
-/// $C3E220
+/** X coordinate offset used for auto-movement destination while getting off stairs
+ * Original_Address: $(DOLLAR)C3E220
+ */
 immutable short[4] staircaseEndOffsetX = [
 	StairDirection.upLeft >> 8: 8,
 	StairDirection.upRight >> 8: 0,
@@ -296,7 +341,9 @@ immutable short[4] staircaseEndOffsetX = [
 	StairDirection.downRight >> 8: 0
 ];
 
-/// $C3E228
+/** Y coordinate offset used for auto-movement destination while getting off stairs
+ * Original_Address: $(DOLLAR)C3E228
+ */
 immutable short[4] staircaseEndOffsetY = [
 	StairDirection.upLeft >> 8: 8,
 	StairDirection.upRight >> 8: 8,
@@ -400,55 +447,113 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.unknown34: WindowConfig(0x0007, 0x0009, 0x0012, 0x0012),
 ];
 
-/// $C3E3F8
-immutable ubyte[14] unknownC3E3F8 = [
+/** Tiles used for the HP/PP meter labels
+ *
+ * The upper 8 bits are omitted
+ * Original_Address: $(DOLLAR)C3E3F8
+ */
+immutable ubyte[8] hpPPMeterLabelTiles = [
 	0x08, 0x09,
 	0x18, 0x19,
 	0x0A, 0x09,
 	0x1A, 0x19,
-	0x15, 0x24,
-	0x16, 0x24,
-	0x15, 0x64
 ];
 
-/// $C3E406
-immutable ushort[2] selectionCursorFramesUpper = [ 0x2441, 0x268D ];
+/** Unused tile animation
+ *
+ * The first tile it refers to doesn't make much sense to flip, so it's likely the tiles changed and this unused animation was never updated
+ * Original_Address: $(DOLLAR)C3E400
+ */
+immutable ushort[3] unusedAnimationC3E400 = [
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x015,
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x016,
+	TilemapFlag.priority | TilemapFlag.palette1 | TilemapFlag.hFlip | 0x015,
+];
 
-/// $C3E40A
-immutable ushort[2] selectionCursorFramesLower = [ 0x2451, 0x269D ];
+/** Tile frames for the upper half of the animated menu cursor
+ * Original_Address: $(DOLLAR)C3E406
+ */
+immutable ushort[2] selectionCursorFramesUpper = [
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x041,
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x28D,
+];
 
-/// $C3E40E
-immutable ushort[4] autoBattleArrangement = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
+/** Tile frames for the lower half of the animated menu cursor
+ * Original_Address: $(DOLLAR)C3E40A
+ */
+immutable ushort[2] selectionCursorFramesLower = [
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x051,
+	TilemapFlag.priority | TilemapFlag.palette1 | 0x29D,
+];
 
-/// $C3E416
-immutable ushort[3] blinkingTriangleTiles = [ 0x3C14, 0x3C15, 0xBC11 ];
+/** Tiles for the auto-battle icon
+ * Original_Address: $(DOLLAR)C3E40E
+ */
+immutable ushort[4] autoBattleArrangement = [
+	TilemapFlag.priority | TilemapFlag.palette6 | 0x269,
+	TilemapFlag.priority | TilemapFlag.palette6 | 0x26A,
+	TilemapFlag.priority | TilemapFlag.palette6 | 0x26B,
+	TilemapFlag.priority | TilemapFlag.palette6 | 0x26C,
+];
 
-/// $C3E43C
+/** Tile frames for the blinking triangle animation used when the game is waiting for player input on dialogue
+ * Original_Address: $(DOLLAR)C3E416
+ */
+immutable ushort[3] blinkingTriangleTiles = [
+	TilemapFlag.priority | TilemapFlag.palette7 | 0x014,
+	TilemapFlag.priority | TilemapFlag.palette7 | 0x015,
+	TilemapFlag.priority | TilemapFlag.palette7 | TilemapFlag.vFlip | 0x011,
+];
+
+/** Tile frames for the throbbing pagination arrows used on inventory windows and such
+ *
+ * Four frames, 4 tiles wide (includes the truncated window border)
+ * Original_Address: $(DOLLAR)C3E43C
+ */
 immutable ushort[][4] paginationArrowTiles = [
-	[0x3C16, 0x2E6D, 0x2E6E, 0x7C16],
-	[0x3C16, 0x2E7D, 0x2E7E, 0x7C16],
-	[0x3C16, 0x2E6D, 0x2C40, 0x7C16],
-	[0x3C16, 0x2C40, 0x2E6E, 0x7C16],
+	[
+		TilemapFlag.priority | TilemapFlag.palette7 | 0x016,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x26D,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x26E,
+		TilemapFlag.priority| TilemapFlag.palette7 | TilemapFlag.hFlip | 0x016
+	], [
+		TilemapFlag.priority | TilemapFlag.palette7 | 0x016,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x27D,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x27E,
+		TilemapFlag.priority| TilemapFlag.palette7 | TilemapFlag.hFlip | 0x016
+	], [
+		TilemapFlag.priority | TilemapFlag.palette7 | 0x016,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x26D,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x040,
+		TilemapFlag.priority| TilemapFlag.palette7 | TilemapFlag.hFlip | 0x016
+	], [
+		TilemapFlag.priority | TilemapFlag.palette7 | 0x016,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x040,
+		TilemapFlag.priority | TilemapFlag.palette3 | 0x26E,
+		TilemapFlag.priority| TilemapFlag.palette7 | TilemapFlag.hFlip | 0x016
+	],
 ];
 
 /** String for the next page menu option label. This was left untranslated in Earthbound, probably because it only gets used in a debugging menu
  * Original_Address: $(DOLLAR)C3E44C
  */
 version(bugfix) {
-	immutable ubyte[5] menuNextLabel = ebString!5("Next"); //tx6 in EB
+	immutable ubyte[5] menuNextLabel = ebString!5("Next");
 } else {
 	immutable ubyte[4] menuNextLabel = ebString!4("そのた"); //tx6 in EB
 }
 
-/// $C3E450
-void unknownC3E450() {
-	const(RGB)* x06;
+/** Causes text palette 5 (the can-equip HP/PP window flash palette) to blink every 4 frames
+ * Original_Address: $(DOLLAR)C3E450
+ */
+void updateFlashTextPalette() {
+	const(RGB)* palette;
 	if ((frameCounter & 4) != 0) {
-		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][4];
+		palette = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][4];
 	} else {
-		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];
+		palette = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];
 	}
-	memcpy(&palettes[1][4], x06, 8);
+	memcpy(&palettes[1][4], palette, 8);
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -466,15 +571,22 @@ void setInstantPrinting() {
 	instantPrinting = 1;
 }
 
-/// $C3E4E0
-void windowTickWithoutInstantPrinting() {
+/** Performs a single frame of window updating, with guaranteed drawing
+ *
+ * Instant printing is unconditionally enabled after calling this!
+ * Original_Address: $(DOLLAR)C3E4E0
+ */
+void windowTickForceUpdate() {
 	clearInstantPrinting();
 	windowTick();
 	setInstantPrinting();
 }
 
-/// $C3E4EF
-short unknownC3E4EF() {
+/** Finds the first free window in the stats table suitable for a new window
+ * Returns: Index of the windowStats array or -1 if none available
+ * Original_Address: $(DOLLAR)C3E4EF
+ */
+short findFreeWindow() {
 	for (short i = 0; i != 8; i++) {
 		if (windowStats[i].windowID == -1) {
 			return i;
@@ -483,67 +595,90 @@ short unknownC3E4EF() {
 	return -1;
 }
 
-/// $C3E521
-void closeWindow(short arg1) {
-	if (arg1 == Window.invalid) {
+/** Closes an open window
+ *
+ * Has no effect on invalid or already-closed windows
+ * Params:
+ * 	id = A Window ID
+ * Original_Address: $(DOLLAR)C3E521
+ */
+void closeWindow(short id) {
+	if (id == Window.invalid) {
 		return;
 	}
-	if (windowTable[arg1] == -1) {
+	// window isn't open
+	if (windowTable[id] == -1) {
 		return;
 	}
-	if (currentFocusWindow == arg1) {
+	// was the focus window, so unfocus it
+	if (currentFocusWindow == id) {
 		currentFocusWindow = -1;
 	}
-	resetWindowMenu(arg1);
-	short x14 = windowStats[windowTable[arg1]].next;
-	short x12 = windowStats[windowTable[arg1]].previous;
-	if (x14 == -1) {
-		windowTail = x12;
+	// clear menu
+	resetWindowMenu(id);
+	// remove window from window prev/next lists
+	short nextWindow = windowStats[windowTable[id]].next;
+	short prevWindow = windowStats[windowTable[id]].previous;
+	if (nextWindow == -1) {
+		windowTail = prevWindow;
 	} else {
-		windowStats[x14].previous = x12;
+		windowStats[nextWindow].previous = prevWindow;
 	}
-	if (x12 == -1) {
-		windowHead = x14;
+	if (prevWindow == -1) {
+		windowHead = nextWindow;
 	} else {
-		windowStats[x12].next = x14;
+		windowStats[prevWindow].next = nextWindow;
 	}
-	windowStats[windowTable[arg1]].windowID = -1;
-	short x10 = windowTable[arg1];
-	windowTable[arg1] = -1;
-	ushort* x0E = &bg2Buffer[windowStats[x10].y * 32 + windowStats[x10].x];
-	ushort* x14_2 = windowStats[x10].tilemapBuffer;
-	for (short i = 0; i < windowStats[x10].width * windowStats[x10].height; i++) {
-		// Wack vanilla code.. the body of this if statement always runs
-		/+ if ((x14_2[0] != 0x40) || (x14_2[0] != 0)) { +/
+	// mark window as available
+	windowStats[windowTable[id]].windowID = -1;
+	// remove window from open window list
+	short windowIndex = windowTable[id];
+	windowTable[id] = -1;
+	ushort* windowBuffer = &bg2Buffer[windowStats[windowIndex].y * 32 + windowStats[windowIndex].x];
+	ushort* windowContents = windowStats[windowIndex].tilemapBuffer;
+	for (short i = 0; i < windowStats[windowIndex].width * windowStats[windowIndex].height; i++) {
+		// This was probably supposed to be an && instead of an ||, but it's harmless since these two tiles are locked anyway
+		 if ((windowContents[0] != VRAMTextTile.windowBackground) || (windowContents[0] != VRAMTextTile.none)) {
 			// Deallocate VWF tiles
-			freeTile(x14_2[0]);
-		/+ } +/
-		x14_2[0] = 0x40;
-		x14_2++;
+			freeTile(windowContents[0]);
+		 }
+		 // replace tile with background
+		windowContents[0] = VRAMTextTile.windowBackground;
+		windowContents++;
 	}
-	for (short i = 0; i != windowStats[x10].height + 2; i++) {
-		for (short j = 0; j != windowStats[x10].width + 2; j++) {
-			*(x0E++) = 0;
+	// now replace all window tiles with the transparent tile, even the ones we just replaced
+	for (short i = 0; i != windowStats[windowIndex].height + 2; i++) {
+		for (short j = 0; j != windowStats[windowIndex].width + 2; j++) {
+			(windowBuffer++)[0] = VRAMTextTile.none;
 		}
-		x0E += 32 - windowStats[x10].width - 2;
+		// skip to next line
+		windowBuffer += 32 - windowStats[windowIndex].width - 2;
 	}
+	// prepare to rerender all windows and their text
 	resetVWFState();
-	if (windowStats[x10].titleID != 0) {
-		titledWindows[windowStats[x10].titleID - 1] = -1;
+	// also reset window title state if any
+	if (windowStats[windowIndex].titleID != 0) {
+		titledWindows[windowStats[windowIndex].titleID - 1] = -1;
 	}
-	windowStats[x10].titleID = 0;
+	windowStats[windowIndex].titleID = 0;
+
 	redrawAllWindows = 1;
-	if (paginationWindow == arg1) {
+	// clean up pagination
+	if (paginationWindow == id) {
 		paginationWindow = Window.invalid;
 	}
+	// do one last tick if requested
 	if (extraTickOnWindowClose == 0) {
-		windowTickWithoutInstantPrinting();
+		windowTickForceUpdate();
 		clearInstantPrinting();
 	}
+	// don't auto-indent the next text line
 	vwfIndentNewLine = 0;
 }
 
-/// $C3E6F8
+/** Resets the active party member's (ie the character whose turn it is in battle or has an open inventory window) HP/PP window positioning
+ * Original_Address: $(DOLLAR)C3E6F8
+ */
 void resetActivePartyMemberHPPPWindow() {
 	if (battleMenuCurrentCharacterID == -1) {
 		return;
@@ -558,28 +693,33 @@ void resetActivePartyMemberHPPPWindow() {
 	redrawAllWindows = 1;
 }
 
-/// $C3E75D
-void printBattlerArticle(short target) {
+/** Prints the article for the target's name, if applicable
+ * Params:
+ * 	whom = 0 for attacker's article, 1 for target's article
+ * Original_Address: $(DOLLAR)C3E75D
+ */
+void printBattlerArticle(short whom) {
 	short enemyID;
-	if (target == 0) {
-		if (attackerEnemyID == -1) {
+	if (whom == 0) { // attacker
+		if (attackerEnemyID == -1) { // not an enemy
 			printAttackerArticle = 0;
 			return;
 		}
-		if (printAttackerArticle != 0) {
+		if (printAttackerArticle != 0) { // we don't want an attacker article
 			return;
 		}
 		enemyID = attackerEnemyID;
-	} else {
-		if (targetEnemyID == -1) {
+	} else { // target
+		if (targetEnemyID == -1) { // not an enemy
 			printTargetArticle = 0;
 			return;
 		}
-		if (printTargetArticle != 0) {
+		if (printTargetArticle != 0) { // we don't want a target article
 			return;
 		}
 		enemyID = targetEnemyID;
 	}
+	// print a 'the' with the right capitalization if the enemy's flag is set
 	if (enemyConfigurationTable[enemyID].theFlag != 0) {
 		if (lastPrintedCharacter == ebChar('@')) { //starting a new sentence, capitalize it
 			printStringAutoNewline(thethe[0].length, &thethe[0][0]);
@@ -706,20 +846,26 @@ short getCharacterItem(short character, short slot) {
 	return partyCharacters[character - 1].items[slot - 1];
 }
 
-/// $C3E9F7
-short unknownC3E9F7(short arg1, short arg2) {
-	arg1--;
-	if (partyCharacters[arg1].equipment[EquipmentSlot.weapon] != 0) {
-		if (partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.weapon] - 1] == arg2) {
+/** Tests if the a particualr item is equipped on a character
+ * Params:
+ * 	character = The character (1-based) ID whose equipment is being checked
+ * 	item = The item ID to look for
+ * Returns: 1 if equipped, 0 otherwise
+ * Original_Address: $(DOLLAR)C3E9F7
+ */
+short testItemIsEquipped(short character, short item) {
+	character--;
+	if (partyCharacters[character].equipment[EquipmentSlot.weapon] != 0) {
+		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.weapon] - 1] == item) {
 			return 1;
 		}
-		if (partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.body] - 1] == arg2) {
+		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.body] - 1] == item) {
 			return 1;
 		}
-		if (partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.arms] - 1] == arg2) {
+		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.arms] - 1] == item) {
 			return 1;
 		}
-		if (partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.other] - 1] == arg2) {
+		if (partyCharacters[character].items[partyCharacters[character].equipment[EquipmentSlot.other] - 1] == item) {
 			return 1;
 		}
 	}

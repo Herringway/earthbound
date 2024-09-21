@@ -71,7 +71,7 @@ void setTextSoundMode(ushort mode) {
 /// $C1004E
 void finishFrame() {
 	if (renderHPPPWindows != 0) {
-		unknownC3E450();
+		updateFlashTextPalette();
 	}
 	if (battleModeFlag != 0) {
 		finishBattleFrame();
@@ -334,12 +334,12 @@ void createWindow(short id) {
 		resetCurrentWindowMenu();
 		newWindow = &windowStats[windowTable[id]];
 	} else {
-		short x0E = unknownC3E4EF();
+		short x0E = findFreeWindow();
 		if (x0E == -1) {
 			return;
 		}
 		newWindow = &windowStats[x0E];
-		if (id == 10) {
+		if (id == Window.carriedMoney) {
 			if (windowHead == -1) {
 				newWindow.next = -1;
 				windowTail = x0E;
@@ -2899,7 +2899,7 @@ void* cc1D03(DisplayTextState* arg1, ubyte arg2) {
 /// $C14D24
 void* cc1D04(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setMainRegister(MainRegister(unknownC3E9F7(
+	setMainRegister(MainRegister(testItemIsEquipped(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getMainRegister().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getSubRegister())
 	)));
@@ -4957,7 +4957,7 @@ void unknownC1952F(short arg1) {
 	arg1--;
 	setInstantPrinting();
 	createWindow(Window.statusMenu);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	forceLeftTextAlignment = 1;
 	displayText(getTextBlock("STATUS_WINDOW"));
 	forceLeftTextAlignment = 0;
@@ -5056,7 +5056,7 @@ void addCharacterInventoryToWindow(short character, short window) {
 			createNewMenuOptionActive(&temporaryTextBuffer[0], null);
 		}
 	}
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	printMenuOptionTable(2, 0, 0);
 }
 
@@ -5199,7 +5199,7 @@ short getItemType(short arg1) {
 void printEquipment(short character) {
 	character--;
 	createWindow(Window.equipMenu);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.equipMenu;
 	}
@@ -5252,7 +5252,7 @@ void printEquipment(short character) {
 void printEquipmentStats(short character) {
 	character--;
 	createWindow(Window.equipMenuStats);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	setCurrentWindowPadding(2);
 	moveCurrentTextCursor(0, 0);
 	printString(offenseEquip.length, &offenseEquip[0]);
@@ -5882,7 +5882,7 @@ void unknownC1BB06(short psi) {
 	if ((lastSelectedPSIDescription == 0xFF) || (psi != lastSelectedPSIDescription)) {
 		unknownC1C8BC(psi);
 		createWindow(Window.unknown2f);
-		windowTickWithoutInstantPrinting();
+		windowTickForceUpdate();
 		lastSelectedPSIDescription = psi;
 		displayText(getTextBlock(psiAbilityTable[psi].text));
 		clearInstantPrinting();
@@ -5916,7 +5916,7 @@ void unknownC1BB71() {
 			// make sure menu items get printed, and only do it once
 			if (!menuItemsPrinted) {
 				printMenuItems();
-				windowTickWithoutInstantPrinting();
+				windowTickForceUpdate();
 				menuItemsPrinted = true;
 			}
 			createWindow(Window.statusMenu);
@@ -6292,7 +6292,7 @@ void preparePSIMenuOptions(short character, ubyte usability, ubyte categories) {
 /// $C1C853
 void createOverworldPSIMenuWindow(short character) {
 	createWindow(Window.textStandard);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		paginationWindow = Window.textStandard;
 	}
@@ -6304,7 +6304,7 @@ void createOverworldPSIMenuWindow(short character) {
 void unknownC1C8BC(short psi) {
 	const(ubyte)* x06;
 	createWindow(Window.targettingDescription);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	enableWordWrap = 0;
 	if (psiAbilityTable[psi].name == 4) {
 		x06 = &psiTargetText[0][0][0];
@@ -6333,7 +6333,7 @@ void unknownC1CA72(short psi, short palette) {
 	setInstantPrinting();
 	short x0E = windowStats[windowTable[currentFocusWindow]].textY;
 	removeWindowFromScreen(currentFocusWindow);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	createOverworldPSIMenuWindow(overworldSelectedPSIUser);
 	printMenuItems();
 	windowStats[windowTable[currentFocusWindow]].textY = x0E;
@@ -6350,7 +6350,7 @@ void unknownC1CA72(short psi, short palette) {
 void prepareBattlePSIMenuOptions(short category) {
 	short character = gameState.partyMembers[battleMenuCurrentCharacterID];
 	createWindow(Window.textStandard);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	switch (category) {
 		case 1:
 			preparePSIMenuOptions(character, PSIUsability.battle, PSICategory.offense);
@@ -7101,7 +7101,7 @@ short textInputDialog(short inputWindow, short arg2, ubyte* arg3, short arg4, sh
 		setInstantPrinting();
 		if (x1E != arg4) {
 			createWindow(Window.fileSelectNamingKeyboard);
-			windowTickWithoutInstantPrinting();
+			windowTickForceUpdate();
 			if (namingItem == -1) {
 				displayText(getTextBlock(keyboardText[5]));
 			} else {
@@ -7272,7 +7272,7 @@ short enterYourNamePlease(short arg1) {
 /// $C1EC04
 short nameACharacter(short length, ubyte* destination, short namingItem, const(ubyte)* caption, short captionLength) {
 	createWindow(Window.fileSelectNamingNameBox);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	if (destination[0] != 0) {
 		prefillKeyboardInput(destination, length);
 	} else {
@@ -7280,7 +7280,7 @@ short nameACharacter(short length, ubyte* destination, short namingItem, const(u
 	}
 	moveCurrentTextCursor(0, 0);
 	createWindow(Window.fileSelectNamingMessage);
-	windowTickWithoutInstantPrinting();
+	windowTickForceUpdate();
 	printString(captionLength, caption);
 	cc1314(1, 0);
 	short x14 = textInputDialog(Window.fileSelectNamingNameBox, length, destination, 0, namingItem);

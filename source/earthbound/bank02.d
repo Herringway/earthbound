@@ -252,7 +252,7 @@ void drawHPPPWindow(short id) {
 	dest+= 25;
 
 	fillCharacterHPTileBuffer(id, character.hp.current.integer, character.hp.current.fraction);
-	const(ubyte)* x06 = &unknownC3E3F8[0];
+	const(ubyte)* x06 = &hpPPMeterLabelTiles[0];
 	ushort* y = &hpPPWindowBuffer[id][0];
 	for (short i = 2; i != 0; i--) {
 		dest[0] = cast(ushort)(x1E + 6 + TilemapFlag.priority);
@@ -287,17 +287,42 @@ void drawHPPPWindow(short id) {
 			y++;
 			dest++;
 		}
-		dest[0] = cast(ushort)(x1E + 0x4006 + TilemapFlag.priority);
+		dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | 0x006);
 		dest++;
 		dest += 25;
 	}
-	dest[0] = cast(ushort)(x1E + 0x8004 + TilemapFlag.priority);
+	dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.vFlip | 0x004);
 	dest++;
 	for (short i = 5; i != 0; i--) {
-		dest[0] = cast(ushort)(x1E + 0x8005 + TilemapFlag.priority);
+		dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.vFlip | 0x005);
 		dest++;
 	}
-	dest[0] = cast(ushort)(x1E + 0xC004 + TilemapFlag.priority);
+	dest[0] = cast(ushort)(x1E + TilemapFlag.priority | TilemapFlag.hFlip | TilemapFlag.vFlip | 0x004);
+}
+
+unittest {
+	gameState.partyMembers[0] = PartyMember.ness;
+	gameState.playerControlledPartyMemberCount = 1;
+	partyCharacters[0].name = ebString!5("Ness");
+	partyCharacters[0].afflictions[0] = 0;
+	partyCharacters[0].hp.current = FixedPoint1616(0, 30);
+	partyCharacters[0].pp.current = FixedPoint1616(0, 0);
+	partyCharacters[0].hpPPWindowOptions = 0x400;
+	drawHPPPWindow(0);
+	import std.algorithm : equal, map;
+	import std.range : chunks, take;
+	static immutable ushort[][] expected = [
+		[ 0x2404, 0x2405, 0x2405, 0x2405, 0x2405, 0x2405, 0x6404 ],
+		[ 0x2406, 0x32A0, 0x32A1, 0x32A2, 0x32A3, 0x3007, 0x6406 ],
+		[ 0x2406, 0x32B0, 0x32B1, 0x32B2, 0x32B3, 0x3017, 0x6406 ],
+		[ 0x2406, 0x3008, 0x3009, 0x2648, 0x260C, 0x2600, 0x6406 ],
+		[ 0x2406, 0x3018, 0x3019, 0x2658, 0x261C, 0x2610, 0x6406 ],
+		[ 0x2406, 0x300A, 0x3009, 0x2648, 0x2648, 0x2600, 0x6406 ],
+		[ 0x2406, 0x301A, 0x3019, 0x2658, 0x2658, 0x2610, 0x6406 ],
+		[ 0xA404, 0xA405, 0xA405, 0xA405, 0xA405, 0xA405, 0xE404 ]
+	];
+	// we want to compare the 7x8 area at (13, 19)
+	assert(bg2Buffer[19 * 32 + 13 .. $].chunks(32).map!(x => x.take(7)).take(8).equal(expected));
 }
 
 /// $C2077D
