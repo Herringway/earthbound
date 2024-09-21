@@ -2990,7 +2990,7 @@ void checkHorizontalRightTileCollision(short arg1, short arg2) {
 
 /** Runs some collision checks. Checks the tiles at each direction specified by directionMask and returns each check that failed
  * Params:
- * 	directionMask = A set of flags indicating which directions to test. 0b000001 = west, 0b000010 = none, 0b000100 = east, 0b001000 = southwest, 0b010000 = south, 0b100000 = southeast
+ * 	directionMask = A set of flags indicating which directions to test. See CollisionDirectionMask for values
  * Returns: the directionMask specified, minus the bits that didn't collide
  * Original_Address: $(DOLLAR)C05769
  */
@@ -3020,20 +3020,20 @@ short performCollisionChecks(short directionMask) {
 short checkNorthMovementMapCollision() {
 	tempEntitySurfaceFlags = 0;
 	setTempEntitySurfaceFlags++;
-	northSouthCollisionTestResult = performCollisionChecks(0b000111); // check west, none, east
-	if ((northSouthCollisionTestResult == 0b000111) || (northSouthCollisionTestResult == 0b000010)) { // E/W solid line
+	northSouthCollisionTestResult = performCollisionChecks(CollisionDirectionMask.west | CollisionDirectionMask.none | CollisionDirectionMask.east); // check west, none, east
+	if ((northSouthCollisionTestResult == (CollisionDirectionMask.west | CollisionDirectionMask.none | CollisionDirectionMask.east)) || (northSouthCollisionTestResult == CollisionDirectionMask.none)) { // E/W solid line
 		return -256;
 	}
 	if (northSouthCollisionTestResult == 0) { // All clear
 		return -1;
 	}
-	if (northSouthCollisionTestResult == 0b000001) { // NE/SW solid line, can move northeast alongside it
+	if (northSouthCollisionTestResult == CollisionDirectionMask.west) { // NE/SW solid line, can move northeast alongside it
 		return Direction.upRight;
 	}
-	if (northSouthCollisionTestResult == 0b000100) { // NW/SE solid line, can move northwest alongside it
+	if (northSouthCollisionTestResult == CollisionDirectionMask.east) { // NW/SE solid line, can move northwest alongside it
 		return Direction.upLeft;
 	}
-	if ((northSouthCollisionTestResult == 0b000110) && ((checkedCollisionLeftX & 7) == 0)) { // bottom-left corners of E/W and NW/SE intersections
+	if ((northSouthCollisionTestResult == (CollisionDirectionMask.east | CollisionDirectionMask.none)) && ((checkedCollisionLeftX & 7) == 0)) { // bottom-left corners of E/W and NW/SE intersections
 		return Direction.upLeft;
 	}
 	return -1;
@@ -3046,21 +3046,21 @@ short checkNorthMovementMapCollision() {
 short checkSouthMovementMapCollision() {
 	tempEntitySurfaceFlags = 0;
 	setTempEntitySurfaceFlags++;
-	northSouthCollisionTestResult = performCollisionChecks(0b111000); // check southwest, south, southeast
-	// shouldn't that be 0b111000?
-	if ((northSouthCollisionTestResult == 0b000111) || (northSouthCollisionTestResult == 0b010000)) { // E/W solid line
+	northSouthCollisionTestResult = performCollisionChecks(CollisionDirectionMask.southWest | CollisionDirectionMask.south | CollisionDirectionMask.southEast); // check southwest, south, southeast
+	// shouldn't this be CollisionDirectionMask.southWest | CollisionDirectionMask.south | CollisionDirectionMask.southEast?
+	if ((northSouthCollisionTestResult == (CollisionDirectionMask.west | CollisionDirectionMask.none | CollisionDirectionMask.east)) || (northSouthCollisionTestResult == CollisionDirectionMask.south)) { // E/W solid line
 		return -256;
 	}
 	if (northSouthCollisionTestResult == 0) { // All clear
 		return -1;
 	}
-	if (northSouthCollisionTestResult == 0b001000) { // NW/SE solid line, can move southeast alongside it
+	if (northSouthCollisionTestResult == CollisionDirectionMask.southWest) { // NW/SE solid line, can move southeast alongside it
 		return Direction.downRight;
 	}
-	if (northSouthCollisionTestResult == 0b100000) { // NE/SW solid line, can move southwest alongside it
+	if (northSouthCollisionTestResult == CollisionDirectionMask.southEast) { // NE/SW solid line, can move southwest alongside it
 		return Direction.downLeft;
 	}
-	if ((northSouthCollisionTestResult == 0b110000) && ((checkedCollisionLeftX & 7) == 0)) { // top-left corners of E/W and NE/SW intersections
+	if ((northSouthCollisionTestResult == (CollisionDirectionMask.southEast | CollisionDirectionMask.south)) && ((checkedCollisionLeftX & 7) == 0)) { // top-left corners of E/W and NE/SW intersections
 		return Direction.downLeft;
 	}
 	return -1;
@@ -3076,16 +3076,16 @@ short checkWestMovementMapCollision() {
 	short extraCollisionResult = 0;
 	tempEntitySurfaceFlags = 0;
 	setTempEntitySurfaceFlags = 1;
-	short collisionResult = performCollisionChecks(0b001001); // check west, southwest
+	short collisionResult = performCollisionChecks(CollisionDirectionMask.southWest | CollisionDirectionMask.west); // check west, southwest
 	if (collisionResult == 0) { // see if we can move even further west
 		checkedCollisionLeftX -= 4;
-		collisionResult = performCollisionChecks(0b001001); //check west, southwest again
+		collisionResult = performCollisionChecks(CollisionDirectionMask.southWest | CollisionDirectionMask.west); //check west, southwest again
 		if (collisionResult == 0) {
 			return Direction.left;
 		}
 		furtherWestAttempted = 1;
 	}
-	if (((collisionResult & 0b001001) == 0b001001) && ((checkedCollisionTopY & 7) != 0)) {
+	if (((collisionResult & (CollisionDirectionMask.southWest | CollisionDirectionMask.west)) == (CollisionDirectionMask.southWest | CollisionDirectionMask.west)) && ((checkedCollisionTopY & 7) != 0)) {
 		if (furtherWestAttempted != 0) {
 			// though the second check failed, we aren't at a tile boundary yet, so we can move at least a little west
 			return Direction.left;
@@ -3099,7 +3099,7 @@ short checkWestMovementMapCollision() {
 		extraCollisionResult |= 0b10; // further southwest
 	}
 	switch (collisionResult) {
-		case 0b001001:
+		case CollisionDirectionMask.west | CollisionDirectionMask.southWest:
 			if (extraCollisionResult == 0b01) {
 				result = Direction.downLeft; // NE/SW solid line, can move southwest alongside it
 			} else if (extraCollisionResult == 0b10) {
@@ -3112,12 +3112,12 @@ short checkWestMovementMapCollision() {
 				}
 			}
 			break;
-		case 0b000001:
+		case CollisionDirectionMask.west:
 			if ((extraCollisionResult & 0b10) == 0) { // NE/SW solid line, can move alongside it
 				result = Direction.downLeft;
 			}
 			break;
-		case 0b001000:
+		case CollisionDirectionMask.southWest:
 			if ((extraCollisionResult & 0b01) == 0) {  // NW/SE solid line, can move alongside it
 				result = Direction.upLeft;
 			}
@@ -3140,16 +3140,16 @@ short checkEastMovementMapCollision() {
 	short extraCollisionResult = 0;
 	tempEntitySurfaceFlags = 0;
 	setTempEntitySurfaceFlags = 1;
-	short collisionResult = performCollisionChecks(0b100100); // check east, southeast
+	short collisionResult = performCollisionChecks(CollisionDirectionMask.east | CollisionDirectionMask.southEast); // check east, southeast
 	if (collisionResult == 0) { // see if we can move even further east
 		checkedCollisionLeftX += 4;
-		collisionResult = performCollisionChecks(0b100100); // check east, southeast again
+		collisionResult = performCollisionChecks(CollisionDirectionMask.east | CollisionDirectionMask.southEast); // check east, southeast again
 		if (collisionResult == 0) {
 			return Direction.right;
 		}
 		furtherEastAttempted = 1;
 	}
-	if (((collisionResult & 0b100100) == 0b100100) && ((checkedCollisionTopY & 7) != 0)) {
+	if (((collisionResult & (CollisionDirectionMask.east | CollisionDirectionMask.southEast)) == (CollisionDirectionMask.east | CollisionDirectionMask.southEast)) && ((checkedCollisionTopY & 7) != 0)) {
 		if (furtherEastAttempted != 0) {
 			// though the second check failed, we aren't at a tile boundary yet, so we can move at least a little west
 			return Direction.right;
@@ -3163,7 +3163,7 @@ short checkEastMovementMapCollision() {
 		extraCollisionResult |= 0b10; // further southeast
 	}
 	switch (collisionResult) {
-		case 0b100100:
+		case CollisionDirectionMask.east | CollisionDirectionMask.southEast:
 			if (extraCollisionResult == 1) {
 				result = Direction.downRight; // NW/SE solid line, can move southeast alongside it
 			} else if (extraCollisionResult == 2) {
@@ -3176,12 +3176,12 @@ short checkEastMovementMapCollision() {
 				}
 			}
 			break;
-		case 0b000100:
+		case CollisionDirectionMask.east:
 			if ((extraCollisionResult & 2) == 0) {
 				result = Direction.downRight; // NW/SE solid line, can move alongside it
 			}
 			break;
-		case 0b100000:
+		case CollisionDirectionMask.southEast:
 			if ((extraCollisionResult & 1) == 0) {
 				result = Direction.upRight; // NE/SW solid line, can move alongside it
 			}
@@ -3198,7 +3198,7 @@ short checkEastMovementMapCollision() {
 short checkDiagonalMovementCollision(short direction) {
 	tempEntitySurfaceFlags = 0;
 	setTempEntitySurfaceFlags++;
-	return (performCollisionChecks(unknownC200D1[direction / 2]) != 0) ? -256 : direction;
+	return (performCollisionChecks(diagonalCollisionMasks[direction / 2]) != 0) ? -256 : direction;
 }
 
 /** See if movement in a particular direction is possible and return flags
@@ -9976,7 +9976,7 @@ short tryBattleStart() {
 				}
 				y += pathfindingEnemyCounts[i];
 			}
-			if ((y == 0) && (unknownC2E9C8() == 0)) {
+			if ((y == 0) && (ovalWindowHasFramesLeft() == 0)) {
 				for (short i = 0; i < maxEntities; i++) {
 					if (i == partyLeaderEntity) {
 						continue;

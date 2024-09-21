@@ -5406,7 +5406,7 @@ void loadTextPalette() {
  */
 void restoreMapRendering() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	unknownC2038B();
+	uploadFullTextTilemap();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	loadTextPalette();

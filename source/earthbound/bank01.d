@@ -499,7 +499,7 @@ void hideHPPPWindows() {
 	renderHPPPWindows = 0;
 	if (battleModeFlag == 0) {
 		for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
-			undrawHPPPWindow(i);
+			hideHPPPWindow(i);
 			partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer = partyCharacters[gameState.partyMembers[i] - 1].hp.target;
 			partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer = partyCharacters[gameState.partyMembers[i] - 1].pp.target;
 			partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction = 0;
@@ -1428,7 +1428,7 @@ void printTargetName(short row, short target) {
 		printString(255, getBattleAttackerName());
 		ubyte* afflictions = (row != Row.front) ? &battlersTable[backRowBattlers[target]].afflictions[0] : &battlersTable[frontRowBattlers[target]].afflictions[0];
 		moveCurrentTextCursor(17, 0);
-		printLetter(unknownC223D9(afflictions, 0));
+		printLetter(getStatusIcon(afflictions, 0));
 	} else {
 		printString(battleBackRowText.length, (row != Row.front) ? &battleBackRowText[0] : &battleFrontRowText[0]);
 	}
@@ -1846,7 +1846,7 @@ void windowTick() {
 		}
 	}
 	hpPPMeterAreaNeedsUpdate = 0;
-	unknownC2038B();
+	uploadFullTextTilemap();
 	finishFrame();
 }
 
@@ -1900,10 +1900,10 @@ void debugYButtonMenu() {
 				break;
 			case 8:
 				for (short i = 0; i < 30; i++) {
-					undrawHPPPWindow(0);
+					hideHPPPWindow(0);
 					windowTickMinimal();
 					windowTickMinimal();
-					unknownC207B6(0);
+					showHPPPWindow(0);
 					windowTickMinimal();
 					windowTickMinimal();
 				}
@@ -2729,7 +2729,7 @@ void* cc1910(DisplayTextState* arg1, ubyte arg2) {
 /// $C14751
 void* cc1F00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F00Arguments);
-	unknownC216AD(getCCParameters!ArgType(arg2).unused.useVariableIfZero(getSubRegister()), getCCParameters!ArgType(arg2).track);
+	setOverworldMusicOverride(getCCParameters!ArgType(arg2).unused.useVariableIfZero(getSubRegister()), getCCParameters!ArgType(arg2).track);
 	return null;
 }
 
@@ -3025,11 +3025,11 @@ void* cc1C14(DisplayTextState* arg1, ubyte arg2) {
 		}
 	} else {
 		if (arg2 != 1) {
-			short x = unknownC2272F();
-			if (x > 3) {
+			short alive = getLivingPartyMemberCount();
+			if (alive > 3) {
 				a = 3;
 			} else {
-				a = x;
+				a = alive;
 			}
 		} else {
 			a = (currentAttacker.id == 2) ? 2 : 1;
@@ -3054,11 +3054,11 @@ void* cc1C15(DisplayTextState* arg1, ubyte arg2) {
 		}
 	} else {
 		if (arg2 != 1) {
-			short x = unknownC2272F();
-			if (x > 3) {
+			short alive = getLivingPartyMemberCount();
+			if (alive > 3) {
 				a = 3;
 			} else {
-				a = x;
+				a = alive;
 			}
 		} else {
 			a = (currentTarget.id == 2) ? 2 : 1;
@@ -4282,7 +4282,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x02:
 			return &cc1F02;
 		case 0x03:
-			unknownC216AD(unknownC069F7(), 0);
+			setOverworldMusicOverride(unknownC069F7(), 0);
 			break;
 		case 0x04:
 			return &cc1F04;
@@ -4662,7 +4662,7 @@ ushort giveItemToSpecificCharacter(ushort character, ubyte item) {
 		}
 		partyCharacters[character].items[i] = item;
 		if (itemData[item].type == ItemType.teddyBear) {
-			unknownC216DB();
+			updatePartyTeddyBears();
 		}
 		if ((itemData[item].flags & ItemFlags.transform) != 0) {
 			initializeItemTransformation(item);
@@ -4718,7 +4718,7 @@ ushort removeItemFromInventory(ushort character, ushort slot) {
 	partyCharacters[character - 1].items[i - 1] = 0;
 	if (itemData[i].type == ItemType.teddyBear) {
 		removeCharFromParty(itemData[i].parameters.strength);
-		unknownC216DB();
+		updatePartyTeddyBears();
 	}
 	if ((itemData[i].flags & ItemFlags.transform) != 0) {
 		clearItemTransformation(i);
@@ -5025,7 +5025,7 @@ void unknownC1952F(short arg1) {
 		break;
 	}
 	moveCurrentTextCursor(11, 1);
-	printLetter(unknownC223D9(&partyCharacters[arg1].afflictions[0], 0));
+	printLetter(getStatusIcon(&partyCharacters[arg1].afflictions[0], 0));
 	if (arg1 != 2) {
 		forceLeftTextAlignment = 1;
 		forcePixelAlignment(36, 7);
@@ -5398,16 +5398,16 @@ void handleEquipMenu(short character) {
 		characterForEquipMenu = cast(ubyte)(character + 1);
 		switch (x1C) {
 			case 1:
-				unknownC11F5A(&unknownC22562);
+				unknownC11F5A(&printStatsWithNewWeapon);
 				break;
 			case 2:
-				unknownC11F5A(&unknownC225AC);
+				unknownC11F5A(&printStatsWithNewBodyGear);
 				break;
 			case 3:
-				unknownC11F5A(&unknownC2260D);
+				unknownC11F5A(&printStatsWithNewArmsGear);
 				break;
 			case 4:
-				unknownC11F5A(&unknownC22673);
+				unknownC11F5A(&printStatsWithNewOtherGear);
 				break;
 			default: break;
 		}

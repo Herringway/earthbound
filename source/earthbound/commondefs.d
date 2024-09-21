@@ -6117,6 +6117,9 @@ enum VRAMTextTile {
 	thinWindowPrompt2 = 21,
 	thinWindowVBorderTruncated = 22,
 	windowBackground = 64,
+	cursorUpper = 65,
+	hiddenCursorUpper = 79,
+	cursorAltFrameUpper = 653,
 }
 ///
 enum PSI {
@@ -6200,23 +6203,34 @@ enum VRAMCopyMode {
 
 ///
 enum SpriteMapSpecialFlags {
-	none = 0,
-	largeSprite = 1 << 0,
-	terminator = 1 << 7,
+	none = 0, ///
+	largeSprite = 1 << 0, ///
+	terminator = 1 << 7, ///
 }
 
+///
 enum IntroStage {
-	logoScreens,
-	gasStation,
-	titleScreen,
-	attractMode0,
-	attractMode2,
-	attractMode3,
-	attractMode4,
-	attractMode5,
-	attractMode6,
-	attractMode7,
-	attractMode9,
+	logoScreens, ///
+	gasStation, ///
+	titleScreen, ///
+	attractMode0, ///
+	attractMode2, ///
+	attractMode3, ///
+	attractMode4, ///
+	attractMode5, ///
+	attractMode6, ///
+	attractMode7, ///
+	attractMode9, ///
+}
+
+/// Masks used by collision detection. Northern directions are handled separately
+enum CollisionDirectionMask {
+	west = 1 << 0, ///
+	none = 1 << 1, ///
+	east = 1 << 2, ///
+	southWest = 1 << 3, ///
+	south = 1 << 4, ///
+	southEast = 1 << 5, ///
 }
 
 ///

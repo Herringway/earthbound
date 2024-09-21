@@ -60,8 +60,15 @@ immutable short[6] collisionTestCoordDiffsX = [-8, 0, 7, -8, 0, 7];
 /// $C200C5
 immutable short[6] collisionTestCoordDiffsY = [0, 0, 0, 7, 7, 7];
 
-/// $C200D1
-immutable ushort[4] unknownC200D1 = [0b011110, 0b110011, 0b011110, 0b110011];
+/** Collision masks for diagonal movement
+ * Original_Address: $(DOLLAR)C200D1
+ */
+immutable ushort[4] diagonalCollisionMasks = [
+	Direction.upRight / 2: CollisionDirectionMask.none | CollisionDirectionMask.east | CollisionDirectionMask.southWest | CollisionDirectionMask.south,
+	Direction.downRight / 2: CollisionDirectionMask.southEast | CollisionDirectionMask.south | CollisionDirectionMask.none | CollisionDirectionMask.west,
+	Direction.downLeft / 2: CollisionDirectionMask.none | CollisionDirectionMask.east | CollisionDirectionMask.southWest | CollisionDirectionMask.south,
+	Direction.upLeft / 2: CollisionDirectionMask.southEast | CollisionDirectionMask.south | CollisionDirectionMask.none | CollisionDirectionMask.west,
+];
 
 /// $C200D9
 void initializeTextSystem() {
@@ -142,44 +149,58 @@ void clearAutoFightIcon() {
 	}
 }
 
-/// $C202AC
-void unknownC202AC(short arg1) {
-	if (windowStats[windowTable[arg1]].titleID == 0) {
+/** Allocates + renders the title for a window, if there are slots available for it
+ *
+ * If a slot was reserved ahead of time, skip the allocation and just render. If no slot is available, nothing happens
+ * Params:
+ * 	window = Window ID to render a title for
+ * Original_Address: $(DOLLAR)C202AC
+ */
+void allocateRenderedWindowTitle(short window) {
+	// if space is already reserved, we can skip looking for it
+	if (windowStats[windowTable[window]].titleID == 0) {
 		short i;
 		for (i = 0; i != 5; i++) {
 			if (titledWindows[i] == -1) {
-				goto Unknown2;
+				goto SpaceFound;
 			}
 		}
+		// didn't find anything, so do nothing and exit
 		return;
-		Unknown2:
-		titledWindows[i] = windowTable[arg1];
-		windowStats[windowTable[arg1]].titleID = cast(ubyte)(i + 1);
+		SpaceFound:
+		// reserve slot for title
+		titledWindows[i] = windowTable[window];
+		windowStats[windowTable[window]].titleID = cast(ubyte)(i + 1);
 	}
-	renderSmallTextToVRAM(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].titleID - 1) * 128));
+	// render the title
+	renderSmallTextToVRAM(&windowStats[windowTable[window]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[window]].titleID - 1) * 128));
 }
 
 /// $C2032B
-void setWindowTitle(short arg1, short arg2, const(ubyte)* arg3) {
-	ubyte* y = &windowStats[windowTable[arg1]].title[0];
+void setWindowTitle(short window, short arg2, const(ubyte)* arg3) {
+	ubyte* y = &windowStats[windowTable[window]].title[0];
 	while ((*arg3 != 0) && (arg2-- != 0)) {
 		*(y++) = *(arg3++);
 	}
 	*y = 0;
-	unknownC202AC(arg1);
+	allocateRenderedWindowTitle(window);
 }
 
-/// $C2038B
-void unknownC2038B() {
+/** Uploads the entire text layer tilemap to VRAM
+ * Original_Address: $(DOLLAR)C2038B
+ */
+void uploadFullTextTilemap() {
+	// upload rendered tiles
 	copyToVRAMAlt(VRAMCopyMode.simpleCopyToVRAM, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
+	// last 4 rows aren't visible, just copy blank tiles
 	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x40, 0x7F80, &blankTiles[0]);
 }
 
 /// $C203C3
 void drawHPPPWindow(short id) {
 	PartyCharacter* character = &partyCharacters[gameState.partyMembers[id] - 1];
-	short x22 = unknownC223D9(&character.afflictions[0], 1);
-	short x04 = unknownC223D9(&character.afflictions[0], 1);
+	short x22 = getStatusIcon(&character.afflictions[0], 1);
+	short x04 = getStatusIcon(&character.afflictions[0], 1);
 	short x20 = cast(short)((x22 & 0xFFF0) + x04);
 	ushort x1E = character.hpPPWindowOptions;
 	ushort x18;
@@ -336,15 +357,19 @@ void drawHPPPWindows() {
 	}
 }
 
-/// $C207B6
-void unknownC207B6(short arg1) {
-	currentlyDrawnHPPPWindows |= (1 << arg1);
-	drawHPPPWindow(arg1);
+/** Shows an HP/PP window
+ * Params:
+ * 	id = Character whose window should be displayed
+ * Original_Address: $(DOLLAR)C207B6
+ */
+void showHPPPWindow(short id) {
+	currentlyDrawnHPPPWindows |= (1 << id);
+	drawHPPPWindow(id);
 	hpPPMeterAreaNeedsUpdate = 1;
 }
 
 /// $C207E1
-void undrawHPPPWindow(short arg1) {
+void hideHPPPWindow(short arg1) {
 	hpPPMeterAreaNeedsUpdate = 1;
 	currentlyDrawnHPPPWindows &= cast(short)(0xFFFF ^ (1 << arg1));
 	short x0E;
@@ -377,10 +402,16 @@ void drawOpenWindows() {
 	} while(x0E != -1);
 }
 
-/// $C208B8
-short unknownC208B8(short arg1, short arg2) {
-	short a = windowStats[windowTable[currentFocusWindow]].tilemapBuffer[(windowStats[windowTable[currentFocusWindow]].width * arg2 * 2) + arg1];
-	if (((a & 0x3FF) == 0x4F) || (a & 0x3FF) == 0x41) {
+/** Tests if the tile at the given coordinates is a cursor or cursor placeholder tile
+ * Params:
+ * 	x = X coordinate (text tiles (8x16 pixels), relative to window's top left)
+ * 	y = Y coordinate (text tiles (8x16 pixels), relative to window's top left)
+ * Returns: 0x2F if valid cursor coordinates, 0x40 otherwise
+ * Original_Address: $(DOLLAR)C208B8
+ */
+short testIfCursorPosition(short x, short y) {
+	ushort tile = windowStats[windowTable[currentFocusWindow]].tilemapBuffer[(windowStats[windowTable[currentFocusWindow]].width * y * 2) + x];
+	if (((tile & 0x3FF) == VRAMTextTile.hiddenCursorUpper) || (tile & 0x3FF) == VRAMTextTile.cursorUpper) {
 		return 0x2F;
 	}
 	return 0x40;
@@ -465,58 +496,75 @@ void restoreCurrentWindowTextAttributes(WindowTextAttributesCopy* buf) {
 	windowStats[windowTable[currentFocusWindow]].font = buf.font;
 }
 
-/// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
-short moveCursor(short curX, short curY, short deltaX, short deltaY, short sfx) {
-	ushort x0E = curY;
-	ushort x02 = curX;
-	if (deltaX != 0) {
-		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			if (unknownC208B8(curX, x0E) == 0x2F) {
-				goto Unknown27;
+/** Moves menu cursor around text window
+ * Params:
+ * 	curX = Current X coordinate (text tiles, relative to top left corner of window)
+ * 	curY = Current Y coordinate (text tiles, relative to top left corner of window)
+ * 	deltaY = Vertical search increment (ex: 1 searches every tile downward, -1 searches every tile upward)
+ * 	deltaX = Horizontal search increment (ex: 1 searches every tile rightward, -1 searches every tile leftward)
+ * 	sfx = Sound effect to play on movement
+ * Returns: X coordinate in LSB, Y coordinate in MSB. -1 on failure
+ * Original_Address: $(DOLLAR)C20B65
+ */
+short moveCursor(short curX, short curY, short deltaY, short deltaX, short sfx) {
+	ushort tmpY = curY;
+	ushort tmpX = curX;
+	if (deltaY != 0) {
+		// basic vertical search
+		for (tmpY = cast(short)(curY + deltaY); tmpY < windowStats[windowTable[currentFocusWindow]].height / 2; tmpY += deltaY) {
+			if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+				goto FoundCursorCoords;
 			}
 		}
-		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			for (x02 = cast(short)(curX - 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02--) {
-				if (unknownC208B8(x02, x0E) == 0x2F) {
-					goto Unknown27;
+		// search vertically and to the left
+		for (tmpY = cast(short)(curY + deltaY); tmpY < windowStats[windowTable[currentFocusWindow]].height / 2; tmpY += deltaY) {
+			for (tmpX = cast(short)(curX - 1); tmpX < windowStats[windowTable[currentFocusWindow]].width; tmpX--) {
+				if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+					goto FoundCursorCoords;
 				}
 			}
 		}
-		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			for (x02 = cast(short)(curX + 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02++) {
-				if (unknownC208B8(x02, x0E) == 0x2F) {
-					goto Unknown27;
+		// search vertically and to the right
+		for (tmpY = cast(short)(curY + deltaY); tmpY < windowStats[windowTable[currentFocusWindow]].height / 2; tmpY += deltaY) {
+			for (tmpX = cast(short)(curX + 1); tmpX < windowStats[windowTable[currentFocusWindow]].width; tmpX++) {
+				if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+					goto FoundCursorCoords;
 				}
 			}
 		}
+		// didn't find anything
 		return -1;
 	} else {
-		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
-			if (unknownC208B8(x02, x0E) == 0x2F) {
-				goto Unknown27;
+		// basic horizontal search
+		for (tmpX = cast(short)(curX + deltaX); tmpX < windowStats[windowTable[currentFocusWindow]].width; tmpX += deltaX) {
+			if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+				goto FoundCursorCoords;
 			}
 		}
-		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
-			for (x0E = cast(short)(curY - 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E--) {
-				if (unknownC208B8(x02, x0E) == 0x2F) {
-					goto Unknown27;
+		// search horizontally and upward
+		for (tmpX = cast(short)(curX + deltaX); tmpX < windowStats[windowTable[currentFocusWindow]].width; tmpX += deltaX) {
+			for (tmpY = cast(short)(curY - 1); tmpY < windowStats[windowTable[currentFocusWindow]].height / 2; tmpY--) {
+				if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+					goto FoundCursorCoords;
 				}
 			}
 		}
-		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
-			for (x0E = cast(short)(curY + 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E++) {
-				if (unknownC208B8(x02, x0E) == 0x2F) {
-					goto Unknown27;
+		// search horizontally and downward
+		for (tmpX = cast(short)(curX + deltaX); tmpX < windowStats[windowTable[currentFocusWindow]].width; tmpX += deltaX) {
+			for (tmpY = cast(short)(curY + 1); tmpY < windowStats[windowTable[currentFocusWindow]].height / 2; tmpY++) {
+				if (testIfCursorPosition(tmpX, tmpY) == 0x2F) {
+					goto FoundCursorCoords;
 				}
 			}
 		}
+		// didn't find anything
 		return -1;
 	}
-	Unknown27:
+	FoundCursorCoords:
 	if (sfx != -1) {
 		playSfx(sfx);
 	}
-	return cast(short)(((x0E << 8) & 0xFF00) + x02);
+	return cast(short)(((tmpY << 8) & 0xFF00) + tmpX);
 }
 
 /// $C20D3F
@@ -610,8 +658,11 @@ void resetRolling() {
 	fastestHPMeterSpeed = 1;
 }
 
-/// $C21034
-short unknownC21034() {
+/** Tests if HP/PP rolling is done
+ * Returns: 0 if any party members HP/PP values aren't done rolling towards their targets, 1 if done
+ * Original_Address: $(DOLLAR)C21034
+ */
+short testIfHPPPRollingDone() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
 		if ((partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0)
 			|| (partyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction != 0)
@@ -623,9 +674,12 @@ short unknownC21034() {
 	return 1;
 }
 
-/// $C2108C
-short unknownC2108C() {
-	short a = unknownC21034();
+/** Tries ending fast HP/PP rolling when all party members have reached their targets
+ * Returns: 0 if not done, 1 if done
+ * Original_Address: $(DOLLAR)C2108C
+ */
+short tryEndingFastHPPPRolling() {
+	short a = testIfHPPPRollingDone();
 	if (a != 0) {
 		fastestHPMeterSpeed = 0;
 	}
@@ -773,11 +827,16 @@ short setEventFlag(short flag, short value) {
 	return eventFlags[flag / 8];
 }
 
-/// $C216AD
-void unknownC216AD(short arg1, short) {
-	changeMusic(arg1);
-	currentMapMusicTrack = arg1;
-	nextMapMusicTrack = arg1;
+/** Temporarily overrides the current overworld music
+ * Params:
+ * 	track = Music track to play
+ * 	unused = Unused
+ * Original_Address: $(DOLLAR)C216AD
+ */
+void setOverworldMusicOverride(short track, short unused) {
+	changeMusic(track);
+	currentMapMusicTrack = track;
+	nextMapMusicTrack = track;
 }
 
 /// $C216C9
@@ -791,28 +850,41 @@ void playSfxAndTickMinimal(short arg1) {
 	windowTickMinimal();
 }
 
-/// $C216DB
-void unknownC216DB() {
-	ubyte x18 = 0;
+/** Updates teddy bears in party
+ *
+ * Meant to be used when the party's available items change for any reason
+ * If a stronger teddy bear was added to an inventory, replace any existing teddy bear party members with the new strongest one
+ * If a teddy bear was removed from an inventory, try and replace it with another, or just remove the teddy bear party members if none found
+ * Original_Address: $(DOLLAR)C216DB
+ */
+void updatePartyTeddyBears() {
+	ubyte strongestBearItem = 0;
+	// look through all character inventories for teddy bears
 	for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
-		PartyCharacter* x15 = &partyCharacters[gameState.partyMembers[i]];
-		for (short j = 0; (j < 14) && (x15.items[j] != 0); j++) {
-			if (itemData[x15.items[j]].type != 4) {
+		PartyCharacter* character = &partyCharacters[gameState.partyMembers[i]];
+		// look through character's inventory for best teddy bear
+		for (short j = 0; (j < character.items.length) && (character.items[j] != 0); j++) {
+			// skip non items that aren't teddy bears
+			if (itemData[character.items[j]].type != 4) {
 				continue;
 			}
-			if ((x18 == 0) || (itemData[x18].parameters.ep > itemData[x15.items[j]].parameters.ep)) {
-				x18 = x15.items[j];
+			// is this the strongest teddy bear so far?
+			if ((strongestBearItem == 0) || (itemData[strongestBearItem].parameters.ep > itemData[character.items[j]].parameters.ep)) {
+				strongestBearItem = character.items[j];
 			}
 		}
 	}
-	if (x18 != 0) {
-		if (testIfPartyMemberPresent(itemData[x18].parameters.strength) != 0) {
+	if (strongestBearItem != 0) {
+		// found teddy bear is already in party, we're done
+		if (testIfPartyMemberPresent(itemData[strongestBearItem].parameters.strength) != 0) {
 			return;
 		}
+		// remove all teddy bears from party, add the one we found
 		removeCharFromParty(PartyMember.teddyBear);
 		removeCharFromParty(PartyMember.plushTeddyBear);
-		addCharToParty(itemData[x18].parameters.strength);
+		addCharToParty(itemData[strongestBearItem].parameters.strength);
 	} else {
+		// didn't find a bear, so remove from party
 		removeCharFromParty(PartyMember.teddyBear);
 		removeCharFromParty(PartyMember.plushTeddyBear);
 	}
@@ -1001,32 +1073,38 @@ short testIfPartyMemberPresent(short id) {
 	return 0;
 }
 
-/// $C223D9
-short unknownC223D9(ubyte* arg1, short arg2) {
-	short x0E;
-	if (arg1[0] != 0) {
-		x0E = 0;
+/** Gets the status icon for any afflictions a character might have
+ * Params:
+ * 	afflictions = A character's affliction array
+ * 	checkeredBackground = 0 for non-checkered background, 1 for checkered background
+ * Returns: A TallTextTile representing the character's most notable status
+ * Original_Address: $(DOLLAR)C223D9
+ */
+short getStatusIcon(ubyte* afflictions, short checkeredBackground) {
+	short chosenStatusGroup;
+	if (afflictions[StatusGroups.PersistentEasyHeal] != 0) {
+		chosenStatusGroup = StatusGroups.PersistentEasyHeal;
 	} else {
-		if (arg1[3] != 0) {
-			x0E = 3;
+		if (afflictions[StatusGroups.Strangeness] != 0) {
+			chosenStatusGroup = StatusGroups.Strangeness;
 		} else {
-			for (x0E = 1; x0E < 7; x0E++) {
-				if (arg1[x0E] != 0) {
-					goto lx;
+			for (chosenStatusGroup = StatusGroups.PersistentHardHeal; chosenStatusGroup < StatusGroups.Shield + 1; chosenStatusGroup++) {
+				if (afflictions[chosenStatusGroup] != 0) {
+					goto FoundStatus;
 				}
 			}
-			if (arg2 == 0) {
+			if (checkeredBackground == 0) {
 				return TallTextTile.windowBackground;
 			} else {
 				return TallTextTile.checker;
 			}
 		}
 	}
-	lx:
-	if (arg2 != 0) {
-		return statusIconsCheckered[x0E][arg1[x0E] - 1];
+	FoundStatus:
+	if (checkeredBackground != 0) {
+		return statusIconsCheckered[chosenStatusGroup][afflictions[chosenStatusGroup] - 1];
 	} else {
-		return statusIcons[x0E][arg1[x0E] - 1];
+		return statusIcons[chosenStatusGroup][afflictions[chosenStatusGroup] - 1];
 	}
 }
 
@@ -1078,39 +1156,55 @@ short getItemSubtype2(short arg1) {
 	}
 }
 
-/// $C22562
-void unknownC22562(short arg1) {
-	temporaryWeapon = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+/** Prints the stats of the equip menu character if they were to equip the given item in the Weapon slot
+ * Params:
+ * 	item = Item ID to equip
+ * Original_Address: $(DOLLAR)C22562
+ */
+void printStatsWithNewWeapon(short item) {
+	temporaryWeapon = cast(ubyte)((item == -1) ? 0 : item);
 	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
 	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
 	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
 	printEquipmentStats(characterForEquipMenu);
 }
 
-/// $C225AC
-void unknownC225AC(short arg1) {
+/** Prints the stats of the equip menu character if they were to equip the given item in the Body slot
+ * Params:
+ * 	item = Item ID to equip
+ * Original_Address: $(DOLLAR)C225AC
+ */
+void printStatsWithNewBodyGear(short item) {
 	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
-	temporaryBodyGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryBodyGear = cast(ubyte)((item == -1) ? 0 : item);
 	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
 	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
 	printEquipmentStats(characterForEquipMenu);
 }
 
-/// $C2260D
-void unknownC2260D(short arg1) {
+/** Prints the stats of the equip menu character if they were to equip the given item in the Arms slot
+ * Params:
+ * 	item = Item ID to equip
+ * Original_Address: $(DOLLAR)C2260D
+ */
+void printStatsWithNewArmsGear(short item) {
 	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
 	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
-	temporaryArmsGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryArmsGear = cast(ubyte)((item == -1) ? 0 : item);
 	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
 	printEquipmentStats(characterForEquipMenu);
 }
 
-/// $C22673
-void unknownC22673(short arg1) {
+/** Prints the stats of the equip menu character if they were to equip the given item in the Other slot
+ * Params:
+ * 	item = Item ID to equip
+ * Original_Address: $(DOLLAR)C22673
+ */
+void printStatsWithNewOtherGear(short item) {
 	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
 	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
 	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
-	temporaryOtherGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryOtherGear = cast(ubyte)((item == -1) ? 0 : item);
 	printEquipmentStats(characterForEquipMenu);
 }
 
@@ -1141,15 +1235,18 @@ ushort getActivePartyCharacterCount() {
 	return i;
 }
 
-/// $C2272F
-short unknownC2272F() {
-	short x10 = 0;
+/** Gets the number of party members that are alive (not unconscious, not diamondized)
+ * Returns: A count of living party members
+ * Original_Address: $(DOLLAR)C2272F
+ */
+short getLivingPartyMemberCount() {
+	short result = 0;
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
 		if ((partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != Status0.unconscious) && (partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != Status0.diamondized)) {
-			x10++;
+			result++;
 		}
 	}
-	return x10;
+	return result;
 }
 
 /// $C227C8
@@ -1213,7 +1310,7 @@ void addCharToParty(short id) {
 		gameState.partyMembers[i] = cast(ubyte)id;
 		entityCallbackFlags[unknownC0369B(id)] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 		if (id <= 4) {
-			unknownC216DB();
+			updatePartyTeddyBears();
 			reinitializeItemTransformations();
 		}
 		return;
@@ -1239,7 +1336,7 @@ void removeCharFromParty(short id) {
 		gameState.partyMembers[i] = 0;
 		unknownC03903(id);
 		if (id <= 4) {
-			unknownC216DB();
+			updatePartyTeddyBears();
 			reinitializeItemTransformations();
 		}
 		return;
@@ -1382,7 +1479,7 @@ short initBattleScripted(short arg1) {
 	}
 	battleMode = BattleMode.inBattle;
 	battleSwirlSequence();
-	while (unknownC2E9C8() != 0) {
+	while (ovalWindowHasFramesLeft() != 0) {
 		waitUntilNextFrame();
 		updateSwirlFrame();
 	}
@@ -3164,7 +3261,7 @@ short battleRoutine() {
 		resetRolling();
 		do {
 			windowTick();
-		} while (unknownC2108C() == 0);
+		} while (tryEndingFastHPPPRolling() == 0);
 		if (mirrorEnemy != 0) {
 			for (short i = 0; i < battlersTable.length; i++) {
 				if (battlersTable[i].consciousness == 0) {
@@ -3213,7 +3310,7 @@ void unknownC26189(ushort arg1) {
 void instantWinHandler() {
 	battleInitiative = Initiative.normal;
 	changeMusic(Music.suddenVictory);
-	unknownC2E9ED();
+	resetOvalWindow();
 	for (short i = 0; i < 2; i++) {
 		unknownC26189(0x3E0);
 		unknownC26189(0x1F);
@@ -6773,7 +6870,7 @@ void switchToNewGiygasBattle(short group, short music) {
 	}
 	if (x10 == 0) {
 		startSwirlPadded(Swirl.staticWipe, AnimationFlags.reverse, 30);
-		while (unknownC2E9C8() != 0) {
+		while (ovalWindowHasFramesLeft() != 0) {
 			windowTick();
 		}
 	}
@@ -6802,7 +6899,7 @@ void switchToNewGiygasBattle(short group, short music) {
 		return;
 	}
 	startSwirlPadded(Swirl.staticWipe, AnimationFlags.none, 5);
-	while (unknownC2E9C8() != 0) {
+	while (ovalWindowHasFramesLeft() != 0) {
 		windowTick();
 	}
 }
@@ -7063,7 +7160,7 @@ void battleActionGiygasPrayer9() {
 	playSfx(Sfx.psiThunderDamage);
 	stopMusic();
 	startSwirlPadded(Swirl.enemyAttack, AnimationFlags.none, 5);
-	while (unknownC2E9C8() != 0) {
+	while (ovalWindowHasFramesLeft() != 0) {
 		windowTick();
 	}
 	stopMusic();
@@ -7427,7 +7524,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	if (letterboxTopEnd != 0) {
 		enableLetterboxHDMA(2);
 	}
-	unknownC2E9ED();
+	resetOvalWindow();
 	tracef("Loaded battle bg: %s/%s", loadedBGDataLayer1, loadedBGDataLayer2);
 }
 
@@ -7530,7 +7627,7 @@ void drawBattleFrame() {
 	if (loadedBGDataLayer2.targetLayer != 0) {
 		generateBattleBGFrame(&loadedBGDataLayer2, 1);
 	}
-	unknownC2E6B6();
+	updatePSIAnimationFrame();
 	if (redFlashDuration != 0) {
 		if (((--redFlashDuration / 12) & 1) != 0) {
 			setColData(31, 0, 4);
@@ -7551,9 +7648,9 @@ void drawBattleFrame() {
 	}
 	if (hpPPBoxBlinkDuration != 0) {
 		if (((--hpPPBoxBlinkDuration / 3) & 1) != 0) {
-			undrawHPPPWindow(hpPPBoxBlinkTarget);
+			hideHPPPWindow(hpPPBoxBlinkTarget);
 		} else {
-			unknownC207B6(hpPPBoxBlinkTarget);
+			showHPPPWindow(hpPPBoxBlinkTarget);
 		}
 	}
 	updateSwirlFrame();
@@ -7647,7 +7744,7 @@ void unknownC2E0E7() {
 	redFlashDuration = 0;
 	framesLeftUntilNextSwirlUpdate = 0;
 	if (hpPPBoxBlinkDuration != 0) {
-		unknownC207B6(hpPPBoxBlinkTarget);
+		showHPPPWindow(hpPPBoxBlinkTarget);
 		hpPPBoxBlinkDuration = 0;
 	}
 	setColData(0, 0, 0);
@@ -7775,20 +7872,33 @@ void showPSIAnimation(short arg1) {
 	}
 }
 
-immutable ubyte[1] unknownC2E6B3 = [ (TilemapFlag.priority | TilemapFlag.palette4) >> 8 ];
-immutable ushort[1] unknownC2E6B4 = [ 0 ];
+/** The flag portion of each PSI tilemap entry, stored separately for efficiency
+ * Original_Address: $(DOLLAR)C2E6B3
+ */
+immutable ubyte[1] psiAnimationTileFlags = [ (TilemapFlag.priority | TilemapFlag.palette4) >> 8 ];
 
-/// $C2E6B6
-void unknownC2E6B6() {
+/** A blank PSI tile for quick tilemap wiping
+ * Original_Address: $(DOLLAR)C2E6B4
+ */
+immutable ushort[1] blankPSITile = [ 0 ];
+
+/** Updates the currently displayed PSI animation frame, including enemy colour changes
+ * Original_Address: $(DOLLAR)C2E6B6
+ */
+void updatePSIAnimationFrame() {
 	if ((psiAnimationTimeUntilNextFrame != 0) && (--psiAnimationTimeUntilNextFrame == 0)) {
 		if (psiAnimationTotalFrames != 0) {
 			psiAnimationTimeUntilNextFrame = psiAnimationFrameHoldFrames;
+			// PSI animation arrangements only hold the lower byte of each tile for efficiency
+			// Make sure each byte is copied to the lower byte of the tilemap in VRAM
 			copyToVRAM(VRAMCopyMode.copyToVRAMStripeEven, 0x400, 0x5800, psiAnimationFrameData);
-			copyToVRAM(VRAMCopyMode.repeatByteToVRAMOdd, 0x400, 0x5800, &unknownC2E6B3[0]);
+			// The flags for each tile are the same, so we can just copy the same byte into the upper byte of each tile
+			copyToVRAM(VRAMCopyMode.repeatByteToVRAMOdd, 0x400, 0x5800, &psiAnimationTileFlags[0]);
 			psiAnimationFrameData += 0x400;
 			psiAnimationTotalFrames--;
 		} else {
-			copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x5800, cast(const(ubyte)*)&unknownC2E6B4[0]);
+			// wipe PSI tilemap
+			copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0x800, 0x5800, cast(const(ubyte)*)&blankPSITile[0]);
 			restoreAnimatedBackgroundColour();
 		}
 		if ((psiAnimationPaletteTimeUntilNextFrame != 0) && (--psiAnimationPaletteTimeUntilNextFrame == 0)) {
@@ -7898,16 +8008,21 @@ void battleSwirlSequence() {
 	swirlAutoRestore = 0;
 }
 
-/// $C2E9C8
-short unknownC2E9C8() {
+/** Tests if the current active oval window effect still has frames left to play
+ * Returns: 0 if no frames left, 1 if there are frames left
+ * Original_Address: $(DOLLAR)C2E9C8
+ */
+short ovalWindowHasFramesLeft() {
 	if ((framesLeftUntilNextSwirlUpdate != 0) && (swirlLengthPadding > 4)) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C2E9ED
-void unknownC2E9ED() {
+/** Resets oval window state
+ * Original_Address: $(DOLLAR)C2E9ED
+ */
+void resetOvalWindow() {
 	framesLeftUntilNextSwirlUpdate = 0;
 	hdmaDisable(swirlHDMAChannelOffset + 3);
 	setColData(0, 0, 0);
