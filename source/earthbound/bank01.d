@@ -2118,10 +2118,10 @@ void openMenuButton() {
 					while (true) {
 						openEquipSelectWindow(1);
 						setWindowFocus(Window.inventory);
-						short x1D = selectionMenu(1);
+						short selectedItem = selectionMenu(1);
 						backupMenuSelection();
 						closeEquipSelectWindow();
-						if (x1D == 0) {
+						if (selectedItem == 0) {
 							if (gameState.playerControlledPartyMemberCount != 1) {
 								continue L2;
 							}
@@ -2161,7 +2161,7 @@ void openMenuButton() {
 									break L4;
 								case 1: //use
 									restoreFocusToInventory = 1;
-									if (overworldUseItem(cast(short)character, x1D, 0) != 0) {
+									if (overworldUseItem(cast(short)character, selectedItem, 0) != 0) {
 										break mainLoop;
 									}
 									x1A = 0;
@@ -2171,7 +2171,7 @@ void openMenuButton() {
 									unknownC10F40(2);
 									restoreMenuBackup = 0xFF;
 									createWindow(Window.textStandard);
-									displayText(getTextBlock(itemData[getCharacterItem(cast(short)character, x1D)].helpText));
+									displayText(getTextBlock(itemData[getCharacterItem(cast(short)character, selectedItem)].helpText));
 									closeWindow(Window.textStandard);
 									setWindowFocus(0);
 									skipAddingCommandText = 1;
@@ -2185,17 +2185,17 @@ void openMenuButton() {
 									clearFocusWindow();
 									restoreFocusToInventory = 1;
 									openEquipSelectWindow(3);
-									short x18 = charSelectPrompt(2, 1, &unknownC133A7, null);
+									short targetCharacter = charSelectPrompt(2, 1, &unknownC133A7, null);
 									closeEquipSelectWindow();
 									closeWindow(Window.unknown2c);
-									if (x18 == 0) {
+									if (targetCharacter == 0) {
 										x1A = 1;
 										continue;
 									}
-									if ((character != x18) && ((itemData[getCharacterItem(cast(short)character, x1D)].flags & ItemFlags.cannotGive) != 0)) {
+									if ((character != targetCharacter) && ((itemData[getCharacterItem(cast(short)character, selectedItem)].flags & ItemFlags.cannotGive) != 0)) {
 										createWindow(Window.textStandard);
 										setMainRegister(MainRegister(character));
-										setSubRegister(x1D);
+										setSubRegister(selectedItem);
 										displayText(getTextBlock("MSG_SYS_GOODS_NOCARRY"));
 										closeWindow(Window.textStandard);
 										x1A = 0;
@@ -2205,23 +2205,23 @@ void openMenuButton() {
 									if ((partyCharacters[character - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[character - 1].afflictions[0] == Status0.diamondized)) {
 										x16 = 5;
 									}
-									if (x18 != character) {
+									if (targetCharacter != character) {
 										x16++;
-										if (testPartyHasInventorySpace(x18) != 0) {
+										if (testPartyHasInventorySpace(targetCharacter) != 0) {
 											x16 += 2;
 										}
-										if ((partyCharacters[x18 - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[x18 - 1].afflictions[0] == Status0.diamondized)) {
+										if ((partyCharacters[targetCharacter - 1].afflictions[0] == Status0.unconscious) || (partyCharacters[targetCharacter - 1].afflictions[0] == Status0.diamondized)) {
 											x16++;
 										}
 									}
 									createWindow(Window.textStandard);
 									getActiveWindowAddress().mainRegister.integer = character;
-									getActiveWindowAddress().mainRegisterBackup.integer = x18;
-									getActiveWindowAddress().subRegister = x1D;
+									getActiveWindowAddress().mainRegisterBackup.integer = targetCharacter;
+									getActiveWindowAddress().subRegister = selectedItem;
 									switch (x16) {
 										case 0: //give to self, alive
 											displayText(getTextBlock("MSG_SYS_CARRY_SELF_ALIVE"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										case 1: //give to other, alive, inventory full
 											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_ALIVE_ALIVE"));
@@ -2231,15 +2231,15 @@ void openMenuButton() {
 											break;
 										case 3: //give to other, alive
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_ALIVE"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										case 4: //give to other, dead
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_DEAD"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										case 5: //give to self, dead
 											displayText(getTextBlock("MSG_SYS_CARRY_SELF_DEAD"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										case 6: //give to other, self dead, other alive, inventory full
 											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_DEAD_ALIVE"));
@@ -2249,11 +2249,11 @@ void openMenuButton() {
 											break;
 										case 8: //give to other, self dead, other alive
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_ALIVE"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										case 9: //give to other, self dead, other dead
 											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_DEAD"));
-											unknownC22A3A(x18, cast(short)character, x1D);
+											moveItemToPartyMember(targetCharacter, cast(short)character, selectedItem);
 											break;
 										default: //invalid
 											assert(0);
@@ -2265,7 +2265,7 @@ void openMenuButton() {
 								case 3: //drop
 									createWindow(Window.textStandard);
 									setMainRegister(MainRegister(character));
-									setSubRegister(x1D);
+									setSubRegister(selectedItem);
 									displayText(getTextBlock("MSG_SYS_GOODS_DROP"));
 									closeWindow(Window.textStandard);
 									closeWindow(Window.inventoryMenu);

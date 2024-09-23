@@ -1348,119 +1348,139 @@ void saveCurrentGame() {
 	saveGameSlot(currentSaveSlot - 1);
 }
 
-/// $C22A3A
-void unknownC22A3A(short arg1, short arg2, short arg3) {
-	arg2--;
-	short x17 = partyCharacters[arg2].items[arg3 - 1];
-	short x15;
-	for (x15 = arg3; (x15 < 14) && (partyCharacters[arg2].items[x15] != 0); x15++) {
-		partyCharacters[arg2].items[x15 - 1] = partyCharacters[arg2].items[x15];
+/** Moves item from one character to another, automatically handling equipped items
+ * Params:
+ * 	toCharacter = Character ID (1-based) to move item to
+ * 	fromCharacter = Character ID (1-based) to move item from
+ * 	itemSlot = The source's item slot of the item being given
+ * Original_Address: $(DOLLAR)C22A3A
+ */
+void moveItemToPartyMember(short toCharacter, short fromCharacter, short itemSlot) {
+	fromCharacter--;
+	// keep track of the item we're moving
+	short itemID = partyCharacters[fromCharacter].items[itemSlot - 1];
+	// shift all items after the one we're removing
+	short slot;
+	for (slot = itemSlot; (slot < partyCharacters[fromCharacter].items.length) && (partyCharacters[fromCharacter].items[slot] != 0); slot++) {
+		partyCharacters[fromCharacter].items[slot - 1] = partyCharacters[fromCharacter].items[slot];
 	}
-	partyCharacters[arg2].items[x15 - 1] = 0;
-	giveItemToCharacter(arg1, cast(ubyte)x17);
-	short x13 = cast(short)(arg2 + 1);
-	ubyte x0E;
-	if (arg1 == x13) {
-		x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
-		x17 = x0E;
-		if (arg3 == x17) {
-			partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)getInventoryCount(arg1);
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
+	// wipe last item
+	partyCharacters[fromCharacter].items[slot - 1] = 0;
+	// give item to target
+	giveItemToCharacter(toCharacter, cast(ubyte)itemID);
+	short fromCharacterID = cast(short)(fromCharacter + 1);
+	ubyte tmpSlot;
+	if (toCharacter == fromCharacterID) { //rearranging own items
+		// handle equipped items
+		if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon]) {
+			// adjust equipped item slot
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)getInventoryCount(toCharacter);
+			// move body slot if equipped body gear comes after the item we're removing
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.body];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.arms];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)(x0E - 1);
+			// move arms slot if equipped arms gear comes after the item we're removing
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.arms];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.other];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
+			// move other slot if equipped other gear comes after the item we're removing
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.other];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)(tmpSlot - 1);
 			}
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.body]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)getInventoryCount(arg1);
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.body]) {
+			// same procedure as with weapon
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)getInventoryCount(toCharacter);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.arms];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.arms];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.other];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.other];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)(tmpSlot - 1);
 			}
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.arms]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)getInventoryCount(arg1);
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.arms]) {
+			// same procedure as with weapon
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)getInventoryCount(toCharacter);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.body];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.other];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.other];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)(tmpSlot - 1);
 			}
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.other]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)getInventoryCount(arg1);
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.other]) {
+			// same procedure as with weapon
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)getInventoryCount(toCharacter);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.body];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.arms];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.arms];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)(tmpSlot - 1);
 			}
 		} else {
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
+			// not equipped, just have to handle equipped items later in the inventory
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.body];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.arms];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.arms];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)(tmpSlot - 1);
 			}
-			x0E = partyCharacters[arg2].equipment[EquipmentSlot.other];
-			if (arg3 < x0E) {
-				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
+			tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.other];
+			if (itemSlot < tmpSlot) {
+				partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)(tmpSlot - 1);
 			}
 		}
-	} else {
-		if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.weapon]) {
-			changeEquippedWeapon(x13, 0);
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.body]) {
-			changeEquippedBody(x13, 0);
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.arms]) {
-			changeEquippedArms(x13, 0);
-		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.other]) {
-			changeEquippedOther(x13, 0);
+	} else { // giving item to other character
+		// if we're giving an equipped item, unequip it
+		if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon]) {
+			changeEquippedWeapon(fromCharacterID, 0);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.body]) {
+			changeEquippedBody(fromCharacterID, 0);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.arms]) {
+			changeEquippedArms(fromCharacterID, 0);
+		} else if (itemSlot == partyCharacters[fromCharacter].equipment[EquipmentSlot.other]) {
+			changeEquippedOther(fromCharacterID, 0);
 		}
-		x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
-		if (arg3 < x0E) {
-			partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
+		// adjust slots for gear that isn't equipped but came after the moved item
+		tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon];
+		if (itemSlot < tmpSlot) {
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.weapon] = cast(ubyte)(tmpSlot - 1);
 		}
-		x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
-		if (arg3 < x0E) {
-			partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
+		tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.body];
+		if (itemSlot < tmpSlot) {
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.body] = cast(ubyte)(tmpSlot - 1);
 		}
-		x0E = partyCharacters[arg2].equipment[EquipmentSlot.arms];
-		if (arg3 < x0E) {
-			partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)(x0E - 1);
+		tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.arms];
+		if (itemSlot < tmpSlot) {
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.arms] = cast(ubyte)(tmpSlot - 1);
 		}
-		x0E = partyCharacters[arg2].equipment[EquipmentSlot.other];
-		if (arg3 < x0E) {
-			partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
+		tmpSlot = partyCharacters[fromCharacter].equipment[EquipmentSlot.other];
+		if (itemSlot < tmpSlot) {
+			partyCharacters[fromCharacter].equipment[EquipmentSlot.other] = cast(ubyte)(tmpSlot - 1);
 		}
 	}
 }
@@ -2099,8 +2119,8 @@ short findTargettableNPC() {
 }
 
 /// $C23FEA
-short getShieldTargetting(short arg1, Battler* battler) {
-	if ((arg1 == BattleActions.psiShieldSigma) || (arg1 == BattleActions.psiShieldOmega) || (arg1 == BattleActions.psiPSIShieldSigma) || (arg1 == BattleActions.psiPSIShieldOmega)) {
+short getShieldTargetting(short action, Battler* battler) {
+	if ((action == BattleActions.psiShieldSigma) || (action == BattleActions.psiShieldOmega) || (action == BattleActions.psiPSIShieldSigma) || (action == BattleActions.psiPSIShieldOmega)) {
 		return 1;
 	}
 	return 0;
@@ -3605,12 +3625,12 @@ short truncate16To8(short arg1, short arg2) {
 }
 
 /// $C26A2D
-short randLimit(short arg1) {
-	return truncate16To8(randLong(), arg1);
+short randLimit(short max) {
+	return truncate16To8(randLong(), max);
 }
 
 /// $C26A44
-short fiftyPercentVariance(short arg1) {
+short fiftyPercentVariance(short value) {
 	ubyte x12 = randLong() & 0xFF;
 	ubyte x10 = randLong() & 0xFF;
 	short x0E = (x12 - 128 < 0) ? (-cast(int)(x12 - 0x80)) : (x12 - 0x80);
@@ -3621,15 +3641,15 @@ short fiftyPercentVariance(short arg1) {
 		x0E = x0E2;
 	}
 	if (x12 < 0x80) {
-		arg1 -= truncate16To8(arg1, x0E);
+		value -= truncate16To8(value, x0E);
 	} else if (x12 > 0x80) {
-		arg1 += truncate16To8(arg1, x0E);
+		value += truncate16To8(value, x0E);
 	}
-	return arg1;
+	return value;
 }
 
 /// $C26AFD
-short twentyFivePercentVariance(short arg1) {
+short twentyFivePercentVariance(short value) {
 	ubyte x12 = randLong() & 0xFF;
 	ubyte x10 = randLong() & 0xFF;
 	short x0E = (x12 - 128 < 0) ? (-cast(int)(x12 - 0x80)) : (x12 - 0x80);
@@ -3640,11 +3660,11 @@ short twentyFivePercentVariance(short arg1) {
 		x0E = x0E2;
 	}
 	if (x12 < 0x80) {
-		arg1 -= truncate16To8(arg1, x0E) / 2;
+		value -= truncate16To8(value, x0E) / 2;
 	} else if (x12 > 0x80) {
-		arg1 += truncate16To8(arg1, x0E) / 2;
+		value += truncate16To8(value, x0E) / 2;
 	}
-	return arg1;
+	return value;
 }
 
 /// $C26BB8

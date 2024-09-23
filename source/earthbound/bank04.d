@@ -516,13 +516,13 @@ auto angleToVector(ushort angle, ushort magnitude) {
 		short x;
 	}
 	// use only top 6 bits of the angle. It's Good Enough™️
-	const arg1Modified = angle >> 10;
-	short x = cast(short)((angleToVectorSineTable[arg1Modified] * magnitude) / 256);
-	short y = cast(short)((angleToVectorSineTable[arg1Modified + 48] * magnitude) / 256);
-	if ((arg1Modified < 16) || (arg1Modified >= 49)) { // negate y for angles between ~270 - 90 degrees
+	const angleSimplified = angle >> 10;
+	short x = cast(short)((angleToVectorSineTable[angleSimplified] * magnitude) / 256);
+	short y = cast(short)((angleToVectorSineTable[angleSimplified + 48] * magnitude) / 256);
+	if ((angleSimplified < 16) || (angleSimplified >= 49)) { // negate y for angles between ~270 - 90 degrees
 		y = cast(short)-y;
 	}
-	if ((arg1Modified >= 33) && (arg1Modified < 64)) { // negate x for angles between ~180 - 360 degrees
+	if ((angleSimplified >= 33) && (angleSimplified < 64)) { // negate x for angles between ~180 - 360 degrees
 		x = cast(short)-x;
 	}
 	// x = sin(angle) * magnitude
@@ -6411,10 +6411,12 @@ void finishLine(short nextLineOffset) {
 }
 
 /** Set the pixel offset to start rendering flyover text at. Note that this is in addition to the hard (40, 8) beginning offset
+ * Params:
+ * 	offset = The number of pixels to add
  * Original_Address: $(DOLLAR)C49CA8
  */
-void flyoverSetPixelOffset(ubyte arg1) {
-	flyoverPixelOffset += arg1 + 8;
+void flyoverSetPixelOffset(ubyte offset) {
+	flyoverPixelOffset += offset + 8;
 	flyoverByteOffset = cast(short)((flyoverPixelOffset / 8) * 16);
 }
 
