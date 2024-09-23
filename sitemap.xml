@@ -2374,6 +2374,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/magicButterflyRecovery.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/missCalc.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/moveCursor.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/moveItemToPartyMember.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/nameEntryGridCharacterOffsetTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/openOvalWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/ovalWindowHasFramesLeft.html</loc></url>
@@ -2464,7 +2465,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/truncate16To8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/tryEndingFastHPPPRolling.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/twentyFivePercentVariance.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC22A3A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC23E32.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC23E8A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC240A4.html</loc></url>

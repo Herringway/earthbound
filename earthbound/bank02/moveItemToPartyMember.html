@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC22A3A</title>
+		<title>Function moveItemToPartyMember</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,26 +154,37 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC22A3A</h1><p>$C22A3A
+			<h1>Function moveItemToPartyMember</h1><p>Moves item from one character to another, automatically handling equipped items
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC22A3A</span>
+			<span class="typ">void</span> <span class="pln">moveItemToPartyMember</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">toCharacter</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">fromCharacter</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">itemSlot</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="toCharacter">toCharacter</td><td> Character ID (1-based) to move item to</td></tr>
+<tr><td id="fromCharacter">fromCharacter</td><td> Character ID (1-based) to move item from</td></tr>
+<tr><td id="itemSlot">itemSlot</td><td> The source's item slot of the item being given</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C22A3A
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
