@@ -6665,7 +6665,7 @@ void checkDeadPlayers() {
 				closeFocusWindow();
 			}
 		}
-		for (short j = 0; j < 7; j++) {
+		for (short j = 0; j < PartyCharacter.afflictions.length; j++) {
 			partyCharacters[battlersTable[i].row].afflictions[j] = battlersTable[i].afflictions[j];
 		}
 		if (partyCharacters[battlersTable[i].row].afflictions[4] != 0) {

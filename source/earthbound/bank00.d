@@ -836,7 +836,7 @@ void unknownC01A63(short x, short y) {
 
 /// $C01A69
 void initializeMiscEntityData() {
-	for (short i = 0; i < 0x1E; i++) {
+	for (short i = 0; i < maxEntities; i++) {
 		entityMovementSpeed[i] = 0;
 		entityCollidedObjects[i] = EntityCollision.nothing;
 		entityNPCIDs[i] = 0xFFFF;
@@ -2492,7 +2492,7 @@ void handleBicycleMovement(short hasMoved) {
 	x.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[direction].combined;
 	y.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[direction].combined;
 	ladderStairsTileX = 0xFFFF;
-	short collision = getMovingCollisionFlags(x.integer, y.integer, 24, direction);
+	short collision = getMovingCollisionFlags(x.integer, y.integer, partyMemberEntityStart, direction);
 	playerEntityCollisionCheck(x.integer, y.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[partyLeaderEntity] == EntityCollision.nothing) {
 		gameState.leaderHasMoved++;
@@ -2528,7 +2528,7 @@ void unknownC04AAD() {
 		if (x10 == -1) {
 			return;
 		}
-		for (short i = 24; i <= 29; i++) {
+		for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 			if (entityScriptTable[i] == -1) {
 				continue;
 			}
@@ -3581,7 +3581,7 @@ short enemyEntityCollisionCheck(short x, short y, short subjectEntity) {
 		short leftX = cast(short)(x - subjectHitboxWidth);
 		short topY = cast(short)(y - subjectHitboxHeight);
 		if (playerIntangibilityFrames == 0) {
-			for (short i = 24; i < maxEntities; i++) {
+			for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 				if (entityScriptTable[i] == -1) {
 					continue;
 				}
@@ -4413,7 +4413,7 @@ void processQueuedInteraction() {
 void restorePartySpeed() {
 	gameState.partyStatus = PartyStatus.normal;
 	// restore animation rate for party members
-	for (short i = 24; i <= 29; i++) {
+	for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 		entityScriptVar3Table[i] = 8;
 	}
 }
@@ -4429,7 +4429,7 @@ void boostPartySpeed(short duration) {
 	}
 	gameState.partyStatus = PartyStatus.speedBoost;
 	// update animation rate for party members
-	for (short i = 24; i <= 29; i++) {
+	for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 		entityScriptVar3Table[i] = 5;
 	}
 	scheduleOverworldTask(duration, &restorePartySpeed);
@@ -4621,7 +4621,7 @@ void doPartyMovementFrame(short characterID, short walkingStyle, short entityID)
 /// $C07B52
 void unknownC07B52() {
 	ushort firstPartyMemberPositionIndex = partyCharacters[0].positionIndex;
-	for (ushort entity = 24; entity < maxEntities; entity++) {
+	for (ushort entity = partyMemberEntityStart; entity < maxEntities; entity++) {
 		if (entityScriptTable[entity] != -1) {
 			entityCallbackFlags[entity] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 			currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[entity]];
@@ -4652,7 +4652,7 @@ void playerIntangibilityFlash() {
 	if (playerIntangibilityFrames == 0) {
 		return;
 	}
-	for (short i = 0x18; i < 0x1E; i++) {
+	for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 		entitySpriteMapFlags[i] &= ~SpriteMapFlags.drawDisabled;
 	}
 }
@@ -9166,7 +9166,7 @@ unittest {
 		entityScriptTable = [0, -1, 21, 8, 21, 13, 9, 12, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, -1, -1, -1, -1, -1];
 		entityPathfindingState = [0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-		gameState.firstPartyMemberEntity = 24;
+		gameState.firstPartyMemberEntity = partyMemberEntityStart;
 		gameState.partyEntities[0] = cast(ubyte)gameState.firstPartyMemberEntity;
 		entitySizes[gameState.firstPartyMemberEntity] = 5;
 		assert(findPathToParty(1, 64, 64) == 0);
@@ -10084,7 +10084,7 @@ void actionScriptDrawEntitiesAlt() {
 		return;
 	}
 	short x02 = 0;
-	for (short i = 0; i != 0x1E; i++) {
+	for (short i = 0; i != maxEntities; i++) {
 		if (entityScriptTable[i] + 1 == 0) {
 			continue;
 		}
@@ -10301,7 +10301,7 @@ void psiTeleportLoadDestination() {
  * Original_Address: $(DOLLAR)C0DE16
  */
 void setupTeleportingEntities() {
-	for (short i = 0x18; i < 0x1E; i++) {
+	for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 		entityScriptVar3Table[i] = 8;
 		entityScriptVar7Table[i] |= PartyMemberMovementFlags.unknown11;
 	}
@@ -10685,7 +10685,7 @@ void psiTeleportDepart() {
 	if (psiTeleportStyle == PSITeleportStyle.instant) {
 		return;
 	}
-	for (short i = 0x18; i < 0x1E; i++) {
+	for (short i = partyMemberEntityStart; i < maxEntities; i++) {
 		entityCollidedObjects[i] = EntityCollision.disabled;
 	}
 	psiTeleportSpeedY.integer = 0;
@@ -10725,7 +10725,7 @@ void psiTeleportArrive() {
 	setPartyTickCallbacks(partyLeaderEntity, &psiTeleportArriveLeaderTick, &psiTeleportFollowerTick);
 	setupTeleportingEntities();
 	changeMusic(Music.teleportIn);
-	for (short i = 0; i < 0x1E; i++) {
+	for (short i = 0; i < maxEntities; i++) {
 		waitUntilNextFrame();
 	}
 	fadeIn(1, 4);
@@ -11127,7 +11127,7 @@ short gasStation() {
 	memset(&palettes[0][0], 0, 0x200);
 	paletteUploadMode = PaletteUpload.full;
 	if (x11 == 0) { //isn't this always true...?
-		unknownC0EFE1(0x1E);
+		unknownC0EFE1(30);
 	}
 	return x11;
 }

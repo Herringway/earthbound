@@ -1660,7 +1660,7 @@ immutable ushort[88] overworldSpriteOAMTileNumbers = [
  * Original_Address: $(DOLLAR)C430EC
  */
 void initializeMovementSpeeds() {
-	for (short i = 0; i < 14; i++) {
+	for (short i = 0; i < WalkingStyle.max + 1; i++) {
 		horizontalMovementSpeeds[i].down.combined = 0;
 		horizontalMovementSpeeds[i].up.combined = 0;
 		verticalMovementSpeeds[i].left.combined = 0;
@@ -1688,11 +1688,11 @@ void initializeMovementSpeeds() {
  * Original_Address: $(DOLLAR)C432B1
  */
 void clearPartyStatus() {
-	for (short i = 0; i < 30; i++) {
+	for (short i = 0; i < maxEntities; i++) {
 		entitySurfaceFlags[i] = 0;
 	}
-	for (short i = 0; i < 6; i++) {
-		for (short j = 0; j < 7; j++) {
+	for (short i = 0; i < partyCharacters.length; i++) {
+		for (short j = 0; j < PartyCharacter.afflictions.length; j++) {
 			partyCharacters[i].afflictions[j] = 0;
 		}
 	}
@@ -1703,7 +1703,7 @@ void clearPartyStatus() {
  * Original_Address: $(DOLLAR)C43317
  */
 void initializePartyPointers() {
-	for (short i = 0; i < 6; i++) {
+	for (short i = 0; i < partyCharacters.length; i++) {
 		chosenFourPtrs[i] = &partyCharacters[i];
 	}
 }
@@ -1865,7 +1865,7 @@ void rowEnemyFlashingOn(short row) {
 void clearTextLine(short window, short height) {
 	ushort* buffer = &windowStats[windowTable[window]].tilemapBuffer[windowStats[windowTable[window]].width * height * 2];
 	for (short i = 0; i != windowStats[windowTable[window]].width * 2; i++) {
-		*(buffer++) = 0x40;
+		*(buffer++) = VRAMTextTile.windowBackground;
 	}
 }
 
@@ -1908,7 +1908,7 @@ void moveTextUpOneLine(short window) {
  * Original_Address: $(DOLLAR)C438B1
  */
 void printNewLine() {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	version(bugfix) { // ensures that even at hyperspeed, text will render
@@ -2172,7 +2172,7 @@ void initializeUsedBG2TileMap() {
  * Original_Address: $(DOLLAR)C43F77
  */
 void printLetter(short tile) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	int tilemapOffset = windowStats[windowTable[currentFocusWindow]].textX +
@@ -2423,7 +2423,7 @@ void printAutoNewline(DisplayTextState* state, const(ubyte)* currentCompressedTe
 	short nextWordLength = 0;
 	const(ubyte)* currentScript = state.script;
 	// no point in newlines without a window
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	// get length of next word
@@ -2670,7 +2670,7 @@ immutable ushort[16] usedBG2TileMasks = [
  * Original_Address: $(DOLLAR)C44C8C
  */
 void finishTextTileRender(short upperTile, short lowerTile) {
-	if (currentFocusWindow == -1) { // no window, exit
+	if (currentFocusWindow == Window.invalid) { // no window, exit
 		return;
 	}
 	if (windowTable[currentFocusWindow] == -1) { // window closed, exit
@@ -2789,7 +2789,7 @@ void freeTileSafe(short tile) {
  * Original_Address: $(DOLLAR)C44E61
  */
 void renderVWFCharacterToWindow(short font, short tile) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	if ((tile == TallTextTile.nonBreakingSpace) || (tile == TallTextTile.equipped) || (tile == TallTextTile.windowBackground)) { // don't use VWF text for these special characters
@@ -2846,7 +2846,7 @@ short getTextWidth(short length, short fontID, const(ubyte)* text) {
 void printPrice(uint value) {
 	ubyte[8] textBuffer;
 	// no window to print in
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	// do not create new lines
@@ -8462,29 +8462,29 @@ void gameOverFadeToMap(short duration) {
  * Original_Address: $(DOLLAR)C4C64D
  */
 short gameOverPrompt() {
-	skippablePause(0x3C);
+	skippablePause(60);
 	displayText(getTextBlock("MSG_SYS_COMEBACK"));
 	closeAllWindowsAndHPPP();
 	if (getEventFlag(EventFlag.sysComeBack) == 0) {
-		skippablePause(0x3C);
+		skippablePause(60);
 		return -1;
 	}
-	if (skippablePause(0x3C) != 0) {
+	if (skippablePause(60) != 0) {
 		return 0;
 	}
-	if (doGameOverPaletteFade(1, 0x5A) != 0) {
-		return 0;
-	}
-	if (skippablePause(1) != 0) {
-		return 0;
-	}
-	if (doGameOverPaletteFade(2, 0x5A) != 0) {
+	if (doGameOverPaletteFade(1, 90) != 0) {
 		return 0;
 	}
 	if (skippablePause(1) != 0) {
 		return 0;
 	}
-	if (doGameOverPaletteFade(3, 0x5A) != 0) {
+	if (doGameOverPaletteFade(2, 90) != 0) {
+		return 0;
+	}
+	if (skippablePause(1) != 0) {
+		return 0;
+	}
+	if (doGameOverPaletteFade(3, 90) != 0) {
 		return 0;
 	}
 	if (skippablePause(1) != 0) {
@@ -8531,7 +8531,7 @@ short respawn() {
 	for (short i = 1; 10 < i; i++) {
 		setEventFlag(i, 0);
 	}
-	for (short i = 0; i < 0x1E; i++) {
+	for (short i = 0; i < maxEntities; i++) {
 		entityCollidedObjects[i] = EntityCollision.nothing;
 	}
 	unknownC064D4();
@@ -8626,7 +8626,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	} else {
 		destBuffer = cast(ushort*)spriteFadeParams.fadeBuffer2;
 	}
-	if (entityID >= 24) {
+	if (entityID >= partyMemberEntityStart) {
 		initEntityFadeBuffer8(entityID, destBuffer, spriteFadeParams.fadeBufferSize);
 	} else {
 		initEntityFadeBuffer4(entityID, destBuffer, spriteFadeParams.fadeBufferSize);

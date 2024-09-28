@@ -96,7 +96,7 @@ void closeFocusWindow() {
 /// $C1008E
 void closeAllWindows() {
 	extraTickOnWindowClose = 1;
-	while (windowTail != -1) {
+	while (windowTail != Window.invalid) {
 		closeWindow(windowStats[windowTail].windowID);
 	}
 	clearInstantPrinting();
@@ -233,7 +233,7 @@ void waitForActionscript() {
 
 /// $C10301
 WinStat* getActiveWindowAddress() {
-	if (windowHead == -1) {
+	if (windowHead == Window.invalid) {
 		return &dummyWindow;
 	}
 	return &windowStats[windowTable[currentFocusWindow]];
@@ -315,7 +315,7 @@ uint setSubRegister(uint arg1) {
 
 /// $C104B5
 short getTextX() {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return 0;
 	}
 	return windowStats[windowTable[currentFocusWindow]].textX;
@@ -340,25 +340,25 @@ void createWindow(short id) {
 		}
 		newWindow = &windowStats[x0E];
 		if (id == Window.carriedMoney) {
-			if (windowHead == -1) {
-				newWindow.next = -1;
+			if (windowHead == Window.invalid) {
+				newWindow.next = Window.invalid;
 				windowTail = x0E;
 			} else {
 				windowStats[windowHead].previous = x0E;
 				newWindow.next = windowHead;
 			}
-			newWindow.previous = -1;
+			newWindow.previous = Window.invalid;
 			windowHead = x0E;
 		} else {
-			if (windowHead == -1) {
-				newWindow.previous = -1;
+			if (windowHead == Window.invalid) {
+				newWindow.previous = Window.invalid;
 				windowHead = x0E;
 			} else {
 				newWindow.previous = windowTail;
 				windowStats[windowTail].next = x0E;
 			}
 			windowTail = x0E;
-			newWindow.next = -1;
+			newWindow.next = Window.invalid;
 		}
 		newWindow.windowID = id;
 		windowTable[id] = x0E;
@@ -557,7 +557,7 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 
 /// $C10BA1
 void drawTallTextTileFocused(short tile) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	drawTallTextTile(currentFocusWindow, tile, windowStats[windowTable[currentFocusWindow]].tileAttributes);
@@ -611,7 +611,7 @@ void moveTextUpOneLineF(short arg1) {
 
 /// $C10CB6
 void printLetterVWF(short letter) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	renderVWFCharacterToWindow(windowStats[windowTable[currentFocusWindow]].font, letter);
@@ -663,7 +663,7 @@ short splitDecimalByDigits(uint value) {
 
 /// $C10DF6
 void printNumber(uint value) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	version(bugfix) {
@@ -695,7 +695,7 @@ void printNumber(uint value) {
 
 /// $C10EB4
 void setCurrentWindowPadding(short arg1) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	windowStats[windowTable[currentFocusWindow]].numPadding = cast(ubyte)arg1;
@@ -727,7 +727,7 @@ void printString(short length, const(ubyte)* text) {
 
 /// $C10F40
 void unknownC10F40(short window) {
-	if (window == -1) {
+	if (window == Window.invalid) {
 		return;
 	}
 	ushort* buffer = &windowStats[windowTable[window]].tilemapBuffer[0];
@@ -751,7 +751,7 @@ void clearFocusWindow() {
 
 /// $C10FAC
 void changeCurrentWindowFont(short arg1) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	if (arg1 == 0x30) {
@@ -764,7 +764,7 @@ void changeCurrentWindowFont(short arg1) {
 
 /// $C10FEA - Sets the text color for the focused window
 void windowSetTextColor(short windowID) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	windowStats[windowTable[currentFocusWindow]].tileAttributes = cast(ushort)(windowID * TilemapFlag.palette1);
@@ -772,7 +772,7 @@ void windowSetTextColor(short windowID) {
 
 /// $C1101C
 int numSelectPrompt(short digits) {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return 0;
 	}
 	short x = windowStats[windowTable[currentFocusWindow]].textX;
@@ -993,7 +993,7 @@ MenuOption* createNewMenuOptionWithUserdata(short userdata, const(ubyte)* label,
  * Original_Address: $(DOLLAR)C1163C
  */
 void printMenuItems() {
-	if (currentFocusWindow == -1) {
+	if (currentFocusWindow == Window.invalid) {
 		return;
 	}
 	if (windowStats[windowTable[currentFocusWindow]].currentOption == -1) {
@@ -1284,9 +1284,9 @@ short selectionMenu(short cancelable) {
 				}
 
 				++idleTimer;
-				if (windowTable[0] == windowTail) { // If the field/overworld commands window is the last opened window...
+				if (windowTable[Window.unknown00] == windowTail) { // If the field/overworld commands window is the last opened window...
 					if (idleTimer > 60) { // If 60 frames have passed
-						if (windowTable[10] == -1) { // If the wallet window is not open
+						if (windowTable[Window.carriedMoney] == -1) { // If the wallet window is not open
 							openHpAndWallet();
 							setWindowFocus(0);
 							// Funky! I didn't expect a goto back to the start here...
@@ -1830,7 +1830,7 @@ void windowTick() {
 		return;
 	}
 	if (redrawAllWindows == 0) {
-		if (windowHead != -1) {
+		if (windowHead != Window.invalid) {
 			drawWindow(windowTail);
 		}
 	} else {

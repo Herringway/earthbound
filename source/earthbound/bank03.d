@@ -71,23 +71,23 @@ immutable short[17] unusedC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
  * Original_Address: $(DOLLAR)C3E012
  */
 immutable CharacterInitialEntityDataEntry[17] characterInitialEntityData = [
-	PartyMember.ness - 1: CharacterInitialEntityDataEntry(OverworldSprite.ness, OverworldSprite.lilNess, ActionScript.partyMemberFollowing, 0x0018),
-	PartyMember.paula - 1: CharacterInitialEntityDataEntry(OverworldSprite.paula, OverworldSprite.lilPaula, ActionScript.partyMemberFollowing, 0x0019),
-	PartyMember.jeff - 1: CharacterInitialEntityDataEntry(OverworldSprite.jeff, OverworldSprite.lilJeff, ActionScript.partyMemberFollowing, 0x001A),
-	PartyMember.poo - 1: CharacterInitialEntityDataEntry(OverworldSprite.poo, OverworldSprite.lilPoo, ActionScript.partyMemberFollowing, 0x001B),
-	PartyMember.pokey - 1: CharacterInitialEntityDataEntry(OverworldSprite.pokey, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.picky - 1: CharacterInitialEntityDataEntry(OverworldSprite.picky, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.king - 1: CharacterInitialEntityDataEntry(OverworldSprite.king, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.tony - 1: CharacterInitialEntityDataEntry(OverworldSprite.tony, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.bubbleMonkey - 1: CharacterInitialEntityDataEntry(OverworldSprite.bubbleMonkey, OverworldSprite.invalid, ActionScript.partyMemberFollowingBubbleMonkey, 0x001C),
-	PartyMember.dungeonMan - 1: CharacterInitialEntityDataEntry(OverworldSprite.dungeonMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.flyingMan1 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.flyingMan2 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.flyingMan3 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.flyingMan4 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.flyingMan5 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.teddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
-	PartyMember.plushTeddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, 0x001C),
+	PartyMember.ness - 1: CharacterInitialEntityDataEntry(OverworldSprite.ness, OverworldSprite.lilNess, ActionScript.partyMemberFollowing, partyMemberEntityStart),
+	PartyMember.paula - 1: CharacterInitialEntityDataEntry(OverworldSprite.paula, OverworldSprite.lilPaula, ActionScript.partyMemberFollowing, partyMemberEntityStart + 1),
+	PartyMember.jeff - 1: CharacterInitialEntityDataEntry(OverworldSprite.jeff, OverworldSprite.lilJeff, ActionScript.partyMemberFollowing, partyMemberEntityStart + 2),
+	PartyMember.poo - 1: CharacterInitialEntityDataEntry(OverworldSprite.poo, OverworldSprite.lilPoo, ActionScript.partyMemberFollowing, partyMemberEntityStart + 3),
+	PartyMember.pokey - 1: CharacterInitialEntityDataEntry(OverworldSprite.pokey, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.picky - 1: CharacterInitialEntityDataEntry(OverworldSprite.picky, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.king - 1: CharacterInitialEntityDataEntry(OverworldSprite.king, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.tony - 1: CharacterInitialEntityDataEntry(OverworldSprite.tony, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.bubbleMonkey - 1: CharacterInitialEntityDataEntry(OverworldSprite.bubbleMonkey, OverworldSprite.invalid, ActionScript.partyMemberFollowingBubbleMonkey, partyMemberEntityStart + 4),
+	PartyMember.dungeonMan - 1: CharacterInitialEntityDataEntry(OverworldSprite.dungeonMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.flyingMan1 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.flyingMan2 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.flyingMan3 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.flyingMan4 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.flyingMan5 - 1: CharacterInitialEntityDataEntry(OverworldSprite.flyingMan, OverworldSprite.invalid, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.teddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
+	PartyMember.plushTeddyBear - 1: CharacterInitialEntityDataEntry(OverworldSprite.teddyBearParty, OverworldSprite.lilTeddyBear, ActionScript.partyMemberFollowing, partyMemberEntityStart + 4),
 ];
 
 /** The overworld entity sizes for each party member
@@ -612,7 +612,7 @@ void closeWindow(short id) {
 	}
 	// was the focus window, so unfocus it
 	if (currentFocusWindow == id) {
-		currentFocusWindow = -1;
+		currentFocusWindow = Window.invalid;
 	}
 	// clear menu
 	resetWindowMenu(id);
@@ -633,7 +633,7 @@ void closeWindow(short id) {
 	windowStats[windowTable[id]].windowID = -1;
 	// remove window from open window list
 	short windowIndex = windowTable[id];
-	windowTable[id] = -1;
+	windowTable[id] = Window.invalid;
 	ushort* windowBuffer = &bg2Buffer[windowStats[windowIndex].y * 32 + windowStats[windowIndex].x];
 	ushort* windowContents = windowStats[windowIndex].tilemapBuffer;
 	for (short i = 0; i < windowStats[windowIndex].width * windowStats[windowIndex].height; i++) {

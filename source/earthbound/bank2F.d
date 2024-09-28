@@ -22046,7 +22046,7 @@ void debugMain() {
 				entityNPCIDs[createOverworldEntity(characterDebugSprite, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
 			}
 			if ((padPress[1] & Pad.b) != 0) {
-				for (short i = 0; i < 0x1E; i++) {
+				for (short i = 0; i < maxEntities; i++) {
 					if (entityScriptTable[i] != -1) {
 						entityPathfindingState[i] = 0;
 					}
