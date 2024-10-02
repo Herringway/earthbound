@@ -26,6 +26,7 @@ dub.selections.json
 *.ebsave.bak
 gamecontrollerdb.txt
 settings.yml
+settings.yaml
 *.pdb
 *.cgram
 *.oam
@@ -38,8 +39,9 @@ settings.yml
 *.srm
 *.sym
 *.dmp
-*.bin
+*.sav
 earthbound.planet
 save.yaml
-dump
+/dump
+/data
 imgui.ini
