@@ -2440,10 +2440,53 @@ void handleEscalatorMovement() {
 		unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	}
 	if (1 != 0) { //wat
-		gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction * 4].combined;
-		gameState.leaderY.combined += verticalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction * 4].combined;
+		gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction].combined;
+		gameState.leaderY.combined += verticalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction].combined;
 	}
 	gameState.leaderHasMoved = 1;
+}
+
+unittest {
+	if (romDataLoaded) {
+		// up, leftward
+		enemyHasBeenTouched = 0;
+		battleSwirlCountdown = 0;
+		escalatorEntranceDirection = 0;
+		gameState.firstPartyMemberEntity = 24;
+		gameState.leaderX.combined = 0x1B200000;
+		gameState.leaderY.combined = 0x1D680000;
+		initializeMovementSpeeds();
+		// laoding map needs frame waiting...
+		runGameTest!({loadMapAtPosition(6944, 7528); })((_){});
+		handleEscalatorMovement();
+		assert(ladderStairsTileX == 867);
+		assert(ladderStairsTileY == 941);
+		assert(gameState.leaderX.combined == 0x1B1F6F30);
+		assert(gameState.leaderY.combined == 0x1D676F30);
+		assert(gameState.leaderHasMoved);
+		handleEscalatorMovement();
+		assert(gameState.leaderX.combined == 0x1B1EDE60);
+		assert(gameState.leaderY.combined == 0x1D66DE60);
+		// up, rightward
+		enemyHasBeenTouched = 0;
+		battleSwirlCountdown = 0;
+		escalatorEntranceDirection = 0x100;
+		gameState.firstPartyMemberEntity = 24;
+		gameState.leaderX.combined = 0x1AA00000;
+		gameState.leaderY.combined = 0x1C880000;
+		initializeMovementSpeeds();
+		// laoding map needs frame waiting...
+		runGameTest!({loadMapAtPosition(6816, 7304); })((_){});
+		handleEscalatorMovement();
+		assert(ladderStairsTileX == 852);
+		assert(ladderStairsTileY == 913);
+		assert(gameState.leaderX.combined == 0x1AA090D0);
+		assert(gameState.leaderY.combined == 0x1C876F30);
+		assert(gameState.leaderHasMoved);
+		handleEscalatorMovement();
+		assert(gameState.leaderX.combined == 0x1AA121A0);
+		assert(gameState.leaderY.combined == 0x1C86DE60);
+	}
 }
 
 /** Handles movement while riding a bicycle.

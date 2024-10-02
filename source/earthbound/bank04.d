@@ -5853,6 +5853,7 @@ short recordAutoMovementDemo(short startX, short startY, short destX, short dest
 unittest {
 	if (romDataLoaded) {
 		initializeMovementSpeeds();
+		clearAutoMovementDemo();
 		assert(recordAutoMovementDemo(6956, 7533, 6944, 7528) == 9);
 		assert(autoMovementDemoBuffer[0] == DemoEntry(2, Pad.left | Pad.up));
 		assert(autoMovementDemoBuffer[1] == DemoEntry(1, Pad.left));
@@ -9149,8 +9150,8 @@ short displayTownMap() {
 
 unittest {
 	if (romDataLoaded) {
-		gameState.leaderX.integer = 0x782; // approx middle of downtown onett
-		gameState.leaderY.integer = 0x5C7;
+		gameState.leaderX.combined = 0x00000782; // approx middle of downtown onett
+		gameState.leaderY.combined = 0x000005C7;
 		runGameTest!displayTownMap((frame) {
 			// skip the first three frames, where the map hasn't loaded yet
 			if (frame < 3) {
