@@ -6234,6 +6234,14 @@ enum CollisionDirectionMask {
 }
 
 ///
+enum ActionOrder {
+	random = 0, /// Each action is equally likely
+	randomBiased = 1, /// Randomly-selected actions, but action 1 is twice as likely as 2 and 3, and action 0 is twice as likely as action 1
+	inOrder = 2, /// Actions are executed sequentially, looping around from 3 to 0
+	randomPair = 3, /// Action 0 or 1 is chosen at random, followed by action 2 or 3 chosen at random, repeating
+}
+
+///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
@@ -6518,7 +6526,7 @@ struct Battler {
 	ubyte vramSpriteIndex; ///
 	ubyte spriteX; ///
 	ubyte spriteY; ///
-	ushort initiative; ///
+	ushort turnSpeed; /// Speed for this turn, set to +/-50% normal speed
 	ubyte spriteBlinkFrames; /// While non-zero, the sprite will not be drawn every other 3 frames (ie drawn, drawn, drawn, not drawn, not drawn, not drawn, repeating)
 	ubyte enemyAttackFlashFrames; /// Frames left for the enemy attacking flash effect
 	ubyte isFlashing; ///

@@ -2455,7 +2455,12 @@ void resolveTargetting(Battler* battler) {
 	tracef("Target flags: %032b", battlerTargetFlags);
 }
 
-/// $C24821
+/** Game loop: Battle mode. Fight enemies to the death
+ *
+ * If battleMode is set to BattleMode.noBattle, a special debugging mode is activated, allowing you to manipulate enemies and party members
+ * Returns: The way the battle ended (see SpecialDefeat for values)
+ * Original_Address: $(DOLLAR)C24821
+ */
 short battleRoutine() {
 	short battleResult;
 	ushort battleOver;
@@ -2466,6 +2471,7 @@ short battleRoutine() {
 	ushort layer1;
 	short debugPartyMembersSelected;
 	short debugNumberInput;
+	// entering debug mode means enemies aren't prepared, so do some basic prep here
 	if (battleMode == BattleMode.noBattle) {
 		debugNumberInput = 1;
 		debugPartyMembersSelected = 1;
@@ -2478,21 +2484,26 @@ short battleRoutine() {
 		currentBattleGroup = 1;
 		enemiesInBattleIDs[0] = battleEntryPointerTable[0].enemies[0].enemyID;
 	}
+	// initialize giygas battle state
 	currentGiygasPhase = 0;
-	if (currentBattleGroup == 0x1DB) {
+	if (currentBattleGroup == EnemyGroup.unknown475) {
 		currentGiygasPhase = GiygasPhase.battleStarted;
 	}
+	// prepare background variables
 	layer1 = battleEntryBGTable[currentBattleGroup].layer1;
 	layer2 = battleEntryBGTable[currentBattleGroup].layer2;
 	letterboxStyle = cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle;
+	// debug mode will loop forever, but normal battles will only loop once
 	infiniteBattleLoop: do {
 		ushort initiative;
+		// prep some battle state
 		mirrorEnemy = 0;
 		runningAway = 0;
 		battleItemUsed = 0;
 		turnCount = 0;
 		battleMoneyScratch = 0;
 		battleEXPScratch = 0;
+		// load graphics. sprites, backgrounds, text layer...
 		prepareForImmediateDMA();
 		unknownC2E0E7();
 		setBattleModeLayerConfig();
@@ -2500,12 +2511,14 @@ short battleRoutine() {
 		loadWindowGraphics(WindowGraphicsToLoad.all);
 		loadBattleBG(layer1, layer2, letterboxStyle);
 		uploadBattleSprites();
+		// wipe battler table before initialization
 		for (short i = 0; i < battlersTable.length; i++) {
 			memset(&battlersTable[i], 0, Battler.sizeof);
 		}
 		highestEnemyLevelInBattle = 0;
 		ushort row = 0;
-		for (short i = 0; i < 6; i++ ) {
+		// initialize party members
+		for (short i = 0; i < gameState.partyMembers.length; i++ ) {
 			if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
 				battleInitPlayerStats(gameState.partyMembers[i], &battlersTable[i]);
 			} else if (gameState.partyMembers[i] >= 5) {
@@ -2520,18 +2533,24 @@ short battleRoutine() {
 				row++;
 			}
 		}
+		// initialize all enemies in battle, but limit them if they would overflow the screen
 		capEnemiesByWidth();
 		for (short i = 0; i < enemiesInBattle; i++) {
 			battleInitEnemyStats(enemiesInBattleIDs[i], &battlersTable[i + 8]);
 		}
+		// get the enemy sprites ready
 		setInitialBattleSpritePositioning();
 		drawBattleSprites();
+		// load text palette
 		loadTextPalette();
 		preparePaletteUpload(PaletteUpload.full);
+		// change to battle music
 		battleModeFlag = 1;
 		changeMusic(enemyConfigurationTable[enemiesInBattleIDs[0]].music);
+		// done loading, start fading in
 		setForceBlank();
 		fadeIn(1, 1);
+		// debug mode: present a menu for fiddling with battle parameters
 		if (battleMode == BattleMode.noBattle) {
 			setPartyLevelInBattle(debugNumberInput);
 			short x02 = 0;
@@ -2614,12 +2633,15 @@ short battleRoutine() {
 			}
 			changeMusic(enemyConfigurationTable[enemiesInBattleIDs[0]].music);
 		}
+		// add buzz-buzz to party if flag is set
 		if (getEventFlag(EventFlag.bunbun) != 0) {
 			battleInitEnemyStats(EnemyID.buzzBuzz, &battlersTable[6]);
 			battlersTable[6].row = 1;
 			battlersTable[6].side = BattleSide.friends;
 			battlersTable[6].npcID = EnemyID.buzzBuzz;
 		}
+		// if any party members are possessed, add a tiny lil ghost
+		// BEWARE: this will override buzz-buzz!
 		for (short i = 0; i < 6; i++) {
 			if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
 				if (partyCharacters[gameState.partyMembers[i] - 1].afflictions[1] == Status1.possessed) {
@@ -2628,9 +2650,12 @@ short battleRoutine() {
 				}
 			}
 		}
+		// show HP/PP windows at bottom of screen
 		showHPPPWindows();
+		// decide which item to drop. pick a random enemy and assume it drops the item
 		short enemyDropSelected = enemiesInBattleIDs[randLimit(enemiesInBattle)];
 		itemDropped = enemyConfigurationTable[enemyDropSelected].itemDropped;
+		// throw the dice, wipe the chosen drop if the odds aren't in the player's favour
 		switch (enemyConfigurationTable[enemyDropSelected].itemDropRate) {
 			case 0:
 				if ((rand() & 0x7F) != 0) {
@@ -2664,6 +2689,7 @@ short battleRoutine() {
 				break;
 			default: break;
 		}
+		// no item dropped? pick a consolation prize, if any eligible enemies are in the battle
 		if (itemDropped == 0) {
 			for (short i = 0; i < consolationItemTable.length; i++) {
 				for (short j = 8; j < battlersTable.length; j++) {
@@ -2677,6 +2703,8 @@ short battleRoutine() {
 				}
 			}
 		}
+		tracef("Item dropped: %s", itemDropped == 0 ? "None" : itemData[itemDropped].name.printable);
+		// decide a turn order bias depending on how the battle was initiated
 		initiative = Initiative.normal;
 		switch (battleInitiative) {
 			case 0:
@@ -2690,68 +2718,88 @@ short battleRoutine() {
 			default: break;
 		}
 		battleInitiative = 0;
+		// print the opening text for the enemy we collided with
 		createWindow(Window.textBattle);
 		currentAttacker = &battlersTable[8];
 		fixAttackerName(1);
 		displayInBattleText(getTextBlock(enemyConfigurationTable[enemiesInBattleIDs[0]].encounterTextPointer));
+		// you surprised the enemy, print the text for it too
 		if (initiative == Initiative.partyFirst) {
 			displayInBattleText(getTextBlock("MSG_BTL_SENSEI_PC"));
 		}
+		// print messages for initial statuses
 		for (short i = 0; i < enemiesInBattle; i++) {
 			currentTarget = &battlersTable[i];
 			fixTargetName();
-			if (currentTarget.afflictions[2] == Status2.asleep) {
+			// enemy asleep
+			if (currentTarget.afflictions[StatusGroups.Temporary] == Status2.asleep) {
 				displayInBattleText(getTextBlock("MSG_BTL_AT_START_NEMURI"));
 			}
-			if (currentTarget.afflictions[4] != 0) {
+			// can't concentrate
+			if (currentTarget.afflictions[StatusGroups.Concentration] != 0) {
 				displayInBattleText(getTextBlock("MSG_BTL_AT_START_FUUIN"));
 			}
-			if (currentTarget.afflictions[3] == Status3.strange) {
+			// feeling strange
+			if (currentTarget.afflictions[StatusGroups.Strangeness] == Status3.strange) {
 				displayInBattleText(getTextBlock("MSG_BTL_AT_START_HEN"));
 			}
 		}
 		closeFocusWindow();
 		battleOver = 0;
+		// set default battle end
 		specialDefeat = battleOver;
+		// the battle has begun, loop until it's done
 		turnLoop: while (battleOver == 0) {
 			turnCount++;
 			unknownC2F917();
+			// new turn, reset turn order and hasTakenTurn for everyone
 			for (short i = 0; i < battlersTable.length; i++) {
 				battlersTable[i].hasTakenTurn = 0;
 				if (battlersTable[i].consciousness == 0) {
 					continue;
 				}
-				battlersTable[i].initiative = cast(ubyte)fiftyPercentVariance(battlersTable[i].speed);
-				if (battlersTable[i].initiative == 0) {
-					battlersTable[i].initiative = 1;
+				battlersTable[i].turnSpeed = cast(ubyte)fiftyPercentVariance(battlersTable[i].speed);
+				// 0 speed is reserved for low prioriity actions, so limit to 1
+				if (battlersTable[i].turnSpeed == 0) {
+					battlersTable[i].turnSpeed = 1;
 				}
 			}
+			// reset auto-battle heal flag for party members
 			for (short i = 0; i < 4; i++) {
 				partyCharacters[i].isAutoHealed = 0;
 			}
+			// let the player pick their actions
 			short partyMemberBattleSelectionOrder = 0;
-			for (short i = 0; i < 6; i++) {
+			for (short i = 0; i < gameState.partyMembers.length; i++) {
 				short chosenAction;
-				checkDeadPlayers();
+				updatePlayerConsciousness();
+				// if party's dead, skip to the end
 				if (countChars(BattleSide.friends) == 0) {
 					createWindow(Window.textBattle);
 					goto TurnOver;
 				}
+				// choose actions only for playable characters in party
 				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
+					// if this is a surprise round, party is running, character is unable to act (due to enemy mirroring, unconsciousness, diamondization, being asleep or solidified), skip this character
 					if ((initiative == Initiative.enemiesFirst) || (initiative == Initiative.runningAway) || (initiative == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy != 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
 						chosenAction = BattleActions.noEffect;
 						battleItemUsed = 0;
 					} else {
+						// pop active character's HP/PP window up while player selects an action for them
 						swapRaisedHPPPWindow(i);
 						chosenAction = battleSelectionMenu(gameState.partyMembers[i], partyMemberBattleSelectionOrder);
+						// put window back down
 						resetActivePartyMemberHPPPWindow();
 						closeFocusWindow();
+						// if select+start were pressed in debug mode (but not battle debug mode), win battle with no rewards
 						if ((battleMode != BattleMode.noBattle) && (chosenAction == -1)) {
 							battleResult = BattleResult.won;
 							break turnLoop;
 						}
+						// try running away if that was selected
 						if (chosenAction == BattleActions.runAway) {
 							chosenAction = BattleActions.useNoEffect;
+							// always succeed if player surprised enemy
 							if (initiative == Initiative.partyFirst) {
 								initiative = Initiative.runningAlwaysSuccessful;
 							} else {
@@ -2759,9 +2807,12 @@ short battleRoutine() {
 							}
 							runningAway = 1;
 						}
+						// if select+start were pressed in battle debug mode, go back to battle debug menu
+						// shouldn't be possible since that requires debug mode and the earlier exit would have been taken instead. vestigial?
 						if (chosenAction == -1) {
 							continue infiniteBattleLoop;
 						}
+						// no action chosen, go back to previous character
 						if (chosenAction == BattleActions.noEffect) {
 							if (partyMemberBattleSelectionOrder != 0) {
 								partyMemberBattleSelectionOrder--;
@@ -2771,12 +2822,15 @@ short battleRoutine() {
 							i--;
 							continue;
 						}
+						// record that the player chose something for this party member
 						partyMembersWithSelectedActions[partyMemberBattleSelectionOrder] = i;
 						partyMemberBattleSelectionOrder++;
-						if (chosenAction == 1) {
-							chosenAction = 0;
+						// replace BattleActions.useNoEffect with BattleActions.noEffect
+						if (chosenAction == BattleActions.useNoEffect) {
+							chosenAction = BattleActions.noEffect;
 						}
 					}
+					// find party member's battler entry and prepare it for the upcoming turn
 					for (short j = 0; j < battlersTable.length; j++) {
 						if (battlersTable[j].consciousness == 0) {
 							continue;
@@ -2788,6 +2842,7 @@ short battleRoutine() {
 							continue;
 						}
 						battlersTable[j].currentAction = chosenAction;
+						// if using an item, make sure it's tracked
 						if (battleItemUsed != 0) {
 							battlersTable[j].actionItemSlot = battleMenuSelection.param1;
 							battlersTable[j].currentActionArgument = battleItemUsed;
@@ -2795,10 +2850,13 @@ short battleRoutine() {
 							battlersTable[j].actionItemSlot = 0;
 							battlersTable[j].currentActionArgument = battleMenuSelection.param1;
 						}
+						// set up targetting
 						battlersTable[j].actionTargetting = battleMenuSelection.targetting;
 						battlersTable[j].currentTarget = battleMenuSelection.selectedTarget;
+						// translate a targetted party member to battler targetting as needed
 						if (battleMenuSelection.targetting == (Targetted.allies | Targetted.single)) {
 							for (short k = 0; k < 6; k++) {
+								// skip dead and nonmatching party members
 								if (battlersTable[k].consciousness == 0) {
 									continue;
 								}
@@ -2812,6 +2870,7 @@ short battleRoutine() {
 								break;
 							}
 						}
+						// set guarding flag here so that its efficacy isn't affected by turn order
 						if (battlersTable[j].currentAction == BattleActions.guard) {
 							battlersTable[j].guarding = 1;
 						} else {
@@ -2821,7 +2880,9 @@ short battleRoutine() {
 					}
 				}
 			}
+			// select enemy & NPC actions
 			for (short i = 0; i < battlersTable.length; i++) {
+				// skip dead battlers and player characters, unless they're mirroring
 				if (((battlersTable[i].consciousness == 0) || (battlersTable[i].side != BattleSide.foes)) && (battlersTable[i].npcID == 0)) {
 					if (battlersTable[i].id != 4) {
 						continue;
@@ -2830,80 +2891,95 @@ short battleRoutine() {
 						continue;
 					}
 				}
+				// if players got a surprise round, enemies do nothing
 				if (((initiative == Initiative.partyFirst) || (initiative == Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
-					battlersTable[i].currentAction = 0;
+					battlersTable[i].currentAction = BattleActions.noEffect;
 					continue;
 				}
+				// if enemies got a surprise round, npcs do nothing
 				if ((initiative == Initiative.enemiesFirst) && (battlersTable[i].side == BattleSide.friends)) {
-					battlersTable[i].currentAction = 0;
+					battlersTable[i].currentAction = BattleActions.noEffect;
 					continue;
 				}
+				// loop just in case we get an enemy extension action
 				while (true) {
-					const(Enemy)* x06;
-					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == 4)) {
-						x06 = &enemyConfigurationTable[mirrorEnemy];
+					// pick enemy entry corresponding to this battler
+					const(Enemy)* enemyDefinition;
+					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == PartyMember.poo)) {
+						enemyDefinition = &enemyConfigurationTable[mirrorEnemy];
 					} else {
-						x06 = &enemyConfigurationTable[battlersTable[i].id];
+						enemyDefinition = &enemyConfigurationTable[battlersTable[i].id];
 					}
-					short x21;
-					switch (x06.actionOrder) {
-						case 0:
-							x21 = rand() & 3;
+					// pick an action slot, according to their defined order
+					short actionSlot;
+					switch (enemyDefinition.actionOrder) {
+						case ActionOrder.random:
+							actionSlot = rand() & 3;
 							break;
-						case 1:
+						case ActionOrder.randomBiased:
 							switch (rand() & 7) {
 								case 0:
-									x21 = 3;
+									actionSlot = 3;
 									break;
 								case 1:
-									x21 = 2;
+									actionSlot = 2;
 									break;
 								case 2:
 								case 3:
-									x21 = 1;
+									actionSlot = 1;
 									break;
 								default:
-									x21 = 0;
+									actionSlot = 0;
 									break;
 							}
 							break;
-						case 2:
-							x21 = battlersTable[i].actionOrderVar;
+						case ActionOrder.inOrder:
+							actionSlot = battlersTable[i].actionOrderVar;
 							battlersTable[i].actionOrderVar = (battlersTable[i].actionOrderVar + 1) & 3;
 							break;
-						case 3:
-							x21 = (battlersTable[i].actionOrderVar * 2) + (rand() & 1);
+						case ActionOrder.randomPair:
+							actionSlot = (battlersTable[i].actionOrderVar * 2) + (rand() & 1);
 							battlersTable[i].actionOrderVar = (battlersTable[i].actionOrderVar + 1) & 1;
 							break;
 						default: break;
 					}
-					battlersTable[i].currentAction = x06.actions[x21];
-					battlersTable[i].currentActionArgument = x06.actionArgs[x21];
+
+					battlersTable[i].currentAction = enemyDefinition.actions[actionSlot];
+					battlersTable[i].currentActionArgument = enemyDefinition.actionArgs[actionSlot];
+					// if we picked the enemy extend action, swap ID and try picking another action from the new enemy's actions
 					if (battlersTable[i].currentAction != BattleActions.enemyExtender) {
 						break;
 					}
-					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == 4)) {
+					// also update mirrored enemy ID if applicable
+					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == PartyMember.poo)) {
 						mirrorEnemy = battlersTable[i].currentActionArgument;
 						continue;
 					}
+					// set new ID
 					battlersTable[i].id = battlersTable[i].currentActionArgument;
 				}
+				// make sure stealing battlers go last, otherwise item usage gets complicated
 				if (battlersTable[i].currentAction == BattleActions.steal) {
 					battlersTable[i].currentActionArgument = selectStealableItem();
-					battlersTable[i].initiative = 0;
+					battlersTable[i].turnSpeed = 0;
 				}
+				// set guard flag early, as above
 				if (battlersTable[i].currentAction == BattleActions.guard) {
 					battlersTable[i].guarding = 1;
 				} else {
 					battlersTable[i].guarding = 0;
 				}
+				// pick a target for the action we chose
 				chooseTarget(&battlersTable[i]);
 			}
 			createWindow(Window.textBattle);
+			// enemies got a surprise attack? tell the player now
 			if (initiative == Initiative.enemiesFirst) {
 				displayInBattleText(getTextBlock("MSG_BTL_SENSEI_MON"));
 			}
+			// try running now
 			if (runningAway != 0) {
+				// look for the highest speeds among both enemies and player characters
 				short highestSpeedEnemy;
 				short highestSpeedFriend;
 				for (short i = 0; i < battlersTable.length; i++) {
@@ -2914,9 +2990,11 @@ short battleRoutine() {
 						continue;
 					}
 					if (battlersTable[i].side == BattleSide.foes) {
+						// disable running from bosses entirely
 						if (enemyConfigurationTable[battlersTable[i].id].boss != 0) {
 							goto RunFailure;
 						}
+						// skip enemy battlers that can't move for any reason
 						if (battlersTable[i].afflictions[0] == Status0.unconscious) {
 							continue;
 						}
@@ -2944,7 +3022,9 @@ short battleRoutine() {
 						}
 					}
 				}
+				// running succeeds if no enemies can move, this is a player's surprise attack round, or if an RNG roll succeeds (turn count x 10 + fastest battler speed diff%)
 				if ((highestSpeedEnemy == 0) || (initiative == Initiative.runningAlwaysSuccessful) || ((turnCount * 10 + highestSpeedFriend >= highestSpeedEnemy) && (randLimit(100) < (turnCount * 10 + highestSpeedFriend - highestSpeedEnemy)))) {
+					// exit battle, but skip rewards
 					battleResult = BattleResult.won;
 					displayInBattleText(getTextBlock("MSG_BTL_PLAYER_FLEE"));
 					break turnLoop;
@@ -2954,12 +3034,16 @@ short battleRoutine() {
 					displayInBattleText(getTextBlock("MSG_BTL_PLAYER_FLEE_NG"));
 				}
 			}
+			// surprise rounds have been decided, so clear that now
 			initiative = Initiative.normal;
+			// execute all battler actions
 			while (battleOver == 0) {
-				checkDeadPlayers();
+				updatePlayerConsciousness();
+				// don't execute any more actions if at least one of the sides is dead
 				if ((countChars(BattleSide.friends) != 0) && (countChars(BattleSide.foes) != 0)) {
-					short x04 = -1;
-					short x = 0;
+					// find battler with greatest speed who can act and hasn't yet
+					short nextMovingBattler = -1;
+					short highestSpeed = 0;
 					for (short i = 0; i < battlersTable.length; i++) {
 						if (battlersTable[i].consciousness == 0) {
 							continue;
@@ -2967,20 +3051,24 @@ short battleRoutine() {
 						if (battlersTable[i].hasTakenTurn != 0) {
 							continue;
 						}
-						if (battlersTable[i].initiative < x) {
+						if (battlersTable[i].turnSpeed < highestSpeed) {
 							continue;
 						}
-						x04 = i;
-						x = battlersTable[i].initiative;
+						nextMovingBattler = i;
+						highestSpeed = battlersTable[i].turnSpeed;
 					}
-					if (x04 == -1) {
+					// no more battlers left to act this turn, so exit
+					if (nextMovingBattler == -1) {
 						break;
 					}
-					currentAttacker = &battlersTable[x04];
+					// prepare attacker
+					currentAttacker = &battlersTable[nextMovingBattler];
 					currentAttacker.hasTakenTurn = 1;
+					// battler's dead somehow, do nothing and move on to next battler
 					if ((currentAttacker.afflictions[0] == Status0.unconscious) || (currentAttacker.afflictions[0] == Status0.diamondized)) {
 						continue;
 					}
+					// if battler's unable to move and trying to use an action that requires movement, override action with a failure
 					if ((currentAttacker.afflictions[0] == Status0.paralyzed) || (currentAttacker.afflictions[2] == Status2.immobilized)) {
 						if ((battleActionTable[currentAttacker.currentAction].type != ActionType.psi) &&
 						(currentAttacker.currentAction != BattleActions.pray) &&
@@ -3003,22 +3091,27 @@ short battleRoutine() {
 							}
 						}
 					}
+					// if battler's asleep, override action
 					if ((currentAttacker.afflictions[2] == Status2.asleep) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.action253;
 						currentAttacker.actionItemSlot = 0;
 					}
+					// if battler's solidified, override action
 					if ((currentAttacker.afflictions[2] == Status2.solidified) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.action255;
 						currentAttacker.afflictions[2] = 0;
 						currentAttacker.actionItemSlot = 0;
 					}
+					// if battler's trying to use PSI but can't concentrate, override action
 					if ((currentAttacker.afflictions[4] != 0) && (battleActionTable[currentAttacker.currentAction].type == ActionType.psi) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.action256;
 					}
+					// if battler's homesick and got unlucky this turn, override action
 					if ((currentAttacker.afflictions[5] == Status5.homesick) && (currentAttacker.currentAction != 0) && ((rand() & 7) == 0)) {
 						currentAttacker.currentAction = BattleActions.action251;
 						currentAttacker.actionItemSlot = 0;
 					}
+					// resolve party targetting now
 					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == ActionTarget.none)) {
 						if (currentAttacker.side == BattleSide.friends) {
 							currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
@@ -3028,6 +3121,7 @@ short battleRoutine() {
 							targetEnemyByBattlerIndex(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
 						}
 					}
+					// handle damage from status effects now
 					short statusDamage = 0;
 					currentTarget = currentAttacker;
 					fixAttackerName(0);
@@ -3052,6 +3146,7 @@ short battleRoutine() {
 						default: break;
 					}
 					loseHPStatus(currentAttacker, statusDamage);
+					// did battler die from status damage? handle that
 					if (currentAttacker.hp == 0) {
 						koTarget(currentAttacker);
 						if (countChars(BattleSide.friends) == 0) {
@@ -3062,12 +3157,15 @@ short battleRoutine() {
 						}
 						goto TurnOver;
 					}
+					// choose targets for enemy actions now
 					if (currentAttacker.side == BattleSide.foes) {
 						chooseTarget(currentAttacker);
+						// pick an item if we're stealing, too
 						if (currentAttacker.currentAction == BattleActions.steal) {
 							currentAttacker.currentActionArgument = selectStealableItem();
 						}
 					}
+					// turn selected targetting into real targets
 					resolveTargetting(currentAttacker);
 					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();
@@ -3077,32 +3175,37 @@ short battleRoutine() {
 							removeStatusUntargettableTargets();
 						}
 					}
-					short x31 = 0;
+					// retarget if we're feeling strange (100% chance) or mushroomized (25%)
+					short showConfusedRetargettingText = 0;
 					if (((currentAttacker.afflictions[1] == Status1.mushroomized) && (randLimit(100) < 25)) || (currentAttacker.afflictions[3] == Status3.strange)) {
 						if (battleActionTable[currentAttacker.currentAction].target != 0) {
-							x31 = 1;
+							showConfusedRetargettingText = 1;
 							while (battlerTargetFlags == 0) {
 								feelingStrangeRetargetting();
 								removeStatusUntargettableTargets();
 							}
 						}
 					}
+					// can we still steal the item we wanted? if not, clear the chosen item now
 					if (currentAttacker.currentAction == BattleActions.steal) {
 						if (unknownC24348(currentAttacker.currentActionArgument) != 0) {
 							currentAttacker.currentActionArgument = 0;
 						}
 					}
+					// set up battler names and argument for action's text
 					fixAttackerName(0);
 					setCItem(currentAttacker.currentActionArgument);
 					unknownC23E32();
-					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= 4)) {
-						for (short i = 0; i < 6; i++) {
+					// if attacker is player-controlled, pop up their HP/PP window
+					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= PartyMember.poo)) {
+						for (short i = 0; i < gameState.partyMembers.length; i++) {
 							if (gameState.partyMembers[i] == currentAttacker.id) {
 								swapRaisedHPPPWindow(i);
 								break;
 							}
 						}
 					}
+					// fail if we don't have enough PP, pay cost if we do
 					if (battleActionTable[currentAttacker.currentAction].ppCost != 0) {
 						if (battleActionTable[currentAttacker.currentAction].ppCost > currentAttacker.ppTarget) {
 							displayInBattleText(getTextBlock("MSG_BTL_PSI_CANNOT"));
@@ -3111,7 +3214,9 @@ short battleRoutine() {
 							unknownC2BCB9(currentAttacker, battleActionTable[currentAttacker.currentAction].ppCost);
 						}
 					}
+					// do the enemy attack flash effect if applicable
 					if ((currentAttacker.side == BattleSide.foes) && (currentAttacker.currentAction != 0)) {
+						enum effectDuration = 12; // frames
 						switch (battleActionTable[currentAttacker.currentAction].type) {
 							case ActionType.physical:
 							case ActionType.piercingPhysical:
@@ -3125,12 +3230,13 @@ short battleRoutine() {
 								break;
 							default: break;
 						}
-						currentAttacker.enemyAttackFlashFrames = 12;
-						for (short i = 0; i < 12; i++) {
+						currentAttacker.enemyAttackFlashFrames = effectDuration;
+						for (short i = 0; i < effectDuration; i++) {
 							windowTick();
 						}
 					}
-					if (x31 != 0) {
+					// show confusion retarget text now if applicable
+					if (showConfusedRetargettingText != 0) {
 						if (currentAttacker.afflictions[3] == Status3.strange) {
 							displayInBattleText(getTextBlock("MSG_BTL_RND_ACT_HEN"));
 						}
@@ -3138,17 +3244,22 @@ short battleRoutine() {
 							displayInBattleText(getTextBlock("MSG_BTL_RND_ACT_KINOKO"));
 						}
 					}
+					// show action text
 					unknownC1DD9F(getTextBlock(battleActionTable[currentAttacker.currentAction].text));
+					// decide what the action causes now
 					if (currentAttacker.currentAction != 0) {
+						// wait for effects to finish
 						while (isBattleAnimationPlaying()) {
 							windowTick();
 						}
+						// perform action on all applicable battlers
 						for (short i = 0; i < battlersTable.length; i++) {
 							if (isCharacterTargetted(i) == 0) {
 								continue;
 							}
 							currentTarget = &battlersTable[i];
 							fixTargetName();
+							// skip the dead if this action isn't allowlisted
 							if (currentTarget.afflictions[0] == Status0.unconscious) {
 								for (short j = 0; deadTargettableActions[j] != 0; j++) {
 									if (currentAttacker.currentAction == deadTargettableActions[j]) {
@@ -3159,27 +3270,35 @@ short battleRoutine() {
 								break;
 							}
 							CurrentTargetOK:
+							// no actual effects? skip
 							if (battleActionTable[currentAttacker.currentAction].func is null) {
 								continue;
 							}
+							// run action's code
 							battleActionTable[currentAttacker.currentAction].func();
-							checkDeadPlayers();
+							// did anyone die?
+							updatePlayerConsciousness();
 							redrawAllWindows = 1;
+							// items MUST be removed manually if the turn loop is terminated early
+							// one of the sides won, end the turn immediately
 							if ((countChars(BattleSide.friends) == 0) || (countChars(BattleSide.foes) == 0)) {
 								removeUsedItem();
 								goto TurnOver;
 							}
+							// did action cause a special battle end?
 							switch (specialDefeat) {
 								case SpecialDefeat.giygasDefeated:
 									battleResult = BattleResult.won;
 									break turnLoop;
 								case SpecialDefeat.bossDefeated:
+									// killing a boss has the same effect as killing every enemy
 									removeUsedItem();
 									goto EnemiesAreDead;
 								case SpecialDefeat.teleported:
 									battleResult = BattleResult.teleported;
 									break turnLoop;
 								default:
+									// nothing special, just wait for damage effect frames to finish
 									while(screenEffectMinimumWaitFrames != 0) {
 										windowTick();
 									}
@@ -3188,16 +3307,22 @@ short battleRoutine() {
 						}
 					}
 					EndOfTurn:
+					// for player-controlled battlers,do some maintenance
 					if (currentAttacker.side == BattleSide.friends) {
+						// remove any used items
 						removeUsedItem();
-						if ((mirrorEnemy != 0) && (currentAttacker.id == 4) && (--mirrorTurnTimer == 0)) {
+						// decrease mirror countdown, end if time is up
+						if ((mirrorEnemy != 0) && (currentAttacker.id == PartyMember.poo) && (--mirrorTurnTimer == 0)) {
 							mirrorEnemy = 0;
 							copyMirrorData(currentAttacker, &mirrorBattlerBackup);
 							displayInBattleText(getTextBlock("MSG_BTL_NEUTRALIZE_METAMORPH"));
 						}
+						// lower HP/PP window
 						resetActivePartyMemberHPPPWindow();
 					}
-					checkDeadPlayers();
+					// did anyone die while the text printed?
+					updatePlayerConsciousness();
+					// see if any status effects naturally wear off this turn
 					currentTarget = currentAttacker;
 					fixTargetName();
 					switch (currentAttacker.afflictions[2]) {
@@ -3219,45 +3344,58 @@ short battleRoutine() {
 							break;
 						default: break;
 					}
+					// decrease can't-concentrate stage by 1 as needed
 					if (currentAttacker.afflictions[4] != 0) {
 						currentAttacker.afflictions[4]--;
 						if (currentAttacker.afflictions[4] == 0) {
 							displayInBattleText(getTextBlock("MSG_BTL_FUUIN_OFF"));
 						}
 					}
+					// reset battler sprites
 					for (short i = 0; i < battlersTable.length; i++) {
 						battlersTable[i].useAltSpritemap = 0;
 					}
-					checkDeadPlayers();
+					// did anyone die while the text printed?
+					updatePlayerConsciousness();
+					// make sure the HP/PP windows are displayed
 					showHPPPWindows();
 				}
 				TurnOver:
+				// did player lose?
 				if (countChars(BattleSide.friends) == 0) {
 					battleResult = BattleResult.lost;
 					resetRolling();
 					displayInBattleText(getTextBlock("MSG_BTL_MONSTER_WIN"));
+					// battle's over, exit loop
 					battleOver = 1;
 				}
-				// this should be an else if
+				// did enemies lose?
+				// BUG: if both parties died simultaneously, it counts as a win
 				if (countChars(BattleSide.foes) == 0) {
 					EnemiesAreDead:
 					battleResult = BattleResult.won;
 					resetRolling();
+					// prepare visual effects
 					letterboxEffectEnding = 1;
 					enableBackgroundDarkening = 1;
+					// give out money
 					depositIntoATM(battleMoneyScratch);
 					gameState.moneyEarnedSinceLastCall += battleMoneyScratch;
+					// figure out how much EXP to give everyone
 					battleEXPScratch += countChars(BattleSide.friends) - 1;
-					battleEXPScratch /= countChars(BattleSide.friends); //Bug! if party is dead, this is division by 0
+					battleEXPScratch /= countChars(BattleSide.friends); // BUG: if party is dead, this is division by 0
+					// print YOU WON! text
 					if (currentBattleGroup < 0x1C0) {
 						displayInBattleTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN"), battleEXPScratch);
 					} else {
 						displayInBattleTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN_BOSS"), battleEXPScratch);
 					}
+					// drop items
 					if (itemDropped != 0) {
 						setCItem(itemDropped);
 						displayInBattleText(getTextBlock("MSG_BTL_PRESENT"));
 					}
+					// give out EXP
 					for (short i = 0; i < battlersTable.length; i++) {
 						if (battlersTable[i].consciousness == 0) {
 							continue;
@@ -3273,15 +3411,19 @@ short battleRoutine() {
 						}
 						gainEXP(battlersTable[i].id, 1, battleEXPScratch);
 					}
+					// battle's over, exit loop
 					battleOver = 1;
 				}
 			}
 			closeFocusWindow();
 		}
+		// make sure the HP/PP window rolling is stopped now
 		resetRolling();
+		// roll to nearest integer and wait for animation to complete
 		do {
 			windowTick();
 		} while (tryEndingFastHPPPRolling() == 0);
+		// end mirror effect immediately
 		if (mirrorEnemy != 0) {
 			for (short i = 0; i < battlersTable.length; i++) {
 				if (battlersTable[i].consciousness == 0) {
@@ -3297,19 +3439,22 @@ short battleRoutine() {
 				ubyte persistentEasyAffliction = battlersTable[i].afflictions[0];
 				copyMirrorData(&battlersTable[i], &mirrorBattlerBackup);
 				battlersTable[i].afflictions[0] = persistentEasyAffliction;
-				checkDeadPlayers();
+				updatePlayerConsciousness();
 				break;
 			}
 		}
+		// wipe all temporary status effects
 		resetPostBattleStats();
 		gameState.autoFightEnable = 0;
 		battleModeFlag = 0;
 	} while (battleMode == BattleMode.noBattle);
+	// fade to black
 	fadeOut(1, 1);
 	do {
 		waitUntilNextFrame();
 		drawBattleFrame();
 	} while (fadeParameters.step != 0);
+	// clean up sprites and other visual effects
 	clearAutoFightIcon();
 	prepareForImmediateDMA();
 	closeAllWindowsAndHPPP();
@@ -6635,7 +6780,7 @@ short countChars(BattleSide arg1) {
 }
 
 /// $C2BB18
-void checkDeadPlayers() {
+void updatePlayerConsciousness() {
 	for (short i = 0; i < 6; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
