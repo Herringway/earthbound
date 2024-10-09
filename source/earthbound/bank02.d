@@ -2088,11 +2088,27 @@ void prepareSuffixedAttackerName(short offset) {
 	ubyte* name = copyEnemyName(&enemyConfigurationTable[battlersTable[battlerID].id].name[0], &targetNameBuffer[0], targetNameBuffer.length);
 	if ((battlersTable[battlerID].suffixLetter != 1) || (getNextAvailableEnemyLetter(battlersTable[battlerID].originalID) != 2)) {
 		(name++)[0] = ebChar(' ');
-		(name++)[0] = cast(ubyte)(ebChar('A') + battlersTable[battlerID].suffixLetter);
+		(name++)[0] = cast(ubyte)(ebChar('@') + battlersTable[battlerID].suffixLetter);
 		printAttackerArticle = 1;
 	}
 	setBattleAttackerName(&targetNameBuffer[0], targetNameBuffer.length - 1);
 	attackerEnemyID = battlersTable[battlerID].id;
+}
+
+unittest {
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[0]);
+	currentTarget = &battlersTable[0];
+	frontRowBattlers[0] = 0;
+	numBattlersInFrontRow++;
+	prepareSuffixedAttackerName(1);
+	assert(printable(battleAttackerName) == "Insane Cultist");
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[1]);
+	currentTarget = &battlersTable[1];
+	backRowBattlers[0] = 1;
+	prepareSuffixedAttackerName(1);
+	assert(printable(battleAttackerName) == "Insane Cultist A");
+	prepareSuffixedAttackerName(2);
+	assert(printable(battleAttackerName) == "Insane Cultist B");
 }
 
 /// $C23F6C
