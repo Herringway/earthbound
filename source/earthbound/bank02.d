@@ -8913,7 +8913,7 @@ void sortBattlerPositions() {
 		}
 		backRowBattlers[i] = cast(ubyte)(battler);
 		battlerBackRowXPositions[i] = cast(ubyte)(leastConsideredX / 8);
-		battlerBackRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[battler].sprite));
+		battlerBackRowYPositions[i] = cast(ubyte)(16 - getBattleSpriteHeight(battlersTable[battler].sprite));
 		leftX = leastConsideredX;
 	}
 }
