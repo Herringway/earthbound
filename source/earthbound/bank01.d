@@ -1423,7 +1423,7 @@ void printTargetName(short row, short target) {
 	createWindow(Window.unknown31);
 	printString(battleToText.length, &battleToText[0]);
 	if (target != -1) {
-		unknownC23E8A(cast(short)(row * numBattlersInFrontRow + target + 1));
+		prepareSuffixedAttackerName(cast(short)(row * numBattlersInFrontRow + target + 1));
 		printBattlerArticle(0);
 		printString(255, getBattleAttackerName());
 		ubyte* afflictions = (row != Row.front) ? &battlersTable[backRowBattlers[target]].afflictions[0] : &battlersTable[frontRowBattlers[target]].afflictions[0];

@@ -1960,7 +1960,7 @@ void fixAttackerName(short arg1) {
 			if ((currentAttacker.suffixLetter != 1) || (getNextAvailableEnemyLetter(currentAttacker.originalID) != 2)) {
 				x14[0] = ebChar(' ');
 				printAttackerArticle = 1;
-				x14[1] = cast(ubyte)(currentAttacker.suffixLetter + 0x70);
+				x14[1] = cast(ubyte)(currentAttacker.suffixLetter + ebChar('@'));
 			}
 		}
 		if (currentAttacker.id == EnemyID.myPet) {
@@ -2015,7 +2015,7 @@ void fixTargetName() {
 		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.suffixLetter != 1) || (getNextAvailableEnemyLetter(currentTarget.originalID) != 2))) {
 			x14[0] = ebChar(' ');
 			printTargetArticle = 1;
-			x14[1] = cast(ubyte)(currentTarget.suffixLetter + 0x70);
+			x14[1] = cast(ubyte)(currentTarget.suffixLetter + ebChar('@'));
 		}
 		if (currentTarget.id == EnemyID.myPet) {
 			memcpy(&targetNameAdjustScratch[0], &gameState.petName[0], gameState.petName.length);
@@ -2058,8 +2058,10 @@ unittest {
 	battlersTable = battlersTable.init;
 }
 
-/// $C23E32
-void unknownC23E32() {
+/** Sets up the next matching target
+ * Original_Address: $(DOLLAR)C23E32
+ */
+void pickNextTarget() {
 	if (battlerTargetFlags == 0) {
 		return;
 	}
@@ -2074,23 +2076,23 @@ void unknownC23E32() {
 }
 
 /// $C23E8A
-void unknownC23E8A(short arg1) {
+void prepareSuffixedAttackerName(short offset) {
 	printAttackerArticle = 0;
-	short x02;
+	short battlerID;
 	memset(&targetNameBuffer[0], 0, targetNameBuffer.length);
-	if (arg1 > numBattlersInFrontRow) {
-		x02 = backRowBattlers[arg1 - numBattlersInFrontRow - 1];
+	if (offset > numBattlersInFrontRow) {
+		battlerID = backRowBattlers[offset - numBattlersInFrontRow - 1];
 	} else {
-		x02 = frontRowBattlers[arg1 - 1];
+		battlerID = frontRowBattlers[offset - 1];
 	}
-	ubyte* x12 = copyEnemyName(&enemyConfigurationTable[battlersTable[x02].id].name[0], &targetNameBuffer[0], targetNameBuffer.length);
-	if ((battlersTable[x02].suffixLetter != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].originalID) != 2)) {
-		(x12++)[0] = ebChar(' ');
-		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].suffixLetter);
+	ubyte* name = copyEnemyName(&enemyConfigurationTable[battlersTable[battlerID].id].name[0], &targetNameBuffer[0], targetNameBuffer.length);
+	if ((battlersTable[battlerID].suffixLetter != 1) || (getNextAvailableEnemyLetter(battlersTable[battlerID].originalID) != 2)) {
+		(name++)[0] = ebChar(' ');
+		(name++)[0] = cast(ubyte)(ebChar('A') + battlersTable[battlerID].suffixLetter);
 		printAttackerArticle = 1;
 	}
 	setBattleAttackerName(&targetNameBuffer[0], targetNameBuffer.length - 1);
-	attackerEnemyID = battlersTable[x02].id;
+	attackerEnemyID = battlersTable[battlerID].id;
 }
 
 /// $C23F6C
@@ -2505,7 +2507,7 @@ short battleRoutine() {
 		battleEXPScratch = 0;
 		// load graphics. sprites, backgrounds, text layer...
 		prepareForImmediateDMA();
-		unknownC2E0E7();
+		clearBattleEffects();
 		setBattleModeLayerConfig();
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
@@ -3195,7 +3197,7 @@ short battleRoutine() {
 					// set up battler names and argument for action's text
 					fixAttackerName(0);
 					setCItem(currentAttacker.currentActionArgument);
-					unknownC23E32();
+					pickNextTarget();
 					// if attacker is player-controlled, pop up their HP/PP window
 					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= PartyMember.poo)) {
 						for (short i = 0; i < gameState.partyMembers.length; i++) {
@@ -3458,30 +3460,35 @@ short battleRoutine() {
 	clearAutoFightIcon();
 	prepareForImmediateDMA();
 	closeAllWindowsAndHPPP();
-	unknownC2E0E7();
+	clearBattleEffects();
 	return battleResult;
 }
 
 /// $C26189
-void unknownC26189(ushort arg1) {
-	for (short i = 0; i < 0x100; i++) {
+void fullscreenColourFlash(ushort arg1) {
+	for (short i = 0; i < palettes.length * palettes[0].length; i++) {
 		(cast(ushort*)&palettes[0][0])[i] = arg1;
 	}
 	preparePaletteUpload(PaletteUpload.full);
 	waitUntilNextFrame();
 }
 
-/// $C261BD
+/** Handles an instant battle victory resulting from a party far stronger than the encountered enemies
+ * Original_Address: $(DOLLAR)C261BD
+ */
 void instantWinHandler() {
 	battleInitiative = Initiative.normal;
 	changeMusic(Music.suddenVictory);
 	resetOvalWindow();
+	// do a fast colorful flash effect twice
 	for (short i = 0; i < 2; i++) {
-		unknownC26189(0x3E0);
-		unknownC26189(0x1F);
-		unknownC26189(0x7C00);
+		fullscreenColourFlash(0b000001111100000); // green
+		fullscreenColourFlash(0b000000000011111); // red
+		fullscreenColourFlash(0b111110000000000); // blue
 	}
-	unknownC26189(0);
+	// blacken screen
+	fullscreenColourFlash(0);
+	// do a quick 6-frame fade-in to the previously-loaded palette
 	memcpy(&buffer[0], &buffer[0x2000], 0x200);
 	prepareLoadedPaletteFadeTables(6, PaletteMask.all);
 	for (short i = 0; i < 6; i++) {
@@ -3489,13 +3496,16 @@ void instantWinHandler() {
 		waitUntilNextFrame();
 	}
 	finishPaletteFade();
+	// prepare the YOU WON! message
 	freezeEntities();
 	createWindow(Window.textBattle);
+	// figure out money reward
 	battleMoneyScratch = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
 		battleMoneyScratch += enemyConfigurationTable[enemiesInBattleIDs[i]].money;
 	}
 	gameState.moneyEarnedSinceLastCall += depositIntoATM(battleMoneyScratch);
+	// do some fake battle prep in order to keep logic similar to a normal battle
 	for (short i = 0; i < battlersTable.length; i++) {
 		memset(&battlersTable[i], 0, Battler.sizeof);
 	}
@@ -3508,13 +3518,16 @@ void instantWinHandler() {
 		}
 		battleInitPlayerStats(gameState.partyMembers[i], &battlersTable[i]);
 	}
+	// figure out EXP reward
 	battleEXPScratch = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
 		battleEXPScratch += enemyConfigurationTable[enemiesInBattleIDs[i]].exp;
 	}
 	battleEXPScratch += countChars(BattleSide.friends) - 1;
 	battleEXPScratch /= countChars(BattleSide.friends);
+	// okay, now display the text
 	displayInBattleTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN_FORCE"), battleEXPScratch);
+	// give the player the EXP
 	for (short i = 0; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -3530,8 +3543,10 @@ void instantWinHandler() {
 		}
 		gainEXP(battlersTable[i].id, 1, battleEXPScratch);
 	}
+	// pick an item drop
 	short enemyDropSelected = enemiesInBattleIDs[randLimit(enemiesInBattle)];
 	itemDropped = enemyConfigurationTable[enemyDropSelected].itemDropped;
+	// roll to see if we DON'T get it
 	switch (enemyConfigurationTable[enemyDropSelected].itemDropRate) {
 		case 0:
 			if ((rand() & 0x7F) != 0) {
@@ -3565,10 +3580,12 @@ void instantWinHandler() {
 			break;
 		default: break;
 	}
+	// display message if item drop successful
 	if (itemDropped != 0) {
 		setCItem(itemDropped);
 		displayInBattleText(getTextBlock("MSG_BTL_PRESENT"));
 	}
+	// clean up
 	closeAllWindowsAndHPPP();
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
@@ -3617,119 +3634,133 @@ unittest {
 	assert(partyCharacters[3].pp.target == 20);
 }
 
-/// $C26634
+/** Check if the player can win the battle in a single round
+ * Returns: 1 if the battle is trivial, 0 otherwise
+ * Original_Address: $(DOLLAR)C26634
+ */
 short instantWinCheck() {
 	if (battleInitiative == Initiative.enemiesFirst) {
 		return 0;
 	}
-	short x22 = 0;
-	short x20 = 0;
-	ushort x1E = 0xFFFF;
-	ushort x04 = 0xFFFF;
-	for (short i = 0; i < 6; i++) {
-		short x1A = gameState.partyMembers[i];
-		if ((x1A < 1) || (x1A > 4)) {
+	short maxEnemySpeed = 0;
+	short partyFighterCount = 0;
+	ushort minPartyOffense = 0xFFFF;
+	ushort minPartySpeed = 0xFFFF;
+	// figure out lowest speed and offense among party members, populate sorted offense array if able to fight
+	for (short i = 0; i < gameState.partyMembers.length; i++) {
+		short partyMember = gameState.partyMembers[i];
+		if ((partyMember < 1) || (partyMember > 4)) {
 			continue;
 		}
-		if (partyCharacters[x1A - 1].speed < x04) {
-			x04 = partyCharacters[x1A - 1].speed;
+		if (partyCharacters[partyMember - 1].speed < minPartySpeed) {
+			minPartySpeed = partyCharacters[partyMember - 1].speed;
 		}
-		if (partyCharacters[x1A - 1].offense < x1E) {
-			x1E = partyCharacters[x1A - 1].offense;
+		if (partyCharacters[partyMember - 1].offense < minPartyOffense) {
+			minPartyOffense = partyCharacters[partyMember - 1].offense;
 		}
-		short x16 = partyCharacters[x1A - 1].afflictions[0];
-		if (x16 == Status0.unconscious) {
+		short statusEffect = partyCharacters[partyMember - 1].afflictions[0];
+		if (statusEffect == Status0.unconscious) {
 			continue;
 		}
-		if (x16 == Status0.diamondized) {
+		if (statusEffect == Status0.diamondized) {
 			continue;
 		}
-		if (x16 == Status0.paralyzed) {
+		if (statusEffect == Status0.paralyzed) {
 			continue;
 		}
-		if (x16 == Status0.nauseous) {
+		if (statusEffect == Status0.nauseous) {
 			continue;
 		}
-		if (x16 == Status0.poisoned) {
+		if (statusEffect == Status0.poisoned) {
 			continue;
 		}
-		if (x16 == Status0.sunstroke) {
+		if (statusEffect == Status0.sunstroke) {
 			continue;
 		}
-		if (x16 == Status0.cold) {
+		if (statusEffect == Status0.cold) {
 			continue;
 		}
-		if ((partyCharacters[x1A - 1].afflictions[1] == Status1.mushroomized) || (partyCharacters[x1A - 1].afflictions[1] == Status1.possessed)) {
+		if ((partyCharacters[partyMember - 1].afflictions[1] == Status1.mushroomized) || (partyCharacters[partyMember - 1].afflictions[1] == Status1.possessed)) {
 			continue;
 		}
-		instantWinSortedOffense[x20++] = partyCharacters[x1A - 1].offense;
+		instantWinSortedOffense[partyFighterCount++] = partyCharacters[partyMember - 1].offense;
 	}
-	if (enemiesInBattle > x20) {
+	// more enemies than party members? can't possibly win in a single round with plain attacks
+	if (enemiesInBattle > partyFighterCount) {
 		return 0;
 	}
 	if (battleInitiative == Initiative.normal) {
 		for (short i = 0; i < enemiesInBattle; i++) {
-			if (enemyConfigurationTable[enemiesInBattleIDs[i]].speed > x22) {
-				x22 = enemyConfigurationTable[enemiesInBattleIDs[i]].speed;
+			if (enemyConfigurationTable[enemiesInBattleIDs[i]].speed > maxEnemySpeed) {
+				maxEnemySpeed = enemyConfigurationTable[enemiesInBattleIDs[i]].speed;
 			}
 		}
-		if (x04 < x22) {
+		// enemies are faster, we're done
+		if (minPartySpeed < maxEnemySpeed) {
 			return 0;
 		}
+		// see if party members can defeat every enemy in a single blow
 		for (short i = 0; i < enemiesInBattle; i++) {
-			if (x1E * 2 < enemyConfigurationTable[enemiesInBattleIDs[i]].defense + enemyConfigurationTable[enemiesInBattleIDs[i]].hp) {
+			if (minPartyOffense * 2 < enemyConfigurationTable[enemiesInBattleIDs[i]].defense + enemyConfigurationTable[enemiesInBattleIDs[i]].hp) {
 				return 0;
 			}
 		}
+		// easy victory
 		return 1;
 	}
+	// player has the advantage/disadvantage
+
+	// init enemy HP/defense arrays
 	for (short i = 0; i < enemiesInBattle; i++) {
 		instantWinSortedHP[i] = enemyConfigurationTable[enemiesInBattleIDs[i]].hp;
 		instantWinSortedDefense[i] = enemyConfigurationTable[enemiesInBattleIDs[i]].defense;
 	}
+	// sort party offense
 	while (true) {
-		short y = 1;
-		for (short i = 0; i < x20 - 1; i++) {
-			for (short j = cast(short)(i + 1); j < x20; j++) {
-				short x10 = instantWinSortedOffense[i];
-				if (instantWinSortedOffense[j] > x10) {
-					y = 0;
+		short finishedSorting = 1;
+		for (short i = 0; i < partyFighterCount - 1; i++) {
+			for (short j = cast(short)(i + 1); j < partyFighterCount; j++) {
+				short tmpOffense = instantWinSortedOffense[i];
+				if (instantWinSortedOffense[j] > tmpOffense) {
+					finishedSorting = 0;
 					instantWinSortedOffense[i] = instantWinSortedOffense[j];
-					instantWinSortedOffense[j] = x10;
+					instantWinSortedOffense[j] = tmpOffense;
 				}
 			}
 		}
-		if (y != 0) {
+		if (finishedSorting != 0) {
 			break;
 		}
 	}
+	// sort enemy HP and defense
 	while (true) {
-		short x1E_2 = 1;
+		short finishedSorting = 1;
 		for (short i = 0; i < enemiesInBattle - 1; i++) {
 			for (short j = cast(short)(i + 1); j < enemiesInBattle; j++) {
-				short x0E = instantWinSortedHP[i];
-				if (instantWinSortedHP[j] > x0E) {
-					x1E_2 = 0;
+				short tmpHP = instantWinSortedHP[i];
+				if (instantWinSortedHP[j] > tmpHP) {
+					finishedSorting = 0;
 					instantWinSortedHP[i] = instantWinSortedHP[j];
-					instantWinSortedHP[j] = x0E;
-					short x04_2 = instantWinSortedDefense[j];
+					instantWinSortedHP[j] = tmpHP;
+					short tmpDefense = instantWinSortedDefense[j];
 					instantWinSortedDefense[i] = instantWinSortedDefense[j];
-					instantWinSortedDefense[j] = x04_2;
+					instantWinSortedDefense[j] = tmpDefense;
 				}
 			}
 		}
-		if (x1E_2 != 0) {
+		if (finishedSorting != 0) {
 			break;
 		}
 	}
-	short x22_2 = 0;
-	for (short i = 0; i < x20; i++) {
-		if (instantWinSortedOffense[i] * 2 < instantWinSortedHP[x22_2] + instantWinSortedDefense[x22_2]) {
-			instantWinSortedHP[x22_2] -= instantWinSortedOffense[i] * 2 - instantWinSortedDefense[x22_2];
-		} else {
-			if (++x22_2 >= enemiesInBattle) {
-				return 1;
-			}
+	// do plain attacks to each enemy in order of most to least offense vs most to least hp
+	// if any enemies remain, the instant win fails
+	short enemy = 0;
+	for (short i = 0; i < partyFighterCount; i++) {
+		if (instantWinSortedOffense[i] * 2 < instantWinSortedHP[enemy] + instantWinSortedDefense[enemy]) {
+			instantWinSortedHP[enemy] -= instantWinSortedOffense[i] * 2 - instantWinSortedDefense[enemy];
+		} else if (++enemy >= enemiesInBattle) {
+			// nobody's left
+			return 1;
 		}
 	}
 	return 0;
@@ -4205,7 +4236,7 @@ void koTarget(Battler* arg1) {
 		chooseTarget(currentAttacker);
 		resolveTargetting(currentAttacker);
 		fixAttackerName(0);
-		unknownC23E32();
+		pickNextTarget();
 		displayInBattleText(getTextBlock(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].text));
 		unknownC240A4(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].func);
 		enemyPerformingFinalAttack = 0;
@@ -7904,7 +7935,7 @@ void unknownC2E08E(short arg1) {
 }
 
 /// $C2E0E7
-void unknownC2E0E7() {
+void clearBattleEffects() {
 	greenFlashDuration = 0;
 	redFlashDuration = 0;
 	framesLeftUntilNextSwirlUpdate = 0;
