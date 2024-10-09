@@ -2075,7 +2075,11 @@ void pickNextTarget() {
 	fixTargetName();
 }
 
-/// $C23E8A
+/** Prepares a name for enemy target selection
+ * Params:
+ * 	offset = 1-based enemy target offset
+ * Original_Address: $(DOLLAR)C23E8A
+ */
 void prepareSuffixedAttackerName(short offset) {
 	printAttackerArticle = 0;
 	short battlerID;
@@ -2169,11 +2173,17 @@ void feelingStrangeRetargetting() {
 	}
 }
 
-/// $C240A4
-void unknownC240A4(void function() action) {
+/** Performs the given action on every selected target in battle
+ * Params:
+ * 	action = Battle action function
+ * Original_Address: $(DOLLAR)C240A4
+ */
+void performActionOnAllTargets(void function() action) {
+	// wait for animations to complete
 	while (isBattleAnimationPlaying()) {
 		windowTick();
 	}
+	// first handle enemy targets
 	for (short i = 8; i < battlersTable.length; i++) {
 		currentTarget = &battlersTable[i];
 		if (isCharacterTargetted(i) == 0) {
@@ -2185,6 +2195,7 @@ void unknownC240A4(void function() action) {
 		}
 		action();
 	}
+	// then handle player character targets
 	for (short i = 0; i < 8; i++) {
 		currentTarget = &battlersTable[i];
 		if (isCharacterTargetted(i) == 0) {
@@ -2215,79 +2226,99 @@ void removeStatusUntargettableTargets() {
 	}
 }
 
-/// $C241DC
+/** Gets the number of items that can be stolen from the player's party
+ * Returns: Item candidate count
+ * Original_Address: $(DOLLAR)C241DC
+ */
 ubyte findStealableItems() {
-	ubyte x18 = 0;
-	for (short i = 0; i < 6; i++) {
-		short x14 = gameState.partyMembers[i];
-		if ((x14 < 1) || (x14 > 4)) {
+	ubyte count = 0;
+	for (short i = 0; i < gameState.partyMembers.length; i++) {
+		short character = gameState.partyMembers[i];
+		// not a character with an inventory
+		if ((character < PartyMember.ness) || (character > PartyMember.poo)) {
 			continue;
 		}
-		short x10;
+		short usedItem;
+		// get slot index of any items being used by this character this turn
 		for (short j = 0; j < 6; j++) {
 			if (battlersTable[j].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[j].id == x14) {
+			if (battlersTable[j].id == character) {
 				continue;
 			}
 			if (battlersTable[j].npcID != 0) {
 				continue;
 			}
-			x10 = battlersTable[i].actionItemSlot;
+			usedItem = battlersTable[i].actionItemSlot;
 		}
-		for (short j = 0; j < 14; j++) {
-			if (j + 1 == x10) {
+		for (short j = 0; j < PartyCharacter.items.length; j++) {
+			// skip items being used this turn
+			if (j + 1 == usedItem) {
 				continue;
 			}
-			if (partyCharacters[x14 - 1].items[j] == 0) {
+			// skip empty spaces
+			if (partyCharacters[character - 1].items[j] == 0) {
 				continue;
 			}
-			if (itemData[partyCharacters[x14 - 1].items[j]].cost == 0) {
+			// skip priceless items
+			if (itemData[partyCharacters[character - 1].items[j]].cost == 0) {
 				continue;
 			}
-			if (itemData[partyCharacters[x14 - 1].items[j]].cost >= 290) {
+			// skip expensive items
+			if (itemData[partyCharacters[character - 1].items[j]].cost >= 290) {
 				continue;
 			}
-			if ((itemData[partyCharacters[x14 - 1].items[j]].type & 0x30) != 0x20) {
+			// skip non-edible items
+			if ((itemData[partyCharacters[character - 1].items[j]].type & ItemType.healingItem) != ItemType.edible) {
 				continue;
 			}
-			if (partyCharacters[x14 - 1].equipment[0] == j + 1) {
+			// skip equipped items
+			if (partyCharacters[character - 1].equipment[0] == j + 1) {
 				continue;
 			}
-			if (partyCharacters[x14 - 1].equipment[1] == j + 1) {
+			if (partyCharacters[character - 1].equipment[1] == j + 1) {
 				continue;
 			}
-			if (partyCharacters[x14 - 1].equipment[2] == j + 1) {
+			if (partyCharacters[character - 1].equipment[2] == j + 1) {
 				continue;
 			}
-			if (partyCharacters[x14 - 1].equipment[3] == j + 1) {
+			if (partyCharacters[character - 1].equipment[3] == j + 1) {
 				continue;
 			}
-			stealableItemCandidates[x18] = partyCharacters[x14 - 1].items[j];
-			x18++;
+			// add to list
+			stealableItemCandidates[count++] = partyCharacters[character - 1].items[j];
 		}
 	}
-	return x18;
+	return count;
 }
 
 /// $C24316
 ubyte selectStealableItem() {
-	short x0E = findStealableItems();
-	if (x0E == 0) {
+	short count = findStealableItems();
+	// no items to steal
+	if (count == 0) {
 		return 0;
 	}
+	// 50% failure rate
 	if ((rand() & 0x80) != 0) {
 		return 0;
 	}
-	return stealableItemCandidates[randLimit(x0E)];
+	// pick random candidate
+	return stealableItemCandidates[randLimit(count)];
 }
 
-/// $C24348
-short unknownC24348(short arg1) {
-	short x02 = findStealableItems();
-	for (short i = 0; i < x02; i++) {
-		if (stealableItemCandidates[i] != arg1) {
+/** Tests if an item is being considered for theft
+ * Params:
+ * 	item = The item ID
+ * Returns: 1 if being considered, 0 otherwise
+ * Original_Address: $(DOLLAR)C24348
+ */
+short testItemTheftCandidate(short item) {
+	short count = findStealableItems();
+	// search candidate list for matching items
+	for (short i = 0; i < count; i++) {
+		if (stealableItemCandidates[i] != item) {
 			continue;
 		}
 		return 1;
@@ -2339,7 +2370,7 @@ void chooseTarget(Battler* arg1) {
 			goto Unknown4;
 		}
 	}
-	unknownC2F917();
+	sortBattlerPositions();
 	Unknown4:
 	if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
 		if (arg1.side == BattleSide.foes) {
@@ -2769,7 +2800,7 @@ short battleRoutine() {
 		// the battle has begun, loop until it's done
 		turnLoop: while (battleOver == 0) {
 			turnCount++;
-			unknownC2F917();
+			sortBattlerPositions();
 			// new turn, reset turn order and hasTakenTurn for everyone
 			for (short i = 0; i < battlersTable.length; i++) {
 				battlersTable[i].hasTakenTurn = 0;
@@ -3163,7 +3194,7 @@ short battleRoutine() {
 							break;
 						default: break;
 					}
-					loseHPStatus(currentAttacker, statusDamage);
+					loseHPSilently(currentAttacker, statusDamage);
 					// did battler die from status damage? handle that
 					if (currentAttacker.hp == 0) {
 						koTarget(currentAttacker);
@@ -3206,7 +3237,7 @@ short battleRoutine() {
 					}
 					// can we still steal the item we wanted? if not, clear the chosen item now
 					if (currentAttacker.currentAction == BattleActions.steal) {
-						if (unknownC24348(currentAttacker.currentActionArgument) != 0) {
+						if (testItemTheftCandidate(currentAttacker.currentActionArgument) != 0) {
 							currentAttacker.currentActionArgument = 0;
 						}
 					}
@@ -3229,7 +3260,7 @@ short battleRoutine() {
 							displayInBattleText(getTextBlock("MSG_BTL_PSI_CANNOT"));
 							goto EndOfTurn;
 						} else {
-							unknownC2BCB9(currentAttacker, battleActionTable[currentAttacker.currentAction].ppCost);
+							losePPSilently(currentAttacker, battleActionTable[currentAttacker.currentAction].ppCost);
 						}
 					}
 					// do the enemy attack flash effect if applicable
@@ -4254,7 +4285,7 @@ void koTarget(Battler* arg1) {
 		fixAttackerName(0);
 		pickNextTarget();
 		displayInBattleText(getTextBlock(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].text));
-		unknownC240A4(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].func);
+		performActionOnAllTargets(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].func);
 		enemyPerformingFinalAttack = 0;
 		currentAttacker = x1E;
 		currentTarget = x16;
@@ -5161,8 +5192,10 @@ void battleActionNull11() {
 	//nothing
 }
 
-/// $C29051
-void battleActionNeutralize() {
+/** Subaction used for resetting stats and shields of all battlers
+ * Original_Address: $(DOLLAR)C29051
+ */
+void battleActionNeutralizeSubAction() {
 	currentTarget.offense = currentTarget.baseOffense;
 	currentTarget.defense = currentTarget.baseDefense;
 	currentTarget.speed = currentTarget.baseSpeed;
@@ -5173,8 +5206,10 @@ void battleActionNeutralize() {
 	displayInBattleText(getTextBlock("MSG_BTL_NEUTRALIZE_RESULT"));
 }
 
-/// $C290C6
-void unknownC290C6() {
+/** Battle actions: neutralizer & pale green light. Resets stat changes, wipes shields, resets mirror on all battlers regardless of chosen targetting
+ * Original_Address: $(DOLLAR)C290C6
+ */
+void battleActionNeutralize() {
 	if (mirrorEnemy != 0) {
 		for (short i = 0; i < battlersTable.length; i++) {
 			if (battlersTable[i].consciousness == 0) {
@@ -5183,7 +5218,7 @@ void unknownC290C6() {
 			if (battlersTable[i].side != BattleSide.friends) {
 				continue;
 			}
-			if (battlersTable[i].id != 4) {
+			if (battlersTable[i].id != PartyMember.poo) {
 				continue;
 			}
 			mirrorEnemy = 0;
@@ -5195,7 +5230,7 @@ void unknownC290C6() {
 	}
 	targetAll();
 	removeDeadTargetting();
-	unknownC240A4(&battleActionNeutralize);
+	performActionOnAllTargets(&battleActionNeutralizeSubAction);
 	battlerTargetFlags = 0;
 }
 
@@ -6513,7 +6548,7 @@ void battleActionPray() {
 	if (x16 != 6) {
 		removeDeadTargetting();
 	}
-	unknownC240A4(x12);
+	performActionOnAllTargets(x12);
 	battlerTargetFlags = 0;
 }
 
@@ -6886,26 +6921,39 @@ void resetPostBattleStats() {
 	}
 }
 
-/// $C2BCB9
-void unknownC2BCB9(Battler* battler, short arg2) {
-	setPP(battler, (arg2 > battler.ppTarget) ? 0 : cast(ushort)(battler.ppTarget - arg2));
+/** Causes the battler to silently lose some PP
+ * Params:
+ * 	battler = The target to subtract PP from
+ * 	amount = How much PP to subtract
+ * Original_Address: $(DOLLAR)C2BCB9
+ */
+void losePPSilently(Battler* battler, short amount) {
+	setPP(battler, (amount > battler.ppTarget) ? 0 : cast(ushort)(battler.ppTarget - amount));
 }
 
-/// $C2BCE6
-void loseHPStatus(Battler* battler, short arg2) {
-	setHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - arg2));
+/** Causes the battler to silently lose some HP
+ * Params:
+ * 	battler = The target to subtract HP from
+ * 	amount = How much HP to subtract
+ * Original_Address: $(DOLLAR)C2BCE6
+ */
+void loseHPSilently(Battler* battler, short amount) {
+	setHP(battler, (amount > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - amount));
 }
 
-/// $C2BD13
-short unknownC2BD13() {
-	short x02 = 0;
+/** Gets the total width of every battle sprite onscreen
+ * Returns: Width in 8 pixel units
+ * Original_Address: $(DOLLAR)C2BD13
+ */
+short getTotalBattleSpriteWidth() {
+	short total = 0;
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness != 1) {
 			continue;
 		}
-		x02 += getBattleSpriteWidth(battlersTable[i].sprite);
+		total += getBattleSpriteWidth(battlersTable[i].sprite);
 	}
-	return x02;
+	return total;
 }
 
 /// $C2BD5E
@@ -6945,7 +6993,7 @@ void callForHelpCommon(short sowingSeeds) {
 	}
 	short x1E = cast(short)((getBattleSpriteWidth(enemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) * 8) + 16);
 	short x1C = enemyConfigurationTable[currentAttacker.currentActionArgument].row;
-	if (getBattleSpriteWidth(enemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) + unknownC2BD13() <= 32) {
+	if (getBattleSpriteWidth(enemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) + getTotalBattleSpriteWidth() <= 32) {
 		short x1A = 0x80;
 		short x18 = 0x80;
 		short x04 = 0x80;
@@ -7005,7 +7053,7 @@ void callForHelpCommon(short sowingSeeds) {
 		x1C = battlersTable[i].row;
 	}
 	Unknown25:
-	if (getBattleSpriteWidth(enemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) + unknownC2BD13() > battlersTable.length) {
+	if (getBattleSpriteWidth(enemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) + getTotalBattleSpriteWidth() > battlersTable.length) {
 		goto Failure;
 	}
 	Battler* x22 = &battlersTable[8];
@@ -7768,13 +7816,13 @@ void drawBattleFrame() {
 			backgroundBrightness = 0x6000;
 			enableBackgroundDarkening = 0;
 		}
-		unknownC2E08E(backgroundBrightness >> 8);
+		adjustAnimatedBackgroundBrightnessAll(backgroundBrightness >> 8);
 	}
 	if (reflectFlashDuration != 0) {
 		if ((--reflectFlashDuration & 2) == 0) {
-			unknownC2E08E(-1);
+			adjustAnimatedBackgroundBrightnessAll(-1);
 		} else {
-			unknownC2E08E(0x100);
+			adjustAnimatedBackgroundBrightnessAll(256);
 		}
 	}
 	if (greenBackgroundFlashDuration != 0) {
@@ -7789,9 +7837,9 @@ void drawBattleFrame() {
 			default: break;
 		}
 		if ((--greenBackgroundFlashDuration & 2) != 0) {
-			unknownC2E08E(0);
+			adjustAnimatedBackgroundBrightnessAll(0);
 		} else {
-			unknownC2E08E(0x100);
+			adjustAnimatedBackgroundBrightnessAll(256);
 		}
 	}
 	if (verticalShakeDuration == 0) {
@@ -7912,40 +7960,55 @@ void restoreAnimatedBackgroundColour() {
 	}
 }
 
-/// $C2DF2E
-void unknownC2DF2E(LoadedBackgroundData* arg1, short arg2, short arg3) {
-	if ((arg2 == -1) || (arg2 == 0)) {
-		arg1.palette[arg3] = arg2;
-		(*arg1.palettePointer)[arg3] = arg2;
-	} else if (arg2 == 0x100) {
-		arg1.palette[arg3] = arg1.palette2[arg3];
-		(*arg1.palettePointer)[arg3] = arg1.palette2[arg3];
+/** Adjusts the brightness of a single colour in an animated background layer
+ * Params:
+ * 	layer = Layer to affect
+ * 	brightness = How bright the background layer should be, in 1/256ths of normal brightness (-1 means pure white)
+ * 	colourIndex = Which colour to adjust
+ * Original_Address: $(DOLLAR)C2DF2E
+ */
+void adjustAnimatedBackgroundBrightnessSingle(LoadedBackgroundData* layer, short brightness, short colourIndex) {
+	if ((brightness == -1) || (brightness == 0)) {
+		// brightness -1 is pure white, brightness 0 is pure black
+		layer.palette[colourIndex] = brightness;
+		(*layer.palettePointer)[colourIndex] = brightness;
+	} else if (brightness == 256) {
+		// just copy the colours
+		layer.palette[colourIndex] = layer.palette2[colourIndex];
+		(*layer.palettePointer)[colourIndex] = layer.palette2[colourIndex];
 	} else {
-		short x12 = arg1.palette2[arg3] & 0x1F;
-		short x10 = (arg1.palette2[arg3] >> 5) & 0x1F;
-		short x16 = (arg1.palette2[arg3] >> 10) & 0x1F;
-		x12 = cast(short)((arg2 * x12) >> 8);
-		x10 = cast(short)((arg2 * x10) >> 8);
-		x16 = cast(short)((arg2 * x16) >> 8);
-		arg1.palette[arg3] = cast(ushort)((x16 << 10) | (x10 << 5) | (x12));
-		if ((arg1.paletteShiftingStyle != PaletteShiftingStyle.unknown2) || (arg1.paletteCycle2First > arg3) || (arg1.paletteCycle2Last < arg3)) {
-			if ((arg1.paletteShiftingStyle == PaletteShiftingStyle.unknown0) || (arg1.paletteCycle1First > arg3) || (arg1.paletteCycle1Last < arg3)) {
-				(*arg1.palettePointer)[arg3] = arg1.palette[arg3];
+		// apply brightness to colour channels
+		short red = layer.palette2[colourIndex] & 0x1F;
+		short green = (layer.palette2[colourIndex] >> 5) & 0x1F;
+		short blue = (layer.palette2[colourIndex] >> 10) & 0x1F;
+		red = cast(short)((brightness * red) >> 8);
+		green = cast(short)((brightness * green) >> 8);
+		blue = cast(short)((brightness * blue) >> 8);
+		// copy colour to bg palette
+		layer.palette[colourIndex] = cast(ushort)((blue << 10) | (green << 5) | (red));
+		// don't touch the colours inside the palette cycling range
+		if ((layer.paletteShiftingStyle != PaletteShiftingStyle.unknown2) || (layer.paletteCycle2First > colourIndex) || (layer.paletteCycle2Last < colourIndex)) {
+			if ((layer.paletteShiftingStyle == PaletteShiftingStyle.unknown0) || (layer.paletteCycle1First > colourIndex) || (layer.paletteCycle1Last < colourIndex)) {
+				(*layer.palettePointer)[colourIndex] = layer.palette[colourIndex];
 			}
 		}
 	}
 }
 
-/// $C2E08E
-void unknownC2E08E(short arg1) {
+/** Adjusts the brightness for animated backgrounds
+ * Params:
+ * 	brightness = How bright the backgrounds should be, in 1/256ths of normal brightness (-1 means pure white)
+ * Original_Address: $(DOLLAR)C2E08E
+ */
+void adjustAnimatedBackgroundBrightnessAll(short brightness) {
 	if (loadedBGDataLayer1.bitDepth == 4) {
 		for (short i = 1; i < 16; i++) {
-			unknownC2DF2E(&loadedBGDataLayer1, arg1, i);
+			adjustAnimatedBackgroundBrightnessSingle(&loadedBGDataLayer1, brightness, i);
 		}
 	} else {
 		for (short i = 1; i < 4; i++) {
-			unknownC2DF2E(&loadedBGDataLayer1, arg1, i);
-			unknownC2DF2E(&loadedBGDataLayer2, arg1, i);
+			adjustAnimatedBackgroundBrightnessSingle(&loadedBGDataLayer1, brightness, i);
+			adjustAnimatedBackgroundBrightnessSingle(&loadedBGDataLayer2, brightness, i);
 		}
 	}
 }
@@ -8769,16 +8832,19 @@ void drawBattleSprites() {
 	updateScreen();
 }
 
-/// $C2F917
-void unknownC2F917() {
-	short x0E;
+/** Sorts battler position arrays for targetting purposes
+ * Original_Address: $(DOLLAR)C2F917
+ */
+void sortBattlerPositions() {
+	short battler;
 	numBattlersInFrontRow = 0;
 	numBattlersInBackRow = 0;
+	// get counts of battlers in front and back rows
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].afflictions[0] == 1) {
+		if (battlersTable[i].afflictions[0] == Status0.unconscious) {
 			continue;
 		}
 		if (battlersTable[i].side != BattleSide.foes) {
@@ -8790,57 +8856,65 @@ void unknownC2F917() {
 			numBattlersInFrontRow++;
 		}
 	}
-	short x10 = 0;
+	// sort battler position arrays for the front row
+	short leftX = 0;
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
-		ushort x04 = 0xFFFF;
+		ushort leastConsideredX = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
+			// filter out sprites not being displayed (not present, dead)
 			if (battlersTable[j].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[j].afflictions[0] == 1) {
+			if (battlersTable[j].afflictions[0] == Status0.unconscious) {
 				continue;
 			}
+			// filter out non-enemies
 			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
+			// filter out back row enemies
 			if (battlersTable[j].row != Row.front) {
 				continue;
 			}
-			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
-				x0E = j;
-				x04 = battlersTable[j].spriteX;
+			// skip sprites that we've already looked at and sprites to the right of what we're currently considering
+			if ((battlersTable[j].spriteX > leftX) && (battlersTable[j].spriteX <= leastConsideredX)) {
+				battler = j;
+				leastConsideredX = battlersTable[j].spriteX;
 			}
 		}
-		frontRowBattlers[i] = cast(ubyte)(x0E);
-		battlerFrontRowXPositions[i] = cast(ubyte)(x04 / 8);
-		battlerFrontRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
-		x10 = x04;
+		frontRowBattlers[i] = cast(ubyte)(battler);
+		battlerFrontRowXPositions[i] = cast(ubyte)(leastConsideredX / 8);
+		battlerFrontRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[battler].sprite));
+		leftX = leastConsideredX;
 	}
-	x10 = 0;
+	// sort battler position arrays for the back row
+	// mostly the same as the front row
+	leftX = 0;
 	for (short i = 0; i < numBattlersInBackRow; i++) {
-		ushort x04 = 0xFFFF;
+		ushort leastConsideredX = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
 			if (battlersTable[j].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[j].afflictions[0] == 1) {
+			if (battlersTable[j].afflictions[0] == Status0.unconscious) {
 				continue;
 			}
 			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
+			// filter out front row enemies
 			if (battlersTable[j].row == Row.front) {
 				continue;
 			}
-			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
-				x0E = j;
-				x04 = battlersTable[j].spriteX;
+			if ((battlersTable[j].spriteX > leftX) && (battlersTable[j].spriteX <= leastConsideredX)) {
+				battler = j;
+				leastConsideredX = battlersTable[j].spriteX;
 			}
 		}
-		backRowBattlers[i] = cast(ubyte)(x0E);
-		battlerBackRowXPositions[i] = cast(ubyte)(x04 / 8);
-		battlerBackRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
-		x10 = x04;
+		backRowBattlers[i] = cast(ubyte)(battler);
+		battlerBackRowXPositions[i] = cast(ubyte)(leastConsideredX / 8);
+		battlerBackRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[battler].sprite));
+		leftX = leastConsideredX;
 	}
 }
 
