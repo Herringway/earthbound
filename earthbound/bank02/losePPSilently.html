@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC2FADE</title>
+		<title>Function losePPSilently</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,24 +154,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC2FADE</h1><p>$C2FADE
+			<h1>Function losePPSilently</h1><p>Causes the battler to silently lose some PP
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC2FADE</span>
+			<span class="typ">void</span> <span class="pln">losePPSilently</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">speed</span><span class="pun">,</span>
+			&nbsp;&nbsp;<a href="../../earthbound/commondefs/Battler.html"><span class="typ">Battler</span></a><span class="pun">*</span> <span class="pln">battler</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">spriteIndex</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">amount</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="battler">battler</td><td> The target to subtract PP from</td></tr>
+<tr><td id="amount">amount</td><td> How much PP to subtract</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C2BCB9
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

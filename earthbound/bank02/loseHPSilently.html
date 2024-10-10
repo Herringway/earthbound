@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC2DF2E</title>
+		<title>Function loseHPSilently</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -154,26 +154,34 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC2DF2E</h1><p>$C2DF2E
+			<h1>Function loseHPSilently</h1><p>Causes the battler to silently lose some HP
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC2DF2E</span>
+			<span class="typ">void</span> <span class="pln">loseHPSilently</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<a href="../../earthbound/commondefs/LoadedBackgroundData.html"><span class="typ">LoadedBackgroundData</span></a><span class="pun">*</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<a href="../../earthbound/commondefs/Battler.html"><span class="typ">Battler</span></a><span class="pun">*</span> <span class="pln">battler</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">amount</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="battler">battler</td><td> The target to subtract HP from</td></tr>
+<tr><td id="amount">amount</td><td> How much HP to subtract</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C2BCE6
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

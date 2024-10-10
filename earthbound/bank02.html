@@ -185,6 +185,24 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="adjustAnimatedBackgroundBrightnessAll" class="public" href="../earthbound/bank02/adjustAnimatedBackgroundBrightnessAll.html">adjustAnimatedBackgroundBrightnessAll</a><span class="tableEntryAnnotation">(brightness)</span>
+							</code>
+						</td>
+						<td>Adjusts the brightness for animated backgrounds
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="adjustAnimatedBackgroundBrightnessSingle" class="public" href="../earthbound/bank02/adjustAnimatedBackgroundBrightnessSingle.html">adjustAnimatedBackgroundBrightnessSingle</a><span class="tableEntryAnnotation">(layer, brightness, colourIndex)</span>
+							</code>
+						</td>
+						<td>Adjusts the brightness of a single colour in an animated background layer
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="allocateRenderedWindowTitle" class="public" href="../earthbound/bank02/allocateRenderedWindowTitle.html">allocateRenderedWindowTitle</a><span class="tableEntryAnnotation">(window)</span>
 							</code>
 						</td>
@@ -899,7 +917,16 @@ $('#symbolSearchPane').show();</script>
 								<a id="battleActionNeutralize" class="public" href="../earthbound/bank02/battleActionNeutralize.html">battleActionNeutralize</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C29051
+						<td>Battle actions: neutralizer &amp; pale green light. Resets stat changes, wipes shields, resets mirror on all battlers regardless of chosen targetting
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="battleActionNeutralizeSubAction" class="public" href="../earthbound/bank02/battleActionNeutralizeSubAction.html">battleActionNeutralizeSubAction</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Subaction used for resetting stats and shields of all battlers
 </td>
 					</tr>
 					<tr>
@@ -1682,7 +1709,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="battleRoutine" class="public" href="../earthbound/bank02/battleRoutine.html">battleRoutine</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C24821
+						<td>Game loop: Battle mode. Fight enemies to the death
 </td>
 					</tr>
 					<tr>
@@ -1796,16 +1823,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="checkDeadPlayers" class="public" href="../earthbound/bank02/checkDeadPlayers.html">checkDeadPlayers</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2BB18
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="chooseTarget" class="public" href="../earthbound/bank02/chooseTarget.html">chooseTarget</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="chooseTarget" class="public" href="../earthbound/bank02/chooseTarget.html">chooseTarget</a><span class="tableEntryAnnotation">(attacker)</span>
 							</code>
 						</td>
 						<td>$C24477
@@ -1818,6 +1836,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C20293
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="clearBattleEffects" class="public" href="../earthbound/bank02/clearBattleEffects.html">clearBattleEffects</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E0E7
 </td>
 					</tr>
 					<tr>
@@ -2033,7 +2060,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="findStealableItems" class="public" href="../earthbound/bank02/findStealableItems.html">findStealableItems</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C241DC
+						<td>Gets the number of items that can be stolen from the player's party
 </td>
 					</tr>
 					<tr>
@@ -2097,6 +2124,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C29917
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="fullscreenColourFlash" class="public" href="../earthbound/bank02/fullscreenColourFlash.html">fullscreenColourFlash</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26189
 </td>
 					</tr>
 					<tr>
@@ -2277,6 +2313,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Gets the name palette for a given status array
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getTotalBattleSpriteWidth" class="public" href="../earthbound/bank02/getTotalBattleSpriteWidth.html">getTotalBattleSpriteWidth</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Gets the total width of every battle sprite onscreen
 </td>
 					</tr>
 					<tr>
@@ -2465,7 +2510,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="instantWinCheck" class="public" href="../earthbound/bank02/instantWinCheck.html">instantWinCheck</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C26634
+						<td>Check if the player can win the battle in a single round
 </td>
 					</tr>
 					<tr>
@@ -2474,7 +2519,7 @@ $('#symbolSearchPane').show();</script>
 								<a id="instantWinHandler" class="public" href="../earthbound/bank02/instantWinHandler.html">instantWinHandler</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
-						<td>$C261BD
+						<td>Handles an instant battle victory resulting from a party far stronger than the encountered enemies
 </td>
 					</tr>
 					<tr>
@@ -2552,10 +2597,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="loseHPStatus" class="public" href="../earthbound/bank02/loseHPStatus.html">loseHPStatus</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+								<a id="loseHPSilently" class="public" href="../earthbound/bank02/loseHPSilently.html">loseHPSilently</a><span class="tableEntryAnnotation">(battler, amount)</span>
 							</code>
 						</td>
-						<td>$C2BCE6
+						<td>Causes the battler to silently lose some HP
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="losePPSilently" class="public" href="../earthbound/bank02/losePPSilently.html">losePPSilently</a><span class="tableEntryAnnotation">(battler, amount)</span>
+							</code>
+						</td>
+						<td>Causes the battler to silently lose some PP
 </td>
 					</tr>
 					<tr>
@@ -2615,10 +2669,46 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="performActionOnAllTargets" class="public" href="../earthbound/bank02/performActionOnAllTargets.html">performActionOnAllTargets</a><span class="tableEntryAnnotation">(action)</span>
+							</code>
+						</td>
+						<td>Performs the given action on every selected target in battle
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="pickNextTarget" class="public" href="../earthbound/bank02/pickNextTarget.html">pickNextTarget</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sets up the next matching target
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="playSfxAndTickMinimal" class="public" href="../earthbound/bank02/playSfxAndTickMinimal.html">playSfxAndTickMinimal</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
 						<td>$C216D0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="prepareBattleSpritePaletteEffectTables" class="public" href="../earthbound/bank02/prepareBattleSpritePaletteEffectTables.html">prepareBattleSpritePaletteEffectTables</a><span class="tableEntryAnnotation">(speed, spriteIndex)</span>
+							</code>
+						</td>
+						<td>Prepares the fade tables for battle sprite palette fades
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="prepareSuffixedAttackerName" class="public" href="../earthbound/bank02/prepareSuffixedAttackerName.html">prepareSuffixedAttackerName</a><span class="tableEntryAnnotation">(offset)</span>
+							</code>
+						</td>
+						<td>Prepares a name for enemy target selection
 </td>
 					</tr>
 					<tr>
@@ -3173,6 +3263,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="sortBattlerPositions" class="public" href="../earthbound/bank02/sortBattlerPositions.html">sortBattlerPositions</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sorts battler position arrays for targetting purposes
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="startSwirlPadded" class="public" href="../earthbound/bank02/startSwirlPadded.html">startSwirlPadded</a><span class="tableEntryAnnotation">(swirl, flags, extraFrames)</span>
 							</code>
 						</td>
@@ -3326,6 +3425,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="testItemTheftCandidate" class="public" href="../earthbound/bank02/testItemTheftCandidate.html">testItemTheftCandidate</a><span class="tableEntryAnnotation">(item)</span>
+							</code>
+						</td>
+						<td>Tests if an item is being considered for theft
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="tickUntilFadeCompletion" class="public" href="../earthbound/bank02/tickUntilFadeCompletion.html">tickUntilFadeCompletion</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -3362,127 +3470,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC23E32" class="public" href="../earthbound/bank02/unknownC23E32.html">unknownC23E32</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C23E32
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC23E8A" class="public" href="../earthbound/bank02/unknownC23E8A.html">unknownC23E8A</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C23E8A
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC240A4" class="public" href="../earthbound/bank02/unknownC240A4.html">unknownC240A4</a><span class="tableEntryAnnotation">(action)</span>
-							</code>
-						</td>
-						<td>$C240A4
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC24348" class="public" href="../earthbound/bank02/unknownC24348.html">unknownC24348</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C24348
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC24434" class="public" href="../earthbound/bank02/unknownC24434.html">unknownC24434</a><span class="tableEntryAnnotation">(arg1)</span>
+								<a id="unknownC24434" class="public" href="../earthbound/bank02/unknownC24434.html">unknownC24434</a><span class="tableEntryAnnotation">(attacker)</span>
 							</code>
 						</td>
 						<td>$C24434
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC26189" class="public" href="../earthbound/bank02/unknownC26189.html">unknownC26189</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C26189
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC290C6" class="public" href="../earthbound/bank02/unknownC290C6.html">unknownC290C6</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C290C6
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2BCB9" class="public" href="../earthbound/bank02/unknownC2BCB9.html">unknownC2BCB9</a><span class="tableEntryAnnotation">(battler, arg2)</span>
-							</code>
-						</td>
-						<td>$C2BCB9
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2BD13" class="public" href="../earthbound/bank02/unknownC2BD13.html">unknownC2BD13</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2BD13
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2DF2E" class="public" href="../earthbound/bank02/unknownC2DF2E.html">unknownC2DF2E</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$C2DF2E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2E08E" class="public" href="../earthbound/bank02/unknownC2E08E.html">unknownC2E08E</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C2E08E
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2E0E7" class="public" href="../earthbound/bank02/unknownC2E0E7.html">unknownC2E0E7</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2E0E7
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2F917" class="public" href="../earthbound/bank02/unknownC2F917.html">unknownC2F917</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C2F917
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC2FADE" class="public" href="../earthbound/bank02/unknownC2FADE.html">unknownC2FADE</a><span class="tableEntryAnnotation">(speed, spriteIndex)</span>
-							</code>
-						</td>
-						<td>$C2FADE
 </td>
 					</tr>
 					<tr>
@@ -3510,6 +3501,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>Updates teddy bears in party
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="updatePlayerConsciousness" class="public" href="../earthbound/bank02/updatePlayerConsciousness.html">updatePlayerConsciousness</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2BB18
 </td>
 					</tr>
 					<tr>

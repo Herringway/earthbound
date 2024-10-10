@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC290C6</title>
+		<title>Enum ActionOrder</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -40,7 +40,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank02.html">bank02</a>
 					</div>
 				</li>
@@ -135,7 +135,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
@@ -154,16 +154,52 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC290C6</h1><p>$C290C6
-</p>
+			<h1>Enum ActionOrder</h1><p></p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC290C6</span><span class="pun">(</span><span class="pun">)</span><span class="pun">;</span>
+			<span class="kwd">enum</span> <span class="typ">ActionOrder</span>
+			 <span class="pun">:</span> <span class="typ">int</span> <span class="pun">{ ... }</span>
 					</div>
 				</code>
 			</div>
 			
+			<section><h2>Enum members</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td id="inOrder">
+							<code>inOrder</code>
+						</td>
+						<td>Actions are executed sequentially, looping around from 3 to 0
+</td>
+					</tr>
+					<tr>
+						<td id="random">
+							<code>random</code>
+						</td>
+						<td>Each action is equally likely
+</td>
+					</tr>
+					<tr>
+						<td id="randomBiased">
+							<code>randomBiased</code>
+						</td>
+						<td>Randomly-selected actions, but action 1 is twice as likely as 2 and 3, and action 0 is twice as likely as action 1
+</td>
+					</tr>
+					<tr>
+						<td id="randomPair">
+							<code>randomPair</code>
+						</td>
+						<td>Action 0 or 1 is chosen at random, followed by action 2 or 3 chosen at random, repeating
+</td>
+					</tr>
+				</table>
+			</section>
 			
 			<footer>
 				<table class="license-info">
