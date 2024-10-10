@@ -24015,7 +24015,7 @@ shared static this() {
 		CHOOSE_RANDOM(0, 1),
 		JUMP_IF_TRUE(&actionScriptMagicButterflyTask2[15 + 6 * (const(void)*).sizeof]),
 		SET_Y_VELOCITY(-256),
-		SHORTJUMP(&actionScriptMagicButterflyTask2[20 + 6 * (const(void)*).sizeof]),
+		SHORTJUMP(&actionScriptMagicButterflyTask2[18 + 6 * (const(void)*).sizeof]),
 		SET_Y_VELOCITY(256),
 		CHOOSE_RANDOM(15, 30, 45, 60),
 		WRITE_TEMPVAR_WAITTIMER(),
