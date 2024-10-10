@@ -2350,16 +2350,16 @@ void removeUsedItem() {
 }
 
 /// $C24434
-short unknownC24434(Battler* arg1) {
-	arg1.currentTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
-	if (arg1.currentTarget > numBattlersInFrontRow) {
-		return backRowBattlers[arg1.currentTarget - numBattlersInFrontRow - 1];
+short unknownC24434(Battler* attacker) {
+	attacker.currentTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
+	if (attacker.currentTarget > numBattlersInFrontRow) {
+		return backRowBattlers[attacker.currentTarget - numBattlersInFrontRow - 1];
 	}
-	return frontRowBattlers[arg1.currentTarget - 1];
+	return frontRowBattlers[attacker.currentTarget - 1];
 }
 
 /// $C24477
-void chooseTarget(Battler* arg1) {
+void chooseTarget(Battler* attacker) {
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
 		if (checkIfValidTarget(frontRowBattlers[i]) == 0) {
 			goto Unknown4;
@@ -2372,81 +2372,81 @@ void chooseTarget(Battler* arg1) {
 	}
 	sortBattlerPositions();
 	Unknown4:
-	if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
-		if (arg1.side == BattleSide.foes) {
-			arg1.actionTargetting = Targetted.allies;
+	if (battleActionTable[attacker.currentAction].direction == ActionDirection.enemy) {
+		if (attacker.side == BattleSide.foes) {
+			attacker.actionTargetting = Targetted.allies;
 		} else {
-			arg1.actionTargetting = Targetted.enemies;
+			attacker.actionTargetting = Targetted.enemies;
 		}
 	} else {
-		if (arg1.side == BattleSide.foes) {
-			arg1.actionTargetting = Targetted.enemies;
+		if (attacker.side == BattleSide.foes) {
+			attacker.actionTargetting = Targetted.enemies;
 		} else {
-			arg1.actionTargetting = Targetted.allies;
+			attacker.actionTargetting = Targetted.allies;
 		}
 	}
-	switch (battleActionTable[arg1.currentAction].target) {
+	switch (battleActionTable[attacker.currentAction].target) {
 		case ActionTarget.none:
-			arg1.actionTargetting |= Targetted.single;
-			if (arg1.side == BattleSide.foes) {
-				targetEnemyByBattlerIndex(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
+			attacker.actionTargetting |= Targetted.single;
+			if (attacker.side == BattleSide.foes) {
+				targetEnemyByBattlerIndex(attacker, cast(short)((attacker - &battlersTable[0]) / Battler.sizeof));
 			} else {
-				arg1.currentTarget = cast(ubyte)(((arg1 - &battlersTable[0]) / Battler.sizeof) + 1);
+				attacker.currentTarget = cast(ubyte)(((attacker - &battlersTable[0]) / Battler.sizeof) + 1);
 			}
 			break;
 		case ActionTarget.one:
 		case ActionTarget.random:
-			arg1.actionTargetting |= Targetted.single;
-			if (arg1.side == BattleSide.foes) {
-				if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
-					arg1.currentTarget = cast(ubyte)findTargettableNPC();
-					if (arg1.currentTarget != 0) {
+			attacker.actionTargetting |= Targetted.single;
+			if (attacker.side == BattleSide.foes) {
+				if (battleActionTable[attacker.currentAction].direction == ActionDirection.enemy) {
+					attacker.currentTarget = cast(ubyte)findTargettableNPC();
+					if (attacker.currentTarget != 0) {
 						return;
 					}
 					while (true) {
-						arg1.currentTarget = (rand() & 7) + 1;
-						if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
+						attacker.currentTarget = (rand() & 7) + 1;
+						if (checkIfValidTarget(attacker.currentTarget - 1) != 0) {
 							return;
 						}
 					}
 				} else {
 					while (true) {
-						if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
+						if (checkIfValidTarget(unknownC24434(attacker)) != 0) {
 							return;
 						}
 					}
 				}
 			} else {
-				if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
+				if (battleActionTable[attacker.currentAction].direction == ActionDirection.enemy) {
 					while (true) {
-						if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
+						if (checkIfValidTarget(unknownC24434(attacker)) != 0) {
 							return;
 						}
 					}
 				} else {
 					while (true) {
-						arg1.currentTarget = (rand() & 7) + 1;
-						if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
+						attacker.currentTarget = (rand() & 7) + 1;
+						if (checkIfValidTarget(attacker.currentTarget - 1) != 0) {
 							return;
 						}
 					}
 				}
 			}
 		case ActionTarget.row:
-			arg1.actionTargetting |= Targetted.row;
-			if (arg1.side == BattleSide.foes) {
-				arg1.currentTarget = 1;
+			attacker.actionTargetting |= Targetted.row;
+			if (attacker.side == BattleSide.foes) {
+				attacker.currentTarget = Row.front + 1;
 			} else if (numBattlersInFrontRow == 0) {
-				arg1.currentTarget = 2;
+				attacker.currentTarget = Row.back + 1;
 			} else if (numBattlersInBackRow == 0) {
-				arg1.currentTarget = 1;
+				attacker.currentTarget = Row.front + 1;
 			} else {
-				arg1.currentTarget = (rand() & 1) + 1;
+				attacker.currentTarget = (rand() & 1) + 1;
 			}
 			break;
 		case ActionTarget.all:
-			arg1.actionTargetting |= Targetted.all;
-			arg1.currentTarget = 1;
+			attacker.actionTargetting |= Targetted.all;
+			attacker.currentTarget = 1;
 			break;
 		default: break;
 	}
@@ -8206,7 +8206,7 @@ void updatePSIAnimationFrame() {
 	if ((psiAnimationEnemyColourChangeFramesLeft != 0) && (--psiAnimationEnemyColourChangeFramesLeft == 0)) {
 		for (short i = 0; i < 4; i++) {
 			if (psiAnimationEnemyTargets[i] != 0) {
-				unknownC2FADE(20, i);
+				prepareBattleSpritePaletteEffectTables(20, i);
 			}
 		}
 	}
@@ -8928,11 +8928,16 @@ void setBattleSpritePaletteEffectSpeed(short arg1) {
 	battleSpritePaletteEffectSpeed = arg1;
 }
 
-/// $C2FADE
-void unknownC2FADE(short speed, short spriteIndex) {
+/** Prepares the fade tables for battle sprite palette fades
+ * Params:
+ * 	speed = The speed (in frames) at which the effect runs
+ * 	spriteIndex = Which sprite (VRAM index) is being affected
+ * Original_Address: $(DOLLAR)C2FADE
+ */
+void prepareBattleSpritePaletteEffectTables(short speed, short spriteIndex) {
 	battleSpritePaletteEffectSpeed = speed;
 	battleSpritePaletteEffectFramesLeft[spriteIndex] = battleSpritePaletteEffectSpeed;
-	for (short i = 0; i < 48; i++) {
+	for (short i = 0; i < 3 * 16; i++) {
 		battleSpritePaletteEffectDeltas[(16 * spriteIndex) * 3 + i] = cast(short)-cast(int)(battleSpritePaletteEffectDeltas[(16 * spriteIndex) * 3 + i]);
 		battleSpritePaletteEffectCounters[(16 * spriteIndex) * 3 + i] = 0;
 	}
