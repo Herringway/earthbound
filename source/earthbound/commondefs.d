@@ -8427,19 +8427,20 @@ private auto printableScriptName(const(void)* addr) {
 					return;
 				}
 			}
+			writer.formattedWrite!"0x%X"(cast(size_t)addr);
 		}
 	}
 	return Result(addr);
 }
-void printActionscriptCommand(size_t entityID, const(ubyte)* stream) {
-	printActionscriptCommand(entityID, stream[0 .. size_t.max]);
+void printActionscriptCommand(size_t entityID, size_t scriptSlot, const(ubyte)* stream) {
+	printActionscriptCommand(entityID, scriptSlot, stream[0 .. size_t.max]);
 }
-void printActionscriptCommand(size_t entityID, const(ubyte)[] stream) {
+void printActionscriptCommand(size_t entityID, size_t scriptSlot, const(ubyte)[] stream) {
 	import std.logger : tracef;
 	if (stream.length == 0) {
 		return;
 	}
-	tracef("Entity %s: (%s) %s", entityID, printableScriptName(&stream[0]), actionScriptCommandPrinter(stream));
+	tracef("Entity %s/%s: (%s) %s", entityID, scriptSlot, printableScriptName(&stream[0]), actionScriptCommandPrinter(stream));
 }
 
 auto actionScriptCommandPrinter(const(ubyte)* commandStream) {
@@ -8447,7 +8448,7 @@ auto actionScriptCommandPrinter(const(ubyte)* commandStream) {
 }
 auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 	static struct Result {
-		static immutable commandNames = ["END", "LOOP", "LOOP_END", "LONGJUMP", "LONGCALL", "LONG_RETURN", "PAUSE", "START_TASK", "SET_TICK_CALLBACK", "HALT", "SHORTCALL_CONDITIONAL", "SHORTCALL_CONDITIONAL_NOT", "END_TASK", "UNK0D", "SET_VAR", "CLEAR_TICK_CALLBACK", "SWITCH_JUMP_TEMPVAR", "SWITCH_CALL_TEMPVAR", "WRITE_BYTE_WRAM", "END_LAST_TASK", "BINOP", "WRITE_WORD_WRAM", "BREAK_IF_FALSE", "BREAK_IF_TRUE", "BINOP_WRAM", "SHORTJUMP", "SHORTCALL", "SHORT_RETURN", "SET_ANIMATION_POINTER", "WRITE_WORD_TEMPVAR", "WRITE_WRAM_TEMPVAR", "WRITE_TEMPVAR_TO_VAR", "WRITE_VAR_TO_TEMPVAR", "WRITE_VAR_TO_WAIT_TIMER", "SET_DRAW_CALLBACK", "SET_POSITION_CHANGE_CALLBACK", "LOOP_TEMPVAR", "SET_PHYSICS_CALLBACK", "SET_ANIMATION_FRAME_VAR", "BINOP_TEMPVAR", "SET_X", "SET_Y", "SET_Z", "SET_X_RELATIVE", "SET_Y_RELATIVE", "SET_Z_RELATIVE", "SET_X_VELOCITY_RELATIVE", "SET_Y_VELOCITY_RELATIVE", "SET_Z_VELOCITY_RELATIVE", "UNK31", "UNK32", "UNK33", "UNK34", "UNK35", "UNK36", "UNK37", "UNK38", "SET_VELOCITIES_ZERO", "UNK3A", "SET_ANIMATION", "NEXT_ANIMATION_FRAME", "PREV_ANIMATION_FRAME", "SKIP_N_ANIMATION_FRAMES", "SET_X_VELOCITY", "SET_Y_VELOCITY", "SET_Z_VELOCITY", "CALLROUTINE", "SET_PRIORITY", "WRITE_TEMPVAR_WAITTIMER"];
+		static immutable commandNames = ["END", "LOOP", "LOOP_END", "LONGJUMP", "LONGCALL", "LONG_RETURN", "PAUSE", "START_TASK", "SET_TICK_CALLBACK", "HALT", "JUMP_IF_FALSE", "JUMP_IF_TRUE", "END_TASK", "UNK0D", "SET_VAR", "CLEAR_TICK_CALLBACK", "SWITCH_JUMP_TEMPVAR", "SWITCH_CALL_TEMPVAR", "WRITE_BYTE_WRAM", "END_LAST_TASK", "BINOP", "WRITE_WORD_WRAM", "BREAK_IF_FALSE", "BREAK_IF_TRUE", "BINOP_WRAM", "SHORTJUMP", "SHORTCALL", "SHORT_RETURN", "SET_ANIMATION_POINTER", "WRITE_WORD_TEMPVAR", "WRITE_WRAM_TEMPVAR", "WRITE_TEMPVAR_TO_VAR", "WRITE_VAR_TO_TEMPVAR", "WRITE_VAR_TO_WAIT_TIMER", "SET_DRAW_CALLBACK", "SET_POSITION_CHANGE_CALLBACK", "LOOP_TEMPVAR", "SET_PHYSICS_CALLBACK", "SET_ANIMATION_FRAME_VAR", "BINOP_TEMPVAR", "SET_X", "SET_Y", "SET_Z", "SET_X_RELATIVE", "SET_Y_RELATIVE", "SET_Z_RELATIVE", "SET_X_VELOCITY_RELATIVE", "SET_Y_VELOCITY_RELATIVE", "SET_Z_VELOCITY_RELATIVE", "UNK31", "UNK32", "UNK33", "UNK34", "UNK35", "UNK36", "UNK37", "UNK38", "SET_VELOCITIES_ZERO", "UNK3A", "SET_ANIMATION", "NEXT_ANIMATION_FRAME", "PREV_ANIMATION_FRAME", "SKIP_N_ANIMATION_FRAMES", "SET_X_VELOCITY", "SET_Y_VELOCITY", "SET_Z_VELOCITY", "CALLROUTINE", "SET_PRIORITY", "WRITE_TEMPVAR_WAITTIMER"];
 		const(ubyte)[] stream;
 		void toString(W)(ref W writer) const {
 			import std.algorithm.iteration : map;
@@ -8487,7 +8488,6 @@ auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 				case 0x43:
 					writer.formattedWrite!" %02X"(stream[1]);
 					break;
-				case 0x07:
 				case 0x16:
 				case 0x17:
 				case 0x1D:
@@ -8524,6 +8524,7 @@ auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 					break;
 				case 0x03:
 				case 0x04:
+				case 0x07:
 				case 0x08:
 				case 0x0A:
 				case 0x0B:

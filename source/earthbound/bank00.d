@@ -5916,8 +5916,10 @@ void runEntityScript() {
 	do {
 		ystart = y;
 		ubyte a = (y++)[actionScriptScriptOffset];
-		debug(actionscript) printActionscriptCommand(currentEntitySlot, ystart);
+		debug(actionscript) printActionscriptCommand(currentEntitySlot, currentEntityScriptOffset / 2, ystart);
 		if (a < 0x70) {
+			import std.format : format;
+			assert(a < movementControlCodesPointerTable.length, format!"Illegal command in script for %s: %02X"(currentEntityScriptOffset / 2, a));
 			y = movementControlCodesPointerTable[a](y);
 		} else {
 			actionScriptVar90 = a;
@@ -6522,6 +6524,7 @@ const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 	bool carry;
 	short regY = allocateScript(carry);
 	if (!carry) {
+		debug(actionscript) tracef("Started script in slot %s", regY / 2);
 		actionScriptCurrentScript = regY;
 		entityScriptNextScripts[regY / 2] = entityScriptNextScripts[currentEntityScriptOffset / 2];
 		entityScriptNextScripts[currentEntityScriptOffset / 2] = regY;

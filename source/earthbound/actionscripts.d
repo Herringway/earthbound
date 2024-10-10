@@ -1102,6 +1102,9 @@ shared static this() {
 		"actionScriptRunHStripeEffect": actionScriptRunHStripeEffect[],
 		"actionScriptRunVStripeEffect": actionScriptRunVStripeEffect[],
 		"actionScriptRunDotsEffect": actionScriptRunDotsEffect[],
+		"actionScriptMagicButterflyTask1": actionScriptMagicButterflyTask1[],
+		"actionScriptMagicButterflyTask2": actionScriptMagicButterflyTask2[],
+		"actionScriptMagicButterflyTask3": actionScriptMagicButterflyTask3[],
 	];
 }
 /** ActionScript 786 - Flies around the party leader in an oval
