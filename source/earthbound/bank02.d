@@ -5084,7 +5084,7 @@ void battleActionCutGuts() {
 		return;
 	}
 	short tmp = currentTarget.guts;
-	currentTarget.guts = cast(short)((currentTarget.guts * 3) / 2);
+	currentTarget.guts = cast(short)((currentTarget.guts * 3) / 4);
 	if (currentTarget.guts < currentTarget.baseGuts / 2) {
 		currentTarget.guts = currentTarget.baseGuts / 2;
 	}
