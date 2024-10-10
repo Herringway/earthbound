@@ -723,7 +723,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("EXP", battler.exp);
 					InputEditable("VRAM sprite index", battler.vramSpriteIndex);
 					InputEditable("Screen coords", battler.spriteX, battler.spriteY);
-					InputEditable("Initiative", battler.initiative);
+					InputEditable("Turn speed", battler.turnSpeed);
 					InputEditable("Sprite blink frames", battler.spriteBlinkFrames);
 					InputEditable("Enemy attack flash frames", battler.enemyAttackFlashFrames);
 					InputEditable("Flashing", battler.isFlashing);
