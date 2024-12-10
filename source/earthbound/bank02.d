@@ -2389,9 +2389,9 @@ void chooseTarget(Battler* attacker) {
 		case ActionTarget.none:
 			attacker.actionTargetting |= Targetted.single;
 			if (attacker.side == BattleSide.foes) {
-				targetEnemyByBattlerIndex(attacker, cast(short)((attacker - &battlersTable[0]) / Battler.sizeof));
+				targetEnemyByBattlerIndex(attacker, cast(short)(attacker - &battlersTable[0]));
 			} else {
-				attacker.currentTarget = cast(ubyte)(((attacker - &battlersTable[0]) / Battler.sizeof) + 1);
+				attacker.currentTarget = cast(ubyte)(attacker - &battlersTable[0] + 1);
 			}
 			break;
 		case ActionTarget.one:
@@ -2450,6 +2450,21 @@ void chooseTarget(Battler* attacker) {
 			break;
 		default: break;
 	}
+}
+
+unittest {
+	numBattlersInFrontRow = 2;
+	numBattlersInBackRow = 0;
+	frontRowBattlers = [9, 8, 0, 0, 0, 0, 0, 0];
+	battleInitPlayerStats(PartyMember.ness, &battlersTable[0]);
+	battlersTable[0].currentTarget = 1;
+
+	battleInitEnemyStats(EnemyID.runawayDog1, &battlersTable[8]);
+	battlersTable[8].currentTarget = 0;
+	battlersTable[8].currentAction = BattleActions.howl;
+	battlersTable[8].actionTargetting = Targetted.enemies | Targetted.single;
+	chooseTarget(&battlersTable[8]);
+	assert(battlersTable[8].currentTarget != 0);
 }
 
 /// $C24703
@@ -3164,10 +3179,10 @@ short battleRoutine() {
 					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == ActionTarget.none)) {
 						if (currentAttacker.side == BattleSide.friends) {
 							currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
-							currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
+							currentAttacker.currentTarget = cast(ubyte)(currentAttacker - &battlersTable[0] + 1);
 						} else {
 							currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
-							targetEnemyByBattlerIndex(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
+							targetEnemyByBattlerIndex(currentAttacker, cast(short)(currentAttacker - &battlersTable[0]));
 						}
 					}
 					// handle damage from status effects now
