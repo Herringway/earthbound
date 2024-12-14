@@ -6079,7 +6079,7 @@ const(ubyte)* actionScriptCommand02(const(ubyte)* y) {
  * Original_Address: $(DOLLAR)C09649
  */
 const(ubyte)* actionScriptCommand19(const(ubyte)* y) {
-	return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+	return getActionScriptLabel(*cast(string*)&y[actionScriptScriptOffset]);
 }
 
 /** ActionScript command 03 - Long Jump
@@ -6095,8 +6095,8 @@ const(ubyte)* actionScriptCommand03(const(ubyte)* y) {
  * Original_Address: $(DOLLAR)C09658
  */
 const(ubyte)* actionScriptCommand1A(const(ubyte)* y) {
-	const(ubyte)* result = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
-	actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
+	const(ubyte)* result = getActionScriptLabel(*cast(string*)&y[actionScriptScriptOffset]);
+	actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + string.sizeof;
 	entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
 	return result;
 }
@@ -6436,6 +6436,7 @@ const(ubyte)* actionScriptCommand43(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand424C(const(ubyte)* y) {
 	alias Func = short function(short a, ref const(ubyte)* y);
 	Func f = *cast(Func*)&y[actionScriptScriptOffset];
+	assert(f !is null);
 	actionScriptLastRead = y + Func.sizeof;
 	entityScriptTempvars[currentEntityScriptOffset / 2] = f(entityScriptTempvars[currentEntityScriptOffset / 2], actionScriptLastRead);
 	return actionScriptLastRead;
@@ -6447,9 +6448,9 @@ const(ubyte)* actionScriptCommand424C(const(ubyte)* y) {
  */
 const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] == 0) {
-		return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+		return getActionScriptLabel(*cast(ScriptPointer*)&y[actionScriptScriptOffset]);
 	}
-	return y + (const(ubyte)*).sizeof;
+	return y + ScriptPointer.sizeof;
 }
 
 /** ActionScript command 0B - Jump if temp var is true
@@ -6458,9 +6459,9 @@ const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
  */
 const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] != 0) {
-		return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+		return getActionScriptLabel(*cast(ScriptPointer*)&y[actionScriptScriptOffset]);
 	}
-	return y + (const(ubyte)*).sizeof;
+	return y + ScriptPointer.sizeof;
 }
 
 /** ActionScript command 10 - Jump to Xth pointer
@@ -6471,9 +6472,9 @@ const(ubyte)* actionScriptCommand10(const(ubyte)* y) {
 	actionScriptVar90 = entityScriptTempvars[currentEntityScriptOffset / 2];
 	actionScriptLastRead = y + 1;
 	if (y[actionScriptScriptOffset] <= actionScriptVar90) {
-		return actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
+		return actionScriptLastRead + y[actionScriptScriptOffset] * ScriptPointer.sizeof;
 	} else {
-		return (cast(const(ubyte)**)actionScriptLastRead)[actionScriptVar90];
+		return getActionScriptLabel((cast(ScriptPointer*)actionScriptLastRead)[actionScriptVar90]);
 	}
 }
 
@@ -6485,11 +6486,11 @@ const(ubyte)* actionScriptCommand11(const(ubyte)* y) {
 	actionScriptVar90 = entityScriptTempvars[currentEntityScriptOffset / 2];
 	actionScriptLastRead = y + 1;
 	if (y[actionScriptScriptOffset] <= actionScriptVar90) {
-		return actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
+		return actionScriptLastRead + y[actionScriptScriptOffset] * ScriptPointer.sizeof;
 	} else {
-		actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
+		actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = actionScriptLastRead + y[actionScriptScriptOffset] * ScriptPointer.sizeof;
 		entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
-		return (cast(const(ubyte)**)actionScriptLastRead)[actionScriptVar90];
+		return getActionScriptLabel((cast(ScriptPointer*)actionScriptLastRead)[actionScriptVar90]);
 	}
 }
 
@@ -6530,11 +6531,11 @@ const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 		entityScriptNextScripts[currentEntityScriptOffset / 2] = regY;
 		entityScriptStackPosition[regY / 2] = 0;
 		entityScriptSleepFrames[regY / 2] = 0;
-		entityProgramCounters[regY / 2] = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+		entityProgramCounters[regY / 2] = getActionScriptLabel(*cast(ScriptPointer*)&y[actionScriptScriptOffset]);
 		///blah blah blah bank
-		return y + (const(ubyte)*).sizeof;
+		return y + ScriptPointer.sizeof;
 	}
-	return y + (const(ubyte)*).sizeof;
+	return y + ScriptPointer.sizeof;
 }
 
 /** ActionScript command 13 - End last task
@@ -6745,11 +6746,11 @@ const(ubyte)* actionScriptCommand15(const(ubyte)* y) {
  */
 const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] == 0) {
-		y = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+		y = getActionScriptLabel(*cast(ScriptPointer*)&y[actionScriptScriptOffset]);
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
-	return y + (const(ubyte)*).sizeof;
+	return y + ScriptPointer.sizeof;
 }
 
 /** ActionScript command 17 - Break if true
@@ -6758,11 +6759,11 @@ const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
  */
 const(ubyte)* actionScriptCommand17(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] != 0) {
-		y = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+		y = getActionScriptLabel(*cast(ScriptPointer*)&y[actionScriptScriptOffset]);
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
-	return y + (const(ubyte)*).sizeof;
+	return y + ScriptPointer.sizeof;
 }
 
 /** ActionScript command 1C - Set Spritemap
@@ -8270,7 +8271,7 @@ short unknownC0AACD() {
 void actionScriptJumpToLabelNTimes(short, ref const(ubyte)* arg2) {
 	actionScriptVar90 = cast(short)(actionScriptRead8(arg2) + 1);
 	actionScriptLastRead = arg2;
-	actionScriptJumpDestination = cast(const(ubyte)*)actionScriptReadPtr(arg2);
+	actionScriptJumpDestination = getActionScriptLabel(actionScriptReadString(arg2));
 	actionScriptLastRead = arg2;
 	//offset is just an estimate...
 	if (actionScriptStack[4].counter == 0) {

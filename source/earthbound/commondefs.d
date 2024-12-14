@@ -8408,10 +8408,9 @@ private auto printableScriptName(const(void)* addr) {
 			foreach (name, otherScript; otherScripts) {
 				if ((addr >= &otherScript[0]) && (addr <= &otherScript[$ - 1])) {
 					const offset = addr - cast(const(void)*)&otherScript[0];
+					writer.formattedWrite!"%s"(name);
 					if (offset != 0) {
-						writer.formattedWrite!"%s+%d"(name, offset);
-					} else {
-						writer.formattedWrite!"%s"(name);
+						writer.formattedWrite!"%d"(offset);
 					}
 					return;
 				}
@@ -8419,10 +8418,9 @@ private auto printableScriptName(const(void)* addr) {
 			foreach (idx, script; actionScriptScriptPointers) {
 				if ((addr >= &script[0]) && (addr <= &script[$ - 1])) {
 					const offset = addr - cast(const(void)*)&script[0];
+					writer.formattedWrite!"actionScript%d"(idx);
 					if (offset != 0) {
-						writer.formattedWrite!"actionScript%d+%d"(idx, offset);
-					} else {
-						writer.formattedWrite!"actionScript%d"(idx);
+						writer.formattedWrite!"+%d"(offset);
 					}
 					return;
 				}
@@ -8448,15 +8446,15 @@ auto actionScriptCommandPrinter(const(ubyte)* commandStream) {
 }
 auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 	static struct Result {
-		static immutable commandNames = ["END", "LOOP", "LOOP_END", "LONGJUMP", "LONGCALL", "LONG_RETURN", "PAUSE", "START_TASK", "SET_TICK_CALLBACK", "HALT", "JUMP_IF_FALSE", "JUMP_IF_TRUE", "END_TASK", "UNK0D", "SET_VAR", "CLEAR_TICK_CALLBACK", "SWITCH_JUMP_TEMPVAR", "SWITCH_CALL_TEMPVAR", "WRITE_BYTE_WRAM", "END_LAST_TASK", "BINOP", "WRITE_WORD_WRAM", "BREAK_IF_FALSE", "BREAK_IF_TRUE", "BINOP_WRAM", "SHORTJUMP", "SHORTCALL", "SHORT_RETURN", "SET_ANIMATION_POINTER", "WRITE_WORD_TEMPVAR", "WRITE_WRAM_TEMPVAR", "WRITE_TEMPVAR_TO_VAR", "WRITE_VAR_TO_TEMPVAR", "WRITE_VAR_TO_WAIT_TIMER", "SET_DRAW_CALLBACK", "SET_POSITION_CHANGE_CALLBACK", "LOOP_TEMPVAR", "SET_PHYSICS_CALLBACK", "SET_ANIMATION_FRAME_VAR", "BINOP_TEMPVAR", "SET_X", "SET_Y", "SET_Z", "SET_X_RELATIVE", "SET_Y_RELATIVE", "SET_Z_RELATIVE", "SET_X_VELOCITY_RELATIVE", "SET_Y_VELOCITY_RELATIVE", "SET_Z_VELOCITY_RELATIVE", "UNK31", "UNK32", "UNK33", "UNK34", "UNK35", "UNK36", "UNK37", "UNK38", "SET_VELOCITIES_ZERO", "UNK3A", "SET_ANIMATION", "NEXT_ANIMATION_FRAME", "PREV_ANIMATION_FRAME", "SKIP_N_ANIMATION_FRAMES", "SET_X_VELOCITY", "SET_Y_VELOCITY", "SET_Z_VELOCITY", "CALLROUTINE", "SET_PRIORITY", "WRITE_TEMPVAR_WAITTIMER"];
+		static immutable commandNames = ["END", "LOOP", "LOOP_END", "LONGJUMP", "LONGCALL", "LONG_RETURN", "PAUSE", "START_TASK", "SET_TICK_CALLBACK", "HALT", "JUMP_IF_FALSE", "JUMP_IF_TRUE", "END_TASK", "UNK0D", "SET_VAR", "CLEAR_TICK_CALLBACK", "SWITCH_JUMP_TEMPVAR", "SWITCH_CALL_TEMPVAR", "WRITE_BYTE_WRAM", "END_LAST_TASK", "BINOP", "WRITE_WORD_WRAM", "BREAK_IF_FALSE", "BREAK_IF_TRUE", "BINOP_WRAM", "SHORTJUMP", "SHORTCALL", "SHORT_RETURN", "SET_ANIMATION_POINTER", "WRITE_WORD_TEMPVAR", "WRITE_WRAM_TEMPVAR", "WRITE_TEMPVAR_TO_VAR", "WRITE_VAR_TO_TEMPVAR", "WRITE_VAR_TO_WAIT_TIMER", "SET_DRAW_CALLBACK", "SET_POSITION_CHANGE_CALLBACK", "LOOP_TEMPVAR", "SET_PHYSICS_CALLBACK", "SET_ANIMATION_FRAME_VAR", "BINOP_TEMPVAR", "SET_X", "SET_Y", "SET_Z", "SET_X_RELATIVE", "SET_Y_RELATIVE", "SET_Z_RELATIVE", "SET_X_VELOCITY_RELATIVE", "SET_Y_VELOCITY_RELATIVE", "SET_Z_VELOCITY_RELATIVE", "UNK31", "UNK32", "UNK33", "UNK34", "UNK35", "UNK36", "UNK37", "UNK38", "SET_VELOCITIES_ZERO", "UNK3A", "SET_ANIMATION", "NEXT_ANIMATION_FRAME", "PREV_ANIMATION_FRAME", "SKIP_N_ANIMATION_FRAMES", "SET_X_VELOCITY", "SET_Y_VELOCITY", "SET_Z_VELOCITY", "CALLROUTINE", "SET_PRIORITY", "WRITE_TEMPVAR_WAITTIMER", "SET_ANIMATION!", "NEXT_ANIMATION_FRAME!", "PREV_ANIMATION_FRAME!", "SKIP_N_ANIMATION_FRAMES!", "SET_X_VELOCITY!", "SET_Y_VELOCITY!", "SET_Z_VELOCITY!", "CALLROUTINE!"];
 		const(ubyte)[] stream;
 		void toString(W)(ref W writer) const {
 			import std.algorithm.iteration : map;
 			import std.format : formattedWrite;
-			import earthbound.actionscripts : funcArgLengths, funcSymbolMap;
+			import earthbound.actionscripts : funcArgLengths, funcSymbolMap, ScriptPointer;
 			enum scriptPtrSize = (void*).sizeof;
 			enum voidPtrSize = (void*).sizeof;
-			ubyte command = stream[0] < 0x70 ? stream[0] : cast(ubyte)(0x45 + (stream[0] & 0x70) >> 4);
+			ubyte command = stream[0] < 0x70 ? stream[0] : cast(ubyte)(0x45 + ((stream[0] & 0x70) >> 4));
 			if (command < commandNames.length) {
 				writer.formattedWrite!"%s"(commandNames[command]);
 			} else {
@@ -8488,8 +8486,6 @@ auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 				case 0x43:
 					writer.formattedWrite!" %02X"(stream[1]);
 					break;
-				case 0x16:
-				case 0x17:
 				case 0x1D:
 				case 0x1E:
 				case 0x28:
@@ -8522,16 +8518,20 @@ auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 				case 0x18:
 					writer.formattedWrite!" %04X %02X %02X"((cast(ushort[])(stream[1 .. 3]))[0], stream[3], stream[4]);
 					break;
+				case 0x08:
+				case 0x25:
+					writer.formattedWrite!" %s"(printableScriptName((cast(void*[])(stream[1 .. 1 + scriptPtrSize]))[0]));
+					break;
 				case 0x03:
 				case 0x04:
 				case 0x07:
-				case 0x08:
 				case 0x0A:
 				case 0x0B:
+				case 0x16:
+				case 0x17:
 				case 0x19:
 				case 0x1A:
-				case 0x25:
-					writer.formattedWrite!" %s"(printableScriptName((cast(void*[])(stream[1 .. 1 + scriptPtrSize]))[0]));
+					writer.formattedWrite!" %s"((cast(ScriptPointer[])stream[1 .. 1 + ScriptPointer.sizeof])[0]);
 					break;
 				case 0x1C:
 				case 0x22:
@@ -8540,12 +8540,36 @@ auto actionScriptCommandPrinter(const(ubyte)[] commandStream) {
 					break;
 				case 0x10:
 				case 0x11:
-					writer.formattedWrite!" %(%s, %)"((cast(void*[])(stream[2 .. 2 + scriptPtrSize * stream[1]])).map!printableScriptName);
+					writer.formattedWrite!" %(%s, %)"((cast(ScriptPointer[])(stream[2 .. 2 + ScriptPointer.sizeof * stream[1]])));
 					break;
 				case 0x42:
 					const fptr = (cast(void*[])stream[1 .. 1 + size_t.sizeof])[0];
-					writer.formattedWrite!" %s(%s)"(funcSymbolMap[fptr], stream[1 + size_t.sizeof .. 1 + size_t.sizeof + funcArgLengths[fptr]]);
+					writer.formattedWrite!" %s(%s)"(funcSymbolMap.get(fptr, "ERROR GETTING SYMBOL"), stream[1 + size_t.sizeof .. 1 + size_t.sizeof + funcArgLengths.get(fptr, 0)]);
 					break;
+				case 0x45:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x3B;
+				case 0x46:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x3C;
+				case 0x47:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x3D;
+				case 0x48:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x3E;
+				case 0x49:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x3F;
+				case 0x4A:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x40;
+				case 0x4B:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x41;
+				case 0x4C:
+					writer.formattedWrite!"%s"(stream[0] & 0xF);
+					goto case 0x42;
 				default:
 					break;
 			}
