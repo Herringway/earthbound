@@ -372,6 +372,7 @@
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDefaultEnemy.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDeleteEnemy.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDeliveryCommon.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDeliveryCommonTask.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDoseAndonutEnd.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDoseDoseiEnd.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptDoseiJefDown.html</loc></url>
@@ -552,6 +553,7 @@
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaf1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaf1Task.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaf2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeafCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaveButukarizaru.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaveSarusensei.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/actionScriptLeaveUkkariCarrier.html</loc></url>
@@ -974,7 +976,6 @@
 <url><loc>http://127.0.0.1/earthbound/actionscripts/enemyFlyingBattleCommonTask.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/fadeWaitScript.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/unknownC30295.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/actionscripts/unknownC3098B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/unknownC30A1F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/unknownC30C55.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/actionscripts/unknownC30C67.html</loc></url>
