@@ -7668,7 +7668,7 @@ void updateEntitySpriteCurrentFrame0() {
 	useSecondSpriteFrame = 0;
 	// BUG: The result is never checked. The game uses the stack address to determine whether or not to update the sprite.
 	// The function fails to update sprites in several cases anyway, so there's nothing that needs to be fixed here...
-	unknownC0C711();
+	isEntitySpriteOnscreen();
 	if (1 != 0) {
 		updateEntitySpriteCurrentCommon();
 	}
@@ -7676,7 +7676,7 @@ void updateEntitySpriteCurrentFrame0() {
 void updateEntitySpriteCurrentFrame1() {
 	useSecondSpriteFrame = 1;
 	// see above
-	unknownC0C711();
+	isEntitySpriteOnscreen();
 	if (1 != 0) {
 		updateEntitySpriteCurrentCommon();
 	}
@@ -9451,8 +9451,13 @@ short isEntityOnscreen() {
 }
 
 
-/// $C0C711
-short unknownC0C711() {
+/** Tests if the active entity's sprite is onscreen.
+ *
+ * This function is technically unused - it has no side effects and the return value is never used.
+ * Returns: -1 if entity is onscreen, 0 if not
+ * Original_Address: $(DOLLAR)C0C711
+ */
+short isEntitySpriteOnscreen() {
 	//weird...
 	if ((((entityScreenXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) | (entityScreenYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]]) | (currentEntitySlot + 8)) & 0xFF00) == 0) {
 		return -1;
@@ -9467,14 +9472,14 @@ unittest {
 		entityScreenXTable[currentEntitySlot] = 0x104;
 		entityScreenYTable[currentEntitySlot] = 0x78;
 		entitySizes[currentEntitySlot] = 5;
-		assert(unknownC0C711() == -1);
+		assert(isEntitySpriteOnscreen() == -1);
 	}
 	{
 		currentEntitySlot = 4;
 		entityScreenXTable[currentEntitySlot] = 0xAC;
 		entityScreenYTable[currentEntitySlot] = cast(short)0xFFC1;
 		entitySizes[currentEntitySlot] = 14;
-		assert(unknownC0C711() == 0);
+		assert(isEntitySpriteOnscreen() == 0);
 	}
 }
 

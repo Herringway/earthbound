@@ -984,7 +984,10 @@ shared static this() {
 		"animateD8F2": animateD8F2[],
 		"animateD24F2": animateD24F2[],
 		"animateD12F2": animateD12F2[],
-		"unknownC3A0D8": unknownC3A0D8[],
+		"animateD9F2": animateD9F2[],
+		"animateD6F2": animateD6F2[],
+		"animateD2F2": animateD2F2[],
+		"animateD8F2Toggle": animateD8F2Toggle[],
 		"animateDVAR4F2": animateDVAR4F2[],
 		"unknownC3A15E": unknownC3A15E[],
 		"unknownC3A17B": unknownC3A17B[],
@@ -12960,7 +12963,7 @@ shared static this() {
 		SET_MOVEMENT_SPEED(1536),
 		SET_VAR(ActionScriptVars.v5, 6),
 		END_LAST_TASK(),
-		START_TASK("unknownC3A0D8.ENTRY2"),
+		START_TASK("animateD2F2"),
 		SET_VAR(ActionScriptVars.v6, 2440),
 		SET_VAR(ActionScriptVars.v7, 3832),
 		SHORTCALL("actionScriptMoveToLocation"),
@@ -13739,7 +13742,7 @@ shared static this() {
 	actionScriptTeleportSarusensei = initializeScript!actionScriptTeleportSarusensei(
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8"),
+		START_TASK("animateD9F2"),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_TICK_CALLBACK(&makePartyLookAtActiveEntity),
@@ -14142,7 +14145,7 @@ shared static this() {
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 		SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY3"),
+		START_TASK("animateD8F2Toggle"),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		SET_Z(9),
@@ -17581,7 +17584,9 @@ shared static this() {
 		HALT(),
 	);
 }
-/// $C3A09F - animation task with 2 frames, 8 frame delay
+/** Animation task with 2 frames, 8 frame delay
+ * Original_Address: $(DOLLAR)C3A09F
+ */
 immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD8F2;
 shared static this() {
 	animateD8F2 = initializeScript!animateD8F2(
@@ -17594,7 +17599,9 @@ shared static this() {
 		SHORTJUMP("animateD8F2"),
 	);
 }
-/// $C3A0B2 - animation task with 2 frames, 24 frame delay
+/** Animation task with 2 frames, 24 frame delay
+ * Original_Address: $(DOLLAR)C3A0B2
+ */
 immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD24F2;
 shared static this() {
 	animateD24F2 = initializeScript!animateD24F2(
@@ -17607,7 +17614,9 @@ shared static this() {
 		SHORTJUMP("animateD24F2"),
 	);
 }
-/// $C3A0C5 - animation task with 2 frames, 12 frame delay
+/** Animation task with 2 frames, 12 frame delay
+ * Original_Address: $(DOLLAR)C3A0C5
+ */
 immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD12F2;
 shared static this() {
 	animateD12F2 = initializeScript!animateD12F2(
@@ -17620,46 +17629,72 @@ shared static this() {
 		SHORTJUMP("animateD12F2"),
 	);
 }
-/// $C3A0D8
-immutable ubyte[50 + 8 * (const(void)*).sizeof + 6 * ScriptPointer.sizeof] unknownC3A0D8;
+/** Animation task with 2 frames, 9 frame delay
+ * Original_Address: $(DOLLAR)C3A0D8
+ */
+immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD9F2;
 shared static this() {
-	unknownC3A0D8 = initializeScript!unknownC3A0D8(
+	animateD9F2 = initializeScript!animateD9F2(
 		PAUSE(9),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(9),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		JUMP_IF_TRUE("unknownC3A0D8"),
-	LABEL("ENTRY1"),
+		//JUMP_IF_TRUE("animateD9F2"), // bug: relies on undefined return value for sprite update function
+		SHORTJUMP("animateD9F2"),
+	);
+}
+/** Animation task with 2 frames, 6 frame delay
+ * Original_Address: $(DOLLAR)
+ */
+immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD6F2;
+shared static this() {
+	animateD6F2 = initializeScript!animateD6F2(
 		PAUSE(6),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(6),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		JUMP_IF_TRUE("unknownC3A0D8.ENTRY1"),
-	LABEL("ENTRY2"),
+		//JUMP_IF_TRUE("animateD6F2"), // bug: relies on undefined return value for sprite update function
+		SHORTJUMP("animateD6F2"),
+	);
+}
+/** Animation task with 2 frames, 2 frame delay
+ * Original_Address: $(DOLLAR)
+ */
+immutable ubyte[11 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] animateD2F2;
+shared static this() {
+	animateD2F2 = initializeScript!animateD2F2(
 		PAUSE(2),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(2),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		JUMP_IF_TRUE("unknownC3A0D8.ENTRY2"),
-	LABEL("ENTRY3"),
+		//JUMP_IF_TRUE("animateD2F2"), // bug: relies on undefined return value for sprite update function
+		SHORTJUMP("animateD2F2"),
+	);
+}
+/** Animation task with 2 frames, 2 frame delay. Alternates frames only when var 4 is non-zero
+ * Original_Address: $(DOLLAR)
+ */
+immutable ubyte[17 + 2 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] animateD8F2Toggle;
+shared static this() {
+	animateD8F2Toggle = initializeScript!animateD8F2Toggle(
 		PAUSE(8),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
-		JUMP_IF_TRUE("unknownC3A0D8.ENTRY4"),
+		JUMP_IF_TRUE("animateD8F2Toggle.var4Nonzero"),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
-	LABEL("ENTRY4"),
+	LABEL("var4Nonzero"),
 		PAUSE(8),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
-		JUMP_IF_TRUE("unknownC3A0D8.ENTRY3"),
+		JUMP_IF_TRUE("animateD8F2Toggle"),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		SHORTJUMP("unknownC3A0D8.ENTRY3"),
+		SHORTJUMP("animateD8F2Toggle"),
 	);
 }
 /// $C3A12E - animation task with 2 frames, VAR4 frame delay
@@ -17782,7 +17817,7 @@ shared static this() {
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(2),
 		IS_ENTITY_ONSCREEN_RESET_ANIMATION(),
-		JUMP_IF_TRUE("unknownC3A0D8.ENTRY2"),
+		JUMP_IF_TRUE("animateD2F2"),
 		SHORTJUMP("actionScriptTerminate"),
 	);
 }
@@ -18048,7 +18083,7 @@ shared static this() {
 	actionScriptKing1 = initializeScript!actionScriptKing1(
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY3"),
+		START_TASK("animateD8F2Toggle"),
 		START_TASK("checkCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(256),
@@ -18811,7 +18846,7 @@ shared static this() {
 	unknownC3AA38 = initializeScript!unknownC3AA38(
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY3"),
+		START_TASK("animateD8F2Toggle"),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		SHORT_RETURN(),
@@ -18849,7 +18884,7 @@ shared static this() {
 	unknownC3AA6E = initializeScript!unknownC3AA6E(
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8"),
+		START_TASK("animateD9F2"),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(352),
@@ -18862,7 +18897,7 @@ shared static this() {
 	unknownC3AA82 = initializeScript!unknownC3AA82(
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY1"),
+		START_TASK("animateD6F2"),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(512),
@@ -18875,7 +18910,7 @@ shared static this() {
 	unknownC3AA96 = initializeScript!unknownC3AA96(
 		SET_PHYSICS_CALLBACK(&actionScriptUpdatePositionAndCollision),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY2"),
+		START_TASK("animateD2F2"),
 		SET_VELOCITIES_ZERO(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 		SET_MOVEMENT_SPEED(1536),
@@ -18999,7 +19034,7 @@ shared static this() {
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 		SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
 		SET_ANIMATION(0),
-		START_TASK("unknownC3A0D8.ENTRY3"),
+		START_TASK("animateD8F2Toggle"),
 		SET_VELOCITIES_ZERO(),
 		SET_VAR(ActionScriptVars.v4, 0),
 		SHORT_RETURN(),
@@ -19321,7 +19356,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
-		START_TASK("unknownC3A0D8.ENTRY3"),
+		START_TASK("animateD8F2Toggle"),
 		START_TASK("checkCollisionTask"),
 		SET_VAR(ActionScriptVars.v4, 0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -19337,7 +19372,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 		START_TASK("checkCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		SHORTJUMP("unknownC3A0D8.ENTRY3"),
+		SHORTJUMP("animateD8F2Toggle"),
 	);
 }
 /// $C3AE0F
