@@ -436,7 +436,7 @@ ushort getScreenAngle(short x1, short y1, short x2, short y2) {
 	if (yDist >= 256) { // only possible if y distance is significantly greater than x distance
 		a = -1;
 	}
-	a = cast(ushort)a / xDist;
+	a = cast(short)(cast(ushort)a / xDist);
 	short x = 0;
 	while (x < 16) {
 		if (a < unknownC41FDF[x]) {
