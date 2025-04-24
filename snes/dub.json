@@ -1,7 +1,0 @@
-{
-	"name": "snes",
-	"description": "As close to the original SNES as possible",
-	"dependencies": {
-		"earthbound": "*"
-	}
-}

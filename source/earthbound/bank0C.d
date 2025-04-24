@@ -2,6 +2,7 @@
 module earthbound.bank0C;
 
 import earthbound.commondefs;
+import replatform64;
 
 /** Fullscreen animation sequences that are controlled by actionscripts
  *

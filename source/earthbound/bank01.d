@@ -12,9 +12,10 @@ import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank20;
 import earthbound.bank2F;
+import earthbound.external;
 import earthbound.globals;
-import earthbound.hardware;
 import earthbound.text;
+import replatform64.snes;
 
 import core.stdc.string;
 import std.logger;
@@ -7414,7 +7415,7 @@ short fileSelectMenu(short arg1) {
 		windowSetTextColor(TextPalette.normal);
 	} else {
 		corruptionCheck();
-		while (fadeParameters.step != 0) { waitForInterrupt(); }
+		while (fadeParameters.step != 0) { snes.wait(); }
 		changeMusic(Music.setupScreen);
 		unknownC11F5A(&unknownC1ECD1);
 		currentSaveSlot = cast(ubyte)selectionMenu(0);

@@ -13,9 +13,11 @@ import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
-import earthbound.hardware;
-import core.stdc.string;
+import replatform64;
+import replatform64.snes;
 import std.logger;
+
+import core.stdc.string;
 
 //$C30000
 @ROMSource(0x30000, 256)

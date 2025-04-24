@@ -2,7 +2,6 @@
 module earthbound.bank02;
 
 import earthbound.commondefs;
-import earthbound.hardware;
 import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank03;
@@ -16,7 +15,9 @@ import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank21;
 import earthbound.bank2F;
+import earthbound.external;
 import earthbound.globals;
+import replatform64.snes;
 
 import core.stdc.string;
 import std.logger;
@@ -324,6 +325,7 @@ void drawHPPPWindow(short id) {
 unittest {
 	gameState.partyMembers[0] = PartyMember.ness;
 	gameState.playerControlledPartyMemberCount = 1;
+	battleMenuCurrentCharacterID = 42;
 	partyCharacters[0].name = ebString!5("Ness");
 	partyCharacters[0].afflictions[0] = 0;
 	partyCharacters[0].hp.current = FixedPoint1616(0, 30);
@@ -7422,7 +7424,7 @@ void battleActionGiygasPrayer9() {
 			verticalShakeDuration = 1 * 60;
 		}
 		giygasSwapDeathDistortion();
-		setStatic(staticEffect);
+		snes.APUIO2 = cast(ubyte)staticEffect;
 		// switch to the other static effect
 		if (staticEffect == 2) {
 			staticEffect = 1;
@@ -7536,19 +7538,19 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 		arg1.verticalVelocity += arg1.verticalAcceleration;
 		arg1.verticalPosition += arg1.verticalVelocity;
 		switch (x19) {
-			case BGLayer.layer1:
+			case LayerID.layer1:
 				bg1XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg1YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case BGLayer.layer2:
+			case LayerID.layer2:
 				bg2XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg2YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case BGLayer.layer3:
+			case LayerID.layer3:
 				bg3XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg3YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case BGLayer.layer4:
+			case LayerID.layer4:
 				bg4XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg4YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;

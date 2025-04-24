@@ -2,7 +2,7 @@
 module earthbound.globals;
 
 import earthbound.commondefs;
-import earthbound.hardware;
+import replatform64.snes;
 
 /** The index of the last item added to the DMA queue
  * Original_Address: $(DOLLAR)0000

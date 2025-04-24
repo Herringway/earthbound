@@ -40,8 +40,11 @@ settings.yaml
 *.sym
 *.dmp
 *.sav
-earthbound.planet
+*.bin
+*.planet
 save.yaml
 /dump
 /data
 imgui.ini
+*.sav
+settings.yaml

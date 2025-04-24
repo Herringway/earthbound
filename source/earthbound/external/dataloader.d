@@ -1,128 +1,217 @@
-module dataloader;
+module earthbound.external.dataloader;
 
 import earthbound.commondefs;
 import earthbound.globals;
 import earthbound.bank00;
 import earthbound.bank04;
 import earthbound.bank08;
+import earthbound.external;
+import earthbound.external.audio;
 import earthbound.text;
 
+import std.array;
+import std.algorithm;
 import std.conv;
 import std.exception;
 import std.format;
 import std.logger;
 import std.meta;
+import std.parallelism;
+import std.string;
 
-private enum isROMLoadable(alias sym) = (Filter!(typeMatches!ROMSource, __traits(getAttributes, sym)).length == 1) || (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, sym)).length == 1);
+static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
+
+import replatform64;
+import replatform64.snes;
+import nspcplay;
+import siryul;
+
+
+alias loadableDataModules = AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F);
 
 struct Asset {
-    const(ubyte)[][] data;
+    const(ubyte)[] data;
     const(char)[] name;
 }
 
-template typeMatches(T) {
-	enum typeMatches(alias t) = is(typeof(t) == T);
+struct ExtractInfo {
+    string[size_t][string] renameLabels;
+    DumpInfo[] text;
 }
-
-struct SymbolDataItem(alias Sym) {
-    ROMSource[] sources;
-    string name;
-    bool array;
-    alias data = Sym;
-}
-
-template SymbolData() {
-    import std.meta : AliasSeq;
-    alias SymbolData = AliasSeq!();
-    static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank1F, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
-    static foreach (mod; AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank1F, earthbound.bank20, earthbound.bank21, earthbound.bank2F)) {
-        static foreach (member; __traits(allMembers, mod)) { // look for loadable things in module
-            static if (!is(typeof(__traits(getMember, mod, member)) == function) && isROMLoadable!(__traits(getMember, mod, member))) {
-                static if (Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // single source
-                    SymbolData = AliasSeq!(SymbolData, SymbolDataItem!(__traits(getMember, mod, member))([Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member)))[0]], member, false));
-                } else static if (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // array of sources
-                    SymbolData = AliasSeq!(SymbolData, SymbolDataItem!(__traits(getMember, mod, member))(Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member)))[0], member, true));
-                }
-            }
-        }
-    }
-}
-
-void loadROMData(const ubyte[] romData) {
-	import std.logger : tracef;
-    static foreach (asset; SymbolData!()) {
-        static if (asset.sources.length > 1) {
-            asset.data.reserve(asset.sources.length);
-            static foreach (element; asset.sources) {
-                asset.data ~= cast(typeof(asset.data[0]))(romData[element.offset .. element.offset + element.length]);
-            }
-        } else {
-            asset.data = cast(typeof(asset.data))(romData[asset.sources[0].offset .. asset.sources[0].offset + asset.sources[0].length]);
-        }
-    }
-}
-Asset[] extractROMData(const ubyte[] romData) {
-    import std.logger : tracef;
-    import std.meta : AliasSeq;
-    Asset[] results;
-    static foreach (asset; SymbolData!()) {{
-        Asset newAsset;
-        newAsset.name = asset.name;
-        static if (asset.sources.length > 1) {
-            static foreach (i, element; asset.sources) {
-                newAsset.data ~= romData[element.offset .. element.offset + element.length];
-            }
-        } else {
-            newAsset.data ~= romData[asset.sources[0].offset .. asset.sources[0].offset + asset.sources[0].length];
-        }
-        results ~= newAsset;
-    }}
-    return results;
-}
-void loadROMAssets(Asset[] assets) {
-    foreach (asset; assets) {
-        tracef("Loading asset %s (%s files)", asset.name, asset.data.length);
-        sw: switch (asset.name) {
-            static foreach (Symbol; SymbolData!()) {
-                case Symbol.name:
-                    static if (Symbol.array) {
-                        Symbol.data.reserve(asset.data.length);
-                        foreach (data; asset.data) {
-                            Symbol.data ~= cast(typeof(Symbol.data[0]))data;
-                        }
-                    } else {
-                        Symbol.data = cast(typeof(Symbol.data))(asset.data[0]);
-                    }
-                    break sw;
-            }
-            default:
-                infof("Unknown asset: %s", asset.name);
-                break;
-        }
-    }
-}
-
-version(unittest) {
-	shared static this() {
-		import std.file : exists, read;
-		import std.stdio : writeln;
-		if ("earthbound.sfc".exists) {
-			loadROMData(cast(ubyte[])read("earthbound.sfc"));
-			romDataLoaded = true;
-		} else {
-			debug writeln("Warning: earthbound rom not found. Skipping some tests.");
-			romDataLoaded = false;
-		}
-	}
-}
-
 struct DumpInfo {
     string name;
     ulong offset;
     ulong size;
 }
 
-StructuredText[][string][] parseTextData(const(ubyte)[] source, ulong offset, const string[size_t][string] renameLabels, const DumpInfo[] dumpEntries) {
+private struct WAVHeader {
+    align(1):
+    static struct Chunk1 {
+        align(1):
+        char[4] magic = "fmt ";
+        uint size = 16;
+        ushort format = 1;
+        ushort channels = 2;
+        uint sampleRate = 32000;
+        uint byteRate = 32000 * 2 * short.sizeof;
+        ushort blockAlign = short.sizeof * 2;
+        ushort bitsPerSample = short.sizeof * 8;
+    }
+    static struct Chunk2 {
+        align(1):
+        char[4] magic = "data";
+        uint size;
+        ubyte[0] data;
+    }
+    char[4] magic = "RIFF";
+    uint chunkSize;
+    char[4] wavMagic = "WAVE";
+    Chunk1 chunk1;
+    Chunk2 chunk2;
+}
+
+void extractExtraAssets(scope AddFileFunction addFile, scope ProgressUpdateFunction reportProgress, immutable(ubyte)[] rom) {
+    reportProgress(Progress("Extracting songs"));
+    ubyte[65536] song4; // we want the silent song to record sound effects against
+    buildNSPCFiles(rom, addFile, song4);
+    ubyte[][0x80] sfx;
+    static __gshared uint counter;
+    foreach (i, ref data; sfx[].parallel) {
+        data = dumpSoundEffect(song4[], cast(ubyte)i);
+        reportProgress(Progress("Extracting sound effects", ++counter, 127));
+    }
+    foreach (idx, sound; sfx) {
+        addFile(format!"sfx/%03d.wav"(idx), sound);
+    }
+
+    const extractDoc = "extract.yaml";
+    const extractInfo = fromFile!(ExtractInfo, YAML)(extractDoc);
+    infof("Building text cache...");
+    auto parsedTextDocs = new StructuredText[][string][][](extractInfo.text.length);
+    counter = 0;
+    foreach (i, ref textData; parsedTextDocs.parallel) {
+        const textDocFile = extractInfo.text[i];
+        textData = parseTextData(rom[textDocFile.offset .. textDocFile.offset + textDocFile.size], textDocFile.offset, extractInfo.renameLabels, extractInfo.text);
+        reportProgress(Progress("Extracting text", ++counter, cast(uint)parsedTextDocs.length));
+    }
+    foreach (textData; parsedTextDocs) {
+        foreach (idx, scriptData; textData) {
+            string nextLabel;
+            if (idx + 1 < textData.length) {
+                nextLabel = textData[idx + 1].keys[0];
+            }
+            string label = scriptData.keys[0];
+            auto script = scriptData.values[0];
+            loadText(script, label, nextLabel);
+        }
+    }
+    tracef("Loaded text, saving cache");
+    reportProgress(Progress("Building text cache"));
+    Appender!(ubyte[]) buffer;
+    buildTextCache(buffer);
+    addFile("text", buffer.data);
+}
+void buildNSPCFiles(const ubyte[] data, scope AddFileFunction addFile, out ubyte[65536] song4) {
+    static align(1) struct PackPointer {
+        align(1):
+        ubyte bank;
+        ushort addr;
+        uint full() const {
+            return addr + ((cast(uint)bank) << 16);
+        }
+    }
+    enum NUM_SONGS = 0xBF;
+    enum NUM_PACKS = 0xA9;
+    enum packPointerTable = 0x4F947;
+    enum packTableOffset = 0x4F70A;
+    auto packs = (cast(PackPointer[])(data[packPointerTable .. packPointerTable + NUM_PACKS * PackPointer.sizeof]))
+        .map!(x => parsePacks(data[x.full - 0xC00000 .. $]));
+    enum SONG_POINTER_TABLE = 0x294A;
+    auto bgmPacks = cast(ubyte[3][])data[packTableOffset .. packTableOffset + (ubyte[3]).sizeof * NUM_SONGS];
+    auto songPointers = cast(ushort[])packs[1][2].data[SONG_POINTER_TABLE .. SONG_POINTER_TABLE + ushort.sizeof * NUM_SONGS];
+    foreach (idx, songPacks; bgmPacks) {
+        NSPCWriter writer;
+        writer.header.songBase = songPointers[idx];
+        writer.header.instrumentBase = 0x6E00;
+        writer.header.sampleBase = 0x6C00;
+        writer.header.volumeTable = VolumeTable.hal1;
+        writer.header.releaseTable = ReleaseTable.hal1;
+        writer.packs ~= packs[0]; // engine packs
+        writer.packs ~= packs[1];
+        foreach (pack; songPacks) {
+            if (pack == 0xFF) {
+                continue;
+            }
+            writer.packs ~= packs[pack];
+        }
+        tracef("Writing %03X.nspc", idx);
+        Appender!(ubyte[]) buffer;
+        writer.toBytes(buffer);
+        if (idx == 4) {
+            loadAllSubpacks(song4[], buffer.data[NSPCFileHeader.sizeof .. $]);
+        }
+        addFile(format!"song/%03d.nspc"(idx), buffer.data);
+    }
+}
+
+ubyte[] dumpSoundEffect(scope ubyte[] data, ubyte index) {
+    enum chunkLength = 512 * short.sizeof * 2;
+    enum silentChunkThreshold = 128;
+
+
+    auto player = new EarthboundSPC700;
+    player.initialize(null);
+    player.loadSong(data);
+    player.changeSong(0, 0x500);
+    player.writeRegister(Register.APUIO0, 4); // port 0 is used for song playing, track 4 is silence
+    player.writeRegister(Register.APUIO3, index); // port 3 is used for sound effects
+    ubyte[] full = new ubyte[](WAVHeader.sizeof);
+    (cast(WAVHeader[])(full[0 .. WAVHeader.sizeof]))[0] = WAVHeader.init;
+    auto buffer = new ubyte[](chunkLength);
+    size_t threshold = silentChunkThreshold;
+    while (true) {
+        player.audioCallback(buffer);
+        if (buffer.all!(x => x == 0)) {
+            if (--threshold == 0) {
+                break;
+            }
+        } else {
+            threshold = silentChunkThreshold;
+        }
+        full ~= buffer;
+    }
+    full = full[0 .. max(WAVHeader.sizeof + chunkLength, $ - chunkLength * (silentChunkThreshold - 1))];
+    with((cast(WAVHeader[])(full[0 .. WAVHeader.sizeof]))[0]) {
+        chunk2.size = cast(uint)(full.length - WAVHeader.sizeof);
+        chunkSize = cast(uint)(full.length - 8);
+    }
+    return full;
+}
+
+void loadExtraData(const scope char[] name, const scope ubyte[] data, scope PlatformBackend backend) {
+    if (name == "text") {
+        loadTextCache(data);
+    } else if (auto splitPath = name.findSplit("/")) {
+        auto splitFilename = splitPath[2].findSplit(".");
+        switch (splitPath[0]) {
+            case "sfx":
+                tracef("Loading SFX: %s", name);
+                backend.audio.loadWAV(data);
+                break;
+            case "song":
+                tracef("Loading Song: %s", name);
+                snes.apu.loadSong(data);
+                break;
+            default:
+                infof("Unknown asset: %s", name);
+                break;
+        }
+    } else {
+        infof("Unknown asset: %s", name);
+    }
+}
+
+StructuredText[][string][] parseTextData(const(ubyte)[] source, ulong offset, const string[size_t][string] renameLabels, const DumpInfo[] dumpEntries) @safe {
     import std.algorithm.searching : canFind;
     import std.array : empty, front, popFront;
     DumpInfo[string] textFiles;

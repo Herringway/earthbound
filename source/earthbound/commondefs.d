@@ -16,25 +16,6 @@ enum maxScripts = 70; ///
 enum partyLeaderEntity = 23; /// The party leader entity ID. This is NOT the entity of the character in the front of the party, but the invisible entity that entity follows around
 enum partyMemberEntityStart = 24; /// The entity ID of the first party member
 
-enum Pad {
-	extra4 = 0x0001, ///The SNES controller doesn't actually have a button like this
-	extra3 = 0x0002, ///The SNES controller doesn't actually have a button like this
-	extra2 = 0x0004, ///The SNES controller doesn't actually have a button like this
-	extra1 = 0x0008, ///The SNES controller doesn't actually have a button like this
-	r = 0x0010, ///
-	l = 0x0020, ///
-	x = 0x0040, ///
-	a = 0x0080, ///
-	right = 0x0100, ///
-	left = 0x0200, ///
-	down = 0x0400, ///
-	up = 0x0800, ///
-	start = 0x1000, ///
-	select = 0x2000, ///
-	y = 0x4000, ///
-	b = 0x8000, ///
-}
-
 enum PathfindingTile {
 	clear = 0x00, ///
 	unknown01 = 0x01, ///
@@ -5083,7 +5064,7 @@ enum PSIAnimationTarget {
 	random = 3,
 }
 ///
-enum BGLayer {
+enum LayerID {
 	layer1 = 1,
 	layer2 = 2,
 	layer3 = 3,
@@ -6559,15 +6540,15 @@ align(1) struct RGB {
 		return (bgr555 >> 10) & 0x1F;
 	}
 	void red(ubyte v) @safe pure {
-		import earthbound.hardware : BGR555Mask;
+		import replatform64.snes : BGR555Mask;
 		bgr555 = (bgr555 & (BGR555Mask.Green | BGR555Mask.Blue)) | v & 0x1F;
 	}
 	void green(ubyte v) @safe pure {
-		import earthbound.hardware : BGR555Mask;
+		import replatform64.snes : BGR555Mask;
 		bgr555 = (bgr555 & (BGR555Mask.Red | BGR555Mask.Blue)) | (v & 0x1F) << 5;
 	}
 	void blue(ubyte v) @safe pure {
-		import earthbound.hardware : BGR555Mask;
+		import replatform64.snes : BGR555Mask;
 		bgr555 = (bgr555 & (BGR555Mask.Red | BGR555Mask.Green)) | (v & 0x1F) << 10;
 	}
 }
@@ -6862,12 +6843,6 @@ struct LoadedBackgroundData {
 	}
 }
 ///
-align(1) struct HDMAWordTransfer {
-	align(1):
-	ubyte scanlines; ///
-	ushort value; ///
-}
-///
 struct BattleEntryPointer {
 	BattleGroupEnemy[] enemies; ///
 	ushort runAwayFlag; ///
@@ -6914,7 +6889,7 @@ struct SpriteMap {
 }
 ///
 struct FullOAMTable {
-	import earthbound.hardware : OAMEntry;
+	import replatform64.snes : OAMEntry;
 	align(1):
 	OAMEntry[128] mainTable;
 	ubyte[32] highTable;
@@ -7496,41 +7471,6 @@ struct BattleSwirlConfig {
 	ubyte unused;
 }
 
-//helper funcs not in the original game
-///
-void function() waitForInterrupt = () {};
-///
-void function(ubyte, ubyte, const(void)*, ushort, ushort) handleCGRAMDMA = (ubyte, ubyte, const(void)*, ushort, ushort) {};
-///
-void function(ubyte, ubyte, const(void)*, ushort, ushort) handleOAMDMA = (ubyte, ubyte, const(void)*, ushort, ushort) {};
-///
-void function(ubyte, ubyte, const(void)*, ushort, ushort, ubyte) handleVRAMDMA = (ubyte, ubyte, const(void)*, ushort, ushort, ubyte) {};
-///
-void function() handleHDMA = () {};
-///
-void function(ubyte) setFixedColourData = (ubyte) {};
-///
-void function(ubyte, ushort) setBGOffsetX = (ubyte, ushort) {};
-///
-void function(ubyte, ushort) setBGOffsetY = (ubyte, ushort) {};
-///
-void function(ubyte) playSFX = (ubyte) {};
-///
-void function(ushort) playMusicExternal = (ushort) {};
-///
-void function() stopMusicExternal = () {};
-///
-void function(ushort) setAudioChannelsExternal = (ushort) {};
-///
-void function(short) doMusicEffect = (short) {};
-///
-void function(short) setStatic = (short) {};
-///
-ushort function(ushort) getControllerState = (ushort) { return cast(ushort)0; };
-///
-void function(short, short, short, short, ubyte, ubyte, ubyte, ubyte) drawRect = (short, short, short, short, ubyte, ubyte, ubyte, ubyte) {};
-/// For running code in the main fiber
-void function() mainFiberExecute = () {};
 ///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
@@ -8051,35 +7991,6 @@ size_t decompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {
 	}
 	return bpos - buffer;
 }
-///
-SaveBlock readSaveFile(short id) {
-	import std.file : exists;
-	import std.logger : tracef;
-	import std.stdio : File;
-	SaveBlock[1] data;
-	tracef("Reading save: %s", saveFileName(id));
-	if (saveFileName(id).exists) {
-		File(saveFileName(id), "r").rawRead(data[]);
-	}
-	return data[0];
-}
-///
-void writeSaveFile(short id, SaveBlock block) {
-	import std.logger : tracef;
-	import std.stdio : File;
-	SaveBlock[1] data = [block];
-	tracef("Saving file: %s", saveFileName(id));
-	File(saveFileName(id), "w").rawWrite(data[]);
-}
-///
-string saveFileName(short id) {
-	import std.format : format;
-	if (id % 2 == 0) {
-		return format!"%s.ebsave"(id / 2);
-	} else {
-		return format!"%s.ebsave.bak"(id / 2);
-	}
-}
 
 private extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
 ///
@@ -8356,6 +8267,7 @@ version(configurable) {
 		bool instantSpeedText;
 		bool debugMenuButton;
 		Coordinates spawnCoordinates;
+		bool hleAudio = false;
 		bool overrideSpawn() const @safe pure nothrow {
 			return (spawnCoordinates.x != 0) && (spawnCoordinates.y != 0);
 		}
@@ -8370,6 +8282,7 @@ version(configurable) {
 		enum debugMenuButton = false;
 		enum Coordinates spawnCoordinates = Coordinates.init;
 		enum bool overrideSpawn = false;
+		enum bool hleAudio = false;
 	}
 }
 GameConfig config;
@@ -8392,11 +8305,6 @@ void printTrace() {
 	foreach (line; trace) {
 		writeln(line);
 	}
-}
-
-struct ROMSource {
-	uint offset;
-	uint length;
 }
 
 private auto printableScriptName(const(void)* addr) {

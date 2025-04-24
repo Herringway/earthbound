@@ -2,28 +2,17 @@
 	"authors": [
 		"elpen"
 	],
-	"copyright": "Copyright © 2020, elpen",
+	"copyright": "Copyright © 2024, Herringway",
 	"description": "earthbound",
 	"license": "proprietary",
 	"name": "earthbound",
-	"subPackages": [
-		"sdl",
-		"snes"
-	],
+	"dependencies": {
+		"replatform64:snes": "~>0.0"
+	},
 	"stringImportPaths": [
 		"testdata"
 	],
 	"configurations": [
-		{
-			"name": "standard"
-		},
-		{
-			"name": "unittest",
-			"versions": [
-				"bugfix",
-				"noUndefinedBehaviour"
-			]
-		},
 		{
 			"name": "extra",
 			"versions": [
@@ -31,7 +20,30 @@
 				"noUndefinedBehaviour",
 				"configurable",
 				"extra"
-			]
+			],
+			"targetType": "executable"
+		},
+		{
+			"name": "extra-full",
+			"versions": [
+				"bugfix",
+				"noUndefinedBehaviour",
+				"configurable",
+				"extra"
+			],
+			"targetType": "executable",
+			"sourceFiles-windows": ["earthbound.res"]
+		},
+		{
+			"name": "original"
+		},
+		{
+			"name": "unittest",
+			"versions": [
+				"bugfix",
+				"noUndefinedBehaviour"
+			],
+			"excludedSourceFiles": ["source/app.d"]
 		}
 	]
 }

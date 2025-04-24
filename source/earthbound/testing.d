@@ -3,8 +3,9 @@ module earthbound.testing;
 import earthbound.bank00;
 import earthbound.bank02;
 import earthbound.commondefs;
+import earthbound.external;
 import earthbound.globals;
-import earthbound.hardware;
+import replatform64.snes;
 
 void demoReplayStart(DemoEntry[] demo)
 	in(demo.length > 0, "Cannot replay empty demo")
@@ -16,10 +17,10 @@ void demoReplayStart(DemoEntry[] demo)
 alias FrameTestFunction = void delegate(uint);
 private FrameTestFunction frameTestDelegate;
 void initializeForTesting() {
-	waitForInterrupt = &irqNMICommon;
+	snes.interruptHandlerVBlank = &irqNMICommon;
 	dmaQueueIndex = 0;
 
-	INIDISP = 0x80;
+	snes.INIDISP = 0x80;
 	mirrorINIDISP = 0x80;
 
 	// clearing the heap would happen here
@@ -48,9 +49,9 @@ void runGameTest(alias fun)(FrameTestFunction perFrameTests, DemoEntry[] demo = 
 	initializeForTesting();
 
 	frameTestDelegate = perFrameTests;
-	waitForInterrupt = &interruptFunction;
+	snes.interruptHandlerVBlank = &interruptFunction;
 	scope(exit) {
-		waitForInterrupt = () {};
+		snes.interruptHandlerVBlank = () {};
 		frameTestDelegate = null;
 	}
 

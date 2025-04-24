@@ -2,6 +2,7 @@
 module earthbound.bank0E;
 
 import earthbound.commondefs;
+import replatform64;
 
 /** Sprites for enemies in battle
  * Original_Address: $(DOLLAR)CE62EE

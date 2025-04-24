@@ -2,6 +2,7 @@
 module earthbound.bank0A;
 
 import earthbound.commondefs;
+import replatform64;
 
 /** Sets of tile data used for animated backgrounds (compressed)
  * Original_Address: $(DOLLAR)CAD7A1

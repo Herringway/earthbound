@@ -2,7 +2,6 @@
 module earthbound.bank04;
 
 import earthbound.commondefs;
-import earthbound.hardware;
 import earthbound.actionscripts;
 import earthbound.bank00;
 import earthbound.bank01;
@@ -21,10 +20,13 @@ import earthbound.bank18;
 import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
+import earthbound.external;
 import earthbound.globals;
 import earthbound.testing;
 import earthbound.text;
-import core.stdc.string;
+import replatform64;
+import replatform64.snes;
+import core.stdc.string : memcpy, memset, strcat, strlen;
 
 import std.logger;
 
@@ -257,60 +259,60 @@ immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 
 /// Spritemap for sweating overlay, frame 1
 immutable SpriteMap[2] entityOverlaySweatingFrame1 = [
-	SpriteMap(240, 96, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
-	SpriteMap(240, 96, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 2
 immutable SpriteMap[2] entityOverlaySweatingFrame2 = [
-	SpriteMap(240, 98, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
-	SpriteMap(240, 98, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 3
 immutable SpriteMap[2] entityOverlaySweatingFrame3 = [
-	SpriteMap(240, 96, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
-	SpriteMap(240, 96, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 96, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for sweating overlay, frame 4
 immutable SpriteMap[2] entityOverlaySweatingFrame4 = [
-	SpriteMap(240, 98, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
-	SpriteMap(240, 98, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
+	SpriteMap(240, 98, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for mushroom overlay
 immutable SpriteMap[2] entityOverlayMushroomizedFrame = [
-	SpriteMap(232, 100, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
-	SpriteMap(232, 100, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(232, 100, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(232, 100, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for ripple overlay, frame 1
 immutable SpriteMap[2] entityOverlayRippleFrame1 = [
-	SpriteMap(254, 102, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
-	SpriteMap(254, 102, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for ripple overlay, frame 2
 immutable SpriteMap[2] entityOverlayRippleFrame2 = [
-	SpriteMap(254, 102, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 248, SpriteMapSpecialFlags.terminator),
-	SpriteMap(254, 102, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 248, SpriteMapSpecialFlags.terminator),
+	SpriteMap(254, 102, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 248, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for big ripple overlay, frame 1
 immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
-	SpriteMap(248, 104, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 240, SpriteMapSpecialFlags.none),
-	SpriteMap(248, 106, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 0, SpriteMapSpecialFlags.terminator),
-	SpriteMap(248, 104, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 240, SpriteMapSpecialFlags.none),
-	SpriteMap(248, 106, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 104, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 106, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 104, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 106, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 0, SpriteMapSpecialFlags.terminator),
 ];
 
 /// Spritemap for big ripple overlay, frame 2
 immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
-	SpriteMap(248, 106, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 240, SpriteMapSpecialFlags.none),
-	SpriteMap(248, 104, OAMAttributes.priority3 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 0, SpriteMapSpecialFlags.terminator),
-	SpriteMap(248, 106, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 240, SpriteMapSpecialFlags.none),
-	SpriteMap(248, 104, OAMAttributes.priority2 | OAMAttributes.palette1 | OAMAttributes.upperNameTable | OAMAttributes.flipHorizontal, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 106, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 104, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 0, SpriteMapSpecialFlags.terminator),
+	SpriteMap(248, 106, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 240, SpriteMapSpecialFlags.none),
+	SpriteMap(248, 104, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 0, SpriteMapSpecialFlags.terminator),
 ];
 
 /** Overlay script for sweating overlay
@@ -695,16 +697,16 @@ unittest {
  */
 void bunbuunBeamInitialization() {
 	// Put the left sides of the windows to the right of the right sides, ensuring the windows cover none of the screen
-	WH0 = 128;
-	WH2 = 128;
-	WH1 = 127;
-	WH3 = 127;
+	snes.WH0 = 128;
+	snes.WH2 = 128;
+	snes.WH1 = 127;
+	snes.WH3 = 127;
 
-	CGWSEL = 0b00010000; // disable colour math only outside of window
-	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	snes.CGWSEL = 0b00010000; // disable colour math only outside of window
+	snes.TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
 	// OR mask on all layers
-	WBGLOG = 0;
-	WOBJLOG = 0;
+	snes.WBGLOG = 0;
+	snes.WOBJLOG = 0;
 }
 
 /** Set up the window parameters for the black square covering the map during the elevator cutscenes
@@ -712,26 +714,26 @@ void bunbuunBeamInitialization() {
  */
 void elevaterInitialization() {
 	// Have both windows cover full width of screen
-	WH0 = 0;
-	WH2 = 0;
-	WH1 = 255;
-	WH3 = 255;
+	snes.WH0 = 0;
+	snes.WH2 = 0;
+	snes.WH1 = 255;
+	snes.WH3 = 255;
 
-	CGWSEL = 0b00100000; // disable colour math only inside of window
-	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	snes.CGWSEL = 0b00100000; // disable colour math only inside of window
+	snes.TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
 	// OR mask on all layers
-	WBGLOG = 0;
-	WOBJLOG = 0;
+	snes.WBGLOG = 0;
+	snes.WOBJLOG = 0;
 }
 
 /** Sets COLDATA for all three colours using ActionScript globals, as well as CGADSUB
  * Original_Address: $(DOLLAR)C42439
  */
 void setCOLDATACGADSUB(short cgadsub) {
-	CGADSUB = cast(ubyte)cgadsub;
-	setFixedColourData(actionScriptCOLDATABlue | 0x80);
-	setFixedColourData(actionScriptCOLDATAGreen | 0x40);
-	setFixedColourData(actionScriptCOLDATARed | 0x20);
+	snes.CGADSUB = cast(ubyte)cgadsub;
+	snes.COLDATA = actionScriptCOLDATABlue | 0x80;
+	snes.COLDATA = actionScriptCOLDATAGreen | 0x40;
+	snes.COLDATA = actionScriptCOLDATARed | 0x20;
 }
 
 /** Enables HDMA for rectangle window effects, like buzz buzz's meteor beam and elevator hiding
@@ -740,11 +742,11 @@ void setCOLDATACGADSUB(short cgadsub) {
  * Original_Address: $(DOLLAR)C4245D
  */
 void rectangleWindowEnableHDMA(const ubyte* table) {
-	dmaChannels[4].DMAP = 1;
-	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = table;
+	snes.dmaChannels[4].DMAP = 1;
+	snes.dmaChannels[4].BBAD = 0x26;
+	snes.dmaChannels[4].A1T = table;
 	// enable window math for window 1 and 2
-	WOBJSEL = 0b10100000;
+	snes.WOBJSEL = 0b10100000;
 	// flip HDMA channel 5 on
 	mirrorHDMAEN |= 0x10;
 }
@@ -756,7 +758,7 @@ void rectangleWindowDisableHDMA() {
 	// flip HDMA channel 5 off
 	mirrorHDMAEN &= ~0x10;
 	// disable window math
-	WOBJSEL = 0;
+	snes.WOBJSEL = 0;
 }
 
 /** Sets up a fullscreen colour math window using the specified CGADSUB setting
@@ -766,37 +768,37 @@ void rectangleWindowDisableHDMA() {
  * Original_Address: $(DOLLAR)C4249A
  */
 void setWindowBrightness(ubyte cgadsub, ubyte intensity) {
-	CGADSUB = cgadsub;
-	WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
+	snes.CGADSUB = cgadsub;
+	snes.WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
 	// Cover full width of screen
-	WH0 = 0;
-	WH1 = 255;
+	snes.WH0 = 0;
+	snes.WH1 = 255;
 
-	TMW = 0x13; //BG1, BG2, OBJ
+	snes.TMW = 0x13; //BG1, BG2, OBJ
 	// OR mask on all layers
-	WBGLOG = 0;
-	WOBJLOG = 0;
-	CGWSEL = 0b00010000; // disable colour math only outside of window
-	setFixedColourData(intensity | 0xE0); // same intensity for all colour channels
+	snes.WBGLOG = 0;
+	snes.WOBJLOG = 0;
+	snes.CGWSEL = 0b00010000; // disable colour math only outside of window
+	snes.COLDATA = intensity | 0xE0; // same intensity for all colour channels
 }
 
 /** Darkens the entire screen using a colour math window. Allows fine-grained control over which portions of the screen are darkened, such as during Runaway Five concerts.
  * Original_Address: $(DOLLAR)C424D1
  */
 void darkenScreen() {
-	WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
+	snes.WOBJSEL = 0b00100000; // window 1 enabled for BG2, BG4, colour math
 	// Put the left side of the window to the right of the right side, ensuring the window covers none of the screen
-	WH0 = 128;
-	WH1 = 127;
+	snes.WH0 = 128;
+	snes.WH1 = 127;
 
-	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	snes.TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
 	// OR mask on all layers
-	WBGLOG = 0;
-	WOBJLOG = 0;
+	snes.WBGLOG = 0;
+	snes.WOBJLOG = 0;
 
-	CGWSEL = 0b00100000; // disable colour math only inside of window
-	CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
-	setFixedColourData(0xEF); // maximum intensity on all channels
+	snes.CGWSEL = 0b00100000; // disable colour math only inside of window
+	snes.CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
+	snes.COLDATA = 0xEF; // maximum intensity on all channels
 }
 
 /** Enables HDMA for window darkening/lightening on channel 4
@@ -805,9 +807,9 @@ void darkenScreen() {
  * Original_Address: $(DOLLAR)C42542
  */
 void enableBrightnessHDMA(const ubyte* table) {
-	dmaChannels[4].DMAP = 1; // word transfer
-	dmaChannels[4].BBAD = 0x26; //WH0 + WH1
-	dmaChannels[4].A1T = table;
+	snes.dmaChannels[4].DMAP = 1; // word transfer
+	snes.dmaChannels[4].BBAD = 0x26; //WH0 + WH1
+	snes.dmaChannels[4].A1T = table;
 	mirrorHDMAEN |= 0x10;
 }
 
@@ -822,30 +824,30 @@ void disableBrightnessHDMA() {
  * Original_Address: $(DOLLAR)C4258C
  */
 void darkenScreen2Window() {
-	WOBJSEL = 0b10100000; // window 1 and 2 enabled for BG2, BG4, colour math
+	snes.WOBJSEL = 0b10100000; // window 1 and 2 enabled for BG2, BG4, colour math
 	// Put the left side of both windows to the right of the right side, ensuring the windows cover none of the screen
-	WH0 = 128;
-	WH2 = 128;
-	WH1 = 127;
-	WH3 = 127;
+	snes.WH0 = 128;
+	snes.WH2 = 128;
+	snes.WH1 = 127;
+	snes.WH3 = 127;
 
-	TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
+	snes.TMW = 0b00010011; // main window: mask BG1, BG2, OBJ
 	// OR mask for all layers
-	WBGLOG = 0;
-	WOBJLOG = 0;
+	snes.WBGLOG = 0;
+	snes.WOBJLOG = 0;
 
-	CGWSEL = 0b00100000; // disable colour math only inside of window
-	CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
-	setFixedColourData(0xEF); // maximum intensity on all channels
+	snes.CGWSEL = 0b00100000; // disable colour math only inside of window
+	snes.CGADSUB = 0b10110011; // subtract colours on BG1, BG2, OBJ and background
+	snes.COLDATA = 0xEF; // maximum intensity on all channels
 }
 
 /** Enables HDMA for the first spotlight effect on channel 4
  * Original_Address: $(DOLLAR)C425CC
  */
 void enableSpotlightHDMA1(const ubyte* table) {
-	dmaChannels[4].DMAP = 1; // word transfer
-	dmaChannels[4].BBAD = 0x26; // WH0 + WH1
-	dmaChannels[4].A1T = table;
+	snes.dmaChannels[4].DMAP = 1; // word transfer
+	snes.dmaChannels[4].BBAD = 0x26; // WH0 + WH1
+	snes.dmaChannels[4].A1T = table;
 	mirrorHDMAEN |= 0x10;
 }
 
@@ -860,9 +862,9 @@ void disableSpotlightHDMA1() {
  * Original_Address: $(DOLLAR)C425FD
  */
 void enableSpotlightHDMA2(const ubyte* table) {
-	dmaChannels[5].DMAP = 1; // word transfer
-	dmaChannels[5].BBAD = 0x28; // WH2 + WH3
-	dmaChannels[5].A1T = table;
+	snes.dmaChannels[5].DMAP = 1; // word transfer
+	snes.dmaChannels[5].BBAD = 0x28; // WH2 + WH3
+	snes.dmaChannels[5].A1T = table;
 	mirrorHDMAEN |= 0x20;
 }
 
@@ -1137,11 +1139,11 @@ void uploadEntityFadeFrame(const(void)* newSprite, short entity) {
  */
 void enableLetterboxHDMA(short channel) {
 	//segmented addressing stuff
-	//dmaChannels[channel].A1B = 0x7E;
-	//dmaChannels[channel].DASB = 0x7E;
-	dmaChannels[channel].BBAD = 0x2C;
-	dmaChannels[channel].DMAP = DMATransferUnit.Word;
-	dmaChannels[channel].A1T = &letterboxHDMATable[0];
+	//snes.dmaChannels[channel].A1B = 0x7E;
+	//snes.dmaChannels[channel].DASB = 0x7E;
+	snes.dmaChannels[channel].BBAD = 0x2C;
+	snes.dmaChannels[channel].DMAP = DMATransferUnit.Word;
+	snes.dmaChannels[channel].A1T = &letterboxHDMATable[0];
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
@@ -3523,7 +3525,7 @@ immutable ubyte[6] homesicknessProbabilities = [
  */
 void resetVWFState() {
 	// wait for DMA to finish
-	while (dmaTransferFlag != 0) { waitForInterrupt(); }
+	while (dmaTransferFlag != 0) { snes.wait(); }
 
 	// there are a lot of vestigial vars here...
 
@@ -4833,39 +4835,41 @@ void entitySpiralMovement(short flip) {
 	}
 }
 unittest {
-	initializeForTesting();
-	enum testData = [
-		[0x0000, Direction.right, Direction.right],
-		[0x1000, Direction.right, Direction.downRight],
-		[0x2000, Direction.downRight, Direction.downRight],
-		[0x3000, Direction.downRight, Direction.down],
-		[0x4000, Direction.down, Direction.down],
-		[0x5000, Direction.down, Direction.downLeft],
-		[0x6000, Direction.downLeft, Direction.downLeft],
-		[0x7000, Direction.downLeft, Direction.left],
-		[0x8000, Direction.left, Direction.left],
-		[0x9000, Direction.left, Direction.upLeft],
-		[0xA000, Direction.upLeft, Direction.upLeft],
-		[0xB000, Direction.upLeft, Direction.upLeft],
-		[0xC000, Direction.upLeft, Direction.upLeft],
-		[0xD000, Direction.upLeft, Direction.upRight],
-		[0xE000, Direction.upRight, Direction.upRight],
-		[0xF000, Direction.upRight, Direction.right],
-	];
-	static OverworldSpriteGraphics[8] dummy;
-	auto oldSprites = sprites;
-	sprites.length = 8;
-	scope(exit) {
-		sprites = oldSprites;
-		entityGraphicsPointers[currentEntitySlot] = null;
-	}
-	foreach (testCase; testData) {
-		currentEntitySlot = 0;
-		entityGraphicsPointers[currentEntitySlot] = &dummy[0];
-		entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
-		entityDirections[currentEntitySlot] = cast(short)testCase[1];
-		entitySpiralMovement(0);
-		assert(entityDirections[currentEntitySlot] == cast(short)testCase[2]);
+	if (romDataLoaded) {
+		initializeForTesting();
+		enum testData = [
+			[0x0000, Direction.right, Direction.right],
+			[0x1000, Direction.right, Direction.downRight],
+			[0x2000, Direction.downRight, Direction.downRight],
+			[0x3000, Direction.downRight, Direction.down],
+			[0x4000, Direction.down, Direction.down],
+			[0x5000, Direction.down, Direction.downLeft],
+			[0x6000, Direction.downLeft, Direction.downLeft],
+			[0x7000, Direction.downLeft, Direction.left],
+			[0x8000, Direction.left, Direction.left],
+			[0x9000, Direction.left, Direction.upLeft],
+			[0xA000, Direction.upLeft, Direction.upLeft],
+			[0xB000, Direction.upLeft, Direction.upLeft],
+			[0xC000, Direction.upLeft, Direction.upLeft],
+			[0xD000, Direction.upLeft, Direction.upRight],
+			[0xE000, Direction.upRight, Direction.upRight],
+			[0xF000, Direction.upRight, Direction.right],
+		];
+		static OverworldSpriteGraphics[8] dummy;
+		auto oldSprites = sprites;
+		sprites.length = 8;
+		scope(exit) {
+			sprites = oldSprites;
+			entityGraphicsPointers[currentEntitySlot] = null;
+		}
+		foreach (testCase; testData) {
+			currentEntitySlot = 0;
+			entityGraphicsPointers[currentEntitySlot] = &dummy[0];
+			entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
+			entityDirections[currentEntitySlot] = cast(short)testCase[1];
+			entitySpiralMovement(0);
+			assert(entityDirections[currentEntitySlot] == cast(short)testCase[2]);
+		}
 	}
 }
 
@@ -6084,7 +6088,7 @@ void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 		adjustSpritePalettesByAverage();
 		loadSpecialSpritePalette();
 		preparePaletteUpload(PaletteUpload.full);
-		while (paletteUploadMode != PaletteUpload.none) { waitForInterrupt(); }
+		while (paletteUploadMode != PaletteUpload.none) { snes.wait(); }
 	}
 }
 
@@ -9089,13 +9093,13 @@ void drawTownMapIcons(short map) {
 void initializeTownMapDisplay(short id) {
 	fadeOut(2, 1);
 	decomp(&townMapGraphics[id][0], &buffer[0]);
-	while (fadeParameters.step != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { snes.wait(); }
 	memcpy(&palettes[0][0], &buffer[0], 0x40);
 	memcpy(&palettes[8][0], &townMapIconPalette[0], 0x100);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
 	setOAMSize(3);
-	CGADSUB = 0;
-	CGWSEL = 0;
+	snes.CGADSUB = 0;
+	snes.CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
 	copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 0x800, 0x3000, &buffer[0x40]);
@@ -9391,8 +9395,8 @@ void doIntroSequence() {
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
-					CGADSUB = 0;
-					CGWSEL = 0;
+					snes.CGADSUB = 0;
+					snes.CGWSEL = 0;
 					mirrorTM = TMTD.bg1;
 					mirrorTD = TMTD.none;
 					changeMusic(Music.titleScreen);
@@ -9442,8 +9446,8 @@ void doIntroSequence() {
 	if ((mirrorINIDISP & 0x80) != 0) {
 		fadeOutWithMosaic(4, 1, 0);
 	}
-	CGADSUB = 0;
-	CGWSEL = 0;
+	snes.CGADSUB = 0;
+	snes.CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
 	disableMusicChanges = 0;
@@ -9552,12 +9556,12 @@ void prepareYourSanctuaryLocationPaletteData(short mapTileCombo, short sanctuary
  */
 void prepareYourSanctuaryLocationTileArrangementData(short x, short y, short sanctuaryLocation) {
 	// centre camera (Party member sprites are 16 pixels tall)
-	x -= (screenWidth / 8) / 2;
-	y -= ((screenHeight - 16) / 8) / 2;
+	x -= (snes.screenWidth / 8) / 2;
+	y -= ((snes.screenHeight - 16) / 8) / 2;
 	memset(&yourSanctuaryLocationTileOffsets[0], 0, 0x800);
 	ushort* dest = cast(ushort*)&buffer[sanctuaryLocation * 0x800];
-	for (short tileY = 0; tileY < screenHeight / 8; tileY++) {
-		for (short tileX = 0; tileX < screenWidth / 8; tileX++) {
+	for (short tileY = 0; tileY < snes.screenHeight / 8; tileY++) {
+		for (short tileX = 0; tileX < snes.screenWidth / 8; tileX++) {
 			short block;
 			// avoid loading blocks with different tileset+palettes
 			if (globalMapTilesetPaletteData[(tileY + y) / 16][(tileX + x) / 32] / 8 == loadedMapTileCombo) {
@@ -10245,7 +10249,7 @@ void changeMusic(short track) {
 		stopMusic();
 	}
 	currentMusicTrack = track;
-	playMusicExternal(track);
+	snes.APUIO0 = cast(ubyte)track;
 }
 
 /** Initializes the music subsystem
@@ -10261,7 +10265,7 @@ void initializeSPC700() {
  * Original_Address: $(DOLLAR)C4FD18
  */
 void setAudioChannels(short channels) {
-	setAudioChannelsExternal(channels);
+	//setAudioChannelsExternal(channels);
 }
 
 /** Turns automatic sector music changes on or off

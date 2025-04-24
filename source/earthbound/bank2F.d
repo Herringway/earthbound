@@ -12,9 +12,12 @@ import earthbound.bank18;
 import earthbound.bank1C;
 import earthbound.globals;
 import earthbound.commondefs;
-import earthbound.hardware;
+import earthbound.external;
 import earthbound.text;
-import core.stdc.string;
+import replatform64;
+import replatform64.snes;
+
+import core.stdc.string : memcpy, memset, strcmp, strlen;
 
 /** Exits single enemy flashing mode.
  * Original_Address: $(DOLLAR)EF0000
@@ -288,13 +291,9 @@ immutable ubyte[3] sramSlotBitmasks = [1 << 0, 1 << 1, 1 << 2];
  * Original_Address: $(DOLLAR)EF05A9
  */
 void eraseSaveBlock(short id) {
-	version(savememory) {
-		memset(&sram.saves[id], 0, SaveBlock.sizeof);
-		memcpy(&sram.saves[id].signature[0], &sramSignature[0], strlen(&sramSignature[0]));
-	} else {
-		import std.file : remove;
-		remove(saveFileName(id));
-	}
+	memset(&snes.sram!SaveBlock(id / 2), 0, SaveBlock.sizeof);
+	memcpy(&snes.sram!SaveBlock(id / 2).signature[0], &sramSignature[0], strlen(&sramSignature[0]));
+	snes.deleteSlot(id / 2);
 }
 
 /** Checks if a save is valid, erasing it if it isn't
@@ -304,17 +303,9 @@ void eraseSaveBlock(short id) {
  * Original_Address: $(DOLLAR)EF0630
  */
 short checkBlockSignature(short id) {
-	version(savememory) {
-		if (strcmp(&sramSignature[0], &sram.saves[id].signature[0]) != 0) {
-			eraseSaveBlock(id);
-			return 1;
-		}
-	} else {
-		SaveBlock block = readSaveFile(id);
-		if (strcmp(&sramSignature[0], cast(char*)&block.signature[0]) != 0) {
-			eraseSaveBlock(id);
-			return 1;
-		}
+	if (strcmp(&sramSignature[0], &snes.sram!SaveBlock(id / 2).signature[0]) != 0) {
+		eraseSaveBlock(id);
+		return 1;
 	}
 	return 0;
 }
@@ -341,12 +332,8 @@ void checkAllBlocksSignature() {
  * Original_Address: $(DOLLAR)EF06A2
  */
 void copySaveBlock(short to, short from) {
-	version(savememory) {
-		memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
-	} else {
-		auto block = readSaveFile(from);
-		writeSaveFile(to, block);
-	}
+	snes.sram!SaveBlock(to / 2) = snes.sram!SaveBlock(from / 2);
+	snes.commitSRAM();
 }
 
 /** Calculates a sum checksum for a save block by adding together every byte in the block
@@ -356,12 +343,7 @@ void copySaveBlock(short to, short from) {
  * Original_Address: $(DOLLAR)EF0734
  */
 ushort calcSaveBlockAddChecksum(short id) {
-	version(savememory) {
-		ubyte* x06 = &sram.saves[id].rawData[0];
-	} else {
-		auto block = readSaveFile(id);
-		ubyte* x06 = &block.rawData[0];
-	}
+	ubyte* x06 = &snes.sram!SaveBlock(id / 2).rawData[0];
 	ushort checksum;
 	for (short i = 0; i < SaveBlock.rawData.sizeof; i++) {
 		checksum += x06[0];
@@ -377,12 +359,7 @@ ushort calcSaveBlockAddChecksum(short id) {
  * Original_Address: $(DOLLAR)EF077B
  */
 ushort calcSaveBlockXORChecksum(short id) {
-	version(savememory) {
-		ubyte* x06 = &sram.saves[id].rawData[0];
-	} else {
-		auto block = readSaveFile(id);
-		ubyte* x06 = &block.rawData[0];
-	}
+	ubyte* x06 = &snes.sram!SaveBlock(id / 2).rawData[0];
 	ushort checksum;
 	for (short i = 0; i < SaveBlock.rawData.sizeof / 2; i++) {
 		checksum ^= x06[0];
@@ -398,15 +375,8 @@ ushort calcSaveBlockXORChecksum(short id) {
  * Original_Address: $(DOLLAR)EF07C0
  */
 short validateSaveBlockChecksums(short id) {
-	version(savememory) {
-		if ((calcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (calcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
-			return 0;
-		}
-	} else {
-		auto block = readSaveFile(id);
-		if ((calcSaveBlockAddChecksum(id) == block.checksum) && (calcSaveBlockXORChecksum(id) == block.checksumComplement)) {
-			return 0;
-		}
+	if ((calcSaveBlockAddChecksum(id) == snes.sram!SaveBlock(id / 2).checksum) && (calcSaveBlockXORChecksum(id) == snes.sram!SaveBlock(id / 2).checksumComplement)) {
+		return 0;
 	}
 	return -1;
 }
@@ -448,34 +418,18 @@ void checkSaveCorruption(short id) {
 void saveGameBlock(short id) {
 	gameState.timer = timer;
 	Retry:
-	version(savememory) {
-		memcpy(&sram.saves[id].saveData.gameState, &gameState, GameState.sizeof);
-		memcpy(&sram.saves[id].saveData.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
-		memcpy(&sram.saves[id].saveData.eventFlags, &eventFlags[0], eventFlags.sizeof);
-		sram.saves[id].checksum = calcSaveBlockAddChecksum(id);
-		if (sram.saves[id].checksum != calcSaveBlockAddChecksum(id)) {
-			goto Retry;
-		}
-		sram.saves[id].checksumComplement = calcSaveBlockXORChecksum(id);
-		if (sram.saves[id].checksumComplement != calcSaveBlockXORChecksum(id)) {
-			goto Retry;
-		}
-	} else {
-		SaveBlock block;
-		memcpy(&block.signature[0], &sramSignature[0], strlen(&sramSignature[0]));
-		memcpy(&block.saveData.gameState, &gameState, GameState.sizeof);
-		memcpy(&block.saveData.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
-		memcpy(&block.saveData.eventFlags, &eventFlags[0], eventFlags.sizeof);
-		block.checksum = calcSaveBlockAddChecksum(id);
-		if (block.checksum != calcSaveBlockAddChecksum(id)) {
-			goto Retry;
-		}
-		block.checksumComplement = calcSaveBlockXORChecksum(id);
-		if (block.checksumComplement != calcSaveBlockXORChecksum(id)) {
-			goto Retry;
-		}
-		writeSaveFile(id, block);
+	memcpy(&snes.sram!SaveBlock(id / 2).saveData.gameState, &gameState, GameState.sizeof);
+	memcpy(&snes.sram!SaveBlock(id / 2).saveData.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
+	memcpy(&snes.sram!SaveBlock(id / 2).saveData.eventFlags, &eventFlags[0], eventFlags.sizeof);
+	snes.sram!SaveBlock(id / 2).checksum = calcSaveBlockAddChecksum(id);
+	if (snes.sram!SaveBlock(id / 2).checksum != calcSaveBlockAddChecksum(id)) {
+		goto Retry;
 	}
+	snes.sram!SaveBlock(id / 2).checksumComplement = calcSaveBlockXORChecksum(id);
+	if (snes.sram!SaveBlock(id / 2).checksumComplement != calcSaveBlockXORChecksum(id)) {
+		goto Retry;
+	}
+	snes.commitSRAM();
 }
 
 /** Saves a game slot. A game slot is made up of two game blocks to guard against corruption.
@@ -496,16 +450,9 @@ void saveGameSlot(short id) {
  * Original_Address: $(DOLLAR)EF0A68
  */
 void loadGameSlot(short id) {
-	version (savememory) {
-		memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, GameState.sizeof);
-		memcpy(&partyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
-		memcpy(&eventFlags[0], &sram.saves[id * 2].saveData.eventFlags, eventFlags.sizeof);
-	} else {
-		SaveBlock block = readSaveFile(cast(short)(id * 2));
-		memcpy(&gameState, &block.saveData.gameState, GameState.sizeof);
-		memcpy(&partyCharacters[0], &block.saveData.partyCharacters, (PartyCharacter[6]).sizeof);
-		memcpy(&eventFlags[0], &block.saveData.eventFlags, eventFlags.sizeof);
-	}
+	memcpy(&gameState, &snes.sram!SaveBlock(id * 2).saveData.gameState, GameState.sizeof);
+	memcpy(&partyCharacters[0], &snes.sram!SaveBlock(id * 2).saveData.partyCharacters, (PartyCharacter[6]).sizeof);
+	memcpy(&eventFlags[0], &snes.sram!SaveBlock(id * 2).saveData.eventFlags, eventFlags.sizeof);
 	timer = gameState.timer;
 }
 
@@ -21979,8 +21926,8 @@ void debugMain() {
 	if (debugModeNumber == DebugMode.viewAttribute) {
 		mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
 		mirrorTD = TMTD.bg3;
-		CGWSEL = 2;
-		CGADSUB = 0x47;
+		snes.CGWSEL = 2;
+		snes.CGADSUB = 0x47;
 		debugModeNumber = DebugMode.viewAttribute; //uh...ok
 	}
 	if (debugModeNumber == DebugMode.checkPosition) {
@@ -22331,16 +22278,16 @@ void endReplay() {
  * Original_Address: $(DOLLAR)EFEAC8
  */
 void debugCheckPositionOverlayBackground() {
-	WOBJSEL = 0x20;
-	WH0 = 0x18;
-	WH1 = 0x78;
-	TMW = 0x13;
-	CGWSEL = 0x10;
-	CGADSUB = 0x93;
-	setFixedColourData(0xEF);
-	dmaChannels[4].DMAP = 1;
-	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = &checkPositionOverlayBackgroundHDMATable;
+	snes.WOBJSEL = 0x20;
+	snes.WH0 = 0x18;
+	snes.WH1 = 0x78;
+	snes.TMW = 0x13;
+	snes.CGWSEL = 0x10;
+	snes.CGADSUB = 0x93;
+	snes.COLDATA = 0xEF;
+	snes.dmaChannels[4].DMAP = 1;
+	snes.dmaChannels[4].BBAD = 0x26;
+	snes.dmaChannels[4].A1T = &checkPositionOverlayBackgroundHDMATable;
 	mirrorHDMAEN = 0x10;
 }
 
@@ -22372,14 +22319,15 @@ version(bugfix) {
  */
 void debugClearHDMA() {
 	mirrorHDMAEN = 0;
-	WH0 = 0x80;
-	WH1 = 0x7F;
+	snes.WH0 = 0x80;
+	snes.WH1 = 0x7F;
 }
 
 /** Font graphics for the boot debug menu
  * Original_Address: $(DOLLAR)EFEB5F
  */
 @ROMSource(0x2FEB5F, 1024)
+@Asset("debug/menufont.png", DataType.bpp2Intertwined)
 immutable(ubyte)[] debugMenuFont;
 
 /** Unused data
@@ -22405,6 +22353,7 @@ immutable ubyte[71] unusedEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x
  * Original_Address: $(DOLLAR)EFEFB7
  */
 @ROMSource(0x2FEFB7, 288)
+@Asset("debug/cursor.png", DataType.bpp4Intertwined)
 immutable(ubyte)[] debugCursorGraphics;
 
 /** Palettes used for the boot debug menu

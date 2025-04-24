@@ -5,6 +5,8 @@ import earthbound.commondefs;
 import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.globals;
+import replatform64;
+import replatform64.snes;
 
 /** Script for the coffee scene
  * Original_Address: $(DOLLAR)E10000

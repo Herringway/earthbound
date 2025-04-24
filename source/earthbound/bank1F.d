@@ -2,6 +2,7 @@
 module earthbound.bank1F;
 
 import earthbound.commondefs;
+import replatform64;
 
 /** Palette animations for the overworld map
  * Original_Address: $(DOLLAR)DFE4E1

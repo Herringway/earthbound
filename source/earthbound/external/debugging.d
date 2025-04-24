@@ -1,6 +1,4 @@
-module earthbound.sdl.debugging;
-
-import earthbound.sdl.rendering;
+module earthbound.external.debugging;
 
 import earthbound.bank00;
 import earthbound.bank01;
@@ -9,6 +7,7 @@ import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank15;
 import earthbound.commondefs;
+import earthbound.external;
 import earthbound.globals;
 import earthbound.text;
 
@@ -20,43 +19,48 @@ import std.meta;
 import std.range;
 import std.string;
 
-import ImGui = d_imgui;
-import d_imgui.imgui_h;
-import imgui.hexeditor;
+import replatform64;
+import replatform64.snes;
 
-int debugMenuHeight;
 enum debugWindowWidth = 500;
 
 struct DebugState {
-	bool showDebugWindow = true;
 	bool addingPartyMember;
 	bool askingForScript;
 	bool askingWarpToPreset;
 	bool askingBattle;
 	bool askingWarpPoint;
-	bool editingVRAM;
 	bool editingBG2;
 	bool editingBuffer;
 	bool askingForEntity;
 }
 
 DebugState state;
-static this() {
-	memoryEditor.Cols = 8;
-	memoryEditor.OptShowOptions = false;
-	memoryEditor.OptShowDataPreview = false;
-	memoryEditor.OptShowAscii = false;
+MemoryEditor defaultEditorSettings(string dumpFile) {
+	MemoryEditor editor;
+	editor.Cols = 8;
+	editor.Dumpable = true;
+	editor.DumpFile = dumpFile;
+	editor.OptShowOptions = false;
+	editor.OptShowDataPreview = false;
+	editor.OptShowAscii = false;
+	return editor;
 }
-MemoryEditor memoryEditor;
 
-void prepareDebugUI(size_t width, size_t height) {
+void prepareDebugUI(const UIState uiState) {
+	static bool bufferEditorActive;
+	static MemoryEditor memoryEditorBuffer = defaultEditorSettings("buffer.bin");
+	static bool bg2EditorActive;
+	static MemoryEditor memoryEditorBG2 = defaultEditorSettings("bg2.bin");
 	if (ImGui.BeginMainMenuBar()) {
 		if (ImGui.BeginMenu("File")) {
-			menuItemCallback("Save game", () { mainFiberExecute = () { saveCurrentGame(); }; });
+			menuItemCallback("Save game", () { snes.registerHook("main", &saveCurrentGame); });
+			menuItemCallback("Dump save", &dumpSave);
 			ImGui.EndMenu();
 		}
-		if (ImGui.BeginMenu("Windows")) {
-			ImGui.MenuItem("Debugging", null, &state.showDebugWindow);
+		if (ImGui.BeginMenu("RAM")) {
+			menuItemCallback("BG2", () { bg2EditorActive = true; });
+			menuItemCallback("Buffer", () { bufferEditorActive = true; });
 			ImGui.EndMenu();
 		}
 		if (ImGui.BeginMenu("Other Stuff")) {
@@ -65,37 +69,19 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Warp to preset destination", () { state.askingWarpToPreset = true; });
 			menuItemCallback("Warp to position", () { state.askingWarpPoint = true; });
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
-			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
-			menuItemCallback("Edit BG2", () { state.editingBG2 = true; });
-			menuItemCallback("Edit Buffer", () { state.editingBuffer = true; });
 			menuItemCallback("Spawn an entity", () { state.askingForEntity = true; });
 			ImGui.EndMenu();
 		}
-		if (ImGui.BeginMenu("Dump")) {
-			menuItemCallback("VRAM", &dumpVRAM);
-			menuItemCallback("Save", &dumpSave);
-			ImGui.EndMenu();
-		}
-		immutable str = cast(immutable)frameRateString;
-		ImGui.SetCursorPosX(ImGui.GetWindowSize().x - ImGui.CalcTextSize(str).x);
-		ImGui.Text(str);
-		debugMenuHeight = cast(int)ImGui.GetWindowSize().y;
+		//immutable str = cast(immutable)frameRateString;
+		//ImGui.SetCursorPosX(ImGui.GetWindowSize().x - ImGui.CalcTextSize(str).x);
+		//ImGui.Text(str);
 		ImGui.EndMainMenuBar();
 	}
-	if (state.showDebugWindow) {
-		renderDebugWindow(0, debugMenuHeight - 1, width, height);
+	if (bufferEditorActive) {
+		bufferEditorActive = memoryEditorBuffer.DrawWindow("Buffer", buffer);
 	}
-	if (state.editingVRAM) {
-		memoryEditor.DrawWindow("VRAM", renderer.vram);
-		state.editingVRAM = memoryEditor.Open;
-	}
-	if (state.editingBuffer) {
-		memoryEditor.DrawWindow("Buffer", buffer);
-		state.editingBuffer = memoryEditor.Open;
-	}
-	if (state.editingBG2) {
-		memoryEditor.DrawWindow("BG2", bg2Buffer);
-		state.editingBG2 = memoryEditor.Open;
+	if (bg2EditorActive) {
+		bg2EditorActive = memoryEditorBG2.DrawWindow("BG2", bg2Buffer);
 	}
 	handleDialog!AddPartyMember(state.addingPartyMember, "Add a party member");
 	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
@@ -105,10 +91,7 @@ void prepareDebugUI(size_t width, size_t height) {
 	handleDialog!SpawnEntity(state.askingForEntity, "Spawn an entity");
 }
 
-void renderDebugWindow(float x, float y, float width, float height) {
-	ImGui.SetNextWindowSize(ImGui.ImVec2(debugWindowWidth, height - y));
-	ImGui.SetNextWindowPos(ImGui.ImVec2(x, y));
-	ImGui.Begin("Debugging", null, ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoBringToFrontOnFocus);
+void renderDebugWindow(const UIState state) {
 	if (ImGui.TreeNode("Game State")) {
 		inputEBText("Player Name (obsolete)", gameState.mother2PlayerName[]);
 		inputEBText("Player Name", gameState.earthboundPlayerName[]);
@@ -168,7 +151,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				ImGui.TreePop();
 			}
 		}
-		InputEditable("Camera coords", gameState.leaderX, gameState.leaderY);
+		//InputEditable("Camera coords", gameState.leaderX, gameState.leaderY);
 		InputEditable("Leader position index", gameState.leaderPositionIndex);
 		InputEditable!Direction("Direction", gameState.leaderDirection);
 		InputEditable("Tile type", gameState.troddenTileType);
@@ -196,11 +179,11 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			ImGui.TreePop();
 		}
 		if (ImGui.TreeNode("Saved Photos")) {
-			foreach (idx, ref state; gameState.savedPhotoStates) {
+			foreach (idx, ref photoState; gameState.savedPhotoStates) {
 				if (ImGui.TreeNode(format!"Photos %s"(idx))) {
-					InputEditable("Timer", state.timer);
+					InputEditable("Timer", photoState.timer);
 					foreach (partyIdx, label; ["Party member 0", "Party member 1", "Party member 2", "Party member 3", "Party member 4", "Party member 5"]) {
-						InputEditable(label, state.partyMembers[partyIdx]);
+						InputEditable(label, photoState.partyMembers[partyIdx]);
 					}
 					ImGui.TreePop();
 				}
@@ -241,22 +224,22 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Var 6", entityScriptVar6Table[entity]);
 				InputEditable("Var 7", entityScriptVar7Table[entity]);
 				InputEditable("S. Coords", entityScreenXTable[entity], entityScreenYTable[entity]);
-				if (auto newCoords = InputEditableR("M. Coords", FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]), FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]), FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]))) {
-					entityAbsXFractionTable[entity] = newCoords[0].fraction;
-					entityAbsXTable[entity] = newCoords[0].integer;
-					entityAbsYFractionTable[entity] = newCoords[1].fraction;
-					entityAbsYTable[entity] = newCoords[1].integer;
-					entityAbsZFractionTable[entity] = newCoords[2].fraction;
-					entityAbsZTable[entity] = newCoords[2].integer;
-				}
-				if (auto newCoords = InputEditableR("Delta Coords", FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]), FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]), FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]))) {
-					entityDeltaXFractionTable[entity] = newCoords[0].fraction;
-					entityDeltaXTable[entity] = newCoords[0].integer;
-					entityDeltaYFractionTable[entity] = newCoords[1].fraction;
-					entityDeltaYTable[entity] = newCoords[1].integer;
-					entityDeltaZFractionTable[entity] = newCoords[2].fraction;
-					entityDeltaZTable[entity] = newCoords[2].integer;
-				}
+				//if (auto newCoords = InputEditableR("M. Coords", FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]), FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]), FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]))) {
+				//	entityAbsXFractionTable[entity] = newCoords[0].fraction;
+				//	entityAbsXTable[entity] = newCoords[0].integer;
+				//	entityAbsYFractionTable[entity] = newCoords[1].fraction;
+				//	entityAbsYTable[entity] = newCoords[1].integer;
+				//	entityAbsZFractionTable[entity] = newCoords[2].fraction;
+				//	entityAbsZTable[entity] = newCoords[2].integer;
+				//}
+				//if (auto newCoords = InputEditableR("Delta Coords", FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]), FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]), FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]))) {
+				//	entityDeltaXFractionTable[entity] = newCoords[0].fraction;
+				//	entityDeltaXTable[entity] = newCoords[0].integer;
+				//	entityDeltaYFractionTable[entity] = newCoords[1].fraction;
+				//	entityDeltaYTable[entity] = newCoords[1].integer;
+				//	entityDeltaZFractionTable[entity] = newCoords[2].fraction;
+				//	entityDeltaZTable[entity] = newCoords[2].integer;
+				//}
 				InputEditable("Size", entitySizes[entity]);
 				InputEditable!Direction("Direction", entityDirections[entity]);
 				InputEditable("Priority", entityDrawPriority[entity]);
@@ -456,10 +439,10 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Level", character.level);
 				InputEditable("EXP", character.exp);
 				InputEditable("Max HP", character.maxHP);
-				InputEditable("HP (current)", character.hp.current);
+				//InputEditable("HP (current)", character.hp.current);
 				InputEditable("HP (target)", character.hp.target);
 				InputEditable("Max PP", character.maxPP);
-				InputEditable("PP (current)", character.pp.current);
+				//InputEditable("PP (current)", character.pp.current);
 				InputEditable("PP (target)", character.pp.target);
 				InputEditable("Offense", character.offense);
 				InputEditable("Defense", character.defense);
@@ -739,7 +722,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 	if (ImGui.TreeNode("Credits")) {
 		InputEditable("Next credit position", creditsNextCreditPosition);
 		InputEditable("Credits Row Wipe Threshold", creditsRowWipeThreshold);
-		InputEditable("Current credit position", creditsScrollPosition);
+		//InputEditable("Current credit position", creditsScrollPosition);
 		InputEditable("Photograph map loading mode", photographMapLoadingMode);
 		InputEditable("Current photo", currentPhotoDisplay);
 		InputEditable("Credits DMA Queue End", creditsDMAQueueEnd);
@@ -887,118 +870,6 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Timer", timer);
 		ImGui.TreePop();
 	}
-	if (ImGui.TreeNode("Renderer")) {
-		ImGui.Text("Layers");
-		foreach (idx, layer; ["BG1", "BG2", "BG3", "BG4", "OBJ"]) {
-			const mask = (1 << idx);
-			bool layerEnabled = !(layersDisabled & mask);
-			ImGui.SameLine();
-			if (ImGui.Checkbox(layer, &layerEnabled)) {
-				layersDisabled = cast(ubyte)((layersDisabled & ~mask) | (!layerEnabled * mask));
-			}
-		}
-		if (ImGui.TreeNode("Sprites")) {
-			foreach (id, entry; renderer.oam1) {
-				const uint upperX = !!(renderer.oam2[id/4] & (1 << ((id % 4) * 2)));
-				const size = !!(renderer.oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
-				if (entry.yCoord < 0xE0) {
-					if (ImGui.TreeNode(format!"Sprite %s"(id))) {
-						ImGui.BeginDisabled();
-						ImGui.Text(format!"Tile Offset: %s"(entry.startingTile));
-						ImGui.Text(format!"Coords: (%s, %s)"(entry.xCoord + (upperX << 8), entry.yCoord));
-						ImGui.Text(format!"Palette: %s"(entry.palette));
-						bool boolean = entry.flipVertical;
-						ImGui.Checkbox("Vertical flip", &boolean);
-						boolean = entry.flipHorizontal;
-						ImGui.Checkbox("Horizontal flip", &boolean);
-						ImGui.Text(format!"Priority: %s"(entry.priority));
-						ImGui.Text(format!"Priority: %s"(entry.nameTable));
-						boolean = size;
-						ImGui.Checkbox("Use alt size", &boolean);
-						ImGui.EndDisabled();
-						ImGui.TreePop();
-					}
-				}
-			}
-			ImGui.TreePop();
-		}
-		if (ImGui.TreeNode("Layers")) {
-			const screenRegisters = [renderer.BG1SC, renderer.BG2SC, renderer.BG3SC, renderer.BG4SC];
-			const screenRegisters2 = [renderer.BG12NBA & 0xF, renderer.BG12NBA >> 4, renderer.BG34NBA & 0xF, renderer.BG34NBA >> 4];
-			static foreach (layer, label; ["BG1", "BG2", "BG3", "BG4"]) {{
-				if (ImGui.TreeNode(label)) {
-					ImGui.Text(format!"Tilemap address: $%04X"((screenRegisters[layer] & 0xFC) << 9));
-					ImGui.Text(format!"Tile base address: $%04X"(screenRegisters2[layer] << 13));
-					ImGui.Text(format!"Size: %s"(["32x32", "64x32", "32x64", "64x64"][screenRegisters[layer] & 3]));
-					ImGui.Text(format!"Tile size: %s"(["8x8", "16x16"][!!(renderer.BGMODE >> (4 + layer))]));
-					disabledCheckbox("Mosaic Enabled", !!((renderer.MOSAIC >> layer) & 1));
-					ImGui.TreePop();
-				}
-			}}
-			ImGui.TreePop();
-		}
-		if (ImGui.TreeNode("VRAM")) {
-			static int paletteID = 0;
-			if (ImGui.InputInt("Palette", &paletteID)) {
-				paletteID = clamp(paletteID, 0, 16);
-			}
-			const texWidth = 16 * 8;
-			const texHeight = 0x8000 / 16 / 16 * 8;
-			static ubyte[2 * texWidth * texHeight] data;
-			auto pixels = cast(ushort[])(data[]);
-			ushort[16] palette = renderer.cgram[paletteID * 16 .. (paletteID + 1) * 16];
-			palette[] &= 0x7FFF;
-			foreach (idx, tile; (cast(ushort[])renderer.vram).chunks(16).enumerate) {
-				const base = (idx % 16) * 8 + (idx / 16) * texWidth * 8;
-				foreach (p; 0 .. 8 * 8) {
-					const px = p % 8;
-					const py = p / 8;
-					const plane01 = tile[py] & pixelPlaneMasks[px];
-					const plane23 = tile[py + 8] & pixelPlaneMasks[px];
-					const s = 7 - px;
-					const pixel = ((plane01 & 0xFF) >> s) | (((plane01 >> 8) >> s) << 1) | (((plane23 & 0xFF) >> s) << 2) | (((plane23 >> 8) >> s) << 3);
-					pixels[base + px + py * texWidth] = palette[pixel];
-				}
-			}
-			ImGui.Image(createTexture(data[], texWidth, texHeight, ushort.sizeof * texWidth, nativeFormat), ImVec2(texWidth * 3, texHeight * 3));
-			ImGui.TreePop();
-		}
-		if (ImGui.TreeNode("Registers")) {
-			InputEditableR("INIDISP", renderer.INIDISP);
-			InputEditableR("OBSEL", renderer.OBSEL);
-			InputEditableR("OAMADDR", renderer.OAMADDR);
-			InputEditableR("BGMODE", renderer.BGMODE);
-			InputEditableR("MOSAIC", renderer.MOSAIC);
-			InputEditableR("BGxSC", renderer.BG1SC, renderer.BG2SC, renderer.BG3SC, renderer.BG4SC);
-			InputEditableR("BGxNBA", renderer.BG12NBA, renderer.BG34NBA);
-			InputEditableR("BG1xOFS", renderer.BG1HOFS, renderer.BG1VOFS);
-			InputEditableR("BG2xOFS", renderer.BG2HOFS, renderer.BG2VOFS);
-			InputEditableR("BG3xOFS", renderer.BG3HOFS, renderer.BG3VOFS);
-			InputEditableR("BG4xOFS", renderer.BG4HOFS, renderer.BG4VOFS);
-			InputEditableR("M7SEL", renderer.M7SEL);
-			InputEditableR("M7A", renderer.M7A);
-			InputEditableR("M7B", renderer.M7B);
-			InputEditableR("M7C", renderer.M7C);
-			InputEditableR("M7D", renderer.M7D);
-			InputEditableR("M7X", renderer.M7X);
-			InputEditableR("M7Y", renderer.M7Y);
-			InputEditableR("WxSEL", renderer.W12SEL, renderer.W34SEL);
-			InputEditableR("WOBJSEL", renderer.WOBJSEL);
-			InputEditableR("WHx", renderer.WH0, renderer.WH1, renderer.WH2, renderer.WH3);
-			InputEditableR("WBGLOG", renderer.WBGLOG);
-			InputEditableR("WOBJLOG", renderer.WOBJLOG);
-			InputEditableR("TM", renderer.TM);
-			InputEditableR("TS", renderer.TS);
-			InputEditableR("TMW", renderer.TMW);
-			InputEditableR("TSW", renderer.TSW);
-			InputEditableR("CGWSEL", renderer.CGWSEL);
-			InputEditableR("CGADSUB", renderer.CGADSUB);
-			InputEditableR("FIXED_COLOUR_DATA", renderer.FIXED_COLOUR_DATA_R, renderer.FIXED_COLOUR_DATA_G, renderer.FIXED_COLOUR_DATA_B);
-			InputEditableR("SETINI", renderer.SETINI);
-			ImGui.TreePop();
-		}
-		ImGui.TreePop();
-	}
 	if (ImGui.TreeNode("Misc Debugging Features")) {
 		if (ImGui.TreeNode("Position buffer")) {
 			if (ImGui.BeginTable("Positions", 7)) {
@@ -1037,12 +908,10 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		}
 		ImGui.TreePop();
 	}
-	ImGui.End();
 }
 
 void handleDialog(T)(ref bool isActive, string title) {
 	import std.meta : Filter;
-	import dataloader : typeMatches;
 	static T data;
 	if (!isActive) {
 		return;
@@ -1060,7 +929,7 @@ void handleDialog(T)(ref bool isActive, string title) {
 			InputEditable(label, __traits(getMember, data, __traits(identifier, field)));
 		}}
 		if (ImGui.Button("OK")) {
-			mainFiberExecute = () { data.execute(); };
+			snes.registerHook("main", &data.execute);
 			isActive = false;
 		}
 		ImGui.SameLine();
@@ -1069,67 +938,6 @@ void handleDialog(T)(ref bool isActive, string title) {
 		}
 		ImGui.EndPopup();
 	}
-}
-
-void InputEditable(E, ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, T)(string label, ref T value) {
-	E e = cast(E)value;
-	InputEditable!flags(label, e);
-	value = cast(T)e;
-}
-void InputEditable(ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, V...)(string label, ref V values) {
-	if (auto result = InputEditableR!flags(label, values)) {
-		values = result.values;
-	}
-}
-IMGUIValueChanged!V InputEditableR(ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, V...)(string label, V value) {
-	IMGUIValueChanged!V result;
-	result.values = value;
-	ImGui.BeginGroup();
-	ImGui.PushID(label);
-	ImGui.PushMultiItemsWidths(V.length, ImGui.CalcItemWidth());
-	static foreach (i, T; V) {{
-		ImGui.PushID(i);
-		static if (is(T == FixedPoint1616)) {
-			float tmp = cast(float)value[i].asDouble;
-			if (ImGui.InputFloat("##v", &tmp, flags)) {
-				infof("%s", tmp);
-				result.values[i] = tmp;
-				result.changed = true;
-			}
-		} else static if (is(T == enum)) { //enum type
-			import std.traits : EnumMembers;
-			if (ImGui.BeginCombo("##v", value[i].text)) {
-				static foreach (e; EnumMembers!T) {
-					if (ImGui.Selectable(e.text, e == value[i])) {
-						result.values[i] = e;
-						result.changed = true;
-					}
-				}
-				ImGui.EndCombo();
-			}
-		} else static if (is(T : const(char)[])) { // strings
-			if (value[i][0] == char.init) {
-				value[i][] = 0;
-			}
-			if (ImGui.InputText("##v", value[i][])) {
-				result.values[i] = value[i];
-				result.changed = true;
-			}
-		} else { //integer type
-			int tmp = value[i];
-			if (ImGui.InputInt("##v", &tmp, flags)) {
-				result.values[i] = cast(T)tmp;
-				result.changed = true;
-			}
-		}
-		ImGui.SameLine();
-		ImGui.PopID();
-		ImGui.PopItemWidth();
-	}}
-	ImGui.PopID();
-	ImGui.Text(label);
-	ImGui.EndGroup();
-	return result;
 }
 
 void disabledCheckbox(string label, bool value) {
@@ -1269,23 +1077,6 @@ static immutable string[][] afflictionNames = [
 	],
 ];
 
-void dumpVRAM() {
-	dumpVRAMToDir(".");
-}
-
-void dumpVRAMToDir(string basePath) {
-	import std.path : buildPath;
-	import std.stdio : File;
-	static int dumpVramCount = 0;
-	File(buildPath(basePath, format!"gfxstate%03d.regs"(dumpVramCount)), "wb").rawWrite(renderer.registers);
-	File(buildPath(basePath, format!"gfxstate%03d.vram"(dumpVramCount)), "wb").rawWrite(renderer.vram);
-	File(buildPath(basePath, format!"gfxstate%03d.cgram"(dumpVramCount)), "wb").rawWrite(renderer.cgram);
-	File(buildPath(basePath, format!"gfxstate%03d.oam"(dumpVramCount)), "wb").rawWrite(renderer.oam1);
-	File(buildPath(basePath, format!"gfxstate%03d.oam2"(dumpVramCount)), "wb").rawWrite(renderer.oam2);
-	File(buildPath(basePath, format!"gfxstate%03d.hdma"(dumpVramCount)), "wb").rawWrite(renderer.allHDMAData());
-	dumpVramCount++;
-}
-
 void dumpSave() {
 	import siryul : toFile, YAML;
 	import earthbound.globals;
@@ -1300,9 +1091,7 @@ void dumpSave() {
 
 void dumpGameState(string basePath) {
 	import std.path : buildPath;
-	import std.traits : isCallable;
 	import siryul : toFile, YAML;
-	import earthbound.hardware;
 	static struct FullGameState {
 		static foreach (member; AllWantedState) {
 			mixin(typeof(member), " ", __traits(identifier, member), ";");
@@ -1315,30 +1104,5 @@ void dumpGameState(string basePath) {
 	state.toFile!YAML(buildPath(basePath, "state.yaml"));
 }
 
-__gshared string otherThreadCrashMsg;
-__gshared Throwable.TraceInfo otherThreadCrashTrace;
-__gshared bool otherThreadCrashed;
 
-noreturn writeDebugDumpOtherThread(string msg, Throwable.TraceInfo traceInfo) nothrow {
-	otherThreadCrashMsg = msg;
-	otherThreadCrashTrace = traceInfo;
-	otherThreadCrashed = true;
-	while(true) {}
-}
-
-void writeDebugDump(string msg, Throwable.TraceInfo traceInfo) {
-	import std.datetime : Clock;
-	import std.file : mkdirRecurse;
-	import std.path : absolutePath, buildNormalizedPath, buildPath;
-	import std.stdio : File, writeln;
-	auto crashDir = buildNormalizedPath("dump", format!"crash %s"(Clock.currTime.toISOString)).absolutePath;
-	mkdirRecurse(crashDir);
-	dumpScreen(buildPath(crashDir, "screen.bmp"));
-	dumpVRAMToDir(crashDir);
-	dumpGameState(crashDir);
-	File(buildPath(crashDir, "trace.txt"), "w").write(msg, "\n", traceInfo);
-	infof("Game crashed! Details written to '%s', please report this bug at https://github.com/Herringway/earthbound/issues with as many details as you can include.", crashDir);
-	debug writeln(msg, "\n", traceInfo);
-}
-
-alias AllWantedState = AliasSeq!(dmaQueueIndex, lastCompletedDMAIndex, frameCounter, oamHighTableBuffer, spritemapBank, mirrorINIDISP, mirrorOBSEL, mirrorBGMODE, mirrorMOSAIC, mirrorBG1SC, mirrorBG2SC, mirrorBG3SC, mirrorBG4SC, mirrorBG12NBA, mirrorBG34NBA, mirrorWH2, mirrorTM, mirrorTD, mirrorNMITIMEN, mirrorHDMAEN, inIRQCallback, randA, randB, fadeDelayFramesLeft, newFrameStarted, nextFrameDisplayID, nextFrameBufferID, paletteUploadMode, bg1XPosition, bg1YPosition, bg2XPosition, bg2YPosition, bg3XPosition, bg3YPosition, bg4XPosition, bg4YPosition, bg1XPositionBuffer, bg1YPositionBuffer, bg2XPositionBuffer, bg2YPositionBuffer, bg3XPositionBuffer, bg3YPositionBuffer, bg4XPositionBuffer, bg4YPositionBuffer, evenBG1XPosition, evenBG1YPosition, padState, padHeld, padPress, padTimer, padTemp, padRaw, demoRecordingFlags, demoFramesLeft, demoInitialPadState, demoSameInputFrames, demoLastInput, dmaCopyMode, dmaCopySize, dmaCopyVRAMDestination, dmaBytesCopied, currentSpriteXBase, currentSpriteYBase, currentSpriteY, memcpyWordsLeft, timer, mult16NumCalls, palettes, oam1, oam2, playerHasDoneSomethingThisFrame, lastSRAMBank, newEntityVar0, newEntityVar1, newEntityVar2, newEntityVar3, newEntityVar4, newEntityVar5, newEntityVar6, newEntityVar7, newEntityPosZ, newEntityPriority, entityAllocationMinSlot, entityAllocationMaxSlot, firstEntity, lastEntity, lastAllocatedScript, nextActiveEntity, actionScriptCurrentScript, disableActionscript, entityScriptTable, entityNextEntityTable, entityScriptIndexTable, entityScreenXTable, entityScreenYTable, entityAbsXTable, entityAbsYTable, entityAbsZTable, entityAbsXFractionTable, entityAbsYFractionTable, entityAbsZFractionTable, entityDeltaXTable, entityDeltaYTable, entityDeltaZTable, entityDeltaXFractionTable, entityDeltaYFractionTable, entityDeltaZFractionTable, entityScriptVar0Table, entityScriptVar1Table, entityScriptVar2Table, entityScriptVar3Table, entityScriptVar4Table, entityScriptVar5Table, entityScriptVar6Table, entityScriptVar7Table, entityDrawPriority, entityCallbackFlags, entityAnimationFrames, entitySpriteMapFlags, entityScriptNextScripts, entityScriptStackPosition, entityScriptSleepFrames, entityScriptTempvars, entityScriptStacks, entityBGHorizontalOffsetLow, entityBGVerticalOffsetLow, entityBGHorizontalOffsetHigh, entityBGVerticalOffsetHigh, entityBGHorizontalVelocityLow, entityBGVerticalVelocityLow, entityBGHorizontalVelocityHigh, entityBGVerticalVelocityHigh, currentEntitySlot, currentEntityOffset, currentScriptSlot, currentScriptOffset, entityHitboxLeftRightHeight, entityMovingDirection, backgroundDistortionStyle, backgroundDistortionTargetLayer, backgroundDistortSecondLayer, backgroundDistortionCompressionRate, usedBG2TileMap, keyboardInputCharacterOffsets, keyboardInputCharacterWidths, keyboardInputCharacters, psiAnimationTimeUntilNextFrame, psiAnimationFrameHoldFrames, psiAnimationTotalFrames, psiAnimationPaletteAnimationLowerRange, psiAnimationPaletteAnimationUpperRange, psiAnimationCurrentPaletteOffset, psiAnimationPaletteFrames, psiAnimationPaletteTimeUntilNextFrame, psiAnimationFullLoadedPalette, psiAnimationEnemyColourChangeStartFramesLeft, psiAnimationEnemyColourChangeFramesLeft, psiAnimationEnemyColourChangeRed, psiAnimationEnemyColourChangeGreen, psiAnimationEnemyColourChangeBlue, heap, currentSpriteDrawingPriority, priority0SpriteX, priority0SpriteY, priority0SpriteMapBanks, priority0SpriteOffset, priority1SpriteX, priority1SpriteY, priority1SpriteMapBanks, priority1SpriteOffset, priority2SpriteX, priority2SpriteY, priority2SpriteMapBanks, priority2SpriteOffset, priority3SpriteX, priority3SpriteY, priority3SpriteMapBanks, priority3SpriteOffset, entityDrawSorting, entityMovementProspectX, entityMovementProspectY, entityCallbackFlagsBackup, cachedMapBlockX, cachedMapBlockY, cachedMapBlock, usedBG2TileMapFirstFreeBit, playerHasMovedSinceMapLoad, useSecondSpriteFrame, spriteUpdateEntityOffset, footstepSoundIgnoreEntity, footstepSoundID, footstepSoundIDOverride, entityCollidedObjects, entityObstacleFlags, entitySpriteMapSizes, entitySpriteMapBeginningIndices, entityVramAddresses, entityByteWidths, entityTileHeights, entityDirections, entityMovementSpeed, entitySizes, entitySurfaceFlags, entityUpperLowerBodyDivide, entityWalkingStyles, entityPathfindingState, entityNPCIDs, entitySpriteIDs, entityEnemyIDs, entityEnemySpawnTiles, entityUnknown2D8A, entityUnknown2DC6, entityPathPointsCount, entityOverlayFlags, entityMushroomizedNextUpdateFrames, entitySweatingNextUpdateFrames, entityRippleNextUpdateFrames, entityBigRippleNextUpdateFrames, entityWeakEnemyValue, entityHitboxEnabled, entityHitboxUpDownWidth, entityHitboxUpDownHeight, entityHitboxLeftRightWidth, entityAnimationFingerprints, vwfBuffer, flyoverNextLineIncrement, transitionBackgroundXVelocity, transitionBackgroundYVelocity, transitionBackgroundX, transitionBackgroundY, animatedBackgroundLayer1HDMATable, animatedBackgroundLayer2HDMATable, backgroundHDMABuffer, swirlWindowHDMATable, swirlWindowHDMAData, earthbound.globals.debugging, loadedMapTileCombo, loadedMapPalette, loadedMapTileset, screenLeftX, screenTopY, screenXPixelsCopy, screenYPixelsCopy, screenXPixels, screenYPixels, bg12PositionXCopy, bg12PositionYCopy, currentTeleportDestinationX, currentTeleportDestinationY, currentSectorAttributes, loadedRowsX, loadedRowsY, loadedColumnsX, loadedColumnsY, colourAverageRed, colourAverageGreen, colourAverageBlue, savedColourAverageRed, savedColourAverageGreen, savedColourAverageBlue, overworldTilesetAnim, overworldPaletteAnim, loadedAnimatedTileCount, mapPaletteAnimationLoaded, mapPaletteBackup, wipePalettesOnMapLoad, newSpriteTileWidth, newSpriteTileHeight, overworldSpriteMaps, spriteVramTable, npcSpawnsEnabled, enemySpawnsEnabled, overworldEnemyCount, overworldEnemyMaximum, magicButterfly, enemySpawnRangeWidth, enemySpawnRangeHeight, showNPCFlag, enemySpawnTooManyEnemiesFailureCount, enemySpawnEncounterID, enemySpawnRemainingEnemyCount, enemySpawnChance, spawningEnemyGroup, spawningEnemySprite, enemySpawnCounter, pathfindingEnemyIDs, pathfindingEnemyCounts, currentBattleGroup, pathfindingTargetCenterX, pathfindingTargetCenterY, pathfindingTargetHeight, pathfindingTargetWidth, deliveryPaths, touchedEnemy, enemyPathfindingTargetEntity, enemyHasBeenTouched, battleInitiative, actionScriptBackupX, actionScriptBackupY, battleMode, partyMembersAliveOverworld, horizontalMovementSpeeds, verticalMovementSpeeds, playerPositionBuffer, creditsDMAQueue, playerMovementFlags, playerIntangibilityFrames, bicycleDiagonalTurnCounter, lastSectorX, lastSectorY, battleSwirlCountdown, interactingNPCID, interactingNPCEntity, overworldDamageCountdownFrames, backgroundColourBackup, inputDisableFrameCounter, currentLeaderDirection, currentLeadingPartyMemberEntity, cameraModeBackup, cameraMode3FramesLeft, hpAlertShown, overworldStatusSuppression, pendingInteractions, mushroomizationTimer, mushroomizationModifier, mushroomizedWalkingFlag, tempEntitySurfaceFlags, finalMovementDirection, ladderStairsTileX, ladderStairsTileY, checkedCollisionLeftX, checkedCollisionTopY, setTempEntitySurfaceFlags, northSouthCollisionTestResult, notMovingInSameDirectionFaced, mapObjectFoundType, currentQueuedInteractionType, usingDoor, stairsDirection, escalatorEntranceDirection, autoMovementDirection, stairsNewX, stairsNewY, escalatorNewX, escalatorNewY, currentMapMusicTrack, nextMapMusicTrack, disableMusicChanges, doMapMusicFade, mapObjectText, queuedInteractions, currentQueuedInteraction, nextQueuedInteraction, entityCreationRequests, entityCreationRequestsCount, activeHotspots, skipAddingCommandText, characterPadding, enableWordWrap, extraTickOnWindowClose, forceLeftTextAlignment, newTextPixelOffset, lastTextPixelOffsetSet, forceCentreTextAlignment, vwfIndentNewLine, lastPrintedCharacter, printAttackerArticle, printTargetArticle, restoreMenuBackup, paginationWindow, paginationAnimationFrame, textTilemapBuffer, bg2Buffer, dummyWindow, windowStats, windowHead, windowTail, windowTable, titledWindows, currentFocusWindow, numberTextBuffer, hpPPWindowDigitBuffer, hpPPWindowBuffer, renderHPPPWindows, battleMenuCurrentCharacterID, currentFlashingRow, currentFlashingEnemy, currentFlashingEnemyRow, menuOptions, instantPrinting, redrawAllWindows, uploadHPPPMeterTiles, selectedTextSpeed, hpMeterSpeed, partyMemberSelectionScripts, actionScriptState, battleModeFlag, textPromptWaitingForInput, currentlyDrawnHPPPWindows, hpPPMeterAreaNeedsUpdate, textSpeedBasedWait, textPromptMode, textSoundMode, textRenderState, attackerEnemyID, targetEnemyID, upcomingWordLength, nextKeyboardInputIndex, wordSplittingBuffer, menuBackupSelectedTextX, menuBackupSelectedTextY, menuBackupCurrentOption, menuBackupSelectedOption, earlyTickExit, menuOptionLabelLengths, unknown7E9691, halfHPMeterSpeed, fastestHPMeterSpeed, disableHPPPRolling, hpPPMeterFlipoutMode, hpPPMeterFlipoutModeHPBackups, hpPPMeterFlipoutModePPBackups, displayTextStates, nextTextStackFrame, ccArgumentStorage, ccArgumentGatheringLoopCounter, textSubRegisterBackup, textLoopRegisterBackup, onGoSubOffset, textNewMenuOptionBuffer, gameState, partyCharacters, eventFlags, currentInteractingEventFlag, windowTextAttributesBackup, temporaryTextBuffer, temporaryWeapon, temporaryBodyGear, temporaryArmsGear, temporaryOtherGear, compareEquipmentMode, characterForEquipMenu, battleAttackerName, battleTargetName, cItem, cNum, overworldSelectedPSIUser, onlyOneCharacterWithPSI, lastSelectedPSIDescription, respawnX, respawnY, vwfX, vwfTile, dmaTransferFlag, entityPreparedXCoordinate, entityPreparedYCoordinate, entityPreparedDirection, cameraFocusEntity, spawningTravellingPhotographerID, actionScriptCOLDATABlue, actionScriptCOLDATAGreen, actionScriptCOLDATARed, rectangleWindowBufferIndex, overworldTasks, dadPhoneTimer, dadPhoneQueued, autoMovementDemoBuffer, autoMovementDemoPosition, loadedItemTransformations, itemTransformationsLoaded, timeUntilNextItemTransformationCheck, flyoverScreenOffset, flyoverPixelOffset, flyoverByteOffset, bubbleMonkeyMode, bubbleMonkeyMovementChangeTmer, bubbleMonkeyDistractedNextDirection, bubbleMonkeyDistractedNextDirectionChangeTime, bubbleMonkeyDistractedDirectionChangesLeft, psiTeleportDestination, psiTeleportStyle, teleportState, teleportationSpeed, psiTeleportSpeedX, psiTeleportSpeedY, psiTeleportNextX, psiTeleportNextY, psiTeleportSuccessScreenSpeedX, psiTeleportSuccessScreenX, psiTeleportSuccessScreenSpeedY, psiTeleportSuccessScreenY, psiTeleportBetaAngle, psiTeleportBetaProgress, psiTeleportBetterProgress, psiTeleportBetaXAdjustment, psiTeleportBetaYAdjustment, miniGhostEntityID, miniGhostAngle, possessedPlayerCount, pajamaFlag, movingPartyMemberEntityID, titleScreenQuickMode, sramVersion, corruptionCheckResults, tilemapUpdateTileX, tilemapUpdateTileY, tilemapUpdateTileCount, tilemapUpdateTileHeight, tilemapUpdateTileWidth, tilemapUpdateBaseAddress, unused7E9F88, enemiesInBattle, enemiesInBattleIDs, battlersTable, battlerTargetFlags, battleEXPScratch, battleMoneyScratch, currentGiygasPhase, battleItemUsed, battleMenuSelection, attackerNameAdjustScratch, targetNameAdjustScratch, targetNameBuffer, stealableItemCandidates, highestEnemyLevelInBattle, specialDefeat, itemDropped, mirrorEnemy, mirrorBattlerBackup, mirrorTurnTimer, partyMembersWithSelectedActions, debuggingCurrentPSIAnimation, debuggingCurrentSwirl, debuggingCurrentSwirlFlags, instantWinSortedOffense, instantWinSortedHP, instantWinSortedDefense, isSmaaaashAttack, enemyPerformingFinalAttack, skipDeathTextAndCleanup, shieldHasNullifiedDamage, damageIsReflected, usedEnemyLetters, currentBattleSpritemapsAllocated, currentBattleSpritesAllocated, battleSpritemapAllocationCounts, currentBattleSpriteEnemyIDs, currentBattleSpriteWidths, currentBattleSpriteHeights, battleSpritemaps, altBattleSpritemaps, numBattlersInFrontRow, numBattlersInBackRow, battlerFrontRowXPositions, battlerFrontRowYPositions, battlerBackRowXPositions, battlerBackRowYPositions, backRowBattlers, frontRowBattlers, currentLayerConfig, verticalShakeDuration, verticalShakeHoldDuration, screenEffectMinimumWaitFrames, wobbleDuration, shakeDuration, screenEffectHorizontalOffset, screenEffectVerticalOffset, psiAnimationXOffset, psiAnimationYOffset, greenFlashDuration, redFlashDuration, enemyTargettingFlashing, hpPPBoxBlinkDuration, hpPPBoxBlinkTarget, reflectFlashDuration, greenBackgroundFlashDuration, distort30FPS, letterboxVisibleScreenValue, letterboxNonvisibleScreenValue, letterboxTopEnd, letterboxBottomStart, letterboxEffectEnding, letterboxHDMATable, letterboxEffectEndingTop, letterboxEffectEndingBottom, enableBackgroundDarkening, backgroundBrightness, loadedBGDataLayer1, loadedBGDataLayer2, framesLeftUntilNextSwirlUpdate, framesUntilNextSwirlFrame, swirlFramesLeft, swirlHDMATableID, swirlInvertEnabled, swirlReversed, swirlMaskSettings, swirlHDMAChannelOffset, swirlLengthPadding, swirlAutoRestore, loadedOvalWindowCentreX, loadedOvalWindowCentreY, loadedOvalWindowWidth, loadedOvalWindowHeight, loadedOvalWindowCentreXAdd, loadedOvalWindowCentreYAdd, loadedOvalWindowWidthVelocity, loadedOvalWindowHeightVelocity, loadedOvalWindowWidthAcceleration, loadedOvalWindowHeightAcceleration, swirlNextSwirl, swirlRepeatSpeed, swirlRepeatsUntilSpeedUp, psiAnimationEnemyTargets, activeOvalWindow, battleSpriteRowWidth, battleSpritePaletteEffectFramesLeft, battleSpritePaletteEffectDeltas, battleSpritePaletteEffectCounters, battleSpritePaletteEffectSteps, battleSpritePaletteEffectSpeed, soundStonePlaybackState, soundStoneSpriteTilemap1, soundStoneSpriteTilemap2, activeManpuX, activeManpuY, pathMatrixRows, pathMatrixColumns, pathMatrixBorder, pathMatrixSize, pathCardinalOffset, pathCardinalIndex, pathDiagonalIndex, allowTextOverflow, saveFilesPresent, currentSaveSlot, lastPartyMemberStatusLastCheck, entityFadeStatesLength, entityFadeEntity, townMapIconAnimationFrame, townMapPlayerIconAnimationFrame, framesUntilMapIconPaletteUpdate, waitForNamingScreenActionScript, disabledTransitions, nextYourSanctuaryLocationTileIndex, totalYourSanctuaryLoadedTilesetTiles, yourSanctuaryLoadedTilesetTiles, loadedYourSanctuaryLocations, forceNormalFontForLengthCalculation, castTileOffset, initialCastEntitySleepFrames, creditsNextCreditPosition, creditsRowWipeThreshold, creditsScrollPosition, photographMapLoadingMode, currentPhotoDisplay, creditsDMAQueueEnd, creditsDMAQueueStart, creditsCurrentRow, creditsPlayerNameBuffer, deliveryAttempts, deliveryTimers, piracyFlag, currentMusicTrack, debugSoundMenuInitialBGM, sequencePackMask, enableAutoSectorMusicChanges, debugSoundMenuSelectedBGM, debugSoundMenuSelectedSE, debugSoundMenuSelectedEffect, debugCursorEntity, debugMenuCursorPosition, debugMenuButtonPressed, debugModeNumber, viewAttributeMode, debugStartPositionX, debugStartPositionY, debugViewCharacterSprite, replayModeActive, randABackup, randBBackup, frameCounterBackup, replayTransitionStyle, debugEnemiesEnabledFlag, );
+alias AllWantedState = AliasSeq!(dmaQueueIndex, lastCompletedDMAIndex, frameCounter, oamHighTableBuffer, spritemapBank, mirrorINIDISP, mirrorOBSEL, mirrorBGMODE, mirrorMOSAIC, mirrorBG1SC, mirrorBG2SC, mirrorBG3SC, mirrorBG4SC, mirrorBG12NBA, mirrorBG34NBA, mirrorWH2, mirrorTM, mirrorTD, mirrorNMITIMEN, mirrorHDMAEN, inIRQCallback, randA, randB, fadeDelayFramesLeft, newFrameStarted, nextFrameDisplayID, nextFrameBufferID, paletteUploadMode, bg1XPosition, bg1YPosition, bg2XPosition, bg2YPosition, bg3XPosition, bg3YPosition, bg4XPosition, bg4YPosition, bg1XPositionBuffer, bg1YPositionBuffer, bg2XPositionBuffer, bg2YPositionBuffer, bg3XPositionBuffer, bg3YPositionBuffer, bg4XPositionBuffer, bg4YPositionBuffer, evenBG1XPosition, evenBG1YPosition, padState, padHeld, padPress, padTimer, padTemp, padRaw, demoRecordingFlags, demoFramesLeft, demoInitialPadState, demoSameInputFrames, demoLastInput, dmaCopyMode, dmaCopySize, dmaCopyVRAMDestination, dmaBytesCopied, currentSpriteXBase, currentSpriteYBase, currentSpriteY, memcpyWordsLeft, timer, mult16NumCalls, palettes, oam1, oam2, playerHasDoneSomethingThisFrame, lastSRAMBank, newEntityVar0, newEntityVar1, newEntityVar2, newEntityVar3, newEntityVar4, newEntityVar5, newEntityVar6, newEntityVar7, newEntityPosZ, newEntityPriority, entityAllocationMinSlot, entityAllocationMaxSlot, firstEntity, lastEntity, lastAllocatedScript, nextActiveEntity, actionScriptCurrentScript, disableActionscript, entityScriptTable, entityNextEntityTable, entityScriptIndexTable, entityScreenXTable, entityScreenYTable, entityAbsXTable, entityAbsYTable, entityAbsZTable, entityAbsXFractionTable, entityAbsYFractionTable, entityAbsZFractionTable, entityDeltaXTable, entityDeltaYTable, entityDeltaZTable, entityDeltaXFractionTable, entityDeltaYFractionTable, entityDeltaZFractionTable, entityScriptVar0Table, entityScriptVar1Table, entityScriptVar2Table, entityScriptVar3Table, entityScriptVar4Table, entityScriptVar5Table, entityScriptVar6Table, entityScriptVar7Table, entityDrawPriority, entityCallbackFlags, entityAnimationFrames, entitySpriteMapFlags, entityScriptNextScripts, entityScriptStackPosition, entityScriptSleepFrames, entityScriptTempvars, entityScriptStacks, entityBGHorizontalOffsetLow, entityBGVerticalOffsetLow, entityBGHorizontalOffsetHigh, entityBGVerticalOffsetHigh, entityBGHorizontalVelocityLow, entityBGVerticalVelocityLow, entityBGHorizontalVelocityHigh, entityBGVerticalVelocityHigh, currentEntitySlot, currentEntityOffset, currentScriptSlot, currentScriptOffset, entityHitboxLeftRightHeight, entityMovingDirection, backgroundDistortionStyle, backgroundDistortionTargetLayer, backgroundDistortSecondLayer, backgroundDistortionCompressionRate, usedBG2TileMap, keyboardInputCharacterOffsets, keyboardInputCharacterWidths, keyboardInputCharacters, psiAnimationTimeUntilNextFrame, psiAnimationFrameHoldFrames, psiAnimationTotalFrames, psiAnimationPaletteAnimationLowerRange, psiAnimationPaletteAnimationUpperRange, psiAnimationCurrentPaletteOffset, psiAnimationPaletteFrames, psiAnimationPaletteTimeUntilNextFrame, psiAnimationFullLoadedPalette, psiAnimationEnemyColourChangeStartFramesLeft, psiAnimationEnemyColourChangeFramesLeft, psiAnimationEnemyColourChangeRed, psiAnimationEnemyColourChangeGreen, psiAnimationEnemyColourChangeBlue, heap, currentSpriteDrawingPriority, priority0SpriteX, priority0SpriteY, priority0SpriteMapBanks, priority0SpriteOffset, priority1SpriteX, priority1SpriteY, priority1SpriteMapBanks, priority1SpriteOffset, priority2SpriteX, priority2SpriteY, priority2SpriteMapBanks, priority2SpriteOffset, priority3SpriteX, priority3SpriteY, priority3SpriteMapBanks, priority3SpriteOffset, entityDrawSorting, entityMovementProspectX, entityMovementProspectY, entityCallbackFlagsBackup, cachedMapBlockX, cachedMapBlockY, cachedMapBlock, usedBG2TileMapFirstFreeBit, playerHasMovedSinceMapLoad, useSecondSpriteFrame, spriteUpdateEntityOffset, footstepSoundIgnoreEntity, footstepSoundID, footstepSoundIDOverride, entityCollidedObjects, entityObstacleFlags, entitySpriteMapSizes, entitySpriteMapBeginningIndices, entityVramAddresses, entityByteWidths, entityTileHeights, entityDirections, entityMovementSpeed, entitySizes, entitySurfaceFlags, entityUpperLowerBodyDivide, entityWalkingStyles, entityPathfindingState, entityNPCIDs, entitySpriteIDs, entityEnemyIDs, entityEnemySpawnTiles, entityUnknown2D8A, entityUnknown2DC6, entityPathPointsCount, entityOverlayFlags, entityMushroomizedNextUpdateFrames, entitySweatingNextUpdateFrames, entityRippleNextUpdateFrames, entityBigRippleNextUpdateFrames, entityWeakEnemyValue, entityHitboxEnabled, entityHitboxUpDownWidth, entityHitboxUpDownHeight, entityHitboxLeftRightWidth, entityAnimationFingerprints, vwfBuffer, flyoverNextLineIncrement, transitionBackgroundXVelocity, transitionBackgroundYVelocity, transitionBackgroundX, transitionBackgroundY, backgroundHDMABuffer, swirlWindowHDMAData, earthbound.globals.debugging, loadedMapTileCombo, loadedMapPalette, loadedMapTileset, screenLeftX, screenTopY, screenXPixelsCopy, screenYPixelsCopy, screenXPixels, screenYPixels, bg12PositionXCopy, bg12PositionYCopy, currentTeleportDestinationX, currentTeleportDestinationY, currentSectorAttributes, loadedRowsX, loadedRowsY, loadedColumnsX, loadedColumnsY, colourAverageRed, colourAverageGreen, colourAverageBlue, savedColourAverageRed, savedColourAverageGreen, savedColourAverageBlue, overworldTilesetAnim, overworldPaletteAnim, loadedAnimatedTileCount, mapPaletteAnimationLoaded, mapPaletteBackup, wipePalettesOnMapLoad, newSpriteTileWidth, newSpriteTileHeight, overworldSpriteMaps, spriteVramTable, npcSpawnsEnabled, enemySpawnsEnabled, overworldEnemyCount, overworldEnemyMaximum, magicButterfly, enemySpawnRangeWidth, enemySpawnRangeHeight, showNPCFlag, enemySpawnTooManyEnemiesFailureCount, enemySpawnEncounterID, enemySpawnRemainingEnemyCount, enemySpawnChance, spawningEnemyGroup, spawningEnemySprite, enemySpawnCounter, pathfindingEnemyIDs, pathfindingEnemyCounts, currentBattleGroup, pathfindingTargetCenterX, pathfindingTargetCenterY, pathfindingTargetHeight, pathfindingTargetWidth, deliveryPaths, touchedEnemy, enemyPathfindingTargetEntity, enemyHasBeenTouched, battleInitiative, actionScriptBackupX, actionScriptBackupY, battleMode, partyMembersAliveOverworld, horizontalMovementSpeeds, verticalMovementSpeeds, playerPositionBuffer, creditsDMAQueue, playerMovementFlags, playerIntangibilityFrames, bicycleDiagonalTurnCounter, lastSectorX, lastSectorY, battleSwirlCountdown, interactingNPCID, interactingNPCEntity, overworldDamageCountdownFrames, backgroundColourBackup, inputDisableFrameCounter, currentLeaderDirection, currentLeadingPartyMemberEntity, cameraModeBackup, cameraMode3FramesLeft, hpAlertShown, overworldStatusSuppression, pendingInteractions, mushroomizationTimer, mushroomizationModifier, mushroomizedWalkingFlag, tempEntitySurfaceFlags, finalMovementDirection, ladderStairsTileX, ladderStairsTileY, checkedCollisionLeftX, checkedCollisionTopY, setTempEntitySurfaceFlags, northSouthCollisionTestResult, notMovingInSameDirectionFaced, mapObjectFoundType, currentQueuedInteractionType, usingDoor, stairsDirection, escalatorEntranceDirection, autoMovementDirection, stairsNewX, stairsNewY, escalatorNewX, escalatorNewY, currentMapMusicTrack, nextMapMusicTrack, disableMusicChanges, doMapMusicFade, mapObjectText, queuedInteractions, currentQueuedInteraction, nextQueuedInteraction, entityCreationRequests, entityCreationRequestsCount, activeHotspots, skipAddingCommandText, characterPadding, enableWordWrap, extraTickOnWindowClose, forceLeftTextAlignment, newTextPixelOffset, lastTextPixelOffsetSet, forceCentreTextAlignment, vwfIndentNewLine, lastPrintedCharacter, printAttackerArticle, printTargetArticle, restoreMenuBackup, paginationWindow, paginationAnimationFrame, textTilemapBuffer, bg2Buffer, dummyWindow, windowStats, windowHead, windowTail, windowTable, titledWindows, currentFocusWindow, numberTextBuffer, hpPPWindowDigitBuffer, hpPPWindowBuffer, renderHPPPWindows, battleMenuCurrentCharacterID, currentFlashingRow, currentFlashingEnemy, currentFlashingEnemyRow, menuOptions, instantPrinting, redrawAllWindows, uploadHPPPMeterTiles, selectedTextSpeed, hpMeterSpeed, partyMemberSelectionScripts, actionScriptState, battleModeFlag, textPromptWaitingForInput, currentlyDrawnHPPPWindows, hpPPMeterAreaNeedsUpdate, textSpeedBasedWait, textPromptMode, textSoundMode, textRenderState, attackerEnemyID, targetEnemyID, upcomingWordLength, nextKeyboardInputIndex, wordSplittingBuffer, menuBackupSelectedTextX, menuBackupSelectedTextY, menuBackupCurrentOption, menuBackupSelectedOption, earlyTickExit, menuOptionLabelLengths, unknown7E9691, halfHPMeterSpeed, fastestHPMeterSpeed, disableHPPPRolling, hpPPMeterFlipoutMode, hpPPMeterFlipoutModeHPBackups, hpPPMeterFlipoutModePPBackups, displayTextStates, nextTextStackFrame, ccArgumentStorage, ccArgumentGatheringLoopCounter, textSubRegisterBackup, textLoopRegisterBackup, onGoSubOffset, textNewMenuOptionBuffer, gameState, partyCharacters, eventFlags, currentInteractingEventFlag, windowTextAttributesBackup, temporaryTextBuffer, temporaryWeapon, temporaryBodyGear, temporaryArmsGear, temporaryOtherGear, compareEquipmentMode, characterForEquipMenu, battleAttackerName, battleTargetName, cItem, cNum, overworldSelectedPSIUser, onlyOneCharacterWithPSI, lastSelectedPSIDescription, respawnX, respawnY, vwfX, vwfTile, dmaTransferFlag, entityPreparedXCoordinate, entityPreparedYCoordinate, entityPreparedDirection, cameraFocusEntity, spawningTravellingPhotographerID, actionScriptCOLDATABlue, actionScriptCOLDATAGreen, actionScriptCOLDATARed, rectangleWindowBufferIndex, overworldTasks, dadPhoneTimer, dadPhoneQueued, autoMovementDemoBuffer, autoMovementDemoPosition, loadedItemTransformations, itemTransformationsLoaded, timeUntilNextItemTransformationCheck, flyoverScreenOffset, flyoverPixelOffset, flyoverByteOffset, bubbleMonkeyMode, bubbleMonkeyMovementChangeTmer, bubbleMonkeyDistractedNextDirection, bubbleMonkeyDistractedNextDirectionChangeTime, bubbleMonkeyDistractedDirectionChangesLeft, psiTeleportDestination, psiTeleportStyle, teleportState, teleportationSpeed, psiTeleportSpeedX, psiTeleportSpeedY, psiTeleportNextX, psiTeleportNextY, psiTeleportSuccessScreenSpeedX, psiTeleportSuccessScreenX, psiTeleportSuccessScreenSpeedY, psiTeleportSuccessScreenY, psiTeleportBetaAngle, psiTeleportBetaProgress, psiTeleportBetterProgress, psiTeleportBetaXAdjustment, psiTeleportBetaYAdjustment, miniGhostEntityID, miniGhostAngle, possessedPlayerCount, pajamaFlag, movingPartyMemberEntityID, titleScreenQuickMode, sramVersion, corruptionCheckResults, tilemapUpdateTileX, tilemapUpdateTileY, tilemapUpdateTileCount, tilemapUpdateTileHeight, tilemapUpdateTileWidth, tilemapUpdateBaseAddress, unused7E9F88, enemiesInBattle, enemiesInBattleIDs, battlersTable, battlerTargetFlags, battleEXPScratch, battleMoneyScratch, currentGiygasPhase, battleItemUsed, battleMenuSelection, attackerNameAdjustScratch, targetNameAdjustScratch, targetNameBuffer, stealableItemCandidates, highestEnemyLevelInBattle, specialDefeat, itemDropped, mirrorEnemy, mirrorBattlerBackup, mirrorTurnTimer, partyMembersWithSelectedActions, debuggingCurrentPSIAnimation, debuggingCurrentSwirl, debuggingCurrentSwirlFlags, instantWinSortedOffense, instantWinSortedHP, instantWinSortedDefense, isSmaaaashAttack, enemyPerformingFinalAttack, skipDeathTextAndCleanup, shieldHasNullifiedDamage, damageIsReflected, usedEnemyLetters, currentBattleSpritemapsAllocated, currentBattleSpritesAllocated, battleSpritemapAllocationCounts, currentBattleSpriteEnemyIDs, currentBattleSpriteWidths, currentBattleSpriteHeights, battleSpritemaps, altBattleSpritemaps, numBattlersInFrontRow, numBattlersInBackRow, battlerFrontRowXPositions, battlerFrontRowYPositions, battlerBackRowXPositions, battlerBackRowYPositions, backRowBattlers, frontRowBattlers, currentLayerConfig, verticalShakeDuration, verticalShakeHoldDuration, screenEffectMinimumWaitFrames, wobbleDuration, shakeDuration, screenEffectHorizontalOffset, screenEffectVerticalOffset, psiAnimationXOffset, psiAnimationYOffset, greenFlashDuration, redFlashDuration, enemyTargettingFlashing, hpPPBoxBlinkDuration, hpPPBoxBlinkTarget, reflectFlashDuration, greenBackgroundFlashDuration, distort30FPS, letterboxVisibleScreenValue, letterboxNonvisibleScreenValue, letterboxTopEnd, letterboxBottomStart, letterboxEffectEnding, letterboxHDMATable, letterboxEffectEndingTop, letterboxEffectEndingBottom, enableBackgroundDarkening, backgroundBrightness, loadedBGDataLayer1, loadedBGDataLayer2, framesLeftUntilNextSwirlUpdate, framesUntilNextSwirlFrame, swirlFramesLeft, swirlHDMATableID, swirlInvertEnabled, swirlReversed, swirlMaskSettings, swirlHDMAChannelOffset, swirlLengthPadding, swirlAutoRestore, loadedOvalWindowCentreX, loadedOvalWindowCentreY, loadedOvalWindowWidth, loadedOvalWindowHeight, loadedOvalWindowCentreXAdd, loadedOvalWindowCentreYAdd, loadedOvalWindowWidthVelocity, loadedOvalWindowHeightVelocity, loadedOvalWindowWidthAcceleration, loadedOvalWindowHeightAcceleration, swirlNextSwirl, swirlRepeatSpeed, swirlRepeatsUntilSpeedUp, psiAnimationEnemyTargets, activeOvalWindow, battleSpriteRowWidth, battleSpritePaletteEffectFramesLeft, battleSpritePaletteEffectDeltas, battleSpritePaletteEffectCounters, battleSpritePaletteEffectSteps, battleSpritePaletteEffectSpeed, soundStonePlaybackState, soundStoneSpriteTilemap1, soundStoneSpriteTilemap2, activeManpuX, activeManpuY, pathMatrixRows, pathMatrixColumns, pathMatrixBorder, pathMatrixSize, pathCardinalOffset, pathCardinalIndex, pathDiagonalIndex, allowTextOverflow, saveFilesPresent, currentSaveSlot, lastPartyMemberStatusLastCheck, entityFadeStatesLength, entityFadeEntity, townMapIconAnimationFrame, townMapPlayerIconAnimationFrame, framesUntilMapIconPaletteUpdate, waitForNamingScreenActionScript, disabledTransitions, nextYourSanctuaryLocationTileIndex, totalYourSanctuaryLoadedTilesetTiles, yourSanctuaryLoadedTilesetTiles, loadedYourSanctuaryLocations, forceNormalFontForLengthCalculation, castTileOffset, initialCastEntitySleepFrames, creditsNextCreditPosition, creditsRowWipeThreshold, creditsScrollPosition, photographMapLoadingMode, currentPhotoDisplay, creditsDMAQueueEnd, creditsDMAQueueStart, creditsCurrentRow, creditsPlayerNameBuffer, deliveryAttempts, deliveryTimers, piracyFlag, currentMusicTrack, debugSoundMenuInitialBGM, sequencePackMask, enableAutoSectorMusicChanges, debugSoundMenuSelectedBGM, debugSoundMenuSelectedSE, debugSoundMenuSelectedEffect, debugCursorEntity, debugMenuCursorPosition, debugMenuButtonPressed, debugModeNumber, viewAttributeMode, debugStartPositionX, debugStartPositionY, debugViewCharacterSprite, replayModeActive, randABackup, randBBackup, frameCounterBackup, replayTransitionStyle, debugEnemiesEnabledFlag, );

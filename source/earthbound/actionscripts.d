@@ -11,6 +11,7 @@ import earthbound.bank04;
 import earthbound.text;
 import earthbound.bank21;
 import earthbound.bank2F;
+import replatform64.snes;
 
 static assert((void function()).sizeof == (const(void)*).sizeof, "Error: Script sizing currently depends on data and function pointers being equal sizes");
 

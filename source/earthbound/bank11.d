@@ -2,6 +2,7 @@
 module earthbound.bank11;
 
 import earthbound.commondefs;
+import replatform64;
 
 @spriteSource
 /** Sprite tile data

@@ -2,6 +2,7 @@
 module earthbound.bank18;
 
 import earthbound.commondefs;
+import replatform64;
 
 // Collision data for all map tiles
 // Original_Address: $(DOLLAR)D80000

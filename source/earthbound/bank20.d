@@ -2,6 +2,7 @@
 module earthbound.bank20;
 
 import earthbound.commondefs;
+import replatform64;
 
 /** Tile data for the text layer (compressed)
  * Original_Address: $(DOLLAR)E00000

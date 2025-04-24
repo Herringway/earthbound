@@ -3,7 +3,6 @@ module earthbound.bank00;
 
 import earthbound.commondefs;
 import earthbound.globals;
-import earthbound.hardware;
 import earthbound.actionscripts;
 import earthbound.bank01;
 import earthbound.bank02;
@@ -20,7 +19,9 @@ import earthbound.bank1F;
 import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
+import earthbound.external;
 import earthbound.testing;
+import replatform64.snes;
 import core.stdc.string;
 import core.bitop;
 import std.logger;
@@ -318,14 +319,14 @@ void loadMapAtSector(short x, short y) {
 	if (tileCombo != loadedMapTileCombo) {
 		loadedMapTileset = tilesetGraphicsMapping[tileCombo];
 		decomp(&mapTiles[tilesetGraphicsMapping[tileCombo]][0], &buffer[0]);
-		while (fadeParameters.step != 0) { waitForInterrupt(); }
+		while (fadeParameters.step != 0) { snes.wait(); }
 		if (photographMapLoadingMode == 0) {
 			copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x7000, 0, &buffer[0]);
 		} else {
 			copyToVRAMChunked(VRAMCopyMode.simpleCopyToVRAM, 0x4000, 0, &buffer[0]);
 		}
 	}
-	while (fadeParameters.step != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { snes.wait(); }
 	loadMapPalette(tileCombo, palette);
 	adjustSpritePalettesByAverage();
 	loadSpecialSpritePalette();
@@ -638,7 +639,7 @@ void reloadMapAtPosition(short x, short y) {
 	for (short i = -1; i != 31; i++) {
 		loadMapRowVRAM(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
-	while (fadeParameters.step != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { snes.wait(); }
 	bg2XPosition = cast(short)(screenXPixels - 0x80);
 	bg1XPosition = cast(short)(screenXPixels - 0x80);
 	bg2YPosition = cast(short)(screenYPixels - 0x70);
@@ -673,7 +674,7 @@ void loadMapAtPosition(short x, short y) {
 	for (short i = 0; i < 60; i++) {
 		loadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
-	while (fadeParameters.step != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { snes.wait(); }
 	if (photographMapLoadingMode == 0) {
 		mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	}
@@ -4706,7 +4707,7 @@ void playerIntangibilityFlash() {
 void start() {
 	dmaQueueIndex = 0;
 
-	INIDISP = 0x80;
+	snes.INIDISP = 0x80;
 	mirrorINIDISP = 0x80;
 
 	// clearing the heap would happen here
@@ -4728,12 +4729,12 @@ void start() {
 void irqNMICommon() {
 	// a read from RDNMI is required on real hardware during NMI, apparently
 	//ubyte __unused = RDNMI;
-	HDMAEN = 0;
-	INIDISP = 0x80;
+	snes.HDMAEN = 0;
+	snes.INIDISP = 0x80;
 	newFrameStarted++;
 	frameCounter++;
 	if (nextFrameDisplayID != 0) {
-		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
+		snes.handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
 		dmaBytesCopied += 0x220;
 	}
 	if (paletteUploadMode != PaletteUpload.none) {
@@ -4741,7 +4742,7 @@ void irqNMICommon() {
 		// the palette to save cycles. With the power of modern computers,
 		// we can afford to copy 512 bytes always instead of only 256.
 		paletteUploadMode = PaletteUpload.none;
-		handleCGRAMDMA(0, 0x22, &palettes, 0x200, 0);
+		snes.handleCGRAMDMA(0, 0x22, &palettes, 0x200, 0);
 		dmaBytesCopied += 0x0200;
 	}
 	if ((fadeParameters.step != 0) && (--fadeDelayFramesLeft < 0)) {
@@ -4761,47 +4762,47 @@ void irqNMICommon() {
 		Unknown6:
 		mirrorINIDISP = a;
 	}
-	INIDISP = mirrorINIDISP;
-	MOSAIC = mirrorMOSAIC;
-	BG12NBA = mirrorBG12NBA;
+	snes.INIDISP = mirrorINIDISP;
+	snes.MOSAIC = mirrorMOSAIC;
+	snes.BG12NBA = mirrorBG12NBA;
 	// mirrorWH2 is loaded into Y for no reason here... and then immediately
 	// replaced with a constant which is written to WH2/3.
 	// This has the effect of disabling the 2nd window.
-	WH2 = 0xFF;
-	WH3 = 0x00;
+	snes.WH2 = 0xFF;
+	snes.WH3 = 0x00;
 	for (short i = lastCompletedDMAIndex; i != dmaQueueIndex; i++) {
-		handleVRAMDMA(dmaTable[dmaQueue[i].mode].dmap, dmaTable[dmaQueue[i].mode].bbad, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].vmain);
+		snes.handleVRAMDMA(dmaTable[dmaQueue[i].mode].dmap, dmaTable[dmaQueue[i].mode].bbad, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].vmain);
 	}
 	lastCompletedDMAIndex = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
 		if (nextFrameDisplayID - 1 == 0) {
-			setBGOffsetX(1, bg1XPositionBuffer[0]);
-			setBGOffsetY(1, bg1YPositionBuffer[0]);
-			setBGOffsetX(2, bg2XPositionBuffer[0]);
-			setBGOffsetY(2, bg2YPositionBuffer[0]);
-			setBGOffsetX(3, bg3XPositionBuffer[0]);
-			setBGOffsetY(3, bg3YPositionBuffer[0]);
-			setBGOffsetX(4, bg4XPositionBuffer[0]);
-			setBGOffsetY(4, bg4YPositionBuffer[0]);
+			snes.BG1HOFS = bg1XPositionBuffer[0];
+			snes.BG1VOFS = bg1YPositionBuffer[0];
+			snes.BG2HOFS = bg2XPositionBuffer[0];
+			snes.BG2VOFS = bg2YPositionBuffer[0];
+			snes.BG3HOFS = bg3XPositionBuffer[0];
+			snes.BG3VOFS = bg3YPositionBuffer[0];
+			snes.BG4HOFS = bg4XPositionBuffer[0];
+			snes.BG4VOFS = bg4YPositionBuffer[0];
 		} else {
-			setBGOffsetX(1, bg1XPositionBuffer[1]);
-			setBGOffsetY(1, bg1YPositionBuffer[1]);
-			setBGOffsetX(2, bg2XPositionBuffer[1]);
-			setBGOffsetY(2, bg2YPositionBuffer[1]);
-			setBGOffsetX(3, bg3XPositionBuffer[1]);
-			setBGOffsetY(3, bg3YPositionBuffer[1]);
-			setBGOffsetX(4, bg4XPositionBuffer[1]);
-			setBGOffsetY(4, bg4YPositionBuffer[1]);
+			snes.BG1HOFS = bg1XPositionBuffer[1];
+			snes.BG1VOFS = bg1YPositionBuffer[1];
+			snes.BG2HOFS = bg2XPositionBuffer[1];
+			snes.BG2VOFS = bg2YPositionBuffer[1];
+			snes.BG3HOFS = bg3XPositionBuffer[1];
+			snes.BG3VOFS = bg3YPositionBuffer[1];
+			snes.BG4HOFS = bg4XPositionBuffer[1];
+			snes.BG4VOFS = bg4YPositionBuffer[1];
 			evenBG1XPosition = bg1XPosition;
 			evenBG1YPosition = bg1YPosition;
 		}
 	}
 	nextFrameDisplayID = 0;
 	if ((mirrorINIDISP & 0x80) == 0) {
-		TM = mirrorTM;
-		TD = mirrorTD;
-		HDMAEN = mirrorHDMAEN;
-		handleHDMA();
+		snes.TM = mirrorTM;
+		snes.TD = mirrorTD;
+		snes.HDMAEN = mirrorHDMAEN;
+		snes.handleHDMA();
 	}
 	dmaBytesCopied = 0;
 	if (inIRQCallback == 0) {
@@ -4889,8 +4890,8 @@ void readJoypad() {
 	demoRecordingFlags &= ~DemoRecordingFlags.playbackEnabled;
 
 	l1:
-	padRaw[1] = getControllerState(1);
-	padRaw[0] = getControllerState(0);
+	padRaw[1] = snes.getControllerState(1);
+	padRaw[0] = snes.getControllerState(0);
 }
 
 /** Records a frame of input if a demo is actively being recorded. Be aware that this combines both pad 1 and pad 2's input into a single pad state.
@@ -4927,7 +4928,7 @@ void demoRecordButtons() {
  * Original_Address: $(DOLLAR)C08496
  */
 void updatePadState() {
-	while ((HVBJOY & 1) == 1) {}
+	while ((snes.HVBJOY & 1) == 1) {}
 	readJoypad();
 	demoRecordButtons();
 
@@ -5015,13 +5016,13 @@ void preparePaletteUpload(PaletteUpload mode) {
  */
 void copyToVRAMChunked(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	dmaCopyMode = mode;
-	while (dmaBytesCopied != 0) { waitForInterrupt(); }
+	while (dmaBytesCopied != 0) { snes.wait(); }
 	dmaCopyRAMSource = data;
 	dmaCopyVRAMDestination = address;
 	if (count >= 0x1201) {
 		dmaCopySize = 0x1200;
 		while (count >= 0x1201) {
-			while (dmaBytesCopied != 0) { waitForInterrupt(); }
+			while (dmaBytesCopied != 0) { snes.wait(); }
 			copyToVRAMCommon();
 			dmaCopyRAMSource += 0x1200;
 			dmaCopyVRAMDestination += 0x900;
@@ -5029,9 +5030,9 @@ void copyToVRAMChunked(ubyte mode, ushort count, ushort address, const(ubyte)* d
 		}
 	}
 	dmaCopySize = count;
-	while (dmaBytesCopied != 0) { waitForInterrupt(); }
+	while (dmaBytesCopied != 0) { snes.wait(); }
 	copyToVRAMCommon();
-	while (dmaBytesCopied != 0) { waitForInterrupt(); }
+	while (dmaBytesCopied != 0) { snes.wait(); }
 }
 
 /** Queues up a DMA transfer to VRAM
@@ -5075,7 +5076,7 @@ void queueVRAMDMAInternal() {
 	// if ((mirrorINIDISP & 0x80) != 0) {
 	// 	ushort tmp92 = cast(ushort)(dmaCopySize + dmaBytesCopied);
 	// 	if (tmp92 >= 0x1201) {
-	// 		while (dmaBytesCopied != 0) { waitForInterrupt(); }
+	// 		while (dmaBytesCopied != 0) { snes.wait(); }
 	// 		tmp92 = dmaCopySize;
 	// 	}
 	// 	dmaBytesCopied = tmp92;
@@ -5091,7 +5092,7 @@ void queueVRAMDMAInternal() {
 	// } else {
 		// Since we send a complete image of VRAM to the console every frame, we
 		// can just overwrite our local VRAM copy - no need to delay
-		handleVRAMDMA(dmaTable[dmaCopyMode / 3].dmap, dmaTable[dmaCopyMode / 3].bbad, dmaCopyRAMSource, dmaCopySize, dmaCopyVRAMDestination, dmaTable[dmaCopyMode / 3].vmain);
+		snes.handleVRAMDMA(dmaTable[dmaCopyMode / 3].dmap, dmaTable[dmaCopyMode / 3].bbad, dmaCopyRAMSource, dmaCopySize, dmaCopyVRAMDestination, dmaTable[dmaCopyMode / 3].vmain);
 		currentHeapAddress = heapBaseAddress;
 		dmaTransferFlag = 0;
 	// }
@@ -5111,7 +5112,7 @@ void* sbrk(ushort bytes) {
 			currentHeapAddress += bytes;
 			return result;
 		}
-		while (newFrameStarted == 0) { waitForInterrupt(); }
+		while (newFrameStarted == 0) { snes.wait(); }
 		newFrameStarted = 0;
 	}
 }
@@ -5128,9 +5129,9 @@ void prepareForImmediateDMA() {
 	fadeParameters.step = 0;
 	// wait for next frame
 	newFrameStarted = 0;
-	while (newFrameStarted == 0) { waitForInterrupt(); }
+	while (newFrameStarted == 0) { snes.wait(); }
 	// clear all ongoing HDMAs. again. just to be sure, I guess
-	HDMAEN = 0;
+	snes.HDMAEN = 0;
 }
 
 /** Turns off the display. Blocks for a single frame to guarantee that the display is off before returning.
@@ -5139,7 +5140,7 @@ void prepareForImmediateDMA() {
 void setForceBlank() {
 	mirrorINIDISP = 0x80;
 	newFrameStarted = 0;
-	while (newFrameStarted == 0) { waitForInterrupt(); }
+	while (newFrameStarted == 0) { snes.wait(); }
 }
 
 /** Enables vertical blank interrupts and joypad auto-reading
@@ -5147,7 +5148,7 @@ void setForceBlank() {
  */
 void enableNMIJoypad() {
 	mirrorNMITIMEN |= 0x81;
-	NMITIMEN = mirrorNMITIMEN;
+	snes.NMITIMEN = mirrorNMITIMEN;
 }
 
 /** Waits a single frame, with gamepad state updated appropriately
@@ -5158,10 +5159,10 @@ void waitUntilNextFrame() {
 	// 	while (newFrameStarted == 0) {}
 	// 	newFrameStarted = 0;
 	// } else {
-	// 	while (HVBJOY < 0) {}
-	// 	while (HVBJOY >= 0) {}
+	// 	while (snes.HVBJOY < 0) {}
+	// 	while (snes.HVBJOY >= 0) {}
 	// }
-	waitForInterrupt();
+	snes.wait();
 	newFrameStarted = 0;
 	updatePadState();
 }
@@ -5261,8 +5262,8 @@ void fadeOutWithMosaic(short step, short timeBetweenFrames, short mosaicLayers) 
 	// force any active HDMAs to stop
 	mirrorHDMAEN = 0;
 	newFrameStarted = 0;
-	while (newFrameStarted == 0) { waitForInterrupt(); }
-	HDMAEN = 0;
+	while (newFrameStarted == 0) { snes.wait(); }
+	snes.HDMAEN = 0;
 }
 
 /** Perform an asynchronous fade-in. Useful for performing extra work while the effect occurs
@@ -5549,61 +5550,61 @@ void renderSpriteToOAM(const(SpriteMap)* arg1, short xbase, short ybase) {
 void setBGMODE(ubyte arg1) {
 	mirrorBGMODE &= 0xF0;
 	mirrorBGMODE |= arg1;
-	BGMODE = mirrorBGMODE;
+	snes.BGMODE = mirrorBGMODE;
 }
 
 /// $C08D92
 void setOAMSize(ubyte arg1) {
 	mirrorOBSEL = arg1;
-	OBSEL = arg1;
+	snes.OBSEL = arg1;
 }
 
 /// $C08D9E
 void setBG1VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	mirrorBG1SC = arg1 & 3;
 	mirrorBG1SC |= ((arg2 >> 8) & 0xFC);
-	BG1SC = mirrorBG1SC;
+	snes.BG1SC = mirrorBG1SC;
 	mirrorBG12NBA &= 0xF0;
 	bg1XPosition = 0;
 	bg1YPosition = 0;
 	mirrorBG12NBA |= (arg3 >> 12);
-	BG12NBA = mirrorBG12NBA;
+	snes.BG12NBA = mirrorBG12NBA;
 }
 
 /// $C08DDE
 void setBG2VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	mirrorBG2SC = arg1 & 3;
 	mirrorBG2SC |= ((arg2 >> 8) & 0xFC);
-	BG2SC = mirrorBG2SC;
+	snes.BG2SC = mirrorBG2SC;
 	mirrorBG12NBA &= 0xF;
 	bg2XPosition = 0;
 	bg2YPosition = 0;
 	mirrorBG12NBA |= ((arg3 >> 8) & 0xF0);
-	BG12NBA = mirrorBG12NBA;
+	snes.BG12NBA = mirrorBG12NBA;
 }
 
 /// $C08E1C
 void setBG3VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	mirrorBG3SC = arg1 & 3;
 	mirrorBG3SC |= ((arg2 >> 8) & 0xFC);
-	BG3SC = mirrorBG3SC;
+	snes.BG3SC = mirrorBG3SC;
 	mirrorBG34NBA &= 0xF0;
 	bg3XPosition = 0;
 	bg3YPosition = 0;
 	mirrorBG34NBA |= (arg3 >> 12);
-	BG34NBA = mirrorBG34NBA;
+	snes.BG34NBA = mirrorBG34NBA;
 }
 
 /// $C08E5C
 void setBG4VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	mirrorBG4SC = arg1 & 3;
 	mirrorBG4SC |= ((arg2 >> 8) & 0xFC);
-	BG4SC = mirrorBG4SC;
+	snes.BG4SC = mirrorBG4SC;
 	mirrorBG34NBA &= 0xF;
 	bg4XPosition = 0;
 	bg4YPosition = 0;
 	mirrorBG34NBA |= ((arg3 >> 8) & 0xF0);
-	BG34NBA = mirrorBG34NBA;
+	snes.BG34NBA = mirrorBG34NBA;
 }
 
 /// $C08E9A
@@ -5621,7 +5622,7 @@ ubyte rand() {
 /// $C08F8B
 void waitDMAFinished() {
 	ubyte a = dmaQueueIndex;
-	while (lastCompletedDMAIndex != a) { waitForInterrupt(); }
+	while (lastCompletedDMAIndex != a) { snes.wait(); }
 }
 
 /** DMA parameters for partial or full palette updates
@@ -7371,7 +7372,7 @@ void checkHardware() {
 	if (false/*AntiPiracyScratchSpace != AntiPiracyMirrorTest*/) {
 		displayCopyrightWarningScreen();
 	}
-	if ((STAT78 & 0x10) != 0) {
+	if ((snes.STAT78 & 0x10) != 0) {
 		displayFaultyGamepakScreen();
 	}
 }
@@ -8301,21 +8302,23 @@ void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 
 /// $C0ABC6
 void stopMusic() {
-	stopMusicExternal();
+	snes.APUIO0 = 0;
 	currentMusicTrack = 0xFFFF;
 }
 
 /// $C0ABE0 - Play a sound effect
 void playSfx(short sfx) {
-	playSFX(cast(ubyte)sfx);
+	static ubyte mask;
+	snes.APUIO3 = cast(ubyte)sfx ^ mask;
+	mask ^= 0x80;
 }
 void playSfxUnknown() {
-	playSFX(0);
+	snes.APUIO3 = 0;
 }
 
 /// $C0AC0C
 void musicEffect(short arg1) {
-	doMusicEffect(arg1);
+	snes.APUIO1 = cast(ubyte)arg1;
 }
 
 /// $C0AC43
@@ -8392,13 +8395,13 @@ const(OverlayScript)* updateOverlayFrame(const(SpriteMap)** arg1, out ushort fra
 
 /// $C0AD9F
 void unknownC0AD9F() {
-	setBGOffsetY(3, bg3YPosition);
+	snes.BG3VOFS = bg3YPosition;
 }
 
 /// $C0ADB2
 void doBackgroundDMA(short arg1, short arg2, short arg3) {
-	dmaChannels[arg1].BBAD = dmaTargetRegisters[arg2];
-	dmaChannels[arg1].DMAP = 0x42;
+	snes.dmaChannels[arg1].BBAD = dmaTargetRegisters[arg2];
+	snes.dmaChannels[arg1].DMAP = 0x42;
 	ubyte* a;
 	if (arg3 == 0) {
 		short x = HDMAIndirectTableEntry.sizeof * 2;
@@ -8417,7 +8420,7 @@ void doBackgroundDMA(short arg1, short arg2, short arg3) {
 		} while (x >= 0);
 		a = &animatedBackgroundLayer2HDMATable[0];
 	}
-	dmaChannels[arg1].A1T = a;
+	snes.dmaChannels[arg1].A1T = a;
 	mirrorHDMAEN |= dmaFlags[arg1];
 }
 
@@ -8588,8 +8591,8 @@ void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude,
 void setLayerConfig(short arg1) {
 	mirrorTM = layerConfigTMs[arg1];
 	mirrorTD = layerConfigTDs[arg1];
-	CGWSEL = layerConfigCGWSELs[arg1];
-	CGADSUB = layerConfigCGADSUBs[arg1];
+	snes.CGWSEL = layerConfigCGWSELs[arg1];
+	snes.CGADSUB = layerConfigCGADSUBs[arg1];
 }
 
 /// $C0AFF1
@@ -8629,15 +8632,15 @@ immutable ubyte[10] layerConfigCGADSUBs = [0x00, 0x00, 0x24, 0x64, 0xA4, 0xE4, 0
 
 /// $C0B01A
 void setColData(ubyte red, ubyte green, ubyte blue) {
-	setFixedColourData((red & 0x1F) | 0x20);
-	setFixedColourData((green & 0x1F) | 0x40);
-	setFixedColourData((blue & 0x1F) | 0x80);
+	snes.COLDATA = (red & 0x1F) | 0x20;
+	snes.COLDATA = (green & 0x1F) | 0x40;
+	snes.COLDATA = (blue & 0x1F) | 0x80;
 }
 
 /// $C0B039
 void setColourAddSubMode(ubyte cgwsel, ubyte cgadsub) {
-	CGWSEL = cgwsel;
-	CGADSUB = cgadsub;
+	snes.CGWSEL = cgwsel;
+	snes.CGADSUB = cgadsub;
 }
 
 /** Sets window masking registers WxxxSEL, TMW, TSW and WxxxLOG with presets
@@ -8647,13 +8650,13 @@ void setColourAddSubMode(ubyte cgwsel, ubyte cgadsub) {
  * Original_Address: $(DOLLAR)C0B047
  */
 void setWindowMask(ushort layers, ushort invert) {
-	W12SEL = windowMaskSettingPresets[layers & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
-	W34SEL = windowMaskSettingPresets[(layers>>2) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
-	WOBJSEL = windowMaskSettingPresets[(layers>>4) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
-	TMW = layers & 0b00011111;
-	TSW = layers & 0b00011111;
-	WBGLOG = (invert != 0) ? 0 : 0b01010101;
-	WOBJLOG = (invert != 0) ? 0 : 0b01010101;
+	snes.W12SEL = windowMaskSettingPresets[layers & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	snes.W34SEL = windowMaskSettingPresets[(layers>>2) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	snes.WOBJSEL = windowMaskSettingPresets[(layers>>4) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	snes.TMW = layers & 0b00011111;
+	snes.TSW = layers & 0b00011111;
+	snes.WBGLOG = (invert != 0) ? 0 : 0b01010101;
+	snes.WOBJLOG = (invert != 0) ? 0 : 0b01010101;
 }
 
 /** Mask setting presets for W12SEL, W34SEL, WOBJSEL used by setWindowMask
@@ -8670,8 +8673,8 @@ immutable ubyte[4] windowMaskSettingPresets = [
  * Original_Address: $(DOLLAR)C0B0AA
  */
 void resetWindows() {
-	WH0 = 0xFF;
-	WH2 = 0xFF;
+	snes.WH0 = 0xFF;
+	snes.WH2 = 0xFF;
 }
 
 /** Enables window HDMA. Destination is fixed to WH0-WH3
@@ -8681,11 +8684,11 @@ void resetWindows() {
  * Original_Address: $(DOLLAR)C0B0B8
  */
 void enableWindowHDMA(short channel, const(ubyte)* table) {
-	//dmaChannels[channel].A1B = bank of table;
-	//dmaChannels[channel].DASB = bank of table;
-	dmaChannels[channel].BBAD = 0x26;
-	dmaChannels[channel].DMAP = *table;
-	dmaChannels[channel].A1T = &table[1];
+	//snes.dmaChannels[channel].A1B = bank of table;
+	//snes.dmaChannels[channel].DASB = bank of table;
+	snes.dmaChannels[channel].BBAD = 0x26;
+	snes.dmaChannels[channel].DMAP = *table;
+	snes.dmaChannels[channel].A1T = &table[1];
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
@@ -8697,14 +8700,14 @@ void enableSwirlWindowHDMA(ubyte channel, ubyte flags) {
 	// Write the table entry for the 124 remaining lines of window data
 	swirlWindowHDMATable[1].lines = 124 | 0x80;
 	swirlWindowHDMATable[2].lines = 0;
-	//dmaChannels[channel].A1B = 0x7E;
-	//dmaChannels[channel].DASB = 0x7E;
-	dmaChannels[channel].BBAD = 0x26;
-	dmaChannels[channel].DMAP = flags;
+	//snes.dmaChannels[channel].A1B = 0x7E;
+	//snes.dmaChannels[channel].DASB = 0x7E;
+	snes.dmaChannels[channel].BBAD = 0x26;
+	snes.dmaChannels[channel].DMAP = flags;
 	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
 	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
 	swirlWindowHDMATable[1].address = ((flags & 4) != 0) ? (&swirlWindowHDMAData[400]) : (&swirlWindowHDMAData[200]);
-	dmaChannels[channel].A1T = &swirlWindowHDMATable[0];
+	snes.dmaChannels[channel].A1T = &swirlWindowHDMATable[0];
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
@@ -9052,8 +9055,7 @@ void ebMain() {
 					assert(0, "Intentional crash");
 				}
 			}
-			mainFiberExecute();
-			mainFiberExecute = () {};
+			snes.runHook("main");
 			if (psiTeleportDestination) {
 				teleportMainLoop();
 			}
@@ -11100,8 +11102,8 @@ void gasStationLoad() {
 	prepareLoadedPaletteFadeTables(480, PaletteMask.all);
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.bg2;
-	CGWSEL = 2;
-	CGADSUB = 3;
+	snes.CGWSEL = 2;
+	snes.CGADSUB = 3;
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -11138,8 +11140,8 @@ short runGasStationSkippablePortion() {
 		waitUntilNextFrame();
 	}
 	finishPaletteFade();
-	CGADSUB = 0;
-	CGWSEL = 0;
+	snes.CGADSUB = 0;
+	snes.CGWSEL = 0;
 	mirrorTM = TMTD.bg1;
 	mirrorTD = TMTD.none;
 	if (unknownC0EFE1(120) != 0) {
