@@ -7538,19 +7538,19 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 		arg1.verticalVelocity += arg1.verticalAcceleration;
 		arg1.verticalPosition += arg1.verticalVelocity;
 		switch (x19) {
-			case LayerID.layer1:
+			case BGLayerID.layer1:
 				bg1XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg1YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case LayerID.layer2:
+			case BGLayerID.layer2:
 				bg2XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg2YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case LayerID.layer3:
+			case BGLayerID.layer3:
 				bg3XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg3YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;
-			case LayerID.layer4:
+			case BGLayerID.layer4:
 				bg4XPosition = cast(short)((arg1.horizontalPosition >> 8) + screenEffectHorizontalOffset);
 				bg4YPosition = cast(short)((arg1.verticalPosition >> 8) + screenEffectVerticalOffset);
 				break;

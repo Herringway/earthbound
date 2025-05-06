@@ -5064,7 +5064,7 @@ enum PSIAnimationTarget {
 	random = 3,
 }
 ///
-enum LayerID {
+enum BGLayerID {
 	layer1 = 1,
 	layer2 = 2,
 	layer3 = 3,
