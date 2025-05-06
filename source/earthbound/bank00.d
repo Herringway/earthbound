@@ -9626,8 +9626,10 @@ void unknownC0CC11() {
 
 /// $C0CCCC
 void unknownC0CCCC() {
+	// set starting point
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[currentEntitySlot];
 	entityScriptVar7Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] + 16);
+	// rate of change for angle
 	entityScriptVar5Table[currentEntitySlot] = cast(short)((cast(int)entityMovementSpeed[currentEntitySlot] * 16) / 64800) << 8; // * 128 / 2025?
 	if ((rand() & 1) != 0) {
 		entityDirections[currentEntitySlot] = Direction.up;
@@ -9644,43 +9646,40 @@ void unknownC0CCCC() {
 
 /// $C0CD50
 short unknownC0CD50() {
-	short x04 = entityUnknown2DC6[currentEntitySlot];
-	short x02;
-	if (x04 == 0) {
-		x02 = cast(short)(entityScriptVar4Table[currentEntitySlot] + entityScriptVar5Table[currentEntitySlot]);
+	short movingDirection = entityUnknown2DC6[currentEntitySlot];
+	short angle;
+	if (movingDirection == 0) {
+		angle = cast(short)(entityScriptVar4Table[currentEntitySlot] + entityScriptVar5Table[currentEntitySlot]);
 	} else {
-		x02 = cast(short)(entityScriptVar4Table[currentEntitySlot] - entityScriptVar5Table[currentEntitySlot]);
+		angle = cast(short)(entityScriptVar4Table[currentEntitySlot] - entityScriptVar5Table[currentEntitySlot]);
 	}
-	entityScriptVar4Table[currentEntitySlot] = x02;
-	auto x0E = angleToVector(x02, 0x1000);
+	entityScriptVar4Table[currentEntitySlot] = angle;
+	auto x0E = angleToVector(angle, 0x1000);
+	// this is a complicated way of saying deltaX = var6 + x0E.y / 256.0 - entityAbsX, deltaY = var7 + x0E.x / 256.0 - entityAbsY
 	FixedPoint1616 x1E;
 	FixedPoint1616 x1A;
 	x1A.integer = x0E.y;
 	x1E.integer = x0E.x;
 	x1A.combined >>= 8;
 	x1E.combined >>= 8;
-	FixedPoint1616 x22;
-	x22.integer = entityScriptVar6Table[currentEntitySlot];
-	FixedPoint1616 x26;
-	x26.integer = entityScriptVar7Table[currentEntitySlot];
-	FixedPoint1616 x12;
-	x12.integer = entityAbsXTable[currentEntitySlot];
-	x12.fraction = entityAbsXFractionTable[currentEntitySlot];
-	FixedPoint1616 x16;
-	x16.integer = entityAbsYTable[currentEntitySlot];
-	x16.fraction = entityAbsYFractionTable[currentEntitySlot];
+	FixedPoint1616 startPointX;
+	startPointX.integer = entityScriptVar6Table[currentEntitySlot];
+	FixedPoint1616 startPointY;
+	startPointY.integer = entityScriptVar7Table[currentEntitySlot];
+	FixedPoint1616 currentX = fullEntityAbsX(currentEntitySlot);
+	FixedPoint1616 currentY = fullEntityAbsY(currentEntitySlot);
 	FixedPoint1616 x2A;
-	x2A.combined = x22.combined + x1A.combined - x12.combined;
+	x2A.combined = startPointX.combined + x1A.combined - currentX.combined;
 	FixedPoint1616 x2E;
-	x2E.combined = x26.combined + x1E.combined - x16.combined;
+	x2E.combined = startPointY.combined + x1E.combined - currentY.combined;
 	entityDeltaXTable[currentEntitySlot] = x2A.integer;
 	entityDeltaXFractionTable[currentEntitySlot] = x2A.fraction;
 	entityDeltaYTable[currentEntitySlot] = x2E.integer;
 	entityDeltaYFractionTable[currentEntitySlot] = x2E.fraction;
-	if (x04 == 0) {
-		return cast(short)(x02 + 0x4000);
+	if (movingDirection == 0) { // +/- 90 degrees
+		return cast(short)(angle + 0x4000);
 	} else {
-		return cast(short)(x02 - 0x4000);
+		return cast(short)(angle - 0x4000);
 	}
 }
 
@@ -10967,8 +10966,10 @@ void setBGPalettesBlack() {
 	paletteUploadMode = PaletteUpload.full;
 }
 
-/// $C0ED5C
-void unknownC0ED5C() {
+/** Loads the palettes used for the animated title screen
+ * Original_Address: $(DOLLAR)C0ED5C
+ */
+void actionScriptLoadTitleScreenPalettes() {
 	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	loadTitleScreenPaletteEffect(TitleScreenPaletteEffect.letterShimmer);
@@ -11010,8 +11011,10 @@ void unknownC0EE47() {
 	mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
 }
 
-/// $C0EE53
-void unknownC0EE53() {
+/** Enables drawing for the current active entity
+ * Original_Address: $(DOLLAR)C0EE53
+ */
+void actionScriptEnableDrawing() {
 	entitySpriteMapFlags[currentEntitySlot] &= ~SpriteMapFlags.drawDisabled;
 }
 

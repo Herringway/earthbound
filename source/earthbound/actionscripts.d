@@ -18628,7 +18628,8 @@ shared static this() {
 		JUMP_IF_TRUE("actionScriptDeleteEnemy"),
 	LABEL("ENTRY2"),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_FALSE("actionScript27.UNKNOWN0"),
+		JUMP_IF_FALSE("actionScript27.playerApproached"),
+		// player is far away
 		LOOP(8),
 			C0CD50(),
 			SET_MOVING_DIRECTION_FROM_ANGLE(),
@@ -18636,18 +18637,19 @@ shared static this() {
 			PAUSE(1),
 		LOOP_END(),
 		SHORTJUMP("actionScript27.ENTRY2"),
-	LABEL("UNKNOWN0"),
+	LABEL("playerApproached"),
 		C0CD50(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v4),
-		SHORTJUMP("actionScript27.UNKNOWN2"),
-	LABEL("UNKNOWN1"),
+		SHORTJUMP("actionScript27.playerStillClose"),
+	LABEL("checkPlayerStillClose"),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_FALSE("actionScript27.UNKNOWN2"),
+		JUMP_IF_FALSE("actionScript27.playerStillClose"),
+		// player moved out of range
 		SET_MOVEMENT_SPEED(256),
 		C0CCCC(),
 		SHORTJUMP("actionScript27.ENTRY2"),
-	LABEL("UNKNOWN2"),
+	LABEL("playerStillClose"),
 		SET_DESTINATION_TO_PARTY_LEADER_LOCATION(),
 		GET_ANGLE_TOWARDS_DESTINATION_UNLESS_WEAK(),
 		C0CEBE(),
@@ -18656,7 +18658,7 @@ shared static this() {
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(8),
-		SHORTJUMP("actionScript27.UNKNOWN1"),
+		SHORTJUMP("actionScript27.checkPlayerStillClose"),
 	);
 }
 /// $C3A874
@@ -25921,7 +25923,7 @@ shared static this() {
 		SET_DRAW_CALLBACK(&unknownC0A0FA),
 		SET_PRIORITY(1),
 		SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
-		C0EE53(),
+		ENABLE_DRAWING(),
 		SHORT_RETURN(),
 	);
 }
@@ -25935,13 +25937,15 @@ shared static this() {
 		END_TASK(),
 	);
 }
-/// $C4222A
+/** ActionScript 789 - Global initialization for title screen (USA)
+ * Original_Address: $(DOLLAR)C4222A
+ */
 immutable ubyte[4 + 2 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] actionScriptTitleScreen2;
 shared static this() {
 	actionScriptTitleScreen2 = initializeScript!actionScriptTitleScreen2(
 		WRITE_WRAM_TEMPVAR(&titleScreenQuickMode),
 		JUMP_IF_FALSE("animateCompletedTitleScreen"),
-		C0ED5C(),
+		LOAD_TITLE_SCREEN_PALETTES(),
 		END(),
 	);
 }
@@ -26745,10 +26749,10 @@ alias LOAD_TITLE_SCREEN_PALETTE_EFFECT = CALL!loadTitleScreenPaletteEffect;
 alias PREPARE_TITLE_SCREEN_FADE_IN = CALL!prepareTitleScreenFadeIn;
 alias SET_BG_PALETTES_WHITE = CALL!setBGPalettesWhite;
 alias SET_BG_PALETTES_BLACK = CALL!setBGPalettesBlack;
-alias C0ED5C = CALL!unknownC0ED5C;
+alias LOAD_TITLE_SCREEN_PALETTES = CALL!actionScriptLoadTitleScreenPalettes;
 alias SET_TITLE_SCREEN_ACTIONSCRIPT_STATE = CALL!setTitleScreenActionScriptState;
 alias ROTATE_LOADED_PALETTE = CALL!rotateLoadedPalette;
-alias C0EE53 = CALL!unknownC0EE53;
+alias ENABLE_DRAWING = CALL!actionScriptEnableDrawing;
 alias LOAD_GAS_STATION_FLASH_PALETTE = CALL!loadGasStationFlashPalette;
 alias LOAD_GAS_STATION_PALETTE = CALL!loadGasStationPalette;
 alias MAGIC_BUTTERFLY_RECOVERY = CALL!magicButterflyRecovery;
