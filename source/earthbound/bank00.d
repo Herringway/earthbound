@@ -9603,25 +9603,25 @@ void sleepUntilCardinalPixelsMoved(short pixels) {
 
 /// $C0CC11
 void unknownC0CC11() {
-	short x12 = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
-	short y = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
-	x12 = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
-	short x02 = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
-	FixedPoint1616 x0E;
-	if (y > x02) {
-		x12 = y;
-		x0E.integer = entityDeltaXTable[currentEntitySlot];
-		x0E.fraction = entityDeltaXFractionTable[currentEntitySlot];
+	short xDifference = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
+	short normalizedXDifference = (0 > xDifference) ? (cast(short)-xDifference) : xDifference;
+	short yDifference = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
+	short normalizedYDifference = (0 > yDifference) ? (cast(short)-yDifference) : yDifference;
+	FixedPoint1616 chosenCoordinate;
+	short greatestDifference;
+	// pick the greater of the two coordinates
+	if (normalizedXDifference > normalizedYDifference) {
+		greatestDifference = normalizedXDifference;
+		chosenCoordinate = fullEntityDeltaX(currentEntitySlot);
 	} else {
-		x12 = x02;
-		x0E.integer = entityDeltaYTable[currentEntitySlot];
-		x0E.fraction = entityDeltaYFractionTable[currentEntitySlot];
+		greatestDifference = normalizedYDifference;
+		chosenCoordinate = fullEntityDeltaY(currentEntitySlot);
 	}
-	x12 = cast(short)((x12 << 16) / x0E.combined);
-	if (x12 == 0) {
-		x12 = 1;
+	short sleepFrames = cast(short)((greatestDifference << 16) / chosenCoordinate.combined);
+	if (sleepFrames == 0) {
+		sleepFrames = 1;
 	}
-	entityScriptSleepFrames[currentScriptSlot] = x12;
+	entityScriptSleepFrames[currentScriptSlot] = sleepFrames;
 }
 
 /// $C0CCCC
@@ -9718,47 +9718,54 @@ short unknownC0CEBE(short arg1) {
 }
 
 /// $C0CF58
-immutable ubyte[63] unknownC0CF58 = [ 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x03, 0x03, 0x03, 0x03, 0x03, 0x04, 0x04, 0x04, 0x04, 0x04, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02, 0x02, 0x02, 0x03, 0x03, 0x03, 0x04, 0x04, 0x04, 0x01, 0x01, 0x02, 0x02, 0x03, 0x04 ];
+immutable ubyte[63] unknownC0CF58 = [
+	0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+	0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03,
+	0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
+	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02,
+	0x02, 0x02, 0x02, 0x02, 0x02, 0x03, 0x03,
+	0x03, 0x03, 0x03, 0x04, 0x04, 0x04, 0x04,
+	0x04, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02,
+	0x02, 0x02, 0x03, 0x03, 0x03, 0x04, 0x04,
+	0x04, 0x01, 0x01, 0x02, 0x02, 0x03, 0x04
+];
 
 /// $C0CF97
-short unknownC0CF97(short arg1, short arg2) {
-	//x1C = arg2
+short unknownC0CF97(short arg1, short iterations) {
 	ubyte x00 = cast(ubyte)arg1;
 	const(ubyte)* x06 = &unknownC0CF58[0];
-	short y = cast(short)(((entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8) - 4);
-	short x12 = cast(short)(((entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8) - 4);
-	short x10 = y & 0x3F;
-	short x18 = x12 & 0x3F;
-	for (short i = 0; i != arg2; i++) {
-		if ((x10 < 0x40) && (x18 < 0x40) && ((x00 & loadedCollisionTiles[x18 & 0x3F][x10 & 0x3F]) != 0)) {
-			goto Unknown9;
+	short xCoordinate = cast(short)(((entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8) - 4);
+	short yCoordinate = cast(short)(((entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8) - 4);
+	short collisionX = xCoordinate & 0x3F;
+	short collisionY = yCoordinate & 0x3F;
+	for (short i = 0; i != iterations; i++) {
+		if ((collisionX < 64) && (collisionY < 64) && ((x00 & loadedCollisionTiles[collisionY & 0x3F][collisionX & 0x3F]) != 0)) {
+			entityScriptVar6Table[currentEntitySlot] = cast(short)(xCoordinate * 8 + collisionWidths[entitySizes[currentEntitySlot]]);
+			entityScriptVar7Table[currentEntitySlot] = cast(short)(yCoordinate * 8 - collisionHeights2[entitySizes[currentEntitySlot]] + collisionHeights1[entitySizes[currentEntitySlot]]);
+			return -1;
 		}
 		short x0E = (x06++)[0];
 		switch (x0E) {
-			case 1:
-				x18--;
-				x12--;
+			case Direction4.up:
+				collisionY--;
+				yCoordinate--;
 				break;
-			case 2:
-				x10++;
-				y++;
+			case Direction4.right:
+				collisionX++;
+				xCoordinate++;
 				break;
-			case 3:
-				x18++;
-				x12++;
+			case Direction4.down:
+				collisionY++;
+				yCoordinate++;
 				break;
-			case 4:
-				x10--;
-				y--;
+			case Direction4.left:
+				collisionX--;
+				xCoordinate--;
 				break;
 			default: break;
 		}
 	}
 	return 0;
-	Unknown9:
-	entityScriptVar6Table[currentEntitySlot] = cast(short)(y * 8 + collisionWidths[entitySizes[currentEntitySlot]]);
-	entityScriptVar7Table[currentEntitySlot] = cast(short)(x12 * 8 - collisionHeights2[entitySizes[currentEntitySlot]] + collisionHeights1[entitySizes[currentEntitySlot]]);
-	return -1;
 }
 
 /// $C0D0D9

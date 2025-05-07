@@ -210,6 +210,13 @@ enum Direction {
 	none = 8,
 }
 ///
+enum Direction4 {
+	up = 0,
+	right = 1,
+	down = 2,
+	left = 3,
+}
+///
 enum CCDirection {
 	useVar = 0,
 	undefined = 0,
