@@ -4997,7 +4997,7 @@ void actionScriptDoAllPalettesFadeStep() {
  */
 // calls to this seem to specify an argument, but the registers are clobbered immediately
 void unknownC474A8() {
-	enum commonCGADSUB = CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop;
+	enum commonCGADSUB = CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop;
 	setWindowBrightness(
 		(0 <= entityScriptVar0Table[currentEntitySlot]) ? commonCGADSUB : (commonCGADSUB | CGADSUBFlags.ColourMathAddsub),
 		cast(ubyte)((0 <= entityScriptVar0Table[currentEntitySlot]) ? entityScriptVar0Table[currentEntitySlot] : cast(short)-entityScriptVar0Table[currentEntitySlot])
