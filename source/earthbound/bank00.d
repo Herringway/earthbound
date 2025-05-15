@@ -9604,8 +9604,12 @@ void sleepUntilCardinalPixelsMoved(short pixels) {
 	entityScriptSleepFrames[currentScriptSlot] = cast(short)((pixels << 16) / pixelsMoved.combined);
 }
 
-/// $C0CC11
-void unknownC0CC11() {
+/** Causes a script to sleep until it reaches its destination (cardinal directions only)
+ *
+ * Due to a bug, this always sleeps for one frame.
+ * Original_Address: $(DOLLAR)C0CC11
+ */
+void sleepUntilDestinationReached() {
 	short xDifference = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
 	short normalizedXDifference = (0 > xDifference) ? (cast(short)-xDifference) : xDifference;
 	short yDifference = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
@@ -9641,7 +9645,7 @@ unittest {
 	entityDeltaXTable[testEntity] = -2;
 	entityDeltaYFractionTable[testEntity] = 0x4BFF;
 	entityDeltaYTable[testEntity] = -1;
-	unknownC0CC11();
+	sleepUntilDestinationReached();
 	assert(entityScriptSleepFrames[testScript] == 1);
 }
 

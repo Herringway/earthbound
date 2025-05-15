@@ -43,7 +43,7 @@ shared static this() {
 		actionScriptDefaultEnemy[],
 		actionScript20[],
 		actionScript21[],
-		actionScript22[],
+		actionScriptStalkingEnemy[],
 		actionScriptFlyingInanimateEnemy[],
 		actionScript24[],
 		actionScriptFlyingEnemy[],
@@ -18378,48 +18378,59 @@ shared static this() {
 		SHORTJUMP("actionScript21.UNKNOWN2"),
 	);
 }
-/// $C3A5C9
-immutable ubyte[43 + 21 * (const(void)*).sizeof + 8 * ScriptPointer.sizeof] actionScript22;
+/** ActionScript 22 - Stalking enemies. Tries to hide from the player, moves straight towards player when in range
+ * Original_Address: $(DOLLAR)C3A5C9
+ */
+immutable ubyte[43 + 21 * (const(void)*).sizeof + 8 * ScriptPointer.sizeof] actionScriptStalkingEnemy;
 shared static this() {
-	actionScript22 = initializeScript!actionScript22(
+	actionScriptStalkingEnemy = initializeScript!actionScriptStalkingEnemy(
 		SHORTCALL("actionScriptGroundedEnemyInitialize"),
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE("actionScriptDeleteEnemy"),
 		SET_MOVEMENT_SPEED(384),
-	LABEL("UNKNOWN0"),
+	LABEL("SEEK_COVER"),
 		SET_VELOCITIES_ZERO(),
+		// wait about a second before moving again, unless the player is in range
 		LOOP(10),
 			GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-			BREAK_IF_FALSE("actionScript22.UNKNOWN3"),
+			BREAK_IF_FALSE("actionScriptStalkingEnemy.SEEK_PLAYER"),
 			PAUSE(8),
 		LOOP_END(),
+		// try to find a hiding place (somewhere where the player can't see our full sprite) and move to it...?
+		// unfortunately, because we search in a spiral centered on our current position outside-in,
+		// there's a very real possibility that we'll keep finding new hiding places when we're already in one
 		FIND_HIDING_TILE(),
-		JUMP_IF_FALSE("actionScript22.UNKNOWN1"),
+		// no hiding place, just wander aimlessly instead
+		JUMP_IF_FALSE("actionScriptStalkingEnemy.WANDER"),
 		PAUSE(4),
 		GET_ANGLE_TO_DESTINATION(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
-		C0CC11(),
-		SHORTJUMP("actionScript22.UNKNOWN0"),
-	LABEL("UNKNOWN1"),
+		// this will always sleep for a single frame, so we'll never actually reach our intended destination
+		SLEEP_UNTIL_DESTINATION_REACHED(),
+		SHORTJUMP("actionScriptStalkingEnemy.SEEK_COVER"),
+	LABEL("WANDER"),
+		// just wander 64 pixels in a random direction
 		PICK_RANDOM_ANGLE(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(64),
-		SHORTJUMP("actionScript22.UNKNOWN0"),
-	LABEL("UNKNOWN2"),
+		SHORTJUMP("actionScriptStalkingEnemy.SEEK_COVER"),
+	LABEL("KEEP_SEEKING_PLAYER"),
+		// player still in range?
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
-		JUMP_IF_TRUE("actionScript22.UNKNOWN0"),
-	LABEL("UNKNOWN3"),
+		JUMP_IF_TRUE("actionScriptStalkingEnemy.SEEK_COVER"),
+	LABEL("SEEK_PLAYER"),
+		// head straight towards player, even if an obstacle is in the way
 		SET_DESTINATION_TO_PARTY_LEADER_LOCATION(),
 		GET_ANGLE_TOWARDS_DESTINATION_UNLESS_WEAK(),
 		SET_MOVEMENT_FROM_ANGLE(),
 		SET_MOVING_DIRECTION_FROM_ANGLE(),
 		SET_DIRECTION(),
 		SLEEP_UNTIL_PIXELS_MOVED(8),
-		SHORTJUMP("actionScript22.UNKNOWN2"),
+		SHORTJUMP("actionScriptStalkingEnemy.KEEP_SEEKING_PLAYER"),
 	);
 }
 /** ActionScript 23 - Flying metallic/robotic enemies. Moves erratically in diagonals, moves diagonally towards player if within 128 pixels
@@ -26732,7 +26743,7 @@ alias IS_ENTITY_ONSCREEN = CALL!isEntityOnscreen;
 alias UPDATE_SURFACE_FLAGS = CALL!updateEntitySurfaceFlags;
 alias MOVE_IN_DIRECTION = CALL!actionScriptMoveDirection;
 alias SLEEP_UNTIL_CARDINAL_PIXELS_MOVED_TEMPVAR = CALL!sleepUntilCardinalPixelsMoved;
-alias C0CC11 = CALL!unknownC0CC11;
+alias SLEEP_UNTIL_DESTINATION_REACHED = CALL!sleepUntilDestinationReached;
 alias C0CCCC = CALL!unknownC0CCCC;
 alias C0CD50 = CALL!unknownC0CD50;
 alias C0CEBE = CALL!unknownC0CEBE;

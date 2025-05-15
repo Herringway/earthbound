@@ -1532,7 +1532,7 @@ enum ActionScript {
 	defaultEnemy, //19
 	unknown020, //20
 	unknown021, //21
-	unknown022, //22
+	stalkingEnemy, //22
 	flyingInanimateEnemy, /// Flying, metallic/robotic enemies
 	ambushEnemy, /// Ambush enemies that don't move until you're neat
 	flyingEnemy, /// Flying, living enemies
