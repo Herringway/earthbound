@@ -18393,7 +18393,7 @@ shared static this() {
 			BREAK_IF_FALSE("actionScript22.UNKNOWN3"),
 			PAUSE(8),
 		LOOP_END(),
-		C0D0D9(),
+		FIND_HIDING_TILE(),
 		JUMP_IF_FALSE("actionScript22.UNKNOWN1"),
 		PAUSE(4),
 		GET_ANGLE_TO_DESTINATION(),
@@ -26736,7 +26736,7 @@ alias C0CC11 = CALL!unknownC0CC11;
 alias C0CCCC = CALL!unknownC0CCCC;
 alias C0CD50 = CALL!unknownC0CD50;
 alias C0CEBE = CALL!unknownC0CEBE;
-alias C0D0D9 = CALL!unknownC0D0D9;
+alias FIND_HIDING_TILE = CALL!actionScriptFindHidingTile;
 alias C0D0E6 = CALL!unknownC0D0E6;
 alias TEST_PARTY_COLLISION = CALL!actionScriptTestPartyCollision;
 alias IS_BATTLE_STARTING = CALL!testBattleStarting;

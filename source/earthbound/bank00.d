@@ -2960,16 +2960,19 @@ void unknownC052D4(short arg1) {
 	}
 }
 
-/// $C0546B
-short unknownC0546B() {
-	short x10 = 0;
+/** Gets the sum of the playable party members's levels
+ * Returns: Total level
+ * Original_Address: $(DOLLAR)C0546B
+ */
+short getTotalPartyLevel() {
+	short total = 0;
 	for (short i = 0; i != gameState.partyCount; i++) {
 		if (gameState.partyMemberIndex[i] > 4) {
 			continue;
 		}
-		x10 += partyCharacters[gameState.partyMemberIndex[i]].level;
+		total += partyCharacters[gameState.partyMemberIndex[i]].level;
 	}
-	return x10;
+	return total;
 }
 
 /** Gets the collision of a loaded tile at the given coordinates, and sets ladder/stairs coordinates if applicable
@@ -9410,14 +9413,14 @@ short isEntityWeak() {
 	if ((battleEntryPointerTable[entityNPCIDs[currentEntitySlot] & 0x7FFF].runAwayFlag != 0) && (getEventFlag(battleEntryPointerTable[entityNPCIDs[currentEntitySlot] & 0x7FFF].runAwayFlag) == battleEntryPointerTable[entityNPCIDs[currentEntitySlot] & 0x7FFF].runAwayFlagState)) {
 		return 1;
 	}
-	short x0E = unknownC0546B();
-	if (x0E > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 10) {
+	short totalLevel = getTotalPartyLevel();
+	if (totalLevel > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 10) {
 		return 1;
 	}
-	if ((x0E > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 8) && (entityWeakEnemyValue[currentEntitySlot] >= 192)) {
+	if ((totalLevel > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 8) && (entityWeakEnemyValue[currentEntitySlot] >= 192)) {
 		return 1;
 	}
-	if ((x0E > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 6) && (entityWeakEnemyValue[currentEntitySlot] >= 128)) {
+	if ((totalLevel > enemyConfigurationTable[entityEnemyIDs[currentEntitySlot]].level * 6) && (entityWeakEnemyValue[currentEntitySlot] >= 128)) {
 		return 1;
 	}
 	return 0;
@@ -9617,11 +9620,29 @@ void unknownC0CC11() {
 		greatestDifference = normalizedYDifference;
 		chosenCoordinate = fullEntityDeltaY(currentEntitySlot);
 	}
-	short sleepFrames = cast(short)((greatestDifference << 16) / chosenCoordinate.combined);
+	// bug? this will always be zero...
+	short sleepFrames = cast(short)(cast(ushort)(greatestDifference << 16) / chosenCoordinate.combined);
 	if (sleepFrames == 0) {
 		sleepFrames = 1;
 	}
 	entityScriptSleepFrames[currentScriptSlot] = sleepFrames;
+}
+
+unittest {
+	enum testEntity = 3;
+	enum testScript = 6;
+	currentEntitySlot = testEntity;
+	currentScriptSlot = testScript;
+	entityScriptVar6Table[testEntity] = 2512;
+	entityScriptVar7Table[testEntity] = 464;
+	entityAbsXTable[testEntity] = 2544;
+	entityAbsYTable[testEntity] = 480;
+	entityDeltaXFractionTable[testEntity] = 0xADFF;
+	entityDeltaXTable[testEntity] = -2;
+	entityDeltaYFractionTable[testEntity] = 0x4BFF;
+	entityDeltaYTable[testEntity] = -1;
+	unknownC0CC11();
+	assert(entityScriptSleepFrames[testScript] == 1);
 }
 
 /// $C0CCCC
@@ -9717,35 +9738,50 @@ short unknownC0CEBE(short arg1) {
 	return x04;
 }
 
-/// $C0CF58
-immutable ubyte[63] unknownC0CF58 = [
-	0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-	0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03,
-	0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
-	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02,
-	0x02, 0x02, 0x02, 0x02, 0x02, 0x03, 0x03,
-	0x03, 0x03, 0x03, 0x04, 0x04, 0x04, 0x04,
-	0x04, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02,
-	0x02, 0x02, 0x03, 0x03, 0x03, 0x04, 0x04,
-	0x04, 0x01, 0x01, 0x02, 0x02, 0x03, 0x04
+/** A clockwise spiral used for collision searching
+ * Original_Address: $(DOLLAR)C0CF58
+ */
+immutable ubyte[63] clockwiseSpiral = [
+	Direction4.right, Direction4.right, Direction4.right, Direction4.right, Direction4.right, Direction4.right, Direction4.right,
+	Direction4.down, Direction4.down, Direction4.down, Direction4.down, Direction4.down, Direction4.down, Direction4.down,
+	Direction4.left, Direction4.left, Direction4.left, Direction4.left, Direction4.left, Direction4.left, Direction4.left,
+	Direction4.up, Direction4.up, Direction4.up, Direction4.up, Direction4.up, Direction4.up,
+	Direction4.right, Direction4.right, Direction4.right, Direction4.right, Direction4.right, Direction4.right,
+	Direction4.down, Direction4.down, Direction4.down, Direction4.down, Direction4.down,
+	Direction4.left, Direction4.left, Direction4.left, Direction4.left, Direction4.left,
+	Direction4.up, Direction4.up, Direction4.up, Direction4.up,
+	Direction4.right, Direction4.right, Direction4.right, Direction4.right,
+	Direction4.down, Direction4.down, Direction4.down,
+	Direction4.left, Direction4.left, Direction4.left,
+	Direction4.up, Direction4.up,
+	Direction4.right, Direction4.right,
+	Direction4.down,
+	Direction4.left
 ];
 
-/// $C0CF97
-short unknownC0CF97(short arg1, short iterations) {
-	ubyte x00 = cast(ubyte)arg1;
-	const(ubyte)* x06 = &unknownC0CF58[0];
+/** Searches for nearby tiles with matching collision
+ *
+ * Searches in a clockwise spiral, centred on the active entity, setting active entity destination (vars 6 and 7) to the first match.
+ * Returns: -1 if match found, 0 if not found
+ * Params:
+ * 	collision = Collision flag mask to search for
+ * 	iterations = Number of search iterations
+ * Original_Address: $(DOLLAR)C0CF97
+ */
+short actionScriptSearchForCollision(short collision, short iterations) {
+	const(ubyte)* searchDirections = &clockwiseSpiral[0];
 	short xCoordinate = cast(short)(((entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8) - 4);
 	short yCoordinate = cast(short)(((entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8) - 4);
 	short collisionX = xCoordinate & 0x3F;
 	short collisionY = yCoordinate & 0x3F;
 	for (short i = 0; i != iterations; i++) {
-		if ((collisionX < 64) && (collisionY < 64) && ((x00 & loadedCollisionTiles[collisionY & 0x3F][collisionX & 0x3F]) != 0)) {
+		if ((collisionX < 64) && (collisionY < 64) && ((collision & loadedCollisionTiles[collisionY & 0x3F][collisionX & 0x3F]) != 0)) {
 			entityScriptVar6Table[currentEntitySlot] = cast(short)(xCoordinate * 8 + collisionWidths[entitySizes[currentEntitySlot]]);
 			entityScriptVar7Table[currentEntitySlot] = cast(short)(yCoordinate * 8 - collisionHeights2[entitySizes[currentEntitySlot]] + collisionHeights1[entitySizes[currentEntitySlot]]);
 			return -1;
 		}
-		short x0E = (x06++)[0];
-		switch (x0E) {
+		short currentSearchDirection = (searchDirections++)[0];
+		switch (currentSearchDirection) {
 			case Direction4.up:
 				collisionY--;
 				yCoordinate--;
@@ -9769,8 +9805,20 @@ short unknownC0CF97(short arg1, short iterations) {
 }
 
 /// $C0D0D9
-short unknownC0D0D9() {
-	return unknownC0CF97(3, 60);
+short actionScriptFindHidingTile() {
+	return actionScriptSearchForCollision(SurfaceFlags.obscureLowerBody | SurfaceFlags.obscureUpperBody, 60);
+}
+
+unittest {
+	enum testEntity = 3;
+	currentEntitySlot = testEntity;
+	entitySizes[testEntity] = EntitySize._32x24;
+	entityAbsXTable[testEntity] = 3512;
+	entityAbsYTable[testEntity] = 9128;
+	foreach (i; 0x30 .. 0x39) {
+		loadedCollisionTiles[i][] = SurfaceFlags.causesSunstroke;
+	}
+	assert(actionScriptFindHidingTile() == 0);
 }
 
 /// $C0D0E6
