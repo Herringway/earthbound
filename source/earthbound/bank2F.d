@@ -270,7 +270,7 @@ short cancelTitleScreenSequence() {
 	// sequence is done, so fade out and clean up
 	fadeOutWithMosaic(1, 4, 0);
 	actionScriptState = ActionScriptState.running;
-	unknownC474A8(/+0+/);
+	actionScriptSetScreenBrightness(/+0+/);
 	initializeEntitySubsystem();
 	return cancelled;
 }
@@ -21919,7 +21919,7 @@ void debugMain() {
 		entitySpriteMapFlags[characterDebugEntity] |= SpriteMapFlags.drawDisabled;
 	}
 	memset(&palettes[0][0], 0, 0x200);
-	overworldInitialize();
+	overworldInitializeGraphics();
 	loadMapAtPosition(debugStartPositionX, debugStartPositionY);
 	setLeaderPosition(debugStartPositionX, debugStartPositionY, Direction.down);
 	loadDebugTextGraphics();

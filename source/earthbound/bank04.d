@@ -257,49 +257,65 @@ immutable EntityOverlaySprite[entityOverlayCount] entityOverlaySprites = [
 	EntityOverlaySprite(OverworldSprite.bigWaterRipple, 0, 0xFF),
 ];
 
-/// Spritemap for sweating overlay, frame 1
+/** Spritemap for sweating overlay, frame 1
+ * Original_Address: $(DOLLAR)C40E42
+ */
 immutable SpriteMap[2] entityOverlaySweatingFrame1 = [
 	SpriteMap(240, 96, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 	SpriteMap(240, 96, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for sweating overlay, frame 2
+/** Spritemap for sweating overlay, frame 2
+ * Original_Address: $(DOLLAR)C40E4C
+ */
 immutable SpriteMap[2] entityOverlaySweatingFrame2 = [
 	SpriteMap(240, 98, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 	SpriteMap(240, 98, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 234, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for sweating overlay, frame 3
+/** Spritemap for sweating overlay, frame 3
+ * Original_Address: $(DOLLAR)C40E56
+ */
 immutable SpriteMap[2] entityOverlaySweatingFrame3 = [
 	SpriteMap(240, 96, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 	SpriteMap(240, 96, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for sweating overlay, frame 4
+/** Spritemap for sweating overlay, frame 4
+ * Original_Address: $(DOLLAR)C40E60
+ */
 immutable SpriteMap[2] entityOverlaySweatingFrame4 = [
 	SpriteMap(240, 98, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 	SpriteMap(240, 98, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 4, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for mushroom overlay
+/** Spritemap for mushroom overlay
+ * Original_Address: $(DOLLAR)C40E6A
+ */
 immutable SpriteMap[2] entityOverlayMushroomizedFrame = [
 	SpriteMap(232, 100, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 	SpriteMap(232, 100, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for ripple overlay, frame 1
+/** Spritemap for ripple overlay, frame 1
+ * Original_Address: $(DOLLAR)C40E74
+ */
 immutable SpriteMap[2] entityOverlayRippleFrame1 = [
 	SpriteMap(254, 102, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 	SpriteMap(254, 102, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 248, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for ripple overlay, frame 2
+/** Spritemap for ripple overlay, frame 2
+ * Original_Address: $(DOLLAR)C40E7E
+ */
 immutable SpriteMap[2] entityOverlayRippleFrame2 = [
 	SpriteMap(254, 102, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 248, SpriteMapSpecialFlags.terminator),
 	SpriteMap(254, 102, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 248, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for big ripple overlay, frame 1
+/** Spritemap for big ripple overlay, frame 1
+ * Original_Address: $(DOLLAR)C40E88
+ */
 immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
 	SpriteMap(248, 104, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 240, SpriteMapSpecialFlags.none),
 	SpriteMap(248, 106, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable, 0, SpriteMapSpecialFlags.terminator),
@@ -307,7 +323,9 @@ immutable SpriteMap[4] entityOverlayBigRippleFrame1 = [
 	SpriteMap(248, 106, OAMFlags.priority2 | OAMFlags.palette1 | OAMFlags.nameTable, 0, SpriteMapSpecialFlags.terminator),
 ];
 
-/// Spritemap for big ripple overlay, frame 2
+/** Spritemap for big ripple overlay, frame 2
+ * Original_Address: $(DOLLAR)C40E9C
+ */
 immutable SpriteMap[] entityOverlayBigRippleFrame2 = [
 	SpriteMap(248, 106, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 240, SpriteMapSpecialFlags.none),
 	SpriteMap(248, 104, OAMFlags.priority3 | OAMFlags.palette1 | OAMFlags.nameTable | OAMFlags.hFlip, 0, SpriteMapSpecialFlags.terminator),
@@ -4992,11 +5010,11 @@ void actionScriptDoAllPalettesFadeStep() {
 	doAllPalettesFadeStep(entityScriptVar0Table[currentEntitySlot]);
 }
 
-/**
+/** Sets the screen brightness to the current entity's var 0.
  * Original_Address: $(DOLLAR)C474A8
  */
 // calls to this seem to specify an argument, but the registers are clobbered immediately
-void unknownC474A8() {
+void actionScriptSetScreenBrightness() {
 	enum commonCGADSUB = CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop;
 	setWindowBrightness(
 		(0 <= entityScriptVar0Table[currentEntitySlot]) ? commonCGADSUB : (commonCGADSUB | CGADSUBFlags.ColourMathAddsub),
@@ -9305,7 +9323,7 @@ short runAttractModeScene(short script) {
 
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
-	overworldInitialize();
+	overworldInitializeGraphics();
 	mirrorTM = TMTD.none;
 	// iris in
 	openOvalWindow(0);
@@ -10199,7 +10217,7 @@ void playCredits() {
 		finishFrame();
 	}
 	fadeOutWithMosaic(1, 2, 0);
-	setWindowBrightness(0xB3, 0);
+	setWindowBrightness(CGADSUBFlags.ColourMathMainIsBG1 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBackdrop | CGADSUBFlags.ColourMathAddsub, 0);
 	prepareForImmediateDMA();
 	overworldSetupVRAM();
 	unknownC021E6();

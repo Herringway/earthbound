@@ -45,8 +45,10 @@ void overworldSetupVRAM() {
 	setOAMSize(0x62);
 }
 
-/// $C0004B
-void overworldInitialize() {
+/** Initializes common graphics needed for overworld mode
+ * Original_Address: $(DOLLAR)C0004B
+ */
+void overworldInitializeGraphics() {
 	overworldSetupVRAM();
 	buffer[0] = 0;
 	copyToVRAM(VRAMCopyMode.repeatWordToVRAM, 0, 0, &buffer[0]);
@@ -54,7 +56,9 @@ void overworldInitialize() {
 	loadedMapTileCombo = -1;
 }
 
-/// $C00085
+/** Loads and initializes the animated tileset associated with the current overworld tileset
+ * Original_Address: $(DOLLAR)C00085
+ */
 void loadTilesetAnim() {
 	loadedAnimatedTileCount = 0;
 	if (mapTilesetAnimations[loadedMapTileset].count == 0) {
@@ -74,7 +78,9 @@ void loadTilesetAnim() {
 	}
 }
 
-/// $C00172
+/** Handles a single frame of the loaded tileset animation
+ * Original_Address: $(DOLLAR)C00172
+ */
 void animateTileset() {
 	for (short i = 0; loadedAnimatedTileCount > i; i++) {
 		if (--overworldTilesetAnim[i].framesUntilUpdate != 0) {
@@ -91,8 +97,10 @@ void animateTileset() {
 	}
 }
 
-/// $C0023F
-void loadPaletteAnim() {
+/** Initializes the animated tileset palettes specified by colour 0 of BG palette 5
+ * Original_Address: $(DOLLAR)C0023F
+ */
+void initializePaletteAnimation() {
 	mapPaletteAnimationLoaded = 0;
 	if (palettes[5][0] == 0) {
 		return;
@@ -333,7 +341,7 @@ void loadMapAtSector(short x, short y) {
 	if (photographMapLoadingMode == 0) {
 		loadOverlaySprites();
 		loadTilesetAnim();
-		loadPaletteAnim();
+		initializePaletteAnimation();
 	}
 	if (photographMapLoadingMode == 0) {
 		if (debugging != 0) {
@@ -1136,7 +1144,7 @@ void trySpawnNPCs(short x, short y) {
 			short npcX = x0A.x;
 			short npcY = x0A.y;
 			x0A++;
-			if ((globalMapTilesetPaletteData[((npcY / 8) + (y * 32)) / 16][((npcX / 8) + (x * 32)) / 32] / 8 == loadedMapTileCombo) && (unknownC0A21C(npc) == 0)) {
+			if ((globalMapTilesetPaletteData[((npcY / 8) + (y * 32)) / 16][((npcX / 8) + (x * 32)) / 32] / 8 == loadedMapTileCombo) && (findNPCEntity(npc) == 0)) {
 				short x18 = cast(short)((x << 8) + npcX);
 				short x16 = cast(short)((y << 8) + npcY);
 				short x1A = cast(short)(x18 - bg1XPosition);
@@ -7150,35 +7158,41 @@ short actionScriptCreateTitleScreenEntity(short, ref const(ubyte)* arg2) {
 	return initEntityWipe(script, x, cast(short)actionScriptLastRead);
 }
 
-/// Tests if the active entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
-/// Returns: number of axes movement is occurring on
-/// Original_Address: $(DOLLAR)C09EFF
+/** Tests if the active entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
+ * Returns: number of axes movement is occurring on
+ * Original_Address: $(DOLLAR)C09EFF
+ */
 short testEntityMovementActive() {
 	return testEntityMovementCommon(currentEntityOffset);
 }
 
-/// Tests if the active entity(?) is moving somewhere. Stores possible destination in entityMovementProspectX/Y. Unused
-/// Returns: number of axes movement is occurring on
-/// Original_Address: $(DOLLAR)C09EFF
+/** Tests if the active entity(?) is moving somewhere. Stores possible destination in entityMovementProspectX/Y. Unused
+ * Returns: number of axes movement is occurring on
+ * Original_Address: $(DOLLAR)C09EFF
+ */
 short testEntityMovementUnusedEntry() {
 	return testEntityMovementCommon(currentActiveEntityOffset);
 }
 
-/// Tests if an arbitrary entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
-/// Params: id = entity ID
-/// Returns: number of axes movement is occurring on
-/// Original_Address: $(DOLLAR)C09EFF
+/** Tests if an arbitrary entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
+ * Params:
+ * 	id = entity ID
+ * Returns: number of axes movement is occurring on
+ * Original_Address: $(DOLLAR)C09EFF
+ */
 short testEntityMovementSlot(short id) {
 	return testEntityMovementCommon(cast(short)(id * 2));
 }
 
-/// Tests if an active entity (offset) is moving somewhere. Stores possible destination in entityMovementProspectX/Y
-/// Returns: number of axes movement is occurring on
-/// Params: offset = entity offset (ID * 2)
-/// Mutates:
-///	entityMovementProspectX = X coordinate that the entity is attempting to move to
-///	entityMovementProspectY = Y coordinate that the entity is attempting to move to
-/// Original_Address: $(DOLLAR)C09EFF
+/** Tests if an active entity (offset) is moving somewhere. Stores possible destination in entityMovementProspectX/Y
+ * Returns: number of axes movement is occurring on
+ * Params:
+ * 	offset = entity offset (ID * 2)
+ * Mutates:
+ * 	entityMovementProspectX = X coordinate that the entity is attempting to move to
+ * 	entityMovementProspectY = Y coordinate that the entity is attempting to move to
+ * Original_Address: $(DOLLAR)C09EFF
+ */
 //note: arg1 was X register originally
 short testEntityMovementCommon(short offset) {
 	short axes = 0;
@@ -7199,8 +7213,9 @@ void unknownC09F3BUnusedEntry() {
 	backupEntityCallbackFlagsAndDisable();
 }
 
-/// Backs up all entity callback flags and freezes each active entity
-/// Original_Address: $(DOLLAR)C09F3B
+/** Backs up all entity callback flags and freezes each active entity
+ * Original_Address: $(DOLLAR)C09F3B
+ */
 void backupEntityCallbackFlagsAndDisable() {
 	for (short i = 0; i != maxEntities * 2; i += 2) {
 		entityCallbackFlagsBackup[i / 2] = entityCallbackFlags[i / 2];
@@ -7220,8 +7235,9 @@ void backupEntityCallbackFlagsAndDisable() {
 	}
 }
 
-/// Restores entity callback flags from backup
-/// Original_Address: $(DOLLAR)C09F71
+/** Restores entity callback flags from backup
+ *  Original_Address: $(DOLLAR)C09F71
+ */
 void restoreEntityCallbackFlags() {
 	for (short i = 0; i != maxEntities * 2; i += 2) {
 		entityCallbackFlags[i / 2] = entityCallbackFlagsBackup[i / 2];
@@ -7385,14 +7401,15 @@ short loadMapBlockF(short x, short y) {
 	return loadMapBlock(x, y);
 }
 
-/// Loads the map block at (x,y)
-/// Params:
-///	x = X coordinate of the block
-///	y = Y coordinate of the block
-/// Mutates:
-///	cachedMapBlockX = cached X coordinate
-///	cachedMapBlockY = cached Y coordinate
-/// Original_Address: $(DOLLAR)C0A156
+/** Loads the map block at (x,y)
+ * Params:
+ * 	x = X coordinate of the block
+ * 	y = Y coordinate of the block
+ * Mutates:
+ * 	cachedMapBlockX = cached X coordinate
+ * 	cachedMapBlockY = cached Y coordinate
+ * Original_Address: $(DOLLAR)C0A156
+ */
 short loadMapBlock(short x, short y) {
 	if ((x | y) < 0) {
 		return -1;
@@ -7403,29 +7420,30 @@ short loadMapBlock(short x, short y) {
 	cachedMapBlockX = x;
 	cachedMapBlockY = y;
 
-	ushort tmp1 = mapBlockArrangements[8 + !!(y & 4)][((y / 8) * 256) | x];
+	ushort upperBitsTmp = mapBlockArrangements[8 + !!(y & 4)][((y / 8) * 256) | x];
 	ushort upperBits;
+	// "optimized" equivalent of ((upperBitsTmp >> ((y & 3) * 2)) & 3) << 8
 	switch (y & 7) {
 		case 3:
 		case 7:
-			tmp1 /= 4;
+			upperBitsTmp /= 4;
 			goto case;
 		case 2:
 		case 6:
-			tmp1 /= 4;
+			upperBitsTmp /= 4;
 			goto case;
 		case 1:
 		case 5:
-			tmp1 /= 4;
+			upperBitsTmp /= 4;
 			goto case;
 		case 0:
 		case 4:
-			upperBits = (tmp1 & 3) * 256;
+			upperBits = (upperBitsTmp & 3) * 256;
 			break;
 		default: assert(0);
 	}
-	ushort tmp = mapBlockArrangements[y & 7][((y / 8) * 256) | x];
-	cachedMapBlock = (cast(ubyte)tmp) | upperBits;
+	ushort baseBlock = mapBlockArrangements[y & 7][((y / 8) * 256) | x];
+	cachedMapBlock = (cast(ubyte)baseBlock) | upperBits;
 	return cachedMapBlock;
 }
 
@@ -7448,113 +7466,166 @@ void copyMapPaletteFrame(short arg1) {
 
 __gshared const ubyte*[8] animatedMapPaletteBuffers;
 
-/// $C0A21C
-short unknownC0A21C(short arg1) {
-	short y = firstEntity;
-	while (y >= 0) {
-		if (arg1 == entityNPCIDs[y / 2]) {
-			return arg1;
+/** Finds an entity with a matching NPC ID
+ * Params:
+ * 	id = NPC ID to search for
+ * Returns: The entity offset of the found entity, or 0 if none found
+ * Original_Address: $(DOLLAR)C0A21C
+ */
+short findNPCEntity(short id) {
+	short entity = firstEntity;
+	while (entity >= 0) {
+		if (id == entityNPCIDs[entity / 2]) {
+			return id;
 		}
-		y = entityNextEntityTable[y / 2];
+		entity = entityNextEntityTable[entity / 2];
 	}
 	return 0;
 }
 
-/// $C0A254
-void recalculateEntityScreenPosition(short arg1) {
-	entityScreenXTable[arg1] = cast(short)(entityAbsXTable[arg1] - bg1XPosition);
-	entityScreenYTable[arg1] = cast(short)(entityAbsYTable[arg1] - bg1YPosition);
+/** Recalculates the specified entity's screen position based on its world coordinates
+ * Params:
+ * 	id = Specified entity's ID
+ * Original_Address: $(DOLLAR)C0A254
+ */
+void recalculateEntityScreenPosition(short id) {
+	entityScreenXTable[id] = cast(short)(entityAbsXTable[id] - bg1XPosition);
+	entityScreenYTable[id] = cast(short)(entityAbsYTable[id] - bg1YPosition);
 }
 
-/// $C0A26B
-void unknownC0A26B() {
-	if ((currentActiveEntityOffset == currentLeadingPartyMemberEntity) || ((entityScriptVar7Table[currentActiveEntityOffset / 2] & 0) != 0) || (notMovingInSameDirectionFaced != 0) || (entityDirections[currentActiveEntityOffset / 2] != currentLeaderDirection) || (unknownC0A350[entityDirections[currentActiveEntityOffset / 2]](currentLeadingPartyMemberEntity) * 2 != 0)) {
+/** Updates the screen position of a party member entity (includes ghosts, manpu) when needed
+ *
+ * Will update screen position when any of the following are true:
+ * 	Active entity is the party leader
+ * 	Var 7's LSB is set
+ * 	Not facing same direction that the party is moving in
+ * 	Not facing same direction as party leader
+ * 	Entity isn't in the position it's expected to be
+ * Original_Address: $(DOLLAR)C0A26B
+ */
+void partyMemberUpdateScreenPosition() {
+	if ((currentActiveEntityOffset == currentLeadingPartyMemberEntity) || ((entityScriptVar7Table[currentActiveEntityOffset / 2] & 0) != 0) || (notMovingInSameDirectionFaced != 0) || (entityDirections[currentActiveEntityOffset / 2] != currentLeaderDirection) || (partyGetDistanceAdjustmentByDirection[entityDirections[currentActiveEntityOffset / 2]](currentLeadingPartyMemberEntity) * 2 != 0)) {
 		entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg1XPosition);
 		entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg1YPosition);
 	}
 	//return currentActiveEntityOffset;
 }
 
-/// $C0A2AB
-immutable short[6] unknownC0A2AB = [ 0, 17, 32, 47, 62, 77 ];
+/** Expected distance between party leader and each party entity on the cardinal directions in pixels
+ * Original_Address: $(DOLLAR)C0A2AB
+ */
+immutable short[6] partySlotDistanceCardinal = [ 0, 17, 32, 47, 62, 77 ];
 
-/// $C0A2B7
-short unknownC0A2B7(short entityOffset) {
-	short a = entityScreenXTable[entityOffset / 2] ^ entityScreenXTable[currentActiveEntityOffset / 2];
-	if (a != 0) {
-		return a;
+/** Gets the distance between the party member entity and where they're expected to be, when moving up/down
+ *
+ * Entity is expected to align with the party leader on the left/right axis - any difference on that axis will be considered first.
+ * Params:
+ * 	leaderEntityOffset = The party leader entity slot multiplied by 2
+ * Returns: A distance in pixels
+ * Original_Address: $(DOLLAR)C0A2B7
+ */
+short partyGetDistanceAdjustmentUpDown(short leaderEntityOffset) {
+	// exit early if we don't share an X coord with the leader
+	short result = entityScreenXTable[leaderEntityOffset / 2] ^ entityScreenXTable[currentActiveEntityOffset / 2];
+	if (result != 0) {
+		return result;
 	}
-	a = cast(short)(entityAbsYTable[entityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	// calculate abs(abs(Y difference) - party slot distance)
+	result = cast(short)(entityAbsYTable[leaderEntityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	result -= partySlotDistanceCardinal[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	if (a == 0) {
-		return a;
+	// if zero, we're already where we need to be
+	if (result == 0) {
+		return result;
 	}
-	return cast(short)(a - 1);
+	return cast(short)(result - 1);
 }
 
-/// $C0A2E1
-short unknownC0A2E1(short entityOffset) {
-	short a = entityScreenYTable[entityOffset / 2] ^ entityScreenYTable[currentActiveEntityOffset / 2];
-	if (a != 0) {
-		return a;
+/** Gets the distance between the party member entity and where they're expected to be, when moving left/right
+ *
+ * Entity is expected to align with the party leader on the up/down axis - any difference on that axis will be considered first.
+ * Params:
+ * 	leaderEntityOffset = The party leader entity slot multiplied by 2
+ * Returns: A distance in pixels
+ * Original_Address: $(DOLLAR)C0A2E1
+ */
+short partyGetDistanceAdjustmentLeftRight(short leaderEntityOffset) {
+	// exit early if we don't share an Y coord with the leader
+	short result = entityScreenYTable[leaderEntityOffset / 2] ^ entityScreenYTable[currentActiveEntityOffset / 2];
+	if (result != 0) {
+		return result;
 	}
-	a = cast(short)(entityAbsXTable[entityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	// calculate abs(abs(X difference) - party slot distance)
+	result = cast(short)(entityAbsXTable[leaderEntityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	result -= partySlotDistanceCardinal[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	if (a == 0) {
-		return a;
+	// if zero, we're already where we need to be
+	if (result == 0) {
+		return result;
 	}
-	return cast(short)(a - 1);
+	return cast(short)(result - 1);
 }
 
-/// $C0A30B
-immutable short[6] unknownC0A30B = [ 0, 11, 22, 32, 43, 54 ];
+/** Expected distance between party leader and each party entity on the diagonal directions in pixels
+ * Original_Address: $(DOLLAR)C0A30B
+ */
+immutable short[6] partySlotDistanceDiagonal = [ 0, 11, 22, 32, 43, 54 ];
 
-/// $C0A317
-short unknownC0A317(short entityOffset) {
-	short a = cast(short)(entityAbsXTable[entityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+/** Gets the distance between the party member entity and where they're expected to be, when moving diagonally
+ * Params:
+ * 	leaderEntityOffset = The party leader entity slot multiplied by 2
+ * Returns: A distance in pixels
+ * Original_Address: $(DOLLAR)C0A317
+ */
+short partyGetDistanceAdjustmentDiagonal(short leaderEntityOffset) {
+	// check for X difference first
+	short xDifference = cast(short)(entityAbsXTable[leaderEntityOffset / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
+	if (xDifference < 0) {
+		xDifference = cast(short)-xDifference;
 	}
-	short actionScriptVar00s = a;
-	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2]) {
-		return actionScriptVar00s;
+	// we're not where we're supposed to be on the X axis, exit early
+	if (xDifference < partySlotDistanceDiagonal[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2]) {
+		return xDifference;
 	}
-	a = cast(short)(entityAbsYTable[entityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	// check Y difference
+	short result = cast(short)(entityAbsYTable[leaderEntityOffset / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	a -= actionScriptVar00s;
-	if (a == 0) {
-		return a;
+	// combine results
+	result -= xDifference;
+	// if zero, we're already where we need to be
+	if (result == 0) {
+		return result;
 	}
-	if (a < 0) {
-		a = cast(short)-cast(int)a;
+	if (result < 0) {
+		result = cast(short)-result;
 	}
-	return cast(short)(a - 1);
+	return cast(short)(result - 1);
 }
 
-/// $C0A350
-immutable short function(short)[8] unknownC0A350 = [
-	Direction.up: &unknownC0A2B7,
-	Direction.upRight: &unknownC0A317,
-	Direction.right: &unknownC0A2E1,
-	Direction.downRight: &unknownC0A317,
-	Direction.down: &unknownC0A2B7,
-	Direction.downLeft: &unknownC0A317,
-	Direction.left: &unknownC0A2E1,
-	Direction.upLeft: &unknownC0A317,
+/** Functions for getting the distance between a party entity and their expected position organized by facing direction
+ * Original_Address: $(DOLLAR)C0A350
+ */
+immutable short function(short)[8] partyGetDistanceAdjustmentByDirection = [
+	Direction.up: &partyGetDistanceAdjustmentUpDown,
+	Direction.upRight: &partyGetDistanceAdjustmentDiagonal,
+	Direction.right: &partyGetDistanceAdjustmentLeftRight,
+	Direction.downRight: &partyGetDistanceAdjustmentDiagonal,
+	Direction.down: &partyGetDistanceAdjustmentUpDown,
+	Direction.downLeft: &partyGetDistanceAdjustmentDiagonal,
+	Direction.left: &partyGetDistanceAdjustmentLeftRight,
+	Direction.upLeft: &partyGetDistanceAdjustmentDiagonal,
 ];
 
 /// $C0A360
@@ -8402,11 +8473,11 @@ void unknownC0AD9F() {
 }
 
 /// $C0ADB2
-void doBackgroundDMA(short arg1, short arg2, short arg3) {
-	snes.dmaChannels[arg1].BBAD = dmaTargetRegisters[arg2];
-	snes.dmaChannels[arg1].DMAP = 0x42;
-	ubyte* a;
-	if (arg3 == 0) {
+void doBackgroundDMA(short channel, short mode, short layer) {
+	snes.dmaChannels[channel].BBAD = dmaTargetRegisters[mode];
+	snes.dmaChannels[channel].DMAP = 0x42;
+	ubyte* table;
+	if (layer == 0) {
 		short x = HDMAIndirectTableEntry.sizeof * 2;
 		do {
 			// The original game code does 16-bit copy here, which copies
@@ -8414,17 +8485,17 @@ void doBackgroundDMA(short arg1, short arg2, short arg3) {
 			animatedBackgroundLayer1HDMATable[x] = (cast(immutable(ubyte)*)&animatedBackgroundLayer1HDMATableTemplate)[x];
 			x -= 1;
 		} while (x >= 0);
-		a = &animatedBackgroundLayer1HDMATable[0];
+		table = &animatedBackgroundLayer1HDMATable[0];
 	} else {
 		short x = HDMAIndirectTableEntry.sizeof * 2;
 		do {
 			animatedBackgroundLayer2HDMATable[x] = (cast(immutable(ubyte)*)&animatedBackgroundLayer2HDMATableTemplate)[x];
 			x -= 1;
 		} while (x >= 0);
-		a = &animatedBackgroundLayer2HDMATable[0];
+		table = &animatedBackgroundLayer2HDMATable[0];
 	}
-	snes.dmaChannels[arg1].A1T = a;
-	mirrorHDMAEN |= dmaFlags[arg1];
+	snes.dmaChannels[channel].A1T = table;
+	mirrorHDMAEN |= dmaFlags[channel];
 }
 
 /// $C0AE16
@@ -8438,30 +8509,41 @@ const HDMAIndirectTableEntry[3] animatedBackgroundLayer2HDMATableTemplate;
 
 shared static this() {
 	animatedBackgroundLayer1HDMATableTemplate = [
-		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[0]),
-		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[100]),
+		HDMAIndirectTableEntry(228, cast(const(ubyte)*)&backgroundHDMABuffer[0]),
+		HDMAIndirectTableEntry(252, cast(const(ubyte)*)&backgroundHDMABuffer[100]),
 		HDMAIndirectTableEntry(0x00),
 	];
 	animatedBackgroundLayer2HDMATableTemplate = [
-		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[324]),
-		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
+		HDMAIndirectTableEntry(228, cast(const(ubyte)*)&backgroundHDMABuffer[324]),
+		HDMAIndirectTableEntry(252, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
 		HDMAIndirectTableEntry(0x00),
 	];
 	animatedMapPaletteBuffers = [
-		&animatedMapPaletteBuffer[0],
-		&animatedMapPaletteBuffer[0xC0],
-		&animatedMapPaletteBuffer[0x180],
-		&animatedMapPaletteBuffer[0x240],
-		&animatedMapPaletteBuffer[0x300],
-		&animatedMapPaletteBuffer[0x3C0],
-		&animatedMapPaletteBuffer[0x480],
-		&animatedMapPaletteBuffer[0x540],
+		&animatedMapPaletteBuffer[192 * 0],
+		&animatedMapPaletteBuffer[192 * 1],
+		&animatedMapPaletteBuffer[192 * 2],
+		&animatedMapPaletteBuffer[192 * 3],
+		&animatedMapPaletteBuffer[192 * 4],
+		&animatedMapPaletteBuffer[192 * 5],
+		&animatedMapPaletteBuffer[192 * 6],
+		&animatedMapPaletteBuffer[192 * 7],
 	];
 }
 
-/// $C0AE1D
-// WMDATA, BG1HOFS, BG2HOFS, BG3HOFS, BG4HOFS, BG1VOFS, BG2VOFS, BG3VOFS, BG4VOFS
-immutable ubyte[9] dmaTargetRegisters = [ 0x80, 0x0D, 0x0F, 0x11, 0x13, 0x0E, 0x10, 0x12, 0x14 ];
+/** Registers used for animated background DMA
+ * Original_Address: $(DOLLAR)C0AE1D
+ */
+immutable ubyte[9] dmaTargetRegisters = [
+	/*Register.WMDATA*/0x80 & 0xFF,
+	Register.BG1HOFS & 0xFF,
+	Register.BG2HOFS & 0xFF,
+	Register.BG3HOFS & 0xFF,
+	Register.BG4HOFS & 0xFF,
+	Register.BG1VOFS & 0xFF,
+	Register.BG2VOFS & 0xFF,
+	Register.BG3VOFS & 0xFF,
+	Register.BG4VOFS & 0xFF,
+];
 
 /// $C0AE34
 void hdmaDisable(short layer) {
@@ -8918,7 +9000,7 @@ void unknownC0B67F() {
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
 	loadTextPalette();
-	overworldInitialize();
+	overworldInitializeGraphics();
 	if (config.overrideSpawn) {
 		gameState.leaderX.integer = config.spawnCoordinates.x;
 		gameState.leaderY.integer = config.spawnCoordinates.y;

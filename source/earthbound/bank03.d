@@ -1492,7 +1492,7 @@ short showTitleScreen(short quick) {
 	fadeOutWithMosaic(1, 4, 0);
 	if (nonCancellable == 0) { // always true
 		actionScriptState = ActionScriptState.running;
-		unknownC474A8(/+0+/);
+		actionScriptSetScreenBrightness(/+0+/);
 		initializeEntitySubsystem();
 		return playerExited;
 	}

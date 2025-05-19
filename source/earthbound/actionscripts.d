@@ -1121,7 +1121,7 @@ immutable ubyte[9 + 4 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] action
 shared static this() {
 	actionScriptMiniGhost = initializeScript!actionScriptMiniGhost(
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
-		SET_PHYSICS_CALLBACK(&unknownC0A26B),
+		SET_PHYSICS_CALLBACK(&partyMemberUpdateScreenPosition),
 		PAUSE(8),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
@@ -4110,7 +4110,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(15),
 			ADD(ActionScriptVars.v0, -1),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(10),
 		LOOP_END(),
 		YIELD_TO_TEXT(),
@@ -4184,7 +4184,7 @@ shared static this() {
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP(15),
 			ADD(ActionScriptVars.v0, -1),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v2, 1),
@@ -4217,7 +4217,7 @@ shared static this() {
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP(15),
 			ADD(ActionScriptVars.v0, 1),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v2, 1),
@@ -5844,7 +5844,7 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
 		SET_VAR(ActionScriptVars.v0, -15),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v6, 4736),
@@ -6632,7 +6632,7 @@ shared static this() {
 		SET_ANIMATION(255),
 		SET_TICK_CALLBACK(&actionScriptCentreScreenOnEntityCallback),
 		SET_VAR(ActionScriptVars.v0, -15),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		SET_MOVEMENT_SPEED(256),
 		SET_VAR(ActionScriptVars.v5, 1),
 		SET_VAR(ActionScriptVars.v6, 4736),
@@ -12534,10 +12534,10 @@ shared static this() {
 		SET_ANIMATION(255),
 		LOOP(4),
 			SET_VAR(ActionScriptVars.v0, 13),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(7),
 			SET_VAR(ActionScriptVars.v0, 0),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(7),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v0, 3),
@@ -12814,10 +12814,10 @@ shared static this() {
 		UPDATE_SPRITE_DIRECTION(Direction.left, 1),
 		PLAY_SFX(Sfx.damageTaken),
 		SET_VAR(ActionScriptVars.v0, 12),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		PAUSE(7),
 		SET_VAR(ActionScriptVars.v0, 0),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		YIELD_TO_TEXT(),
 		HALT(),
 	);
@@ -14912,11 +14912,11 @@ shared static this() {
 	actionScriptCarpainterThunderCommon = initializeScript!actionScriptCarpainterThunderCommon(
 		LOOP(11),
 			SET_VAR(ActionScriptVars.v0, 10),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			SET_VAR(ActionScriptVars.v0, 2),
 			PAUSE(4),
 			SET_VAR(ActionScriptVars.v0, 0),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			SET_VAR(ActionScriptVars.v0, 2),
 			PAUSE(4),
 		LOOP_END(),
@@ -17389,7 +17389,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 		SET_ANIMATION(255),
 		SET_VAR(ActionScriptVars.v0, -31),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		PAUSE(4),
 		YIELD_TO_TEXT(),
 		PAUSE(1),
@@ -17432,7 +17432,7 @@ shared static this() {
 	actionScriptRemodelOperationUnknownRoutine2 = initializeScript!actionScriptRemodelOperationUnknownRoutine2(
 		SET_VAR(ActionScriptVars.v0, 22),
 		LOOP(12),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(1),
 			ADD(ActionScriptVars.v0, -2),
 		LOOP_END(),
@@ -17446,7 +17446,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, 0),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, -1),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(1),
 		LOOP_END(),
 		SHORT_RETURN(),
@@ -17459,7 +17459,7 @@ shared static this() {
 		SET_VAR(ActionScriptVars.v0, -31),
 		LOOP(31),
 			ADD(ActionScriptVars.v0, 1),
-			C474A8(),
+			SET_SCREEN_BRIGHTNESS(),
 			PAUSE(1),
 		LOOP_END(),
 		SHORT_RETURN(),
@@ -17537,7 +17537,7 @@ immutable ubyte[12 + 7 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] actio
 shared static this() {
 	actionScriptPartyMember = initializeScript!actionScriptPartyMember(
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
-		SET_PHYSICS_CALLBACK(&unknownC0A26B),
+		SET_PHYSICS_CALLBACK(&partyMemberUpdateScreenPosition),
 		SET_ANIMATION(0),
 		INITIALIZE_PARTY_MEMBER(),
 		UPDATE_PARTY_MEMBER_POSITION(),
@@ -17565,7 +17565,7 @@ immutable ubyte[10 + 5 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] actio
 shared static this() {
 	actionScriptPartyMemberBMonkey = initializeScript!actionScriptPartyMemberBMonkey(
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
-		SET_PHYSICS_CALLBACK(&unknownC0A26B),
+		SET_PHYSICS_CALLBACK(&partyMemberUpdateScreenPosition),
 		SET_ANIMATION(0),
 		BUBBLE_MONKEY_INITIALIZE(),
 		SET_TICK_CALLBACK(&bubbleMonkeyTick),
@@ -22755,7 +22755,7 @@ shared static this() {
 		YIELD_TO_TEXT(),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v0, -8),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		SET_VAR(ActionScriptVars.v0, 4),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
@@ -22982,7 +22982,7 @@ shared static this() {
 		YIELD_TO_TEXT(),
 		PAUSE(1),
 		SET_VAR(ActionScriptVars.v0, -8),
-		C474A8(),
+		SET_SCREEN_BRIGHTNESS(),
 		SET_VAR(ActionScriptVars.v0, 4),
 		SET_VAR(ActionScriptVars.v1, 0),
 		SET_VAR(ActionScriptVars.v2, 2),
@@ -24558,7 +24558,7 @@ immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript785;
 shared static this() {
 	actionScript785 = initializeScript!actionScript785(
 		SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionNoOp),
-		SET_PHYSICS_CALLBACK(&unknownC0A26B),
+		SET_PHYSICS_CALLBACK(&partyMemberUpdateScreenPosition),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		HALT(),
@@ -26816,7 +26816,7 @@ alias RELOAD_MAP_BLOCK_EVENT_CHANGES = CALL!reloadMapBlockEventChanges;
 alias RERENDER_ROW = CALL!actionScriptRerenderRow;
 alias RELOAD_MAP = CALL!actionScriptReloadMapCurrentLocation;
 alias DO_PALETTES_FADE_STEP = CALL!actionScriptDoAllPalettesFadeStep;
-alias C474A8 = CALL!unknownC474A8;
+alias SET_SCREEN_BRIGHTNESS = CALL!actionScriptSetScreenBrightness;
 alias INVERT_Y_POSITION_RELATIVE = CALL!actionScriptInvertYPositionRelative;
 alias LOAD_FULLSCREEN_ANIMATION = CALL!loadActionScriptAnimation;
 alias UPDATE_FULLSCREEN_ANIMATION = CALL!updateActionScriptAnimationFrame;
