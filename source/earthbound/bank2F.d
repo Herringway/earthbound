@@ -21993,13 +21993,15 @@ void debugMain() {
 				entityNPCIDs[createOverworldEntity(characterDebugSprite, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
 			}
 			if ((padPress[1] & Pad.b) != 0) {
+				// disable pathfinding for all entities
 				for (short i = 0; i < maxEntities; i++) {
 					if (entityScriptTable[i] != -1) {
-						entityPathfindingState[i] = 0;
+						entityPathfindingState[i] = PathfindingState.done;
 					}
 				}
-				entityPathfindingState[createOverworldEntity(0x8A, ActionScript.freshDelivery, -1, bg1XPosition, bg1YPosition)] = -1;
-				unknownC0BD96();
+				// spawn an entity to test pathfinding with
+				entityPathfindingState[createOverworldEntity(OverworldSprite.girlInStripedApron, ActionScript.freshDelivery, -1, bg1XPosition, bg1YPosition)] = PathfindingState.searching;
+				findPathToNearPartyLeader();
 			}
 		}
 		runActionscriptFrame();

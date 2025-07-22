@@ -2407,6 +2407,20 @@ enum ActionScript {
 	unknown894, /// Unused, Earthbound exclusive
 }
 ///
+enum AnimationV0 {
+	frame1 = 0,
+	frame0 = 1,
+	quickOscillation = 2,
+	slowOscillation = 3,
+	none = 4
+}
+/// The state of pathfinding for a given entity
+enum PathfindingState {
+	searching = -1, /// Currently in the process of finding a path
+	done = 0, /// Not searching for paths (either a path has been found or no pathfinding is occurreing)
+	invalid = 1, /// No paths found
+}
+///
 enum OverworldSprite {
 	none = 0,
 	ness = 1,

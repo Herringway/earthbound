@@ -3346,10 +3346,6 @@ __gshared ushort* actionScriptVar8CMemory;
  * Original_Address: $(DOLLAR)8E
  */
 __gshared ubyte actionScriptSpritemapBank;
-/** Not a real global variable
- * Original_Address: $(DOLLAR)90
- */
-__gshared short actionScriptVar90;
 /** Destination for jump loops
  * Original_Address: $(DOLLAR)92
  */

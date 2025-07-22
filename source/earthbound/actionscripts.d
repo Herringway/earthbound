@@ -999,7 +999,7 @@ shared static this() {
 		"actionScriptSetWalkingSpeedExtremelyFastAnimationTask": actionScriptSetWalkingSpeedExtremelyFastAnimationTask[],
 		"unknownC3A1F3": unknownC3A1F3[],
 		"fadeWaitScript": fadeWaitScript[],
-		"unknownC3A20E": unknownC3A20E[],
+		"var0Animation": var0Animation[],
 		"checkCollisionTask": checkCollisionTask[],
 		"actionScriptEnemyInitialize": actionScriptEnemyInitialize[],
 		"actionScriptGroundedEnemyInitialize": actionScriptGroundedEnemyInitialize[],
@@ -1190,7 +1190,7 @@ shared static this() {
 		YIELD_TO_TEXT(),
 		// follow paula around the room
 		PAUSE(1),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		START_TASK("animateD8F2"),
 		START_TASK("checkCollisionTask"),
 		SET_VAR(ActionScriptVars.v5, 21),
@@ -8238,8 +8238,8 @@ shared static this() {
 immutable ubyte[9 + 4 * (const(void)*).sizeof + 2 * ScriptPointer.sizeof] actionScriptRespawnedDelivery;
 shared static this() {
 	actionScriptRespawnedDelivery = initializeScript!actionScriptRespawnedDelivery(
-		C0A643(1311),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_DIRECTION16(1311), // ??
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SET_VELOCITIES_ZERO(),
 		GET_DELIVERY_ATTEMPT_COUNT(),
@@ -8255,9 +8255,9 @@ shared static this() {
 immutable ubyte[11 + 5 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] actionScriptFreshDelivery;
 shared static this() {
 	actionScriptFreshDelivery = initializeScript!actionScriptFreshDelivery(
-		C0A643(1311),
+		SET_DIRECTION16(1311), // ??
 		RESET_DELIVERY_ATTEMPT_COUNT(),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SET_ANIMATION(255),
 		SET_VELOCITIES_ZERO(),
@@ -11765,7 +11765,7 @@ shared static this() {
 immutable ubyte[9 + 2 * (const(void)*).sizeof + 2 * ScriptPointer.sizeof] unknownC36A41;
 shared static this() {
 	unknownC36A41 = initializeScript!unknownC36A41(
-		SET_PHYSICS_CALLBACK(&unknownC0A384),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackNoCollisionUpdate),
 		START_TASK("unknownC3A1F3"),
 		START_TASK("checkCollisionTask"),
 		SET_ANIMATION(0),
@@ -12121,9 +12121,9 @@ shared static this() {
 		SET_MOVEMENT_SPEED(512),
 	LABEL("ENTRY2"),
 		SET_ANIMATION(0),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		SET_VAR(ActionScriptVars.v0, 4),
-		START_TASK("unknownC3A20E"),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
+		SET_VAR(ActionScriptVars.v0, AnimationV0.none),
+		START_TASK("var0Animation"),
 		START_TASK("checkCollisionTask"),
 		START_TASK("actionScriptTriggerTalkTextOnCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12137,9 +12137,9 @@ shared static this() {
 		SET_DIRECTION8(Direction.down),
 		SET_ANIMATION(0),
 		SET_MOVEMENT_SPEED(512),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		SET_VAR(ActionScriptVars.v0, 4),
-		START_TASK("unknownC3A20E"),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
+		SET_VAR(ActionScriptVars.v0, AnimationV0.none),
+		START_TASK("var0Animation"),
 		START_TASK("checkCollisionTask"),
 		START_TASK("actionScriptTriggerTalkTextOnCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12152,9 +12152,9 @@ shared static this() {
 	actionScript602 = initializeScript!actionScript602(
 		SET_ANIMATION(0),
 		SET_MOVEMENT_SPEED(128),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		SET_VAR(ActionScriptVars.v0, 3),
-		START_TASK("unknownC3A20E"),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
+		SET_VAR(ActionScriptVars.v0, AnimationV0.slowOscillation),
+		START_TASK("var0Animation"),
 		START_TASK("checkCollisionTask"),
 		START_TASK("actionScriptTriggerTalkTextOnCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12166,8 +12166,8 @@ immutable ubyte[11 + 3 * (const(void)*).sizeof + 4 * ScriptPointer.sizeof] actio
 shared static this() {
 	actionScript603 = initializeScript!actionScript603(
 		SET_ANIMATION(0),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
-		START_TASK("unknownC3A20E"),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
+		START_TASK("var0Animation"),
 		START_TASK("checkCollisionTask"),
 		START_TASK("actionScriptTriggerTalkTextOnCollisionTask"),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12701,7 +12701,7 @@ shared static this() {
 immutable ubyte[203 + 10 * (const(void)*).sizeof + 21 * ScriptPointer.sizeof] actionScript629;
 shared static this() {
 	actionScript629 = initializeScript!actionScript629(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -13589,7 +13589,7 @@ shared static this() {
 immutable ubyte[56 + 6 * (const(void)*).sizeof + 7 * ScriptPointer.sizeof] actionScript666;
 shared static this() {
 	actionScript666 = initializeScript!actionScript666(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		START_TASK("checkCollisionTask"),
 		START_TASK("actionScriptMapObjStillEntry2"),
 		SET_ANIMATION(0),
@@ -17010,7 +17010,7 @@ shared static this() {
 	actionScript767 = initializeScript!actionScript767(
 		CHOOSE_RANDOM(0, 1),
 		WRITE_TEMPVAR_WAITTIMER(),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -17516,16 +17516,16 @@ immutable ubyte[11 + 4 * (const(void)*).sizeof + 2 * ScriptPointer.sizeof] actio
 shared static this() {
 	actionScriptPartyLeader = initializeScript!actionScriptPartyLeader(
 		SRAM_CHECK_ROUTINE_CHECKSUM(),
-		JUMP_IF_FALSE("actionScriptPartyLeader.UNKNOWN1"),
+		JUMP_IF_FALSE("actionScriptPartyLeader.sramOK"),
 		DISPLAY_COPYRIGHT_WARNING_SCREEN(),
-	LABEL("UNKNOWN1"),
+	LABEL("sramOK"),
 		SET_TICK_CALLBACK(&partyLeaderTick),
-	LABEL("UNKNOWN2"),
+	LABEL("startLoop"),
 		LOOP(6),
 			PAUSE(200),
 		LOOP_END(),
 		INFLICT_SUNSTROKE_CHECK(),
-		SHORTJUMP("actionScriptPartyLeader.UNKNOWN2"),
+		SHORTJUMP("actionScriptPartyLeader.startLoop"),
 	);
 }
 /** ActionScript 2 - Party Member. Movement is based on where the party leader entity has been.
@@ -17543,10 +17543,10 @@ shared static this() {
 		UPDATE_PARTY_MEMBER_POSITION(),
 		CLEAR_CURRENT_ENTITY_COLLISION(),
 		SET_TICK_CALLBACK(&partyMemberTick),
-	LABEL("UNKNOWN1"),
+	LABEL("startLoop"),
 		C0A6E3(),
 		PAUSE(1),
-		SHORTJUMP("actionScriptPartyMember.UNKNOWN1"),
+		SHORTJUMP("actionScriptPartyMember.startLoop"),
 	);
 }
 /** Unused ActionScript subroutine. Just halts.
@@ -17569,10 +17569,10 @@ shared static this() {
 		SET_ANIMATION(0),
 		BUBBLE_MONKEY_INITIALIZE(),
 		SET_TICK_CALLBACK(&bubbleMonkeyTick),
-	LABEL("UNKNOWN1"),
+	LABEL("startLoop"),
 		C0A6E3(),
 		PAUSE(1),
-		SHORTJUMP("actionScriptPartyMemberBMonkey.UNKNOWN1"),
+		SHORTJUMP("actionScriptPartyMemberBMonkey.startLoop"),
 	);
 }
 /** ActionScript 894 - Unused. Added for Earthbound's localization, writes to an otherwise unused memory address. What was this for?
@@ -17731,7 +17731,7 @@ immutable ubyte[14 + 3 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] unkno
 shared static this() {
 	unknownC3A15E = initializeScript!unknownC3A15E(
 		SLEEP_SLOT_FRAMES(),
-	LABEL("UNKNOWN1"),
+	LABEL("startLoop"),
 		PAUSE(8),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		JUMP_IF_TRUE("unknownC3A15E.UNKNOWN2"),
@@ -17740,7 +17740,7 @@ shared static this() {
 	LABEL("UNKNOWN2"),
 		PAUSE(8),
 		IS_ENTITY_ONSCREEN_RESET_ANIMATION(),
-		JUMP_IF_TRUE("unknownC3A15E.UNKNOWN1"),
+		JUMP_IF_TRUE("unknownC3A15E.startLoop"),
 		SHORTJUMP("actionScriptTerminate"),
 	);
 }
@@ -17851,28 +17851,30 @@ shared static this() {
 		SHORTJUMP("actionScriptTerminate"),
 	);
 }
-/// $C3A20E
-immutable ubyte[46 + 8 * (const(void)*).sizeof + 7 * ScriptPointer.sizeof] unknownC3A20E;
+/** A task that animates the entity based on entity var 0.
+ * Original_Address: $(DOLLAR)C3A20E
+ */
+immutable ubyte[46 + 8 * (const(void)*).sizeof + 7 * ScriptPointer.sizeof] var0Animation;
 shared static this() {
-	unknownC3A20E = initializeScript!unknownC3A20E(
+	var0Animation = initializeScript!var0Animation(
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-	LABEL("UNKNOWN1"),
+	LABEL("startLoop"),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
-		SWITCH_CALL_TEMPVAR("unknownC3A20E.UNKNOWN2", "unknownC3A20E.UNKNOWN3", "unknownC3A20E.UNKNOWN4", "unknownC3A20E.UNKNOWN5", "unknownC3A20E.UNKNOWN6"),
+		SWITCH_CALL_TEMPVAR("var0Animation.frame1", "var0Animation.frame0", "var0Animation.quickOscillation", "var0Animation.slowOscillation", "var0Animation.none"),
 		IS_ENTITY_ONSCREEN(),
-		JUMP_IF_TRUE("unknownC3A20E.UNKNOWN1"),
+		JUMP_IF_TRUE("var0Animation.startLoop"),
 		SHORTJUMP("actionScriptDeleteEnemy"),
-	LABEL("UNKNOWN2"),
+	LABEL("frame1"),
 		PAUSE(8),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
-	LABEL("UNKNOWN3"),
+	LABEL("frame0"),
 		PAUSE(8),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		SHORT_RETURN(),
-	LABEL("UNKNOWN4"),
+	LABEL("quickOscillation"),
 		PAUSE(4),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -17880,7 +17882,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		SHORT_RETURN(),
-	LABEL("UNKNOWN5"),
+	LABEL("slowOscillation"),
 		PAUSE(32),
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -17888,7 +17890,7 @@ shared static this() {
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
 		SHORT_RETURN(),
-	LABEL("UNKNOWN6"),
+	LABEL("none"),
 		PAUSE(16),
 		SHORT_RETURN(),
 	);
@@ -17900,10 +17902,10 @@ immutable ubyte[4 + 3 * (const(void)*).sizeof + 1 * ScriptPointer.sizeof] checkC
 shared static this() {
 	checkCollisionTask = initializeScript!checkCollisionTask(
 		CLEAR_CURRENT_ENTITY_COLLISION(),
-	LABEL("UNKNOWN1"),
+	LABEL("startLoop"),
 		CHECK_PROSPECTIVE_MAP_COLLISION(),
 		CHECK_PROSPECTIVE_ENTITY_COLLISION_WAIT_NPC(1),
-		SHORTJUMP("checkCollisionTask.UNKNOWN1"),
+		SHORTJUMP("checkCollisionTask.startLoop"),
 	);
 }
 /** ActionScript 4 - Character viewer. Placed statically on screen, faces same direction as entity 1.
@@ -17996,7 +17998,7 @@ shared static this() {
 immutable ubyte[52 + 10 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScriptPeopleWalk1;
 shared static this() {
 	actionScriptPeopleWalk1 = initializeScript!actionScriptPeopleWalk1(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		UPDATE_SURFACE_FLAGS(),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -18082,7 +18084,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScriptKing1;
 shared static this() {
 	actionScriptKing1 = initializeScript!actionScriptKing1(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("animateD8F2Toggle"),
 		START_TASK("checkCollisionTask"),
@@ -18098,7 +18100,7 @@ shared static this() {
 immutable ubyte[10 + 3 * (const(void)*).sizeof + 2 * ScriptPointer.sizeof] actionScriptWanderWithinBounds2Initialization;
 shared static this() {
 	actionScriptWanderWithinBounds2Initialization = initializeScript!actionScriptWanderWithinBounds2Initialization(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("unknownC3A15E"),
 		START_TASK("checkCollisionTask"),
@@ -18120,13 +18122,13 @@ shared static this() {
 	actionScriptWanderWithinBounds2 = initializeScript!actionScriptWanderWithinBounds2(
 		SET_VAR(ActionScriptVars.v4, 0),
 		GET_DIRECTION_TO_BOUNDARY(),
-		JUMP_IF_FALSE("actionScriptWanderWithinBounds2.UNKNOWN1"), // if outside boundaries, use direction towards them
+		JUMP_IF_FALSE("actionScriptWanderWithinBounds2.pickRandomDirection"), // if outside boundaries, use direction towards them
 		ADD_TEMPVAR(-1),
-		SHORTJUMP("actionScriptWanderWithinBounds2.UNKNOWN2"),
-	LABEL("UNKNOWN1"),
+		SHORTJUMP("actionScriptWanderWithinBounds2.move"),
+	LABEL("pickRandomDirection"),
 		// choose random direction if inside boundaries
 		CHOOSE_RANDOM(Direction.up, Direction.right, Direction.down, Direction.left),
-	LABEL("UNKNOWN2"),
+	LABEL("move"),
 		// move in chosen direction
 		SET_DIRECTION(),
 		MOVE_IN_DIRECTION(),
@@ -18151,11 +18153,11 @@ shared static this() {
 		IS_COLLISION_ENABLED(),
 		JUMP_IF_TRUE("actionScriptEnemyInitialize.UNKNOWN0"),
 		SET_TICK_CALLBACK(&actionScriptPathfindingOverride),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
-		SET_VAR(ActionScriptVars.v0, 0),
-		START_TASK("unknownC3A20E"),
+		SET_VAR(ActionScriptVars.v0, AnimationV0.frame1),
+		START_TASK("var0Animation"),
 	LABEL("UNKNOWN0"),
 		SHORT_RETURN(),
 	);
@@ -18460,7 +18462,7 @@ shared static this() {
 			SET_Y_RELATIVE(1),
 			PAUSE(1),
 		LOOP_END(),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SHORTJUMP("actionScriptFlyingInanimateEnemy.UNKNOWN3"),
 	LABEL("UNKNOWN2"),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
@@ -18547,7 +18549,7 @@ shared static this() {
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
 		PAUSE(8),
 		JUMP_IF_TRUE("actionScriptFlyingEnemy.UNKNOWN1"),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_VAR(ActionScriptVars.v0, 0),
 		SHORTJUMP("actionScriptFlyingEnemy.UNKNOWN3"),
 	LABEL("UNKNOWN2"),
@@ -18695,7 +18697,7 @@ shared static this() {
 			PAUSE(2),
 		LOOP_END(),
 		SET_VAR(ActionScriptVars.v0, 0),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SHORTJUMP("actionScript28.UNKNOWN2"),
 	LABEL("UNKNOWN1"),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_CLOSE_INTANGIBILITY(),
@@ -18782,7 +18784,7 @@ shared static this() {
 		GET_SELF_DIRECTION(),
 		DIRECTION_TO_ANGLE(),
 		WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v4),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SHORTJUMP("actionScript30.UNKNOWN4"),
 	LABEL("UNKNOWN3"),
 		GET_SWITCHABLE_PARTY_LEADER_DISTANCE_FAR_INTANGIBILITY(),
@@ -18846,7 +18848,7 @@ shared static this() {
 immutable ubyte[7 + 1 * (const(void)*).sizeof + 2 * ScriptPointer.sizeof] unknownC3AA2B;
 shared static this() {
 	unknownC3AA2B = initializeScript!unknownC3AA2B(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("unknownC3A1F3"),
 		START_TASK("checkCollisionTask"),
@@ -19332,7 +19334,7 @@ shared static this() {
 	actionScript37 = initializeScript!actionScript37(
 		GET_EVENT_FLAG(EventFlag.myHomeKnockAppear),
 		JUMP_IF_FALSE("actionScriptKing1"),
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		START_TASK("animateD8F2"),
 		START_TASK("checkCollisionTask"),
 		SET_ANIMATION(0),
@@ -19367,7 +19369,7 @@ shared static this() {
 immutable ubyte[16 + 4 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScriptPeopleWalk1Live;
 shared static this() {
 	actionScriptPeopleWalk1Live = initializeScript!actionScriptPeopleWalk1Live(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		SET_VELOCITIES_ZERO(),
 		START_TASK("animateD8F2Toggle"),
@@ -20934,7 +20936,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScript102;
 shared static this() {
 	actionScript102 = initializeScript!actionScript102(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("animateD8F2"),
 		START_TASK("checkCollisionTask"),
@@ -20984,7 +20986,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScript108;
 shared static this() {
 	actionScript108 = initializeScript!actionScript108(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("unknownC3A1F3"),
 		START_TASK("checkCollisionTask"),
@@ -21772,7 +21774,7 @@ shared static this() {
 immutable ubyte[43 + 7 * (const(void)*).sizeof + 4 * ScriptPointer.sizeof] actionScriptKifuyaTukimatou;
 shared static this() {
 	actionScriptKifuyaTukimatou = initializeScript!actionScriptKifuyaTukimatou(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("animateDVAR4F2"),
 		START_TASK("checkCollisionTask"),
@@ -21895,7 +21897,7 @@ shared static this() {
 immutable ubyte[15 + 4 * (const(void)*).sizeof + 3 * ScriptPointer.sizeof] actionScript178;
 shared static this() {
 	actionScript178 = initializeScript!actionScript178(
-		SET_PHYSICS_CALLBACK(&unknownC0A360),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackPathfindingEnabled),
 		SET_ANIMATION(0),
 		START_TASK("unknownC3A1F3"),
 		START_TASK("checkCollisionTask"),
@@ -23628,7 +23630,7 @@ shared static this() {
 	actionScriptBusThrkTwsnIn = initializeScript!actionScriptBusThrkTwsnIn(
 		SET_X(5744),
 		SET_Y(9000),
-		SET_PHYSICS_CALLBACK(&unknownC0A384),
+		SET_PHYSICS_CALLBACK(&updatePositionCallbackNoCollisionUpdate),
 		SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		SET_MOVEMENT_SPEED(256),
@@ -26704,7 +26706,7 @@ alias BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE = CALL!backupEntityCallbackFlagsA
 alias RESTORE_ENTITY_CALLBACK_FLAGS = CALL!restoreEntityCallbackFlags;
 alias PICK_RANDOM_ANGLE = CALL!actionScriptGenerateRandomAngle;
 alias MOVE_RELATIVE_TO_BG3 = CALL!moveRelativeToBG3;
-alias C0A643 = CALL!(unknownC0A643, ushort);
+alias SET_DIRECTION16 = CALL!(setDirection16, ushort);
 alias SLEEP_UNTIL_CARDINAL_PIXELS_MOVED = CALL!(actionScriptSleepUntilCardinalPixelsMoved, ushort);
 alias SLEEP_UNTIL_PIXELS_MOVED = CALL!(actionScriptSleepUntilPixelsMoved, ushort);
 alias MOVE_TO_LOCATION_BG1_RELATIVE = CALL!(actionScriptMoveEntityToLocationBG1Relative, ushort, ushort);
