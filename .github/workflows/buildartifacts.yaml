@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout libsfcppu
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: charasyn/libsfcppu
           path: libsfcppu
@@ -21,7 +21,7 @@ jobs:
           make
           cd ..
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: earthbound
       - uses: dlang-community/setup-dlang@v1
