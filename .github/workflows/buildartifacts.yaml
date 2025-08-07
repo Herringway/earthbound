@@ -31,13 +31,12 @@ jobs:
       - name: 'Build Earthbound (SDL, Win64)'
         run: |
           cd earthbound
-          dub build :sdl
+          dub build 
           cd ..
       - name: 'Prepare artifact'
         run: |
           mv libsfcppu/out/libsfcppu.dll .
-          mv earthbound/sdl/earthbound_sdl.exe .
-          mv earthbound/extract.yaml .
+          mv earthbound/earthbound.exe .
       - uses: actions/upload-artifact@v3
         with:
           name: build
