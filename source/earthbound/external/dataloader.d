@@ -29,15 +29,11 @@ import siryul;
 
 alias loadableDataModules = AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F);
 
-struct Asset {
-    const(ubyte)[] data;
-    const(char)[] name;
-}
-
 struct ExtractInfo {
     string[size_t][string] renameLabels;
     DumpInfo[] text;
 }
+
 struct DumpInfo {
     string name;
     ulong offset;
