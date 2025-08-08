@@ -72,6 +72,7 @@ void extractExtraAssets(scope AddFileFunction addFile, scope ProgressUpdateFunct
     buildNSPCFiles(rom, addFile, song4);
     ubyte[][0x80] sfx;
     static __gshared uint counter;
+/*
     foreach (i, ref data; sfx[].parallel) {
         data = dumpSoundEffect(song4[], cast(ubyte)i);
         reportProgress(Progress("Extracting sound effects", ++counter, 127));
@@ -79,6 +80,7 @@ void extractExtraAssets(scope AddFileFunction addFile, scope ProgressUpdateFunct
     foreach (idx, sound; sfx) {
         addFile(format!"sfx/%03d.wav"(idx), sound);
     }
+*/
 
     const extractDoc = "extract.yaml";
     const extractInfo = fromFile!(ExtractInfo, YAML)(extractDoc);
