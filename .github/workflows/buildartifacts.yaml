@@ -37,10 +37,11 @@ jobs:
         run: |
           mv libsfcppu/out/libsfcppu.dll .
           mv earthbound/earthbound.exe .
+          mv earthbound/extract.yaml .
       - uses: actions/upload-artifact@v4
         with:
           name: build
           path: |
             libsfcppu.dll
             extract.yaml
-            earthbound_sdl.exe
+            earthbound.exe
