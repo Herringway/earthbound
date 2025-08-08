@@ -84,6 +84,12 @@ void finishFrame() {
 	waitUntilNextFrame();
 }
 
+// unused
+/// $C10078 - Get the focused window
+short getWindowFocus() {
+	return currentFocusWindow;
+}
+
 /// $C1007E - Set the focused window
 void setWindowFocus(short id) {
 	currentFocusWindow = id;
@@ -570,46 +576,6 @@ void cc12() {
 	moveCurrentTextCursor(0, windowStats[windowTable[currentFocusWindow]].textY);
 }
 
-/// $C10BFE
-MenuOption* createNewMenuOptionAtPositionWithUserdataF(short userdata, short x, short y, const(ubyte)* label, string selectedText) {
-	return createNewMenuOptionAtPositionWithUserdata(userdata, x, y, label, selectedText);
-}
-
-/// $C10C49
-short getMenuOptionCountF(short arg1) {
-	return getMenuOptionCount(arg1);
-}
-
-/// $C10C55
-short unknownC10C55(uint arg1) {
-	return splitDecimalByDigits(arg1);
-}
-
-/// $C10C79
-void printNewLineF() {
-	printNewLine();
-}
-
-/// $C10C80
-void drawTallTextTileFocusedF(short tile) {
-	drawTallTextTileFocused(tile);
-}
-
-/// $C10C86
-void printLetterVWFF(short arg1) {
-	printLetterVWF(arg1);
-}
-
-/// $C10C8C
-void printStringF(short length, const(ubyte)* text) {
-	printString(length, text);
-}
-
-/// $C10CAF
-void moveTextUpOneLineF(short arg1) {
-	moveTextUpOneLine(arg1);
-}
-
 /// $C10CB6
 void printLetterVWF(short letter) {
 	if (currentFocusWindow == Window.invalid) {
@@ -1039,6 +1005,19 @@ void printMenuItems() {
 		}
 		option = &menuOptions[option.next];
 	}
+}
+
+// unused
+/** Determine the length of a fixed-size string
+ * Original_Address: $(DOLLAR)C117E2
+ */
+short unusedStrnlen(const(ubyte)* str, short maxLength) {
+	short length = 0;
+	for (length = 0; (str[0] != 0) && (maxLength != 0); length++) {
+		str++;
+		maxLength--;
+	}
+	return length;
 }
 
 /** Prints a table of menu options into the current active window
@@ -1797,6 +1776,19 @@ void printYouWon() {
 	windowSetTextColor(TextPalette.normal);
 }
 
+/** Converts an integer to a string, placed in numberTextBuffer
+ *
+ * This code is unused and was never updated for Earthbound's character set
+ * Original_Address: $(DOLLAR)C12CCC
+ */
+void unknownC12CCC(short value) {
+	ubyte* buffer = &numberTextBuffer[0];
+	for (short i = 10000; i != 0; i /= 10) {
+		(buffer++)[0] = cast(ubyte)(((value / i) & 0xFF) + '0');
+		value %= i;
+	}
+}
+
 /// $C12D17
 void unknownC12D17(short arg1) {
 	if ((hpPPMeterFlipoutMode == 0) && (arg1 != 0)) {
@@ -2326,7 +2318,7 @@ void openMenuButton() {
 	unfreezeEntities();
 }
 
-/// $C13---
+/// $C13C32
 void openMenuButtonCheckTalk() {
 	freezeEntities();
 	playSfx(Sfx.cursor1);
@@ -3915,6 +3907,12 @@ void* unknownC17889(DisplayTextState* arg1, ubyte arg2) {
 	}
 }
 
+/// $C178F7
+void* cc1902(DisplayTextState* arg1, ubyte arg2) {
+	textNewMenuOptionBuffer[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+	return &unknownC17889;
+}
+
 /// $C1790B
 void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 	switch (arg2) {
@@ -3953,12 +3951,6 @@ void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 		default: break;
 	}
 	return null;
-}
-
-/// $C178F7
-void* cc1902(DisplayTextState* arg1, ubyte arg2) {
-	textNewMenuOptionBuffer[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
-	return &unknownC17889;
 }
 
 /// $C179AA
@@ -5554,16 +5546,16 @@ void setBattleAttackerName(ubyte* str, short length) {
 	attackerEnemyID = -1;
 }
 
+/// $C1AC9B
+ubyte* getBattleAttackerName() {
+	return &battleAttackerName[0];
+}
+
 /// $C1ACA1
 void setBattleTargetName(ubyte* str, short length) {
 	memcpy(&battleTargetName[0], str, length);
 	battleTargetName[length] = 0;
 	targetEnemyID = -1;
-}
-
-/// $C1AC9B
-ubyte* getBattleAttackerName() {
-	return &battleAttackerName[0];
 }
 
 /// $C1ACF2
@@ -5601,7 +5593,7 @@ short findReceiveItemNPC() {
 	}
 }
 
-/// $C1AD71
+/// $C1AD7D
 short getSectorUsableItem() {
 	ushort x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
 	if ((getEventFlag(EventFlag.winGiegu) != 0) && ((x0E & 7) == SpecialGameState.none)) {
@@ -6106,6 +6098,47 @@ short triggerSpecialEvent(short arg1) {
 		default: break;
 	}
 	return 0;
+}
+
+// unused in Earthbound
+/// $C1C046
+void unknownC1C046(short arg1) {
+	//local03 = arg1
+	if ((getTextX() != 14) && (arg1 < 32)) {
+		printNewLine();
+		resetVWFState();
+		moveCurrentTextCursor(cast(short)(getTextX() + 1), getTextY());
+	}
+	ubyte x = unknownC3EF26[arg1 - 16];
+	if (x == 0) {
+		if (unread7E9E29 != 0) {
+			resetVWFState();
+			moveCurrentTextCursor(cast(short)(getTextX() + 1), getTextY());
+		}
+		drawTallTextTileFocused(arg1);
+	} else {
+		unread7E9E29 = 1;
+		short tmp02 = cast(short)(x - 1);
+		short tmp01 = unknownC3F016[tmp02];
+		short tmp03 = vwfTile;
+		const(ubyte)* tmp00 = &fontData[fontConfigTable[Font.mrSaturn].dataID][((tmp02 & 7) << 5) + ((tmp02 & 0xF8) << 6)];
+		short x2 = tmp01;
+		if (tmp01 != 8) {
+			unknownC45C90(8, tmp00);
+			x2 -= 8;
+			tmp00 += 16;
+		}
+		unknownC45C90(x2, tmp00);
+		tmp01 = cast(short)(unused7E9E27 - 1);
+		unknownC45DDD(tmp03);
+		do {
+			if (++tmp01 < 48) {
+				tmp01 = 0;
+			}
+			drawTallTextTileFocused(cast(short)(tmp01 + 400));
+		} while (tmp01 != unused7E9E27);
+		moveCurrentTextCursor(cast(short)(getTextX() - 1), getTextY());
+	}
 }
 
 /** Checks whether or not the specified party member has any statuses that block the use of PSI
@@ -6757,6 +6790,44 @@ void levelUpChar(short character, short printMessages) {
 	}
 }
 
+/// $C1D8D0
+void resetCharLevelOne(short character, short level, short setEXP) {
+	tracef("Setting char %s level to %s", character, level);
+	partyCharacters[character - 1].level = 1;
+	partyCharacters[character - 1].baseOffense = 2;
+	partyCharacters[character - 1].baseDefense = 2;
+	partyCharacters[character - 1].baseSpeed = 2;
+	partyCharacters[character - 1].baseGuts = 2;
+	partyCharacters[character - 1].baseLuck = 2;
+	partyCharacters[character - 1].baseVitality = 2;
+	partyCharacters[character - 1].baseIQ = 2;
+	partyCharacters[character - 1].maxHP = 30;
+	partyCharacters[character - 1].hp.target = 30;
+	partyCharacters[character - 1].hp.current.integer = 30;
+	short startingPP;
+	if (character != PartyMember.jeff) {
+		startingPP = 10;
+	} else {
+		startingPP = 0;
+	}
+	partyCharacters[character - 1].maxPP = startingPP;
+	partyCharacters[character - 1].pp.target = startingPP;
+	partyCharacters[character - 1].pp.current.integer = startingPP;
+	recalcCharacterPostmathOffense(character);
+	recalcCharacterPostmathDefense(character);
+	recalcCharacterPostmathSpeed(character);
+	recalcCharacterPostmathGuts(character);
+	recalcCharacterPostmathLuck(character);
+	recalcCharacterPostmathVitality(character);
+	recalcCharacterPostmathIQ(character);
+	while (--level != 0) {
+		levelUpChar(character, 0);
+	}
+	if (setEXP != 0) {
+		partyCharacters[character - 1].exp = expTable[character - 1][partyCharacters[character - 1].level];
+	}
+}
+
 /// $C1D9E9
 void gainEXP(short character, short printMessages, uint exp) {
 	partyCharacters[character - 1].exp += exp;
@@ -6810,44 +6881,6 @@ void showHPAlert(short arg1) {
 	windowTick();
 	unfreezeEntities();
 	currentAttacker = attackerTemp;
-}
-
-/// $C1D8D0
-void resetCharLevelOne(short character, short level, short setEXP) {
-	tracef("Setting char %s level to %s", character, level);
-	partyCharacters[character - 1].level = 1;
-	partyCharacters[character - 1].baseOffense = 2;
-	partyCharacters[character - 1].baseDefense = 2;
-	partyCharacters[character - 1].baseSpeed = 2;
-	partyCharacters[character - 1].baseGuts = 2;
-	partyCharacters[character - 1].baseLuck = 2;
-	partyCharacters[character - 1].baseVitality = 2;
-	partyCharacters[character - 1].baseIQ = 2;
-	partyCharacters[character - 1].maxHP = 30;
-	partyCharacters[character - 1].hp.target = 30;
-	partyCharacters[character - 1].hp.current.integer = 30;
-	short startingPP;
-	if (character != PartyMember.jeff) {
-		startingPP = 10;
-	} else {
-		startingPP = 0;
-	}
-	partyCharacters[character - 1].maxPP = startingPP;
-	partyCharacters[character - 1].pp.target = startingPP;
-	partyCharacters[character - 1].pp.current.integer = startingPP;
-	recalcCharacterPostmathOffense(character);
-	recalcCharacterPostmathDefense(character);
-	recalcCharacterPostmathSpeed(character);
-	recalcCharacterPostmathGuts(character);
-	recalcCharacterPostmathLuck(character);
-	recalcCharacterPostmathVitality(character);
-	recalcCharacterPostmathIQ(character);
-	while (--level != 0) {
-		levelUpChar(character, 0);
-	}
-	if (setEXP != 0) {
-		partyCharacters[character - 1].exp = expTable[character - 1][partyCharacters[character - 1].level];
-	}
 }
 
 /** Displays in-battle text with a CNUM value set.
@@ -6915,11 +6948,23 @@ void closeAllWindowsAndHPPP() {
 	windowTick();
 }
 
+// unused
+/// $C1DD82
+void unknownC1DD82(int arg1) {
+	setCNum(arg1);
+}
+
 /// $C1DD9F
 void unknownC1DD9F(const(ubyte)* arg1) {
 	setTextPromptMode(TextPromptMode.fast1);
 	displayText(arg1);
 	setTextPromptModeDefault();
+}
+
+/// $C1DDDA
+MenuOption* createNewMenuOptionAtPositionWithUserdata2(short userdata, short x, short y, const(ubyte)* label, string selectedText) {
+	// trampoline? or did this do something else at some point?
+	return createNewMenuOptionAtPositionWithUserdata(userdata, x, y, label, selectedText);
 }
 
 /// $C1DE43
@@ -7445,75 +7490,6 @@ short unknownC1F07E() {
 	return selectionMenu(1);
 }
 
-/// $C3F090
-immutable ubyte[8][4] psiCategories = [
-	ebString!8("Offense"),
-	ebString!8("Defense"),
-	ebString!8("Assist"),
-	ebString!8("Other"),
-];
-
-/// $C3F0B0
-immutable short[7][7] psiBlockingStatuses = [
-	[
-		1, //Unconscious
-		1, //Diamondized
-		0, //Paralyzed
-		0, //Nauseous
-		0, //Poisoned
-		0, //Sunstroke
-		0, //Cold
-	], [
-		0, //Mushroomized
-		0, //Possessed
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	], [
-		1, //Asleep
-		0, //Crying
-		0, //Immobilized
-		1, //Solidified
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	], [
-		0, //Feeling strange
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	], [
-		1, //Can't concentrate
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	], [
-		0, //Homesick
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	], [
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-		0, //Unused
-	]
-];
-
 /// $C1F14F
 short handleFileCopyMenu() {
 	short fileCount;
@@ -7998,6 +7974,7 @@ void unknownC1FF99(short arg1, short arg2, ubyte* arg3) {
 	vwfTile = vwfX / 8;
 }
 
+/// $FFD3
 short sramCheckRoutineChecksum(short, ref const(ubyte)*) {
 	return 0;
 }

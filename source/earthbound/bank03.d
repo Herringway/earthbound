@@ -43,10 +43,89 @@ noreturn displayFaultyGamepakScreen() {
 	gameFailureLoop();
 }
 
+/** The flag used for determining whether or not the player decided to continue after a game over
+ * Original_Address: $(DOLLAR)C30184
+ */
+immutable flagNoContinueSelected = EventFlag.sysComeBack;
+
 /** The flag used for determining whether or not to use the alt sprite group for the main character
  * Original_Address: $(DOLLAR)C30186
  */
 immutable nessPajamaFlag = EventFlag.myHomeNesChange;
+
+// unused. possibly early tech demo data?
+/// $C30188
+immutable ubyte[] unknownC30188 = [0x3C, 0x00, 0x44, 0x80, 0x00, 0x41, 0x3C, 0x00, 0x49, 0x3C, 0x00, 0x42, 0x00];
+
+// unused - some sort of script, but doesn't match up with the actionscript format
+/// $C39FF2
+immutable ubyte[][] unknownC39FF2;
+
+/// $C3A010
+immutable ubyte[9 + (immutable(ubyte)*).sizeof] unknownC3A010;
+/// $C3A01B
+immutable ubyte[9 + (immutable(ubyte)*).sizeof] unknownC3A01B;
+/// $C3A026
+immutable ubyte[5 + (immutable(ubyte)*).sizeof] unknownC3A026;
+/// $C3A02D
+immutable ubyte[9 + (immutable(ubyte)*).sizeof] unknownC3A02D;
+/// $C3A038
+immutable ubyte[9 + (immutable(ubyte)*).sizeof] unknownC3A038;
+shared static this() {
+	unknownC39FF2 = [
+		unknownC3A010[],
+		unknownC3A010[],
+		unknownC3A010[],
+		unknownC3A01B[],
+		unknownC3A026[],
+		unknownC3A026[],
+		unknownC3A026[],
+		unknownC3A02D[],
+		unknownC3A02D[],
+		unknownC3A026[],
+		unknownC3A010[],
+		unknownC3A026[],
+		unknownC3A026[],
+		unknownC3A010[],
+		unknownC3A038[],
+	];
+	static ubyte[] unknownCommand02(ubyte a, ubyte b, ubyte c) => [0x02, a, b, c];
+	static ubyte[] unknownCommand03(immutable(ubyte)* ptr) {
+		auto p = [ptr]; // a temporary is needed because directly casting a literal will truncate instead of reinterpreting
+		return [ubyte(0x03)] ~ cast(ubyte[])p;
+	}
+	static immutable(ubyte)[] initializeUnknownScript(scope ubyte[] delegate()[] commands...) {
+		immutable(ubyte)[] result;
+		foreach (command; commands) {
+			result ~= command();
+		}
+		return result;
+	}
+	unknownC3A010 = initializeUnknownScript(
+		unknownCommand02(0x00, 0x01, 0x09),
+		unknownCommand02(0x01, 0x01, 0x09),
+		unknownCommand03(&unknownC3A010[0]),
+	);
+	unknownC3A01B = initializeUnknownScript(
+		unknownCommand02(0x00, 0x01, 0x08),
+		unknownCommand02(0x01, 0x01, 0x08),
+		unknownCommand03(&unknownC3A01B[0]),
+	);
+	unknownC3A026 = initializeUnknownScript(
+		unknownCommand02(0x00, 0x01, 0xFF),
+		unknownCommand03(&unknownC3A026[0]),
+	);
+	unknownC3A02D = initializeUnknownScript(
+		unknownCommand02(0x00, 0x01, 0x08),
+		unknownCommand02(0x01, 0x01, 0x08),
+		unknownCommand03(&unknownC3A02D[0]),
+	);
+	unknownC3A038 = initializeUnknownScript(
+		unknownCommand02(0x00, 0x01, 0x04),
+		unknownCommand02(0x01, 0x01, 0x04),
+		unknownCommand03(&unknownC3A038[0]),
+	);
+}
 
 /** A mapping of area types to whether or not delivery is legal there
  * Original_Address: $(DOLLAR)C3DFE8
@@ -848,6 +927,29 @@ short getCharacterItem(short character, short slot) {
 	return partyCharacters[character - 1].items[slot - 1];
 }
 
+/** Tests if the item in a given slot is equipped by the character
+ * Params:
+ * 	character = The character (1-based) ID whose equipment is being checked
+ * 	slot = The item slot (1 - 14)
+ * Returns: 1 if item is equipped, 0 otherwise
+ * Original_Address: $(DOLLAR)C3E9A0
+ */
+short testItemSlotEquipment(short character, short slot) {
+	if (partyCharacters[character - 1].equipment[0] == slot) {
+		return 1;
+	}
+	if (partyCharacters[character - 1].equipment[1] == slot) {
+		return 1;
+	}
+	if (partyCharacters[character - 1].equipment[2] == slot) {
+		return 1;
+	}
+	if (partyCharacters[character - 1].equipment[3] == slot) {
+		return 1;
+	}
+	return 0;
+}
+
 /** Tests if a particular item is equipped on a character
  * Params:
  * 	character = The character (1-based) ID whose equipment is being checked
@@ -900,29 +1002,6 @@ unittest {
 	partyCharacters[0].items[3] = ItemID.baseballCap;
 	partyCharacters[0].equipment[EquipmentSlot.other] = 4;
 	assert(testItemIsEquipped(PartyMember.ness, ItemID.baseballCap));
-}
-
-/** Tests if the item in a given slot is equipped by the character
- * Params:
- * 	character = The character (1-based) ID whose equipment is being checked
- * 	slot = The item slot (1 - 14)
- * Returns: 1 if item is equipped, 0 otherwise
- * Original_Address: $(DOLLAR)C3E9A0
- */
-short testItemSlotEquipment(short character, short slot) {
-	if (partyCharacters[character - 1].equipment[0] == slot) {
-		return 1;
-	}
-	if (partyCharacters[character - 1].equipment[1] == slot) {
-		return 1;
-	}
-	if (partyCharacters[character - 1].equipment[2] == slot) {
-		return 1;
-	}
-	if (partyCharacters[character - 1].equipment[3] == slot) {
-		return 1;
-	}
-	return 0;
 }
 
 /** Initializes an item transformation entry for the given item, if one exists and hasn't already been initialized
@@ -1135,6 +1214,30 @@ void nullC3EF23(short character) {
 	//do nothing
 }
 
+// only used by unused function
+/// $C3EF26
+immutable ubyte[] unknownC3EF26 = [
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 60, 0, 0, 0, 0,
+	62, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 47, 48, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 49, 6, 6, 11, 11, 16, 16, 21, 26, 26, 26, 31, 36, 54, 39,
+	2, 50, 7, 7, 12, 12, 17, 17, 22, 27, 27, 27, 32, 44, 57, 40,
+	3, 51, 8, 8, 13, 13, 18, 18, 23, 28, 28, 28, 33, 37, 55, 41,
+	4, 52, 9, 9, 14, 14, 19, 19, 24, 29, 29, 29, 34, 46, 45, 42,
+	5, 53, 10, 10, 15, 15, 20, 20, 25, 30, 30, 30, 35, 38, 56, 43,
+	1, 49, 6, 6, 11, 11, 16, 16, 21, 26, 26, 26, 31, 36, 54, 39,
+	2, 50, 7, 7, 12, 12, 17, 17, 22, 27, 27, 27, 32, 44, 57, 40,
+	3, 51, 8, 8, 13, 13, 18, 18, 23, 28, 28, 28, 33, 37, 55, 41,
+	4, 52, 9, 9, 14, 14, 19, 19, 24, 29, 29, 29, 34, 46, 45, 42,
+	5, 53, 10, 10, 15, 15, 20, 20, 25, 30, 30, 30, 35, 38, 56, 43,
+];
+
+// only used by unused function
+/// $C3F016
+immutable ubyte[] unknownC3F016 = [0x0B, 0x06, 0x0B, 0x0B, 0x0B, 0x09, 0x0A, 0x04, 0x0C, 0x0B, 0x0A, 0x05, 0x0C, 0x0C, 0x0B, 0x0A, 0x0A, 0x0B, 0x0B, 0x07, 0x0A, 0x0B, 0x0C, 0x0C, 0x0C, 0x0B, 0x0C, 0x0C, 0x09, 0x0B, 0x09, 0x0C, 0x0C, 0x0B, 0x06, 0x0C, 0x0B, 0x08, 0x09, 0x07, 0x0B, 0x0C, 0x0A, 0x0C, 0x0A, 0x0B, 0x0B, 0x0B, 0x09, 0x06, 0x08, 0x09, 0x08, 0x09, 0x09, 0x07, 0x08, 0x08, 0x04, 0x06, 0x04, 0x07];
+
 /** Miscellaneous font details
  * Original_Address: $(DOLLAR)C3F054
  */
@@ -1151,6 +1254,75 @@ immutable(ubyte[])[] fontData;
 
 @([ROMSource(0x210CDA, 3072), ROMSource(0x2013B9, 3072), ROMSource(0x21193A, 1536), ROMSource(0x211F9A, 768), ROMSource(0x2122FA, 3072)])
 immutable(ubyte[])[] fontGraphics;
+
+/// $C3F090
+immutable ubyte[8][4] psiCategories = [
+	ebString!8("Offense"),
+	ebString!8("Defense"),
+	ebString!8("Assist"),
+	ebString!8("Other"),
+];
+
+/// $C3F0B0
+immutable short[7][7] psiBlockingStatuses = [
+	[
+		1, //Unconscious
+		1, //Diamondized
+		0, //Paralyzed
+		0, //Nauseous
+		0, //Poisoned
+		0, //Sunstroke
+		0, //Cold
+	], [
+		0, //Mushroomized
+		0, //Possessed
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	], [
+		1, //Asleep
+		0, //Crying
+		0, //Immobilized
+		1, //Solidified
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	], [
+		0, //Feeling strange
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	], [
+		1, //Can't concentrate
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	], [
+		0, //Homesick
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	], [
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+		0, //Unused
+	]
+];
 
 /** Characters used for PSI level suffixes
  * Original_Address: $(DOLLAR)C3F112
@@ -1527,10 +1699,24 @@ void tilemapUpdateUploadRows() {
 	}
 }
 
+// unused
+/// $C3F67D
+void unknownC3F67D() {
+	short size = cast(short)(tilemapUpdateTileHeight * 2);
+	for (short i = 0; i < tilemapUpdateTileCount; i++) {
+		short destination = cast(short)((tilemapUpdateTileX++) + tilemapUpdateBaseAddress + tilemapUpdateTileY * 32);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, size, destination, cast(ubyte*)&tilemapUpdateRemainingTiles[0]);
+		tilemapUpdateRemainingTiles += tilemapUpdateTileWidth;
+		if ((tilemapUpdateTileX == 32) || (tilemapUpdateTileX == 64)) {
+			tilemapUpdateBaseAddress ^= 0x400;
+		}
+	}
+}
+
 /** Upload a full tilemap to VRAM at specific overworld coordinates
  * Original_Address: $(DOLLAR)C3F705
  */
-void tilemapUpdateUploadTilemap(short mapX, short mapY, ushort* newTiles) {
+void tilemapUpdateUploadTilemap(short mapX, short mapY, const(ushort)* newTiles) {
 	tilemapUpdateRemainingTiles = &newTiles[1];
 	short vramX = mapX & 0x3F;
 	tilemapUpdateTileX = vramX;
@@ -1559,6 +1745,11 @@ void tilemapUpdateUploadTilemap(short mapX, short mapY, ushort* newTiles) {
 		tilemapUpdateTileWidth = x0E;
 		tilemapUpdateUploadRows();
 	}
+}
+// unused
+/// $C3F7FB
+void unknownC3F7FB() {
+	tilemapUpdateUploadTilemap(926, 31, cast(immutable(ushort)*)&unknownEFEB3D);
 }
 
 /** The oval window animations making up the iris out animation at the end of the game

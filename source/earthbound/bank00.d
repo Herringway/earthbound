@@ -133,6 +133,7 @@ void animatePalette() {
 	overworldPaletteAnim.index++;
 }
 
+// unused
 /// $C0035B
 ushort unknownC0035B(ushort a, ushort x, ushort y) {
 	return tilemapBuffer[a * 16 + x + y * 4];
@@ -781,6 +782,70 @@ void unknownC01731(short x, short y) {
 	}
 	bg12PositionXCopy = x;
 	bg12PositionYCopy = y;
+}
+
+/** Unused map viewer debug function
+ *
+ * Controls:
+ * 	D-pad = Scroll map
+ * 	L button = Increase scrolling speed by 4x (stacks)
+ * 	X/R button = Increase scrolling speed by 2x (stacks)
+ * 	A = Reload map at current coordinates
+ * 	Y = Intent unknown, doesn't function properly due to uninitialized read
+ * Note that map reloading doesn't work without something to disable force blank (fading in, for example)
+ * Original_Address: $(DOLLAR)C017EA
+ */
+void mapViewer() {
+	short tmp00 = void;
+	short newX = 0;
+	short newY = 0;
+	if ((padPress[0] & Pad.start) != 0) {
+		unknown7E4384 ^= 1;
+	}
+	if ((padState[0] & Pad.down) != 0) {
+		newY = 1;
+	} else if ((padState[0] & Pad.up) != 0) {
+		newY = -1;
+	}
+	if ((padState[0] & Pad.left) != 0) {
+		newX = -1;
+	} else if ((padState[0] & Pad.right) != 0) {
+		newX = 1;
+	}
+	if ((padState[0] & Pad.l) != 0) {
+		newX *= 4;
+		newY *= 4;
+	}
+	if ((padState[0] & Pad.r) != 0) {
+		newX *= 2;
+		newY *= 2;
+	}
+	if ((padState[0] & Pad.x) != 0) {
+		newX *= 2;
+		newY *= 2;
+	}
+	if ((padState[0] & Pad.y) == 0) {
+		// whoops, uninitialized read
+		if ((tmp00 & 0x0080) != 0) {
+			newX = 0;
+		}
+	}
+	screenXPixels += newX;
+	screenYPixels += newY;
+	if ((screenXPixels != screenXPixelsCopy) || (screenYPixels != screenYPixelsCopy)) {
+		refreshMapAtPosition(cast(short)(screenXPixels - 128), cast(short)(screenYPixels - 112));
+	} else if ((padPress[0] & Pad.a) != 0) {
+		loadedMapPalette = -1;
+		loadedMapTileCombo = -1;
+		screenXPixels &= 0xFFF8;
+		screenYPixels &= 0xFFF8;
+		prepareForImmediateDMA();
+		// wrong units. should be pixels, not tiles
+		loadMapAtPosition(screenXPixels / 8, screenYPixels / 8);
+		setForceBlank();
+	}
+	screenXPixelsCopy = screenXPixels;
+	screenYPixelsCopy = screenYPixels;
 }
 
 /// $C018F3
@@ -1621,6 +1686,15 @@ uint getNewY(short direction, uint baseY, short flags) {
 	}
 }
 
+// unused
+/// $(DOLLAR)C0329F
+void unknownC0329F(short character) {
+	partyCharacters[character].afflictions[0] = 0;
+	for(short i = 1; i < 7; i++) {
+		partyCharacters[character].afflictions[i] = 0;
+	}
+}
+
 /// $C032EC
 void updatePartyNPCs() {
 	short y;
@@ -1982,6 +2056,35 @@ void getOffBicycle() {
 	inputDisableFrameCounter = 2;
 }
 
+/** Actionscript function - Initializes party member data for the party member id stored in var 1
+ * Original_Address: $(DOLLAR)C03DAA
+ */
+void actionScriptInitializePartyMember() {
+	entityAnimationFingerprints[currentEntitySlot] = -1;
+	entityScriptVar3Table[currentEntitySlot] = 8;
+	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
+	updateEntitySpriteFrame(currentEntitySlot);
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].entitySlot = currentEntitySlot;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].characterID = entityScriptVar0Table[currentEntitySlot];
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused57 = 0;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused92 = -1;
+	if (partyCharacters[entityScriptVar1Table[currentEntitySlot]].afflictions[0] == Status0.unconscious) {
+		entityScriptVar3Table[currentEntitySlot] = 16;
+	}
+	footstepSoundIgnoreEntity = cast(short)(gameState.firstPartyMemberEntity * 2);
+}
+
+// unused
+/// $(DOLLAR)C03E25
+short unknownC03E25(short arg1) {
+	short x;
+	for (x = 0; gameState.partyMemberIndex[x] != 0; x++) {}
+	if (x == 0) {
+		return -1;
+	}
+	return gameState.partyMemberIndex[x - 1];
+}
+
 /// $C03E5A
 short getCharacterPositionIndex(short characterID) {
 	short x;
@@ -2016,24 +2119,6 @@ short getNewPositionIndex(short characterID, short distance, short arg3, short a
 		entityScriptVar7Table[currentEntitySlot] |= PartyMemberMovementFlags.unknown12;
 	}
 	return arg3;
-}
-
-/** Actionscript function - Initializes party member data for the party member id stored in var 1
- * Original_Address: $(DOLLAR)C03DAA
- */
-void actionScriptInitializePartyMember() {
-	entityAnimationFingerprints[currentEntitySlot] = -1;
-	entityScriptVar3Table[currentEntitySlot] = 8;
-	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
-	updateEntitySpriteFrame(currentEntitySlot);
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].entitySlot = currentEntitySlot;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].characterID = entityScriptVar0Table[currentEntitySlot];
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused57 = 0;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unused92 = -1;
-	if (partyCharacters[entityScriptVar1Table[currentEntitySlot]].afflictions[0] == Status0.unconscious) {
-		entityScriptVar3Table[currentEntitySlot] = 16;
-	}
-	footstepSoundIgnoreEntity = cast(short)(gameState.firstPartyMemberEntity * 2);
 }
 
 /// $C03F1E
@@ -2093,6 +2178,12 @@ void centerScreen(short x, short y) {
 /// $C0402B
 void startAutoMovementDemo(DemoEntry* arg1) {
 	demoReplayStart(arg1);
+}
+
+// unused
+/// $C04049
+void unknownC04049() {
+	demoFramesLeft = 0;
 }
 
 /// $C0404F
@@ -2214,13 +2305,6 @@ short unknownC041E3() {
 	return -1;
 }
 
-/// $C042C2
-void faceOppositeLeader(short arg1) {
-	entityDirections[arg1] = oppositeCardinals[gameState.leaderDirection];
-	unknownC09907(arg1);
-	updateEntitySprite(arg1);
-}
-
 /// $C04279
 ushort findNearbyCheckableNPC() {
 	interactingNPCID = -1;
@@ -2232,6 +2316,13 @@ ushort findNearbyCheckableNPC() {
 		updateEntitySpriteFrame(gameState.firstPartyMemberEntity);
 	}
 	return interactingNPCID;
+}
+
+/// $C042C2
+void faceOppositeLeader(short arg1) {
+	entityDirections[arg1] = oppositeCardinals[gameState.leaderDirection];
+	unknownC09907(arg1);
+	updateEntitySprite(arg1);
 }
 
 /// $C042EF
@@ -4105,6 +4196,15 @@ immutable short[4] escalatorExitOffsetsX = [
 /// $C06E12
 immutable short[4] stairInputDirectionMap = [Direction.left, Direction.right, Direction.left, Direction.right];
 
+// unused
+/// $C06E1A
+void unknownC06E1A() {
+	stairsDirection = -1;
+	gameState.walkingStyle = WalkingStyle.normal;
+	playerMovementFlags = 0;
+	unread7E5DBA = 0;
+}
+
 /// $C06E2C
 void enterEscalator() {
 	gameState.walkingStyle = WalkingStyle.escalator;
@@ -4835,6 +4935,13 @@ void irqNMICommon() {
 	timer++;
 }
 
+/// $C08391
+short testSRAMSize() {
+	//original code tested how large SRAM was by writing to areas beyond retail SRAM and comparing to a value guaranteed to be in SRAM
+	//if SRAM is retail-sized, these areas would just be mirrors of the existing SRAM
+	return lastSRAMBank;
+}
+
 /** Stops recording a game demo
  * Original_Address: $(DOLLAR)C083B8
  */
@@ -4868,13 +4975,6 @@ void demoReplayStart(DemoEntry* arg1) {
 	padRaw[0] = arg1.padState;
 	padRaw[1] = arg1.padState;
 	demoRecordingFlags |= DemoRecordingFlags.playbackEnabled;
-}
-
-/// $C0841B
-short testSRAMSize() {
-	//original code tested how large SRAM was by writing to areas beyond retail SRAM and comparing to a value guaranteed to be in SRAM
-	//if SRAM is retail-sized, these areas would just be mirrors of the existing SRAM
-	return lastSRAMBank;
 }
 
 /// $C0841B
@@ -5008,12 +5108,20 @@ void resetIRQCallback() {
 	irqCallback = &defaultIRQCallback;
 }
 
+// unused
+/// $(DOLLAR)C08529
+void unknownC08529();
+
 /** Signals to the interrupt handler that a palette upload is meant to happen next frame.
  * Original_Address: $(DOLLAR)C0856B
  */
 void preparePaletteUpload(PaletteUpload mode) {
 	paletteUploadMode = cast(ubyte)mode;
 }
+
+// unused
+/// $(DOLLAR)C08573
+void unknownC08573();
 
 /** Immediately copy data to VRAM in 4608-byte chunks, presumably to avoid lag frames.
  *
@@ -5128,6 +5236,14 @@ void* sbrk(ushort bytes) {
 	}
 }
 
+/** Enables vertical blank interrupts and joypad auto-reading
+ * Original_Address: $(DOLLAR)C08715
+ */
+void enableNMIJoypad() {
+	mirrorNMITIMEN |= 0x81;
+	snes.NMITIMEN = mirrorNMITIMEN;
+}
+
 /** Ensures hardware is in a state appropriate for VRAM DMA. Blocks for a single frame
  * Original_Address: $(DOLLAR)C08726
  */
@@ -5152,14 +5268,6 @@ void setForceBlank() {
 	mirrorINIDISP = 0x80;
 	newFrameStarted = 0;
 	while (newFrameStarted == 0) { snes.wait(); }
-}
-
-/** Enables vertical blank interrupts and joypad auto-reading
- * Original_Address: $(DOLLAR)C08715
- */
-void enableNMIJoypad() {
-	mirrorNMITIMEN |= 0x81;
-	snes.NMITIMEN = mirrorNMITIMEN;
 }
 
 /** Waits a single frame, with gamepad state updated appropriately
@@ -5315,6 +5423,18 @@ void waitForFadeToFinishNoActionScript() {
 	}
 }
 
+/** Sets the bank address for spritemaps (not used on modern systems)
+ * Params:
+ * 	bank = The upper 8 bits of a 24-bit FAR address, if relevant
+ * Returns: The previous spritemap bank address
+ * Original_Address: $(DOLLAR)C088A5
+ */
+ushort setSpritemapBank(ushort bank) {
+	ushort old = spritemapBank;
+	spritemapBank = bank;
+	return old;
+}
+
 /** Clears the OAM state in preparation for a new frame
  * Original_Address: $(DOLLAR)C088B1
  */
@@ -5340,18 +5460,6 @@ void oamClear() {
 			oam2.mainTable[i].yCoord = 224;
 		}
 	}
-}
-
-/** Sets the bank address for spritemaps (not used on modern systems)
- * Params:
- * 	bank = The upper 8 bits of a 24-bit FAR address, if relevant
- * Returns: The previous spritemap bank address
- * Original_Address: $(DOLLAR)C088A5
- */
-ushort setSpritemapBank(ushort bank) {
-	ushort old = spritemapBank;
-	spritemapBank = bank;
-	return old;
 }
 
 /** Renders the first frame of the game
@@ -5800,9 +5908,12 @@ short initEntity(short actionScript, short x, short y) {
 	return unknownC092F5Unknown4(&actionScriptScriptPointers[actionScript][0], newEntity);
 }
 
+/// $C093F9
 short setEntityActionScript(const(ubyte)* pc, short entityID) {
 	return setEntityActionScriptByOffset(pc, cast(short)(entityID * 2));
 }
+
+/// $C09405
 short setEntityActionScriptByOffset(const(ubyte)* pc, short entityIndex) {
 	assert (entityScriptTable[entityIndex / 2] >= 0);
 	entityIndex = unknownC09C99(entityIndex);
@@ -5896,7 +6007,7 @@ void runActionscriptFrame() {
 	disableActionscript = 0;
 }
 
-/// $C09466
+/// $C094D0
 void runEntityScripts(short a, short x) {
 	if ((entityCallbackFlags[x / 2] & EntityCallbackFlags.moveDisabled) == 0) {
 		short y = entityScriptIndexTable[x / 2];
@@ -6924,7 +7035,7 @@ void deleteEntity(short entity) {
 }
 
 /// $C09C3B
-//note: arg1 is passed via X register
+//note: offset is passed via X register
 void deleteEntityOffset(short offset) {
 	tracef("Deleting entity %s", offset / 2);
 	if (entityScriptTable[offset / 2] >= 0) {
@@ -7082,10 +7193,52 @@ short unknownC09D3E(short entityOffset, short y, out short finalX) {
 	return tmpY;
 }
 
+// unused
+/// $C09D60 - search for a script in an entity's active scripts?
+short unknownC09D60(short entityOffset, short search) {
+	short script = entityScriptIndexTable[entityOffset / 2];
+	if (script == search) {
+		return 0;
+	}
+	short result;
+	while (true) {
+		result++;
+		script = entityScriptNextScripts[script / 2];
+		if (script == search) {
+			break;
+		}
+	}
+	return result;
+}
+
+// unused
+/// $C09D78
+short unknownC09D78(short limit, short entityOffset) {
+	short script = entityScriptIndexTable[entityOffset / 2];
+	if (--limit < 0) {
+		return limit;
+	}
+	while (true) {
+		script = entityScriptNextScripts[script / 2];
+		if (--limit < 0) {
+			return limit;
+		}
+	}
+}
+
 /** Reads an 8-bit value from the ActionScript.
  * Original_Address: $(DOLLAR)C09D86
  */
 ushort actionScriptRead8(ref const(ubyte)* arg1) {
+	ushort a = arg1[actionScriptScriptOffset];
+	arg1++;
+	return a;
+}
+
+/** Reads an 8-bit value from the ActionScript.
+ * Original_Address: $(DOLLAR)C09D8D
+ */
+ushort actionScriptRead8Copy(ref const(ubyte)* arg1) {
 	ushort a = arg1[actionScriptScriptOffset];
 	arg1++;
 	return a;
@@ -7139,6 +7292,76 @@ void clearEntityTickCallback(short index) {
 	entityCallbackFlags[index / 2] = 0;
 }
 
+// unused
+/// $C09DAE
+void unknownC09DAE(const(ubyte)* script) {
+	entityAllocationMinSlot = 0;
+	entityAllocationMaxSlot = 60; // there are only 30 slots allocated!
+	initEntityExtraCommon(script);
+}
+
+// unused
+/// $C09DB7
+void initEntityExtraCommon(const(ubyte)* script) {
+	short actionScript = actionScriptRead16Copy(script);
+	short xCoord = cast(short)(actionScriptRead16Copy(script) + entityScreenXTable[currentActiveEntityOffset / 2]);
+	short yCoord = cast(short)(actionScriptRead16Copy(script) + entityScreenYTable[currentActiveEntityOffset / 2]);
+	newEntityPosZ = cast(short)(actionScriptRead16Copy(script) + entityAbsZTable[currentActiveEntityOffset / 2]);
+	newEntityVar0 = actionScriptRead16Copy(script);
+	newEntityVar1 = cast(short)(actionScriptRead16Copy(script) + entityScriptVar1Table[currentActiveEntityOffset / 2]);
+	newEntityVar2 = currentActiveEntityOffset;
+	newEntityVar3 = 0;
+	newEntityVar4 = 0;
+	newEntityVar5 = 0;
+	newEntityVar6 = 0;
+	newEntityVar7 = 0;
+	initEntity(actionScript, xCoord, yCoord);
+}
+
+// unused
+/// $C09E0A
+void unknownC09E0A(const(ubyte)* script) {
+	entityAllocationMinSlot = actionScriptRead8Copy(script);
+	entityAllocationMaxSlot = actionScriptRead8Copy(script);
+	initEntityExtraCommon(script);
+}
+
+// unused
+/// $C09E18
+void unknownC09E18(const(ubyte)* script) {
+	entityAllocationMinSlot = actionScriptRead8Copy(script);
+	entityAllocationMaxSlot = cast(short)(entityAllocationMinSlot + 2);
+	initEntityExtraCommon(script);
+}
+
+// unused
+/// $C09E25
+void unknownC09E25(const(ubyte)* script) {
+	entityAllocationMinSlot = actionScriptRead8Copy(script);
+	entityAllocationMaxSlot = cast(short)(entityAllocationMinSlot + 2);
+	deleteEntityOffset(entityAllocationMinSlot);
+	initEntityExtraCommon(script);
+}
+
+// unused
+/// $C09E38
+void unknownC09E38(const(ubyte)* script) {
+	entityAllocationMinSlot = 0;
+	entityAllocationMinSlot = 60;
+	newEntityVar1 = 0;
+	newEntityVar3 = 0;
+	newEntityVar4 = 0;
+	newEntityVar5 = 0;
+	newEntityVar6 = 0;
+	newEntityVar7 = 0;
+	newEntityPosZ = 0;
+	short actionScript = actionScriptRead16Copy(script);
+	newEntityVar0 = actionScriptRead16Copy(script);
+	newEntityVar2 = currentActiveEntityOffset;
+	// x and y coords are normally garbage data here
+	initEntity(actionScript & 0x7FFF, 0, 0);
+}
+
 /** Creates an entity for the title screen. The entities will not be created with valid X, Y coordinates, so their scripts must handle initial positioning.
  * Original_Address: $(DOLLAR)C09E71
  */
@@ -7148,6 +7371,82 @@ short actionScriptCreateTitleScreenEntity(short, ref const(ubyte)* arg2) {
 	short x = void;
 	actionScriptLastRead = arg2;
 	return initEntityWipe(script, x, cast(short)actionScriptLastRead);
+}
+
+// unused
+/// $C09E79
+void unknownC09E79(const(ubyte)* script) {
+	deleteEntityOffset(entityScriptVarTables[actionScriptRead8Copy(script)][currentActiveEntityOffset / 2]);
+}
+
+// unused
+/// $C09E8E
+void unknownC09E8E(const(ubyte)* script) {
+	deleteEntityOffset(actionScriptRead8Copy(script));
+}
+
+// unused
+/// $C09E98
+void unknownC09E98() {
+	short entity = firstEntity;
+	do {
+		if (entity != currentActiveEntityOffset) {
+			deleteEntityOffset(entity);
+		}
+		entity = entityNextEntityTable[entity / 2];
+	} while (entity >= 0);
+}
+
+// unused
+/// $C09EAC
+void unknownC09EAC(const(ubyte)* script) {
+	short tmp = actionScriptRead16Copy(script);
+	short entity = firstEntity;
+	do {
+		if ((tmp == entityScriptTable[entity / 2]) && (entity != currentActiveEntityOffset)) {
+			deleteEntityOffset(entity);
+		}
+		entity = entityNextEntityTable[entity / 2];
+	} while (entity >= 0);
+}
+
+// unused
+/// $C09ECE
+void unknownC09ECE(const(ubyte)* script) {
+	short x = actionScriptRead8Copy(script);
+	short actionScript = actionScriptRead16Copy(script);
+	short y = actionScriptRead8Copy(script);
+	actionScriptLastRead = script;
+	// the arguments don't seem to match the function...?
+	//setEntityActionScriptByOffset(actionScript, x, y);
+}
+
+// unused
+/// $C09EE0
+short unknownC09EE0() {
+	return unknownC09EExCommon(currentEntityOffset);
+}
+
+// unused
+/// $C09EE5
+short unknownC09EE5() {
+	return unknownC09EExCommon(currentActiveEntityOffset);
+}
+
+// unused
+/// $C09EE9
+short unknownC09EE9(short entity) {
+	return unknownC09EExCommon(cast(short)(entity * 2));
+}
+
+// unused
+/// $C09EEB
+short unknownC09EExCommon(short entityOffset) {
+	short result = 0;
+	if (((entityScreenXTable[entityOffset / 2] >> 8) == 0) && ((entityScreenYTable[entityOffset / 2] >> 8) == 0)) {
+		result--;
+	}
+	return result;
 }
 
 /** Tests if the active entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
@@ -7160,7 +7459,7 @@ short testEntityMovementActive() {
 
 /** Tests if the active entity(?) is moving somewhere. Stores possible destination in entityMovementProspectX/Y. Unused
  * Returns: number of axes movement is occurring on
- * Original_Address: $(DOLLAR)C09EFF
+ * Original_Address: $(DOLLAR)C09F04
  */
 short testEntityMovementUnusedEntry() {
 	return testEntityMovementCommon(currentActiveEntityOffset);
@@ -7170,7 +7469,7 @@ short testEntityMovementUnusedEntry() {
  * Params:
  * 	id = entity ID
  * Returns: number of axes movement is occurring on
- * Original_Address: $(DOLLAR)C09EFF
+ * Original_Address: $(DOLLAR)C09F08
  */
 short testEntityMovementSlot(short id) {
 	return testEntityMovementCommon(cast(short)(id * 2));
@@ -7183,7 +7482,7 @@ short testEntityMovementSlot(short id) {
  * Mutates:
  * 	entityMovementProspectX = X coordinate that the entity is attempting to move to
  * 	entityMovementProspectY = Y coordinate that the entity is attempting to move to
- * Original_Address: $(DOLLAR)C09EFF
+ * Original_Address: $(DOLLAR)C09F0A
  */
 //note: arg1 was X register originally
 short testEntityMovementCommon(short offset) {
@@ -7206,7 +7505,7 @@ void unknownC09F3BUnusedEntry() {
 }
 
 /** Backs up all entity callback flags and freezes each active entity
- * Original_Address: $(DOLLAR)C09F3B
+ * Original_Address: $(DOLLAR)C09F43
  */
 void backupEntityCallbackFlagsAndDisable() {
 	for (short i = 0; i != maxEntities * 2; i += 2) {
@@ -7257,6 +7556,13 @@ void actionScriptFadeIn(short, ref const(ubyte)* arg1) {
 	fadeIn(a, b);
 }
 
+/// $C09FBB
+void actionScriptFadeOut(short, ref const(ubyte)* arg1) {
+	ubyte a = (arg1++)[actionScriptScriptOffset];
+	ubyte b = (arg1++)[actionScriptScriptOffset];
+	fadeOut(a, b);
+}
+
 /// $C09FC8
 void updateActiveEntityPosition2D() {
 	updateEntityPosition2D(currentActiveEntityOffset);
@@ -7276,14 +7582,7 @@ void updateEntityPosition2D(short entityOffset) {
 	entityAbsYFractionTable[entity] = newPosition.fraction;
 }
 
-/// $C09FAE
-void actionScriptFadeOut(short, ref const(ubyte)* arg1) {
-	ubyte a = (arg1++)[actionScriptScriptOffset];
-	ubyte b = (arg1++)[actionScriptScriptOffset];
-	fadeOut(a, b);
-}
-
-/// $C09F??
+/// $C09FF0
 void actionScriptNoPhysics() {
 	//nothing!
 }
@@ -7335,6 +7634,13 @@ void moveRelativeToBG3() {
 	entityAbsXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg3XPosition);
 	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition);
 	entityAbsYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition);
+}
+
+// unused
+/// $C0A089
+void unknownC0A089() {
+	entityAbsXTable[currentActiveEntityOffset / 2] += bg3XPosition;
+	entityAbsYTable[currentActiveEntityOffset / 2] += bg3YPosition;
 }
 
 /// $C0A0A0
@@ -7473,6 +7779,15 @@ short findNPCEntity(short id) {
 		entity = entityNextEntityTable[entity / 2];
 	}
 	return 0;
+}
+
+// unused
+/// $C0A230
+void unknownC0A230(short entityOffset) {
+	short entity1 = entityOffset / 2;
+	short entity2 = entityScriptVar0Table[entity1] / 2;
+	entityScreenXTable[entity2] += entityAbsXTable[entity1] + (entityAbsXFractionTable[entity2] + entityAbsXFractionTable[entity1] >> 8);
+	entityScreenYTable[entity2] += entityAbsYTable[entity1] + (entityAbsYFractionTable[entity2] + entityAbsYFractionTable[entity1] >> 8);
 }
 
 /** Recalculates the specified entity's screen position based on its world coordinates
@@ -7645,7 +7960,7 @@ void updatePositionCallbackPathfindingEnabled() {
 void actionScriptUpdatePositionAndCollision() {
 	actionScriptUpdatePositionAndCollisionCommon(currentActiveEntityOffset);
 }
-
+/// $C0A37C
 void actionScriptUpdatePositionAndCollisionCommon(short entity) {
 	updateEntityPosition2D(entity);
 	updateEntitySurfaceFlags();
@@ -7853,6 +8168,18 @@ ushort[12] spriteDirectionMappings4Direction = [0, 0, 1, 2, 2, 2, 3, 0, 4, 5, 6,
 /// $C0A623
 ushort[8] spriteDirectionMappings8Direction = [0, 4, 1, 5, 2, 6, 3, 7];
 
+// unused
+/// $C0A633
+short rand03() {
+	return rand() & 3;
+}
+
+// unused
+/// $C0A63B
+short rand07() {
+	return rand() & 7;
+}
+
 /// $C0A643
 void setDirection16(short, ref const(ubyte)* arg2) {
 	short direction = actionScriptRead16(arg2);
@@ -7911,6 +8238,14 @@ short getMovementSpeed() {
 	return entityMovementSpeed[currentActiveEntityOffset / 2];
 }
 
+// unused
+/// $C0A697
+void unknownC0A697(short, ref const(ubyte)* script) {
+	short tmp = actionScriptRead8(script);
+	actionScriptLastRead = script;
+	actionScriptMoveDirection(tmp);
+}
+
 /// $C0A6A2
 void actionScriptSleepUntilCardinalPixelsMoved(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead16(arg2);
@@ -7939,15 +8274,27 @@ short actionScriptTestCollisionEnabled() {
 	return 0;
 }
 
-/// $C0A6DA
-short clearCurrentEntityCollision(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.nothing;
-	return 0;
+// unused
+/// $C0A6C5
+short unknownC0A6C5(short, ref const(ubyte)* arg2) {
+	return entityObstacleFlags[currentActiveEntityOffset / 2];
+}
+
+// unused
+/// $C0A6CB
+short unknownC0A6CB(short, ref const(ubyte)* arg2) {
+	return entityPathfindingState[currentActiveEntityOffset / 2];
 }
 
 /// $C0A6D1
 short disableCurrentEntityCollision(short, ref const(ubyte)* arg2) {
 	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.disabled;
+	return 0;
+}
+
+/// $C0A6DA
+short clearCurrentEntityCollision(short, ref const(ubyte)* arg2) {
+	entityCollidedObjects[currentActiveEntityOffset / 2] = EntityCollision.nothing;
 	return 0;
 }
 
@@ -8150,6 +8497,11 @@ void actionScriptSpiralMovement() {
 	entitySpiralMovement(0);
 }
 
+/// $C0A8EF
+void actionScriptSpiralMovement2() {
+	entitySpiralMovement(1);
+}
+
 /// $C0A8F7
 short actionScriptPrepareNewEntityAtSelf(short, ref const(ubyte)* arg2) {
 	prepareNewEntityAtExistingEntityLocation(0);
@@ -8288,6 +8640,17 @@ void actionScriptPrintCastNameEntityVar0(short, ref const(ubyte)* arg2) {
 	printCastNameEntityVar0(tmp, tmp2, tmp3);
 }
 
+/// $C0AA07
+void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
+	short tmp1 = actionScriptRead16(arg1);
+	actionScriptLastRead = arg1;
+	short tmp2 = actionScriptRead16(arg1);
+	actionScriptLastRead = arg1;
+	short tmp3 = actionScriptRead16(arg1);
+	actionScriptLastRead = arg1;
+	fadeOutWithMosaic(tmp1, tmp2, tmp3);
+}
+
 /// $C0AA23
 void actionScriptEnableStageHDMA(short, ref const(ubyte)* arg2) {
 	short tmp = actionScriptRead16(arg2);
@@ -8353,6 +8716,12 @@ short unknownC0AACD() {
 	return 2;
 }
 
+// unused
+/// $C0AAD1
+void unknownC0AAD1() {
+	// X = 4? BUT WHAT COULD IT MEAN?!??!?!?!?1/1/1/?/11/1one
+}
+
 /// $C0AAD5
 void actionScriptJumpToLabelNTimes(short, ref const(ubyte)* arg2) {
 	short repeats = cast(short)(actionScriptRead8(arg2) + 1);
@@ -8372,17 +8741,6 @@ void actionScriptJumpToLabelNTimes(short, ref const(ubyte)* arg2) {
 void unknownC0AAFD() {
 	//offset is just an estimate...
 	actionScriptStack[4].counter = 0;
-}
-
-/// $C0AA07
-void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
-	short tmp1 = actionScriptRead16(arg1);
-	actionScriptLastRead = arg1;
-	short tmp2 = actionScriptRead16(arg1);
-	actionScriptLastRead = arg1;
-	short tmp3 = actionScriptRead16(arg1);
-	actionScriptLastRead = arg1;
-	fadeOutWithMosaic(tmp1, tmp2, tmp3);
 }
 
 /// $C0ABC6
@@ -9523,6 +9881,23 @@ short testPartyLeaderDistanceCloseIntangibility() {
 	return -1;
 }
 
+// unused
+/// $C0C4CF
+immutable short[] unknownC0C4CF = [0, 1, 2, 0, 7, 6, 4, 5, 6, 4, 3, 2];
+
+// unused
+/// $C0C4CF
+immutable short[] oppositeDirections = [
+	Direction.up: Direction.down,
+	Direction.upRight: Direction.downLeft,
+	Direction.right: Direction.left,
+	Direction.downRight: Direction.upLeft,
+	Direction.down: Direction.up,
+	Direction.downLeft: Direction.upRight,
+	Direction.left: Direction.right,
+	Direction.upLeft: Direction.downRight,
+];
+
 /// $C0C4F6
 short getDirectionFromPlayerToEntity() {
 	return getDirectionTo(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], gameState.leaderX.integer, gameState.leaderY.integer);
@@ -9546,6 +9921,21 @@ short isEntityWeak() {
 	return 0;
 }
 
+// unused
+/// $C0C408
+short getOppositeDirectionFromPlayerToEntity() {
+	return oppositeDirections[getDirectionFromPlayerToEntity()];
+}
+
+// unused
+/// $C0C615
+short unknownC0C615() {
+	if (isEntityWeak() != 0) {
+		return getOppositeDirectionFromPlayerToEntity();
+	}
+	return getDirectionFromPlayerToEntity();
+}
+
 /// $C0C62B
 short getAngleTowardsDestinationUnlessWeak() {
 	short x02 = 0;
@@ -9558,6 +9948,12 @@ short getAngleTowardsDestinationUnlessWeak() {
 /// $C0C682
 short getDirectionRotatedClockwise(short arg1) {
 	return (entityDirections[currentEntitySlot] + arg1) & 7;
+}
+
+// unused
+/// $C0C69E
+short getDirectionTurnedRandomlyLeftOrRight() {
+	return getDirectionRotatedClockwise(((rand() & 1) != 0) ? 1 : -1);
 }
 
 /// $C0C6B6
@@ -9608,9 +10004,37 @@ unittest {
 	}
 }
 
+// unused
+/// $C0C760
+short unknownC0C760(short arg1, short arg2, short entity) {
+	short tmp1 = cast(short)(arg1 - collisionWidths[entity]);
+	short tmp2 = cast(short)(arg2 - collisionHeights1[entity]);
+	short tmp3 = cast(short)(arg2 + 8);
+	// this assembly is suspicious...
+	if (((tmp1 | tmp1 | tmp2 | tmp3) & 0xFF00) != 0) {
+		return 0;
+	}
+	return -1;
+}
+
+// unused
+/// $C0C7AC
+void unknownC0C7AC() {
+	if (testEntityMovementActive == 0) {
+		return;
+	}
+	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlagsHorizontal(entityMovementProspectX, entityMovementProspectY, currentEntitySlot);
+}
+
 /// $C0C7DB
 void updateEntitySurfaceFlags() {
 	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlagsHorizontal(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
+}
+
+// unused
+/// $C0C808
+void unknownC0C808() {
+	getSurfaceFlagsHorizontal(entityAbsXTable[currentEntitySlot], cast(short)(entityAbsYTable[currentEntitySlot] - entityAbsZTable[currentEntitySlot]), currentEntitySlot);
 }
 
 /** Moves en entity according to their current speed
@@ -9669,18 +10093,6 @@ void actionScriptMoveDirection(short direction) {
 	entityDeltaYFractionTable[currentEntitySlot] = yDelta.fraction;
 }
 
-/** Causes a script to sleep until the entity has moved a certain number of pixels
- *
- * Warning: Undefined behaviour if the entity has no movement speed set
- * Params:
- * 	pixels = The number of pixels to move
- * Original_Address: $(DOLLAR)C0CBD3
- */
-void sleepUntilPixelsMoved(short pixels) {
-	assert(entityMovementSpeed[currentEntitySlot] != 0, "No movement speed set");
-	entityScriptSleepFrames[currentScriptSlot] = cast(short)((cast(int)pixels << 8) / entityMovementSpeed[currentEntitySlot]);
-}
-
 /** Causes a script to sleep until the entity has moved a certain number of pixels in the cardinal directions
  *
  * Similar to sleepUntilPixelsMoved, but uses only the greater of X and Y movement instead of a straight line.
@@ -9722,6 +10134,18 @@ void sleepUntilCardinalPixelsMoved(short pixels) {
 	}
 	assert(pixelsMoved.combined != 0, "No movement prepared");
 	entityScriptSleepFrames[currentScriptSlot] = cast(short)((pixels << 16) / pixelsMoved.combined);
+}
+
+/** Causes a script to sleep until the entity has moved a certain number of pixels
+ *
+ * Warning: Undefined behaviour if the entity has no movement speed set
+ * Params:
+ * 	pixels = The number of pixels to move
+ * Original_Address: $(DOLLAR)C0CBD3
+ */
+void sleepUntilPixelsMoved(short pixels) {
+	assert(entityMovementSpeed[currentEntitySlot] != 0, "No movement speed set");
+	entityScriptSleepFrames[currentScriptSlot] = cast(short)((cast(int)pixels << 8) / entityMovementSpeed[currentEntitySlot]);
 }
 
 /** Causes a script to sleep until it reaches its destination (cardinal directions only)
@@ -9976,6 +10400,12 @@ short actionScriptTestPartyCollision() {
 	return -1;
 }
 
+// unused
+/// $C0D195
+short unknownC0D195() {
+	return 0;
+}
+
 /// $C0D19B
 void unknownC0D19B() {
 	short enemyEntity = touchedEnemy;
@@ -10222,6 +10652,31 @@ short tryBattleStart() {
 	return result;
 }
 
+/// $C0D77F
+void unknownC0D77F() {
+	for (short i = 0; i < maxEntities; i++) {
+		if (i == currentEntitySlot) {
+			continue;
+		}
+		if (i == partyLeaderEntity) {
+			continue;
+		}
+		entityCallbackFlags[i] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
+	}
+}
+
+/// $C0D7B3
+void actionScriptBackupPosition() {
+	actionScriptBackupX = entityAbsXTable[currentEntitySlot];
+	actionScriptBackupY = entityAbsYTable[currentEntitySlot];
+}
+
+/// $C0D7C7
+void actionScriptRestorePositionBackup() {
+	entityAbsXTable[currentEntitySlot] = actionScriptBackupX;
+	entityAbsYTable[currentEntitySlot] = actionScriptBackupY;
+}
+
 /// $C0D7E0
 void unknownC0D7E0() {
 	if (entityPathfindingState[currentEntitySlot] != PathfindingState.done) {
@@ -10268,31 +10723,6 @@ void actionScriptPathfindingOverride() {
 		entityPathfindingState[currentEntitySlot] = PathfindingState.done;
 		entityObstacleFlags[currentEntitySlot] |= 0x80;
 	}
-}
-
-/// $C0D77F
-void unknownC0D77F() {
-	for (short i = 0; i < maxEntities; i++) {
-		if (i == currentEntitySlot) {
-			continue;
-		}
-		if (i == partyLeaderEntity) {
-			continue;
-		}
-		entityCallbackFlags[i] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
-	}
-}
-
-/// $C0D7B3
-void actionScriptBackupPosition() {
-	actionScriptBackupX = entityAbsXTable[currentEntitySlot];
-	actionScriptBackupY = entityAbsYTable[currentEntitySlot];
-}
-
-/// $C0D7C7
-void actionScriptRestorePositionBackup() {
-	entityAbsXTable[currentEntitySlot] = actionScriptBackupX;
-	entityAbsYTable[currentEntitySlot] = actionScriptBackupY;
 }
 
 /// $C0D98F
@@ -10425,6 +10855,12 @@ short scheduleOverworldTask(short arg1, void function() arg2) {
 	return i;
 }
 
+// unused
+/// $C0DC38
+void unknownC0DC38(short task) {
+	overworldTasks[task].framesLeft = 0;
+}
+
 /// $C0DC4E
 void processOverworldTasks() {
 	if ((frameCounter == 0) && (dadPhoneTimer != 0)) {
@@ -10555,6 +10991,31 @@ void initializePSITeleportation() {
 	psiTeleportBetaYAdjustment = gameState.leaderY.integer;
 }
 
+/** Restore control after a successful PSI Teleport
+ * Original_Address: $(DOLLAR)C0DE7C
+ */
+void psiTeleportRestoreControl() {
+	currentPartyMemberTick = &partyCharacters[0];
+	for (short i = partyMemberEntityStart; i < partyMemberEntityStart + partyCharacters.length; i++) {
+		entityScriptVar3Table[i] = 8;
+		entityScriptVar7Table[i] &= ~PartyMemberMovementFlags.unknown11;
+		entityCollidedObjects[i] &= ~EntityCollision.disabled;
+		currentPartyMemberTick.lastWalkingStyle = 0xFFFF;
+		currentPartyMemberTick++;
+	}
+	changeMapMusicImmediately();
+}
+
+/** Perform a PSI Teleport collision check. Check both the leader's current position and the position where it will be
+ * Original_Address: $(DOLLAR)C0DED9
+ */
+short psiTeleportCheckCollision(short curX, short curY, short nextX, short nextY, short) {
+	if (teleportState != TeleportState.inProgress) {
+		return 1;
+	}
+	return getSurfaceFlagsHorizontal(curX, curY, gameState.firstPartyMemberEntity) | getSurfaceFlagsHorizontal(nextX, nextY, gameState.firstPartyMemberEntity);
+}
+
 /** Update teleportation speed based on old speed and teleportation stage
  * Original_Address: $(DOLLAR)C0DF22
  */
@@ -10651,31 +11112,6 @@ void psiTeleportUpdateSpeed(ushort direction) {
 			break;
 		default: break;
 	}
-}
-
-/** Restore control after a successful PSI Teleport
- * Original_Address: $(DOLLAR)C0DE7C
- */
-void psiTeleportRestoreControl() {
-	currentPartyMemberTick = &partyCharacters[0];
-	for (short i = partyMemberEntityStart; i < partyMemberEntityStart + partyCharacters.length; i++) {
-		entityScriptVar3Table[i] = 8;
-		entityScriptVar7Table[i] &= ~PartyMemberMovementFlags.unknown11;
-		entityCollidedObjects[i] &= ~EntityCollision.disabled;
-		currentPartyMemberTick.lastWalkingStyle = 0xFFFF;
-		currentPartyMemberTick++;
-	}
-	changeMapMusicImmediately();
-}
-
-/** Perform a PSI Teleport collision check. Check both the leader's current position and the position where it will be
- * Original_Address: $(DOLLAR)C0DED9
- */
-short psiTeleportCheckCollision(short curX, short curY, short nextX, short nextY, short) {
-	if (teleportState != TeleportState.inProgress) {
-		return 1;
-	}
-	return getSurfaceFlagsHorizontal(curX, curY, gameState.firstPartyMemberEntity) | getSurfaceFlagsHorizontal(nextX, nextY, gameState.firstPartyMemberEntity);
 }
 
 /// $C0E196
@@ -10896,6 +11332,18 @@ void psiTeleportSuccessDepartLeaderTick() {
 	writePartyLeaderStateToPositionBuffer();
 }
 
+// unused
+/// $C0E6FE
+void unknownC0E6FE() {
+	currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
+	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].xCoord;
+	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].yCoord;
+	entityDirections[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
+	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].tileFlags;
+	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
+	currentPartyMemberTick.positionIndex = psiTeleportGetPositionIndex(entityScriptVar0Table[currentEntitySlot], currentPartyMemberTick.positionIndex);
+}
+
 /** Leader tick function for PSI Teleport arrivals
  *
  * Update speed, position, center screen on leader, update position buffer and update animation speed
@@ -11092,6 +11540,20 @@ void teleportMainLoop() {
 	psiTeleportDestination = 0;
 }
 
+// unused (JP)
+// $C0EBAA
+void unknownC0EBAA(short arg1, short arg2, short* arg3) {
+	// with so little context, it's going to be very difficult to figure out what this is meant to be doing
+	// given its position in the rom, it's either at the end of a PSI teleport object file or the beginning of the title screen object file
+	for (short i = 0; i < 16; i++) {
+		short tmp01 = cast(short)(i * 32);
+		short y = cast(short)(i * 16 + arg2 + arg1);
+		for (short j = 0; j < 16; j++) {
+			arg3[tmp01 +i] = cast(short)(y + j);
+		}
+	}
+}
+
 /** Loads the graphics data needed for the title screen
  * Original_Address: $(DOLLAR)C0EBE0
  */
@@ -11168,15 +11630,23 @@ void setTitleScreenActionScriptState() {
 /** Rotates in a loaded palette based on VAR0, VAR1 and VAR2 of the active entity
  *
  * VAR0 is the source palette ID, and is incremented automatically
- * VAR1 is the target palette ID
- * VAR2 is the maximum source palette ID, after which the palette will automatically rotate back to 0
+ * VAR1 is the target palette ID (EB only, hardcoded to X in Mother 2)
+ * VAR2 is the maximum source palette ID, after which the palette will automatically rotate back to 0 (EB only, hardcoded to 9 in Mother 2)
+ * In Mother 2, this copies 16 palettes instead of just 1.
  * Original_Address: $(DOLLAR)C0EDDA
  */
 void rotateLoadedPalette() {
 	short palette = entityScriptVar0Table[currentEntitySlot];
-	short targetPalette = entityScriptVar1Table[currentEntitySlot];
-	short paletteLimit = entityScriptVar2Table[currentEntitySlot];
-	memcpy(&palettes[targetPalette][0], &buffer[palette * 32], 0x20);
+	version(mother2) {
+		enum targetPalette = 0;
+		enum paletteLimit = 9;
+		enum paletteCount = 16;
+	} else {
+		short targetPalette = entityScriptVar1Table[currentEntitySlot];
+		short paletteLimit = entityScriptVar2Table[currentEntitySlot];
+		enum paletteCount = 1;
+	}
+	memcpy(&palettes[targetPalette][0], &buffer[palette * 32 * paletteCount], 32 * paletteCount);
 	short nextPalette = cast(short)(palette + 1);
 	if (nextPalette == paletteLimit) {
 		nextPalette = 0;

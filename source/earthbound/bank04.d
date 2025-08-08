@@ -2204,7 +2204,7 @@ void printLetter(short tile) {
 	if (tile == TallTextTile.nonBreakingSpace) {
 		vwfIndentNewLine = 0;
 	}
-	drawTallTextTileFocusedF(tile);
+	drawTallTextTileFocused(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
@@ -2481,7 +2481,7 @@ void printAutoNewline(DisplayTextState* state, const(ubyte)* currentCompressedTe
 		newLineLength = cast(short)((vwfX & 7) + nextWordLength);
 	}
 	if ((windowStats[windowTable[currentFocusWindow]].width * 8) < newLineLength) {
-		printNewLineF();
+		printNewLine();
 		vwfIndentNewLine = 1;
 	}
 }
@@ -2495,10 +2495,10 @@ void printAutoNewline(DisplayTextState* state, const(ubyte)* currentCompressedTe
 void printStringAutoNewline(short length, const(ubyte)* text) {
 	short stringLength = getStringRenderWidth(text, length);
 	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + stringLength >= (windowStats[windowTable[currentFocusWindow]].width * 8)) {
-		printNewLineF();
+		printNewLine();
 		vwfIndentNewLine = 1;
 	}
-	printStringF(length, text);
+	printString(length, text);
 }
 
 /** Prints a string with automatic newlines for every word
@@ -2713,7 +2713,7 @@ void finishTextTileRender(short upperTile, short lowerTile) {
 			if (allowTextOverflow != 0) {
 				goto SetNewCursorCoordinates; // skip scrolling, indentation
 			}
-			moveTextUpOneLineF(currentFocusWindow);
+			moveTextUpOneLine(currentFocusWindow);
 		}
 		if (enableWordWrap != 0) {
 			vwfIndentNewLine = 1;
@@ -2873,7 +2873,7 @@ void printPrice(uint value) {
 	ubyte vwfIndentNewLineCopy = vwfIndentNewLine;
 	vwfIndentNewLine = 0;
 	// separate the digits
-	short digits = unknownC10C55(value);
+	short digits = splitDecimalByDigits(value);
 	const(ubyte)* numberString = &numberTextBuffer[7 - digits];
 	// make copies for later printing and restoring
 	const(ubyte)* numberStringCopy = numberString;
@@ -2892,9 +2892,9 @@ void printPrice(uint value) {
 	// keep all prices left aligned so they at least mostly align with each other
 	forceLeftTextAlignment = 1;
 	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - fullWidth), windowStats[windowTable[currentFocusWindow]].textY);
-	printLetterVWFF(ebChar('$'));
+	printLetterVWF(ebChar('$'));
 	while (digits != 0) {
-		printLetterVWFF((numberStringCopy++)[0] + TallTextTile.num0Fixed * 2);
+		printLetterVWF((numberStringCopy++)[0] + TallTextTile.num0Fixed * 2);
 		digits--;
 	}
 	forceLeftTextAlignment = 0;
@@ -2946,7 +2946,7 @@ void createMenuOptionTable(short columns, short reservedColumns, short altSpacin
 	}
 	short maxOptionCount = windowStats[windowTable[currentFocusWindow]].height / 2;
 	// reserve space for the next page option if applicable
-	if ((columns + getMenuOptionCountF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns > maxOptionCount) {
+	if ((columns + getMenuOptionCount(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns > maxOptionCount) {
 		maxOptionCount -= 2;
 	}
 	short x = 0;
@@ -2982,7 +2982,7 @@ void createMenuOptionTable(short columns, short reservedColumns, short altSpacin
 		page++;
 	}
 	// too many options. add the next page option
-	if (((columns + getMenuOptionCountF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns) > windowStats[windowTable[currentFocusWindow]].height / 2) {
+	if (((columns + getMenuOptionCount(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns) > windowStats[windowTable[currentFocusWindow]].height / 2) {
 		// first we waste some time by getting the last option for no reason
 		MenuOption* tmpOption = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 		short tmp = cast(short)(columns - 1);
@@ -2991,7 +2991,7 @@ void createMenuOptionTable(short columns, short reservedColumns, short altSpacin
 			tmpOption = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
 		// then we add the 'Next' option
-		createNewMenuOptionAtPositionWithUserdataF(0, 0, windowStats[windowTable[currentFocusWindow]].height / 2 - 1, &menuNextLabel[0], null);
+		createNewMenuOptionAtPositionWithUserdata(0, 0, windowStats[windowTable[currentFocusWindow]].height / 2 - 1, &menuNextLabel[0], null);
 		menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].page = 0;
 	}
 }
@@ -3536,6 +3536,61 @@ immutable ubyte[6] homesicknessProbabilities = [
 	0,
 ];
 
+// unused
+/// $C45C90
+void unknownC45C90(short arg1, const(ubyte)* gfx) {
+	while (dmaTransferFlag != 0) {}
+	short tmp = vwfX % 8;
+	ubyte* tmp03 = &unread7E9D23[vwfTile][0];
+	const(ubyte)* gfxTmp = gfx;
+	for (short i = 0; i < 16; i++, gfxTmp++, tmp03++) {
+		tmp03[0] &= ~((~gfxTmp[0]) << tmp);
+		tmp03[16] &= ~((~gfxTmp[256]) << tmp);
+	}
+	version(mother2) {
+		enum unknownConstant = 32;
+	} else {
+		enum unknownConstant = 64;
+	}
+	vwfX += arg1;
+	if (vwfX >= unknownConstant) {
+		vwfX -= unknownConstant;
+	}
+	short tmp01 = vwfX >> 3;
+	if (vwfTile == tmp01) {
+		return;
+	}
+	vwfTile = tmp01;
+	short tmp02 = cast(short)(8 - tmp);
+	tmp03 = &unread7E9D23[tmp01][0];
+	gfxTmp = gfx;
+	for (short i = 0; i < 16; i++, gfxTmp++, tmp03++) {
+		tmp03[0] = cast(ubyte)~(~gfxTmp[0] << tmp02);
+		tmp03[16] = cast(ubyte)~(~gfxTmp[256] << tmp02);
+	}
+}
+
+// unused
+/// $C45DDD
+void unknownC45DDD(short arg1) {
+	short tmp02 = cast(short)(arg1 - 1);
+	short tmp01 = cast(short)(unused7E9E27 - 1);
+	do {
+		tmp02++;
+		if (tmp02 != unread7E9D23.length - 1) {
+			tmp02 = 0;
+		}
+		if (++tmp01 < 48) {
+			tmp01 = 0;
+		}
+		ushort vramDest = cast(ushort)(0x7900 + ((tmp01 & 0xF) << 3) + ((tmp01 & 0xF0) << 4));
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 16, vramDest, &unread7E9D23[tmp02][0]);
+		copyToVRAM(VRAMCopyMode.simpleCopyToVRAM, 16, cast(ushort)(vramDest + 128), &unread7E9D23[tmp02][16]);
+	} while (vwfTile != tmp02);
+	unused7E9E27 = tmp01;
+	dmaTransferFlag = 1;
+}
+
 /** Cleans up VWF state?
  *
  * Half of this function is vestigial in Earthbound. Will need to look into Mother 2 to figure out what this is really for.
@@ -3548,7 +3603,7 @@ void resetVWFState() {
 	// there are a lot of vestigial vars here...
 
 	for (short i = 0; i < 0x20; i++) {
-		unread7E9D23[i][0] = 0xFF;
+		unread7E9D23[0][i] = 0xFF;
 	}
 	// reset VWF rendering position
 	vwfTile = 0;
@@ -8488,7 +8543,7 @@ short gameOverPrompt() {
 	skippablePause(60);
 	displayText(getTextBlock("MSG_SYS_COMEBACK"));
 	closeAllWindowsAndHPPP();
-	if (getEventFlag(EventFlag.sysComeBack) == 0) {
+	if (getEventFlag(flagNoContinueSelected) == 0) {
 		skippablePause(60);
 		return -1;
 	}

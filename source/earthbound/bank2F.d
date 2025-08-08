@@ -117,7 +117,7 @@ void backupMenuSelection() {
 void printNewLineIfNeeded(short chr) {
 	short charWidth = fontData[fontConfigTable[0].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding;
 	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + charWidth) {
-		printNewLineF();
+		printNewLine();
 		vwfIndentNewLine = 1;
 	}
 }
@@ -22324,6 +22324,37 @@ void debugClearHDMA() {
 	snes.WH0 = 0x80;
 	snes.WH1 = 0x7F;
 }
+
+struct TilemapUpdateEFEB3D {
+	align(1):
+	ubyte count;
+	ubyte height;
+	ushort[16] data;
+}
+
+// unused
+/// $EFEB3D
+immutable unknownEFEB3D = TilemapUpdateEFEB3D(4, 4, [
+	TilemapEntry(0x1430).raw, // index: 48, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x1431).raw, // index: 49, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x5431).raw, // index: 49, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+	TilemapEntry(0x5430).raw, // index: 48, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+
+	TilemapEntry(0x144D).raw, // index: 77, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x144E).raw, // index: 78, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x544E).raw, // index: 78, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+	TilemapEntry(0x544D).raw, // index: 77, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+
+	TilemapEntry(0x146D).raw, // index: 109, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x146E).raw, // index: 110, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x546E).raw, // index: 110, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+	TilemapEntry(0x546D).raw, // index: 109, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+
+	TilemapEntry(0x146D).raw, // index: 109, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x144F).raw, // index: 79, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x144F).raw, // index: 79, palette: 5, priority: 0, flipHorizontal: 0, flipVertical: 0
+	TilemapEntry(0x546D).raw, // index: 109, palette: 5, priority: 0, flipHorizontal: 1, flipVertical: 0
+]);
 
 /** Font graphics for the boot debug menu
  * Original_Address: $(DOLLAR)EFEB5F

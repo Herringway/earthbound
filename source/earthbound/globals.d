@@ -1319,6 +1319,10 @@ __gshared short screenXPixels;
  * Original_Address: $(DOLLAR)4382
  */
 __gshared short screenYPixels;
+/**
+ * Original_Address: $(DOLLAR)4384
+ */
+__gshared short unknown7E4384;
 
 /** A copy of either bg1PositionX or bg2PositionX. Written but not read
  * Original_Address: $(DOLLAR)4386
@@ -2226,7 +2230,7 @@ __gshared short respawnY;
 /** Unknown. Mother 2 used this, but Earthbound never reads from this
  * Original_Address: $(DOLLAR)9D23
  */
-__gshared ubyte[8][0x20] unread7E9D23;
+__gshared ubyte[0x20][8] unread7E9D23;
 /** Current text renderer X position measured in pixels
  * Original_Address: $(DOLLAR)9E23
  */
@@ -2473,7 +2477,7 @@ __gshared short tilemapUpdateBaseAddress;
 /** Remaining tiles to send to VRAM
  * Original_Address: $(DOLLAR)9F86
  */
-__gshared ushort* tilemapUpdateRemainingTiles;
+__gshared const(ushort)* tilemapUpdateRemainingTiles;
 /** Not used in any live code
  * Original_Address: $(DOLLAR)9F88
  */

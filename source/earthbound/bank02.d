@@ -104,7 +104,7 @@ void initializeTextSystem() {
 	}
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 0x20; j++) {
-			unread7E9D23[j][i] = 0xFF;
+			unread7E9D23[i][j] = 0xFF;
 		}
 	}
 	unread7E9E29 = 0;
@@ -468,6 +468,29 @@ immutable ubyte[4][2] thethe = [
 	ebString!4("The "),
 	ebString!4("the "),
 ];
+
+// unused (except in prototype)
+/// $C209A0
+void removeWindowFromScreenOld(short arg1) {
+	short window = windowTable[arg1];
+	if (window == -1) {
+		return;
+	}
+	ushort* tmp00 = windowStats[window].tilemapBuffer;
+	for (short v02 = cast(short)(windowStats[window].height * windowStats[window].width); v02 != 0; v02--) {
+		if (tmp00[0] != 0) {
+			freeTileSafe(tmp00[0]);
+		}
+		(tmp00++)[0] = 64;
+	}
+	if (windowStats[window].titleID != 0) {
+		titledWindows[windowStats[window].titleID - 1] = -1;
+	}
+	windowStats[window].title[0] = 0;
+	windowStats[window].titleID = 0;
+	redrawAllWindows = 1;
+	playerIntangibilityFlash();
+}
 
 /// $C20A20
 void backupCurrentWindowTextAttributes(WindowTextAttributesCopy* buf) {
@@ -1251,6 +1274,18 @@ short getLivingPartyMemberCount() {
 	return result;
 }
 
+// unused (formerly part of [1C 11] CC?)
+/// $C2277C
+short unknownC2277C() {
+	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+		short partyMember = gameState.partyMemberIndex[i];
+		if ((partyCharacters[partyMember].afflictions[0] != 1) && (partyCharacters[partyMember].afflictions[0] != 2)) {
+			return partyMember;
+		}
+	}
+	return 0;
+}
+
 /// $C227C8
 void learnSpecialPSI(short id) {
 	switch (id) {
@@ -1736,38 +1771,38 @@ short battleSelectionMenu(short partyMemberID, short partyMemberOrder) {
 	setWindowTitle(battleWindows[x1A], PartyCharacter.name.length, &partyCharacters[partyMemberID - 1].name[0]);
 	switch (x20) {
 		case 0:
-			createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.attack, 0, 0, &battleMenuText[0][0], null);
+			createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.attack, 0, 0, &battleMenuText[0][0], null);
 			break;
 		case 1:
-			createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.attack, 0, 0, &battleMenuText[6][0], null);
+			createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.attack, 0, 0, &battleMenuText[6][0], null);
 			break;
 		case 2:
-			createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.attack, 0, 0, &battleMenuTextDoNothing[0], null);
+			createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.attack, 0, 0, &battleMenuTextDoNothing[0], null);
 			break;
 		default: break;
 	}
 	if (x20 != 2) {
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.goods, 6, 0, &battleMenuText[1][0], null);
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.defend, 6, 1, &battleMenuText[4][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.goods, 6, 0, &battleMenuText[1][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.defend, 6, 1, &battleMenuText[4][0], null);
 	}
 	if (partyMemberOrder == 0) {
 		short x04 = (x1A == 2) ? 16 : 11;
 		if ((partyMemberID == PartyMember.paula) || (partyMemberID == PartyMember.poo)) {
 			x04 += 2;
 		}
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.autoFight, x04, 0, &battleMenuText[2][0], null);
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.runAway, x04, 1, &battleMenuText[8][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.autoFight, x04, 0, &battleMenuText[2][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.runAway, x04, 1, &battleMenuText[8][0], null);
 	}
 	if (partyMemberID == PartyMember.jeff) {
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[7][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[7][0], null);
 	} else if (character.afflictions[4] == 0) {
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[3][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[3][0], null);
 	}
 	if (partyMemberID == PartyMember.paula) {
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.prayMirror, 11, 0, &battleMenuText[5][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.prayMirror, 11, 0, &battleMenuText[5][0], null);
 	}
 	if (partyMemberID == PartyMember.poo) {
-		createNewMenuOptionAtPositionWithUserdata(BattleMenuOptions.prayMirror, 13, 0, &battleMenuText[9][0], null);
+		createNewMenuOptionAtPositionWithUserdata2(BattleMenuOptions.prayMirror, 13, 0, &battleMenuText[9][0], null);
 	}
 	short chosenAction;
 	while (true) {
@@ -3841,15 +3876,15 @@ short getEnemyType(short id) {
 }
 
 /// $C269DE
-void tickUntilFadeCompletion() {
-	while (fadeParameters.step != 0) {
+void wait(short frames) {
+	while (--frames != 0) {
 		windowTick();
 	}
 }
 
-/// $C269BE
-void wait(short frames) {
-	while (--frames != 0) {
+/// $C269DE
+void tickUntilFadeCompletion() {
+	while (fadeParameters.step != 0) {
 		windowTick();
 	}
 }
@@ -4402,31 +4437,6 @@ void koTarget(Battler* arg1) {
 	}
 }
 
-/// $C27D28
-void increaseOffense16th(Battler* battler) {
-	battler.offense += (battler.offense / 16 != 0) ? (battler.offense / 16) : 1;
-	if (battler.offense > (battler.baseOffense * 5) / 4) {
-		battler.offense = (battler.baseOffense * 5) / 4;
-	}
-}
-
-/// $C27D82
-void increaseDefense16th(Battler* battler) {
-	battler.defense += (battler.defense / 16 != 0) ? (battler.defense / 16) : 1;
-	if (battler.defense > (battler.baseDefense * 5) / 4) {
-		battler.defense = (battler.baseDefense * 5) / 4;
-	}
-}
-
-/// $C27E8A
-void swapAttackerWithTarget() {
-	Battler* tmp = currentAttacker;
-	currentAttacker = currentTarget;
-	currentTarget = tmp;
-	fixAttackerName(0);
-	fixTargetName();
-}
-
 /// $C27C96
 short successLuck80() {
 	if (randLimit(80) < currentTarget.luck) {
@@ -4453,6 +4463,22 @@ short failAttackOnNPCs() {
 	return 0;
 }
 
+/// $C27D28
+void increaseOffense16th(Battler* battler) {
+	battler.offense += (battler.offense / 16 != 0) ? (battler.offense / 16) : 1;
+	if (battler.offense > (battler.baseOffense * 5) / 4) {
+		battler.offense = (battler.baseOffense * 5) / 4;
+	}
+}
+
+/// $C27D82
+void increaseDefense16th(Battler* battler) {
+	battler.defense += (battler.defense / 16 != 0) ? (battler.defense / 16) : 1;
+	if (battler.defense > (battler.baseDefense * 5) / 4) {
+		battler.defense = (battler.baseDefense * 5) / 4;
+	}
+}
+
 /// $C27DDC
 void hexadecimateOffense(Battler* target) {
 	target.offense -= (target.offense / 16 != 0) ? (target.offense / 16) : 1;
@@ -4467,6 +4493,15 @@ void hexadecimateDefense(Battler* target) {
 	if (target.defense < (target.baseDefense * 3) / 4) {
 		target.defense = (target.baseDefense * 3) / 4;
 	}
+}
+
+/// $C27E8A
+void swapAttackerWithTarget() {
+	Battler* tmp = currentAttacker;
+	currentAttacker = currentTarget;
+	currentTarget = tmp;
+	fixAttackerName(0);
+	fixTargetName();
 }
 
 /// $C27EAF
@@ -5914,23 +5949,6 @@ void battleActionOffenseUpOmega() {
 	battleActionOffenseUpAlpha();
 }
 
-/// $C29F06
-void battleActionHypnosisAlpha() {
-	if (failAttackOnNPCs() != 0) {
-		return;
-	}
-	if ((success255(currentTarget.hypnosisResist) != 0) && (inflictStatusBattle(currentTarget, 2, Status2.asleep) != 0)) {
-		displayInBattleText(getTextBlock("MSG_BTL_NEMURI_ON"));
-	} else {
-		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
-	}
-}
-
-/// $C29F57
-void battleActionHypnosisOmega() {
-	battleActionHypnosisAlpha();
-}
-
 /// $C29E86
 void battleActionDefenseDownAlpha() {
 	if (failAttackOnNPCs() != 0) {
@@ -5948,6 +5966,23 @@ void battleActionDefenseDownAlpha() {
 /// $C29EFF
 void battleActionDefenseDownOmega() {
 	battleActionDefenseDownAlpha();
+}
+
+/// $C29F06
+void battleActionHypnosisAlpha() {
+	if (failAttackOnNPCs() != 0) {
+		return;
+	}
+	if ((success255(currentTarget.hypnosisResist) != 0) && (inflictStatusBattle(currentTarget, 2, Status2.asleep) != 0)) {
+		displayInBattleText(getTextBlock("MSG_BTL_NEMURI_ON"));
+	} else {
+		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
+	}
+}
+
+/// $C29F57
+void battleActionHypnosisOmega() {
+	battleActionHypnosisAlpha();
 }
 
 /// $C29F5E
@@ -6139,6 +6174,14 @@ void battleActionHPRecovery10000() {
 	}
 }
 
+/// $C2A39D
+void healPoison() {
+	if (currentTarget.afflictions[0] == Status0.poisoned) {
+		currentTarget.afflictions[0] = 0;
+		displayInBattleText(getTextBlock("MSG_BTL_MODOKU_OFF"));
+	}
+}
+
 /// $C2A3D1
 void battleActionCounterPSI() {
 	if (failAttackOnNPCs() != 0) {
@@ -6149,14 +6192,6 @@ void battleActionCounterPSI() {
 		displayInBattleText(getTextBlock("MSG_BTL_FUUIN_ON"));
 	} else {
 		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
-	}
-}
-
-/// $C2A39D
-void healPoison() {
-	if (currentTarget.afflictions[0] == Status0.poisoned) {
-		currentTarget.afflictions[0] = 0;
-		displayInBattleText(getTextBlock("MSG_BTL_MODOKU_OFF"));
 	}
 }
 
@@ -6323,6 +6358,16 @@ void battleActionSuperBomb() {
 	bombCommon(270);
 }
 
+// unused, copy of battleActionSolidify but it can affect NPCs
+/// $C2A82A
+void battleActionSolidify2() {
+	if ((successLuck80() != 0) && (inflictStatusBattle(currentTarget, 2, Status2.solidified) != 0)) {
+		displayInBattleText(getTextBlock("MSG_BTL_KOORI_ON"));
+	} else {
+		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
+	}
+}
+
 /// $C2A86B
 void battleActionYogurtDispenser() {
 	if (successSpeed(250) != 0) {
@@ -6345,6 +6390,26 @@ void battleActionSnake() {
 		if (inflictStatusBattle(currentTarget, 0, Status0.poisoned) == 0) {
 			return;
 		}
+		displayInBattleText(getTextBlock("MSG_BTL_MODOKU_ON"));
+	} else {
+		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
+	}
+}
+
+// unused, copy of battleActionSolidify2 but affected by paralysis resistance
+/// $C2A902
+void battleActionInflictSolidification() {
+	if ((successLuck80() != 0) && (success255(currentTarget.paralysisResist) != 0) && (inflictStatusBattle(currentTarget, 2, Status2.solidified) != 0)) {
+		displayInBattleText(getTextBlock("MSG_BTL_KOORI_ON"));
+	} else {
+		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
+	}
+}
+
+// unused
+/// $C2A953
+void battleActionInflictPoison() {
+	if ((success255(currentTarget.paralysisResist) != 0) && (inflictStatusBattle(currentTarget, 0, Status0.poisoned) != 0)) {
 		displayInBattleText(getTextBlock("MSG_BTL_MODOKU_ON"));
 	} else {
 		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
@@ -8935,7 +9000,7 @@ void sortBattlerPositions() {
 	}
 }
 
-/// $C2FAD8
+/// $C2FAD2
 short getPhysicalTargettingAllowed(short position) {
 	return 1;
 }
@@ -8993,6 +9058,37 @@ void initializeBattleSpritePaletteEffect(short spriteColour, short targetRed, sh
 	} else {
 		battleSpritePaletteEffectSteps[spriteColour * 3 + 2] = cast(short)(blue - targetBlue);
 		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = -0x400;
+	}
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 2] = 0;
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 1] = 0;
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 0] = 0;
+}
+
+//unused
+/// $C2FCA6
+void unknownC2FCA6(short spriteColour) {
+	battleSpritePaletteEffectFramesLeft[spriteColour / 16] = battleSpritePaletteEffectSpeed;
+	ushort colour = (&palettes[12][0])[spriteColour];
+	ushort red = colour & 0x1F;
+	ushort green = (colour >> 5) & 0x1F;
+	ushort blue = (colour >> 10) & 0x1F;
+	if (red != 0) {
+		battleSpritePaletteEffectSteps[spriteColour * 3] = cast(short)(red - (red / 4));
+		battleSpritePaletteEffectDeltas[spriteColour * 3] = -1;
+	} else {
+		battleSpritePaletteEffectDeltas[spriteColour * 3] = 0;
+	}
+	if (green != 0) {
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 1] = cast(short)(green - (green / 4));
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 1] = -1;
+	} else {
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 1] = 0;
+	}
+	if (blue != 0) {
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 2] = cast(short)(blue - (blue / 4));
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = -1;
+	} else {
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = 0;
 	}
 	battleSpritePaletteEffectCounters[spriteColour * 3 + 2] = 0;
 	battleSpritePaletteEffectCounters[spriteColour * 3 + 1] = 0;
